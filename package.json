@@ -1,11 +1,11 @@
 {
   "name": "SharePlace",
-  "version": "0.0.9",
+  "version": "0.0.0",
   "description": "share place",
   "main": "main.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/marwenlandoulsi/testAppElec"
+    "url": "https://github.com/marwenlandoulsi/share.place"
   },
   "scripts": {
     "start": "electron .",
@@ -27,7 +27,7 @@
       {
         "provider": "github",
         "owner": "marwenlandoulsi",
-        "repo": "testAppElec"
+        "repo": "share.place"
       }
     ],
     "asar": false,
