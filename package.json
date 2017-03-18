@@ -1,6 +1,6 @@
 {
   "name": "SharePlace",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "share place",
   "main": "main.js",
   "repository": {
@@ -9,7 +9,7 @@
   },
   "scripts": {
     "start": "electron .",
-    "build:win": "build --win --ia32 --x64 --publish always",
+    "build:win": "build --win --ia32 --x64 --icon=shareElecIco.ico --publish always",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
@@ -23,6 +23,7 @@
     "path": "^0.12.7"
   },
   "build": {
+    "icon" :"./shareElecIco.ico",
     "publish": [
       {
         "provider": "github",
@@ -34,6 +35,7 @@
     "copyright": "©2017 Share.Place, Inc.",
     "appId": "com.share.place",
     "win": {
+      "icon" :"./shareElecIco.ico",
       "target": "nsis"
     },
     "nsis": {
