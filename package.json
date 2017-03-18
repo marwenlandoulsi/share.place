@@ -9,7 +9,7 @@
   },
   "scripts": {
     "start": "electron .",
-    "build:win": "build --win --ia32 --x64 --icon=shareElecIco.ico --publish always",
+    "build:win": "build --win --ia32 --x64 --publish always",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
