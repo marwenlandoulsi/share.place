@@ -6,4 +6,4 @@ log
 dist/
 server/public
 server/static
-
+data

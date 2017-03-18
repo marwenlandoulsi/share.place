@@ -13,7 +13,7 @@
                 "publish": [{
                     "provider": "github",
                     "owner": "marwenlandoulsi",
-                    "repo": "testAppElec"
+                    "repo": "share.place"
                 }],
                 ...
             }
