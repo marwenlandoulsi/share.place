@@ -1,0 +1,102 @@
+{
+  "ngDeps": {
+    "1": "",
+    "3": [
+      {
+        "1": "dart:async",
+        "5": false
+      },
+      {
+        "1": "package:share_place/environment.dart",
+        "5": false
+      },
+      {
+        "1": "package:share_place/place_service.dart",
+        "5": false
+      },
+      {
+        "1": "package:angular2/core.dart",
+        "5": false
+      },
+      {
+        "1": "package:share_place/users/user.dart",
+        "5": false
+      }
+    ],
+    "5": [
+      {
+        "1": "UserListProvider",
+        "4": [
+          {
+            "1": "Injectable",
+            "4": false
+          }
+        ],
+        "5": [
+          {
+            "1": "Environment",
+            "4": "_environment"
+          },
+          {
+            "1": "PlaceService",
+            "4": "_placeService"
+          }
+        ]
+      }
+    ],
+    "6": "user_list_provider.dart"
+  },
+  "type": {
+    "UserListProvider": {
+      "class": "Type",
+      "name": "UserListProvider",
+      "moduleUrl": "asset:share_place/lib/users/user_list_provider.dart",
+      "prefix": null,
+      "isHost": false,
+      "value": null,
+      "diDeps": [
+        {
+          "token": {
+            "value": null,
+            "identifier": {
+              "class": "Identifier",
+              "name": "Environment",
+              "moduleUrl": null,
+              "prefix": null,
+              "value": null
+            },
+            "identifierIsInstance": false
+          },
+          "value": null,
+          "isAttribute": false,
+          "isSelf": false,
+          "isHost": false,
+          "isSkipSelf": false,
+          "isOptional": false,
+          "isValue": false
+        },
+        {
+          "token": {
+            "value": null,
+            "identifier": {
+              "class": "Identifier",
+              "name": "PlaceService",
+              "moduleUrl": null,
+              "prefix": null,
+              "value": null
+            },
+            "identifierIsInstance": false
+          },
+          "value": null,
+          "isAttribute": false,
+          "isSelf": false,
+          "isHost": false,
+          "isSkipSelf": false,
+          "isOptional": false,
+          "isValue": false
+        }
+      ]
+    }
+  },
+  "alias": {}
+}

@@ -1,0 +1,50 @@
+{
+  "ngDeps": {
+    "1": "",
+    "3": [
+      {
+        "1": "package:angular2/core.dart",
+        "5": false
+      },
+      {
+        "1": "package:angular2/platform/browser_static.dart",
+        "5": false
+      },
+      {
+        "1": "package:share_place/app_component.dart",
+        "5": false
+      },
+      {
+        "1": "package:share_place/event_bus.dart",
+        "5": false
+      },
+      {
+        "1": "package:share_place/environment.dart",
+        "5": false
+      },
+      {
+        "1": "package:share_place/browser_data_service.dart",
+        "5": false
+      },
+      {
+        "1": "package:http/http.dart",
+        "5": false
+      },
+      {
+        "1": "package:share_place/common/net/socket.io.dart",
+        "5": false
+      }
+    ],
+    "6": "main.dart"
+  },
+  "type": {
+    "main": {
+      "class": "Identifier",
+      "name": "main",
+      "moduleUrl": "asset:share_place/web/main.dart",
+      "prefix": null,
+      "value": null
+    }
+  },
+  "alias": {}
+}

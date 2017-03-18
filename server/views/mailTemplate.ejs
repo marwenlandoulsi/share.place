@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+    <title>Node Authentication</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <style>
+        body {
+            padding-top: 80px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+            Hello <%= nameUserAdded %> !
+            <br/><br/>
+            You're invited by <strong> <%= nameUser %></strong> to join the place <strong> <%= place %> </strong>on Share.Place.
+            <br/><br/>
+            <strong>Email</strong>: <%= email %><br>
+            <strong>Password</strong>: <%= password %><br><br/>
+            Share.Place is a super fast & fully secure app to share and collaborate on any document.
+             <br/><br/>
+            <center>Join now:
+                <br>
+
+                <a href='<%= server_address %>'>
+                    Log in to your Share.Place account
+                </a>
+                <br>
+                (it's free and does not contain any malware)</center>
+
+            <br>
+
+            The Share.Place team
+
+        </div>
+
+    <hr>
+</div>
+</div>
+</body>
+</html>

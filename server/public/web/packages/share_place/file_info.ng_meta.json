@@ -1,0 +1,42 @@
+{
+  "ngDeps": {
+    "1": "",
+    "3": [
+      {
+        "1": "package:share_place/files/cloud_file.dart",
+        "5": false
+      }
+    ],
+    "6": "file_info.dart",
+    "7": [
+      {
+        "1": "package:share_place/files/cloud_file.template.dart",
+        "4": "i0"
+      }
+    ]
+  },
+  "type": {
+    "FileInfo": {
+      "class": "Identifier",
+      "name": "FileInfo",
+      "moduleUrl": "asset:share_place/lib/file_info.dart",
+      "prefix": null,
+      "value": null
+    },
+    "SubjectUser": {
+      "class": "Identifier",
+      "name": "SubjectUser",
+      "moduleUrl": "asset:share_place/lib/file_info.dart",
+      "prefix": null,
+      "value": null
+    },
+    "LockOwner": {
+      "class": "Identifier",
+      "name": "LockOwner",
+      "moduleUrl": "asset:share_place/lib/file_info.dart",
+      "prefix": null,
+      "value": null
+    }
+  },
+  "alias": {}
+}

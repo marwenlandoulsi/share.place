@@ -1,0 +1,13 @@
+{
+  "ngDeps": null,
+  "type": {
+    "SocketIoClient": {
+      "class": "Identifier",
+      "name": "SocketIoClient",
+      "moduleUrl": "asset:share_place/lib/common/net/socket.io.dart",
+      "prefix": null,
+      "value": null
+    }
+  },
+  "alias": {}
+}

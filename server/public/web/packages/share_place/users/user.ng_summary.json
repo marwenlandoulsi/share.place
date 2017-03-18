@@ -1,0 +1,34 @@
+{
+  "ngDeps": null,
+  "type": {
+    "RoleEnum": {
+      "class": "Identifier",
+      "name": "RoleEnum",
+      "moduleUrl": "asset:share_place/lib/users/user.dart",
+      "prefix": null,
+      "value": null
+    },
+    "User": {
+      "class": "Identifier",
+      "name": "User",
+      "moduleUrl": "asset:share_place/lib/users/user.dart",
+      "prefix": null,
+      "value": null
+    },
+    "Role": {
+      "class": "Identifier",
+      "name": "Role",
+      "moduleUrl": "asset:share_place/lib/users/user.dart",
+      "prefix": null,
+      "value": null
+    },
+    "roleFromString": {
+      "class": "Identifier",
+      "name": "roleFromString",
+      "moduleUrl": "asset:share_place/lib/users/user.dart",
+      "prefix": null,
+      "value": null
+    }
+  },
+  "alias": {}
+}

@@ -1,0 +1,12 @@
+<div class="news">
+	<div class="title">news</div>
+	<ul class="list">
+		<li *ngFor="let eventItem of events" class="event">
+			<div class="user">{{eventItem?.mainUser?.name}}</div>
+			<div class="action">{{eventItem?.actionName}}</div>
+			<div class="place">{{eventItem?.place?.name}}</div>
+			<div>Welcome <a href="#">{{eventItem?.mainUser?.name}}</a>!</div>
+			<div>with <a href="#">{{eventItem?.secUser?.name}}</a>!</div>
+		</li>
+	</ul>
+</div>

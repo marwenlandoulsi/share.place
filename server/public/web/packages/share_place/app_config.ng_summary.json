@@ -1,0 +1,20 @@
+{
+  "ngDeps": null,
+  "type": {
+    "baseUrl": {
+      "class": "Identifier",
+      "name": "baseUrl",
+      "moduleUrl": "asset:share_place/lib/app_config.dart",
+      "prefix": null,
+      "value": null
+    },
+    "readConf": {
+      "class": "Identifier",
+      "name": "readConf",
+      "moduleUrl": "asset:share_place/lib/app_config.dart",
+      "prefix": null,
+      "value": null
+    }
+  },
+  "alias": {}
+}

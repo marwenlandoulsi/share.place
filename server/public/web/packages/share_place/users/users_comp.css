@@ -1,0 +1,95 @@
+.users {
+  padding-right: 15px;
+  margin-top: 40px;
+}
+
+.user > div {
+  display: inline-block;
+}
+
+.titleDiv {
+
+}
+
+.addBtn {
+  float: left;
+}
+
+.title {
+  color: #c2c2c2;
+}
+
+.subtitle {
+  color: black;
+  padding-left: 0.2em;
+  display: none;
+}
+
+.list {
+  list-style-type: none;
+  padding-top: 1em;
+  padding-left: 0.2em;
+  background: white;
+  margin-bottom: 0;
+  border-radius: 6px;
+}
+
+a {
+  color: #00AEF0;
+}
+
+.addBtn {
+  padding: 0.7em 0.5em 0 0.7em;
+}
+
+.addZone {
+
+}
+
+.user {
+  color: black;
+  cursor: pointer;
+  padding-bottom: 0.3em;
+}
+
+.profileImg {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 0.3em;
+}
+
+.userName {
+  vertical-align: middle;
+  color: #273B54;
+  font-size: 13px;
+}
+
+.userName:hover {
+  color: #000;
+}
+
+.fa-skype {
+  color: #00AEF0;
+  font-size: 1.3em;
+  vertical-align: middle;
+  margin-left: 0.1em;
+}
+
+.title {
+  background: url("../images/tiret-grey.png") repeat-x center center;
+  padding: 0 !important;
+  color: #414c5f;
+  font-size: 14px !important;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 14px 0;
+}
+
+.hTitlein {
+  background: white;
+  padding-right: 0.5em;
+  display: inline;
+
+}

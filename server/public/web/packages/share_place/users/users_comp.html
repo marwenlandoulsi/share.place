@@ -1,0 +1,19 @@
+<div class="users">
+  <div class="titleDiv">
+    <!--<btn (click)="add()"-->
+         <!--[sources]="['../images/addPerson.png', '../images/addPerson-h.png', '../images/addPerson-c.png']"-->
+         <!--class="addBtn" [disabled]="selectedPlace==null"></btn>-->
+    <div class="title">
+        <div class="hTitlein">People</div>
+    </div>
+  </div>
+  <div class="subtitle">in {{selectedPlace?.name}}</div>
+  <ul class="list">
+
+    <li *ngFor="let userItem of users" class="user">
+      <img src="/auth/user/photo/s/{{userItem.id}}" class="profileImg">
+      <div class="userName">{{userItem?.name}}</div>
+      <a href="{{skypeUrlFor(userItem)}}"><div *ngIf="userItem.skype != null" class="fa fa-skype"></div></a>
+    </li>
+  </ul>
+</div>

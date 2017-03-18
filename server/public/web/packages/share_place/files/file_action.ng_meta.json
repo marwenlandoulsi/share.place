@@ -1,0 +1,13 @@
+{
+  "ngDeps": null,
+  "type": {
+    "FileAction": {
+      "class": "Identifier",
+      "name": "FileAction",
+      "moduleUrl": "asset:share_place/lib/files/file_action.dart",
+      "prefix": null,
+      "value": null
+    }
+  },
+  "alias": {}
+}

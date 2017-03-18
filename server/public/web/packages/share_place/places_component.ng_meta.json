@@ -1,0 +1,252 @@
+{
+  "ngDeps": {
+    "1": "",
+    "3": [
+      {
+        "1": "dart:async",
+        "5": false
+      },
+      {
+        "1": "dart:html",
+        "5": false
+      },
+      {
+        "1": "app_config.dart",
+        "4": "conf",
+        "5": false
+      },
+      {
+        "1": "package:angular2_components/angular2_components.dart",
+        "5": false
+      },
+      {
+        "1": "package:angular2/core.dart",
+        "5": false
+      },
+      {
+        "1": "package:angular2/router.dart",
+        "5": false
+      },
+      {
+        "1": "environment.dart",
+        "5": false
+      },
+      {
+        "1": "place.dart",
+        "5": false
+      },
+      {
+        "1": "place_service.dart",
+        "5": false
+      },
+      {
+        "1": "package:share_place/common/ui/button_comp.dart",
+        "5": false
+      },
+      {
+        "1": "package:share_place/common/ui/text_comp.dart",
+        "5": false
+      },
+      {
+        "1": "package:share_place/folder/folder_component.dart",
+        "5": false
+      },
+      {
+        "1": "package:share_place/users/users_comp.dart",
+        "5": false
+      }
+    ],
+    "5": [
+      {
+        "1": "PlacesComponent",
+        "5": [
+          {
+            "1": "PlaceService",
+            "4": "_placeService"
+          },
+          {
+            "1": "Router",
+            "4": "_router"
+          },
+          {
+            "1": "Environment",
+            "4": "_environment"
+          }
+        ],
+        "6": [
+          "OnInit"
+        ],
+        "7": [
+          {
+            "2": "FolderComponent"
+          },
+          {
+            "2": "UsersComp"
+          },
+          {
+            "2": "MaterialExpansionPanel"
+          },
+          {
+            "2": "MaterialExpansionPanelSet"
+          },
+          {
+            "2": "ButtonComp"
+          },
+          {
+            "2": "TextComp"
+          }
+        ]
+      }
+    ],
+    "6": "places_component.dart",
+    "7": [
+      {
+        "1": "app_config.template.dart",
+        "4": "i0"
+      },
+      {
+        "1": "package:angular2_components/angular2_components.template.dart",
+        "4": "i1"
+      },
+      {
+        "1": "package:angular2/core.template.dart",
+        "4": "i2"
+      },
+      {
+        "1": "package:angular2/router.template.dart",
+        "4": "i3"
+      },
+      {
+        "1": "environment.template.dart",
+        "4": "i4"
+      },
+      {
+        "1": "place.template.dart",
+        "4": "i5"
+      },
+      {
+        "1": "place_service.template.dart",
+        "4": "i6"
+      },
+      {
+        "1": "package:share_place/common/ui/button_comp.template.dart",
+        "4": "i7"
+      },
+      {
+        "1": "package:share_place/common/ui/text_comp.template.dart",
+        "4": "i8"
+      },
+      {
+        "1": "package:share_place/folder/folder_component.template.dart",
+        "4": "i9"
+      },
+      {
+        "1": "package:share_place/users/users_comp.template.dart",
+        "4": "i10"
+      }
+    ]
+  },
+  "type": {
+    "PlacesComponent": {
+      "class": "Directive",
+      "isComponent": true,
+      "selector": "places",
+      "exportAs": null,
+      "type": {
+        "class": "Type",
+        "name": "PlacesComponent",
+        "moduleUrl": "asset:share_place/lib/places_component.dart",
+        "prefix": null,
+        "isHost": false,
+        "value": null,
+        "diDeps": [
+          {
+            "token": {
+              "value": null,
+              "identifier": {
+                "class": "Identifier",
+                "name": "PlaceService",
+                "moduleUrl": "asset:share_place/lib/place_service.dart",
+                "prefix": null,
+                "value": null
+              },
+              "identifierIsInstance": false
+            },
+            "value": null,
+            "isAttribute": false,
+            "isSelf": false,
+            "isHost": false,
+            "isSkipSelf": false,
+            "isOptional": false,
+            "isValue": false
+          },
+          {
+            "token": {
+              "value": null,
+              "identifier": {
+                "class": "Identifier",
+                "name": "Router",
+                "moduleUrl": "asset:angular2/lib/src/router/router.dart",
+                "prefix": null,
+                "value": null
+              },
+              "identifierIsInstance": false
+            },
+            "value": null,
+            "isAttribute": false,
+            "isSelf": false,
+            "isHost": false,
+            "isSkipSelf": false,
+            "isOptional": false,
+            "isValue": false
+          },
+          {
+            "token": {
+              "value": null,
+              "identifier": {
+                "class": "Identifier",
+                "name": "Environment",
+                "moduleUrl": "asset:share_place/lib/environment.dart",
+                "prefix": null,
+                "value": null
+              },
+              "identifierIsInstance": false
+            },
+            "value": null,
+            "isAttribute": false,
+            "isSelf": false,
+            "isHost": false,
+            "isSkipSelf": false,
+            "isOptional": false,
+            "isValue": false
+          }
+        ]
+      },
+      "changeDetection": 6,
+      "inputs": {},
+      "inputTypes": {},
+      "outputs": {},
+      "hostListeners": {},
+      "hostProperties": {},
+      "hostAttributes": {},
+      "lifecycleHooks": [
+        0
+      ],
+      "template": {
+        "encapsulation": 0,
+        "template": "<div class=\"header headerplaces\">\r\n  <!--tittle places top-->\r\n  <label class=\"label\">Places</label>\r\n  <div class=\"add\">\r\n    <btn (click)=\"add();newPlace.focus('places')\"\r\n         [sources]=\"['../images/add-h.png', '../images/add-h.png', '../images/add-h.png']\" class=\"addBtn\"></btn>\r\n  </div>\r\n</div>\r\n<ul class=\"places\">\r\n  <li [style.display]=\"adding ? 'block' : 'none'\" class=\"addplace\">\r\n    <txt #newPlace [confirm]=\"save\" [sources]=\"['../images/ok.png', '../images/ok.png', '../images/ok.png']\"\r\n         class=\"saveAdd\"></txt>\r\n  </li>\r\n  <material-expansionpanel-set>\r\n      <material-expansionpanel flat *ngFor=\"let place of places\" name=\"{{place.name}}\" class=\"placePanel\" showSaveCancel=\"false\" (open)=\"selectedPlace = place\">\r\n        <div *ngIf=\"place?.id == selectedPlace?.id\">\r\n          <folders></folders>\r\n          <users-comp></users-comp>\r\n        </div>\r\n      </material-expansionpanel>\r\n  </material-expansionpanel-set>\r\n\r\n</ul>\r\n",
+        "templateUrl": "asset:share_place/lib/places_component.html",
+        "styles": [],
+        "styleUrls": [
+          "asset:share_place/lib/places_component.css"
+        ],
+        "ngContentSelectors": []
+      },
+      "providers": [],
+      "viewProviders": [],
+      "queries": [],
+      "viewQueries": []
+    }
+  },
+  "alias": {}
+}

@@ -1,0 +1,84 @@
+.selected {
+	background-color: #bfbb97 !important;
+	color: white !important;
+}
+
+.label {
+	color: rgba(255,255,255,0.4);
+}
+.label:first-letter { text-transform:  uppercase}
+
+
+.places {
+	margin: 0 0 2em 0;
+	list-style-type: none;
+	padding: 0;
+	border-bottom: 0.3em white;
+}
+
+.places li {
+	cursor: pointer;
+}
+
+.places li:hover {
+	color: #607D8B;
+	background-color: #DDD;
+	left: .1em;
+	padding: 7px 5px 16px 5px;
+}
+
+.addplace {
+	list-style-type: none;
+	background-color: #DDD;
+	padding: 7px 5px 16px 5px;
+	color: #607D8B;
+}
+.places li.selected:hover {
+	background-color: #BBD8DC !important;
+	color: white;
+}
+
+.places .text {
+	padding: 0.5em;
+}
+
+.places .badge {
+	display: none;
+}
+
+button:hover {
+	background-color: #cfd8dc;
+}
+
+
+.header .add {
+	float: right;
+	margin-right: 0.5em;
+}
+
+.placeItem {
+	width: calc( 100% - 1em );
+	background-color: rgba(255, 255, 255, 0.2);
+	color: rgba(255, 255, 255, 0.5);
+	box-shadow: 0 0 0 2px rgba(192, 161, 107, 0.46);
+	border-radius: 0 0.3em 0.3em 0;
+	margin: 0.5em 0;
+	padding: 0.3em;
+}
+
+.placeItem > span {
+	padding-left: 0.5em;
+}
+
+.addBtn {
+	padding-left: 0.5em;
+}
+
+.panel-name  {
+	padding-right: 0px;
+	width: 100%;
+	font-weight: bold !important;
+
+	font-size: 16px !important;
+}
+

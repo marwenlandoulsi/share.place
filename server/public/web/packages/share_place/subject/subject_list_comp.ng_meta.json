@@ -1,0 +1,415 @@
+{
+  "ngDeps": {
+    "1": "",
+    "3": [
+      {
+        "1": "dart:async",
+        "5": false
+      },
+      {
+        "1": "dart:html",
+        "5": false
+      },
+      {
+        "1": "package:angular2/core.dart",
+        "5": false
+      },
+      {
+        "1": "package:angular2/router.dart",
+        "5": false
+      },
+      {
+        "1": "package:share_place/files/cloud_file.dart",
+        "5": false
+      },
+      {
+        "1": "package:share_place/environment.dart",
+        "5": false
+      },
+      {
+        "1": "package:share_place/folder.dart",
+        "5": false
+      },
+      {
+        "1": "package:share_place/place.dart",
+        "5": false
+      },
+      {
+        "1": "package:share_place/file_info.dart",
+        "5": false
+      },
+      {
+        "1": "package:share_place/place_service.dart",
+        "5": false
+      },
+      {
+        "1": "package:share_place/common/ui/button_comp.dart",
+        "5": false
+      },
+      {
+        "1": "package:share_place/common/ui/text_comp.dart",
+        "5": false
+      },
+      {
+        "1": "package:share_place/users/invite/invite_dialog_comp.dart",
+        "5": false
+      },
+      {
+        "1": "package:share_place/users/users_comp.dart",
+        "5": false
+      },
+      {
+        "1": "package:share_place/users/user.dart",
+        "5": false
+      },
+      {
+        "1": "package:share_place/users/user_list_provider.dart",
+        "5": false
+      },
+      {
+        "1": "package:angular2_components/angular2_components.dart",
+        "5": false
+      }
+    ],
+    "5": [
+      {
+        "1": "SubjectListComponent",
+        "5": [
+          {
+            "1": "PlaceService",
+            "4": "_placeService"
+          },
+          {
+            "1": "Router",
+            "4": "_router"
+          },
+          {
+            "1": "Environment",
+            "4": "_environment"
+          },
+          {
+            "1": "UserListProvider",
+            "4": "_userListProvider"
+          }
+        ],
+        "6": [
+          "OnInit"
+        ],
+        "7": [
+          {
+            "2": "ButtonComp"
+          },
+          {
+            "2": "TextComp"
+          },
+          {
+            "2": "materialDirectives"
+          },
+          {
+            "2": "InviteUsersDialogComp"
+          }
+        ]
+      }
+    ],
+    "6": "subject_list_comp.dart",
+    "7": [
+      {
+        "1": "package:angular2/core.template.dart",
+        "4": "i0"
+      },
+      {
+        "1": "package:angular2/router.template.dart",
+        "4": "i1"
+      },
+      {
+        "1": "package:share_place/files/cloud_file.template.dart",
+        "4": "i2"
+      },
+      {
+        "1": "package:share_place/environment.template.dart",
+        "4": "i3"
+      },
+      {
+        "1": "package:share_place/folder.template.dart",
+        "4": "i4"
+      },
+      {
+        "1": "package:share_place/place.template.dart",
+        "4": "i5"
+      },
+      {
+        "1": "package:share_place/file_info.template.dart",
+        "4": "i6"
+      },
+      {
+        "1": "package:share_place/place_service.template.dart",
+        "4": "i7"
+      },
+      {
+        "1": "package:share_place/common/ui/button_comp.template.dart",
+        "4": "i8"
+      },
+      {
+        "1": "package:share_place/common/ui/text_comp.template.dart",
+        "4": "i9"
+      },
+      {
+        "1": "package:share_place/users/invite/invite_dialog_comp.template.dart",
+        "4": "i10"
+      },
+      {
+        "1": "package:share_place/users/users_comp.template.dart",
+        "4": "i11"
+      },
+      {
+        "1": "package:share_place/users/user.template.dart",
+        "4": "i12"
+      },
+      {
+        "1": "package:share_place/users/user_list_provider.template.dart",
+        "4": "i13"
+      },
+      {
+        "1": "package:angular2_components/angular2_components.template.dart",
+        "4": "i14"
+      }
+    ]
+  },
+  "type": {
+    "SubjectListComponent": {
+      "class": "Directive",
+      "isComponent": true,
+      "selector": "subjects",
+      "exportAs": null,
+      "type": {
+        "class": "Type",
+        "name": "SubjectListComponent",
+        "moduleUrl": "asset:share_place/lib/subject/subject_list_comp.dart",
+        "prefix": null,
+        "isHost": false,
+        "value": null,
+        "diDeps": [
+          {
+            "token": {
+              "value": null,
+              "identifier": {
+                "class": "Identifier",
+                "name": "PlaceService",
+                "moduleUrl": "asset:share_place/lib/place_service.dart",
+                "prefix": null,
+                "value": null
+              },
+              "identifierIsInstance": false
+            },
+            "value": null,
+            "isAttribute": false,
+            "isSelf": false,
+            "isHost": false,
+            "isSkipSelf": false,
+            "isOptional": false,
+            "isValue": false
+          },
+          {
+            "token": {
+              "value": null,
+              "identifier": {
+                "class": "Identifier",
+                "name": "Router",
+                "moduleUrl": "asset:angular2/lib/src/router/router.dart",
+                "prefix": null,
+                "value": null
+              },
+              "identifierIsInstance": false
+            },
+            "value": null,
+            "isAttribute": false,
+            "isSelf": false,
+            "isHost": false,
+            "isSkipSelf": false,
+            "isOptional": false,
+            "isValue": false
+          },
+          {
+            "token": {
+              "value": null,
+              "identifier": {
+                "class": "Identifier",
+                "name": "Environment",
+                "moduleUrl": "asset:share_place/lib/environment.dart",
+                "prefix": null,
+                "value": null
+              },
+              "identifierIsInstance": false
+            },
+            "value": null,
+            "isAttribute": false,
+            "isSelf": false,
+            "isHost": false,
+            "isSkipSelf": false,
+            "isOptional": false,
+            "isValue": false
+          },
+          {
+            "token": {
+              "value": null,
+              "identifier": {
+                "class": "Identifier",
+                "name": "UserListProvider",
+                "moduleUrl": "asset:share_place/lib/users/user_list_provider.dart",
+                "prefix": null,
+                "value": null
+              },
+              "identifierIsInstance": false
+            },
+            "value": null,
+            "isAttribute": false,
+            "isSelf": false,
+            "isHost": false,
+            "isSkipSelf": false,
+            "isOptional": false,
+            "isValue": false
+          }
+        ]
+      },
+      "changeDetection": 6,
+      "inputs": {},
+      "inputTypes": {},
+      "outputs": {},
+      "hostListeners": {},
+      "hostProperties": {},
+      "hostAttributes": {},
+      "lifecycleHooks": [
+        0
+      ],
+      "template": {
+        "encapsulation": 0,
+        "template": "<div *ngIf=\"selectedFolder != null\" class=\"subjects\">\r\n\r\n  <material-popup  [(visible)]=\"infoPopupOpen\" [source]=\"userInfoPopup\">\r\n    <div class=\"userInfoPopup\">\r\n      <div>{{infoPopupUser?.name}}</div>\r\n      <div>{{getRoleStr(infoPopupUser)}}</div>\r\n      <div>{{getEmail(infoPopupUser)}}</div>\r\n    </div>\r\n  </material-popup>\r\n\r\n  <div class=\"title\">{{selectedFolder.name}}\r\n    <btn (click)=\"add()\"\r\n         [sources]=\"['../images/add-poeple.png', '../images/add-poeple.png', '../images/add-poeple.png']\"\r\n         class=\"addBtn addpeople\" [disabled]=\"selectedFolder==null\"></btn>\r\n    <modal [visible]=\"adding\">\r\n      <material-dialog defaultPopupSizeProvider\r\n                       enforceSpaceConstraints\r\n                       class=\"profilemenuvisible\">\r\n        <invite-users-dialog></invite-users-dialog>\r\n      </material-dialog>\r\n    </modal>\r\n                     <!-- emplacement des users  -->\r\n    <ul class=\"users_list\" popupSource\r\n        #userInfoPopup=\"popupSource\">\r\n      <li *ngFor=\"let userItem of users\" class=\"useractive\" [class.approver]=\"isApprover(userItem)\"\r\n          (click)=\"userInfoRequested =userItem\">\r\n        <img src=\"/auth/user/photo/s/{{userItem.id}}\">\r\n      </li>\r\n    </ul>\r\n  </div>\r\n\r\n  <div>\r\n    <ul class=\"subjectList\">\r\n      <div class=\"newTopic\">\r\n        <div class=\"newTopicBlock\">\r\n          <input type=\"text\" #text (keyup.enter)=\"createQuickNote(text.value);text.value='';\"\r\n                 placeholder=\"Start a topic...\"\r\n                 class=\"txt\"/>\r\n          <div (click)=\"createQuickNote(text.value);text.value=''\" class=\"btn_valid\"></div>\r\n        </div>\r\n      </div>\r\n      <li *ngFor=\"let subject of subjects\" (click)=\"gotoSubject(subject)\" class=\"subjectItem\"\r\n          [class.qNote]=\"subject.dataType == 'quickNote'\"\r\n          [class.selected]=\"selectedSubject != null && subject.id == selectedSubject.id\"\r\n          [class.approved]=\"subject.approved != null\"\r\n          [class.locked]=\"subject.lockOwner != null\">\r\n        <div *ngIf=\"renaming == null || renaming?.id != subject?.id\" class=\"subject\">\r\n          <div class=\"thumb\"><img\r\n              src=\"/sp/place/{{selectedPlace.id}}/folder/{{selectedFolder?.id}}/file/{{subject.fileId}}/version/{{subject.v}}/thumb\">\r\n          </div>\r\n          <div class=\"name\">{{subject.name}}</div>\r\n\r\n          <div class=\"users\">\r\n            <ul>\r\n              <li *ngFor=\"let activeUser of subject.users\" class=\"user\">\r\n                <div class=\"profileImg\" [class.validator]=\"activeUser.role == 'admin'\"><img\r\n                    src=\"/auth/user/photo/s/{{activeUser.userId}}\"></div>\r\n              </li>\r\n            </ul>\r\n          </div>\r\n          <div *ngIf=\"subject.dataType == 'file'\" class=\"version\"> V.{{subject.v}}</div>\r\n        </div>\r\n        <input *ngIf=\"renaming != null && renaming.id == subject?.id\" type=\"text\" #folderRenamer\r\n               value=\"{{subject.name}}\"\r\n               (keydown.enter)=\"doRename(folderRenamer.value)\" class=\"editSubject\"/>\r\n      </li>\r\n    </ul>\r\n\r\n    <form id=\"fileForm\" #upload class=\"uploadDropZone\"\r\n          (dragenter)=\"upload.style.setProperty('border', '3px solid green')\"\r\n          (drop)=\"upload.style.setProperty('border', '2px dotted gray');\">\r\n      <input type=\"file\" (change)=\"uploadFiles()\" class=\"uploadFile\"\r\n             name=\"toUpload\"/>\r\n\r\n    </form>\r\n\r\n\r\n  </div>\r\n</div>",
+        "templateUrl": "asset:share_place/lib/subject/subject_list_comp.html",
+        "styles": [],
+        "styleUrls": [
+          "asset:share_place/lib/subject/subject_list_comp.css"
+        ],
+        "ngContentSelectors": []
+      },
+      "providers": [
+        {
+          "class": "Provider",
+          "token": {
+            "value": null,
+            "identifier": {
+              "class": "Type",
+              "name": "UserListProvider",
+              "moduleUrl": "asset:share_place/lib/users/user_list_provider.dart",
+              "prefix": null,
+              "isHost": false,
+              "value": null,
+              "diDeps": [
+                {
+                  "token": {
+                    "value": null,
+                    "identifier": {
+                      "class": "Identifier",
+                      "name": "Environment",
+                      "moduleUrl": "asset:share_place/lib/environment.dart",
+                      "prefix": null,
+                      "value": null
+                    },
+                    "identifierIsInstance": false
+                  },
+                  "value": null,
+                  "isAttribute": false,
+                  "isSelf": false,
+                  "isHost": false,
+                  "isSkipSelf": false,
+                  "isOptional": false,
+                  "isValue": false
+                },
+                {
+                  "token": {
+                    "value": null,
+                    "identifier": {
+                      "class": "Identifier",
+                      "name": "PlaceService",
+                      "moduleUrl": "asset:share_place/lib/place_service.dart",
+                      "prefix": null,
+                      "value": null
+                    },
+                    "identifierIsInstance": false
+                  },
+                  "value": null,
+                  "isAttribute": false,
+                  "isSelf": false,
+                  "isHost": false,
+                  "isSkipSelf": false,
+                  "isOptional": false,
+                  "isValue": false
+                }
+              ]
+            },
+            "identifierIsInstance": false
+          },
+          "useClass": {
+            "class": "Type",
+            "name": "UserListProvider",
+            "moduleUrl": "asset:share_place/lib/users/user_list_provider.dart",
+            "prefix": null,
+            "isHost": false,
+            "value": null,
+            "diDeps": [
+              {
+                "token": {
+                  "value": null,
+                  "identifier": {
+                    "class": "Identifier",
+                    "name": "Environment",
+                    "moduleUrl": "asset:share_place/lib/environment.dart",
+                    "prefix": null,
+                    "value": null
+                  },
+                  "identifierIsInstance": false
+                },
+                "value": null,
+                "isAttribute": false,
+                "isSelf": false,
+                "isHost": false,
+                "isSkipSelf": false,
+                "isOptional": false,
+                "isValue": false
+              },
+              {
+                "token": {
+                  "value": null,
+                  "identifier": {
+                    "class": "Identifier",
+                    "name": "PlaceService",
+                    "moduleUrl": "asset:share_place/lib/place_service.dart",
+                    "prefix": null,
+                    "value": null
+                  },
+                  "identifierIsInstance": false
+                },
+                "value": null,
+                "isAttribute": false,
+                "isSelf": false,
+                "isHost": false,
+                "isSkipSelf": false,
+                "isOptional": false,
+                "isValue": false
+              }
+            ]
+          },
+          "useExisting": null,
+          "useValue": null,
+          "useFactory": null,
+          "useProperty": null,
+          "multi": false,
+          "deps": null
+        }
+      ],
+      "viewProviders": [],
+      "queries": [],
+      "viewQueries": []
+    }
+  },
+  "alias": {}
+}

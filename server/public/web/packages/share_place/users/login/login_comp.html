@@ -1,0 +1,64 @@
+<modal [visible]="showSignupDialog">
+  <material-dialog class="signup-dialog">
+    <signup-comp></signup-comp>
+  </material-dialog>
+</modal>
+
+<div class="login">
+  <div class="header">
+    <!--<btn (click)="add()"-->
+    <!--[sources]="['../images/addPerson.png', '../images/addPerson-h.png', '../images/addPerson-c.png']"-->
+    <!--class="addBtn" [disabled]="selectedPlace==null"></btn>-->
+    <div class="title">
+      <div class="welcome">
+        <div class="logo_intro"><img src="../images/logo_intro.png"/></div>
+        <span>Welcome to Share.Place</span></div>
+      <!--<div class="close" (click)="close()"><img src="../images/close_pop.png"/></div>-->
+    </div>
+
+  </div>
+
+  <div class="panels">
+    <div class="error">{{error}}</div>
+
+
+    <div class="local">
+      <form action="#" method="post">
+        <div class="verification_user">
+          <div>New user?</div>
+          <div href="#" (click)="showSignupDialog = true" [class.disabled]="showSignupDialog" class="signup">Sign-up!
+          </div>
+        </div>
+        <div class="email">
+          <div class="label">Email</div>
+          <material-input required label="example@domain.com" [(ngModel)]="user.email" class="mail"></material-input>
+        </div>
+        <div class="pass">
+          <div class="label">Password</div>
+          <div class="forgot"><a href="#" tabindex="-1">forgot?</a></div>
+          <material-input required [(ngModel)]="user.pass" type="password" class="password"></material-input>
+        </div>
+        <material-button raised class="btn_login" (click)="login()">Login</material-button>
+      </form>
+
+    </div>
+
+    <!--<div class="col-md-1 col-sm-1 col-xs-12"> </div>-->
+    <div class="or"><span>Or</span></div>
+
+    <!--<div class="col-md-5 col-sm-5 col-xs-12">  </div>-->
+    <div class="social">
+      <a class="btn-social btn-facebook" href="/auth/facebook">
+        <span class="fa fa-facebook"></span> Sign in with Facebook
+      </a>
+
+      <a class="btn-social btn-google" href="/auth/google">
+        <span class="fa fa-google-plus"></span> Sign in with Google
+      </a>
+    </div>
+  </div>
+
+  <footer>
+    <div class="copy">Copyright (c) 2017 share.place. All rights reserved.</div>
+  </footer>
+</div>

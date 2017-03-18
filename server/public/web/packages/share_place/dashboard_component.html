@@ -1,0 +1,9 @@
+<h3>Favorite Places</h3>
+<div class="grid grid-pad">
+  <div *ngFor="let place of places" (click)="gotoDetail(place)" class="col-1-4">
+    <div class="module place">
+      <h4>{{place.name}}</h4>
+    </div>
+  </div>
+</div>
+<place-search></place-search>

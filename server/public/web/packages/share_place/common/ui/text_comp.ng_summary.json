@@ -1,0 +1,97 @@
+{
+  "ngDeps": {
+    "1": "",
+    "3": [
+      {
+        "1": "dart:async",
+        "5": false
+      },
+      {
+        "1": "dart:html",
+        "5": false
+      },
+      {
+        "1": "package:angular2/core.dart",
+        "5": false
+      },
+      {
+        "1": "button_comp.dart",
+        "5": false
+      }
+    ],
+    "5": [
+      {
+        "1": "TextComp",
+        "7": [
+          {
+            "2": "ButtonComp"
+          }
+        ]
+      }
+    ],
+    "6": "text_comp.dart"
+  },
+  "type": {
+    "TextChanged": {
+      "class": "Identifier",
+      "name": "TextChanged",
+      "moduleUrl": "asset:share_place/lib/common/ui/text_comp.dart",
+      "prefix": null,
+      "value": null
+    },
+    "TextComp": {
+      "class": "Directive",
+      "isComponent": true,
+      "selector": "txt",
+      "exportAs": null,
+      "type": {
+        "class": "Type",
+        "name": "TextComp",
+        "moduleUrl": "asset:share_place/lib/common/ui/text_comp.dart",
+        "prefix": null,
+        "isHost": false,
+        "value": null,
+        "diDeps": []
+      },
+      "changeDetection": 6,
+      "inputs": {
+        "text": "text",
+        "label": "label",
+        "keyUp": "keyUp",
+        "confirm": "confirm",
+        "enabled": "enabled",
+        "autoClear": "autoClear",
+        "sources": "sources"
+      },
+      "inputTypes": {
+        "text": " String",
+        "label": " String",
+        "keyUp": " TextChanged",
+        "confirm": " TextChanged",
+        "enabled": " bool",
+        "autoClear": " bool",
+        "sources": " List"
+      },
+      "outputs": {},
+      "hostListeners": {},
+      "hostProperties": {},
+      "hostAttributes": {},
+      "lifecycleHooks": [],
+      "template": {
+        "encapsulation": 0,
+        "template": "<div class=\"text_comp\">\r\n\t<input id=\"txt\" type=\"text\" #text (keyup)=\"onKeyUp(text.value)\" (keyup.enter)=\"onConfirm(text.value)\" class=\"txt\" [(ngModel)]=\"value\" [disabled]=\"!enabled\"/>\r\n\t<btn class=\"okBtn\" (click)=\"onConfirm(text.value)\" [sources]=\"sources\" [disabled]=\"!enabled\" >{{label}}</btn>\r\n</div>",
+        "templateUrl": "asset:share_place/lib/common/ui/text_comp.html",
+        "styles": [],
+        "styleUrls": [
+          "asset:share_place/lib/common/ui/text_comp.css"
+        ],
+        "ngContentSelectors": []
+      },
+      "providers": [],
+      "viewProviders": [],
+      "queries": [],
+      "viewQueries": []
+    }
+  },
+  "alias": {}
+}

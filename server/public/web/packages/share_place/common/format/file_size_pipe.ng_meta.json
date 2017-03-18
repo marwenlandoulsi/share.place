@@ -1,0 +1,102 @@
+{
+  "ngDeps": {
+    "1": "",
+    "3": [
+      {
+        "1": "package:angular2/angular2.dart",
+        "5": false
+      }
+    ],
+    "5": [
+      {
+        "1": "FileSizePipe",
+        "4": [
+          {
+            "1": "Pipe",
+            "3": [
+              {
+                "1": "name",
+                "2": "'fileSizeFormat'"
+              }
+            ],
+            "4": false
+          }
+        ]
+      }
+    ],
+    "6": "file_size_pipe.dart",
+    "7": [
+      {
+        "1": "package:angular2/angular2.template.dart",
+        "4": "i0"
+      }
+    ]
+  },
+  "type": {
+    "BYTE": {
+      "class": "Identifier",
+      "name": "BYTE",
+      "moduleUrl": "asset:share_place/lib/common/format/file_size_pipe.dart",
+      "prefix": null,
+      "value": null
+    },
+    "KBYTE": {
+      "class": "Identifier",
+      "name": "KBYTE",
+      "moduleUrl": "asset:share_place/lib/common/format/file_size_pipe.dart",
+      "prefix": null,
+      "value": null
+    },
+    "MBYTE": {
+      "class": "Identifier",
+      "name": "MBYTE",
+      "moduleUrl": "asset:share_place/lib/common/format/file_size_pipe.dart",
+      "prefix": null,
+      "value": null
+    },
+    "GBYTE": {
+      "class": "Identifier",
+      "name": "GBYTE",
+      "moduleUrl": "asset:share_place/lib/common/format/file_size_pipe.dart",
+      "prefix": null,
+      "value": null
+    },
+    "TBYTE": {
+      "class": "Identifier",
+      "name": "TBYTE",
+      "moduleUrl": "asset:share_place/lib/common/format/file_size_pipe.dart",
+      "prefix": null,
+      "value": null
+    },
+    "FileSizePipe": {
+      "class": "Pipe",
+      "type": {
+        "class": "Type",
+        "name": "FileSizePipe",
+        "moduleUrl": "asset:share_place/lib/common/format/file_size_pipe.dart",
+        "prefix": null,
+        "isHost": false,
+        "value": null,
+        "diDeps": []
+      },
+      "name": "fileSizeFormat",
+      "pure": true
+    },
+    "main": {
+      "class": "Identifier",
+      "name": "main",
+      "moduleUrl": "asset:share_place/lib/common/format/file_size_pipe.dart",
+      "prefix": null,
+      "value": null
+    }
+  },
+  "alias": {
+    "units": [
+      "TBYTE",
+      "GBYTE",
+      "MBYTE",
+      "KBYTE",
+      "BYTE"
+    ]
+  }
+}

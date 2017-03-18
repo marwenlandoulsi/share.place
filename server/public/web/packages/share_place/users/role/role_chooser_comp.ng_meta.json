@@ -1,0 +1,242 @@
+{
+  "ngDeps": {
+    "1": "",
+    "3": [
+      {
+        "1": "dart:async",
+        "5": false
+      },
+      {
+        "1": "dart:html",
+        "5": false
+      },
+      {
+        "1": "package:angular2/core.dart",
+        "5": false
+      },
+      {
+        "1": "package:angular2/router.dart",
+        "5": false
+      },
+      {
+        "1": "package:share_place/environment.dart",
+        "5": false
+      },
+      {
+        "1": "package:share_place/place_service.dart",
+        "5": false
+      },
+      {
+        "1": "package:share_place/common/ui/button_comp.dart",
+        "5": false
+      },
+      {
+        "1": "package:share_place/users/role/role_item.dart",
+        "5": false
+      }
+    ],
+    "5": [
+      {
+        "1": "RoleChooser",
+        "5": [
+          {
+            "1": "PlaceService",
+            "4": "_placeService"
+          },
+          {
+            "1": "Router",
+            "4": "_router"
+          },
+          {
+            "1": "Environment",
+            "4": "_environment"
+          }
+        ],
+        "6": [
+          "OnInit"
+        ],
+        "7": [
+          {
+            "2": "RoleItem"
+          }
+        ]
+      }
+    ],
+    "6": "role_chooser_comp.dart",
+    "7": [
+      {
+        "1": "package:angular2/core.template.dart",
+        "4": "i0"
+      },
+      {
+        "1": "package:angular2/router.template.dart",
+        "4": "i1"
+      },
+      {
+        "1": "package:share_place/environment.template.dart",
+        "4": "i2"
+      },
+      {
+        "1": "package:share_place/place_service.template.dart",
+        "4": "i3"
+      },
+      {
+        "1": "package:share_place/common/ui/button_comp.template.dart",
+        "4": "i4"
+      },
+      {
+        "1": "package:share_place/users/role/role_item.template.dart",
+        "4": "i5"
+      }
+    ]
+  },
+  "type": {
+    "RoleChooser": {
+      "class": "Directive",
+      "isComponent": true,
+      "selector": "role-chooser-comp",
+      "exportAs": null,
+      "type": {
+        "class": "Type",
+        "name": "RoleChooser",
+        "moduleUrl": "asset:share_place/lib/users/role/role_chooser_comp.dart",
+        "prefix": null,
+        "isHost": false,
+        "value": null,
+        "diDeps": [
+          {
+            "token": {
+              "value": null,
+              "identifier": {
+                "class": "Identifier",
+                "name": "PlaceService",
+                "moduleUrl": "asset:share_place/lib/place_service.dart",
+                "prefix": null,
+                "value": null
+              },
+              "identifierIsInstance": false
+            },
+            "value": null,
+            "isAttribute": false,
+            "isSelf": false,
+            "isHost": false,
+            "isSkipSelf": false,
+            "isOptional": false,
+            "isValue": false
+          },
+          {
+            "token": {
+              "value": null,
+              "identifier": {
+                "class": "Identifier",
+                "name": "Router",
+                "moduleUrl": "asset:angular2/lib/src/router/router.dart",
+                "prefix": null,
+                "value": null
+              },
+              "identifierIsInstance": false
+            },
+            "value": null,
+            "isAttribute": false,
+            "isSelf": false,
+            "isHost": false,
+            "isSkipSelf": false,
+            "isOptional": false,
+            "isValue": false
+          },
+          {
+            "token": {
+              "value": null,
+              "identifier": {
+                "class": "Identifier",
+                "name": "Environment",
+                "moduleUrl": "asset:share_place/lib/environment.dart",
+                "prefix": null,
+                "value": null
+              },
+              "identifierIsInstance": false
+            },
+            "value": null,
+            "isAttribute": false,
+            "isSelf": false,
+            "isHost": false,
+            "isSkipSelf": false,
+            "isOptional": false,
+            "isValue": false
+          }
+        ]
+      },
+      "changeDetection": 6,
+      "inputs": {
+        "selected": "selected"
+      },
+      "inputTypes": {
+        "selected": " String"
+      },
+      "outputs": {
+        "selectedChange": "selectedChange"
+      },
+      "hostListeners": {},
+      "hostProperties": {},
+      "hostAttributes": {},
+      "lifecycleHooks": [
+        0
+      ],
+      "template": {
+        "encapsulation": 0,
+        "template": "<div class=\"roleChooser\">\r\n  <role-item #owner (select)=\"role(owner.role)\" [role]=\"'owner'\" [title]=\"'Owner'\"></role-item>\r\n  <role-item #writer (select)=\"role(writer.role)\" [role]=\"'writer'\" [title]=\"'Writer'\"></role-item>\r\n  <role-item #viewer (select)=\"role(viewer.role)\" [role]=\"'viewer'\" [title]=\"'Reader'\"></role-item>\r\n</div>\r\n",
+        "templateUrl": "asset:share_place/lib/users/role/role_chooser_comp.html",
+        "styles": [],
+        "styleUrls": [
+          "asset:share_place/lib/users/role/role_chooser_comp.css"
+        ],
+        "ngContentSelectors": []
+      },
+      "providers": [],
+      "viewProviders": [],
+      "queries": [],
+      "viewQueries": [
+        {
+          "selectors": [
+            {
+              "value": "owner",
+              "identifier": null,
+              "identifierIsInstance": false
+            }
+          ],
+          "descendants": true,
+          "first": true,
+          "propertyName": "owner",
+          "read": null
+        },
+        {
+          "selectors": [
+            {
+              "value": "writer",
+              "identifier": null,
+              "identifierIsInstance": false
+            }
+          ],
+          "descendants": true,
+          "first": true,
+          "propertyName": "writer",
+          "read": null
+        },
+        {
+          "selectors": [
+            {
+              "value": "viewer",
+              "identifier": null,
+              "identifierIsInstance": false
+            }
+          ],
+          "descendants": true,
+          "first": true,
+          "propertyName": "viewer",
+          "read": null
+        }
+      ]
+    }
+  },
+  "alias": {}
+}

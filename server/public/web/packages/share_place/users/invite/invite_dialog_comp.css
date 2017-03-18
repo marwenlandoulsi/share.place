@@ -1,0 +1,170 @@
+/* The Modal (background) */
+
+#inviteUsers {
+  width: 31em;
+}
+
+h4, h5 {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.close {
+  color: white;
+  opacity: 1;
+  cursor: pointer;
+  float: right;
+}
+
+.close:hover {
+  opacity: 0.5;
+}
+
+p {
+  margin-bottom: 25px;
+  margin-top: 3px;
+}
+
+h4, .close {
+  display: inline-block;
+}
+
+h4 {
+  font-size: 14px;
+  font-weight: normal;
+}
+
+.inviteUsersbody {
+  padding: 1em;
+  background-color: #eeeef0;
+  color: #000;
+}
+
+.modal {
+  display: block; /* Hidden by default */
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+tbody {
+  /*width: 100% !important;*/
+  /*background-color: turquoise !important;*/
+}
+
+.modal-content {
+  margin: auto;
+  float: none;
+  margin-top: 6em;
+}
+
+.modal-header {
+  background-color: #273B54;
+  color: #fff;
+  padding: 0.7em;
+}
+
+.label {
+  font-size: 1.3em;
+  color: #333;
+}
+
+input.mailToAdd {
+  width: calc(100% - 5em);
+  border-radius: 0.5em;
+  border: 1px solid;
+  font-size: 1.3em;
+  padding: 0.2em;
+  padding-left: 0.4em;
+  outline: none;
+}
+
+.roleZone {
+  padding-top: 2em;
+}
+
+.roleZone .label {
+  vertical-align: top;
+  display: inline-block;
+  width: 2em;
+  padding-top: 2em;
+}
+
+role-chooser-comp {
+  display: inline-block;
+  width: calc(100% - 3em);
+}
+
+.modal-header button.close {
+  color: white !important;
+  opacity: 0.6;
+}
+
+.labelinvit {
+  text-align: left;
+  font-size: 12px;
+  font-weight: bold;
+  color: #000;
+  display: block;
+  margin-bottom: 3px;
+}
+
+.textright {
+  text-align: right !important;
+}
+
+.invites {
+  width: 100%;
+}
+
+.emailinp {
+  width: 100% !important;
+}
+
+.addUserDiv {
+  text-align: right;
+  background: url("../images/tiret-grey.png") repeat-x center center;
+  margin-bottom: 11px;
+}
+
+.addUserDiv_inside {
+  background: #eeeef0;
+  padding-left: 0.5em;
+  display: inline;
+  font-size: 12px;
+  vertical-align: top;
+}
+
+/*.addbtnbluesmall {*/
+/*width: 17px  !important;*/
+/*height: 17px !important;*/
+/*}*/
+
+material-input.themeable {
+  /*width: 377px !important;*/
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.modal-footer {
+  text-align: center;
+  background-color: #eeeef0;
+  padding-bottom: 9%;
+}
+
+.submitbottom {
+  margin: 0 auto !important;
+  width: auto ! important;
+  padding-left: 20px;
+  padding-right: 40px;
+  background: #00adef url("../images/arrow-white.png") no-repeat 84% 62% !important;
+}
+
+.blueadd {
+  width: 18px;
+  height: 18px;
+  vertical-align: middle;
+}
+
+
+material-input.themeable {
+  width: 100%;
+}

@@ -1,0 +1,191 @@
+* {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.login_pop {
+  padding: 0;
+
+}
+
+#signup .header {
+  position: relative;
+  background-color: #273B54;
+  padding: 4px 11px 0;
+}
+
+#signup .signuptext {
+  padding-bottom: 52px;
+  font-size: 16px;
+  color: #fff;
+  padding-top: 10px;
+}
+
+span, .logo_intro {
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: normal !important;
+  color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 0 !important;
+}
+
+.close {
+  position: absolute;
+  right: 0.5em;
+  top: 0.4em;
+  color: white;
+  opacity: 1;
+  cursor: pointer;
+}
+
+.close:hover {
+  opacity: 0.7;
+}
+
+a {
+  color: #3A579A;
+}
+
+.verification_user {
+  text-align: right;
+  margin-bottom: 13px;
+}
+
+.label {
+  color: #1F181F !important;
+  font-weight: bold !important;
+  text-align: left !important;
+  padding-left: 0 !important;
+}
+
+.label, .forgot {
+  display: inline-block;
+}
+
+.forgot {
+  text-align: right;
+  float: right;
+  color: #3A579A;
+  padding: .2em 0 0 0;
+}
+
+.local {
+  border-right: 1px solid #C2C2C2;
+}
+
+.password, .mail {
+  width: 100% !important;
+}
+
+.btn_login {
+  background: #00adef;
+  height: 36px;
+  width: 98px;
+  margin: 5px 0 0 74px !important;
+  color: white;
+}
+
+.btn_login.pos2 {
+  margin: 0 !important;
+}
+
+main.bottom-scroll-stroke {
+  border-bottom: 0 !important;
+  padding: 0 !important;
+}
+
+footer {
+  background-color: #EEEEF0 !important;
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+  font-size: 9px;
+}
+
+.copy {
+  vertical-align: middle;
+}
+
+/*.passEqual {*/
+/*background-color: rgba(255, 0, 0, 0.2);*/
+/*}*/
+
+#signup .content {
+  text-transform: none !important;
+  padding: 33px 32px 0 !important;
+  background-color: #EEEEF0;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.signup {
+  background-color: #EEEEF0;
+  padding-bottom: 27px;
+}
+
+material-input.input.themeable {
+  width: 100% !important;
+}
+
+.error {
+  color: red;
+  font-weight: bold;
+}
+
+.mandatory {
+  border-bottom: 1px solid #DADADA;
+  margin-bottom: 8%;
+  padding-bottom: 6%;
+}
+
+
+.profile {
+  position: absolute;
+  left: calc(50% - 35.5px);
+  border-radius: 50%;
+  background-color: white;
+  width: 75px;
+  height: 75px;
+  bottom: -35.5px;
+}
+
+.changeProfilePicture a {
+  position: absolute !important;
+  right: -38px;
+  color: #fff !important;
+  z-index: 999999 !important;
+  top: 4px;
+  font-size: 11px;
+  -webkit-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+}
+
+material-input.mail.themeable, material-input.password.themeable, material-input {
+  padding: 0 !important;
+}
+
+#signup .top-section {
+  padding: 4px 2px 7px 0;
+}
+
+
+.label, .input, .emaillab {
+  font-size: 11px;
+}
+
+@media (max-width: 1199px) {
+}
+
+@media (max-width: 991px) {
+}
+
+@media (max-width: 767px) {
+}
+
+@media (max-width: 479px) {
+}

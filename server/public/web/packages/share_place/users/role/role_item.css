@@ -1,0 +1,28 @@
+.selected {
+  background-color: #E6E4E0;
+}
+
+.role {
+  display: inline-block;
+  width: 30%;
+  text-align: center;
+  /*padding: 0.5em;*/
+  border-radius: 0.5em;
+  text-decoration: none;
+  vertical-align: top;
+}
+
+.role .title {
+  padding: 0.1em 0.5em 0;
+  width: 100%;
+  font-size: 1.3em;
+  font-weight: normal;
+  color: #4C3B4E;
+  display: block;
+}
+
+.role .desc {
+  padding-top: 1em;
+  font-weight: normal;
+}
+

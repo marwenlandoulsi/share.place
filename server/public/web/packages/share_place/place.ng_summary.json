@@ -1,0 +1,13 @@
+{
+  "ngDeps": null,
+  "type": {
+    "Place": {
+      "class": "Identifier",
+      "name": "Place",
+      "moduleUrl": "asset:share_place/lib/place.dart",
+      "prefix": null,
+      "value": null
+    }
+  },
+  "alias": {}
+}

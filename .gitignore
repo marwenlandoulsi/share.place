@@ -1,0 +1,9 @@
+
+node_modules
+server/data
+server/tmp
+log
+dist/
+server/public
+server/static
+

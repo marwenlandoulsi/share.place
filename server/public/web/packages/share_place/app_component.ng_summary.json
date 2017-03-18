@@ -1,0 +1,252 @@
+{
+  "ngDeps": {
+    "1": "",
+    "3": [
+      {
+        "1": "package:angular2/core.dart",
+        "5": false
+      },
+      {
+        "1": "package:angular2/router.dart",
+        "5": false
+      },
+      {
+        "1": "dart:async",
+        "5": false
+      },
+      {
+        "1": "dart:html",
+        "5": false
+      },
+      {
+        "1": "package:angular2_components/angular2_components.dart",
+        "5": false
+      },
+      {
+        "1": "app_config.dart",
+        "4": "conf",
+        "5": false
+      },
+      {
+        "1": "environment.dart",
+        "5": false
+      },
+      {
+        "1": "package:share_place/places_component.dart",
+        "5": false
+      },
+      {
+        "1": "package:share_place/place_service.dart",
+        "5": false
+      },
+      {
+        "1": "package:share_place/dashboard_component.dart",
+        "5": false
+      },
+      {
+        "1": "package:share_place/place_detail_component.dart",
+        "5": false
+      },
+      {
+        "1": "package:share_place/news/news_comp.dart",
+        "5": false
+      },
+      {
+        "1": "package:share_place/files/files_comp.dart",
+        "5": false
+      },
+      {
+        "1": "package:share_place/subject/subject_list_comp.dart",
+        "5": false
+      },
+      {
+        "1": "package:share_place/users/login/login_comp.dart",
+        "5": false
+      },
+      {
+        "1": "package:share_place/users/user.dart",
+        "5": false
+      }
+    ],
+    "5": [
+      {
+        "1": "AppComponent",
+        "4": [
+          {
+            "1": "RouteConfig",
+            "2": [
+              "const [const Route(path: '/', name: 'Dashboard', component: DashboardComponent), const Route(path: '/folder/:id', name: 'Folder', component: PlaceDetailComponent), const Route(path: '/place', name: 'PlaceList', component: PlacesComponent)]"
+            ],
+            "4": false
+          }
+        ],
+        "5": [
+          {
+            "1": "Router",
+            "4": "_router"
+          },
+          {
+            "1": "Environment",
+            "4": "_environment"
+          },
+          {
+            "1": "PlaceService",
+            "4": "_placeService"
+          }
+        ],
+        "6": [
+          "OnInit"
+        ],
+        "7": [
+          {
+            "2": "ROUTER_DIRECTIVES"
+          },
+          {
+            "2": "materialDirectives"
+          },
+          {
+            "2": "PlacesComponent"
+          },
+          {
+            "2": "NewsComp"
+          },
+          {
+            "2": "FilesComp"
+          },
+          {
+            "2": "SubjectListComponent"
+          },
+          {
+            "2": "LoginComp"
+          }
+        ]
+      }
+    ],
+    "6": "app_component.dart"
+  },
+  "type": {
+    "AppComponent": {
+      "class": "Directive",
+      "isComponent": true,
+      "selector": "my-app",
+      "exportAs": null,
+      "type": {
+        "class": "Type",
+        "name": "AppComponent",
+        "moduleUrl": "asset:share_place/lib/app_component.dart",
+        "prefix": null,
+        "isHost": false,
+        "value": null,
+        "diDeps": [
+          {
+            "token": {
+              "value": null,
+              "identifier": {
+                "class": "Identifier",
+                "name": "Router",
+                "moduleUrl": null,
+                "prefix": null,
+                "value": null
+              },
+              "identifierIsInstance": false
+            },
+            "value": null,
+            "isAttribute": false,
+            "isSelf": false,
+            "isHost": false,
+            "isSkipSelf": false,
+            "isOptional": false,
+            "isValue": false
+          },
+          {
+            "token": {
+              "value": null,
+              "identifier": {
+                "class": "Identifier",
+                "name": "Environment",
+                "moduleUrl": null,
+                "prefix": null,
+                "value": null
+              },
+              "identifierIsInstance": false
+            },
+            "value": null,
+            "isAttribute": false,
+            "isSelf": false,
+            "isHost": false,
+            "isSkipSelf": false,
+            "isOptional": false,
+            "isValue": false
+          },
+          {
+            "token": {
+              "value": null,
+              "identifier": {
+                "class": "Identifier",
+                "name": "PlaceService",
+                "moduleUrl": null,
+                "prefix": null,
+                "value": null
+              },
+              "identifierIsInstance": false
+            },
+            "value": null,
+            "isAttribute": false,
+            "isSelf": false,
+            "isHost": false,
+            "isSkipSelf": false,
+            "isOptional": false,
+            "isValue": false
+          }
+        ]
+      },
+      "changeDetection": 6,
+      "inputs": {},
+      "inputTypes": {},
+      "outputs": {},
+      "hostListeners": {},
+      "hostProperties": {},
+      "hostAttributes": {},
+      "lifecycleHooks": [
+        0
+      ],
+      "template": {
+        "encapsulation": 0,
+        "template": "<div>\r\n  <modal *ngIf=\"connectedUser == null\" [visible]=\"true\">\r\n    <material-dialog class=\"basic-dialog login_pop\">\r\n      <login-comp></login-comp>\r\n    </material-dialog>\r\n  </modal>\r\n\r\n  <div class=\"header header-top\">\r\n    <img src=\"../images/logo0.png\" class=\"logo\">\r\n    <div class=\"rightMenu\">\r\n      <img popupSource #profileMenu=\"popupSource\" src=\"/auth/user/photo/s/{{connectedUser?.id}}\" class=\"profileImg\"\r\n           (click)=\"profileMenuVisible = !profileMenuVisible\">\r\n      <!--<a href=\"/profile\"><img src=\"../images/profile.png\"></a>-->\r\n      <material-popup defaultPopupSizeProvider\r\n                      enforceSpaceConstraints\r\n                      [source]=\"profileMenu\"\r\n                      [(visible)]=\"profileMenuVisible\" class=\"profilemenuvisible\">\r\n        <div header class=\"popupHeader connectusername\">\r\n          <span>{{connectedUser?.name}}</span>\r\n        </div>\r\n        <div class=\"popupContent\">\r\n          <material-button (click)=\"profile()\" class=\"menuItem profile\">\r\n            <div class=\"profile_chmp\">Edit profile</div>\r\n          </material-button>\r\n          <material-button (click)=\"logout()\" class=\"menuItem logout\">\r\n            <div class=\"logout_chmp\">Logout</div>\r\n          </material-button>\r\n        </div>\r\n        <div footer>\r\n        </div>\r\n      </material-popup>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"leftP\">\r\n    <places></places>\r\n  </div>\r\n  <div class=\"rightPanelinside\">\r\n    <div class=\"rightPanelinside_header\"></div>\r\n    <div class=\"row\">\r\n      <div class=\"centerP\">\r\n        <subjects></subjects>\r\n      </div>\r\n\r\n      <div class=\"rightP\">\r\n        <div class=\"rightPinside\">\r\n          <div class=\"files\">\r\n            <files-comp></files-comp>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <!--<button onclick=\"dispatchWindowEvent('data of event')\">Test event</button>-->\r\n</div>",
+        "templateUrl": "asset:share_place/lib/app_component.html",
+        "styles": [],
+        "styleUrls": [
+          "asset:share_place/lib/app_component.css"
+        ],
+        "ngContentSelectors": []
+      },
+      "providers": [
+        {
+          "class": "Identifier",
+          "name": "PlaceService",
+          "moduleUrl": null,
+          "prefix": null,
+          "value": null
+        },
+        {
+          "class": "Identifier",
+          "name": "ROUTER_PROVIDERS",
+          "moduleUrl": null,
+          "prefix": null,
+          "value": null
+        },
+        {
+          "class": "Identifier",
+          "name": "materialProviders",
+          "moduleUrl": null,
+          "prefix": null,
+          "value": null
+        }
+      ],
+      "viewProviders": [],
+      "queries": [],
+      "viewQueries": []
+    }
+  },
+  "alias": {}
+}

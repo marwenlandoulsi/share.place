@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+    <title>Share.Place Authentication</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <style>
+        body         { padding-top:80px; }
+    </style>
+    <script>
+      const {ipcRenderer} = require('electron')
+      const updateOnlineStatus = () => {
+        ipcRenderer.send('online-status-changed', navigator.onLine ? true : false)
+      }
+
+      window.addEventListener('online',  updateOnlineStatus)
+      window.addEventListener('offline',  updateOnlineStatus)
+
+      updateOnlineStatus()
+    </script>
+</head>
+<body>
+<div class="container">
+
+
+    <div class="jumbotron text-center">
+    <img src="../images/login.png" />
+    <p>  </p>
+
+
+        <a href="/login" class="btn btn-default"><span class="fa fa-user"></span> Local Login</a>
+
+    </div>
+
+    <div class="text-center">
+        
+    </div>
+
+</div>
+
+</body>
+</html>

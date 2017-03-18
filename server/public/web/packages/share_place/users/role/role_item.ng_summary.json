@@ -1,0 +1,178 @@
+{
+  "ngDeps": {
+    "1": "",
+    "3": [
+      {
+        "1": "package:angular2/core.dart",
+        "5": false
+      },
+      {
+        "1": "package:angular2/router.dart",
+        "5": false
+      },
+      {
+        "1": "package:share_place/environment.dart",
+        "5": false
+      },
+      {
+        "1": "package:share_place/place_service.dart",
+        "5": false
+      },
+      {
+        "1": "package:share_place/common/ui/button_comp.dart",
+        "5": false
+      }
+    ],
+    "5": [
+      {
+        "1": "RoleItem",
+        "5": [
+          {
+            "1": "PlaceService",
+            "4": "_placeService"
+          },
+          {
+            "1": "Router",
+            "4": "_router"
+          },
+          {
+            "1": "Environment",
+            "4": "_environment"
+          }
+        ],
+        "7": [
+          {
+            "2": "ButtonComp"
+          }
+        ]
+      }
+    ],
+    "6": "role_item.dart"
+  },
+  "type": {
+    "RoleItem": {
+      "class": "Directive",
+      "isComponent": true,
+      "selector": "role-item",
+      "exportAs": null,
+      "type": {
+        "class": "Type",
+        "name": "RoleItem",
+        "moduleUrl": "asset:share_place/lib/users/role/role_item.dart",
+        "prefix": null,
+        "isHost": false,
+        "value": null,
+        "diDeps": [
+          {
+            "token": {
+              "value": null,
+              "identifier": {
+                "class": "Identifier",
+                "name": "PlaceService",
+                "moduleUrl": null,
+                "prefix": null,
+                "value": null
+              },
+              "identifierIsInstance": false
+            },
+            "value": null,
+            "isAttribute": false,
+            "isSelf": false,
+            "isHost": false,
+            "isSkipSelf": false,
+            "isOptional": false,
+            "isValue": false
+          },
+          {
+            "token": {
+              "value": null,
+              "identifier": {
+                "class": "Identifier",
+                "name": "Router",
+                "moduleUrl": null,
+                "prefix": null,
+                "value": null
+              },
+              "identifierIsInstance": false
+            },
+            "value": null,
+            "isAttribute": false,
+            "isSelf": false,
+            "isHost": false,
+            "isSkipSelf": false,
+            "isOptional": false,
+            "isValue": false
+          },
+          {
+            "token": {
+              "value": null,
+              "identifier": {
+                "class": "Identifier",
+                "name": "Environment",
+                "moduleUrl": null,
+                "prefix": null,
+                "value": null
+              },
+              "identifierIsInstance": false
+            },
+            "value": null,
+            "isAttribute": false,
+            "isSelf": false,
+            "isHost": false,
+            "isSkipSelf": false,
+            "isOptional": false,
+            "isValue": false
+          }
+        ]
+      },
+      "changeDetection": 6,
+      "inputs": {
+        "role": "role",
+        "title": "title",
+        "desc": "desc"
+      },
+      "inputTypes": {
+        "role": " String",
+        "title": " String",
+        "desc": " String"
+      },
+      "outputs": {
+        "pressAction": "pressAction",
+        "select": "select"
+      },
+      "hostListeners": {},
+      "hostProperties": {},
+      "hostAttributes": {},
+      "lifecycleHooks": [],
+      "template": {
+        "encapsulation": 0,
+        "template": "<div class=\"role\" [class.selected]=\"selected\" (click)=\"clicked()\">\r\n  <btn #icon\r\n      [sources]=\"images\"></btn>\r\n</div>\r\n",
+        "templateUrl": "asset:share_place/lib/users/role/role_item.html",
+        "styles": [],
+        "styleUrls": [
+          "asset:share_place/lib/users/role/role_item.css"
+        ],
+        "ngContentSelectors": []
+      },
+      "providers": [],
+      "viewProviders": [],
+      "queries": [],
+      "viewQueries": [
+        {
+          "selectors": [
+            {
+              "value": "icon",
+              "identifier": null,
+              "identifierIsInstance": false
+            }
+          ],
+          "descendants": true,
+          "first": true,
+          "propertyName": "icon",
+          "read": null
+        }
+      ]
+    }
+  },
+  "alias": {}
+}

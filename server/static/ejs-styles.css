@@ -1,0 +1,17 @@
+        body         { padding-top:80px; word-wrap:break-word; }
+      .btn {margin: 0 0.5em;}
+      .well.edit {width: 97.3%;margin: auto;margin-bottom: 1.5em;}
+            .file_button_container,
+      .file_button_container input {
+           background: transparent url(http://i.stack.imgur.com/BT5AB.png) left top no-repeat;
+           height: 47px;
+           width: 260px;
+       }
+
+       .file_button_container {
+           background: transparent url(http://i.stack.imgur.com/BT5AB.png) left top no-repeat;
+       }
+    
+       .file_button_container input {
+           opacity: 0;
+       }

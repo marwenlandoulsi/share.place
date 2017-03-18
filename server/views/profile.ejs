@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+<head>
+    <title>Node Authentication</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/ejs-styles.css">
+
+</head>
+<body>
+<div class="container">
+
+   <a    href="<%= url %>" class="btn btn-primary pull-right"> Back </a>
+  <a href="/logout" class="btn btn-default pull-right">Logout</a>
+    <div class="page-header text-center">
+        <h1><span class="fa fa-anchor"></span> Profile Page</h1> 
+    
+
+    </div>
+
+<div class="row ">
+
+
+
+          <div class="form-group">
+      <label>Email:</label>
+      <input type="text" name="email" class="form-control" value="<%= user.local.email %>">
+    </div>
+
+    <div class="form-group">
+        <label>Password:</label>
+      <input type="password" name="password" class="form-control" value="">
+    </div>
+     <div class="form-group">
+        <label>New password:</label>
+      <input type="password" name="passwordNew" class="form-control" value="">
+    </div>
+      <div class="form-group">
+        <label>UserName:</label>
+      <input type="text" name="userName" class="form-control" value="<%= user.name %>">
+    </div>
+      <div class="form-group">
+        <label>Skype:</label>
+      <input type="text" name="skype" class="form-control" value="<%= user.skype %>">
+    </div>
+
+<div class="text-center">
+    <button  class="btn btn-success" type="submit">submit</button>
+</div>
+  </form>
+
+
+
+
+</div>
+</div>
+
+</body>
+</html>
+  <!-- href="https://share-place.herokuapp.com/ -->
+  <!--href="http://localhost:3000/web/"-->
+

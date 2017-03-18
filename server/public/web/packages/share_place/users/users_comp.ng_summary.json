@@ -1,0 +1,241 @@
+{
+  "ngDeps": {
+    "1": "",
+    "3": [
+      {
+        "1": "dart:async",
+        "5": false
+      },
+      {
+        "1": "package:angular2/core.dart",
+        "5": false
+      },
+      {
+        "1": "package:angular2/router.dart",
+        "5": false
+      },
+      {
+        "1": "package:angular2/security.dart",
+        "5": false
+      },
+      {
+        "1": "package:share_place/place.dart",
+        "5": false
+      },
+      {
+        "1": "package:share_place/environment.dart",
+        "5": false
+      },
+      {
+        "1": "package:share_place/place_service.dart",
+        "5": false
+      },
+      {
+        "1": "package:share_place/users/user.dart",
+        "5": false
+      },
+      {
+        "1": "package:share_place/users/user_list_provider.dart",
+        "5": false
+      },
+      {
+        "1": "package:share_place/common/ui/button_comp.dart",
+        "5": false
+      },
+      {
+        "1": "package:share_place/common/ui/text_comp.dart",
+        "5": false
+      }
+    ],
+    "5": [
+      {
+        "1": "UsersComp",
+        "5": [
+          {
+            "1": "PlaceService",
+            "4": "_placeService"
+          },
+          {
+            "1": "Router",
+            "4": "_router"
+          },
+          {
+            "1": "Environment",
+            "4": "_environment"
+          },
+          {
+            "1": "DomSanitizationService",
+            "4": "urlSanitizer"
+          },
+          {
+            "1": "UserListProvider",
+            "4": "_userListProvider"
+          }
+        ],
+        "6": [
+          "OnInit"
+        ],
+        "7": [
+          {
+            "2": "ButtonComp"
+          },
+          {
+            "2": "TextComp"
+          }
+        ]
+      }
+    ],
+    "6": "users_comp.dart"
+  },
+  "type": {
+    "UsersComp": {
+      "class": "Directive",
+      "isComponent": true,
+      "selector": "users-comp",
+      "exportAs": null,
+      "type": {
+        "class": "Type",
+        "name": "UsersComp",
+        "moduleUrl": "asset:share_place/lib/users/users_comp.dart",
+        "prefix": null,
+        "isHost": false,
+        "value": null,
+        "diDeps": [
+          {
+            "token": {
+              "value": null,
+              "identifier": {
+                "class": "Identifier",
+                "name": "PlaceService",
+                "moduleUrl": null,
+                "prefix": null,
+                "value": null
+              },
+              "identifierIsInstance": false
+            },
+            "value": null,
+            "isAttribute": false,
+            "isSelf": false,
+            "isHost": false,
+            "isSkipSelf": false,
+            "isOptional": false,
+            "isValue": false
+          },
+          {
+            "token": {
+              "value": null,
+              "identifier": {
+                "class": "Identifier",
+                "name": "Router",
+                "moduleUrl": null,
+                "prefix": null,
+                "value": null
+              },
+              "identifierIsInstance": false
+            },
+            "value": null,
+            "isAttribute": false,
+            "isSelf": false,
+            "isHost": false,
+            "isSkipSelf": false,
+            "isOptional": false,
+            "isValue": false
+          },
+          {
+            "token": {
+              "value": null,
+              "identifier": {
+                "class": "Identifier",
+                "name": "Environment",
+                "moduleUrl": null,
+                "prefix": null,
+                "value": null
+              },
+              "identifierIsInstance": false
+            },
+            "value": null,
+            "isAttribute": false,
+            "isSelf": false,
+            "isHost": false,
+            "isSkipSelf": false,
+            "isOptional": false,
+            "isValue": false
+          },
+          {
+            "token": {
+              "value": null,
+              "identifier": {
+                "class": "Identifier",
+                "name": "DomSanitizationService",
+                "moduleUrl": null,
+                "prefix": null,
+                "value": null
+              },
+              "identifierIsInstance": false
+            },
+            "value": null,
+            "isAttribute": false,
+            "isSelf": false,
+            "isHost": false,
+            "isSkipSelf": false,
+            "isOptional": false,
+            "isValue": false
+          },
+          {
+            "token": {
+              "value": null,
+              "identifier": {
+                "class": "Identifier",
+                "name": "UserListProvider",
+                "moduleUrl": null,
+                "prefix": null,
+                "value": null
+              },
+              "identifierIsInstance": false
+            },
+            "value": null,
+            "isAttribute": false,
+            "isSelf": false,
+            "isHost": false,
+            "isSkipSelf": false,
+            "isOptional": false,
+            "isValue": false
+          }
+        ]
+      },
+      "changeDetection": 6,
+      "inputs": {},
+      "inputTypes": {},
+      "outputs": {},
+      "hostListeners": {},
+      "hostProperties": {},
+      "hostAttributes": {},
+      "lifecycleHooks": [
+        0
+      ],
+      "template": {
+        "encapsulation": 0,
+        "template": "<div class=\"users\">\r\n  <div class=\"titleDiv\">\r\n    <!--<btn (click)=\"add()\"-->\r\n         <!--[sources]=\"['../images/addPerson.png', '../images/addPerson-h.png', '../images/addPerson-c.png']\"-->\r\n         <!--class=\"addBtn\" [disabled]=\"selectedPlace==null\"></btn>-->\r\n    <div class=\"title\">\r\n        <div class=\"hTitlein\">People</div>\r\n    </div>\r\n  </div>\r\n  <div class=\"subtitle\">in {{selectedPlace?.name}}</div>\r\n  <ul class=\"list\">\r\n\r\n    <li *ngFor=\"let userItem of users\" class=\"user\">\r\n      <img src=\"/auth/user/photo/s/{{userItem.id}}\" class=\"profileImg\">\r\n      <div class=\"userName\">{{userItem?.name}}</div>\r\n      <a href=\"{{skypeUrlFor(userItem)}}\"><div *ngIf=\"userItem.skype != null\" class=\"fa fa-skype\"></div></a>\r\n    </li>\r\n  </ul>\r\n</div>",
+        "templateUrl": "asset:share_place/lib/users/users_comp.html",
+        "styles": [],
+        "styleUrls": [
+          "asset:share_place/lib/users/users_comp.css"
+        ],
+        "ngContentSelectors": []
+      },
+      "providers": [
+        {
+          "class": "Identifier",
+          "name": "UserListProvider",
+          "moduleUrl": null,
+          "prefix": null,
+          "value": null
+        }
+      ],
+      "viewProviders": [],
+      "queries": [],
+      "viewQueries": []
+    }
+  },
+  "alias": {}
+}

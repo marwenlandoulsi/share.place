@@ -1,0 +1,51 @@
+<!-- Modal content-->
+<div class="inviteUsers" id="inviteUsers">
+  <div class="modal-header">
+    <h4 class="modal-title">
+      <!--<img src="../images/logo-s.png" width="22px">-->
+      Send invites {{selectedPlace.name}}
+    </h4>
+    <div type="button" class="close" data-dismiss="modal" (click)="close()"><img _ngcontent-gie-13=""
+                                                                                 src="../images/close_pop.png"></div>
+  </div>
+  <div class="modal-body inviteUsersbody">
+    <p>It's time to invite some colleagues and start to collaborate!</p>
+    <table class="invites">
+      <tr>
+        <th width="70%"><span class="labelinvit">Email</span></th>
+        <th width="30%"><span class="labelinvit textright">Authorization</span></th>
+      </tr>
+
+      <tr *ngFor="let userRole of usersWithRoles">
+        <td>
+          <material-input #search class="mailToAdd" type="email"
+                          (keyup)="onKeyUp(search.inputText)" class="emailinp"
+                          placeholder="example@mydomain.com" [(ngModel)]="userRole.email"></material-input>
+        </td>
+        <td>
+          <role-chooser-comp #role [(selected)]="userRole.roleName"></role-chooser-comp>
+        </td>
+      </tr>
+    </table>
+
+    <div class="addUserDiv">
+      <div class="addUserDiv_inside"> More lines
+        <!--<material-fab raised (click)="addUserLine()" class="addUser addbtnbluesmall">-->
+          <!--<glyph icon="add"></glyph>-->
+        <!--</material-fab>-->
+        <img src="../images/add_blue.png" class="blueadd" (click)="addUserLine()" alt="" />
+      </div>
+    </div>
+
+
+    <span class="labelinvit">Message</span>
+    <material-input [(ngModel)]="message" type="text" multiline rows="5"
+                    placeholder="example@mydomain.com"></material-input>
+  </div>
+
+
+  <div class="modal-footer">
+    <material-button raised (click)="save()" class="btn_login submitbottom">Send invites</material-button>
+
+  </div>
+</div>

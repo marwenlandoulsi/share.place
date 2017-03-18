@@ -1,0 +1,511 @@
+/* Master Styles */
+h1 {
+  color: #369;
+}
+
+h2, h3 {
+  color: #444;
+}
+
+html, body, my-app, my-app > div, .leftP, my-place, .folders {
+  height: 100%;
+
+}
+
+body {
+  background: #e6e6e6;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  font-size: 13px;
+  margin: 0;
+  padding: 0;
+}
+
+body, input[text], button {
+  color: rgba(0, 0, 0, 0.68);
+  font-size: initial;
+}
+
+.leftP, .rightPanelinside, .centerP, .rightP {
+  float: left
+}
+
+.leftP {
+  width: 17%;
+}
+
+.rightPanelinside {
+  width: 83%;
+  padding: 0 !important;
+}
+
+.centerP {
+  width: 45%;
+}
+
+.rightP {
+  width: 55%;
+  border-left: 0 !important;
+  background: transparent !important;
+}
+
+.panel {
+  -moz-border-radius: 0 0 8px 8px;
+  -webkit-border-radius: 0 0 8px 8px;
+  -o-border-radius: 0 0 8px 8px;
+  border-radius: 0 0 8px 8px;
+}
+
+a {
+  cursor: pointer;
+  cursor: hand;
+}
+
+button {
+  font-family: Arial;
+  background-color: #bfbb97;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  cursor: hand;
+}
+
+button:hover {
+  background-color: #cfd8dc;
+}
+
+button:disabled {
+  background-color: #eee;
+  color: #aaa;
+  cursor: auto;
+}
+
+/* Navigation link styles */
+nav a {
+  padding: 5px 10px;
+  text-decoration: none;
+  margin-top: 10px;
+  display: inline-block;
+  background-color: #eee;
+  border-radius: 4px;
+}
+
+nav a:visited, a:link {
+  color: #607D8B;
+}
+
+nav a:hover {
+  color: #039be5;
+  background-color: #CFD8DC;
+}
+
+nav a.active {
+  color: #039be5;
+}
+
+/* items class */
+.items {
+  margin: 0 0 2em 0;
+  list-style-type: none;
+  padding: 0;
+  width: 24em;
+}
+
+.selected {
+  font-weight: bold;
+  text-decoration: underline;
+  color: rgba(0, 0, 0, 0.86);
+}
+
+.items li {
+  cursor: pointer;
+  position: relative;
+  left: 0;
+  background-color: #EEE;
+  margin: .5em;
+  padding: .3em 0;
+  height: 1.6em;
+  border-radius: 4px;
+}
+
+.items li:hover {
+  color: #607D8B;
+  background-color: #DDD;
+  left: .1em;
+}
+
+.items li.selected:hover {
+  background-color: #BBD8DC;
+  color: white;
+}
+
+.items .text {
+  position: relative;
+  top: -3px;
+}
+
+.items {
+  margin: 0 0 2em 0;
+  list-style-type: none;
+  padding: 0;
+  width: 24em;
+}
+
+.items li {
+  cursor: pointer;
+  position: relative;
+  left: 0;
+  background-color: #EEE;
+  margin: .5em;
+  padding: .3em 0;
+  height: 1.6em;
+  border-radius: 4px;
+}
+
+.items li:hover {
+  color: #607D8B;
+  background-color: #DDD;
+  left: .1em;
+}
+
+.items li.selected {
+  background-color: #CFD8DC;
+  color: white;
+}
+
+.items li.selected:hover {
+  background-color: #BBD8DC;
+}
+
+.items .text {
+  position: relative;
+  top: -3px;
+}
+
+.items .badge {
+  display: inline-block;
+  font-size: small;
+  color: white;
+  padding: 0.8em 0.7em 0 0.7em;
+  background-color: #607D8B;
+  line-height: 1em;
+  position: relative;
+  left: -1px;
+  top: -4px;
+  height: 1.8em;
+  margin-right: .8em;
+  border-radius: 4px 0 0 4px;
+}
+
+/* everywhere else
+TODO see what font to use
+*/
+* {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.label {
+  font-weight: normal !important;
+  font-size: 1.1em;
+}
+
+.title {
+  padding: 0.1em 0.5em 0;
+  width: 100%;
+  font-size: 2em;
+  /*font-weight: bold;*/
+  color: #4C3B4E;
+}
+
+.buttonGroup {
+  float: right;
+  margin-right: 0.5em;
+}
+
+.rightMenu {
+  float: right;
+  margin-right: 1em;
+  margin-top: 0.2em;
+}
+
+.placePanel .panel-name .primary-text {
+  font-weight: normal;
+  font-size: 1.2em;
+  position: relative;
+  line-height: 21px;
+  padding: 3px 0 0 28px !important;
+}
+
+/* add As*/
+.placePanel .panel-name .primary-text:before {
+  content: "\f015";
+  font-family: FontAwesome;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 25px;
+  vertical-align: middle;
+  text-decoration: none;
+  color: #243b59;
+  top: 2px;
+  position: absolute;
+  left: 0;
+}
+
+.content-wrapper {
+  margin: 0  0 16px 5px !important;
+}
+
+.rightPanelinside {
+  overflow: hidden;
+}
+
+.rightPinside {
+  margin-left: 10px;
+}
+
+.places > main, main {
+  overflow: inherit !important;
+}
+
+.row {
+  margin: 10px;
+}
+
+.header-top {
+  position: relative;
+  width: 100%;
+  height: 34px;
+  background-color: #1F181F !important;
+  padding: 0 !important;
+}
+
+.imgBtn {
+  height: auto !important;
+}
+
+.header.headerplaces {
+  padding: 9px 0 10px 5px;
+}
+
+.panel.open > header {
+  min-height: 30px !important;
+}
+
+.rightPanelinside_header {
+  background: #8792A0;
+  height: 40px;
+}
+
+header {
+  padding: 6px 4px !important;
+}
+
+header.closed:hover, header.closed:focus, header:focus, header:focus {
+  -webkit-border-radius: 0 0 7px 7px !important;
+  -moz-border-radius: 0 0 7px 7px !important;
+  border-radius: 0 0 7px 7px !important;
+  -webkit-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+}
+
+:focus {
+  outline: -webkit-focus-ring-color auto 0 !important;
+}
+
+/* style for folder*/
+.text_comp {
+  position: relative !important;
+  margin-right: 7px;
+}
+
+.text_comp input {
+  background: transparent !important;
+  /*position:  relative !important;*/
+  -webkit-appearance: normal !important;
+  -moz-appearance: normal !important;
+  border: 0 !important;
+  border-bottom: 1px solid #273B54 !important;
+  color: #273B54;
+  font-size: 13px;
+  padding: 0;
+  width: calc(100% - 53px);
+}
+
+.text_comp:after {
+  content: '' !important;
+  background-image: url('../images/edit_blue.png') !important;
+  background-position: left top !important;
+  background-repeat: no-repeat !important;
+  display: block !important;
+  width: 16px !important;
+  height: 16px !important;
+  position: absolute !important;
+  left: calc(100% - 47px) !important;
+  bottom: 0 !important;
+}
+
+.okBtn {
+  vertical-align: middle;
+  float: right;
+}
+
+.top-section, .baseline {
+  background: white !important;
+}
+
+.basic-dialog > main {
+  padding: 0 !important;
+}
+
+.basic-dialog > header {
+  padding: 0 !important;
+}
+
+.baseline {
+  display: -webkit-inline-flex;
+  display: inline-flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  width: 100% !important;
+
+  background-color: white !important;
+  color: #030303 !important;
+}
+
+.top-section {
+  border: 1px solid #c6c6c6;
+  margin-bottom: 0 !important;
+  background-color: white;
+  /*padding: 0.52em  !important;*/
+  padding: 4px 2px 7px 0;
+}
+
+main, header, footer {
+  padding: 0 !important;
+}
+
+.label {
+  text-align: left !important;
+}
+
+.label-text {
+  font-size: 13px;
+}
+
+input {
+  padding: 0 0 0 9px !important;
+}
+
+.error {
+  padding-bottom: 4px;
+  font-size: 12px;
+  padding-top: 5px;
+  color: red;
+  font-weight: 500;
+}
+
+.profileImg {
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  height: 25px;
+  width: 25px;
+}
+
+.verification_user > div {
+  display: inline-block;
+  color: #3A579A;
+  cursor: pointer;
+}
+
+.verification_user .signup {
+  text-decoration: underline;
+}
+
+#signup .top-section {
+  padding: 3px 2px 3px 0;
+}
+
+#signup input, #signup textarea {
+  box-shadow: none;
+  font-size: 12px;
+  color: #505050;
+}
+
+#signup .passEqual .top-section {
+  background-color: rgba(255, 0, 0, 0.5) !important;
+}
+
+#signup .passEqual input {
+  color: white !important;
+}
+
+#signup .passEqual .focused-underline {
+  background-color: red !important;
+}
+
+
+#signup .bottom-section {
+  margin-top: 0 !important;
+  margin-bottom: 0;
+}
+
+.uploadFile {
+  padding: 40px 10px !important;
+}
+
+.userName, .profileImg {
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.content-wrapper, .content {
+  -moz-border-radius: 0 0 8px 8px;
+  -webkit-border-radius: 0 0 8px 8px;
+  -o-border-radius: 0 0 8px 8px;
+  border-radius: 0 0 8px 8px;
+}
+
+.content-wrapper {
+  margin: 0 0 0 0 !important;
+}
+
+textarea{ padding: 0.4em !important; }
+.btn_login {
+  background: #00adef !important;
+  height: 36px;
+  width: 98px;
+  margin: 5px 0 15px 74px !important;
+  text-transform: none !important;
+  color: white !important;
+  font-size: 16px !important;
+}
+
+.roleChooser .imgBtn {
+  height: 17px !important;
+  width: 17px !important;
+  margin-left: -5px;
+  margin-top: 1px;
+}
+
+.role img {
+  opacity: 0.3;
+}
+
+.role.selected img {
+  opacity: 1;
+}
+
+
+.mail.themeable .label-text {
+  padding-left: 8px !important;
+}
+.error-text, .hint-text, .spaceholder {
+  font-size: 11px !important;
+}
+
+/* CUSTOM RESPONSIVE STYLES */
+/* ------------------------------------ */
+

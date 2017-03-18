@@ -1,0 +1,53 @@
+{
+  "ngDeps": {
+    "1": "",
+    "3": [
+      {
+        "1": "dart:async",
+        "5": false
+      },
+      {
+        "1": "package:angular2/core.dart",
+        "5": false
+      },
+      {
+        "1": "environment.dart",
+        "5": false
+      }
+    ],
+    "5": [
+      {
+        "1": "EventBus",
+        "4": [
+          {
+            "1": "Injectable",
+            "4": false
+          }
+        ]
+      }
+    ],
+    "6": "event_bus.dart",
+    "7": [
+      {
+        "1": "package:angular2/core.template.dart",
+        "4": "i0"
+      },
+      {
+        "1": "environment.template.dart",
+        "4": "i1"
+      }
+    ]
+  },
+  "type": {
+    "EventBus": {
+      "class": "Type",
+      "name": "EventBus",
+      "moduleUrl": "asset:share_place/lib/event_bus.dart",
+      "prefix": null,
+      "isHost": false,
+      "value": null,
+      "diDeps": []
+    }
+  },
+  "alias": {}
+}

@@ -1,0 +1,271 @@
+{
+  "ngDeps": {
+    "1": "",
+    "3": [
+      {
+        "1": "dart:async",
+        "5": false
+      },
+      {
+        "1": "package:angular2/core.dart",
+        "5": false
+      },
+      {
+        "1": "package:angular2/router.dart",
+        "5": false
+      },
+      {
+        "1": "package:angular2/security.dart",
+        "5": false
+      },
+      {
+        "1": "package:share_place/place.dart",
+        "5": false
+      },
+      {
+        "1": "package:share_place/environment.dart",
+        "5": false
+      },
+      {
+        "1": "package:share_place/place_service.dart",
+        "5": false
+      },
+      {
+        "1": "package:share_place/users/user.dart",
+        "5": false
+      },
+      {
+        "1": "package:share_place/common/ui/button_comp.dart",
+        "5": false
+      },
+      {
+        "1": "package:share_place/common/ui/text_comp.dart",
+        "5": false
+      },
+      {
+        "1": "package:share_place/users/signup/signup_comp.dart",
+        "5": false
+      },
+      {
+        "1": "package:angular2_components/angular2_components.dart",
+        "5": false
+      }
+    ],
+    "5": [
+      {
+        "1": "LoginComp",
+        "4": [
+          {
+            "1": "Injectable",
+            "4": false
+          }
+        ],
+        "5": [
+          {
+            "1": "PlaceService",
+            "4": "_placeService"
+          },
+          {
+            "1": "Router",
+            "4": "_router"
+          },
+          {
+            "1": "Environment",
+            "4": "_environment"
+          },
+          {
+            "1": "DomSanitizationService",
+            "4": "urlSanitizer"
+          }
+        ],
+        "6": [
+          "OnInit"
+        ],
+        "7": [
+          {
+            "2": "ButtonComp"
+          },
+          {
+            "2": "TextComp"
+          },
+          {
+            "2": "materialDirectives"
+          },
+          {
+            "2": "SignupComp"
+          }
+        ]
+      }
+    ],
+    "6": "login_comp.dart",
+    "7": [
+      {
+        "1": "package:angular2/core.template.dart",
+        "4": "i0"
+      },
+      {
+        "1": "package:angular2/router.template.dart",
+        "4": "i1"
+      },
+      {
+        "1": "package:angular2/security.template.dart",
+        "4": "i2"
+      },
+      {
+        "1": "package:share_place/place.template.dart",
+        "4": "i3"
+      },
+      {
+        "1": "package:share_place/environment.template.dart",
+        "4": "i4"
+      },
+      {
+        "1": "package:share_place/place_service.template.dart",
+        "4": "i5"
+      },
+      {
+        "1": "package:share_place/users/user.template.dart",
+        "4": "i6"
+      },
+      {
+        "1": "package:share_place/common/ui/button_comp.template.dart",
+        "4": "i7"
+      },
+      {
+        "1": "package:share_place/common/ui/text_comp.template.dart",
+        "4": "i8"
+      },
+      {
+        "1": "package:share_place/users/signup/signup_comp.template.dart",
+        "4": "i9"
+      },
+      {
+        "1": "package:angular2_components/angular2_components.template.dart",
+        "4": "i10"
+      }
+    ]
+  },
+  "type": {
+    "LoginComp": {
+      "class": "Directive",
+      "isComponent": true,
+      "selector": "login-comp",
+      "exportAs": null,
+      "type": {
+        "class": "Type",
+        "name": "LoginComp",
+        "moduleUrl": "asset:share_place/lib/users/login/login_comp.dart",
+        "prefix": null,
+        "isHost": false,
+        "value": null,
+        "diDeps": [
+          {
+            "token": {
+              "value": null,
+              "identifier": {
+                "class": "Identifier",
+                "name": "PlaceService",
+                "moduleUrl": "asset:share_place/lib/place_service.dart",
+                "prefix": null,
+                "value": null
+              },
+              "identifierIsInstance": false
+            },
+            "value": null,
+            "isAttribute": false,
+            "isSelf": false,
+            "isHost": false,
+            "isSkipSelf": false,
+            "isOptional": false,
+            "isValue": false
+          },
+          {
+            "token": {
+              "value": null,
+              "identifier": {
+                "class": "Identifier",
+                "name": "Router",
+                "moduleUrl": "asset:angular2/lib/src/router/router.dart",
+                "prefix": null,
+                "value": null
+              },
+              "identifierIsInstance": false
+            },
+            "value": null,
+            "isAttribute": false,
+            "isSelf": false,
+            "isHost": false,
+            "isSkipSelf": false,
+            "isOptional": false,
+            "isValue": false
+          },
+          {
+            "token": {
+              "value": null,
+              "identifier": {
+                "class": "Identifier",
+                "name": "Environment",
+                "moduleUrl": "asset:share_place/lib/environment.dart",
+                "prefix": null,
+                "value": null
+              },
+              "identifierIsInstance": false
+            },
+            "value": null,
+            "isAttribute": false,
+            "isSelf": false,
+            "isHost": false,
+            "isSkipSelf": false,
+            "isOptional": false,
+            "isValue": false
+          },
+          {
+            "token": {
+              "value": null,
+              "identifier": {
+                "class": "Identifier",
+                "name": "DomSanitizationService",
+                "moduleUrl": "asset:angular2/lib/src/security/dom_sanitization_service.dart",
+                "prefix": null,
+                "value": null
+              },
+              "identifierIsInstance": false
+            },
+            "value": null,
+            "isAttribute": false,
+            "isSelf": false,
+            "isHost": false,
+            "isSkipSelf": false,
+            "isOptional": false,
+            "isValue": false
+          }
+        ]
+      },
+      "changeDetection": 6,
+      "inputs": {},
+      "inputTypes": {},
+      "outputs": {},
+      "hostListeners": {},
+      "hostProperties": {},
+      "hostAttributes": {},
+      "lifecycleHooks": [
+        0
+      ],
+      "template": {
+        "encapsulation": 0,
+        "template": "<modal [visible]=\"showSignupDialog\">\r\n  <material-dialog class=\"signup-dialog\">\r\n    <signup-comp></signup-comp>\r\n  </material-dialog>\r\n</modal>\r\n\r\n<div class=\"login\">\r\n  <div class=\"header\">\r\n    <!--<btn (click)=\"add()\"-->\r\n    <!--[sources]=\"['../images/addPerson.png', '../images/addPerson-h.png', '../images/addPerson-c.png']\"-->\r\n    <!--class=\"addBtn\" [disabled]=\"selectedPlace==null\"></btn>-->\r\n    <div class=\"title\">\r\n      <div class=\"welcome\">\r\n        <div class=\"logo_intro\"><img src=\"../images/logo_intro.png\"/></div>\r\n        <span>Welcome to Share.Place</span></div>\r\n      <!--<div class=\"close\" (click)=\"close()\"><img src=\"../images/close_pop.png\"/></div>-->\r\n    </div>\r\n\r\n  </div>\r\n\r\n  <div class=\"panels\">\r\n    <div class=\"error\">{{error}}</div>\r\n\r\n\r\n    <div class=\"local\">\r\n      <form action=\"#\" method=\"post\">\r\n        <div class=\"verification_user\">\r\n          <div>New user?</div>\r\n          <div href=\"#\" (click)=\"showSignupDialog = true\" [class.disabled]=\"showSignupDialog\" class=\"signup\">Sign-up!\r\n          </div>\r\n        </div>\r\n        <div class=\"email\">\r\n          <div class=\"label\">Email</div>\r\n          <material-input required label=\"example@domain.com\" [(ngModel)]=\"user.email\" class=\"mail\"></material-input>\r\n        </div>\r\n        <div class=\"pass\">\r\n          <div class=\"label\">Password</div>\r\n          <div class=\"forgot\"><a href=\"#\" tabindex=\"-1\">forgot?</a></div>\r\n          <material-input required [(ngModel)]=\"user.pass\" type=\"password\" class=\"password\"></material-input>\r\n        </div>\r\n        <material-button raised class=\"btn_login\" (click)=\"login()\">Login</material-button>\r\n      </form>\r\n\r\n    </div>\r\n\r\n    <!--<div class=\"col-md-1 col-sm-1 col-xs-12\"> </div>-->\r\n    <div class=\"or\"><span>Or</span></div>\r\n\r\n    <!--<div class=\"col-md-5 col-sm-5 col-xs-12\">  </div>-->\r\n    <div class=\"social\">\r\n      <a class=\"btn-social btn-facebook\" href=\"/auth/facebook\">\r\n        <span class=\"fa fa-facebook\"></span> Sign in with Facebook\r\n      </a>\r\n\r\n      <a class=\"btn-social btn-google\" href=\"/auth/google\">\r\n        <span class=\"fa fa-google-plus\"></span> Sign in with Google\r\n      </a>\r\n    </div>\r\n  </div>\r\n\r\n  <footer>\r\n    <div class=\"copy\">Copyright (c) 2017 share.place. All rights reserved.</div>\r\n  </footer>\r\n</div>",
+        "templateUrl": "asset:share_place/lib/users/login/login_comp.html",
+        "styles": [],
+        "styleUrls": [
+          "asset:share_place/lib/users/login/login_comp.css"
+        ],
+        "ngContentSelectors": []
+      },
+      "providers": [],
+      "viewProviders": [],
+      "queries": [],
+      "viewQueries": []
+    }
+  },
+  "alias": {}
+}

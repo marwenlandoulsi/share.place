@@ -1,0 +1,163 @@
+h1 {
+  font-size: 1.2em;
+  color: #999;
+  margin-bottom: 0;
+}
+
+h2 {
+  font-size: 2em;
+  margin-top: 0;
+  padding-top: 0;
+}
+
+nav a {
+  padding: 5px 10px;
+  text-decoration: none;
+  margin-top: 10px;
+  display: inline-block;
+  background-color: #eee;
+  border-radius: 4px;
+}
+
+nav a:visited, a:link {
+  color: #607D8B;
+}
+
+nav a:hover {
+  color: #039be5;
+  background-color: #CFD8DC;
+}
+
+nav a.router-link-active {
+  color: #039be5;
+}
+
+.header {
+  position: relative;
+  width: 100%;
+  background-color: #4e394c;
+  padding: 2em 0 0 2em;
+}
+
+.content {
+  background: white;
+  padding: 1em;
+  margin: 1em 0;
+}
+
+.files {
+  background-color: #F0F0F0;
+}
+
+.rightBp {
+  background-color: #F0F0F0;
+}
+
+.logo {
+  height: 2em;
+  padding: 2px 0 0 3px;
+}
+
+.title {
+  position: absolute;
+  left: 120px;
+  top: 20px;
+  color: white;
+}
+
+.topP {
+  height: 30%;
+  min-height: 10em;
+  border-bottom: 2px solid cornflowerblue;
+}
+
+.topP .places {
+
+}
+
+.bottomP {
+
+}
+
+.rightP {
+  background-color: white;
+  border-left: 0.4em solid white;
+}
+
+.leftP {
+  background-color: #273b54;
+}
+
+.news {
+  min-height: 15em;
+  padding-bottom: 0.5em;
+}
+
+.basic-dialog > main {
+  padding: 0 !important;
+}
+
+
+
+.connectusername {
+  margin: 0 6px;
+  font-weight: bold;
+  color: #273B54;
+  font-size: 15px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.logout, .profile {
+  width: 100% !important;
+}
+
+.logout_chmp, .profile_chmp {
+  position: relative;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+}
+
+.logout_chmp:before {
+  font-family: FontAwesome;
+  content: "\f08b";
+  font-size: 20px;
+  font-weight: normal;
+  color: #FF0000;
+  vertical-align: middle;
+  margin-right: 5px;
+
+}
+
+.profile_chmp:before {
+  font-family: FontAwesome;
+  content: "\f013";
+  font-size: 20px;
+  font-weight: normal;
+  color: #5587A2;
+  vertical-align: middle;
+  margin-right: 5px;
+
+}
+
+material-button.menuItem.profile, material-button.menuItem.logout {
+  width: 100%;
+  text-decoration: none;
+  text-transform: lowercase;
+  text-align: left;
+  color: #273B54;
+}
+
+/*[_nghost-dkp-7]:not([icon]) .content {*/
+[_nghost-dkp-7]:not([icon]) .content {
+  padding:0.2em 0.4em  !important;
+}
+
+.connectusername {
+  background: url("../images/tiret-black.png") repeat-x center center;
+}
+
+.connectusername span {
+  background: white;
+  padding-right: 0.5em;
+  display: inline;
+}

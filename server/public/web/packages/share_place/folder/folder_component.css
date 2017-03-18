@@ -1,0 +1,201 @@
+.folders {
+}
+
+.folder {
+	padding-left: 1em;
+	position: relative;
+	font-size: 13px;
+
+}
+
+.folder btn {
+	position: absolute;
+	right: 0;
+
+}
+
+.header {
+	position: relative;
+	width: 100%;
+	padding-bottom: 0.5em;
+
+	margin: 14px 0;
+}
+
+.hTitle {
+	position: absolute;
+	left: 0;
+	top: 0;
+	font-size: 1.2em;
+}
+
+.header .add {
+	position: absolute;
+	right: 0;
+}
+
+.folderList {
+	list-style-type:none;
+	padding: 0;
+	padding-top: 0.3em;
+	margin: 0 0 0 10px;
+}
+
+
+.folderItem {
+	cursor: pointer;
+	color: rgba(0, 0, 0, 0.7);
+	/*padding: 0.2em 0;*/
+	border-radius: 0;
+	/*width: calc(100% - 1em);*/
+	margin-bottom: 1px;
+	position: relative;
+	/*height: 28px;*/
+	line-height: 13px;
+	/*background: cyan;*/
+	padding : 11px 10px 11px 0;
+}
+.folderItem:hover:after, .folderItem.active:after, .folderItem.selected:after {
+	left: 100%;
+	top: 50%;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+	border: solid transparent;
+	border-color: rgba(85, 134, 164, 0);
+	border-left-color: #5586A4;
+	border-width: 10px;
+	margin-top: -10px;
+
+}
+
+
+
+.folderItem:hover, .folderItem.active , .folderItem.selected  {
+	/*color: rgba(255, 255, 255, 1);*/
+	/*background : #5786a2;*/
+	text-decoration: none;
+	background-color: #5586A4 !important;
+	color: white !important;
+	-webkit-transition: 0.3s;
+	-o-transition: 0.3s;
+	transition: 0.3s;
+
+}
+
+
+.editFolder {
+	color: #243c57;
+	width: 100%;
+	border-bottom: 1px solid#243c57;
+	border-top: 0;
+	border-right: 0;
+	border-left: 0;
+	border-radius: 0;
+	padding: 0 10px;
+	font-weight: normal;
+	font-size: 12px;
+}
+
+.buttonGroup {
+	float: right;
+	/* margin-right: 0.5em; */
+	width: 30%;
+	text-align: right;
+}
+.hTitle  {
+	width: 70%;
+	color: #414c5f;
+	float: left;
+	background : url("../images/tiret-grey.png") repeat-x center center;
+	font-size: 14px !important;
+	font-weight: bold;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.hTitlein {
+	background: white;
+	padding-right: 0.5em;
+	display: inline;
+}
+.rename_folder:after {
+	float:  right;
+	/*font-family: FontAwesome;*/
+	/*content: "\f040";	*/
+	/*font-size: 15px;*/
+	/*font-weight: normal;
+	color : #c5c8cc; */
+	content: '' !important;
+	background-image: url('../images/edit_blue.png') !important;
+	background-position: left top !important;
+	background-repeat: no-repeat!important;
+
+	display: block !important;
+	width: 16px !important;
+	height: 16px !important;
+	margin-right: 15px;
+
+}
+/*.delete_folder , .rename_folder { vertical-align: baseline; display: inline-block}*/
+.folder btn {
+	display: inline;
+	vertical-align: middle;
+	float: right;
+	/*margin-top: 7px;*/
+}
+.name_folder {     width: calc(100% - 33px); display: inline-block}
+.rename_folder { margin: 0 2px 0 0}
+.delete_folder { position:  relative; }
+.delete_folder:after{
+	content: '' !important;
+	background-image: url('../images/delete_folder.png') !important;
+	background-position: left top !important;
+	background-repeat: no-repeat!important;
+
+	display: block !important;
+	width: 12px !important;
+	height: 12px !important;
+
+
+}
+.folderItem:hover .rename_folder:after , .folderItem.selected .rename_folder:after
+{ color:  white }
+.folderItem.active .rename_folder:after
+{ color:  white }
+
+.li_add { margin-bottom: 2px}
+
+.folderItem.edited{     padding: 11px 8px 11px 16px; }
+
+
+
+.test { position: relative;  margin-right: 0; }
+.test input {
+	background: transparent !important;
+	/* position: relative !important; */
+	-webkit-appearance: normal !important;
+	-moz-appearance: normal !important;
+	border: 0 !important;
+	border-bottom: 1px solid #fff !important;
+	color: #fff;
+	font-size: 13px;
+	padding: 0 8px 0 0;
+	width: calc(100% - 44px);
+}
+
+.test:after {
+	content: '' !important;
+	background-image: url('../images/edit_white.png') !important;
+	background-position: left top !important;
+	background-repeat: no-repeat!important;
+	display: block !important;
+	width: 16px !important;
+	height: 16px !important;
+	position: absolute !important;
+	left: calc(100% - 47px) !important;
+	bottom: 0 !important;
+}
+
+.test btn {float: right}

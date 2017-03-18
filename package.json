@@ -1,0 +1,57 @@
+{
+  "name": "SharePlace",
+  "version": "0.0.9",
+  "description": "share place",
+  "main": "main.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/marwenlandoulsi/testAppElec"
+  },
+  "scripts": {
+    "start": "electron .",
+    "build:win": "build --win --ia32 --x64 --publish always",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "electron-log": "^1.3.0",
+    "electron-packager": "^8.5.2",
+    "electron-updater": "^1.10.3",
+    "fs-extra": "^2.0.0",
+    "http": "0.0.0",
+    "log4js": "^1.1.1",
+    "nedb-session-store": "^1.1.1",
+    "path": "^0.12.7"
+  },
+  "build": {
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "marwenlandoulsi",
+        "repo": "testAppElec"
+      }
+    ],
+    "asar": false,
+    "copyright": "©2017 Share.Place, Inc.",
+    "appId": "com.share.place",
+    "win": {
+      "target": "nsis"
+    },
+    "nsis": {
+      "perMachine": false,
+      "oneClick": true,
+      "runAfterFinish": true
+    }
+  },
+  "keywords": [
+    "Electron",
+    "Windows",
+    "autoupdate"
+  ],
+  "author": "share.place",
+  "license": "ISC",
+  "copyright": "©2017 Share.Place, Inc.",
+  "devDependencies": {
+    "electron": "1.4.15",
+    "electron-builder": "^15.6.2"
+  }
+}
