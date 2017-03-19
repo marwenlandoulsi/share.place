@@ -39,6 +39,7 @@
       "target": "nsis"
     },
     "nsis": {
+      "installerIcon": "./shareElecIco.ico",
       "perMachine": false,
       "oneClick": true,
       "runAfterFinish": true
