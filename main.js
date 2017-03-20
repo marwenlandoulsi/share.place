@@ -37,15 +37,7 @@ app.on('window-all-closed', function () {
   }
 });
 ipcMain.on('online-status-changed', (event, status) => {
-  /* if (status) {
-   httpGetJson("/user/connected", function(ok){
-   global.onLine = true;
-   log.info("status of connection changed", global.onLine);
-   })
-   } else {
-   global.onLine = status;
-   log.info("status of connection changed", global.onLine);
-   }*/
+
   global.onLine = status;
   if (status) {
     mainWindow.setOverlayIcon('Online.ico', 'you are onLine');
