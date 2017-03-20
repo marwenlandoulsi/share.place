@@ -4,8 +4,12 @@
 			<div class="hTitlein">Threads</div>
 		</span>
     <div class="buttonGroup">
+<!--
       <btn [sources]="['../images/add-new.png', '../images/add-new.png', '../images/addPerson.png']"
            (click)="add();newFolder.focus('folderList')"></btn>
+-->
+      <btn [sources]="['../images/add-new.png', '../images/add-new.png', '../images/addPerson.png']"
+           (click)="add()"></btn>
       <!--<btn [sources]="['../images/folder.png', '../images/folder-h.png', '../images/folder-c.png']" (click)="rename()"></btn>-->
     </div>
   </div>
@@ -13,32 +17,34 @@
 
   <div>
     <ul class="folderList">
+      <postit-comp [name]="'folders'" [header]="'Create a folder'" [body]="'To start, create a folder clicking on the + icon'"
+                   class="foldersPostit"></postit-comp>
       <li [style.display]="adding ? 'block' : 'none'" class="li_add">
-        <material-input [maxCount]="5" label="Max 5 chars"></material-input>
         <txt #newFolder [confirm]="save"
              [sources]="['../images/ok.png', '../images/ok.png', '../images/ok-c.png']"></txt>
       </li>
-      <li *ngFor="let folder of folders" (click)="gotoFolder(folder)" class="folderItem"
-          [class.selected]="folder.id == selectedFolder?.id" [class.edited]="folder.id == renaming?.id">
+      <!--      <li *ngFor="let folder of folders" (click)="gotoFolder(folder)" class="folderItem"
+                [class.selected]="folder.id == selectedFolder?.id" [class.edited]="folder.id == renaming?.id">
 
 
-        <div *ngIf="renaming == null || renaming?.id != folder?.id" class="folder">
-          <div class="name_folder"> {{folder.name}}</div>
+              <div *ngIf="renaming == null || renaming?.id != folder?.id" class="folder">
+                <div class="name_folder"> {{folder.name}}</div>
 
-					<btn   class="delete_folder"></btn>
-					<btn  (click)="gotoFolder(folder);rename()"  class="rename_folder"></btn>
-				</div>
+                <btn   class="delete_folder"></btn>
+                <btn  (click)="gotoFolder(folder);rename()"  class="rename_folder"></btn>
+              </div>
 
 
-        <div *ngIf="renaming != null && renaming.id == folder?.id" class="test">
-          <input *ngIf="renaming != null && renaming.id == folder?.id" type="text" #folderRenamer
-                 value="{{folder.name}}" (keydown.enter)="doRename(folderRenamer.value)" class="editFolder"/>
-          <btn [sources]="['../images/ok_white.png', '../images/ok_white.png', '../images/ok_white.png']"
-               (click)="doRename(folderRenamer.value)"></btn>
+              <div *ngIf="renaming != null && renaming.id == folder?.id" class="test">
+                <input *ngIf="renaming != null && renaming.id == folder?.id" type="text" #folderRenamer
+                       value="{{folder.name}}" (keydown.enter)="doRename(folderRenamer.value)" class="editFolder"/>
+                <btn [sources]="['../images/ok_white.png', '../images/ok_white.png', '../images/ok_white.png']"
+                     (click)="doRename(folderRenamer.value)"></btn>
+              </div>
+
+
+            </li>-->
+          </ul>
         </div>
-
-
-      </li>
-    </ul>
-  </div>
+  <tree-node-comp [nodes]="folders"></tree-node-comp>
 </div>

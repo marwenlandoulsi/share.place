@@ -16,7 +16,10 @@ import 'package:share_place/news/news_comp.dart';
 import 'package:share_place/files/files_comp.dart';
 import 'package:share_place/subject/subject_list_comp.dart';
 import 'package:share_place/users/login/login_comp.dart';
+import 'package:share_place/users/profile/profile_comp.dart';
 import 'package:share_place/users/user.dart';
+
+import 'package:share_place/postit/postit_component.dart';
 
 
 /**
@@ -36,7 +39,9 @@ import 'package:share_place/users/user.dart';
       NewsComp,
       FilesComp,
       SubjectListComponent,
-      LoginComp
+      LoginComp,
+      ProfileComp,
+      PostitComponent
     ],
     providers: const [
       PlaceService,
@@ -72,6 +77,7 @@ class AppComponent
     _environment.eventBus.getBus().listen( (params) => show(params));
     _placeService.getConnectedUser();
     conf.readConf();
+
   }
 
   show(Map<PlaceParam, dynamic> params) async {
@@ -91,12 +97,11 @@ class AppComponent
 
   void profile() {
     profileMenuVisible = false;
-    var location = window.location.href.toLowerCase();
-    var indexOfDomainEnd = location.indexOf("/web");
-    if(indexOfDomainEnd == -1)
-      indexOfDomainEnd = location.indexOf("/home");
-
-    window.location.href = location.substring(0, indexOfDomainEnd) + "/auth/profile";
+    _environment.profilePopinVisible = true;
   }
+
+  bool get profilePopinVisible => _environment.profilePopinVisible;
+  String get error => _environment.serverError;
+  List<String> get messages => _environment.messages;
 
 }

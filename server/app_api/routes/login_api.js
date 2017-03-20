@@ -29,7 +29,6 @@ var upload = multer({
 })
 
 
-
 // normal routes ===============================================================
 
 // show the home page (will also have our login links)
@@ -78,7 +77,13 @@ router.post('/signup', (req, res, next) => authenticate(req, res, next, 'local-s
 
 
 var authenticate = (req, res, next, strategy) => {
+  if ((strategy == 'local-signup') && (!global.onLine)) {
+
+    return globalService.sendError(res, 409, "sorry you are offline you can't do the signup");
+
+  }
   passport.authenticate(strategy, (err, user, info) => {
+
     if (!user)
       return globalService.sendError(res, 401, "wrong email or password");
 
@@ -141,7 +146,7 @@ router.get('/user/photo/:size/:userId', function (req, res) {
       response.pipe(file);
       readFile(res, pathToUserPicture);
     }).on('error', function (e) {
-     globalService.sendError(res, 450, "error to download img")
+      globalService.sendError(res, 450, "error to download img")
     });
   } else {
     if (!fs.existsSync(pathToUserPicture)) {

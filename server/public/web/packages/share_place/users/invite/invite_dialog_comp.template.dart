@@ -564,6 +564,7 @@ class ViewInviteUsersDialogComp1 extends AppView<import3.InviteUsersDialogComp> 
     _el_7 = doc.createElement('td');
     _el_7.setAttribute(shimCAttr,'');
     _el_0.append(_el_7);
+    _el_7.className = 'nomargin';
     Text _text_8 = new Text('\n          ');
     _el_7.append(_text_8);
     _el_9 = doc.createElement('role-chooser-comp');

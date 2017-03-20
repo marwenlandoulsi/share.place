@@ -34,7 +34,7 @@ class CloudFile {
           file['placeId'],
           -1,
           file['name'],
-          file['versions']?.map((version) =>
+          file['versions']?.map( (version) =>
           new FileVersion.fromJson(version)).toList(),
           file['isLocked'],
           new LockOwner.fromJson(file['lockOwner'])

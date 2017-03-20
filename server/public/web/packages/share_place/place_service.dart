@@ -31,23 +31,35 @@ class PlaceService {
   PlaceService(this._http, this._environment);
 
   dynamic _extractData(Response resp) {
+    _environment.serverError = '';
 //happens if user is disconnected
     if (resp == null)
       return null;
 
-    if (resp.statusCode >= 200 && resp.statusCode < 300) {
+    var statusCode = resp.statusCode;
+    var respBody = JSON.decode(resp.body);
+    var msg = respBody['msg'];
+    if (msg != null)
+      _environment.addMessage(msg);
+
+    if (statusCode >= 200 && statusCode < 300) {
       print("response : ${resp.body}");
-      dynamic toReturn = JSON.decode(resp.body)['data'];
+      dynamic toReturn = respBody['data'];
       return toReturn;
-    } else if (resp.statusCode == 401) {
+    } else if (statusCode == 401) {
       _environment.connectedUser = null;
-      _environment.serverError = JSON.decode(resp.body)['error'];
+      _environment.serverError = respBody['error'];
+      return null;
+    } else if (statusCode > 400 && statusCode < 500) {
+      _environment.serverError = respBody['error'];
       return null;
     } else {
-      dynamic errorMessage = JSON.decode(resp.body)['error'];
+      dynamic errorMessage = respBody['error'];
       html.window.alert(errorMessage);
+      return null;
     }
-    throw "Unkonw server error: $resp";
+
+    //throw "Unkonw server error: $resp";
   }
 
   Future<Response> post(String url,
@@ -60,6 +72,12 @@ class PlaceService {
       {Map<String, String> headers, body, Encoding encoding}) async {
     return await _http.put(conf.baseUrl + url,
         headers: headers, body: body, encoding: encoding);
+  }
+
+  Future<Response> del(String url,
+      {Map<String, String> headers, body, Encoding encoding}) async {
+    return await _http.delete(conf.baseUrl + url,
+        headers: headers);
   }
 
   Future<Response> get(String url, {Map<String, String> headers}) async {
@@ -78,13 +96,25 @@ class PlaceService {
   }
 
   Future<FileInfo> postFile(html.FormData form) async {
+    var postUrl = "/sp/place/" +
+        _environment.selectedPlace.id +
+        "/folder/" +
+        _environment.selectedFolder.id +
+        "/file";
+    Map<String,dynamic> response = await postFileForm(form, postUrl);
+    return new FileInfo.fromJson(response);
+  }
+
+  Future<User> postProfileImage(html.FormData form) async {
+    var postUrl = "/auth/profile/edit";
+    Map<String,dynamic> response = await postFileForm(form, postUrl);
+    return new User.fromJson(response);
+  }
+
+  Future<Map<String,dynamic>> postFileForm(html.FormData form, String postUrl) async {
     html.HttpRequest response = await html.HttpRequest
         .request(
-        "/sp/place/" +
-            _environment.selectedPlace.id +
-            "/folder/" +
-            _environment.selectedFolder.id +
-            "/file",
+        postUrl,
         method: "POST",
         sendData: form).catchError((dynamic ex) {
       html.HttpRequest errorResponse = ex.target;
@@ -103,7 +133,7 @@ class PlaceService {
 
     int status = response.status;
     if (status >= 200 && status < 300) {
-      return new FileInfo.fromJson(JSON.decode(response.responseText)['data']);
+      return JSON.decode(response.responseText)['data'];
     }
     return null;
   }
@@ -288,15 +318,18 @@ class PlaceService {
     }
   }
 
-  Future<User> inviteUsers(Map<String, RoleEnum> users, String message) async {
+  Future<List<User>> inviteUsers(Map<String, RoleEnum> users, String message) async {
     try {
       List userList = [];
       users.forEach((mail, role) {
-        userList.add( {'email':mail, 'role':role.toString().substring("UserRole.".length)} );
+        userList.add({
+          'email': mail,
+          'role': role.toString().substring("UserRole.".length)
+        });
       });
       var bodyContent = {
         'message': message,
-        'userList':userList
+        'userList': userList
       };
 
       final response = await post(
@@ -306,7 +339,9 @@ class PlaceService {
           body: JSON.encode(bodyContent));
 
       _environment.fireEvent(PlaceParam.invitedUsers, "");
-      return new User.fromJson(_extractData(response));
+      return _extractData(response)
+          .map((value) => new User.fromJson(value))
+          .toList();
     } catch (e) {
       throw _handleError(e);
     }
@@ -391,7 +426,11 @@ class PlaceService {
       final response = await put(
           "/sp/place/${placeId}/folder/${folderId}/file/$fileId",
           headers: _headers, body: JSON.encode({'l': lock}));
-      CloudFile lockedFile = new CloudFile.fromJson(_extractData(response));
+      var data = _extractData(response);
+      if( data == null )
+        return null;
+
+      CloudFile lockedFile = new CloudFile.fromJson(data);
       _environment.selectedFile = lockedFile;
       return lockedFile;
     } catch (e) {
@@ -424,9 +463,41 @@ class PlaceService {
     return new User.fromJson(data);
   }
 
+  Future<User> forgotPassword(String email) async {
+    final response = await post(
+        "/auth/forgot_pass", body: {"email": email});
+    var data = _extractData(response);
+    //either displays an error because email is unknown, or a message to say that an email was sent
+    if (data == null)
+      return null;
+
+    return null;
+  }
+
   Future<User> logout() async {
     final response = await get(
         "/auth/logout");
+  }
+
+  Future<User> saveProfile(User user, {bool mailChanged,
+    String newPass }) async {
+    var userBody = {"name": user.name, "skype": user.skype};
+    if (mailChanged || newPass != null) {
+      userBody["password"] = user.pass;
+      if (mailChanged)
+        userBody["email"] = user.email;
+      if (newPass != null && !newPass.isEmpty)
+        userBody["passwordNew"] = newPass;
+    }
+
+    final response = await post(
+        "/auth/profile/edit", body: userBody);
+
+    var data = _extractData(response);
+    if (data == null)
+      return null;
+
+    return new User.fromJson(data);
   }
 
   Future<User> signup(User user) async {
@@ -447,5 +518,24 @@ class PlaceService {
     return new User.fromJson(data);
   }
 
+  @deprecated
+  Future<Null> facebook() async {
+    if (_environment.connectedUser?.facebookAccount == null)
+      await get("/auth/connect/facebook", headers: _headers);
+    else
+      await get("/auth//unlink/facebook", headers: _headers);
+  }
 
+  @deprecated
+  Future<Null> google() async {
+    if (_environment.connectedUser?.googleAccount == null)
+      await get("/auth/connect/google", headers: _headers);
+    else
+      await get("/auth//unlink/google", headers: _headers);
+  }
+
+  Future<bool> closePostit(String name) async {
+    var resp = await put("/sp/user/close-postit", headers: _headers, body: JSON.encode({"name" : name}));
+    _environment.connectedUser = new User.fromJson( _extractData(resp) );
+  }
 }

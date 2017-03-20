@@ -69,9 +69,7 @@ class SignupComp implements OnInit {
   bool get submitEnabled => isEmail(user.email) && _checkPasswords && !passwordsError();
 
   bool isEmail(String em) {
-    String emailPattern = r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
-    RegExp regExp = new RegExp(emailPattern);
-    return regExp.hasMatch(em);
+    return true;
   }
 
 }

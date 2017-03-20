@@ -12,6 +12,7 @@ import 'package:share_place/users/user.dart';
 import 'package:share_place/common/ui/button_comp.dart';
 import 'package:share_place/common/ui/text_comp.dart';
 import 'package:share_place/users/signup/signup_comp.dart';
+import 'package:share_place/users/forgot_pass/forgot_pass_comp.dart';
 
 import 'package:angular2_components/angular2_components.dart';
 
@@ -20,13 +21,14 @@ import 'package:angular2_components/angular2_components.dart';
     selector: 'login-comp',
     templateUrl: 'login_comp.html',
     styleUrls: const ['login_comp.css'],
-    directives: const[ButtonComp, TextComp, materialDirectives, SignupComp]
+    directives: const[ButtonComp, TextComp, materialDirectives, SignupComp, ForgotPassComp]
 )
 class LoginComp implements OnInit {
   final PlaceService _placeService;
   final Router _router;
   final Environment _environment;
   final DomSanitizationService urlSanitizer;
+  bool forgotPassDisplayed = false;
 
   User user = new User.empty();
   bool showSignupDialog;
@@ -64,4 +66,5 @@ class LoginComp implements OnInit {
 
   String get error => _environment.serverError;
 
+  List<String> get messages => _environment.messages;
 }

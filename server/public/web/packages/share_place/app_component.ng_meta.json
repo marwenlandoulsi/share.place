@@ -64,7 +64,15 @@
         "5": false
       },
       {
+        "1": "package:share_place/users/profile/profile_comp.dart",
+        "5": false
+      },
+      {
         "1": "package:share_place/users/user.dart",
+        "5": false
+      },
+      {
+        "1": "package:share_place/postit/postit_component.dart",
         "5": false
       }
     ],
@@ -118,6 +126,12 @@
           },
           {
             "2": "LoginComp"
+          },
+          {
+            "2": "ProfileComp"
+          },
+          {
+            "2": "PostitComponent"
           }
         ]
       }
@@ -177,8 +191,16 @@
         "4": "i12"
       },
       {
-        "1": "package:share_place/users/user.template.dart",
+        "1": "package:share_place/users/profile/profile_comp.template.dart",
         "4": "i13"
+      },
+      {
+        "1": "package:share_place/users/user.template.dart",
+        "4": "i14"
+      },
+      {
+        "1": "package:share_place/postit/postit_component.template.dart",
+        "4": "i15"
       }
     ]
   },
@@ -270,7 +292,7 @@
       ],
       "template": {
         "encapsulation": 0,
-        "template": "<div>\r\n  <modal *ngIf=\"connectedUser == null\" [visible]=\"true\">\r\n    <material-dialog class=\"basic-dialog login_pop\">\r\n      <login-comp></login-comp>\r\n    </material-dialog>\r\n  </modal>\r\n\r\n  <div class=\"header header-top\">\r\n    <img src=\"../images/logo0.png\" class=\"logo\">\r\n    <div class=\"rightMenu\">\r\n      <img popupSource #profileMenu=\"popupSource\" src=\"/auth/user/photo/s/{{connectedUser?.id}}\" class=\"profileImg\"\r\n           (click)=\"profileMenuVisible = !profileMenuVisible\">\r\n      <!--<a href=\"/profile\"><img src=\"../images/profile.png\"></a>-->\r\n      <material-popup defaultPopupSizeProvider\r\n                      enforceSpaceConstraints\r\n                      [source]=\"profileMenu\"\r\n                      [(visible)]=\"profileMenuVisible\" class=\"profilemenuvisible\">\r\n        <div header class=\"popupHeader connectusername\">\r\n          <span>{{connectedUser?.name}}</span>\r\n        </div>\r\n        <div class=\"popupContent\">\r\n          <material-button (click)=\"profile()\" class=\"menuItem profile\">\r\n            <div class=\"profile_chmp\">Edit profile</div>\r\n          </material-button>\r\n          <material-button (click)=\"logout()\" class=\"menuItem logout\">\r\n            <div class=\"logout_chmp\">Logout</div>\r\n          </material-button>\r\n        </div>\r\n        <div footer>\r\n        </div>\r\n      </material-popup>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"leftP\">\r\n    <places></places>\r\n  </div>\r\n  <div class=\"rightPanelinside\">\r\n    <div class=\"rightPanelinside_header\"></div>\r\n    <div class=\"row\">\r\n      <div class=\"centerP\">\r\n        <subjects></subjects>\r\n      </div>\r\n\r\n      <div class=\"rightP\">\r\n        <div class=\"rightPinside\">\r\n          <div class=\"files\">\r\n            <files-comp></files-comp>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <!--<button onclick=\"dispatchWindowEvent('data of event')\">Test event</button>-->\r\n</div>",
+        "template": "<div>\r\n  <modal *ngIf=\"connectedUser == null\" [visible]=\"true\">\r\n    <material-dialog class=\"basic-dialog login_pop\">\r\n      <login-comp></login-comp>\r\n    </material-dialog>\r\n  </modal>\r\n\r\n  <modal *ngIf=\"profilePopinVisible != null\" [visible]=\"profilePopinVisible\">\r\n    <material-dialog class=\"basic-dialog profile_pop\">\r\n      <profile-comp></profile-comp>\r\n    </material-dialog>\r\n  </modal>\r\n\r\n  <div class=\"header header-top\">\r\n    <img src=\"../images/logo0.png\" class=\"logo\">\r\n    <div class=\"error\">{{error}}</div>\r\n    <div class=\"messages\">\r\n      <div *ngFor=\"let message of messages\">{{message}}</div>\r\n    </div>\r\n\r\n    <div class=\"rightMenu\">\r\n      <img popupSource #profileMenu=\"popupSource\" src=\"/auth/user/photo/s/{{connectedUser?.id}}\" class=\"profileImg\"\r\n           (click)=\"profileMenuVisible = !profileMenuVisible\">\r\n      <!--<a href=\"/profile\"><img src=\"../images/profile.png\"></a>-->\r\n      <material-popup defaultPopupSizeProvider\r\n                      enforceSpaceConstraints\r\n                      [source]=\"profileMenu\"\r\n                      [(visible)]=\"profileMenuVisible\" class=\"profilemenuvisible\">\r\n        <div header class=\"popupHeader connectusername\">\r\n          <span>{{connectedUser?.name}}</span>\r\n        </div>\r\n        <div class=\"popupContent\">\r\n          <material-button (click)=\"profile()\" class=\"menuItem profile\">\r\n            <div class=\"profile_chmp\">Edit profile</div>\r\n          </material-button>\r\n          <material-button (click)=\"logout()\" class=\"menuItem logout\">\r\n            <div class=\"logout_chmp\">Logout</div>\r\n          </material-button>\r\n        </div>\r\n        <div footer>\r\n        </div>\r\n      </material-popup>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"leftP\">\r\n    <postit-comp [name]=\"'places'\" [header]=\"'Welcome!'\" [body]=\"'You can create your place on clicking on the + icon'\"\r\n                 class=\"placesPostit\"></postit-comp>\r\n    <places></places>\r\n  </div>\r\n  <div class=\"rightPanelinside\">\r\n    <div class=\"rightPanelinside_header\"></div>\r\n    <div class=\"row\">\r\n      <div class=\"centerP\">\r\n        <subjects></subjects>\r\n      </div>\r\n\r\n      <div class=\"rightP\">\r\n        <div class=\"rightPinside\">\r\n          <div class=\"files\">\r\n            <files-comp></files-comp>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <!--<button onclick=\"dispatchWindowEvent('data of event')\">Test event</button>-->\r\n</div>",
         "templateUrl": "asset:share_place/lib/app_component.html",
         "styles": [],
         "styleUrls": [

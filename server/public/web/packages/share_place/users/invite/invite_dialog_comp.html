@@ -22,7 +22,7 @@
                           (keyup)="onKeyUp(search.inputText)" class="emailinp"
                           placeholder="example@mydomain.com" [(ngModel)]="userRole.email"></material-input>
         </td>
-        <td>
+        <td class="nomargin">
           <role-chooser-comp #role [(selected)]="userRole.roleName"></role-chooser-comp>
         </td>
       </tr>

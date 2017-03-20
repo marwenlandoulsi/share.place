@@ -115,7 +115,7 @@ class FilesComp implements OnInit {
 
   bool isCommentsOpen(String fileId, int version) {
     FileVersionAttributes attr = getFileVersionAttributes(fileId, version);
-    return attr == null ? false : attr.commentPaneOpen;
+    return attr == null ? true : attr.commentPaneOpen;
   }
 
   bool switchCommentOpen(String fileId, int version) {
@@ -258,7 +258,7 @@ class FileVersionAttributes {
   bool commentPaneOpen = false;
   int lastLoadedCommentIndex = 3;
 
-  FileVersionAttributes({bool open: false}) {
+  FileVersionAttributes({bool open: true}) {
     commentPaneOpen = open;
   }
 

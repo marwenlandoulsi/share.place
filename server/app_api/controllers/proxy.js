@@ -5,21 +5,21 @@
 
 
 // console --> log4js
-var log = require('log4js').getLogger("app");
-var path = require('path');
-var fsExtra = require('fs-extra');
-var fs = require("fs");
-var constants = require('../../app_config');
-var globalService = require("../global")
-
-//var request = require('request-promise').defaults({ simple: false });
-var request = require('request');
-var http = require("http");
-var jsonfile = require('jsonfile');
-var taffy = require('taffy');
-var login = require("../config/passport");
-var shell = require('electron').shell;
-var checksum = require('checksum');
+let log = require('log4js').getLogger("app");
+let path = require('path');
+let fsExtra = require('fs-extra');
+let fs = require("fs");
+let constants = require('../../app_config');
+let globalService = require("../global")
+var dialog = require('electron').dialog;
+//let request = require('request-promise').defaults({ simple: false });
+let request = require('request');
+let http = require("http");
+let jsonfile = require('jsonfile');
+let taffy = require('taffy');
+let login = require("../config/passport");
+let shell = require('electron').shell;
+let checksum = require('checksum');
 
 
 //List of Place
@@ -29,13 +29,13 @@ const sendEvent = (nameOfEvent, content) => {
   ipcRenderer.send(nameOfEvent, content)
 }
 module.exports.getUtilFile = (req, res) => {
-  var userId = req.user._id;
-  var url = req.url;
-  var pathDirectory = path.join(constants.dataDir, userId, url);
-  var pathToUtilFile = path.join(constants.dataDir, userId, url, 'icon.bmp');
+  let userId = req.user._id;
+  let url = req.url;
+  let pathDirectory = path.join(constants.dataDir, userId, url);
+  let pathToUtilFile = path.join(constants.dataDir, userId, url, 'icon.bmp');
   if (global.onLine) {
     if (!fs.existsSync(pathToUtilFile)) {
-      // var mode = 0o0500;
+      // let mode = 0o0500;
       downloadFile(url, pathDirectory, pathToUtilFile, 0o0500, (err, pathFileDownload) => {
         if (err)
           globalService.sendError(res, 405, "error to download file");
@@ -48,10 +48,10 @@ module.exports.getUtilFile = (req, res) => {
   readFile(res, pathToUtilFile, url)
 }
 module.exports.downloadUtilFileToDisc = (url, callBack) => {
-  var userId = global.userConnected._id;
-  var url = url;
-  var pathDirectory = path.join(constants.dataDir, userId, url);
-  var pathToUtilFile = path.join(constants.dataDir, userId, url, 'icon.bmp');
+  let userId = global.userConnected._id;
+
+  let pathDirectory = path.join(constants.dataDir, userId, url);
+  let pathToUtilFile = path.join(constants.dataDir, userId, url, 'icon.bmp');
   if (global.onLine) {
     if (!fs.existsSync(pathToUtilFile)) {
       downloadFile(url, pathDirectory, pathToUtilFile, 0o0500, (err, pathFileDownload) => {
@@ -67,17 +67,17 @@ module.exports.downloadUtilFileToDisc = (url, callBack) => {
   callBack(false)
 }
 module.exports.get = function (req, res) {
-  var userId = req.user._id;
-  var url = req.url;
-  var email = req.user.local.email;
-  var password = req.user.local.password;
-  var pathDirectory = path.join(constants.dataDir, userId, url);
-  var pathToDataFile = path.join(constants.dataDir, userId, url, 'data.json');
+  let userId = req.user._id;
+  let url = req.url;
+  let email = req.user.local.email;
+  let password = req.user.local.password;
+  let pathDirectory = path.join(constants.dataDir, userId, url);
+  let pathToDataFile = path.join(constants.dataDir, userId, url, 'data.json');
   globalService.checkPathOrCreateSync(pathDirectory, pathToDataFile, '[]');
-  var dataFromFile = jsonfile.readFileSync(pathToDataFile);
-  var folderId = req.params.folderId;
-  var fileId = req.params.fileId;
-  var placeId = req.params.placeId;
+  let dataFromFile = jsonfile.readFileSync(pathToDataFile);
+  let folderId = req.params.folderId;
+  let fileId = req.params.fileId;
+  let placeId = req.params.placeId;
 
   if (global.onLine) {
 
@@ -86,7 +86,7 @@ module.exports.get = function (req, res) {
         globalService.sendError(res, err.statusCode, err.message);
 
 
-      var dataReceived = received.data;
+      let dataReceived = received.data;
 
       saveInLocalDb(dataReceived, dataFromFile, pathToDataFile, (err, toReturn) => {
         if (err)
@@ -106,14 +106,14 @@ module.exports.get = function (req, res) {
 
 module.exports.proxyGet = function (url, callBack) {
   console.log("user connected ", global.userConnected)
-  var userId = global.userConnected._id;
+  let userId = global.userConnected._id;
 
-  var email = global.userConnected.local.email;
-  var password = global.userConnected.local.password;
-  var pathDirectory = path.join(constants.dataDir, userId, url);
-  var pathToDataFile = path.join(constants.dataDir, userId, url, 'data.json');
+  let email = global.userConnected.local.email;
+  let password = global.userConnected.local.password;
+  let pathDirectory = path.join(constants.dataDir, userId, url);
+  let pathToDataFile = path.join(constants.dataDir, userId, url, 'data.json');
   globalService.checkPathOrCreateSync(pathDirectory, pathToDataFile, '[]');
-  var dataFromFile = jsonfile.readFileSync(pathToDataFile);
+  let dataFromFile = jsonfile.readFileSync(pathToDataFile);
 
 
   if (global.onLine) {
@@ -124,7 +124,7 @@ module.exports.proxyGet = function (url, callBack) {
       }
 
 
-      var dataReceived = received.data;
+      let dataReceived = received.data;
 
       saveInLocalDb(dataReceived, dataFromFile, pathToDataFile, (err, toReturn) => {
         if (err)
@@ -140,72 +140,75 @@ module.exports.cron = function (req, res) {
   console.log("cron executed");
 }
 module.exports.uploadFile = function (req, res) {
-  var fileToUpload = req.files[0];
-  var userId = req.user._id;
-  var url = req.url;
-  var placeId = req.params.placeId;
-  var folderId = req.params.folderId;
-  var pathDbDataPlace = path.join(constants.dataDir, userId, url.substring(0, nth_occurrence(url, '/', 2)), 'data.json');
-  var pathDbDataFolder = path.join(constants.dataDir, userId, url.substring(0, nth_occurrence(url, '/', 4)), 'data.json');
+  let fileToUpload = req.files[0];
+  let userId = req.user._id;
+  let url = req.url;
+  let placeId = req.params.placeId;
+  let folderId = req.params.folderId;
+  let pathDbDataPlace = path.join(constants.dataDir, userId, url.substring(0, nth_occurrence(url, '/', 2)), 'data.json');
+  let pathDbDataFolder = path.join(constants.dataDir, userId, url.substring(0, nth_occurrence(url, '/', 4)), 'data.json');
 
-  var dataPlace = jsonfile.readFileSync(pathDbDataPlace);
-  var dataFolder = jsonfile.readFileSync(pathDbDataFolder);
+  let dataPlace = jsonfile.readFileSync(pathDbDataPlace);
+  let dataFolder = jsonfile.readFileSync(pathDbDataFolder);
 
-  var dbPlace = new taffy(dataPlace);
-  var dbFolder = new taffy(dataFolder);
-  var place = dbPlace({_id: placeId});
-  var folder = dbFolder({_id: folderId});
-  var placeName = place.select("name")[0];
-  var folderName = folder.select("name")[0];
-  var pathToDir = path.join(global.homeDir, '/share.place/' + userId + '/' + placeName + '/' + folderName + '/');
+  let dbPlace = new taffy(dataPlace);
+  let dbFolder = new taffy(dataFolder);
+  let place = dbPlace({_id: placeId});
+  let folder = dbFolder({_id: folderId});
+  let placeName = place.select("name")[0];
+  let folderName = folder.select("name")[0];
+  let pathToDir = path.join(global.homeDir, '/share.place/' + userId + '/' + placeName + '/' + folderName + '/');
   console.log("place Name ", fileToUpload.originalname);
-  var pathFileInTmp = path.join(__dirname, '..','..','tmp','upload',fileToUpload.filename);
-  httpPostFileToUpload(url, fileToUpload, (err, received) => {
-    if (err)
-      log.error("error upload", err.message);
+  let pathFileInTmp = path.join(__dirname, '..', '..', 'tmp', 'upload', fileToUpload.filename);
+  if (global.onLine) {
+    httpPostFileToUpload(url, fileToUpload, (err, received) => {
+      if (err)
+        log.error("error upload", err.message);
 
 
-    var dataReceived = JSON.parse(received).data;
+      let dataReceived = JSON.parse(received).data;
 
-    fs.unlink(pathFileInTmp, function (err) {
-      if (err) {
-        log.error('err  delete from tmp', err);
-        return globalService.sendJsonResponse(res, 405, err.message);
-        // add to cron task  deleteFromTmp if  status = 'toDeleteFromTmp'
-        // ctrlFile.updateFile(id, 'toDeleteFromTmp');
-      } else {
-        globalService.sendJsonResponse(res, 200, dataReceived);
-      }
+      fs.unlink(pathFileInTmp, function (err) {
+        if (err) {
+          log.error('err  delete from tmp', err);
+          return globalService.sendJsonResponse(res, 405, err.message);
+          // add to cron task  deleteFromTmp if  status = 'toDeleteFromTmp'
+          // ctrlFile.updateFile(id, 'toDeleteFromTmp');
+        } else {
+          globalService.sendJsonResponse(res, 200, dataReceived);
+        }
+      });
     });
-  });
-
+  } else {
+    showDialogBox("info", "Share.place", "sorry you are offline you can't do this");
+  }
 }
 /*
  module.exports.uploadFile = function (req, res) {
- var fileToUpload = req.files[0];
- var userId = req.user._id;
- var url = req.url;
- var placeId = req.params.placeId;
- var folderId = req.params.folderId;
- var pathDbDataPlace = path.join(__dirname, '../../data/' + userId + '/' + url.substring(0, nth_occurrence(url, '/', 2)) + '/data.json');
- var pathDbDataFolder = path.join(__dirname, '../../data/' + userId + '/' + url.substring(0, nth_occurrence(url, '/', 4)) + '/data.json');
+ let fileToUpload = req.files[0];
+ let userId = req.user._id;
+ let url = req.url;
+ let placeId = req.params.placeId;
+ let folderId = req.params.folderId;
+ let pathDbDataPlace = path.join(__dirname, '../../data/' + userId + '/' + url.substring(0, nth_occurrence(url, '/', 2)) + '/data.json');
+ let pathDbDataFolder = path.join(__dirname, '../../data/' + userId + '/' + url.substring(0, nth_occurrence(url, '/', 4)) + '/data.json');
 
- var dataPlace = jsonfile.readFileSync(pathDbDataPlace);
- var dataFolder = jsonfile.readFileSync(pathDbDataFolder);
+ let dataPlace = jsonfile.readFileSync(pathDbDataPlace);
+ let dataFolder = jsonfile.readFileSync(pathDbDataFolder);
 
- var dbPlace = new taffy(dataPlace);
- var dbFolder = new taffy(dataFolder);
- var place = dbPlace({_id: placeId});
- var folder = dbFolder({_id: folderId});
- var placeName = place.select("name")[0];
- var folderName = folder.select("name")[0];
- var pathToDir = path.join(global.homeDir, '/share.place/' + userId + '/' + placeName + '/' + folderName + '/');
+ let dbPlace = new taffy(dataPlace);
+ let dbFolder = new taffy(dataFolder);
+ let place = dbPlace({_id: placeId});
+ let folder = dbFolder({_id: folderId});
+ let placeName = place.select("name")[0];
+ let folderName = folder.select("name")[0];
+ let pathToDir = path.join(global.homeDir, '/share.place/' + userId + '/' + placeName + '/' + folderName + '/');
  console.log("place Name ", fileToUpload.originalname);
  httpPostFileToUpload(url, fileToUpload, (err, received) => {
  if (err)
  log.error("error upload", err.message);
 
- var dataReceived = JSON.parse(received).data;
+ let dataReceived = JSON.parse(received).data;
 
  globalService.sendJsonResponse(res, 200, dataReceived);
 
@@ -214,70 +217,82 @@ module.exports.uploadFile = function (req, res) {
  }*/
 module.exports.getFile = function (req, res) {
 
-  var userId = req.user._id;
-  var url = req.url;
-  var v = req.params.v;
+  let userId = req.user._id;
+  let url = req.url;
+  let v = req.params.v;
 
-  var pathDbDataPlace = path.join(constants.dataDir, userId, url.substring(0, nth_occurrence(url, '/', 2)), 'data.json');
-  var pathDbDataFolder = path.join(constants.dataDir, userId, url.substring(0, nth_occurrence(url, '/', 4)), 'data.json');
-  var pathDbDataFile = path.join(constants.dataDir, userId, url.substring(0, nth_occurrence(url, '/', 7)), 'data.json');
+  let pathDbDataPlace = path.join(constants.dataDir, userId, url.substring(0, nth_occurrence(url, '/', 2)), 'data.json');
+  let pathDbDataFolder = path.join(constants.dataDir, userId, url.substring(0, nth_occurrence(url, '/', 4)), 'data.json');
+  let pathDbDataFile = path.join(constants.dataDir, userId, url.substring(0, nth_occurrence(url, '/', 7)), 'data.json');
 
-  var dataPlace = jsonfile.readFileSync(pathDbDataPlace);
-  var dataFolder = jsonfile.readFileSync(pathDbDataFolder);
-  var dataFile = jsonfile.readFileSync(pathDbDataFile);
+  let dataPlace = jsonfile.readFileSync(pathDbDataPlace);
+  let dataFolder = jsonfile.readFileSync(pathDbDataFolder);
+  let dataFile = jsonfile.readFileSync(pathDbDataFile);
 
-  var dbPlace = new taffy(dataPlace);
-  var dbFolder = new taffy(dataFolder);
+  let dbPlace = new taffy(dataPlace);
+  let dbFolder = new taffy(dataFolder);
 
-  var place = dbPlace({_id: dataFile.placeId});
-  var folder = dbFolder({_id: dataFile.folderId});
-  var placeName = place.select("name")[0];
-  var folderName = folder.select("name")[0];
-  var pathToDir = path.join(global.homeDir, 'share.place', userId, placeName, folderName + '/');
- /* if (typeof (v) != "undefined")
-    pathToDir = path.join(global.homeDir, 'share.place', userId, placeName, folderName , 'version '+v+'/');
-*/
-  var pathToFile = path.join(pathToDir + dataFile.name);
+  let place = dbPlace({_id: dataFile.placeId});
+  let folder = dbFolder({_id: dataFile.folderId});
+  let placeName = place.select("name")[0];
+  let folderName = folder.select("name")[0];
 
-  if (global.onLine) {
-    var mode = 0o0500;
 
-    if ((dataFile.isLocked) && (dataFile.lockOwner.userId == userId))
-      mode = 0o666;
+  getPathFileInHomeDir(dataFile, dataFolder, (pathToHomDir, pathToFileInDir) => {
+    let pathToDir = path.join(global.homeDir, 'share.place', userId, placeName, pathToHomDir + '/');
+    let pathToFile = path.join(pathToDir + dataFile.name);
 
-    if (!fs.existsSync(pathToFile)) {
-      downloadFile(url, pathToDir, pathToFile, mode, (err, ok) => {
-        if (err)
-          globalService.sendError(res, 405, "failed to open file")
+    if (global.onLine) {
+      let mode = 0o0500;
 
-        openFile(res, dataFile, pathToFile);
-      });
+      if ((dataFile.isLocked) && (dataFile.lockOwner.userId == userId))
+        mode = 0o666;
 
+      if (!fs.existsSync(pathToFile)) {
+        downloadFile(url, pathToDir, pathToFile, mode, (err, ok) => {
+          if (err)
+            showDialogBox("error", "open file", "failed to open file");
+
+          openFile(res, dataFile, pathToFile);
+          return global.mainWindow.webContents.stop();
+        });
+
+      } else {
+        isSameFile(dataFile, pathToFile, (sameFile) => {
+          if (!sameFile) {
+            downloadFile(url, pathToDir, pathToFile, mode, (err, ok) => {
+              if (err)
+                globalService.sendError(res, 405, "failed to open file");
+
+              openFile(res, dataFile, pathToFile);
+              return global.mainWindow.webContents.stop();
+            });
+          } else {
+            openFile(res, dataFile, pathToFile);
+            return global.mainWindow.webContents.stop();
+          }
+        })
+      }
     } else {
-      isSameFile(dataFile, pathToFile, (sameFile) => {
-        if (!sameFile) {
-          downloadFile(url, pathToDir, pathToFile, mode, (err, ok) => {
-            if (err)
-              globalService.sendError(res, 405, "failed to open file")
-            return openFile(res, dataFile, pathToFile);
-          });
-        } else {
-          return openFile(res, dataFile, pathToFile)
-        }
-      })
-    }
-  } else {
-    if (!fs.existsSync(pathToFile)) {
-      var err = new Error();
-      err.statusCode = 404;
-      err.message = "file not yet downloaded in home directory ";
+      if (!fs.existsSync(pathToFile)) {
+        /* let err = new Error();
+         err.statusCode = 404;
+         err.message = "file not yet downloaded in home directory ";
 
-      log.error("error to open file: ", err.message)
-      globalService.sendError(res, 402, "sorry you are offline and the file doesn't exist in your home directory");
+         log.error("error to open file: ", err.message)
+         globalService.sendError(res, 402, "sorry you are offline and the file doesn't exist in your home directory");
+         */
+        showDialogBox("error", "open file", "sorry you are offline and the file doesn't exist in your home directory");
+      }
+      openFile(res, dataFile, pathToFile);
+      return global.mainWindow.webContents.stop();
     }
-    openFile(res, dataFile, pathToFile)
 
-  }
+  });
+
+  /* if (typeof (v) != "undefined")
+   pathToDir = path.join(global.homeDir, 'share.place', userId, placeName, folderName , 'version '+v+'/');
+   */
 
 
   //globalService.sendJsonResponse(res, 200 , "file opened");
@@ -287,26 +302,21 @@ module.exports.downloadFileToDisc = downloadFileInDisc;
 
 function downloadFileInDisc(url, mode, callBack) {
 
-  var userId = global.userConnected._id;
+  let userId = global.userConnected._id;
 
-  var placeId = globalService.getIdFromUrl("place", url);
-  var folderId = globalService.getIdFromUrl("folder", url);
-  var fileId = globalService.getIdFromUrl("file", url);
+  let placeId = globalService.getIdFromUrl("place", url);
+  let folderId = globalService.getIdFromUrl("folder", url);
+  let fileId = globalService.getIdFromUrl("file", url);
 
-  /*  var pathDbDataPlace = path.join(__dirname, '../../data/' + userId + '/place/data.json');
-   var pathDbDataFolder = path.join(__dirname, '../../data/' + userId + '/place/' + placeId + '/folder/data.json');
-   var pathDbDataFile = path.join(__dirname, '../../data/' + userId + '/place/' + placeId + '/folder/' + folderId + '/file/'+fileId+'/data.json');
-   */
+  let pathDbDataPlace = path.join(constants.dataDir, userId, url.substring(0, nth_occurrence(url, '/', 2)), 'data.json');
+  let pathDbDataFolder = path.join(constants.dataDir, userId, url.substring(0, nth_occurrence(url, '/', 4)), 'data.json');
+  let urlListeFile = "/place/" + placeId + "/folder/" + folderId + "/file";
 
-  var pathDbDataPlace = path.join(constants.dataDir, userId, url.substring(0, nth_occurrence(url, '/', 2)), 'data.json');
-  var pathDbDataFolder = path.join(constants.dataDir, userId, url.substring(0, nth_occurrence(url, '/', 4)), 'data.json');
-  var urlListeFile = "/place/" + placeId + "/folder/" + folderId + "/file";
+  let pathDbDataFile = path.join(constants.dataDir, userId, '/place/', placeId, '/folder/', folderId, 'file/data.json');
 
-  var pathDbDataFile = path.join(constants.dataDir, userId, '/place/', placeId, '/folder/', folderId, 'file/data.json');
-
-  var dataPlace = jsonfile.readFileSync(pathDbDataPlace);
-  var dataFolder = jsonfile.readFileSync(pathDbDataFolder);
-  var dataFile = jsonfile.readFileSync(pathDbDataFile);
+  let dataPlace = jsonfile.readFileSync(pathDbDataPlace);
+  let dataFolder = jsonfile.readFileSync(pathDbDataFolder);
+  let dataFile = jsonfile.readFileSync(pathDbDataFile);
   getDataFromServer(null, global.userConnected.local.email, global.userConnected.local.password, urlListeFile, (err, dataReceived) => {
     if (err)
       return log.error("error to receive data: ", err.message);
@@ -315,40 +325,46 @@ function downloadFileInDisc(url, mode, callBack) {
       if (err)
         return log.error('error to save liste of file in local Db');
 
-      var dbPlace = new taffy(dataPlace);
-      var dbFolder = new taffy(dataFolder);
-      var dbFile = new taffy(data);
-      var place = dbPlace({_id: placeId});
-      var folder = dbFolder({_id: folderId});
-      var file = dbFile({_id: fileId});
-      var placeName = place.select("name")[0];
-      var folderName = folder.select("name")[0];
-      var fileName = file.select("name")[0];
-      var pathToFile = path.join(global.homeDir, '/share.place/' + userId + '/' + placeName + '/' + folderName + '/' + fileName);
-      var pathToDir = path.join(global.homeDir, '/share.place/' + userId + '/' + placeName + '/' + folderName + '/');
-      if (global.onLine) {
-        if (!fs.existsSync(pathToFile)) {
-          downloadFile(url, pathToDir, pathToFile, mode, (ok) => {
-            return callBack(true, pathToFile);
-          });
-        } else {
-          isSameFile(file.get()[0], pathToFile, (sameFile) => {
-            if (!sameFile) {
-              downloadFile(url, pathToDir, pathToFile, mode, (ok) => {
-                return callBack(true, pathToFile);
-              });
-            }
-          })
+      let dbPlace = new taffy(dataPlace);
+      let dbFolder = new taffy(dataFolder);
+      let dbFile = new taffy(data);
+      let place = dbPlace({_id: placeId});
+      let folder = dbFolder({_id: folderId});
+      let file = dbFile({_id: fileId});
+      let placeName = place.select("name")[0];
+      let folderName = folder.select("name")[0];
+      let fileName = file.select("name")[0];
+      getPathFileInHomeDir(file.get()[0], dataFolder, (pathToHomDir, pathToFileInDir) => {
+        let pathToDir = path.join(global.homeDir, 'share.place', userId, placeName, pathToHomDir + '/');
+
+        let pathToFile = path.join(pathToDir, fileName);
+
+        log.info("pathToDir pathToDir pathToDir", pathToDir);
+        log.info("pathToFile pathToFile pathToFile", pathToFile);
+        if (global.onLine) {
+          if (!fs.existsSync(pathToFile)) {
+            downloadFile(url, pathToDir, pathToFile, mode, (ok) => {
+              return callBack(true, pathToFile);
+            });
+          } else {
+            isSameFile(file.get()[0], pathToFile, (sameFile) => {
+              if (!sameFile) {
+                downloadFile(url, pathToDir, pathToFile, mode, (ok) => {
+                  return callBack(true, pathToFile);
+                });
+              }
+            })
+          }
         }
-      }
-      return callBack(false, pathToFile);
+        return callBack(false, pathToFile);
+      })
     });
   })
 
 }
 
 
-var getDataFromServer = function (req, email, password, url, cb) {
+let getDataFromServer = function (req, email, password, url, cb) {
 
   if (typeof (global.cookieReceived) == "undefined") {
     login.loginFromServer(req, email, password, function () {
@@ -357,12 +373,12 @@ var getDataFromServer = function (req, email, password, url, cb) {
   }
   httpGetJson(global.cookieReceived, url, cb);
 };
-var openFile = function (res, dataFile, pathFile) {
+let openFile = function (res, dataFile, pathFile) {
   return shell.openItem(pathFile);
 }
-var httpPostFileToUpload = function (url, fileToUpload, cb) {
+let httpPostFileToUpload = function (url, fileToUpload, cb) {
 
-  var formData = {
+  let formData = {
     toUpload: {
       value: fs.createReadStream(path.join(__dirname, '..', '..', 'tmp', 'upload', global.fileUploadedName)),
       options: {
@@ -372,10 +388,10 @@ var httpPostFileToUpload = function (url, fileToUpload, cb) {
     }
   };
 
-  var headers = {
+  let headers = {
     'Cookie': global.cookieReceived
   }
-  var options = {
+  let options = {
     url: constants.optionsPost.url + url,
     method: constants.optionsPost.method,
     headers: headers,
@@ -392,9 +408,9 @@ var httpPostFileToUpload = function (url, fileToUpload, cb) {
   });
 }
 
-var httpUploadNewVersion = function (url, pathOfFile, filename, contentType, cb) {
+let httpUploadNewVersion = function (url, pathOfFile, filename, contentType, cb) {
 
-  var formData = {
+  let formData = {
     toUpload: {
       value: fs.createReadStream(pathOfFile),
       options: {
@@ -404,10 +420,10 @@ var httpUploadNewVersion = function (url, pathOfFile, filename, contentType, cb)
     }
   };
 
-  var headers = {
+  let headers = {
     'Cookie': global.cookieReceived
   }
-  var options = {
+  let options = {
     url: constants.optionsPost.url + url,
     method: constants.optionsPost.method,
     headers: headers,
@@ -423,9 +439,9 @@ var httpUploadNewVersion = function (url, pathOfFile, filename, contentType, cb)
   });
 }
 
-var httpGetJson = function (cookie, url, cb) {
+let httpGetJson = function (cookie, url, cb) {
   console.log('url 11', url)
-  var options = {
+  let options = {
     host: constants.optionsGet.host,
     method: constants.optionsGet.method,
     port: constants.optionsGet.port,
@@ -438,7 +454,7 @@ var httpGetJson = function (cookie, url, cb) {
   return http.get(options, function (response) {
 
     // Continuously update stream with data
-    var body = '';
+    let body = '';
 
     response.on('data', function (d) {
       body += d;
@@ -450,7 +466,7 @@ var httpGetJson = function (cookie, url, cb) {
     response.on('end', function () {
       // Data reception is done, do whatever with it!
 
-      var parsed = JSON.parse(body);
+      let parsed = JSON.parse(body);
       log.info("data in body ", parsed)
       cb(null, parsed);
 
@@ -462,7 +478,7 @@ var httpGetJson = function (cookie, url, cb) {
 }
 
 function downloadFile(url, directory, pathFile, mode, cb) {
-  /* var options = {
+  /* let options = {
    host: constants.hostURL,
    port: 3000,
    path: '/sp/' + url,
@@ -474,10 +490,10 @@ function downloadFile(url, directory, pathFile, mode, cb) {
 
   console.log(" global.cookieReceived", global.cookieReceived)
   console.log('url 22', url)
-  var headers = {
+  let headers = {
     'Cookie': global.cookieReceived
   }
-  var options = {
+  let options = {
     host: constants.optionsGet.host,
     port: constants.optionsGet.port,
     path: constants.optionsGet.path + url,
@@ -495,10 +511,10 @@ function downloadFile(url, directory, pathFile, mode, cb) {
   });
 };
 module.exports.proxyDownloadFile = downloadFile;
-var httpGetFile = function (options, cb) {
+let httpGetFile = function (options, cb) {
   return http.get(options, function (response) {
     // Continuously update stream with data
-    var data = [];
+    let data = [];
     response.on('data', function (chunk) {
       data.push(chunk);
     });
@@ -509,7 +525,7 @@ var httpGetFile = function (options, cb) {
 
     response.on('end', function () {
       // Data reception is done, do whatever with it!
-      var buffer = Buffer.concat(data);
+      let buffer = Buffer.concat(data);
       cb(null, buffer);
     });
   }).on('error', function (e) {
@@ -518,13 +534,13 @@ var httpGetFile = function (options, cb) {
 }
 
 
-var saveInLocalDb = (data, dataInFile, path, cb) => {
-  var err = new Error();
+let saveInLocalDb = (data, dataInFile, path, cb) => {
+  let err = new Error();
   if (typeof (data.length) != "undefined") {
-    var localDbData = taffy(dataInFile);
-    for (var c = 0; c < data.length; c++) {
-      var oneData = data[c];
-      var dataExist = localDbData({_id: oneData._id});
+    let localDbData = taffy(dataInFile);
+    for (let c = 0; c < data.length; c++) {
+      let oneData = data[c];
+      let dataExist = localDbData({_id: oneData._id});
       if (dataExist.select("_id").length == 0) {
         dataInFile.push(oneData);
         jsonfile.writeFileSync(path, dataInFile);
@@ -560,15 +576,15 @@ var saveInLocalDb = (data, dataInFile, path, cb) => {
   cb(null, data);
 }
 
-var nth_occurrence = (string, char, nth) => {
-  var first_index = string.indexOf(char);
-  var length_up_to_first_index = first_index + 1;
+let nth_occurrence = (string, char, nth) => {
+  let first_index = string.indexOf(char);
+  let length_up_to_first_index = first_index + 1;
 
   if (nth == 1) {
     return first_index;
   } else {
-    var string_after_first_occurrence = string.slice(length_up_to_first_index);
-    var next_occurrence = nth_occurrence(string_after_first_occurrence, char, nth - 1);
+    let string_after_first_occurrence = string.slice(length_up_to_first_index);
+    let next_occurrence = nth_occurrence(string_after_first_occurrence, char, nth - 1);
 
     if (next_occurrence === -1) {
       return -1;
@@ -578,17 +594,17 @@ var nth_occurrence = (string, char, nth) => {
   }
 }
 
-var isSameFile = (datafile, pathFileHome, cb) => {
+let isSameFile = (datafile, pathFileHome, cb) => {
   log.info("ssssssssssaeeee", datafile)
   checksum.file(pathFileHome, (err, sum) => {
-    var data = JSON.parse(JSON.stringify(datafile));
+    let data = JSON.parse(JSON.stringify(datafile));
 
     if (err) {
       log.error("error checksum : ", err.message);
       return globalService.sendError(res, err.statusCode, err.message);
     }
 
-    var localCs = data.versions[data.versions.length - 1].sum;
+    let localCs = data.versions[data.versions.length - 1].sum;
     log.error("localCs", localCs, "sum", sum)
     if (sum == localCs) {
       return cb(true);
@@ -599,9 +615,9 @@ var isSameFile = (datafile, pathFileHome, cb) => {
   });
 }
 module.exports.post = function (req, res) {
-  var url = req.url;
-  var jsonData = req.body;
-  var userId = global.userConnected._id;
+  let url = req.url;
+  let jsonData = req.body;
+  let userId = global.userConnected._id;
 
   if (global.onLine) {
     httpPostJson(url, jsonData, function (err, data) {
@@ -612,19 +628,19 @@ module.exports.post = function (req, res) {
     });
   } else {
     log.error("you aree offline  you can't post");
-    globalService.sendError(res, 402, "sorry you are offline you can't do this");
+    showDialogBox("info", "Share.place", "sorry you are offline you can't do this");
   }
   /*
    else {
-   var pathDbData = path.join(__dirname, '../../data/' + userId + url + '/data.json');
-   var dataDb = jsonfile.readFileSync(pathDbData);
+   let pathDbData = path.join(__dirname, '../../data/' + userId + url + '/data.json');
+   let dataDb = jsonfile.readFileSync(pathDbData);
 
 
-   var db = new taffy(dataDb);
+   let db = new taffy(dataDb);
 
-   var dataInDb = db({_name: jsonData.name});
+   let dataInDb = db({_name: jsonData.name});
    if (dataInDb.get().length == 0) {
-   var newPostObject = jsonData;
+   let newPostObject = jsonData;
    newPostObject.status = "toUpload";
    newPostObject._id = new Date().getTime().toString();
    dataDb.push(newPostObject);
@@ -632,7 +648,7 @@ module.exports.post = function (req, res) {
 
    return globalService.sendJsonResponse(res, 200, dataDb);
    } else {
-   var error = new Error();
+   let error = new Error();
    error.message = "object exist with the same name";
    error.statusCode = 403;
 
@@ -643,12 +659,12 @@ module.exports.post = function (req, res) {
 }
 
 module.exports.put = function (req, res) {
-  var url = req.url;
-  var userId = req.user._id;
-  var jsonToPut = req.body;
-  var lock = req.body.l;
+  let url = req.url;
+  let userId = req.user._id;
+  let jsonToPut = req.body;
+  let lock = req.body.l;
 
-
+  console.log("ggggg", global.onLine);
   if (global.onLine) {
     if (typeof (lock) != "undefined") {
       if (lock) {
@@ -659,7 +675,7 @@ module.exports.put = function (req, res) {
           globalService.sendJsonResponse(res, 200, toReturn);
         });
       } else {
-        var fileId = req.params.fileId;
+        let fileId = req.params.fileId;
         UnlockFile(url, fileId, jsonToPut, (err, pathToFile, toReturn) => {
           if (err)
             globalService.sendError(res, 403, "error to unlock lock file");
@@ -668,6 +684,7 @@ module.exports.put = function (req, res) {
           fs.chmodSync(pathToFile, '0555');
 
           globalService.sendJsonResponse(res, 200, toReturn);
+          return global.mainWindow.webContents.goBack();
         });
       }
     } else {
@@ -681,14 +698,16 @@ module.exports.put = function (req, res) {
     }
 
   } else {
-    globalService.sendError(res, 402, "sorry you are offline you can't do this");
+    //globalService.sendError(res, 402, "sorry you are offline you can't do this");
+    showDialogBox("info", "Share.place", "sorry you are offline you can't do this");
+
   }
 
 }
 
-var lockFile = function (url, jsonToPut, callBack) {
+let lockFile = function (url, jsonToPut, callBack) {
 
-  var mode = 0o666;
+  let mode = 0o666;
 
   httpPutJson(url, jsonToPut, (err, toReturn) => {
     if (err) {
@@ -706,22 +725,22 @@ var lockFile = function (url, jsonToPut, callBack) {
   });
 };
 
-var UnlockFile = function (url, fileId, jsonToPut, callBack) {
-  var userId = global.userConnected._id;
-  var placeId = globalService.getIdFromUrl("place", url);
-  var folderId = globalService.getIdFromUrl("folder", url);
+let UnlockFile = function (url, fileId, jsonToPut, callBack) {
+  let userId = global.userConnected._id;
+  let placeId = globalService.getIdFromUrl("place", url);
+  let folderId = globalService.getIdFromUrl("folder", url);
 
-  var pathDbDataPlace = path.join(constants.dataDir, userId, url.substring(0, nth_occurrence(url, '/', 2)), 'data.json');
-  var pathDbDataFolder = path.join(constants.dataDir, userId, url.substring(0, nth_occurrence(url, '/', 4)), 'data.json');
-  var urlListeFile = "/place/" + placeId + "/folder/" + folderId + "/file";
+  let pathDbDataPlace = path.join(constants.dataDir, userId, url.substring(0, nth_occurrence(url, '/', 2)), 'data.json');
+  let pathDbDataFolder = path.join(constants.dataDir, userId, url.substring(0, nth_occurrence(url, '/', 4)), 'data.json');
+  let urlListeFile = "/place/" + placeId + "/folder/" + folderId + "/file";
 
-  var pathDbDataFile = path.join(constants.dataDir, userId, 'place', placeId, 'folder', folderId, 'file/data.json');
+  let pathDbDataFile = path.join(constants.dataDir, userId, 'place', placeId, 'folder', folderId, 'file/data.json');
 
-  var dataPlace = jsonfile.readFileSync(pathDbDataPlace);
-  var dataFolder = jsonfile.readFileSync(pathDbDataFolder);
-  var dataFile = jsonfile.readFileSync(pathDbDataFile);
+  let dataPlace = jsonfile.readFileSync(pathDbDataPlace);
+  let dataFolder = jsonfile.readFileSync(pathDbDataFolder);
+  let dataFile = jsonfile.readFileSync(pathDbDataFile);
   if (global.onLine) {
-    var urlToUploadFile = "/place/" + placeId + "/folder/" + folderId + "/file";
+    let urlToUploadFile = "/place/" + placeId + "/folder/" + folderId + "/file";
     httpPutJson(url, jsonToPut, (err, toReturn) => {
       if (err) {
         log.error("error to unlock:", err.message)
@@ -740,37 +759,38 @@ var UnlockFile = function (url, fileId, jsonToPut, callBack) {
             return callBack(err)
           }
           log.info("file Id unlock", fileId);
-          var dbPlace = new taffy(dataPlace);
-          var dbFolder = new taffy(dataFolder);
-          var dbFile = new taffy(data);
-          var place = dbPlace({_id: placeId});
-          var folder = dbFolder({_id: folderId});
-          var file = dbFile({_id: fileId});
+          let dbPlace = new taffy(dataPlace);
+          let dbFolder = new taffy(dataFolder);
+          let dbFile = new taffy(data);
+          let place = dbPlace({_id: placeId});
+          let folder = dbFolder({_id: folderId});
+          let file = dbFile({_id: fileId});
 
-          var placeName = place.select("name")[0];
-          var folderName = folder.select("name")[0];
-          var fileName = file.select("name")[0];
-          var contentType = file.select("fileType")[0];
+          let placeName = place.select("name")[0];
+          let folderName = folder.select("name")[0];
+          let fileName = file.select("name")[0];
+          let contentType = file.select("fileType")[0];
 
           log.info("file NAME unlock", fileName);
           log.info("file CONT unlock", contentType);
 
-          var pathToFile = path.join(global.homeDir, '/share.place/' + userId + '/' + placeName + '/' + folderName + '/' + fileName);
+          getPathFileInHomeDir(file.get()[0], dataFolder, (pathToHomDir, pathToFileInDir) => {
+            let pathToFile = path.join(global.homeDir, 'share.place', userId, placeName, pathToFileInDir);
+            isSameFile(file.get()[0], pathToFile, (sameFile) => {
+              if (!sameFile) {
+                httpUploadNewVersion(urlToUploadFile, pathToFile, fileName, contentType, (err, dataReceivedAfterUpload) => {
+                  if (err) {
+                    log.error("error to upload the new version:", err.message)
+                    return callBack(err)
+                  }
+                  return callBack(null, pathToFile, toReturn);
+                });
+              }
+              return callBack(null, pathToFile, toReturn);
+            })
+          });
 
-          isSameFile(file.get()[0], pathToFile , (sameFile)=>{
 
-           if(!sameFile){
-             httpUploadNewVersion(urlToUploadFile, pathToFile, fileName, contentType, (err, dataReceivedAfterUpload) => {
-               if (err) {
-                 log.error("error to upload the new version:", err.message)
-                 return callBack(err)
-               }
-               return callBack(null, pathToFile, toReturn);
-             });
-           }
-
-          })
-          return callBack(null, pathToFile, toReturn);
         });
       })
     });
@@ -778,15 +798,15 @@ var UnlockFile = function (url, fileId, jsonToPut, callBack) {
 }
 
 
-var httpPostJson = function (url, jsonData, callBack) {
+let httpPostJson = function (url, jsonData, callBack) {
   console.log("url", url);
-  var headers = {
+  let headers = {
     'Content-Type': 'application/json; charset=utf-8',
     'Cookie': global.cookieReceived
   }
   console.log("jsonData", jsonData);
 // Configure the request
-  var options = {
+  let options = {
     url: constants.optionsPost.url + url,
     method: constants.optionsPost.method,
     headers: headers,
@@ -802,7 +822,7 @@ var httpPostJson = function (url, jsonData, callBack) {
     }
 
     // Print out the response body
-    var data;
+    let data;
     if (typeof (body) != "object") {
       data = JSON.parse(body).data
     } else {
@@ -814,15 +834,15 @@ var httpPostJson = function (url, jsonData, callBack) {
   })
 }
 
-var httpPutJson = function (url, jsonData, callBack) {
+let httpPutJson = function (url, jsonData, callBack) {
 
-  var headers = {
+  let headers = {
     'Content-Type': 'application/json; charset=utf-8',
     'Cookie': global.cookieReceived
   }
   console.log("jsonData", jsonData);
 // Configure the request
-  var options = {
+  let options = {
     url: constants.optionsPut.url + url,
     method: constants.optionsPut.method,
     headers: headers,
@@ -838,7 +858,7 @@ var httpPutJson = function (url, jsonData, callBack) {
     }
 
     // Print out the response body
-    var data;
+    let data;
     if (typeof (body) != "object") {
       data = JSON.parse(body).data
     } else {
@@ -849,11 +869,11 @@ var httpPutJson = function (url, jsonData, callBack) {
 
   })
 }
-var readFile = function (res, iconPath, url) {
+let readFile = function (res, iconPath, url) {
   fs.readFile(iconPath, function (err, contents) {
     if (err) {
-      downloadUtilFileToDisc(url, (fileDownloaded)=>{
-        fs.readFile(iconPath, (err, fileUtil)=>{
+      downloadUtilFileToDisc(url, (fileDownloaded) => {
+        fs.readFile(iconPath, (err, fileUtil) => {
           res.end(contents);
         })
       })
@@ -863,3 +883,41 @@ var readFile = function (res, iconPath, url) {
     }
   });
 };
+
+let getPathFileInHomeDir = function (fileData, ListeOfFolder, callBack) {
+  let fileName = fileData.name;
+
+  let folderId = fileData.folderId;
+
+  let dbListeOfFolder = taffy(ListeOfFolder);
+
+  let parentId = dbListeOfFolder({_id: folderId}).select("parentId")[0];
+
+  let pathToHomDir = '';
+
+
+  while (parentId != null) {
+    let folderName = dbListeOfFolder({_id: folderId}).select("name")[0];
+    pathToHomDir = path.join(folderName, pathToHomDir);
+    folderId = parentId;
+    parentId = dbListeOfFolder({_id: folderId}).select("parentId")[0];
+  }
+
+  if (parentId == null) {
+    let folderName = dbListeOfFolder({_id: folderId}).select("name")[0];
+    pathToHomDir = path.join(folderName, pathToHomDir);
+  }
+  let pathToFileInDir = path.join(pathToHomDir, fileName);
+
+  return callBack(pathToHomDir, pathToFileInDir);
+}
+
+var showDialogBox = function (type, title, message) {
+  dialog.showMessageBox({
+    type: type,
+    title: title,
+    message: message,
+  }, () => {
+    return global.mainWindow.webContents.stop();
+  })
+}

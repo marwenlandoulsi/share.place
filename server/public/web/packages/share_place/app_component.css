@@ -97,10 +97,8 @@ nav a.router-link-active {
   padding: 0 !important;
 }
 
-
-
 .connectusername {
-  margin: 0 6px;
+  margin: 4px 6px 6px;
   font-weight: bold;
   color: #273B54;
   font-size: 15px;
@@ -149,7 +147,7 @@ material-button.menuItem.profile, material-button.menuItem.logout {
 
 /*[_nghost-dkp-7]:not([icon]) .content {*/
 [_nghost-dkp-7]:not([icon]) .content {
-  padding:0.2em 0.4em  !important;
+  padding: 0.2em 0.4em !important;
 }
 
 .connectusername {
@@ -161,3 +159,4 @@ material-button.menuItem.profile, material-button.menuItem.logout {
   padding-right: 0.5em;
   display: inline;
 }
+

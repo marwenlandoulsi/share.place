@@ -19,12 +19,14 @@ import 'package:share_place/users/users_comp.dart';
 import 'package:share_place/users/user.dart';
 import 'package:share_place/users/user_list_provider.dart';
 import 'package:angular2_components/angular2_components.dart';
+import 'package:share_place/postit/postit_component.dart';
 
 @Component(
     selector: 'subjects',
     templateUrl: 'subject_list_comp.html',
     styleUrls: const ['subject_list_comp.css'],
-    directives: const [ButtonComp, TextComp, materialDirectives, InviteUsersDialogComp],
+    directives: const [
+      ButtonComp, TextComp, materialDirectives, InviteUsersDialogComp, PostitComponent],
     providers: const[UserListProvider])
 class SubjectListComponent implements OnInit {
   final PlaceService _placeService;
@@ -179,9 +181,10 @@ class SubjectListComponent implements OnInit {
   }
 
   String getRoleStr(User user) {
-    if( user == null )
+    if (user == null)
       return null;
-    return user.folders[selectedFolder.id]?.toString()?.substring("roleenum.".length);
+    return user.folders[selectedFolder.id]?.toString()?.substring(
+        "roleenum.".length);
   }
 
   String getEmail(User user) {

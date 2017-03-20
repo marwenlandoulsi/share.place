@@ -9,14 +9,14 @@ h2, h3 {
 
 html, body, my-app, my-app > div, .leftP, my-place, .folders {
   height: 100%;
-
+  font-size: 100%;
 }
 
 body {
   background: #e6e6e6;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: 500;
-  font-size: 13px;
+  font-size: 0.75em;
   margin: 0;
   padding: 0;
 }
@@ -24,6 +24,15 @@ body {
 body, input[text], button {
   color: rgba(0, 0, 0, 0.68);
   font-size: initial;
+}
+
+.messages, .error {
+  position: absolute;
+  z-index: 9999;
+}
+
+.hidden {
+  display: none;
 }
 
 .leftP, .rightPanelinside, .centerP, .rightP {
@@ -206,7 +215,7 @@ TODO see what font to use
 }
 
 .label {
-  font-weight: normal !important;
+  font-weight: normal;
   font-size: 1.1em;
 }
 
@@ -230,11 +239,12 @@ TODO see what font to use
 }
 
 .placePanel .panel-name .primary-text {
-  font-weight: normal;
+  font-weight: bold;
   font-size: 1.2em;
   position: relative;
   line-height: 21px;
   padding: 3px 0 0 28px !important;
+  color: #273B54;
 }
 
 /* add As*/
@@ -253,7 +263,7 @@ TODO see what font to use
 }
 
 .content-wrapper {
-  margin: 0  0 16px 5px !important;
+  margin: 0 0 16px 5px !important;
 }
 
 .rightPanelinside {
@@ -282,6 +292,7 @@ TODO see what font to use
 
 .imgBtn {
   height: auto !important;
+  vertical-align: middle;
 }
 
 .header.headerplaces {
@@ -290,15 +301,12 @@ TODO see what font to use
 
 .panel.open > header {
   min-height: 30px !important;
+  padding-top: 0.5em !important;
 }
 
 .rightPanelinside_header {
   background: #8792A0;
   height: 40px;
-}
-
-header {
-  padding: 6px 4px !important;
 }
 
 header.closed:hover, header.closed:focus, header:focus, header:focus {
@@ -322,7 +330,6 @@ header.closed:hover, header.closed:focus, header:focus, header:focus {
 
 .text_comp input {
   background: transparent !important;
-  /*position:  relative !important;*/
   -webkit-appearance: normal !important;
   -moz-appearance: normal !important;
   border: 0 !important;
@@ -402,7 +409,7 @@ input {
   padding-bottom: 4px;
   font-size: 12px;
   padding-top: 5px;
-  color: red;
+  color: #dd4b39;
   font-weight: 500;
 }
 
@@ -446,14 +453,9 @@ input {
   background-color: red !important;
 }
 
-
 #signup .bottom-section {
   margin-top: 0 !important;
   margin-bottom: 0;
-}
-
-.uploadFile {
-  padding: 40px 10px !important;
 }
 
 .userName, .profileImg {
@@ -464,7 +466,6 @@ input {
 .content-wrapper, .content {
   -moz-border-radius: 0 0 8px 8px;
   -webkit-border-radius: 0 0 8px 8px;
-  -o-border-radius: 0 0 8px 8px;
   border-radius: 0 0 8px 8px;
 }
 
@@ -472,9 +473,12 @@ input {
   margin: 0 0 0 0 !important;
 }
 
-textarea{ padding: 0.4em !important; }
+textarea {
+  padding: 0.4em !important;
+}
+
 .btn_login {
-  background: #00adef !important;
+
   height: 36px;
   width: 98px;
   margin: 5px 0 15px 74px !important;
@@ -483,29 +487,186 @@ textarea{ padding: 0.4em !important; }
   font-size: 16px !important;
 }
 
-.roleChooser .imgBtn {
-  height: 17px !important;
-  width: 17px !important;
-  margin-left: -5px;
-  margin-top: 1px;
+.btn_login.is-raised {
+  background: #00adef !important;
 }
-
-.role img {
-  opacity: 0.3;
+.roleChooser .imgBtn {
+  cursor: pointer;
 }
 
 .role.selected img {
   opacity: 1;
 }
 
-
 .mail.themeable .label-text {
   padding-left: 8px !important;
 }
+
 .error-text, .hint-text, .spaceholder {
   font-size: 11px !important;
 }
 
+/* "x::-webkit-file-upload-button" forces the rules to only apply to browsers that support this pseudo-element */
+
+#labelfileupload:before {
+  font-family: FontAwesome;
+  content: "\f055";
+  display: inline-block;
+  left: calc(50% - 86px);
+  position: absolute;
+  font-size: 26px;
+  color: #9E9E9E;
+  top: calc(50% - 13px);
+}
+
+.uploadDropZone:hover #labelfileupload:before, .uploadDropZone:focus #labelfileupload:before, .uploadDropZone:hover #labelfileupload, .uploadDropZone:focus #labelfileupload {
+  color: #273B54;
+}
+
+.uploadDropZone:hover, .uploadDropZone:focus {
+  background: #D0DAE0 !important;
+  -webkit-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+}
+
+#labelfileupload {
+  cursor: pointer;
+  color: darkGray;
+  z-index: 1;
+  padding-left: 27px;
+  border-radius: 25px;
+  background-color: transparent;
+  font-size: 13px;
+  display: block;
+  position: absolute;
+  left: 38%;
+  top: 45%;
+  -webkit-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.nomargin {
+  margin: 0 !important;
+  padding: 1px 0 0 0 !important;
+  vertical-align: top;
+}
+
+.invites .top-section {
+  padding: 2px 2px 4px 0 !important;
+}
+
+.roleChooser .selected {
+  background-color: white !important;
+}
+
+.newTopicBlock input {
+  border-radius: 3px 0 0 3px;
+  -moz-border-radius: 3px 0 0 3px;
+  -webkit-border-radius: 3px 0 0 3px;
+  height: 34px;
+  width: calc(100% - 46px);
+  font-size: 13px;
+  color: #989292;
+  font-family: Arial, Helvetica, sans-serif;
+  padding-left: 10px;
+  border: 1px solid #B2B2B2;
+}
+
+.newTopicBlock {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.btn_valid {
+  position: absolute;
+  right: 0;
+  top: 0;
+  background: white url("../images/arrow.png") no-repeat center center;
+  width: 34px;
+  height: 34px;
+  color: #c3c3c3;
+  border-top: 1px solid #B2B2B2;
+  border-bottom: 1px solid #B2B2B2;
+  border-left: 1px solid #B2B2B2;
+  border-right: 1px solid #B2B2B2;
+  text-align: center;
+  cursor: pointer;
+  padding: 0;
+  border-radius: 0 3px 3px 0;
+  -moz-border-radius: 0 3px 3px 0;
+  -o-border-radius: 0 3px 3px 0;
+  -webkit-border-radius: 0 3px 3px 0;
+
+  /*font-family: FontAwesome;*/
+  /*content: "\f124";*/
+
+}
+
+.btn_valid i {
+  font-size: 30px;
+  margin: 2px auto 0 0;
+  vertical-align: middle;
+}
+
+.profile_pop {
+  border-radius: 0;
+}
+
+form#fileForm {
+  clear: both;
+  position: relative;
+}
+
+.close:hover {
+  opacity: 0.7;
+}
+
+.disabledInput {
+  color: rgba(0, 0, 0, 0.38);
+  background-color: #00adef;
+}
+
+.disabledInput {
+  color: rgba(0, 0, 0, 0.3) !important;
+  background-color: rgba(0, 0, 0, 0.1) !important;
+  width: 96% !important;
+  box-shadow: 0 7px 0 0px rgba(0, 0, 0, 0.1) !important;
+  border-top: 7px solid rgba(0, 0, 0, 0.01) !important;
+  margin-top: -4px !important;
+}
+
+.clearfix {
+  overflow: auto;
+  zoom: 1;
+  clear: both;
+}
+
+.placesPostit .postit {
+  position: fixed !important;
+  left: 17.5% !important;
+  top: 5.2% !important;
+}
+.foldersPostit .postit{
+  position: fixed !important;
+  left: 17.4% !important;
+  top: 23.2% !important
+}
+.subjectsPostit .postit{
+  position: fixed !important;
+  left: 55% !important;
+  top: 3.5em!important;
+}
+
+.filesPostit  .postit{
+  position: fixed!important;
+  left: 45% !important;
+  top: 15em !important;
+}
+
+material-ripple {   font-size: 8px !important; }
 /* CUSTOM RESPONSIVE STYLES */
 /* ------------------------------------ */
 

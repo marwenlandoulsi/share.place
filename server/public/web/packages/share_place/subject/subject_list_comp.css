@@ -24,6 +24,7 @@ li.subjectItem {
   position: relative;
   line-height: 30px;
   height: 33px;
+  overflow: hidden;
 }
 
 li.subjectItem.selected, li.subjectItem:hover {
@@ -147,24 +148,23 @@ li.subjectItem.selected .thumb > img {
   border-radius: 0 0 7px 7px;
   -webkit-border-radius: 0 0 7px 7px;
   -moz-border-radius: 0 0 7px 7px;
-  -o-border-radius: 0 0 7px 7px;
-  width: 100%;
-  border-top: 0;
-  border-left: 1px solid lightgray;
-  border-right: 1px solid lightgray;
-  border-bottom: 1px solid lightgray;
-  margin: 0;
+  margin: 0 auto;
   background-color: #f2f2f2;
+  text-align: center;
+  -webkit-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+  position: relative;
+  border: 2px solid lightgray !important;
+  width: calc(100% - 4px);
 }
 
 .uploadFile {
-  padding: 40px 10px;
-  min-height: 40px;
-  width: 100%;
   border-radius: 0 0 7px 7px;
   -webkit-border-radius: 0 0 7px 7px;
   -moz-border-radius: 0 0 7px 7px;
-  -o-border-radius: 0 0 7px 7px;
+  padding: 34px 0 !important;
+  width: 100% !important;
 }
 
 .profileImg > img {
@@ -174,7 +174,6 @@ li.subjectItem.selected .thumb > img {
   padding: 1px;
 
 }
-
 
 .profileImg.validator > img {
   border: 2px solid green;
@@ -195,60 +194,6 @@ li.subjectItem.selected .thumb > img {
 
 .newTopic {
   margin: 20px 15px;
-}
-
-.newTopicBlock input {
-  border-radius: 3px 0 0 3px;
-  -moz-border-radius: 3px 0 0 3px;
-  -o-border-radius: 3px 0 0 3px;
-  -webkit-border-radius: 3px 0 0 3px;
-  height: 34px;
-  width: calc(100% - 46px);
-  font-size: 13px;
-  color: #989292;
-  font-family: Arial, Helvetica, sans-serif;
-  padding-left: 10px;
-  border: 1px solid #B2B2B2;
-}
-
-.newTopicBlock {
-  position: relative;
-}
-
-.btn_valid {
-  position: absolute;
-  right: 0;
-  top: 0;
-  background: white url("../images/arrow.png") no-repeat center center;
-  width: 34px;
-  height: 34px;
-  color: #c3c3c3;
-  border-top: 1px solid #B2B2B2;
-  border-bottom: 1px solid #B2B2B2;
-  border-left: 0 solid #B2B2B2;
-  border-right: 1px solid #B2B2B2;
-  text-align: center;
-  cursor: pointer;
-  padding: 0;
-  border-radius: 0 3px 3px 0;
-  -moz-border-radius: 0 3px 3px 0;
-  -o-border-radius: 0 3px 3px 0;
-  -webkit-border-radius: 0 3px 3px 0;
-
-  /*font-family: FontAwesome;*/
-  /*content: "\f124";*/
-
-}
-
-.btn_valid i {
-  font-size: 30px;
-  margin: 2px auto 0 0;
-  vertical-align: middle;
-}
-
-.addBtn.addpeople {
-  margin-top: 3px;
-
 }
 
 .addBtn.addpeople, .users_list {
@@ -282,3 +227,81 @@ li.subjectItem.selected .thumb > img {
   margin-top: -1px;
 }
 
+.userInfoPopup {
+  width: 14em;
+  padding: 0.5em 0.4em 0.3em 0.5em;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  font-size: 0.8em;
+  vertical-align: middle;
+}
+
+.userInfoPopup .userInfo {
+  position: relative;
+  margin-bottom: 0.2em;
+}
+
+.userInfoPopup .userInfo:before {
+  font-family: FontAwesome;
+  font-size: 22px;
+  margin-right: 0.6em;
+  width: 1em;
+  vertical-align: middle;
+  text-align: left;
+
+}
+
+.userInfoPopup .userInfo.role:before {
+  display: inline-block;
+  content: '';
+  width: 17px;
+  height:17px;
+  background: url("../images/approved.png") no-repeat;
+  position: absolute;
+  left: 0;
+}
+.userInfoPopup .userInfo.role {
+  padding-left: 26px;
+}
+
+.userInfoPopup .userInfo.email:before {
+  content: "\f0e0";
+  color: #F05D00;
+  font-size: 17px;
+}
+
+.userInfoPopup .userInfo.skype:before {
+  content: "\f17e";
+  color: #00AFF0;
+  margin-right: 0.2em;
+}
+
+.userInfoPopup .userInfo.timezone:before {
+  content: "\f041";
+  color: #F2542F;
+  margin-left: 0.1em;
+  margin-right: 8px;
+}
+
+.userInfoPopup .userInfo.timezone {
+  margin-bottom: 1em;
+}
+
+.userInfoPopup .lastcnx {
+  color: rgba(0, 0, 0, 0.28);
+}
+
+.userInfoPopup .name {
+  margin-bottom: 0.5em;
+  background: url("../images/tiret-black.png") repeat-x center center;
+}
+
+.userInfoPopup .name span {
+  background: white;
+  padding-right: 0.5em;
+  display: inline;
+  color: #273B54;
+  font-weight: bold;
+}

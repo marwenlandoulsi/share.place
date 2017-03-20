@@ -33,6 +33,14 @@
       {
         "1": "file_info.dart",
         "5": false
+      },
+      {
+        "1": "package:share_place/common/net/socket.io.dart",
+        "5": false
+      },
+      {
+        "1": "dart:async",
+        "5": false
       }
     ],
     "5": [
@@ -81,6 +89,10 @@
       {
         "1": "file_info.template.dart",
         "4": "i6"
+      },
+      {
+        "1": "package:share_place/common/net/socket.io.template.dart",
+        "4": "i7"
       }
     ]
   },

@@ -26,7 +26,7 @@ class FileInfo {
           fileInfo['dataType'],
           fileInfo['v'],
           fileInfo['users']?.map((version) =>
-          new SubjectUser.fromJson(version)).toList(),
+          new SubjectUser.fromJson(version))?.toList(),
           new Approved.fromJson(fileInfo['approved']),
           new LockOwner.fromJson(fileInfo['lockOwner'])
       );

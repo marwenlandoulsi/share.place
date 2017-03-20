@@ -90,7 +90,7 @@ input.mailToAdd {
 
 role-chooser-comp {
   display: inline-block;
-  width: calc(100% - 3em);
+  float: right;
 }
 
 .modal-header button.close {
@@ -162,8 +162,9 @@ material-input.themeable {
   width: 18px;
   height: 18px;
   vertical-align: middle;
+  margin-left: 4px;
+  cursor: pointer;
 }
-
 
 material-input.themeable {
   width: 100%;

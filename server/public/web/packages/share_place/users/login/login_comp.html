@@ -4,6 +4,12 @@
   </material-dialog>
 </modal>
 
+<modal [visible]="forgotPassDisplayed">
+  <material-dialog class="forgot-pass-dialog">
+    <forgot-pass-comp></forgot-pass-comp>
+  </material-dialog>
+</modal>
+
 <div class="login">
   <div class="header">
     <!--<btn (click)="add()"-->
@@ -20,7 +26,9 @@
 
   <div class="panels">
     <div class="error">{{error}}</div>
-
+    <div class="messages">
+      <div *ngFor="let message of messages">{{message}}</div>
+    </div>
 
     <div class="local">
       <form action="#" method="post">
@@ -35,10 +43,10 @@
         </div>
         <div class="pass">
           <div class="label">Password</div>
-          <div class="forgot"><a href="#" tabindex="-1">forgot?</a></div>
+          <div class="forgot"><a href="#" tabindex="-1" (click)="forgotPassDisplayed = true">forgot?</a></div>
           <material-input required [(ngModel)]="user.pass" type="password" class="password"></material-input>
         </div>
-        <material-button raised class="btn_login" (click)="login()">Login</material-button>
+        <material-button raised class="btn_login" (click)="login()" (keyup.enter)="login()">Login</material-button>
       </form>
 
     </div>

@@ -2,7 +2,7 @@ var app = require('electron').app;  // Module to control application life.
 var BrowserWindow = require('electron').BrowserWindow;  // Module to create native browser window.
 var dialog = require('electron').dialog;
 const log = require('electron-log');
-const { autoUpdater } = require('electron-updater');
+const {autoUpdater} = require('electron-updater');
 autoUpdater.autoDownload = true;
 autoUpdater.logger = log;
 autoUpdater.logger.transports.file.level = 'info';
@@ -47,8 +47,14 @@ ipcMain.on('online-status-changed', (event, status) => {
    log.info("status of connection changed", global.onLine);
    }*/
   global.onLine = status;
-
-
+  if (status) {
+    mainWindow.setOverlayIcon('Online.ico', 'you are onLine');
+  } else {
+    mainWindow.setOverlayIcon('Offline-red.ico', 'you are offLine');
+  }
+})
+app.on('window-all-closed', () => {
+  app.quit()
 })
 app.on('ready', function () {
   autoUpdater.checkForUpdates();
@@ -61,10 +67,7 @@ app.on('ready', function () {
     var server = http.createServer(app);
     server.listen(global.serverPort);
     process.on('uncaughtException', (err) => {
-
       server = null;
-
-
     });
     mainWindow = new BrowserWindow({
       width: 900,
@@ -72,8 +75,8 @@ app.on('ready', function () {
       icon: path.join(__dirname, 'server', 'static', 'images', 'iconElec.png')
     });
     mainWindow.loadURL('http://127.0.0.1:' + global.serverPort + '/web/');
-    //mainWindow.setFullScreen(true)
     mainWindow.maximize();
+
     global.homeUrlServer = 'http://127.0.0.1:' + global.serverPort + '/web';
     // mainWindow.loadURL('file://' + __dirname + '/server/public/web/index.html');
 
@@ -82,13 +85,13 @@ app.on('ready', function () {
 
       mainWindow = null;
       server = null;
-      app=null;
+
     });
     /*
      mainWindow.on('did-finish-load', function () {
      appUpdater();
      });*/
-
+    global.mainWindow = mainWindow;
   });
 
 });
@@ -159,8 +162,8 @@ var httpGetJson = function (url, cb) {
 // https://github.com/electron-userland/electron-builder/wiki/Auto-Update#events
 //-------------------------------------------------------------------
 
-autoUpdater.on('download-progress', (progress ) => {
-  log.info('download : ', progress.percent  );
+autoUpdater.on('download-progress', (progress) => {
+  log.info('download : ', progress.percent);
 })
 autoUpdater.on('update-downloaded', () => {
   dialog.showMessageBox({
@@ -169,9 +172,10 @@ autoUpdater.on('update-downloaded', () => {
   }, () => {
     autoUpdater.quitAndInstall()
   })
-})/*
-autoUpdater.on('update-downloaded', () => {
+})
+/*
+ autoUpdater.on('update-downloaded', () => {
 
-    autoUpdater.quitAndInstall()
+ autoUpdater.quitAndInstall()
 
-})*/
+ })*/

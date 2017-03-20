@@ -3,15 +3,12 @@ var LocalStrategy = require('passport-local').Strategy;
 var fs = require("fs");
 
 
-
 var log = require('log4js').getLogger("app");
 
 //var localUser = require('../localModels/user')
 var constants = require('../../app_config');
 var ctrlLoginApi = require('../routes/login_api');
 var configAuth = constants.oauth; // load the auth variables
-
-
 
 
 //var request = require('request-promise').defaults({ simple: false });
@@ -26,7 +23,6 @@ var sep = path.sep;
 
 var userfile = path.join(constants.usersFileData);
 var cron = require("../controllers/cron");
-
 
 
 module.exports = function (passport) {
@@ -51,9 +47,10 @@ module.exports = function (passport) {
   // used to deserialize the user
   passport.deserializeUser(function (id, done) {
 
-
-    var userLocal = localUsers({ _id: id});
-
+    var userInDB = jsonfile.readFileSync(userfile);
+    var localUsersInDb = taffy(userInDB);
+    var userLocal = localUsersInDb({_id: id});
+    log.info("userLocaluserLocal", userLocal.get()[0]);
     done(null, userLocal.get()[0]);
 
   });
@@ -81,8 +78,8 @@ module.exports = function (passport) {
               if (err) {
                 return done(err);
               }
-              if(!user){
-                return done(null, false,  req.flash('loginMessage', 'Oops! Wrong email or password.'))
+              if (!user) {
+                return done(null, false, req.flash('loginMessage', 'Oops! Wrong email or password.'))
               }
               var userLocal = localUsers({local: {email: email}});
 
@@ -96,11 +93,11 @@ module.exports = function (passport) {
 
                 jsonfile.writeFileSync(userfile, users);
                 localUsers = taffy(users);
-                global.userConnected =  user;
+                global.userConnected = user;
                 cron.sync()
                 return done(null, user);
               } else {
-                if(user){
+                if (user) {
                   if (userLocal.select("local")[0].password != user.local.password) {
 
                     localUsers({local: {email: email}}).update({
@@ -111,14 +108,14 @@ module.exports = function (passport) {
                     });
                     log.trace("local user updated", localUsers().get());
                     jsonfile.writeFileSync(userfile, localUsers().get());
-                    global.userConnected =  user;
+                    global.userConnected = user;
                     cron.sync()
                     return done(null, user);
                   }
-                  global.userConnected =  user;
+                  global.userConnected = user;
                   cron.sync()
                   return done(null, user);
-                }else{
+                } else {
 
                   return done(err);
                 }
@@ -154,7 +151,33 @@ module.exports = function (passport) {
   // LOCAL SIGNUP ============================================================
   // =========================================================================
 
+  passport.use('local-signup', new LocalStrategy({
+        // by default, local strategy uses username and password, we will override with email
+        usernameField: 'email',
+        passwordField: 'password',
+        passReqToCallback: true // allows us to pass in the req from our route (lets us check if a user is logged in or not)
+      },
+      function (req, email, password, done) {
+        if (email)
+          email = email.toLowerCase(); // Use lower-case e-mails to avoid case-sensitive e-mail matching
 
+        // asynchronous
+        process.nextTick(function () {
+          if (global.onLine) {
+            signUpFromServer(req, email, password, null, null, (err, user) => {
+              if (err)
+                return done(err)
+
+              users.push(user);
+              jsonfile.writeFileSync(userfile, users)
+              global.userConnected = user;
+
+              return done(null, user);
+            });
+          }
+
+        });
+      }))
 
 
   // =========================================================================
@@ -164,7 +187,6 @@ module.exports = function (passport) {
   // =========================================================================
   // GOOGLE ==================================================================
   // =========================================================================
-
 
 
 };
@@ -178,49 +200,93 @@ var loginFromServer = function (req, email, password, cb) {
 
   var headers = {
     'Content-Type': 'application/x-www-form-urlencoded',
-    'User-Agent':'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36'
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36'
   }
 
 // Configure the request
   var url = '/login/proxy'
   var options = {
-    url: constants.urlLoginProxy+url,
+    url: constants.urlLoginProxy + url,
     method: constants.optionsPost.method,
     headers: headers,
     form: {'email': email, 'password': password}
   }
-  console.log("options", options);
+
 // Start the request
   request(options, function (error, response, body) {
-      log.trace("password",password )
+
     if (error) {
       log.error("error to login", error.message);
       return cb(error)
     }
-      log.trace("response.statusCode",response.statusCode )
-    if(response.statusCode==302){
+
+    if (response.statusCode == 302) {
       return cb(null, null, 'Oops! Wrong email or password.');
     }
 
-    if(response.statusCode==401){
+    if (response.statusCode == 401) {
       console.log(response.body);
       return cb(null, null, 'Oops! Wrong email or password.');
     }
     if (!error && response.statusCode == 200) {
       // Print out the response body
       var user = JSON.parse(body).data;
-      var cookie=''
-      if( response.headers['set-cookie'].length > 1)
-      {
+      var cookie = ''
+      if (response.headers['set-cookie'].length > 1) {
         return log.error("many cookie in set-cookie", response.headers['set-cookie'].length);
 
-      }else {
+      } else {
         log.trace("one cookie found in set-cookie", response.headers['set-cookie'][0]);
         cookie += response.headers['set-cookie'][0];
       }
       global.cookieReceived = cookie;
       log.trace("user found", user);
-      return  cb(null, user);
+      return cb(null, user);
+    }
+  })
+}
+
+var signUpFromServer = function (req, email, password, name, skype, cb) {
+
+  var headers = {
+    'Content-Type': 'application/x-www-form-urlencoded',
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36'
+  }
+
+// Configure the request
+  var url = req.url;
+
+  log.trace('uuuuurl ', url);
+  var options = {
+    url: constants.urlLoginProxy + url,
+    method: constants.optionsPost.method,
+    headers: headers,
+    form: {'email': email, 'password': password, 'name': name, 'skype': skype}
+  }
+
+// Start the request
+  request(options, function (error, response, body) {
+
+    if (error) {
+      log.error("error to signUp", error.message);
+      return cb(error)
+    }
+
+
+    if (!error && response.statusCode == 200) {
+      // Print out the response body
+      var user = JSON.parse(body).data;
+      var cookie = ''
+      if (response.headers['set-cookie'].length > 1) {
+        return log.error("many cookie in set-cookie", response.headers['set-cookie'].length);
+
+      } else {
+        log.trace("one cookie found in set-cookie", response.headers['set-cookie'][0]);
+        cookie += response.headers['set-cookie'][0];
+      }
+      global.cookieReceived = cookie;
+      log.trace("user found", user);
+      return cb(null, user);
     }
   })
 }

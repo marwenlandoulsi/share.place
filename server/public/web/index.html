@@ -3,7 +3,7 @@
 
 <head>
   <base href="">
-  <title>Share.Place v0.0.1</title>
+  <title>Share.Place</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!--<link rel="stylesheet" href="bootstrap.min.css">-->
@@ -62,9 +62,10 @@
 
 <body>
 <my-app>Loading...</my-app>
-<!--<script src="/socket.io/socket.io.js"></script>-->
-<!--<script>
 
+<script src="/socket.io/socket.io.js"></script>
+<!--
+<script>
   var socket = io.connect();
   socket.on('connect', () => {
     console.log('connected to server');
@@ -74,9 +75,12 @@
     console.log('disconnected from server');
   });
   socket.on('comment', (data) => {
+  	window.alert("socketio : "+ data);
     console.log('information', data);
   });
-</script>-->
+</script>
+-->
+
 <input type="hidden" id="baseUrl" value="err"/>
 <script type="application/javascript">
   document.getElementById('baseUrl').value = window.location.origin;
@@ -91,12 +95,6 @@
   window.addEventListener('offline',  updateOnlineStatus)
 
   updateOnlineStatus()
-</script>
-<script>
-  const {ipcRenderer} = require('electron');
-  ipcRenderer.on('message', function(event, text) {
-   alert("yes update: "+text);
-  })
 </script>
 </body>
 

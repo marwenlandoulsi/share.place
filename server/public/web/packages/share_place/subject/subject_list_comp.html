@@ -1,17 +1,28 @@
 <div *ngIf="selectedFolder != null" class="subjects">
 
-  <material-popup  [(visible)]="infoPopupOpen" [source]="userInfoPopup">
+  <material-popup [(visible)]="infoPopupOpen" [source]="userInfoPopup">
     <div class="userInfoPopup">
-      <div>{{infoPopupUser?.name}}</div>
-      <div>{{getRoleStr(infoPopupUser)}}</div>
-      <div>{{getEmail(infoPopupUser)}}</div>
+      <div class="userInfo name"><span>{{infoPopupUser?.name}}</span></div>
+      <div class="userInfo role">{{getRoleStr(infoPopupUser)}}</div>
+      <div class="userInfo email">{{getEmail(infoPopupUser)}}</div>
+      <div class="userInfo skype"> <span class="txtskype">Text:</span>  andjones</div>
+      <div class="userInfo skype"> <span class="txtskype">Call:</span> andjones </div>
+      <div class="userInfo timezone"> Timezone UTC-7  9:24 am </div>
+
+      <div class="userInfo lastcnx">Last connection: 5 mn ago</div>
     </div>
   </material-popup>
 
   <div class="title">{{selectedFolder.name}}
+
+    <postit-comp [name]="'subjects'" [header]="'Great!'"
+                 [body]="'Now invite some poople to join you clicking on the + icon'"
+                 class="subjectsPostit"></postit-comp>
+
     <btn (click)="add()"
          [sources]="['../images/add-poeple.png', '../images/add-poeple.png', '../images/add-poeple.png']"
          class="addBtn addpeople" [disabled]="selectedFolder==null"></btn>
+
     <modal [visible]="adding">
       <material-dialog defaultPopupSizeProvider
                        enforceSpaceConstraints
@@ -19,13 +30,15 @@
         <invite-users-dialog></invite-users-dialog>
       </material-dialog>
     </modal>
-                     <!-- emplacement des users  -->
+    <!-- emplacement des users  -->
     <ul class="users_list" popupSource
         #userInfoPopup="popupSource">
       <li *ngFor="let userItem of users" class="useractive" [class.approver]="isApprover(userItem)"
           (click)="userInfoRequested =userItem">
         <img src="/auth/user/photo/s/{{userItem.id}}">
       </li>
+
+
     </ul>
   </div>
 
@@ -67,13 +80,15 @@
     </ul>
 
     <form id="fileForm" #upload class="uploadDropZone"
-          (dragenter)="upload.style.setProperty('border', '3px solid green')"
-          (drop)="upload.style.setProperty('border', '2px dotted gray');">
-      <input type="file" (change)="uploadFiles()" class="uploadFile"
-             name="toUpload"/>
+          (dragenter)="upload.style.setProperty('border', '2px solid #9FC8FA')"
+          (drop)="upload.style.setProperty('border', '2px dotted #273B54');">
+      <label id="labelfileupload" for="fileupload"> Drag'n drop or browse file </label>
+      <input type="file" id="fileupload" (change)="uploadFiles()" class="uploadFile" name="toUpload"
+             style="opacity: 0"/>
 
+      <postit-comp [name]="'files'" [header]="'Cool !'"
+                   [body]="'Now you can Drag\'n drop a file here and start collaborate with your team '"
+                   class="filesPostit"></postit-comp>
     </form>
-
-
   </div>
 </div>

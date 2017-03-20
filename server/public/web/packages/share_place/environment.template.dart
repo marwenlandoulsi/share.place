@@ -19,6 +19,8 @@ import 'place.dart';
 import 'package:share_place/users/user.dart';
 import 'files/cloud_file.dart';
 import 'file_info.dart';
+import 'package:share_place/common/net/socket.io.dart';
+import 'dart:async';
 import 'package:angular2/core.template.dart' as i0;
 import 'event_bus.template.dart' as i1;
 import 'folder.template.dart' as i2;
@@ -26,6 +28,7 @@ import 'place.template.dart' as i3;
 import 'package:share_place/users/user.template.dart' as i4;
 import 'files/cloud_file.template.dart' as i5;
 import 'file_info.template.dart' as i6;
+import 'package:share_place/common/net/socket.io.template.dart' as i7;
 export 'environment.dart';
 
 var _visited = false;
@@ -45,4 +48,5 @@ i3.initReflector();
 i4.initReflector();
 i5.initReflector();
 i6.initReflector();
+i7.initReflector();
 }

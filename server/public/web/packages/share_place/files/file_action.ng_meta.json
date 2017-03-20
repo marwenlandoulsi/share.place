@@ -7,6 +7,20 @@
       "moduleUrl": "asset:share_place/lib/files/file_action.dart",
       "prefix": null,
       "value": null
+    },
+    "ActionUser": {
+      "class": "Identifier",
+      "name": "ActionUser",
+      "moduleUrl": "asset:share_place/lib/files/file_action.dart",
+      "prefix": null,
+      "value": null
+    },
+    "ActionType": {
+      "class": "Identifier",
+      "name": "ActionType",
+      "moduleUrl": "asset:share_place/lib/files/file_action.dart",
+      "prefix": null,
+      "value": null
     }
   },
   "alias": {}

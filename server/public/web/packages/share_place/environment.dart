@@ -8,6 +8,8 @@ import 'place.dart';
 import 'package:share_place/users/user.dart';
 import 'files/cloud_file.dart';
 import 'file_info.dart';
+import 'package:share_place/common/net/socket.io.dart';
+import 'dart:async';
 
 @Injectable()
 class Environment {
@@ -25,9 +27,10 @@ class Environment {
   bool _isUploading;
   bool _loggedIn;
   bool _subscribeDialogVisible;
+  bool profilePopinVisible;
   String serverError = null;
-
-
+  List<String> _messages = [];
+  SocketIoClient socketIoClient = new SocketIoClient();
 
   Environment(this.eventBus);
 
@@ -58,7 +61,7 @@ class Environment {
   FileInfo get selectedSubject => _subject;
 
   void set selectedSubject(FileInfo fileInfo) {
-    this._subject= fileInfo;
+    this._subject = fileInfo;
     _file = null;
 
     eventBus.fire(
@@ -79,15 +82,23 @@ class Environment {
     print("connected user set $user");
     _loggedIn = _connected != null;
 
-    if( !_loggedIn ) {
+    if (!_loggedIn) {
       selectedFile = null;
       selectedFolder = null;
       selectedPlace = null;
       selectedSubject = null;
       selectedUser = null;
+    } else {
+      connectSocket();
     }
-
     eventBus.fire({PlaceParam.login: _loggedIn});
+  }
+
+  Future<Null> connectSocket() async {
+    await socketIoClient.connect();
+    socketIoClient.onSubjectCreate((data) =>
+        print("data arrived: $data !!!"));
+
   }
 
   User get selectedUser => _user;
@@ -115,12 +126,22 @@ class Environment {
     eventBus.fire({param: value});
   }
 
-  bool get loggedIn =>  _loggedIn;
+  bool get loggedIn => _loggedIn;
 
-  bool get subscribeDialogVisible =>  _subscribeDialogVisible;
-  void set subscribeDialogVisible (bool visible) {
+  bool get subscribeDialogVisible => _subscribeDialogVisible;
+
+  void set subscribeDialogVisible(bool visible) {
     this._subscribeDialogVisible = visible;
     eventBus.fire({PlaceParam.subscribe: visible});
+  }
+
+  List<String> get messages => _messages;
+
+  void addMessage(String msg) {
+    _messages.add(msg);
+    new Future.delayed(const Duration(seconds: 3), () {
+      _messages.remove(msg);
+    });
   }
 
 }

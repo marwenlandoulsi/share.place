@@ -5,8 +5,19 @@
     </material-dialog>
   </modal>
 
+  <modal *ngIf="profilePopinVisible != null" [visible]="profilePopinVisible">
+    <material-dialog class="basic-dialog profile_pop">
+      <profile-comp></profile-comp>
+    </material-dialog>
+  </modal>
+
   <div class="header header-top">
     <img src="../images/logo0.png" class="logo">
+    <div class="error">{{error}}</div>
+    <div class="messages">
+      <div *ngFor="let message of messages">{{message}}</div>
+    </div>
+
     <div class="rightMenu">
       <img popupSource #profileMenu="popupSource" src="/auth/user/photo/s/{{connectedUser?.id}}" class="profileImg"
            (click)="profileMenuVisible = !profileMenuVisible">
@@ -33,6 +44,8 @@
   </div>
 
   <div class="leftP">
+    <postit-comp [name]="'places'" [header]="'Welcome!'" [body]="'You can create your place on clicking on the + icon'"
+                 class="placesPostit"></postit-comp>
     <places></places>
   </div>
   <div class="rightPanelinside">

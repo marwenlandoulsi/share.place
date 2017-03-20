@@ -4,39 +4,36 @@
 
     <div class="title">File
       <div class="icons">
-        <i class="material-icons">&#xE417;</i>
-        <i class="material-icons arrowbottom">&#xE5C5;</i>
-        <i class="material-icons">&#xE3C6;</i>
-      </div>
+        <!--<i class="material-icons">remove_red_eye</i>-->
+        <!--<i class="material-icons arrowbottom">arrow_drop_down</i>-->
 
+      </div>
 
     </div>
     <div *ngIf="isUploading" class="isUploading">
       <div class="progress"></div>
     </div>
 
-    <div class="newComment">
+    <div class="newTopic">
+      <div class="newComment newTopicBlock">
+        <img src="/auth/user/photo/s/{{connectedUser.id}}" class="profileImg">
+        <input #comment class="comment"
+               (keyup.enter)="addComment(comment.value, selectedFile.versions.last.v);comment.value='';"
+               class="txt"/>
 
-      <!--<span>quick note</span>-->
-      <material-input #comment class="comment"
-                      (keyup.enter)="addComment(comment.inputText, selectedFile.versions.last.v);comment.inputText='';"></material-input>
+        <div (click)="addComment(comment.value, selectedFile.versions.last.v);comment.value='';"
+             class="btn_valid"></div>
+      </div>
     </div>
 
     <ul class="list">
-      <div *ngIf="selectedFile.isLocked" class="lockedFile">
-        <div class="left">
-          <img src="/auth/user/photo/m/{{selectedFile.lockOwner.userId}}" class="lockUserPhoto">
-          <div class="lockTime">{{selectedFile.lockOwner.ts | agoDateFormat}}</div>
-        </div>
-        <div class="lockText">Document version {{selectedFile.versions.length}} is in edition</div>
-      </div>
-
       <li class="file">
         <div class="fileDesc">
           <div class="latestVersionComments">
             <div class="versions">
               <ul>
-                <li *ngFor="let versionItem of selectedFile.orderedVersions; let versionIndex = index" class="version_li">
+                <li *ngFor="let versionItem of selectedFile.orderedVersions; let versionIndex = index"
+                    class="version_part_li">
 
                   <div class="versionTitle">
                     <!--<div class="line"></div>-->
@@ -47,22 +44,51 @@
                   </div>
 
                   <div class="version">
-                    <div *ngIf="isCommentsOpen(selectedFile.id, versionItem.v)" class="versionComments">
+                    <div *ngIf="isCommentsOpen(selectedFile.id, versionItem.v)" class="versionComments"
+                         [class.activep]="isCommentsOpen(selectedFile.id, versionItem.v)">
                       <ul class="commentList">
-                        <li *ngFor="let action of getActionsForVersion(versionItem)">
+                        <li *ngFor="let actionItem of getActionsForVersion(versionItem)">
+                          <div *ngIf="actionItem.action.actionType == 'comment'" class="ownAction">
+                            <div class="commentBlock"><span
+                                class="author"> <img
+                                src="/auth/user/photo/s/{{actionItem.user.userId}}" class="profileImg"></span>
+                              <span class="comm-ts">{{actionItem.ts | agoDateFormat}} </span>
+                            </div>
 
-                          <div class="commentBlock"><span class="author">{{action.userName}} <img
-                              src="/auth/user/photo/s/{{action.userId}}" class="profileImg"></span>
-                            <span class="comm-ts">{{action.ts | agoDateFormat}} </span></div>
+                            <div class="arrow_box_in">
+                              <div class="action arrow_box"> {{actionItem.text}}</div>
+                            </div>
+                          </div>
+                          <div *ngIf="actionItem.action.actionType == 'fileApprove'"
+                               [class.ownAction]="connectedUser.id == actionItem.user.userId">
+                            <div class="approveBlock"><span
+                                class="author"> <img
+                                src="/auth/user/photo/s/{{actionItem.user.userId}}" class="profileImg"></span>
+                              <span class="action-ts">{{actionItem.ts | agoDateFormat}} </span></div>
 
-                          <div class="action arrow_box"> {{action.text}}</div>
+                            <div class="arrow_box_in">
+                              <div class="action arrow_box"> {{actionItem.action.value == 'on' ? "approved" :
+                                "unapproved"}}
+                              </div>
+                            </div>
+                          </div>
+                          <div *ngIf="actionItem.action.actionType == 'fileLock'" class="lockedFile ownAction">
+                            <div class="left">
+                              <img src="/auth/user/photo/m/{{actionItem.user.userId}}" class="lockUserPhoto">
+                              <div class="lockTime">{{actionItem.ts | agoDateFormat}}</div>
+                            </div>
+                            <div class="lockText">{{actionItem.user.userName}} {{actionItem.action.value == 'on' ? "is
+                              editing" : "edited"}} version {{versionItem.v}}
+                            </div>
+                          </div>
+
                         </li>
                         <li *ngIf="hasMoreComments(selectedFile.id, versionItem.v)" class="more">
                           <div (click)="moreComments(selectedFile.id, versionItem.v)">more...</div>
                         </li>
                       </ul>
                     </div>
-                 </div>
+                  </div>
                   <material-popup defaultPopupSizeProvider
                                   enforceSpaceConstraints
                                   [source]="fileMenu"
@@ -101,59 +127,67 @@
                   </material-popup>
 
 
-                  <div class="header" [class.approved]="versionItem.approved != null">
+                  <div class="header_file" [class.approved]="versionItem.approved != null">
                     <div class="left commentBlock">
                       <!--<a href="/sp/place/{{selectedPlace?.id}}/folder/{{selectedFolder?.id}}/file/{{selectedFile?.id}}/version/{{versionItem?.v}}">Version-->
-                        <!--{{versionItem?.v}}</a>-->
+                      <!--{{versionItem?.v}}</a>-->
                       <!--<span> ({{versionItem.size | fileSizeFormat}})</span>-->
                       <!--<span>by {{versionItem.userName}}</span>-->
-                      <span  class="author"><img src="/auth/user/photo/s/{{versionItem.userId}}" class="profileImg"></span>
-                        <span class="comm-ts">{{versionItem?.ts | agoDateFormat}}</span>
+                      <span class="author"><img src="/auth/user/photo/s/{{versionItem.userId}}"
+                                                class="profileImg"></span>
+                      <span class="comm-ts">{{versionItem?.ts | agoDateFormat}}</span>
 
                     </div>
-
-                    <div class="rightdesc">
-                      <div class="fileThumb" popupSource
-                           #fileMenu="popupSource"
-                           (click)="switchMenuState(versionItem.v)">
-                        <div class="fileThumb_bg">
-                          <img
-                              src="/sp/place/{{selectedPlace?.id}}/folder/{{selectedFolder?.id}}/file/{{selectedFile?.id}}/version/{{versionItem.v}}/thumb"
-                              class="thumbnail"
-                          >
-                          <div class="uploadStatus" *ngIf="versionItem.status!='uploaded'"><img
-
-
-                              src="../images/uploading.png"/></div>
-                        </div>
-                      </div>
-                      <div class="rightDetails">
-                        <div class="fileProps">
+                    <div class="arrow_box_in">
+                      <div class="arrow_box">
+                        <div class="rightdesc ">
+                          <div class="fileThumb" popupSource
+                               #fileMenu="popupSource"
+                               (click)="switchMenuState(versionItem.v)">
+                            <div class="fileThumb_bg">
+                              <img
+                                  src="/sp/place/{{selectedPlace?.id}}/folder/{{selectedFolder?.id}}/file/{{selectedFile?.id}}/version/{{versionItem.v}}/thumb"
+                                  class="thumbnail"
+                              >
+                              <div class="uploadStatus" *ngIf="versionItem.status!='uploaded'"><img
 
 
-                          <div class="line line00">
-                            <a href="/sp/place/{{selectedPlace?.id}}/folder/{{selectedFolder?.id}}/file/{{selectedFile?.id}}/version/{{versionItem.v}}/download">
-                              <div class="fileName">{{selectedFile?.name}}</div>
-                            </a>
-                            <span class="fileversion">V. {{versionItem.v}}</span>
-                            <div class="linerow">
-                              <span class="filetypedoc">{{formatDesc( versionItem )}}</span>
-                              <span class="fileSize">
+                                  src="../images/uploading.png"/></div>
+                            </div>
+                          </div>
+                          <div class="rightDetails">
+                            <div class="fileProps">
+
+
+                              <div class="line">
+                                <a href="/sp/place/{{selectedPlace?.id}}/folder/{{selectedFolder?.id}}/file/{{selectedFile?.id}}/version/{{versionItem.v}}/download">
+                                  <div class="fileName">{{selectedFile?.name}}</div>
+                                </a>
+                                <span class="fileversion">v. {{versionItem.v}}</span>
+                                <div class="linerow">
+                                  <span class="filetypedoc">{{formatDesc( versionItem )}}</span>
+                                  <span class="fileSize">
                          ({{selectedFile.orderedVersions[0].size | fileSizeFormat}})
                        </span>
+                                </div>
+                              </div>
+
+                              <!--<div class="line2">{{selectedFile.orderedVersions[0].actionCount == null ? "no " :-->
+                              <!--selectedFile.orderedVersions[0].actionCount.toString()}} comments-->
+                              <!--</div>-->
                             </div>
                           </div>
 
-                          <!--<div class="line2">{{selectedFile.orderedVersions[0].actionCount == null ? "no " :-->
-                          <!--selectedFile.orderedVersions[0].actionCount.toString()}} comments-->
-                          <!--</div>-->
                         </div>
+
                       </div>
                     </div>
                   </div>
                 </li>
               </ul>
             </div>
+
+
           </div>
         </div>
 
