@@ -61920,7 +61920,7 @@
       K.initReflector19();
     },
     ViewAppComponent0: {
-      "^": "AppView;_app_component_template$_el_0,_app_component_template$_appEl_2,_app_component_template$_TemplateRef_2_4,_app_component_template$_NgIf_2_5,_app_component_template$_appEl_4,_app_component_template$_TemplateRef_4_4,_app_component_template$_NgIf_4_5,_app_component_template$_el_6,_app_component_template$_el_8,_app_component_template$_el_10,_app_component_template$_text_11,_app_component_template$_el_13,_app_component_template$_appEl_15,_app_component_template$_TemplateRef_15_4,_NgFor_15_5,_app_component_template$_el_18,_app_component_template$_el_20,_PopupSourceDirective_20_2,_app_component_template$_el_23,_appEl_23,_MaterialPopupComponent_23_3,__PopupComponent_23_4,__DropdownHandle_23_5,__DeferredContentAware_23_6,__PopupHierarchy_23_7,__PopupRef_23_8,_app_component_template$_el_25,_app_component_template$_el_27,_app_component_template$_text_28,_app_component_template$_el_31,_app_component_template$_el_33,_app_component_template$_appEl_33,_app_component_template$_AcxDarkTheme_33_3,_app_component_template$_MaterialButtonComponent_33_4,_app_component_template$__ButtonDirective_33_5,_app_component_template$_el_35,_app_component_template$_el_39,_app_component_template$_appEl_39,_AcxDarkTheme_39_3,_MaterialButtonComponent_39_4,__ButtonDirective_39_5,_app_component_template$_el_41,_app_component_template$_el_46,_app_component_template$_el_52,_app_component_template$_el_54,_app_component_template$_appEl_54,_PostitComponent_54_3,_app_component_template$_el_56,_appEl_56,_PlacesComponent_56_3,_app_component_template$_el_59,_app_component_template$_el_61,_app_component_template$_el_63,_app_component_template$_el_65,_app_component_template$_el_67,_appEl_67,_UserListProvider_67_3,_SubjectListComponent_67_4,_el_70,_app_component_template$_el_72,_app_component_template$_el_74,_app_component_template$_el_76,_app_component_template$_appEl_76,_FilesComp_76_3,__defaultPopupPositions_76_4,__ManagedZone_76_5,__Window_76_6,__DomService_76_7,__AcxImperativeViewUtils_76_8,__Document_76_9,__DomRuler_76_10,__overlayContainerName_76_11,__overlayContainerParent_76_12,__overlayContainerToken_76_13,__overlaySyncDom_76_14,__OverlayStyleConfig_76_15,__ZIndexer_76_16,__OverlayDomRenderService_76_17,__OverlayService_76_18,__DomPopupSourceFactory_76_19,__PopupService_76_20,_app_component_template$_expr_2,_app_component_template$_expr_3,_app_component_template$_expr_5,_app_component_template$_expr_7,_app_component_template$_expr_8,_app_component_template$_expr_9,_app_component_template$_expr_10,_app_component_template$_expr_11,_app_component_template$_expr_19,_app_component_template$_expr_20,_app_component_template$_expr_21,_app_component_template$_expr_22,_app_component_template$_expr_23,_app_component_template$_expr_31,_app_component_template$_expr_32,_app_component_template$_expr_33,_app_component_template$_expr_34,_app_component_template$_expr_35,_app_component_template$_expr_36,_app_component_template$_expr_37,_app_component_template$_expr_38,clazz,componentType,type,locals,parentInjector,declarationViewContainer,_cdMode,_skipChangeDetection,ref,rootNodesOrViewContainers,allNodes,_onDestroyCallbacks,subscriptions,contentChildren,viewChildren,renderParent,viewContainerElement,_cdState,ctx,projectableNodes,destroyed,_hasExternalHostElement",
+      "^": "AppView;_app_component_template$_el_0,_app_component_template$_appEl_2,_app_component_template$_TemplateRef_2_4,_app_component_template$_NgIf_2_5,_app_component_template$_appEl_4,_app_component_template$_TemplateRef_4_4,_app_component_template$_NgIf_4_5,_app_component_template$_el_6,_app_component_template$_el_8,_app_component_template$_el_10,_app_component_template$_text_11,_app_component_template$_el_13,_app_component_template$_appEl_15,_app_component_template$_TemplateRef_15_4,_NgFor_15_5,_app_component_template$_el_18,_app_component_template$_el_20,_PopupSourceDirective_20_2,_app_component_template$_el_23,_appEl_23,_MaterialPopupComponent_23_3,__PopupComponent_23_4,__DropdownHandle_23_5,__DeferredContentAware_23_6,__PopupHierarchy_23_7,__PopupRef_23_8,_app_component_template$_el_25,_app_component_template$_el_27,_app_component_template$_text_28,_app_component_template$_el_31,_app_component_template$_el_33,_app_component_template$_appEl_33,_app_component_template$_AcxDarkTheme_33_3,_app_component_template$_MaterialButtonComponent_33_4,_app_component_template$__ButtonDirective_33_5,_app_component_template$_el_35,_app_component_template$_el_39,_app_component_template$_appEl_39,_AcxDarkTheme_39_3,_MaterialButtonComponent_39_4,__ButtonDirective_39_5,_app_component_template$_el_41,_app_component_template$_el_46,_app_component_template$_el_52,_app_component_template$_el_54,_app_component_template$_appEl_54,_PostitComponent_54_3,_el_56,_appEl_56,_PlacesComponent_56_3,_app_component_template$_el_59,_app_component_template$_el_61,_app_component_template$_el_63,_app_component_template$_el_65,_app_component_template$_el_67,_appEl_67,_UserListProvider_67_3,_SubjectListComponent_67_4,_el_70,_app_component_template$_el_72,_app_component_template$_el_74,_app_component_template$_el_76,_app_component_template$_appEl_76,_FilesComp_76_3,__defaultPopupPositions_76_4,__ManagedZone_76_5,__Window_76_6,__DomService_76_7,__AcxImperativeViewUtils_76_8,__Document_76_9,__DomRuler_76_10,__overlayContainerName_76_11,__overlayContainerParent_76_12,__overlayContainerToken_76_13,__overlaySyncDom_76_14,__OverlayStyleConfig_76_15,__ZIndexer_76_16,__OverlayDomRenderService_76_17,__OverlayService_76_18,__DomPopupSourceFactory_76_19,__PopupService_76_20,_app_component_template$_expr_2,_app_component_template$_expr_3,_app_component_template$_expr_5,_app_component_template$_expr_7,_app_component_template$_expr_8,_app_component_template$_expr_9,_app_component_template$_expr_10,_app_component_template$_expr_11,_app_component_template$_expr_19,_app_component_template$_expr_20,_app_component_template$_expr_21,_app_component_template$_expr_22,_app_component_template$_expr_23,_app_component_template$_expr_31,_app_component_template$_expr_32,_app_component_template$_expr_33,_app_component_template$_expr_34,_app_component_template$_expr_35,_app_component_template$_expr_36,_app_component_template$_expr_37,_app_component_template$_expr_38,clazz,componentType,type,locals,parentInjector,declarationViewContainer,_cdMode,_skipChangeDetection,ref,rootNodesOrViewContainers,allNodes,_onDestroyCallbacks,subscriptions,contentChildren,viewChildren,renderParent,viewContainerElement,_cdState,ctx,projectableNodes,destroyed,_hasExternalHostElement",
       get$_PopupComponent_23_4: function() {
         var t1 = this.__PopupComponent_23_4;
         if (t1 == null) {
@@ -62133,7 +62133,7 @@
         t1.setAttribute(this.componentType._contentAttr, "");
         this._app_component_template$_el_6.appendChild(this._app_component_template$_el_10);
         t1 = this._app_component_template$_el_10;
-        t1.className = "error";
+        t1.className = "er_bd error";
         t2 = doc.createTextNode("");
         this._app_component_template$_text_11 = t2;
         t1.appendChild(t2);
@@ -62144,7 +62144,7 @@
         t1.setAttribute(this.componentType._contentAttr, "");
         this._app_component_template$_el_6.appendChild(this._app_component_template$_el_13);
         t1 = this._app_component_template$_el_13;
-        t1.className = "messages";
+        t1.className = "er_bd messages";
         _text_14 = doc.createTextNode("\n      ");
         t1.appendChild(_text_14);
         _anchor_15 = doc.createComment("template bindings={}");
@@ -62342,10 +62342,10 @@
         _text_55 = doc.createTextNode("\n    ");
         this._app_component_template$_el_52.appendChild(_text_55);
         t1 = doc.createElement("places");
-        this._app_component_template$_el_56 = t1;
+        this._el_56 = t1;
         t1.setAttribute(this.componentType._contentAttr, "");
-        this._app_component_template$_el_52.appendChild(this._app_component_template$_el_56);
-        this._appEl_56 = new V.ViewContainer(56, 52, this, this._app_component_template$_el_56, null, null, null, null);
+        this._app_component_template$_el_52.appendChild(this._el_56);
+        this._appEl_56 = new V.ViewContainer(56, 52, this, this._el_56, null, null, null, null);
         compView_56 = D.viewFactory_PlacesComponent0(this.injector$1(56), this._appEl_56);
         t1 = new M.PlacesComponent(null, false, t4.$get$1(t3, C.Type_PlaceService_fcN), t4.$get$1(t3, C.Type_Router_yx3), t4.$get$1(t3, C.Type_Environment_iuz));
         this._PlacesComponent_56_3 = t1;
@@ -62435,7 +62435,7 @@
         this._app_component_template$_el_74.appendChild(this._app_component_template$_el_76);
         this._app_component_template$_appEl_76 = new V.ViewContainer(76, 74, this, this._app_component_template$_el_76, null, null, null, null);
         compView_76 = M.viewFactory_FilesComp0(this.injector$1(76), this._app_component_template$_appEl_76);
-        t3 = new F.FilesComp(t4.$get$1(t3, C.Type_PlaceService_fcN), t4.$get$1(t3, C.Type_Router_yx3), t4.$get$1(t3, C.Type_Environment_iuz), P.LinkedHashMap__makeEmpty(), null, null);
+        t3 = new F.FilesComp(t4.$get$1(t3, C.Type_PlaceService_fcN), t4.$get$1(t3, C.Type_Router_yx3), t4.$get$1(t3, C.Type_Environment_iuz), P.LinkedHashMap__makeEmpty(), null, null, null);
         this._FilesComp_76_3 = t3;
         t4 = this._app_component_template$_appEl_76;
         t4.component = t3;
@@ -62471,7 +62471,7 @@
         this.listen$3(this._app_component_template$_el_39, "keypress", this.get$_handle_keypress_39_3());
         this.listen$3(this._app_component_template$_el_39, "focus", this.get$_handle_focus_39_4());
         this.listen$3(this._app_component_template$_el_39, "mousedown", this.get$_handle_mousedown_39_5());
-        this.init$3([], [this._app_component_template$_el_0, _text_1, _anchor_2, _text_3, _anchor_4, _text_5, this._app_component_template$_el_6, _text_7, this._app_component_template$_el_8, _text_9, this._app_component_template$_el_10, this._app_component_template$_text_11, _text_12, this._app_component_template$_el_13, _text_14, _anchor_15, _text_16, _text_17, this._app_component_template$_el_18, _text_19, this._app_component_template$_el_20, _text_21, _text_22, this._app_component_template$_el_23, _text_24, this._app_component_template$_el_25, _text_26, this._app_component_template$_el_27, this._app_component_template$_text_28, _text_29, _text_30, this._app_component_template$_el_31, _text_32, this._app_component_template$_el_33, _text_34, this._app_component_template$_el_35, _text_36, _text_37, _text_38, this._app_component_template$_el_39, _text_40, this._app_component_template$_el_41, _text_42, _text_43, _text_44, _text_45, this._app_component_template$_el_46, _text_47, _text_48, _text_49, _text_50, _text_51, this._app_component_template$_el_52, _text_53, this._app_component_template$_el_54, _text_55, this._app_component_template$_el_56, _text_57, _text_58, this._app_component_template$_el_59, _text_60, this._app_component_template$_el_61, _text_62, this._app_component_template$_el_63, _text_64, this._app_component_template$_el_65, _text_66, this._app_component_template$_el_67, _text_68, _text_69, this._el_70, _text_71, this._app_component_template$_el_72, _text_73, this._app_component_template$_el_74, _text_75, this._app_component_template$_el_76, _text_77, _text_78, _text_79, _text_80, _text_81, _text_82, _text_83], [subscription_0]);
+        this.init$3([], [this._app_component_template$_el_0, _text_1, _anchor_2, _text_3, _anchor_4, _text_5, this._app_component_template$_el_6, _text_7, this._app_component_template$_el_8, _text_9, this._app_component_template$_el_10, this._app_component_template$_text_11, _text_12, this._app_component_template$_el_13, _text_14, _anchor_15, _text_16, _text_17, this._app_component_template$_el_18, _text_19, this._app_component_template$_el_20, _text_21, _text_22, this._app_component_template$_el_23, _text_24, this._app_component_template$_el_25, _text_26, this._app_component_template$_el_27, this._app_component_template$_text_28, _text_29, _text_30, this._app_component_template$_el_31, _text_32, this._app_component_template$_el_33, _text_34, this._app_component_template$_el_35, _text_36, _text_37, _text_38, this._app_component_template$_el_39, _text_40, this._app_component_template$_el_41, _text_42, _text_43, _text_44, _text_45, this._app_component_template$_el_46, _text_47, _text_48, _text_49, _text_50, _text_51, this._app_component_template$_el_52, _text_53, this._app_component_template$_el_54, _text_55, this._el_56, _text_57, _text_58, this._app_component_template$_el_59, _text_60, this._app_component_template$_el_61, _text_62, this._app_component_template$_el_63, _text_64, this._app_component_template$_el_65, _text_66, this._app_component_template$_el_67, _text_68, _text_69, this._el_70, _text_71, this._app_component_template$_el_72, _text_73, this._app_component_template$_el_74, _text_75, this._app_component_template$_el_76, _text_77, _text_78, _text_79, _text_80, _text_81, _text_82, _text_83], [subscription_0]);
         return;
       },
       injectorGetInternal$3: function(token, requestNodeIndex, notFoundResult) {
@@ -64434,7 +64434,13 @@
         return this._connected;
       },
       set$connectedUser: function(user) {
-        var t1;
+        var t1, sameUser;
+        t1 = this._connected;
+        if (t1 != null) {
+          t1 = J.get$id$x(t1);
+          sameUser = J.$eq$(t1, user == null ? user : J.get$id$x(user));
+        } else
+          sameUser = false;
         this._connected = user;
         P.print("connected user set " + H.S(user));
         t1 = this._connected == null;
@@ -64447,7 +64453,8 @@
           this.set$selectedUser(null);
         } else
           this.connectSocket$0();
-        this.eventBus.fire$1(P.LinkedHashMap__makeLiteral([C.PlaceParam_12, this._loggedIn]));
+        if (!sameUser)
+          this.eventBus.fire$1(P.LinkedHashMap__makeLiteral([C.PlaceParam_12, this._loggedIn]));
       },
       connectSocket$0: function() {
         var $async$goto = 0, $async$completer = new P.Completer_Completer$sync(), $async$handler = 1, $async$currentError, $async$self = this, t1;
@@ -64879,7 +64886,7 @@
   }], ["", "package:share_place/files/files_comp.dart",, F, {
     "^": "",
     FilesComp: {
-      "^": "Object;_files_comp$_placeService,_files_comp$_router,_files_comp$_environment,versionAttributes,fileMenuVisible<,selectedVersion",
+      "^": "Object;_files_comp$_placeService,_files_comp$_router,_files_comp$_environment,versionAttributes,fileMenuVisible<,selectedVersion,openFile<",
       ngOnInit$0: function() {
         var $async$goto = 0, $async$completer = new P.Completer_Completer$sync(), $async$handler = 1, $async$currentError, $async$self = this;
         var $async$ngOnInit$0 = P._wrapJsFunctionForAsync(function($async$errorCode, $async$result) {
@@ -65274,6 +65281,50 @@
         if (C.JSString_methods.contains$1(mimeType, "text"))
           return "Text Document";
         return mimeType + " Document";
+      },
+      openFileDialog$0: function() {
+        this.openFile = true;
+      },
+      cancelFileOpen$0: function() {
+        this.openFile = false;
+      },
+      lockAndOpen$1: function(version) {
+        var $async$goto = 0, $async$completer = new P.Completer_Completer$sync(), $async$handler = 1, $async$currentError, $async$self = this, t1;
+        var $async$lockAndOpen$1 = P._wrapJsFunctionForAsync(function($async$errorCode, $async$result) {
+          if ($async$errorCode === 1) {
+            $async$currentError = $async$result;
+            $async$goto = $async$handler;
+          }
+          while (true)
+            switch ($async$goto) {
+              case 0:
+                // Function start
+                t1 = $async$self._files_comp$_environment;
+                $async$goto = 2;
+                return P._asyncHelper($async$self._files_comp$_placeService.lockFile$4(J.get$id$x(t1.get$selectedPlace()), t1.get$selectedSubject().get$folderId(), J.get$id$x(t1.get$selectedFile()), true), $async$lockAndOpen$1, $async$completer);
+              case 2:
+                // returning from await.
+                t1.fireEvent$2(C.PlaceParam_11, J.get$id$x(t1.get$selectedFile()));
+                $async$self.openFileLink$1(version);
+                // implicit return
+                return P._asyncHelper(null, 0, $async$completer);
+              case 1:
+                // rethrow
+                return P._asyncHelper($async$currentError, 1, $async$completer);
+            }
+        });
+        return P._asyncHelper(null, $async$lockAndOpen$1, $async$completer);
+      },
+      openFileLink$1: function(version) {
+        var t1, t2, t3, t4;
+        t1 = window.location;
+        t2 = this._files_comp$_environment;
+        t3 = t2.get$selectedPlace();
+        t3 = "/sp/place/" + H.S(t3 == null ? t3 : J.get$id$x(t3)) + "/folder/";
+        t4 = t2.get$selectedFolder();
+        t3 = t3 + H.S(t4 == null ? t4 : J.get$id$x(t4)) + "/file/";
+        t2 = t2.get$selectedFile();
+        t1.assign(t3 + H.S(t2 == null ? t2 : J.get$id$x(t2)) + "/version/" + H.S(version) + "/download");
       }
     },
     FilesComp_ngOnInit_closure: {
@@ -65294,7 +65345,7 @@
       var t1, t2, t3;
       t1 = $.renderType_FilesComp;
       if (t1 == null) {
-        t1 = $.appViewUtils.createRenderComponentType$4("", 0, C.ViewEncapsulation_0, C.List_LcY);
+        t1 = $.appViewUtils.createRenderComponentType$4("", 0, C.ViewEncapsulation_0, C.List_43h0);
         $.renderType_FilesComp = t1;
       }
       t2 = P.LinkedHashMap__makeEmpty();
@@ -65324,7 +65375,7 @@
       t1 = $.uninitialized;
       t2 = $.renderType_FilesComp;
       t3 = P.LinkedHashMap__makeLiteral(["$implicit", null, "index", null]);
-      t1 = new M.ViewFilesComp3(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, t1, null, t1, t1, t1, t1, t1, t1, t1, t1, t1, t1, t1, t1, t1, t1, t1, t1, t1, t1, t1, t1, t1, t1, null, null, null, C.Type_ViewFilesComp3_KlB, t2, C.ViewType_2, t3, parentInjector, declarationEl, C.ChangeDetectionStrategy_2, false, null, null, null, H.setRuntimeTypeInfo([], [{func: 1, v: true}]), null, [], [], null, null, C.ChangeDetectorState_0, null, null, false, null);
+      t1 = new M.ViewFilesComp3(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, t1, null, t1, t1, t1, t1, t1, t1, t1, t1, t1, t1, t1, t1, t1, t1, t1, t1, t1, t1, t1, t1, t1, null, null, null, C.Type_ViewFilesComp3_KlB, t2, C.ViewType_2, t3, parentInjector, declarationEl, C.ChangeDetectionStrategy_2, false, null, null, null, H.setRuntimeTypeInfo([], [{func: 1, v: true}]), null, [], [], null, null, C.ChangeDetectorState_0, null, null, false, null);
       t1.AppView$7(C.Type_ViewFilesComp3_KlB, t2, C.ViewType_2, t3, parentInjector, declarationEl, C.ChangeDetectionStrategy_2, F.FilesComp);
       return t1;
     }, "call$2", "files_comp_template__viewFactory_FilesComp3$closure", 4, 0, 4],
@@ -65418,12 +65469,21 @@
     }, "call$2", "files_comp_template__viewFactory_FilesComp13$closure", 4, 0, 4],
     viewFactory_FilesComp14: [function(parentInjector, declarationEl) {
       var t1, t2, t3;
+      t1 = $.uninitialized;
+      t2 = $.renderType_FilesComp;
+      t3 = P.LinkedHashMap__makeEmpty();
+      t1 = new M.ViewFilesComp14(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, t1, t1, t1, C.Type_ViewFilesComp14_wEo, t2, C.ViewType_2, t3, parentInjector, declarationEl, C.ChangeDetectionStrategy_2, false, null, null, null, H.setRuntimeTypeInfo([], [{func: 1, v: true}]), null, [], [], null, null, C.ChangeDetectorState_0, null, null, false, null);
+      t1.AppView$7(C.Type_ViewFilesComp14_wEo, t2, C.ViewType_2, t3, parentInjector, declarationEl, C.ChangeDetectionStrategy_2, F.FilesComp);
+      return t1;
+    }, "call$2", "files_comp_template__viewFactory_FilesComp14$closure", 4, 0, 4],
+    viewFactory_FilesComp15: [function(parentInjector, declarationEl) {
+      var t1, t2, t3;
       t1 = $.renderType_FilesComp;
       t2 = P.LinkedHashMap__makeEmpty();
-      t3 = new M.ViewFilesComp14(null, null, C.Type_ViewFilesComp14_wEo, t1, C.ViewType_2, t2, parentInjector, declarationEl, C.ChangeDetectionStrategy_2, false, null, null, null, H.setRuntimeTypeInfo([], [{func: 1, v: true}]), null, [], [], null, null, C.ChangeDetectorState_0, null, null, false, null);
-      t3.AppView$7(C.Type_ViewFilesComp14_wEo, t1, C.ViewType_2, t2, parentInjector, declarationEl, C.ChangeDetectionStrategy_2, F.FilesComp);
+      t3 = new M.ViewFilesComp15(null, null, C.Type_ViewFilesComp15_wEo, t1, C.ViewType_2, t2, parentInjector, declarationEl, C.ChangeDetectionStrategy_2, false, null, null, null, H.setRuntimeTypeInfo([], [{func: 1, v: true}]), null, [], [], null, null, C.ChangeDetectorState_0, null, null, false, null);
+      t3.AppView$7(C.Type_ViewFilesComp15_wEo, t1, C.ViewType_2, t2, parentInjector, declarationEl, C.ChangeDetectionStrategy_2, F.FilesComp);
       return t3;
-    }, "call$2", "files_comp_template__viewFactory_FilesComp14$closure", 4, 0, 4],
+    }, "call$2", "files_comp_template__viewFactory_FilesComp15$closure", 4, 0, 4],
     viewFactory_FilesCompHost0: [function(parentInjector, declarationEl) {
       var t1, t2, t3;
       t1 = $.renderType_FilesCompHost;
@@ -65476,7 +65536,7 @@
         t2 = new D.TemplateRef(t1, M.files_comp_template__viewFactory_FilesComp1$closure());
         this._files_comp_template$_TemplateRef_2_4 = t2;
         this._files_comp_template$_NgIf_2_5 = new K.NgIf(t2, t1, false);
-        _text_3 = doc.createTextNode("\n\n");
+        _text_3 = doc.createTextNode("\n");
         this._files_comp_template$_el_0.appendChild(_text_3);
         this._pipe_agoDateFormat_0 = new O.AgoDateFormatPipe();
         this._pipe_fileSizeFormat_1 = new O.FileSizePipe();
@@ -65646,15 +65706,15 @@
         this._el_34.appendChild(_text_37);
         _text_38 = doc.createTextNode("\n            ");
         this._files_comp_template$_el_32.appendChild(_text_38);
-        _text_39 = doc.createTextNode("\n\n\n          ");
+        _text_39 = doc.createTextNode("\n          ");
         this._el_30.appendChild(_text_39);
         _text_40 = doc.createTextNode("\n        ");
         this._el_28.appendChild(_text_40);
-        _text_41 = doc.createTextNode("\n\n      ");
+        _text_41 = doc.createTextNode("\n      ");
         this._files_comp_template$_el_26.appendChild(_text_41);
         _text_42 = doc.createTextNode("\n    ");
         this._files_comp_template$_el_24.appendChild(_text_42);
-        _text_43 = doc.createTextNode("\n\n  ");
+        _text_43 = doc.createTextNode("\n  ");
         this._files_comp_template$_el_0.appendChild(_text_43);
         this.listen$3(this._files_comp_template$_el_18, "keyup.enter", this.get$_handle_keyup_enter_18_0());
         this.listen$3(this._files_comp_template$_el_20, "click", this.get$_handle_click_20_0());
@@ -65736,7 +65796,7 @@
       }
     },
     ViewFilesComp3: {
-      "^": "AppView;_files_comp_template$_el_0,_files_comp_template$_el_2,_files_comp_template$_el_5,_files_comp_template$_text_6,_files_comp_template$_el_8,_NgClass_8_2,_files_comp_template$_el_11,_files_comp_template$_appEl_13,_files_comp_template$_TemplateRef_13_4,_files_comp_template$_NgIf_13_5,_files_comp_template$_el_16,_files_comp_template$_appEl_16,_MaterialPopupComponent_16_3,__PopupComponent_16_4,__DropdownHandle_16_5,__DeferredContentAware_16_6,__PopupHierarchy_16_7,__PopupRef_16_8,_files_comp_template$_el_18,_files_comp_template$_el_20,_text_21,_el_23,_text_24,_el_27,_el_29,_appEl_31,_TemplateRef_31_4,_NgIf_31_5,_appEl_33,_TemplateRef_33_4,_NgIf_33_5,_appEl_35,_TemplateRef_35_4,_NgIf_35_5,_appEl_37,_TemplateRef_37_4,_NgIf_37_5,_el_40,_appEl_40,_AcxDarkTheme_40_3,_MaterialButtonComponent_40_4,__ButtonDirective_40_5,_el_44,_el_48,_el_50,_el_56,_el_57,_el_59,_text_60,_el_63,_el_65,_el_67,_el_69,_PopupSourceDirective_69_2,_el_71,_el_73,_appEl_75,_TemplateRef_75_4,_NgIf_75_5,_el_79,_el_81,_el_83,_el_85,_el_87,_text_88,_el_91,_text_92,_el_94,_el_96,_text_97,_el_99,_text_100,_files_comp_template$_expr_0,_map_0,_files_comp_template$_expr_2,_files_comp_template$_expr_3,_files_comp_template$_expr_6,_files_comp_template$_expr_7,_files_comp_template$_expr_8,_files_comp_template$_expr_9,_files_comp_template$_expr_10,_files_comp_template$_expr_11,_files_comp_template$_expr_23,_files_comp_template$_expr_24,_files_comp_template$_expr_25,_files_comp_template$_expr_26,_files_comp_template$_expr_27,_files_comp_template$_expr_28,_files_comp_template$_expr_29,_files_comp_template$_expr_30,_expr_32,_expr_34,_expr_35,_expr_36,_expr_37,_expr_38,_pipe_agoDateFormat_0_3,_pipe_agoDateFormat_0_4,_pipe_fileSizeFormat_1_0,clazz,componentType,type,locals,parentInjector,declarationViewContainer,_cdMode,_skipChangeDetection,ref,rootNodesOrViewContainers,allNodes,_onDestroyCallbacks,subscriptions,contentChildren,viewChildren,renderParent,viewContainerElement,_cdState,ctx,projectableNodes,destroyed,_hasExternalHostElement",
+      "^": "AppView;_files_comp_template$_el_0,_files_comp_template$_el_2,_files_comp_template$_el_5,_files_comp_template$_text_6,_files_comp_template$_el_8,_NgClass_8_2,_files_comp_template$_el_11,_files_comp_template$_appEl_13,_files_comp_template$_TemplateRef_13_4,_files_comp_template$_NgIf_13_5,_files_comp_template$_el_16,_files_comp_template$_appEl_16,_MaterialPopupComponent_16_3,__PopupComponent_16_4,__DropdownHandle_16_5,__DeferredContentAware_16_6,__PopupHierarchy_16_7,__PopupRef_16_8,_files_comp_template$_el_18,_files_comp_template$_el_20,_text_21,_el_23,_text_24,_el_27,_el_29,_appEl_31,_TemplateRef_31_4,_NgIf_31_5,_appEl_33,_TemplateRef_33_4,_NgIf_33_5,_appEl_35,_TemplateRef_35_4,_NgIf_35_5,_appEl_37,_TemplateRef_37_4,_NgIf_37_5,_el_40,_appEl_40,_AcxDarkTheme_40_3,_MaterialButtonComponent_40_4,__ButtonDirective_40_5,_el_44,_appEl_48,_TemplateRef_48_4,_NgIf_48_5,_el_50,_el_52,_el_58,_el_59,_el_61,_text_62,_el_65,_el_67,_el_69,_el_71,_PopupSourceDirective_71_2,_el_73,_el_75,_appEl_77,_TemplateRef_77_4,_NgIf_77_5,_el_81,_el_83,_el_85,_el_88,_el_90,_text_91,_el_94,_text_95,_el_97,_el_99,_text_100,_el_102,_text_103,_files_comp_template$_expr_0,_map_0,_files_comp_template$_expr_2,_files_comp_template$_expr_3,_files_comp_template$_expr_6,_files_comp_template$_expr_7,_files_comp_template$_expr_8,_files_comp_template$_expr_9,_files_comp_template$_expr_10,_files_comp_template$_expr_11,_files_comp_template$_expr_23,_files_comp_template$_expr_24,_files_comp_template$_expr_25,_files_comp_template$_expr_26,_files_comp_template$_expr_27,_files_comp_template$_expr_29,_files_comp_template$_expr_30,_files_comp_template$_expr_31,_expr_33,_expr_36,_expr_37,_expr_38,_expr_39,_pipe_agoDateFormat_0_3,_pipe_agoDateFormat_0_4,_pipe_fileSizeFormat_1_0,clazz,componentType,type,locals,parentInjector,declarationViewContainer,_cdMode,_skipChangeDetection,ref,rootNodesOrViewContainers,allNodes,_onDestroyCallbacks,subscriptions,contentChildren,viewChildren,renderParent,viewContainerElement,_cdState,ctx,projectableNodes,destroyed,_hasExternalHostElement",
       get$_PopupComponent_16_4: function() {
         var t1 = this.__PopupComponent_16_4;
         if (t1 == null) {
@@ -65746,7 +65806,7 @@
         return t1;
       },
       createInternal$1: function(rootSelector) {
-        var doc, t1, _text_1, _text_3, _text_4, t2, _text_7, t3, t4, t5, _text_9, _text_10, _text_12, _anchor_13, _text_14, _text_15, compView_16, t6, t7, t8, t9, t10, t11, t12, _text_17, _text_19, _text_22, _text_25, _text_26, _text_28, _text_30, _anchor_31, _text_32, _anchor_33, _text_34, _anchor_35, _text_36, _anchor_37, _text_38, _text_39, compView_40, _text_41, _text_42, _text_43, _text_45, _text_46, _text_47, _text_49, _text_51, _text_52, _text_53, _text_54, _text_55, _text_58, _text_61, _text_62, _text_64, _text_66, _text_68, _text_70, _text_72, _text_74, _anchor_75, _text_76, _text_77, _text_78, _text_80, _text_82, _text_84, _text_86, _text_89, _text_90, _text_93, _text_95, _text_98, _text_101, _text_102, _text_103, _text_104, _text_105, _text_106, _text_107, _text_108, _text_109, _text_110, _text_111, _text_112;
+        var doc, t1, _text_1, _text_3, _text_4, t2, _text_7, t3, t4, t5, _text_9, _text_10, _text_12, _anchor_13, _text_14, _text_15, compView_16, t6, t7, t8, t9, t10, t11, t12, _text_17, _text_19, _text_22, _text_25, _text_26, _text_28, _text_30, _anchor_31, _text_32, _anchor_33, _text_34, _anchor_35, _text_36, _anchor_37, _text_38, _text_39, compView_40, _text_41, _text_42, _text_43, _text_45, _text_46, _text_47, _anchor_48, _text_49, _text_51, _text_53, _text_54, _text_55, _text_56, _text_57, _text_60, _text_63, _text_64, _text_66, _text_68, _text_70, _text_72, _text_74, _text_76, _anchor_77, _text_78, _text_79, _text_80, _text_82, _text_84, _text_86, _text_87, _text_89, _text_92, _text_93, _text_96, _text_98, _text_101, _text_104, _text_105, _text_106, _text_107, _text_108, _text_109, _text_110, _text_111, _text_112, _text_113, _text_114, _text_115;
         doc = document;
         t1 = doc.createElement("li");
         this._files_comp_template$_el_0 = t1;
@@ -65963,230 +66023,243 @@
         this._el_44.appendChild(_text_45);
         _text_46 = doc.createTextNode("\n                  ");
         compView_16.createComp$2([[this._files_comp_template$_el_18], [_text_17, _text_26, this._el_27, _text_43, _text_46], [this._el_44]], null);
-        _text_47 = doc.createTextNode("\n\n\n                  ");
+        _text_47 = doc.createTextNode("\n\n                  ");
         this._files_comp_template$_el_0.appendChild(_text_47);
-        t3 = doc.createElement("div");
-        this._el_48 = t3;
-        t3.setAttribute(this.componentType._contentAttr, "");
-        this._files_comp_template$_el_0.appendChild(this._el_48);
-        t3 = this._el_48;
-        t3.className = "header_file";
-        _text_49 = doc.createTextNode("\n                    ");
-        t3.appendChild(_text_49);
+        _anchor_48 = doc.createComment("template bindings={}");
+        t3 = this._files_comp_template$_el_0;
+        if (!(t3 == null))
+          t3.appendChild(_anchor_48);
+        t3 = new V.ViewContainer(48, 0, this, _anchor_48, null, null, null, null);
+        this._appEl_48 = t3;
+        t4 = new D.TemplateRef(t3, M.files_comp_template__viewFactory_FilesComp14$closure());
+        this._TemplateRef_48_4 = t4;
+        this._NgIf_48_5 = new K.NgIf(t4, t3, false);
+        _text_49 = doc.createTextNode("\n\n                  ");
+        this._files_comp_template$_el_0.appendChild(_text_49);
         t3 = doc.createElement("div");
         this._el_50 = t3;
         t3.setAttribute(this.componentType._contentAttr, "");
-        this._el_48.appendChild(this._el_50);
+        this._files_comp_template$_el_0.appendChild(this._el_50);
         t3 = this._el_50;
-        t3.className = "left commentBlock";
-        _text_51 = doc.createTextNode("\n                      ");
+        t3.className = "header_file";
+        _text_51 = doc.createTextNode("\n                    ");
         t3.appendChild(_text_51);
-        _text_52 = doc.createTextNode("\n                      ");
-        this._el_50.appendChild(_text_52);
+        t3 = doc.createElement("div");
+        this._el_52 = t3;
+        t3.setAttribute(this.componentType._contentAttr, "");
+        this._el_50.appendChild(this._el_52);
+        t3 = this._el_52;
+        t3.className = "left commentBlock";
         _text_53 = doc.createTextNode("\n                      ");
-        this._el_50.appendChild(_text_53);
+        t3.appendChild(_text_53);
         _text_54 = doc.createTextNode("\n                      ");
-        this._el_50.appendChild(_text_54);
+        this._el_52.appendChild(_text_54);
         _text_55 = doc.createTextNode("\n                      ");
-        this._el_50.appendChild(_text_55);
+        this._el_52.appendChild(_text_55);
+        _text_56 = doc.createTextNode("\n                      ");
+        this._el_52.appendChild(_text_56);
+        _text_57 = doc.createTextNode("\n                      ");
+        this._el_52.appendChild(_text_57);
         t3 = doc.createElement("span");
-        this._el_56 = t3;
+        this._el_58 = t3;
         t3.setAttribute(this.componentType._contentAttr, "");
-        this._el_50.appendChild(this._el_56);
-        this._el_56.className = "author";
+        this._el_52.appendChild(this._el_58);
+        this._el_58.className = "author";
         t3 = doc.createElement("img");
-        this._el_57 = t3;
-        t3.setAttribute(this.componentType._contentAttr, "");
-        this._el_56.appendChild(this._el_57);
-        this._el_57.className = "profileImg";
-        _text_58 = doc.createTextNode("\n                      ");
-        this._el_50.appendChild(_text_58);
-        t3 = doc.createElement("span");
         this._el_59 = t3;
         t3.setAttribute(this.componentType._contentAttr, "");
-        this._el_50.appendChild(this._el_59);
-        t3 = this._el_59;
+        this._el_58.appendChild(this._el_59);
+        this._el_59.className = "profileImg";
+        _text_60 = doc.createTextNode("\n                      ");
+        this._el_52.appendChild(_text_60);
+        t3 = doc.createElement("span");
+        this._el_61 = t3;
+        t3.setAttribute(this.componentType._contentAttr, "");
+        this._el_52.appendChild(this._el_61);
+        t3 = this._el_61;
         t3.className = "comm-ts";
         t4 = doc.createTextNode("");
-        this._text_60 = t4;
+        this._text_62 = t4;
         t3.appendChild(t4);
-        _text_61 = doc.createTextNode("\n\n                    ");
-        this._el_50.appendChild(_text_61);
-        _text_62 = doc.createTextNode("\n                    ");
-        this._el_48.appendChild(_text_62);
-        t3 = doc.createElement("div");
-        this._el_63 = t3;
-        t3.setAttribute(this.componentType._contentAttr, "");
-        this._el_48.appendChild(this._el_63);
-        t3 = this._el_63;
-        t3.className = "arrow_box_in";
-        _text_64 = doc.createTextNode("\n                      ");
-        t3.appendChild(_text_64);
+        _text_63 = doc.createTextNode("\n\n                    ");
+        this._el_52.appendChild(_text_63);
+        _text_64 = doc.createTextNode("\n                    ");
+        this._el_50.appendChild(_text_64);
         t3 = doc.createElement("div");
         this._el_65 = t3;
         t3.setAttribute(this.componentType._contentAttr, "");
-        this._el_63.appendChild(this._el_65);
+        this._el_50.appendChild(this._el_65);
         t3 = this._el_65;
-        t3.className = "arrow_box";
-        _text_66 = doc.createTextNode("\n                        ");
+        t3.className = "arrow_box_in";
+        _text_66 = doc.createTextNode("\n                      ");
         t3.appendChild(_text_66);
         t3 = doc.createElement("div");
         this._el_67 = t3;
         t3.setAttribute(this.componentType._contentAttr, "");
         this._el_65.appendChild(this._el_67);
         t3 = this._el_67;
-        t3.className = "rightdesc ";
-        _text_68 = doc.createTextNode("\n                          ");
+        t3.className = "arrow_box";
+        _text_68 = doc.createTextNode("\n                        ");
         t3.appendChild(_text_68);
         t3 = doc.createElement("div");
         this._el_69 = t3;
         t3.setAttribute(this.componentType._contentAttr, "");
         this._el_67.appendChild(this._el_69);
         t3 = this._el_69;
+        t3.className = "";
+        _text_70 = doc.createTextNode("\n                          ");
+        t3.appendChild(_text_70);
+        t3 = doc.createElement("div");
+        this._el_71 = t3;
+        t3.setAttribute(this.componentType._contentAttr, "");
+        this._el_69.appendChild(this._el_71);
+        t3 = this._el_71;
         t3.className = "fileThumb";
         t3.setAttribute("popupSource", "");
         t3 = t2.$get$1(t1, C.Type_DomPopupSourceFactory_gmZ);
         t4 = new Z.ElementRef(null);
-        t4.nativeElement = this._el_69;
-        this._PopupSourceDirective_69_2 = new X.PopupSourceDirective(t3, t4, t2.$get$2(t1, C.Type_ReferenceDirective_i58, null), C.Alignment_dMH, C.Alignment_dMH, null);
-        _text_70 = doc.createTextNode("\n                            ");
-        this._el_69.appendChild(_text_70);
+        t4.nativeElement = this._el_71;
+        this._PopupSourceDirective_71_2 = new X.PopupSourceDirective(t3, t4, t2.$get$2(t1, C.Type_ReferenceDirective_i58, null), C.Alignment_dMH, C.Alignment_dMH, null);
+        _text_72 = doc.createTextNode("\n                            ");
+        this._el_71.appendChild(_text_72);
         t1 = doc.createElement("div");
-        this._el_71 = t1;
-        t1.setAttribute(this.componentType._contentAttr, "");
-        this._el_69.appendChild(this._el_71);
-        t1 = this._el_71;
-        t1.className = "fileThumb_bg";
-        _text_72 = doc.createTextNode("\n                              ");
-        t1.appendChild(_text_72);
-        t1 = doc.createElement("img");
         this._el_73 = t1;
         t1.setAttribute(this.componentType._contentAttr, "");
         this._el_71.appendChild(this._el_73);
-        this._el_73.className = "thumbnail";
+        t1 = this._el_73;
+        t1.className = "fileThumb_bg";
         _text_74 = doc.createTextNode("\n                              ");
-        this._el_71.appendChild(_text_74);
-        _anchor_75 = doc.createComment("template bindings={}");
-        t1 = this._el_71;
-        if (!(t1 == null))
-          t1.appendChild(_anchor_75);
-        t1 = new V.ViewContainer(75, 71, this, _anchor_75, null, null, null, null);
-        this._appEl_75 = t1;
-        t2 = new D.TemplateRef(t1, M.files_comp_template__viewFactory_FilesComp14$closure());
-        this._TemplateRef_75_4 = t2;
-        this._NgIf_75_5 = new K.NgIf(t2, t1, false);
-        _text_76 = doc.createTextNode("\n                            ");
-        this._el_71.appendChild(_text_76);
-        _text_77 = doc.createTextNode("\n                          ");
-        this._el_69.appendChild(_text_77);
-        _text_78 = doc.createTextNode("\n                          ");
-        this._el_67.appendChild(_text_78);
-        t1 = doc.createElement("div");
-        this._el_79 = t1;
+        t1.appendChild(_text_74);
+        t1 = doc.createElement("img");
+        this._el_75 = t1;
         t1.setAttribute(this.componentType._contentAttr, "");
-        this._el_67.appendChild(this._el_79);
-        t1 = this._el_79;
-        t1.className = "rightDetails";
-        _text_80 = doc.createTextNode("\n                            ");
-        t1.appendChild(_text_80);
+        this._el_73.appendChild(this._el_75);
+        this._el_75.className = "thumbnail";
+        _text_76 = doc.createTextNode("\n                              ");
+        this._el_73.appendChild(_text_76);
+        _anchor_77 = doc.createComment("template bindings={}");
+        t1 = this._el_73;
+        if (!(t1 == null))
+          t1.appendChild(_anchor_77);
+        t1 = new V.ViewContainer(77, 73, this, _anchor_77, null, null, null, null);
+        this._appEl_77 = t1;
+        t2 = new D.TemplateRef(t1, M.files_comp_template__viewFactory_FilesComp15$closure());
+        this._TemplateRef_77_4 = t2;
+        this._NgIf_77_5 = new K.NgIf(t2, t1, false);
+        _text_78 = doc.createTextNode("\n                            ");
+        this._el_73.appendChild(_text_78);
+        _text_79 = doc.createTextNode("\n                          ");
+        this._el_71.appendChild(_text_79);
+        _text_80 = doc.createTextNode("\n                          ");
+        this._el_69.appendChild(_text_80);
         t1 = doc.createElement("div");
         this._el_81 = t1;
         t1.setAttribute(this.componentType._contentAttr, "");
-        this._el_79.appendChild(this._el_81);
+        this._el_69.appendChild(this._el_81);
         t1 = this._el_81;
-        t1.className = "fileProps";
-        _text_82 = doc.createTextNode("\n\n\n                              ");
+        t1.className = "rightDetails";
+        _text_82 = doc.createTextNode("\n                            ");
         t1.appendChild(_text_82);
         t1 = doc.createElement("div");
         this._el_83 = t1;
         t1.setAttribute(this.componentType._contentAttr, "");
         this._el_81.appendChild(this._el_83);
         t1 = this._el_83;
-        t1.className = "line";
-        _text_84 = doc.createTextNode("\n                                ");
+        t1.className = "fileProps";
+        _text_84 = doc.createTextNode("\n                              ");
         t1.appendChild(_text_84);
-        t1 = doc.createElement("a");
+        t1 = doc.createElement("div");
         this._el_85 = t1;
         t1.setAttribute(this.componentType._contentAttr, "");
         this._el_83.appendChild(this._el_85);
-        _text_86 = doc.createTextNode("\n                                  ");
-        this._el_85.appendChild(_text_86);
+        t1 = this._el_85;
+        t1.className = "line";
+        _text_86 = doc.createTextNode("\n                                ");
+        t1.appendChild(_text_86);
+        _text_87 = doc.createTextNode("\n                                ");
+        this._el_85.appendChild(_text_87);
         t1 = doc.createElement("div");
-        this._el_87 = t1;
+        this._el_88 = t1;
         t1.setAttribute(this.componentType._contentAttr, "");
-        this._el_85.appendChild(this._el_87);
-        t1 = this._el_87;
+        this._el_85.appendChild(this._el_88);
+        _text_89 = doc.createTextNode("\n                                  ");
+        this._el_88.appendChild(_text_89);
+        t1 = doc.createElement("div");
+        this._el_90 = t1;
+        t1.setAttribute(this.componentType._contentAttr, "");
+        this._el_88.appendChild(this._el_90);
+        t1 = this._el_90;
         t1.className = "fileName";
         t2 = doc.createTextNode("");
-        this._text_88 = t2;
+        this._text_91 = t2;
         t1.appendChild(t2);
-        _text_89 = doc.createTextNode("\n                                ");
-        this._el_85.appendChild(_text_89);
-        _text_90 = doc.createTextNode("\n                                ");
-        this._el_83.appendChild(_text_90);
-        t1 = doc.createElement("span");
-        this._el_91 = t1;
-        t1.setAttribute(this.componentType._contentAttr, "");
-        this._el_83.appendChild(this._el_91);
-        t1 = this._el_91;
-        t1.className = "fileversion";
-        t2 = doc.createTextNode("");
-        this._text_92 = t2;
-        t1.appendChild(t2);
+        _text_92 = doc.createTextNode("\n                                ");
+        this._el_88.appendChild(_text_92);
         _text_93 = doc.createTextNode("\n                                ");
-        this._el_83.appendChild(_text_93);
-        t1 = doc.createElement("div");
+        this._el_85.appendChild(_text_93);
+        t1 = doc.createElement("span");
         this._el_94 = t1;
         t1.setAttribute(this.componentType._contentAttr, "");
-        this._el_83.appendChild(this._el_94);
+        this._el_85.appendChild(this._el_94);
         t1 = this._el_94;
-        t1.className = "linerow";
-        _text_95 = doc.createTextNode("\n                                  ");
-        t1.appendChild(_text_95);
-        t1 = doc.createElement("span");
-        this._el_96 = t1;
-        t1.setAttribute(this.componentType._contentAttr, "");
-        this._el_94.appendChild(this._el_96);
-        t1 = this._el_96;
-        t1.className = "filetypedoc";
+        t1.className = "fileversion";
         t2 = doc.createTextNode("");
-        this._text_97 = t2;
+        this._text_95 = t2;
         t1.appendChild(t2);
+        _text_96 = doc.createTextNode("\n                                ");
+        this._el_85.appendChild(_text_96);
+        t1 = doc.createElement("div");
+        this._el_97 = t1;
+        t1.setAttribute(this.componentType._contentAttr, "");
+        this._el_85.appendChild(this._el_97);
+        t1 = this._el_97;
+        t1.className = "linerow";
         _text_98 = doc.createTextNode("\n                                  ");
-        this._el_94.appendChild(_text_98);
+        t1.appendChild(_text_98);
         t1 = doc.createElement("span");
         this._el_99 = t1;
         t1.setAttribute(this.componentType._contentAttr, "");
-        this._el_94.appendChild(this._el_99);
+        this._el_97.appendChild(this._el_99);
         t1 = this._el_99;
-        t1.className = "fileSize";
+        t1.className = "filetypedoc";
         t2 = doc.createTextNode("");
         this._text_100 = t2;
         t1.appendChild(t2);
-        _text_101 = doc.createTextNode("\n                                ");
-        this._el_94.appendChild(_text_101);
-        _text_102 = doc.createTextNode("\n                              ");
-        this._el_83.appendChild(_text_102);
-        _text_103 = doc.createTextNode("\n\n                              ");
-        this._el_81.appendChild(_text_103);
-        _text_104 = doc.createTextNode("\n                              ");
-        this._el_81.appendChild(_text_104);
+        _text_101 = doc.createTextNode("\n                                  ");
+        this._el_97.appendChild(_text_101);
+        t1 = doc.createElement("span");
+        this._el_102 = t1;
+        t1.setAttribute(this.componentType._contentAttr, "");
+        this._el_97.appendChild(this._el_102);
+        t1 = this._el_102;
+        t1.className = "fileSize";
+        t2 = doc.createTextNode("");
+        this._text_103 = t2;
+        t1.appendChild(t2);
+        _text_104 = doc.createTextNode("\n                                ");
+        this._el_97.appendChild(_text_104);
         _text_105 = doc.createTextNode("\n                              ");
-        this._el_81.appendChild(_text_105);
-        _text_106 = doc.createTextNode("\n                            ");
-        this._el_81.appendChild(_text_106);
-        _text_107 = doc.createTextNode("\n                          ");
-        this._el_79.appendChild(_text_107);
-        _text_108 = doc.createTextNode("\n\n                        ");
-        this._el_67.appendChild(_text_108);
-        _text_109 = doc.createTextNode("\n\n                      ");
-        this._el_65.appendChild(_text_109);
-        _text_110 = doc.createTextNode("\n                    ");
-        this._el_63.appendChild(_text_110);
-        _text_111 = doc.createTextNode("\n                  ");
-        this._el_48.appendChild(_text_111);
-        _text_112 = doc.createTextNode("\n                ");
-        this._files_comp_template$_el_0.appendChild(_text_112);
+        this._el_85.appendChild(_text_105);
+        _text_106 = doc.createTextNode("\n\n                              ");
+        this._el_83.appendChild(_text_106);
+        _text_107 = doc.createTextNode("\n                              ");
+        this._el_83.appendChild(_text_107);
+        _text_108 = doc.createTextNode("\n                              ");
+        this._el_83.appendChild(_text_108);
+        _text_109 = doc.createTextNode("\n                            ");
+        this._el_83.appendChild(_text_109);
+        _text_110 = doc.createTextNode("\n                          ");
+        this._el_81.appendChild(_text_110);
+        _text_111 = doc.createTextNode("\n\n                        ");
+        this._el_69.appendChild(_text_111);
+        _text_112 = doc.createTextNode("\n\n                      ");
+        this._el_67.appendChild(_text_112);
+        _text_113 = doc.createTextNode("\n                    ");
+        this._el_65.appendChild(_text_113);
+        _text_114 = doc.createTextNode("\n                  ");
+        this._el_50.appendChild(_text_114);
+        _text_115 = doc.createTextNode("\n                ");
+        this._files_comp_template$_el_0.appendChild(_text_115);
         this.listen$3(this._files_comp_template$_el_8, "click", this.get$_files_comp_template$_handle_click_8_0());
         this._map_0 = Q.pureProxy2(new M.ViewFilesComp3_createInternal_closure());
         this.listen$3(this._files_comp_template$_el_16, "visible", this.get$_handle_visible_16_0());
@@ -66196,7 +66269,8 @@
         this.listen$3(this._el_40, "keypress", this.get$_handle_keypress_40_3());
         this.listen$3(this._el_40, "focus", this.get$_handle_focus_40_4());
         this.listen$3(this._el_40, "mousedown", this.get$_handle_mousedown_40_5());
-        this.listen$3(this._el_69, "click", this.get$_handle_click_69_0());
+        this.listen$3(this._el_71, "click", this.get$_handle_click_71_0());
+        this.listen$3(this._el_88, "click", this.get$_handle_click_88_0());
         t1 = this.declarationViewContainer;
         t2 = t1 == null;
         t3 = (t2 ? t1 : t1.parentView).get$declarationViewContainer();
@@ -66209,7 +66283,7 @@
         t1 = H.interceptedTypeCast(t1 == null ? t1 : t1.parentView, "$isViewFilesComp0")._pipe_fileSizeFormat_1;
         this._pipe_fileSizeFormat_1_0 = Q.pureProxy1(t1.get$transform(t1));
         t1 = this._files_comp_template$_el_0;
-        this.init$3([t1], [t1, _text_1, this._files_comp_template$_el_2, _text_3, _text_4, this._files_comp_template$_el_5, this._files_comp_template$_text_6, _text_7, this._files_comp_template$_el_8, _text_9, _text_10, this._files_comp_template$_el_11, _text_12, _anchor_13, _text_14, _text_15, this._files_comp_template$_el_16, _text_17, this._files_comp_template$_el_18, _text_19, this._files_comp_template$_el_20, this._text_21, _text_22, this._el_23, this._text_24, _text_25, _text_26, this._el_27, _text_28, this._el_29, _text_30, _anchor_31, _text_32, _anchor_33, _text_34, _anchor_35, _text_36, _anchor_37, _text_38, _text_39, this._el_40, _text_41, _text_42, _text_43, this._el_44, _text_45, _text_46, _text_47, this._el_48, _text_49, this._el_50, _text_51, _text_52, _text_53, _text_54, _text_55, this._el_56, this._el_57, _text_58, this._el_59, this._text_60, _text_61, _text_62, this._el_63, _text_64, this._el_65, _text_66, this._el_67, _text_68, this._el_69, _text_70, this._el_71, _text_72, this._el_73, _text_74, _anchor_75, _text_76, _text_77, _text_78, this._el_79, _text_80, this._el_81, _text_82, this._el_83, _text_84, this._el_85, _text_86, this._el_87, this._text_88, _text_89, _text_90, this._el_91, this._text_92, _text_93, this._el_94, _text_95, this._el_96, this._text_97, _text_98, this._el_99, this._text_100, _text_101, _text_102, _text_103, _text_104, _text_105, _text_106, _text_107, _text_108, _text_109, _text_110, _text_111, _text_112], []);
+        this.init$3([t1], [t1, _text_1, this._files_comp_template$_el_2, _text_3, _text_4, this._files_comp_template$_el_5, this._files_comp_template$_text_6, _text_7, this._files_comp_template$_el_8, _text_9, _text_10, this._files_comp_template$_el_11, _text_12, _anchor_13, _text_14, _text_15, this._files_comp_template$_el_16, _text_17, this._files_comp_template$_el_18, _text_19, this._files_comp_template$_el_20, this._text_21, _text_22, this._el_23, this._text_24, _text_25, _text_26, this._el_27, _text_28, this._el_29, _text_30, _anchor_31, _text_32, _anchor_33, _text_34, _anchor_35, _text_36, _anchor_37, _text_38, _text_39, this._el_40, _text_41, _text_42, _text_43, this._el_44, _text_45, _text_46, _text_47, _anchor_48, _text_49, this._el_50, _text_51, this._el_52, _text_53, _text_54, _text_55, _text_56, _text_57, this._el_58, this._el_59, _text_60, this._el_61, this._text_62, _text_63, _text_64, this._el_65, _text_66, this._el_67, _text_68, this._el_69, _text_70, this._el_71, _text_72, this._el_73, _text_74, this._el_75, _text_76, _anchor_77, _text_78, _text_79, _text_80, this._el_81, _text_82, this._el_83, _text_84, this._el_85, _text_86, _text_87, this._el_88, _text_89, this._el_90, this._text_91, _text_92, _text_93, this._el_94, this._text_95, _text_96, this._el_97, _text_98, this._el_99, this._text_100, _text_101, this._el_102, this._text_103, _text_104, _text_105, _text_106, _text_107, _text_108, _text_109, _text_110, _text_111, _text_112, _text_113, _text_114, _text_115], []);
         return;
       },
       injectorGetInternal$3: function(token, requestNodeIndex, notFoundResult) {
@@ -66345,22 +66419,26 @@
           }
           return t1;
         }
-        if (t1 && 75 === requestNodeIndex)
-          return this._TemplateRef_75_4;
-        if (t2 && 75 === requestNodeIndex)
-          return this._NgIf_75_5;
+        if (t1 && 48 === requestNodeIndex)
+          return this._TemplateRef_48_4;
+        if (t2 && 48 === requestNodeIndex)
+          return this._NgIf_48_5;
+        if (t1 && 77 === requestNodeIndex)
+          return this._TemplateRef_77_4;
+        if (t2 && 77 === requestNodeIndex)
+          return this._NgIf_77_5;
         if (token === C.Type_PopupSourceDirective_O27) {
           if (typeof requestNodeIndex !== "number")
             return H.iae(requestNodeIndex);
-          t1 = 69 <= requestNodeIndex && requestNodeIndex <= 77;
+          t1 = 71 <= requestNodeIndex && requestNodeIndex <= 79;
         } else
           t1 = false;
         if (t1)
-          return this._PopupSourceDirective_69_2;
+          return this._PopupSourceDirective_71_2;
         return notFoundResult;
       },
       detectChangesInternal$0: function() {
-        var valUnwrapper, t1, t2, t3, currVal_2, currVal_7, currVal_8, currVal_0, currVal_9, currVal_10, t4, t5, t6, currVal_11, currVal_23, currVal_24, currVal_25, currVal_26, currVal_27, currVal_28, currVal_29, currVal_30, currVal_32, currVal_34, currVal_35, currVal_36, currVal_37, currVal_38;
+        var valUnwrapper, t1, t2, t3, currVal_2, currVal_7, currVal_8, currVal_0, currVal_9, currVal_10, t4, t5, t6, currVal_11, currVal_23, currVal_24, currVal_25, currVal_26, currVal_27, currVal_29, currVal_30, currVal_31, currVal_33, currVal_36, currVal_37, currVal_38, currVal_39;
         valUnwrapper = new A.ValueUnwrapper(false);
         t1 = this.ctx;
         t2 = this.locals;
@@ -66385,7 +66463,7 @@
           this._MaterialPopupComponent_16_3.state._backingMap.$indexSet(0, C.Symbol_enforceSpaceConstraints, Y.getBool(Y.getBool("")));
           this._files_comp_template$_expr_6 = "";
         }
-        currVal_7 = this._PopupSourceDirective_69_2;
+        currVal_7 = this._PopupSourceDirective_71_2;
         if (Q.checkBinding(this._files_comp_template$_expr_7, currVal_7)) {
           this._MaterialPopupComponent_16_3.set$source(0, currVal_7);
           this._files_comp_template$_expr_7 = currVal_7;
@@ -66399,7 +66477,8 @@
         this._NgIf_33_5.set$ngIf(t2.$index(0, "$implicit").get$approved() != null);
         this._NgIf_35_5.set$ngIf(this.ctx.get$selectedFile().get$isLocked() !== true);
         this._NgIf_37_5.set$ngIf(this.ctx.get$selectedFile().get$isLocked());
-        this._NgIf_75_5.set$ngIf(!J.$eq$(J.get$status$x(t2.$index(0, "$implicit")), "uploaded"));
+        this._NgIf_48_5.set$ngIf(this.ctx.get$openFile());
+        this._NgIf_77_5.set$ngIf(!J.$eq$(J.get$status$x(t2.$index(0, "$implicit")), "uploaded"));
         this.detectContentChildrenChanges$0();
         currVal_0 = Q.interpolate1("Version ", t2.$index(0, "$implicit") == null ? null : t2.$index(0, "$implicit").get$v(), "");
         if (Q.checkBinding(this._files_comp_template$_expr_0, currVal_0)) {
@@ -66465,56 +66544,48 @@
           this.setAttr$3(t1, "elevation", C.JSInt_methods.toString$0(currVal_27));
           this._files_comp_template$_expr_27 = currVal_27;
         }
-        currVal_28 = t2.$index(0, "$implicit").get$approved() != null;
-        if (Q.checkBinding(this._files_comp_template$_expr_28, currVal_28)) {
-          this.updateClass$3(this._el_48, "approved", currVal_28);
-          this._files_comp_template$_expr_28 = currVal_28;
-        }
-        currVal_29 = Q.interpolate1("/auth/user/photo/s/", t2.$index(0, "$implicit").get$userId(), "");
+        currVal_29 = t2.$index(0, "$implicit").get$approved() != null;
         if (Q.checkBinding(this._files_comp_template$_expr_29, currVal_29)) {
-          this._el_57.src = $.appViewUtils.get$sanitizer().sanitizeUrl$1(currVal_29);
+          this.updateClass$3(this._el_50, "approved", currVal_29);
           this._files_comp_template$_expr_29 = currVal_29;
+        }
+        currVal_30 = Q.interpolate1("/auth/user/photo/s/", t2.$index(0, "$implicit").get$userId(), "");
+        if (Q.checkBinding(this._files_comp_template$_expr_30, currVal_30)) {
+          this._el_59.src = $.appViewUtils.get$sanitizer().sanitizeUrl$1(currVal_30);
+          this._files_comp_template$_expr_30 = currVal_30;
         }
         valUnwrapper.hasWrappedValue = false;
         t1 = this._pipe_agoDateFormat_0_4;
         t3 = (t5 ? t4 : t4.parentView).get$declarationViewContainer();
         t3 = H.interceptedTypeCast(t3 == null ? t3 : t3.parentView, "$isViewFilesComp0")._pipe_agoDateFormat_0;
         t3.get$transform(t3);
-        currVal_30 = Q.interpolate0(valUnwrapper.unwrap$1(t1.call$1(t2.$index(0, "$implicit") == null ? null : t2.$index(0, "$implicit").get$ts())));
-        if (valUnwrapper.hasWrappedValue || Q.checkBinding(this._files_comp_template$_expr_30, currVal_30)) {
-          this._text_60.textContent = currVal_30;
-          this._files_comp_template$_expr_30 = currVal_30;
+        currVal_31 = Q.interpolate0(valUnwrapper.unwrap$1(t1.call$1(t2.$index(0, "$implicit") == null ? null : t2.$index(0, "$implicit").get$ts())));
+        if (valUnwrapper.hasWrappedValue || Q.checkBinding(this._files_comp_template$_expr_31, currVal_31)) {
+          this._text_62.textContent = currVal_31;
+          this._files_comp_template$_expr_31 = currVal_31;
         }
         t1 = this.ctx.get$selectedPlace() == null ? null : J.get$id$x(this.ctx.get$selectedPlace());
         t3 = this.ctx.get$selectedFolder() == null ? null : J.get$id$x(this.ctx.get$selectedFolder());
         t6 = this.ctx.get$selectedFile() == null ? null : J.get$id$x(this.ctx.get$selectedFile());
-        currVal_32 = Q.interpolate(4, "/sp/place/", t1, "/folder/", t3, "/file/", t6, "/version/", t2.$index(0, "$implicit").get$v(), "/thumb", null, null, null, null, null, null, null, null, null, null);
-        if (Q.checkBinding(this._expr_32, currVal_32)) {
-          this._el_73.src = $.appViewUtils.get$sanitizer().sanitizeUrl$1(currVal_32);
-          this._expr_32 = currVal_32;
+        currVal_33 = Q.interpolate(4, "/sp/place/", t1, "/folder/", t3, "/file/", t6, "/version/", t2.$index(0, "$implicit").get$v(), "/thumb", null, null, null, null, null, null, null, null, null, null);
+        if (Q.checkBinding(this._expr_33, currVal_33)) {
+          this._el_75.src = $.appViewUtils.get$sanitizer().sanitizeUrl$1(currVal_33);
+          this._expr_33 = currVal_33;
         }
-        t1 = this.ctx.get$selectedPlace() == null ? null : J.get$id$x(this.ctx.get$selectedPlace());
-        t3 = this.ctx.get$selectedFolder() == null ? null : J.get$id$x(this.ctx.get$selectedFolder());
-        t6 = this.ctx.get$selectedFile() == null ? null : J.get$id$x(this.ctx.get$selectedFile());
-        currVal_34 = Q.interpolate(4, "/sp/place/", t1, "/folder/", t3, "/file/", t6, "/version/", t2.$index(0, "$implicit").get$v(), "/download", null, null, null, null, null, null, null, null, null, null);
-        if (Q.checkBinding(this._expr_34, currVal_34)) {
-          this._el_85.href = $.appViewUtils.get$sanitizer().sanitizeUrl$1(currVal_34);
-          this._expr_34 = currVal_34;
-        }
-        currVal_35 = Q.interpolate0(this.ctx.get$selectedFile() == null ? null : J.get$name$x(this.ctx.get$selectedFile()));
-        if (Q.checkBinding(this._expr_35, currVal_35)) {
-          this._text_88.textContent = currVal_35;
-          this._expr_35 = currVal_35;
-        }
-        currVal_36 = Q.interpolate1("v. ", t2.$index(0, "$implicit").get$v(), "");
+        currVal_36 = Q.interpolate0(this.ctx.get$selectedFile() == null ? null : J.get$name$x(this.ctx.get$selectedFile()));
         if (Q.checkBinding(this._expr_36, currVal_36)) {
-          this._text_92.textContent = currVal_36;
+          this._text_91.textContent = currVal_36;
           this._expr_36 = currVal_36;
         }
-        currVal_37 = Q.interpolate0(this.ctx.formatDesc$1(t2.$index(0, "$implicit")));
+        currVal_37 = Q.interpolate1("v. ", t2.$index(0, "$implicit").get$v(), "");
         if (Q.checkBinding(this._expr_37, currVal_37)) {
-          this._text_97.textContent = currVal_37;
+          this._text_95.textContent = currVal_37;
           this._expr_37 = currVal_37;
+        }
+        currVal_38 = Q.interpolate0(this.ctx.formatDesc$1(t2.$index(0, "$implicit")));
+        if (Q.checkBinding(this._expr_38, currVal_38)) {
+          this._text_100.textContent = currVal_38;
+          this._expr_38 = currVal_38;
         }
         valUnwrapper.hasWrappedValue = false;
         t1 = this._pipe_fileSizeFormat_1_0;
@@ -66524,14 +66595,14 @@
         t2 = this.ctx.get$selectedFile().get$orderedVersions();
         if (0 >= t2.length)
           return H.ioore(t2, 0);
-        currVal_38 = Q.interpolate1("\n                         (", valUnwrapper.unwrap$1(t1.call$1(J.get$size$x(t2[0]))), ")\n                       ");
-        if (valUnwrapper.hasWrappedValue || Q.checkBinding(this._expr_38, currVal_38)) {
-          this._text_100.textContent = currVal_38;
-          this._expr_38 = currVal_38;
+        currVal_39 = Q.interpolate1("\n                         (", valUnwrapper.unwrap$1(t1.call$1(J.get$size$x(t2[0]))), ")\n                       ");
+        if (valUnwrapper.hasWrappedValue || Q.checkBinding(this._expr_39, currVal_39)) {
+          this._text_103.textContent = currVal_39;
+          this._expr_39 = currVal_39;
         }
         this.detectViewChildrenChanges$0();
         if (this._cdState === C.ChangeDetectorState_0)
-          this._PopupSourceDirective_69_2.ngAfterViewInit$0();
+          this._PopupSourceDirective_71_2.ngAfterViewInit$0();
       },
       destroyInternal$0: function() {
         var t1, t2;
@@ -66544,7 +66615,7 @@
         if (!(t2 == null))
           J.cancel$0$x(t2);
         t1._material_popup$_isDestroyed = true;
-        this._PopupSourceDirective_69_2.ngOnDestroy$0();
+        this._PopupSourceDirective_71_2.ngOnDestroy$0();
       },
       _files_comp_template$_handle_click_8_0$1: [function($$event) {
         var t1, pd_0;
@@ -66597,11 +66668,16 @@
         t1._isMouseDown = true;
         return true;
       }, "call$1", "get$_handle_mousedown_40_5", 2, 0, 1, 0, []],
-      _handle_click_69_0$1: [function($$event) {
+      _handle_click_71_0$1: [function($$event) {
         this.markPathToRootAsCheckOnce$0();
         this.ctx.switchMenuState$1(this.locals.$index(0, "$implicit").get$v());
         return true;
-      }, "call$1", "get$_handle_click_69_0", 2, 0, 1, 0, []],
+      }, "call$1", "get$_handle_click_71_0", 2, 0, 1, 0, []],
+      _handle_click_88_0$1: [function($$event) {
+        this.markPathToRootAsCheckOnce$0();
+        this.ctx.openFileDialog$0();
+        return true;
+      }, "call$1", "get$_handle_click_88_0", 2, 0, 1, 0, []],
       $asAppView: function() {
         return [F.FilesComp];
       }
@@ -66710,8 +66786,10 @@
         t1 = doc.createElement("li");
         this._files_comp_template$_el_0 = t1;
         t1.setAttribute(this.componentType._contentAttr, "");
+        t1 = this._files_comp_template$_el_0;
+        t1.className = "litestme";
         _text_1 = doc.createTextNode("\n                          ");
-        this._files_comp_template$_el_0.appendChild(_text_1);
+        t1.appendChild(_text_1);
         _anchor_2 = doc.createComment("template bindings={}");
         t1 = this._files_comp_template$_el_0;
         if (!(t1 == null))
@@ -67740,6 +67818,230 @@
       }
     },
     ViewFilesComp14: {
+      "^": "AppView;_files_comp_template$_el_0,_files_comp_template$_appEl_0,_files_comp_template$_ModalComponent_0_3,_files_comp_template$__DeferredContentAware_0_4,_files_comp_template$__Modal_0_5,_files_comp_template$_el_2,_files_comp_template$_appEl_2,_MaterialDialogComponent_2_3,_files_comp_template$_el_4,_files_comp_template$_el_6,_files_comp_template$_text_7,_files_comp_template$_el_9,_files_comp_template$_el_13,_files_comp_template$_el_15,_files_comp_template$_el_18,_files_comp_template$_el_20,_el_23,_files_comp_template$_expr_0,_files_comp_template$_expr_1,_files_comp_template$_expr_2,clazz,componentType,type,locals,parentInjector,declarationViewContainer,_cdMode,_skipChangeDetection,ref,rootNodesOrViewContainers,allNodes,_onDestroyCallbacks,subscriptions,contentChildren,viewChildren,renderParent,viewContainerElement,_cdState,ctx,projectableNodes,destroyed,_hasExternalHostElement",
+      createInternal$1: function(rootSelector) {
+        var doc, t1, compView_0, t2, t3, t4, _text_1, compView_2, _text_3, _text_5, _text_8, _text_10, _text_11, _text_12, _text_14, _text_16, _text_17, _text_19, _text_21, _text_22, _text_24, _text_25, _text_26, _text_27, _text_28;
+        doc = document;
+        t1 = doc.createElement("modal");
+        this._files_comp_template$_el_0 = t1;
+        t1.setAttribute(this.componentType._contentAttr, "");
+        this._files_comp_template$_appEl_0 = new V.ViewContainer(0, null, this, this._files_comp_template$_el_0, null, null, null, null);
+        compView_0 = T.viewFactory_ModalComponent0(this.injector$1(0), this._files_comp_template$_appEl_0);
+        t1 = this.parentInjector;
+        t2 = J.getInterceptor$x(t1);
+        t3 = t2.$get$1(t1, C.Type_OverlayService_4iH);
+        t4 = O.AsyncAction;
+        t4 = new F.ModalComponent(t2.$get$2(t1, C.Type_Modal_OjC, null), t2.$get$2(t1, C.Type_GlobalModalStack_QCS, null), M.LazyEventEmitter_LazyEventEmitter$broadcast(null, null, true, t4), M.LazyEventEmitter_LazyEventEmitter$broadcast(null, null, true, t4), M.LazyEventEmitter_LazyEventEmitter$broadcast(null, null, true, P.bool), new O.Disposer(null, null, null, null, true, false), false, false, false, null, null, null);
+        t4._createdOverlayRef$1(t3.createSync$1(C._ImmutableOverlayState_4tl));
+        this._files_comp_template$_ModalComponent_0_3 = t4;
+        t3 = this._files_comp_template$_appEl_0;
+        t3.component = t4;
+        t3.componentView = compView_0;
+        _text_1 = doc.createTextNode("\n                    ");
+        t3 = doc.createElement("material-dialog");
+        this._files_comp_template$_el_2 = t3;
+        t3.setAttribute(this.componentType._contentAttr, "");
+        t3 = this._files_comp_template$_el_2;
+        t3.className = "basic-dialog fileOpen";
+        this._files_comp_template$_appEl_2 = new V.ViewContainer(2, 0, this, t3, null, null, null, null);
+        compView_2 = Z.viewFactory_MaterialDialogComponent0(this.injector$1(2), this._files_comp_template$_appEl_2);
+        t1 = new D.MaterialDialogComponent(t2.$get$1(t1, C.Type_DomService_2jN), compView_2.ref, this._files_comp_template$_ModalComponent_0_3, new O.Disposer(null, null, null, null, true, false), null, true, true, false, false, null);
+        this._MaterialDialogComponent_2_3 = t1;
+        t2 = this._files_comp_template$_appEl_2;
+        t2.component = t1;
+        t2.componentView = compView_2;
+        _text_3 = doc.createTextNode("\n                      ");
+        t1 = doc.createElement("div");
+        this._files_comp_template$_el_4 = t1;
+        t1.setAttribute(this.componentType._contentAttr, "");
+        t1 = this._files_comp_template$_el_4;
+        t1.className = "popupHeader";
+        t1.setAttribute("header", "");
+        _text_5 = doc.createTextNode("\n                        ");
+        this._files_comp_template$_el_4.appendChild(_text_5);
+        t1 = doc.createElement("div");
+        this._files_comp_template$_el_6 = t1;
+        t1.setAttribute(this.componentType._contentAttr, "");
+        this._files_comp_template$_el_4.appendChild(this._files_comp_template$_el_6);
+        t1 = this._files_comp_template$_el_6;
+        t1.className = "fileName";
+        t2 = doc.createTextNode("");
+        this._files_comp_template$_text_7 = t2;
+        t1.appendChild(t2);
+        _text_8 = doc.createTextNode("\n                        ");
+        this._files_comp_template$_el_4.appendChild(_text_8);
+        t1 = doc.createElement("div");
+        this._files_comp_template$_el_9 = t1;
+        t1.setAttribute(this.componentType._contentAttr, "");
+        this._files_comp_template$_el_4.appendChild(this._files_comp_template$_el_9);
+        t1 = this._files_comp_template$_el_9;
+        t1.className = "close";
+        _text_10 = doc.createTextNode("x");
+        t1.appendChild(_text_10);
+        _text_11 = doc.createTextNode("\n                      ");
+        this._files_comp_template$_el_4.appendChild(_text_11);
+        _text_12 = doc.createTextNode("\n                      ");
+        t1 = doc.createElement("div");
+        this._files_comp_template$_el_13 = t1;
+        t1.setAttribute(this.componentType._contentAttr, "");
+        t1 = this._files_comp_template$_el_13;
+        t1.className = "content";
+        _text_14 = doc.createTextNode("\n                        ");
+        t1.appendChild(_text_14);
+        t1 = doc.createElement("div");
+        this._files_comp_template$_el_15 = t1;
+        t1.setAttribute(this.componentType._contentAttr, "");
+        this._files_comp_template$_el_13.appendChild(this._files_comp_template$_el_15);
+        t1 = this._files_comp_template$_el_15;
+        t1.className = "explanation";
+        _text_16 = doc.createTextNode("Do you want to lock and modify or just take a look at the document?");
+        t1.appendChild(_text_16);
+        _text_17 = doc.createTextNode("\n                        ");
+        this._files_comp_template$_el_13.appendChild(_text_17);
+        t1 = doc.createElement("div");
+        this._files_comp_template$_el_18 = t1;
+        t1.setAttribute(this.componentType._contentAttr, "");
+        this._files_comp_template$_el_13.appendChild(this._files_comp_template$_el_18);
+        t1 = this._files_comp_template$_el_18;
+        t1.className = "actions";
+        _text_19 = doc.createTextNode("\n                          ");
+        t1.appendChild(_text_19);
+        t1 = doc.createElement("div");
+        this._files_comp_template$_el_20 = t1;
+        t1.setAttribute(this.componentType._contentAttr, "");
+        this._files_comp_template$_el_18.appendChild(this._files_comp_template$_el_20);
+        t1 = this._files_comp_template$_el_20;
+        t1.className = "btn lock";
+        _text_21 = doc.createTextNode("Lock & Modify");
+        t1.appendChild(_text_21);
+        _text_22 = doc.createTextNode("\n                          ");
+        this._files_comp_template$_el_18.appendChild(_text_22);
+        t1 = doc.createElement("div");
+        this._el_23 = t1;
+        t1.setAttribute(this.componentType._contentAttr, "");
+        this._files_comp_template$_el_18.appendChild(this._el_23);
+        t1 = this._el_23;
+        t1.className = "btn openOnly";
+        _text_24 = doc.createTextNode("View");
+        t1.appendChild(_text_24);
+        _text_25 = doc.createTextNode("\n                        ");
+        this._files_comp_template$_el_18.appendChild(_text_25);
+        _text_26 = doc.createTextNode("\n                      ");
+        this._files_comp_template$_el_13.appendChild(_text_26);
+        _text_27 = doc.createTextNode("\n                    ");
+        compView_2.createComp$2([[this._files_comp_template$_el_4], [_text_3, _text_12, this._files_comp_template$_el_13, _text_27], []], null);
+        _text_28 = doc.createTextNode("\n                  ");
+        compView_0.createComp$2([[_text_1, this._files_comp_template$_el_2, _text_28]], null);
+        this.listen$3(this._files_comp_template$_el_9, "click", this.get$_handle_click_9_0());
+        this.listen$3(this._files_comp_template$_el_20, "click", this.get$_handle_click_20_0());
+        this.listen$3(this._el_23, "click", this.get$_handle_click_23_0());
+        t1 = this._files_comp_template$_el_0;
+        this.init$3([t1], [t1, _text_1, this._files_comp_template$_el_2, _text_3, this._files_comp_template$_el_4, _text_5, this._files_comp_template$_el_6, this._files_comp_template$_text_7, _text_8, this._files_comp_template$_el_9, _text_10, _text_11, _text_12, this._files_comp_template$_el_13, _text_14, this._files_comp_template$_el_15, _text_16, _text_17, this._files_comp_template$_el_18, _text_19, this._files_comp_template$_el_20, _text_21, _text_22, this._el_23, _text_24, _text_25, _text_26, _text_27, _text_28], []);
+        return;
+      },
+      injectorGetInternal$3: function(token, requestNodeIndex, notFoundResult) {
+        var t1;
+        if (token === C.Type_MaterialDialogComponent_Q5s) {
+          if (typeof requestNodeIndex !== "number")
+            return H.iae(requestNodeIndex);
+          t1 = 2 <= requestNodeIndex && requestNodeIndex <= 27;
+        } else
+          t1 = false;
+        if (t1)
+          return this._MaterialDialogComponent_2_3;
+        if (token === C.Type_ModalComponent_Npb) {
+          if (typeof requestNodeIndex !== "number")
+            return H.iae(requestNodeIndex);
+          t1 = 0 <= requestNodeIndex && requestNodeIndex <= 28;
+        } else
+          t1 = false;
+        if (t1)
+          return this._files_comp_template$_ModalComponent_0_3;
+        if (token === C.Type_DeferredContentAware_BCk) {
+          if (typeof requestNodeIndex !== "number")
+            return H.iae(requestNodeIndex);
+          t1 = 0 <= requestNodeIndex && requestNodeIndex <= 28;
+        } else
+          t1 = false;
+        if (t1) {
+          t1 = this._files_comp_template$__DeferredContentAware_0_4;
+          if (t1 == null) {
+            t1 = this._files_comp_template$_ModalComponent_0_3;
+            this._files_comp_template$__DeferredContentAware_0_4 = t1;
+          }
+          return t1;
+        }
+        if (token === C.Type_Modal_OjC) {
+          if (typeof requestNodeIndex !== "number")
+            return H.iae(requestNodeIndex);
+          t1 = 0 <= requestNodeIndex && requestNodeIndex <= 28;
+        } else
+          t1 = false;
+        if (t1) {
+          t1 = this._files_comp_template$__Modal_0_5;
+          if (t1 == null) {
+            t1 = this._files_comp_template$_ModalComponent_0_3;
+            this._files_comp_template$__Modal_0_5 = t1;
+          }
+          return t1;
+        }
+        return notFoundResult;
+      },
+      detectChangesInternal$0: function() {
+        var currVal_0, currVal_1, t1, currVal_2;
+        currVal_0 = this.ctx.get$openFile();
+        if (Q.checkBinding(this._files_comp_template$_expr_0, currVal_0)) {
+          this._files_comp_template$_ModalComponent_0_3.set$visible(0, currVal_0);
+          this._files_comp_template$_expr_0 = currVal_0;
+        }
+        this.detectContentChildrenChanges$0();
+        this._MaterialDialogComponent_2_3._setHeaderFooterScrollBorder$0();
+        currVal_1 = this._files_comp_template$_ModalComponent_0_3._resolvedOverlayRef;
+        currVal_1 = currVal_1 == null ? currVal_1 : J.get$attributes$x(currVal_1.elementRef)._html$_element.getAttribute("pane-id");
+        if (Q.checkBinding(this._files_comp_template$_expr_1, currVal_1)) {
+          t1 = this._files_comp_template$_el_0;
+          this.setAttr$3(t1, "pane-id", currVal_1 == null ? null : currVal_1);
+          this._files_comp_template$_expr_1 = currVal_1;
+        }
+        currVal_2 = Q.interpolate1("Version ", J.get$name$x(this.ctx.get$selectedFile()), "");
+        if (Q.checkBinding(this._files_comp_template$_expr_2, currVal_2)) {
+          this._files_comp_template$_text_7.textContent = currVal_2;
+          this._files_comp_template$_expr_2 = currVal_2;
+        }
+        this.detectViewChildrenChanges$0();
+      },
+      destroyInternal$0: function() {
+        this._MaterialDialogComponent_2_3._material_dialog$_disposer.dispose$0();
+        var t1 = this._files_comp_template$_ModalComponent_0_3;
+        t1._isDestroyed = true;
+        t1._disposer.dispose$0();
+      },
+      _handle_click_9_0$1: [function($$event) {
+        this.markPathToRootAsCheckOnce$0();
+        this.ctx.cancelFileOpen$0();
+        return true;
+      }, "call$1", "get$_handle_click_9_0", 2, 0, 1, 0, []],
+      _handle_click_20_0$1: [function($$event) {
+        var t1, t2;
+        this.markPathToRootAsCheckOnce$0();
+        t1 = this.ctx;
+        t2 = this.declarationViewContainer;
+        t1.lockAndOpen$1((t2 == null ? t2 : t2.parentView).get$locals().$index(0, "$implicit").get$v());
+        return true;
+      }, "call$1", "get$_handle_click_20_0", 2, 0, 1, 0, []],
+      _handle_click_23_0$1: [function($$event) {
+        var t1, t2;
+        this.markPathToRootAsCheckOnce$0();
+        t1 = this.ctx;
+        t2 = this.declarationViewContainer;
+        t1.openFileLink$1((t2 == null ? t2 : t2.parentView).get$locals().$index(0, "$implicit").get$v());
+        return true;
+      }, "call$1", "get$_handle_click_23_0", 2, 0, 1, 0, []],
+      $asAppView: function() {
+        return [F.FilesComp];
+      }
+    },
+    ViewFilesComp15: {
       "^": "AppView;_files_comp_template$_el_0,_files_comp_template$_el_1,clazz,componentType,type,locals,parentInjector,declarationViewContainer,_cdMode,_skipChangeDetection,ref,rootNodesOrViewContainers,allNodes,_onDestroyCallbacks,subscriptions,contentChildren,viewChildren,renderParent,viewContainerElement,_cdState,ctx,projectableNodes,destroyed,_hasExternalHostElement",
       createInternal$1: function(rootSelector) {
         var doc, t1;
@@ -67921,7 +68223,7 @@
         compView_0 = M.viewFactory_FilesComp0(this.injector$1(0), this._files_comp_template$_appEl_0);
         t1 = this.parentInjector;
         t2 = J.getInterceptor$x(t1);
-        t1 = new F.FilesComp(t2.$get$1(t1, C.Type_PlaceService_fcN), t2.$get$1(t1, C.Type_Router_yx3), t2.$get$1(t1, C.Type_Environment_iuz), P.LinkedHashMap__makeEmpty(), null, null);
+        t1 = new F.FilesComp(t2.$get$1(t1, C.Type_PlaceService_fcN), t2.$get$1(t1, C.Type_Router_yx3), t2.$get$1(t1, C.Type_Environment_iuz), P.LinkedHashMap__makeEmpty(), null, null, null);
         this._FilesComp_0_3 = t1;
         t2 = this._files_comp_template$_appEl_0;
         t2.component = t1;
@@ -67994,7 +68296,7 @@
     initReflector_closure63: {
       "^": "Closure:13;",
       call$3: [function(_placeService, _router, _environment) {
-        return new F.FilesComp(_placeService, _router, _environment, P.LinkedHashMap__makeEmpty(), null, null);
+        return new F.FilesComp(_placeService, _router, _environment, P.LinkedHashMap__makeEmpty(), null, null, null);
       }, null, null, 6, 0, null, 11, [], 12, [], 14, [], "call"]
     }
   }], ["", "package:share_place/folder.dart",, U, {
@@ -73364,7 +73666,7 @@
       var t1, t2, t3;
       t1 = $.renderType_SubjectListComponent;
       if (t1 == null) {
-        t1 = $.appViewUtils.createRenderComponentType$4("", 0, C.ViewEncapsulation_0, C.List_KUR);
+        t1 = $.appViewUtils.createRenderComponentType$4("", 0, C.ViewEncapsulation_0, C.List_wD9);
         $.renderType_SubjectListComponent = t1;
       }
       t2 = P.LinkedHashMap__makeEmpty();
@@ -73500,7 +73802,7 @@
       }
     },
     ViewSubjectListComponent1: {
-      "^": "AppView;_subject_list_comp_template$_el_0,_subject_list_comp_template$_el_2,_subject_list_comp_template$_appEl_2,_MaterialPopupComponent_2_3,__PopupComponent_2_4,__DropdownHandle_2_5,__DeferredContentAware_2_6,__PopupHierarchy_2_7,__PopupRef_2_8,_subject_list_comp_template$_el_4,_subject_list_comp_template$_el_6,_subject_list_comp_template$_el_7,_subject_list_comp_template$_text_8,_subject_list_comp_template$_el_10,_subject_list_comp_template$_text_11,_subject_list_comp_template$_el_13,_subject_list_comp_template$_text_14,_subject_list_comp_template$_el_16,_subject_list_comp_template$_el_18,_subject_list_comp_template$_el_22,_subject_list_comp_template$_el_24,_subject_list_comp_template$_el_28,_el_31,_el_36,_text_37,_el_38,_appEl_38,_PostitComponent_38_3,_subject_list_comp_template$_el_40,_subject_list_comp_template$_appEl_40,_ButtonComp_40_3,_subject_list_comp_template$_el_42,_appEl_42,_ModalComponent_42_3,__DeferredContentAware_42_4,__Modal_42_5,_subject_list_comp_template$_el_44,_appEl_44,_MaterialDialogComponent_44_3,_subject_list_comp_template$_el_46,_appEl_46,_InviteUsersDialogComp_46_3,_el_51,_PopupSourceDirective_51_2,_appEl_53,_TemplateRef_53_4,_NgFor_53_5,_subject_list_comp_template$_el_57,_subject_list_comp_template$_el_59,_el_61,_subject_list_comp_template$_el_63,_subject_list_comp_template$_el_65,_subject_list_comp_template$_el_67,_appEl_71,_TemplateRef_71_4,_NgFor_71_5,_el_74,_NgForm_74_2,__ControlContainer_74_3,_el_76,_subject_list_comp_template$_el_79,_subject_list_comp_template$_el_81,_appEl_81,_PostitComponent_81_3,_subject_list_comp_template$_expr_1,_subject_list_comp_template$_expr_2,_subject_list_comp_template$_expr_3,_subject_list_comp_template$_expr_4,_subject_list_comp_template$_expr_5,_subject_list_comp_template$_expr_6,_subject_list_comp_template$_expr_7,_subject_list_comp_template$_expr_8,_subject_list_comp_template$_expr_9,_subject_list_comp_template$_expr_10,_subject_list_comp_template$_arr_0,_subject_list_comp_template$_expr_12,_subject_list_comp_template$_expr_13,_subject_list_comp_template$_expr_14,_subject_list_comp_template$_expr_15,_subject_list_comp_template$_expr_16,_subject_list_comp_template$_expr_19,_subject_list_comp_template$_expr_24,_subject_list_comp_template$_expr_25,_subject_list_comp_template$_expr_26,clazz,componentType,type,locals,parentInjector,declarationViewContainer,_cdMode,_skipChangeDetection,ref,rootNodesOrViewContainers,allNodes,_onDestroyCallbacks,subscriptions,contentChildren,viewChildren,renderParent,viewContainerElement,_cdState,ctx,projectableNodes,destroyed,_hasExternalHostElement",
+      "^": "AppView;_subject_list_comp_template$_el_0,_subject_list_comp_template$_el_2,_subject_list_comp_template$_appEl_2,_MaterialPopupComponent_2_3,__PopupComponent_2_4,__DropdownHandle_2_5,__DeferredContentAware_2_6,__PopupHierarchy_2_7,__PopupRef_2_8,_subject_list_comp_template$_el_4,_subject_list_comp_template$_el_6,_subject_list_comp_template$_el_7,_subject_list_comp_template$_text_8,_subject_list_comp_template$_el_10,_subject_list_comp_template$_text_11,_subject_list_comp_template$_el_13,_subject_list_comp_template$_text_14,_subject_list_comp_template$_el_16,_subject_list_comp_template$_el_18,_subject_list_comp_template$_el_22,_subject_list_comp_template$_el_24,_subject_list_comp_template$_el_28,_el_31,_el_36,_text_37,_el_38,_appEl_38,_PostitComponent_38_3,_subject_list_comp_template$_el_40,_subject_list_comp_template$_appEl_40,_ButtonComp_40_3,_subject_list_comp_template$_el_42,_appEl_42,_ModalComponent_42_3,__DeferredContentAware_42_4,__Modal_42_5,_subject_list_comp_template$_el_44,_appEl_44,_MaterialDialogComponent_44_3,_subject_list_comp_template$_el_46,_appEl_46,_InviteUsersDialogComp_46_3,_el_51,_PopupSourceDirective_51_2,_appEl_53,_TemplateRef_53_4,_NgFor_53_5,_el_57,_subject_list_comp_template$_el_59,_subject_list_comp_template$_el_61,_el_63,_subject_list_comp_template$_el_65,_subject_list_comp_template$_el_67,_appEl_71,_TemplateRef_71_4,_NgFor_71_5,_el_74,_NgForm_74_2,__ControlContainer_74_3,_el_76,_el_79,_subject_list_comp_template$_el_81,_appEl_81,_PostitComponent_81_3,_subject_list_comp_template$_expr_1,_subject_list_comp_template$_expr_2,_subject_list_comp_template$_expr_3,_subject_list_comp_template$_expr_4,_subject_list_comp_template$_expr_5,_subject_list_comp_template$_expr_6,_subject_list_comp_template$_expr_7,_subject_list_comp_template$_expr_8,_subject_list_comp_template$_expr_9,_subject_list_comp_template$_expr_10,_subject_list_comp_template$_arr_0,_subject_list_comp_template$_expr_12,_subject_list_comp_template$_expr_13,_subject_list_comp_template$_expr_14,_subject_list_comp_template$_expr_15,_subject_list_comp_template$_expr_16,_subject_list_comp_template$_expr_19,_subject_list_comp_template$_expr_24,_subject_list_comp_template$_expr_25,_subject_list_comp_template$_expr_26,clazz,componentType,type,locals,parentInjector,declarationViewContainer,_cdMode,_skipChangeDetection,ref,rootNodesOrViewContainers,allNodes,_onDestroyCallbacks,subscriptions,contentChildren,viewChildren,renderParent,viewContainerElement,_cdState,ctx,projectableNodes,destroyed,_hasExternalHostElement",
       get$_PopupComponent_2_4: function() {
         var t1 = this.__PopupComponent_2_4;
         if (t1 == null) {
@@ -73774,54 +74076,54 @@
         _text_56 = doc.createTextNode("\n\n  ");
         this._subject_list_comp_template$_el_0.appendChild(_text_56);
         t3 = doc.createElement("div");
-        this._subject_list_comp_template$_el_57 = t3;
+        this._el_57 = t3;
         t3.setAttribute(this.componentType._contentAttr, "");
-        this._subject_list_comp_template$_el_0.appendChild(this._subject_list_comp_template$_el_57);
+        this._subject_list_comp_template$_el_0.appendChild(this._el_57);
         _text_58 = doc.createTextNode("\n    ");
-        this._subject_list_comp_template$_el_57.appendChild(_text_58);
+        this._el_57.appendChild(_text_58);
         t3 = doc.createElement("ul");
         this._subject_list_comp_template$_el_59 = t3;
         t3.setAttribute(this.componentType._contentAttr, "");
-        this._subject_list_comp_template$_el_57.appendChild(this._subject_list_comp_template$_el_59);
+        this._el_57.appendChild(this._subject_list_comp_template$_el_59);
         t3 = this._subject_list_comp_template$_el_59;
         t3.className = "subjectList";
         _text_60 = doc.createTextNode("\n      ");
         t3.appendChild(_text_60);
         t3 = doc.createElement("div");
-        this._el_61 = t3;
+        this._subject_list_comp_template$_el_61 = t3;
         t3.setAttribute(this.componentType._contentAttr, "");
-        this._subject_list_comp_template$_el_59.appendChild(this._el_61);
-        t3 = this._el_61;
+        this._subject_list_comp_template$_el_59.appendChild(this._subject_list_comp_template$_el_61);
+        t3 = this._subject_list_comp_template$_el_61;
         t3.className = "newTopic";
         _text_62 = doc.createTextNode("\n        ");
         t3.appendChild(_text_62);
         t3 = doc.createElement("div");
-        this._subject_list_comp_template$_el_63 = t3;
+        this._el_63 = t3;
         t3.setAttribute(this.componentType._contentAttr, "");
-        this._el_61.appendChild(this._subject_list_comp_template$_el_63);
-        t3 = this._subject_list_comp_template$_el_63;
+        this._subject_list_comp_template$_el_61.appendChild(this._el_63);
+        t3 = this._el_63;
         t3.className = "newTopicBlock";
         _text_64 = doc.createTextNode("\n          ");
         t3.appendChild(_text_64);
         t3 = doc.createElement("input");
         this._subject_list_comp_template$_el_65 = t3;
         t3.setAttribute(this.componentType._contentAttr, "");
-        this._subject_list_comp_template$_el_63.appendChild(this._subject_list_comp_template$_el_65);
+        this._el_63.appendChild(this._subject_list_comp_template$_el_65);
         t3 = this._subject_list_comp_template$_el_65;
         t3.className = "txt";
         t3.setAttribute("placeholder", "Start a topic...");
         this._subject_list_comp_template$_el_65.setAttribute("type", "text");
         _text_66 = doc.createTextNode("\n          ");
-        this._subject_list_comp_template$_el_63.appendChild(_text_66);
+        this._el_63.appendChild(_text_66);
         t3 = doc.createElement("div");
         this._subject_list_comp_template$_el_67 = t3;
         t3.setAttribute(this.componentType._contentAttr, "");
-        this._subject_list_comp_template$_el_63.appendChild(this._subject_list_comp_template$_el_67);
+        this._el_63.appendChild(this._subject_list_comp_template$_el_67);
         this._subject_list_comp_template$_el_67.className = "btn_valid";
         _text_68 = doc.createTextNode("\n        ");
-        this._subject_list_comp_template$_el_63.appendChild(_text_68);
+        this._el_63.appendChild(_text_68);
         _text_69 = doc.createTextNode("\n      ");
-        this._el_61.appendChild(_text_69);
+        this._subject_list_comp_template$_el_61.appendChild(_text_69);
         _text_70 = doc.createTextNode("\n      ");
         this._subject_list_comp_template$_el_59.appendChild(_text_70);
         _anchor_71 = doc.createComment("template bindings={}");
@@ -73836,11 +74138,11 @@
         _text_72 = doc.createTextNode("\n    ");
         this._subject_list_comp_template$_el_59.appendChild(_text_72);
         _text_73 = doc.createTextNode("\n\n    ");
-        this._subject_list_comp_template$_el_57.appendChild(_text_73);
+        this._el_57.appendChild(_text_73);
         t3 = doc.createElement("form");
         this._el_74 = t3;
         t3.setAttribute(this.componentType._contentAttr, "");
-        this._subject_list_comp_template$_el_57.appendChild(this._el_74);
+        this._el_57.appendChild(this._el_74);
         t3 = this._el_74;
         t3.className = "uploadDropZone";
         t3.setAttribute("id", "fileForm");
@@ -73861,15 +74163,15 @@
         _text_78 = doc.createTextNode("\n      ");
         this._el_74.appendChild(_text_78);
         t3 = doc.createElement("input");
-        this._subject_list_comp_template$_el_79 = t3;
+        this._el_79 = t3;
         t3.setAttribute(this.componentType._contentAttr, "");
-        this._el_74.appendChild(this._subject_list_comp_template$_el_79);
-        t3 = this._subject_list_comp_template$_el_79;
+        this._el_74.appendChild(this._el_79);
+        t3 = this._el_79;
         t3.className = "uploadFile";
         t3.setAttribute("id", "fileupload");
-        this._subject_list_comp_template$_el_79.setAttribute("name", "toUpload");
-        this._subject_list_comp_template$_el_79.setAttribute("style", "opacity: 0");
-        this._subject_list_comp_template$_el_79.setAttribute("type", "file");
+        this._el_79.setAttribute("name", "toUpload");
+        this._el_79.setAttribute("style", "opacity: 0");
+        this._el_79.setAttribute("type", "file");
         _text_80 = doc.createTextNode("\n\n      ");
         this._el_74.appendChild(_text_80);
         t3 = doc.createElement("postit-comp");
@@ -73889,7 +74191,7 @@
         _text_82 = doc.createTextNode("\n    ");
         this._el_74.appendChild(_text_82);
         _text_83 = doc.createTextNode("\n  ");
-        this._subject_list_comp_template$_el_57.appendChild(_text_83);
+        this._el_57.appendChild(_text_83);
         _text_84 = doc.createTextNode("\n");
         this._subject_list_comp_template$_el_0.appendChild(_text_84);
         t2 = this.get$_handle_visibleChange_2_0();
@@ -73902,9 +74204,9 @@
         this.listen$3(this._el_74, "dragenter", this.get$_handle_dragenter_74_0());
         this.listen$3(this._el_74, "drop", this.get$_handle_drop_74_1());
         this.listen$3(this._el_74, "submit", this.get$_handle_submit_74_2());
-        this.listen$3(this._subject_list_comp_template$_el_79, "change", this.get$_handle_change_79_0());
+        this.listen$3(this._el_79, "change", this.get$_handle_change_79_0());
         t2 = this._subject_list_comp_template$_el_0;
-        this.init$3([t2], [t2, _text_1, this._subject_list_comp_template$_el_2, _text_3, this._subject_list_comp_template$_el_4, _text_5, this._subject_list_comp_template$_el_6, this._subject_list_comp_template$_el_7, this._subject_list_comp_template$_text_8, _text_9, this._subject_list_comp_template$_el_10, this._subject_list_comp_template$_text_11, _text_12, this._subject_list_comp_template$_el_13, this._subject_list_comp_template$_text_14, _text_15, this._subject_list_comp_template$_el_16, _text_17, this._subject_list_comp_template$_el_18, _text_19, _text_20, _text_21, this._subject_list_comp_template$_el_22, _text_23, this._subject_list_comp_template$_el_24, _text_25, _text_26, _text_27, this._subject_list_comp_template$_el_28, _text_29, _text_30, this._el_31, _text_32, _text_33, _text_34, _text_35, this._el_36, this._text_37, this._el_38, _text_39, this._subject_list_comp_template$_el_40, _text_41, this._subject_list_comp_template$_el_42, _text_43, this._subject_list_comp_template$_el_44, _text_45, this._subject_list_comp_template$_el_46, _text_47, _text_48, _text_49, _text_50, this._el_51, _text_52, _anchor_53, _text_54, _text_55, _text_56, this._subject_list_comp_template$_el_57, _text_58, this._subject_list_comp_template$_el_59, _text_60, this._el_61, _text_62, this._subject_list_comp_template$_el_63, _text_64, this._subject_list_comp_template$_el_65, _text_66, this._subject_list_comp_template$_el_67, _text_68, _text_69, _text_70, _anchor_71, _text_72, _text_73, this._el_74, _text_75, this._el_76, _text_77, _text_78, this._subject_list_comp_template$_el_79, _text_80, this._subject_list_comp_template$_el_81, _text_82, _text_83, _text_84], [subscription_0]);
+        this.init$3([t2], [t2, _text_1, this._subject_list_comp_template$_el_2, _text_3, this._subject_list_comp_template$_el_4, _text_5, this._subject_list_comp_template$_el_6, this._subject_list_comp_template$_el_7, this._subject_list_comp_template$_text_8, _text_9, this._subject_list_comp_template$_el_10, this._subject_list_comp_template$_text_11, _text_12, this._subject_list_comp_template$_el_13, this._subject_list_comp_template$_text_14, _text_15, this._subject_list_comp_template$_el_16, _text_17, this._subject_list_comp_template$_el_18, _text_19, _text_20, _text_21, this._subject_list_comp_template$_el_22, _text_23, this._subject_list_comp_template$_el_24, _text_25, _text_26, _text_27, this._subject_list_comp_template$_el_28, _text_29, _text_30, this._el_31, _text_32, _text_33, _text_34, _text_35, this._el_36, this._text_37, this._el_38, _text_39, this._subject_list_comp_template$_el_40, _text_41, this._subject_list_comp_template$_el_42, _text_43, this._subject_list_comp_template$_el_44, _text_45, this._subject_list_comp_template$_el_46, _text_47, _text_48, _text_49, _text_50, this._el_51, _text_52, _anchor_53, _text_54, _text_55, _text_56, this._el_57, _text_58, this._subject_list_comp_template$_el_59, _text_60, this._subject_list_comp_template$_el_61, _text_62, this._el_63, _text_64, this._subject_list_comp_template$_el_65, _text_66, this._subject_list_comp_template$_el_67, _text_68, _text_69, _text_70, _anchor_71, _text_72, _text_73, this._el_74, _text_75, this._el_76, _text_77, _text_78, this._el_79, _text_80, this._subject_list_comp_template$_el_81, _text_82, _text_83, _text_84], [subscription_0]);
         return;
       },
       injectorGetInternal$3: function(token, requestNodeIndex, notFoundResult) {
@@ -75449,7 +75751,7 @@
       B.initReflector110();
     },
     ViewInviteUsersDialogComp0: {
-      "^": "AppView;_invite_dialog_comp_template$_el_1,_invite_dialog_comp_template$_el_3,_invite_dialog_comp_template$_el_5,_invite_dialog_comp_template$_text_7,_invite_dialog_comp_template$_el_9,_invite_dialog_comp_template$_el_10,_invite_dialog_comp_template$_el_13,_invite_dialog_comp_template$_el_15,_invite_dialog_comp_template$_el_18,_invite_dialog_comp_template$_el_20,_el_21,_invite_dialog_comp_template$_el_23,_invite_dialog_comp_template$_el_24,_invite_dialog_comp_template$_el_27,_invite_dialog_comp_template$_el_28,_invite_dialog_comp_template$_appEl_32,_TemplateRef_32_4,_NgFor_32_5,_el_35,_el_37,_el_42,_el_46,_el_49,_appEl_49,_DeferredValidator_49_3,_NG_VALIDATORS_49_4,_NgModel_49_5,_NgControl_49_6,_MaterialMultilineInputComponent_49_7,_BaseMaterialInput_49_8,_MaterialInputDefaultValueAccessor_49_9,__ReferenceDirective_49_10,__Focusable_49_11,_el_52,_el_54,_appEl_54,_AcxDarkTheme_54_3,_MaterialButtonComponent_54_4,__ButtonDirective_54_5,_invite_dialog_comp_template$_expr_0,_invite_dialog_comp_template$_expr_2,_invite_dialog_comp_template$_expr_6,_invite_dialog_comp_template$_expr_7,_invite_dialog_comp_template$_expr_15,_invite_dialog_comp_template$_expr_16,_invite_dialog_comp_template$_expr_17,_invite_dialog_comp_template$_expr_18,_invite_dialog_comp_template$_expr_19,_invite_dialog_comp_template$_expr_20,clazz,componentType,type,locals,parentInjector,declarationViewContainer,_cdMode,_skipChangeDetection,ref,rootNodesOrViewContainers,allNodes,_onDestroyCallbacks,subscriptions,contentChildren,viewChildren,renderParent,viewContainerElement,_cdState,ctx,projectableNodes,destroyed,_hasExternalHostElement",
+      "^": "AppView;_invite_dialog_comp_template$_el_1,_invite_dialog_comp_template$_el_3,_invite_dialog_comp_template$_el_5,_invite_dialog_comp_template$_text_7,_invite_dialog_comp_template$_el_9,_invite_dialog_comp_template$_el_10,_invite_dialog_comp_template$_el_13,_invite_dialog_comp_template$_el_15,_invite_dialog_comp_template$_el_18,_invite_dialog_comp_template$_el_20,_el_21,_invite_dialog_comp_template$_el_23,_invite_dialog_comp_template$_el_24,_invite_dialog_comp_template$_el_27,_invite_dialog_comp_template$_el_28,_invite_dialog_comp_template$_appEl_32,_TemplateRef_32_4,_NgFor_32_5,_el_35,_el_37,_el_42,_el_46,_el_49,_appEl_49,_DeferredValidator_49_3,_NG_VALIDATORS_49_4,_NgModel_49_5,_NgControl_49_6,_MaterialMultilineInputComponent_49_7,_BaseMaterialInput_49_8,_MaterialInputDefaultValueAccessor_49_9,__ReferenceDirective_49_10,__Focusable_49_11,_invite_dialog_comp_template$_el_52,_el_54,_appEl_54,_AcxDarkTheme_54_3,_MaterialButtonComponent_54_4,__ButtonDirective_54_5,_invite_dialog_comp_template$_expr_0,_invite_dialog_comp_template$_expr_2,_invite_dialog_comp_template$_expr_6,_invite_dialog_comp_template$_expr_7,_invite_dialog_comp_template$_expr_15,_invite_dialog_comp_template$_expr_16,_invite_dialog_comp_template$_expr_17,_invite_dialog_comp_template$_expr_18,_invite_dialog_comp_template$_expr_19,_invite_dialog_comp_template$_expr_20,clazz,componentType,type,locals,parentInjector,declarationViewContainer,_cdMode,_skipChangeDetection,ref,rootNodesOrViewContainers,allNodes,_onDestroyCallbacks,subscriptions,contentChildren,viewChildren,renderParent,viewContainerElement,_cdState,ctx,projectableNodes,destroyed,_hasExternalHostElement",
       createInternal$1: function(rootSelector) {
         var parentRenderNode, t1, _text_0, t2, t3, _text_2, _text_4, _text_6, _text_8, _text_11, _text_12, _text_14, _text_16, _text_17, _text_19, _text_22, _text_25, _text_26, _text_29, _text_30, _text_31, _anchor_32, t4, t5, _text_33, _text_34, _text_36, _text_38, _text_39, _text_40, _text_41, _text_43, _text_44, _text_45, _text_47, _text_48, compView_49, t6, t7, t8, _text_50, _text_51, _text_53, compView_54, _text_55, _text_56, _text_57, subscription_0, subscription_1;
         parentRenderNode = this.initViewRoot$1(this.declarationViewContainer.nativeElement);
@@ -75671,17 +75973,17 @@
         _text_51 = t1.createTextNode("\n\n\n  ");
         this._invite_dialog_comp_template$_el_1.appendChild(_text_51);
         t2 = t1.createElement("div");
-        this._el_52 = t2;
+        this._invite_dialog_comp_template$_el_52 = t2;
         t2.setAttribute(this.componentType._contentAttr, "");
-        this._invite_dialog_comp_template$_el_1.appendChild(this._el_52);
-        t2 = this._el_52;
+        this._invite_dialog_comp_template$_el_1.appendChild(this._invite_dialog_comp_template$_el_52);
+        t2 = this._invite_dialog_comp_template$_el_52;
         t2.className = "modal-footer";
         _text_53 = t1.createTextNode("\n    ");
         t2.appendChild(_text_53);
         t2 = t1.createElement("material-button");
         this._el_54 = t2;
         t2.setAttribute(this.componentType._contentAttr, "");
-        this._el_52.appendChild(this._el_54);
+        this._invite_dialog_comp_template$_el_52.appendChild(this._el_54);
         this._el_54.setAttribute("animated", "true");
         t2 = this._el_54;
         t2.className = "btn_login submitbottom";
@@ -75702,10 +76004,10 @@
         _text_55 = t1.createTextNode("Send invites");
         compView_54.createComp$2([[_text_55]], null);
         _text_56 = t1.createTextNode("\n\n  ");
-        this._el_52.appendChild(_text_56);
+        this._invite_dialog_comp_template$_el_52.appendChild(_text_56);
         _text_57 = t1.createTextNode("\n");
         this._invite_dialog_comp_template$_el_1.appendChild(_text_57);
-        this.listen$3(this._invite_dialog_comp_template$_el_9, "click", this.get$_handle_click_9_0());
+        this.listen$3(this._invite_dialog_comp_template$_el_9, "click", this.get$_invite_dialog_comp_template$_handle_click_9_0());
         this.listen$3(this._el_42, "click", this.get$_handle_click_42_0());
         t1 = this.get$_handle_ngModelChange_49_0();
         this.listen$3(this._el_49, "ngModelChange", t1);
@@ -75720,7 +76022,7 @@
         this.listen$3(this._el_54, "keypress", this.get$_handle_keypress_54_3());
         this.listen$3(this._el_54, "focus", this.get$_handle_focus_54_4());
         this.listen$3(this._el_54, "mousedown", this.get$_handle_mousedown_54_5());
-        this.init$3([], [_text_0, this._invite_dialog_comp_template$_el_1, _text_2, this._invite_dialog_comp_template$_el_3, _text_4, this._invite_dialog_comp_template$_el_5, _text_6, this._invite_dialog_comp_template$_text_7, _text_8, this._invite_dialog_comp_template$_el_9, this._invite_dialog_comp_template$_el_10, _text_11, _text_12, this._invite_dialog_comp_template$_el_13, _text_14, this._invite_dialog_comp_template$_el_15, _text_16, _text_17, this._invite_dialog_comp_template$_el_18, _text_19, this._invite_dialog_comp_template$_el_20, this._el_21, _text_22, this._invite_dialog_comp_template$_el_23, this._invite_dialog_comp_template$_el_24, _text_25, _text_26, this._invite_dialog_comp_template$_el_27, this._invite_dialog_comp_template$_el_28, _text_29, _text_30, _text_31, _anchor_32, _text_33, _text_34, this._el_35, _text_36, this._el_37, _text_38, _text_39, _text_40, _text_41, this._el_42, _text_43, _text_44, _text_45, this._el_46, _text_47, _text_48, this._el_49, _text_50, _text_51, this._el_52, _text_53, this._el_54, _text_55, _text_56, _text_57], [subscription_0, subscription_1]);
+        this.init$3([], [_text_0, this._invite_dialog_comp_template$_el_1, _text_2, this._invite_dialog_comp_template$_el_3, _text_4, this._invite_dialog_comp_template$_el_5, _text_6, this._invite_dialog_comp_template$_text_7, _text_8, this._invite_dialog_comp_template$_el_9, this._invite_dialog_comp_template$_el_10, _text_11, _text_12, this._invite_dialog_comp_template$_el_13, _text_14, this._invite_dialog_comp_template$_el_15, _text_16, _text_17, this._invite_dialog_comp_template$_el_18, _text_19, this._invite_dialog_comp_template$_el_20, this._el_21, _text_22, this._invite_dialog_comp_template$_el_23, this._invite_dialog_comp_template$_el_24, _text_25, _text_26, this._invite_dialog_comp_template$_el_27, this._invite_dialog_comp_template$_el_28, _text_29, _text_30, _text_31, _anchor_32, _text_33, _text_34, this._el_35, _text_36, this._el_37, _text_38, _text_39, _text_40, _text_41, this._el_42, _text_43, _text_44, _text_45, this._el_46, _text_47, _text_48, this._el_49, _text_50, _text_51, this._invite_dialog_comp_template$_el_52, _text_53, this._el_54, _text_55, _text_56, _text_57], [subscription_0, subscription_1]);
         return;
       },
       injectorGetInternal$3: function(token, requestNodeIndex, notFoundResult) {
@@ -75877,12 +76179,12 @@
         t1.popupSourceEl = null;
         this._MaterialInputDefaultValueAccessor_49_9._material_input_default_value_accessor$_disposer.dispose$0();
       },
-      _handle_click_9_0$1: [function($$event) {
+      _invite_dialog_comp_template$_handle_click_9_0$1: [function($$event) {
         var t1;
         this.markPathToRootAsCheckOnce$0();
         t1 = J.close$0$x(this.ctx);
         return t1 !== false;
-      }, "call$1", "get$_handle_click_9_0", 2, 0, 1, 0, []],
+      }, "call$1", "get$_invite_dialog_comp_template$_handle_click_9_0", 2, 0, 1, 0, []],
       _handle_click_42_0$1: [function($$event) {
         this.markPathToRootAsCheckOnce$0();
         this.ctx.addUserLine$0();
@@ -76313,7 +76615,7 @@
       M.initReflector9();
     },
     ViewLoginComp0: {
-      "^": "AppView;_login_comp_template$_el_0,_login_comp_template$_appEl_0,_login_comp_template$_ModalComponent_0_3,_login_comp_template$__DeferredContentAware_0_4,_login_comp_template$__Modal_0_5,_login_comp_template$_el_2,_login_comp_template$_appEl_2,_MaterialDialogComponent_2_3,_login_comp_template$_el_4,_login_comp_template$_appEl_4,_SignupComp_4_3,_login_comp_template$_el_8,_login_comp_template$_appEl_8,_ModalComponent_8_3,__DeferredContentAware_8_4,__Modal_8_5,_login_comp_template$_el_10,_login_comp_template$_appEl_10,_MaterialDialogComponent_10_3,_login_comp_template$_el_12,_appEl_12,_ForgotPassComp_12_3,_login_comp_template$_el_16,_login_comp_template$_el_18,_login_comp_template$_el_23,_el_25,_login_comp_template$_el_27,_login_comp_template$_el_28,_login_comp_template$_el_30,_login_comp_template$_el_36,_login_comp_template$_el_38,_text_39,_el_41,_appEl_43,_TemplateRef_43_4,_NgFor_43_5,_login_comp_template$_el_46,_login_comp_template$_el_48,_NgForm_48_2,__ControlContainer_48_3,_login_comp_template$_el_50,_login_comp_template$_el_52,_login_comp_template$_el_55,_login_comp_template$_el_59,_login_comp_template$_el_61,_el_64,_appEl_64,_DeferredValidator_64_3,_NG_VALIDATORS_64_4,_NgModel_64_5,_RequiredValidator_64_6,_NgControl_64_7,_MaterialInputComponent_64_8,_BaseMaterialInput_64_9,_MaterialInputDefaultValueAccessor_64_10,__ReferenceDirective_64_11,__Focusable_64_12,_login_comp_template$_el_67,_login_comp_template$_el_69,_login_comp_template$_el_72,_login_comp_template$_el_73,_login_comp_template$_el_76,_appEl_76,_DeferredValidator_76_3,_NG_VALIDATORS_76_4,_NgModel_76_5,_RequiredValidator_76_6,_NgControl_76_7,_MaterialInputComponent_76_8,_BaseMaterialInput_76_9,_MaterialInputDefaultValueAccessor_76_10,__ReferenceDirective_76_11,__Focusable_76_12,_login_comp_template$_el_79,_login_comp_template$_appEl_79,_AcxDarkTheme_79_3,_MaterialButtonComponent_79_4,__ButtonDirective_79_5,_login_comp_template$_el_85,_el_86,_el_90,_el_92,_login_comp_template$_el_94,_el_97,_login_comp_template$_el_99,_el_104,_el_106,_login_comp_template$_expr_0,_login_comp_template$_expr_1,_login_comp_template$_expr_2,_login_comp_template$_expr_3,_login_comp_template$_expr_4,_login_comp_template$_expr_5,_login_comp_template$_expr_8,_login_comp_template$_expr_11,_login_comp_template$_expr_12,_login_comp_template$_expr_13,_login_comp_template$_expr_17,_login_comp_template$_expr_18,_login_comp_template$_expr_27,_login_comp_template$_expr_28,_login_comp_template$_expr_29,_login_comp_template$_expr_30,_login_comp_template$_expr_31,_login_comp_template$_expr_32,clazz,componentType,type,locals,parentInjector,declarationViewContainer,_cdMode,_skipChangeDetection,ref,rootNodesOrViewContainers,allNodes,_onDestroyCallbacks,subscriptions,contentChildren,viewChildren,renderParent,viewContainerElement,_cdState,ctx,projectableNodes,destroyed,_hasExternalHostElement",
+      "^": "AppView;_login_comp_template$_el_0,_login_comp_template$_appEl_0,_login_comp_template$_ModalComponent_0_3,_login_comp_template$__DeferredContentAware_0_4,_login_comp_template$__Modal_0_5,_login_comp_template$_el_2,_login_comp_template$_appEl_2,_login_comp_template$_MaterialDialogComponent_2_3,_login_comp_template$_el_4,_login_comp_template$_appEl_4,_SignupComp_4_3,_login_comp_template$_el_8,_login_comp_template$_appEl_8,_ModalComponent_8_3,__DeferredContentAware_8_4,__Modal_8_5,_login_comp_template$_el_10,_login_comp_template$_appEl_10,_MaterialDialogComponent_10_3,_login_comp_template$_el_12,_appEl_12,_ForgotPassComp_12_3,_login_comp_template$_el_16,_login_comp_template$_el_18,_login_comp_template$_el_23,_el_25,_login_comp_template$_el_27,_login_comp_template$_el_28,_login_comp_template$_el_30,_login_comp_template$_el_36,_login_comp_template$_el_38,_text_39,_el_41,_appEl_43,_TemplateRef_43_4,_NgFor_43_5,_login_comp_template$_el_46,_el_48,_NgForm_48_2,__ControlContainer_48_3,_login_comp_template$_el_50,_login_comp_template$_el_52,_login_comp_template$_el_55,_login_comp_template$_el_59,_login_comp_template$_el_61,_el_64,_appEl_64,_DeferredValidator_64_3,_NG_VALIDATORS_64_4,_NgModel_64_5,_RequiredValidator_64_6,_NgControl_64_7,_MaterialInputComponent_64_8,_BaseMaterialInput_64_9,_MaterialInputDefaultValueAccessor_64_10,__ReferenceDirective_64_11,__Focusable_64_12,_login_comp_template$_el_67,_login_comp_template$_el_69,_login_comp_template$_el_72,_login_comp_template$_el_73,_login_comp_template$_el_76,_appEl_76,_DeferredValidator_76_3,_NG_VALIDATORS_76_4,_NgModel_76_5,_RequiredValidator_76_6,_NgControl_76_7,_MaterialInputComponent_76_8,_BaseMaterialInput_76_9,_MaterialInputDefaultValueAccessor_76_10,__ReferenceDirective_76_11,__Focusable_76_12,_login_comp_template$_el_79,_login_comp_template$_appEl_79,_AcxDarkTheme_79_3,_MaterialButtonComponent_79_4,__ButtonDirective_79_5,_login_comp_template$_el_85,_el_86,_login_comp_template$_el_90,_el_92,_login_comp_template$_el_94,_login_comp_template$_el_97,_login_comp_template$_el_99,_el_104,_el_106,_login_comp_template$_expr_0,_login_comp_template$_expr_1,_login_comp_template$_expr_2,_login_comp_template$_expr_3,_login_comp_template$_expr_4,_login_comp_template$_expr_5,_login_comp_template$_expr_8,_login_comp_template$_expr_11,_login_comp_template$_expr_12,_login_comp_template$_expr_13,_login_comp_template$_expr_17,_login_comp_template$_expr_18,_login_comp_template$_expr_27,_login_comp_template$_expr_28,_login_comp_template$_expr_29,_login_comp_template$_expr_30,_login_comp_template$_expr_31,_expr_32,clazz,componentType,type,locals,parentInjector,declarationViewContainer,_cdMode,_skipChangeDetection,ref,rootNodesOrViewContainers,allNodes,_onDestroyCallbacks,subscriptions,contentChildren,viewChildren,renderParent,viewContainerElement,_cdState,ctx,projectableNodes,destroyed,_hasExternalHostElement",
       createInternal$1: function(rootSelector) {
         var parentRenderNode, doc, t1, compView_0, t2, t3, t4, t5, t6, t7, _text_1, compView_2, _text_3, compView_4, t8, t9, t10, _text_5, _text_6, _text_7, compView_8, _text_9, compView_10, _text_11, compView_12, _text_13, _text_14, _text_15, _text_17, _text_19, _text_20, _text_21, _text_22, _text_24, _text_26, _text_29, _text_31, _text_32, _text_33, _text_34, _text_35, _text_37, _text_40, _text_42, _anchor_43, _text_44, _text_45, _text_47, _text_49, _text_51, _text_53, _text_54, _text_56, _text_57, _text_58, _text_60, _text_62, _text_63, compView_64, _text_65, _text_66, _text_68, _text_70, _text_71, _text_74, _text_75, compView_76, _text_77, _text_78, compView_79, _text_80, _text_81, _text_82, _text_83, _text_84, _text_87, _text_88, _text_89, _text_91, _text_93, _text_95, _text_96, _text_98, _text_100, _text_101, _text_102, _text_103, _text_105, _text_107, _text_108, _text_109, subscription_0, subscription_1, subscription_2, subscription_3;
         parentRenderNode = this.initViewRoot$1(this.declarationViewContainer.nativeElement);
@@ -76345,7 +76647,7 @@
         this._login_comp_template$_appEl_2 = new V.ViewContainer(2, 0, this, t4, null, null, null, null);
         compView_2 = Z.viewFactory_MaterialDialogComponent0(this.injector$1(2), this._login_comp_template$_appEl_2);
         t4 = new D.MaterialDialogComponent(t3.$get$1(t2, C.Type_DomService_2jN), compView_2.ref, this._login_comp_template$_ModalComponent_0_3, new O.Disposer(null, null, null, null, true, false), null, true, true, false, false, null);
-        this._MaterialDialogComponent_2_3 = t4;
+        this._login_comp_template$_MaterialDialogComponent_2_3 = t4;
         t7 = this._login_comp_template$_appEl_2;
         t7.component = t4;
         t7.componentView = compView_2;
@@ -76529,21 +76831,21 @@
         _text_47 = doc.createTextNode("\n      ");
         t1.appendChild(_text_47);
         t1 = doc.createElement("form");
-        this._login_comp_template$_el_48 = t1;
+        this._el_48 = t1;
         t1.setAttribute(this.componentType._contentAttr, "");
-        this._login_comp_template$_el_46.appendChild(this._login_comp_template$_el_48);
-        this._login_comp_template$_el_48.setAttribute("action", "#");
-        this._login_comp_template$_el_48.setAttribute("method", "post");
+        this._login_comp_template$_el_46.appendChild(this._el_48);
+        this._el_48.setAttribute("action", "#");
+        this._el_48.setAttribute("method", "post");
         t1 = Z.ControlGroup;
         t1 = new L.NgForm(null, B.EventEmitter$(false, t1), B.EventEmitter$(false, t1), null);
         t1.form = Z.ControlGroup$(P.LinkedHashMap__makeEmpty(), null, X.composeValidators(null), X.composeAsyncValidators(null));
         this._NgForm_48_2 = t1;
         _text_49 = doc.createTextNode("\n        ");
-        this._login_comp_template$_el_48.appendChild(_text_49);
+        this._el_48.appendChild(_text_49);
         t1 = doc.createElement("div");
         this._login_comp_template$_el_50 = t1;
         t1.setAttribute(this.componentType._contentAttr, "");
-        this._login_comp_template$_el_48.appendChild(this._login_comp_template$_el_50);
+        this._el_48.appendChild(this._login_comp_template$_el_50);
         t1 = this._login_comp_template$_el_50;
         t1.className = "verification_user";
         _text_51 = doc.createTextNode("\n          ");
@@ -76568,11 +76870,11 @@
         _text_57 = doc.createTextNode("\n        ");
         this._login_comp_template$_el_50.appendChild(_text_57);
         _text_58 = doc.createTextNode("\n        ");
-        this._login_comp_template$_el_48.appendChild(_text_58);
+        this._el_48.appendChild(_text_58);
         t1 = doc.createElement("div");
         this._login_comp_template$_el_59 = t1;
         t1.setAttribute(this.componentType._contentAttr, "");
-        this._login_comp_template$_el_48.appendChild(this._login_comp_template$_el_59);
+        this._el_48.appendChild(this._login_comp_template$_el_59);
         t1 = this._login_comp_template$_el_59;
         t1.className = "email";
         _text_60 = doc.createTextNode("\n          ");
@@ -76619,11 +76921,11 @@
         _text_65 = doc.createTextNode("\n        ");
         this._login_comp_template$_el_59.appendChild(_text_65);
         _text_66 = doc.createTextNode("\n        ");
-        this._login_comp_template$_el_48.appendChild(_text_66);
+        this._el_48.appendChild(_text_66);
         t4 = doc.createElement("div");
         this._login_comp_template$_el_67 = t4;
         t4.setAttribute(this.componentType._contentAttr, "");
-        this._login_comp_template$_el_48.appendChild(this._login_comp_template$_el_67);
+        this._el_48.appendChild(this._login_comp_template$_el_67);
         t4 = this._login_comp_template$_el_67;
         t4.className = "pass";
         _text_68 = doc.createTextNode("\n          ");
@@ -76685,11 +76987,11 @@
         _text_77 = doc.createTextNode("\n        ");
         this._login_comp_template$_el_67.appendChild(_text_77);
         _text_78 = doc.createTextNode("\n        ");
-        this._login_comp_template$_el_48.appendChild(_text_78);
+        this._el_48.appendChild(_text_78);
         t1 = doc.createElement("material-button");
         this._login_comp_template$_el_79 = t1;
         t1.setAttribute(this.componentType._contentAttr, "");
-        this._login_comp_template$_el_48.appendChild(this._login_comp_template$_el_79);
+        this._el_48.appendChild(this._login_comp_template$_el_79);
         this._login_comp_template$_el_79.setAttribute("animated", "true");
         t1 = this._login_comp_template$_el_79;
         t1.className = "btn_login";
@@ -76710,7 +77012,7 @@
         _text_80 = doc.createTextNode("Login");
         compView_79.createComp$2([[_text_80]], null);
         _text_81 = doc.createTextNode("\n      ");
-        this._login_comp_template$_el_48.appendChild(_text_81);
+        this._el_48.appendChild(_text_81);
         _text_82 = doc.createTextNode("\n\n    ");
         this._login_comp_template$_el_46.appendChild(_text_82);
         _text_83 = doc.createTextNode("\n\n    ");
@@ -76733,17 +77035,17 @@
         _text_89 = doc.createTextNode("\n    ");
         this._login_comp_template$_el_36.appendChild(_text_89);
         t1 = doc.createElement("div");
-        this._el_90 = t1;
+        this._login_comp_template$_el_90 = t1;
         t1.setAttribute(this.componentType._contentAttr, "");
-        this._login_comp_template$_el_36.appendChild(this._el_90);
-        t1 = this._el_90;
+        this._login_comp_template$_el_36.appendChild(this._login_comp_template$_el_90);
+        t1 = this._login_comp_template$_el_90;
         t1.className = "social";
         _text_91 = doc.createTextNode("\n      ");
         t1.appendChild(_text_91);
         t1 = doc.createElement("a");
         this._el_92 = t1;
         t1.setAttribute(this.componentType._contentAttr, "");
-        this._el_90.appendChild(this._el_92);
+        this._login_comp_template$_el_90.appendChild(this._el_92);
         t1 = this._el_92;
         t1.className = "btn-social btn-facebook";
         t1.setAttribute("href", "/auth/facebook");
@@ -76757,25 +77059,25 @@
         _text_95 = doc.createTextNode(" Sign in with Facebook\n      ");
         this._el_92.appendChild(_text_95);
         _text_96 = doc.createTextNode("\n\n      ");
-        this._el_90.appendChild(_text_96);
+        this._login_comp_template$_el_90.appendChild(_text_96);
         t1 = doc.createElement("a");
-        this._el_97 = t1;
+        this._login_comp_template$_el_97 = t1;
         t1.setAttribute(this.componentType._contentAttr, "");
-        this._el_90.appendChild(this._el_97);
-        t1 = this._el_97;
+        this._login_comp_template$_el_90.appendChild(this._login_comp_template$_el_97);
+        t1 = this._login_comp_template$_el_97;
         t1.className = "btn-social btn-google";
         t1.setAttribute("href", "/auth/google");
         _text_98 = doc.createTextNode("\n        ");
-        this._el_97.appendChild(_text_98);
+        this._login_comp_template$_el_97.appendChild(_text_98);
         t1 = doc.createElement("span");
         this._login_comp_template$_el_99 = t1;
         t1.setAttribute(this.componentType._contentAttr, "");
-        this._el_97.appendChild(this._login_comp_template$_el_99);
+        this._login_comp_template$_el_97.appendChild(this._login_comp_template$_el_99);
         this._login_comp_template$_el_99.className = "fa fa-google-plus";
         _text_100 = doc.createTextNode(" Sign in with Google\n      ");
-        this._el_97.appendChild(_text_100);
+        this._login_comp_template$_el_97.appendChild(_text_100);
         _text_101 = doc.createTextNode("\n    ");
-        this._el_90.appendChild(_text_101);
+        this._login_comp_template$_el_90.appendChild(_text_101);
         _text_102 = doc.createTextNode("\n  ");
         this._login_comp_template$_el_36.appendChild(_text_102);
         _text_103 = doc.createTextNode("\n\n  ");
@@ -76798,7 +77100,7 @@
         this._el_104.appendChild(_text_108);
         _text_109 = doc.createTextNode("\n");
         this._login_comp_template$_el_16.appendChild(_text_109);
-        this.listen$3(this._login_comp_template$_el_48, "submit", this.get$_handle_submit_48_0());
+        this.listen$3(this._el_48, "submit", this.get$_handle_submit_48_0());
         this.listen$3(this._login_comp_template$_el_55, "click", this.get$_handle_click_55_0());
         t1 = this.get$_handle_ngModelChange_64_0();
         this.listen$3(this._el_64, "ngModelChange", t1);
@@ -76822,7 +77124,7 @@
         this.listen$3(this._login_comp_template$_el_79, "keypress", this.get$_handle_keypress_79_4());
         this.listen$3(this._login_comp_template$_el_79, "focus", this.get$_handle_focus_79_5());
         this.listen$3(this._login_comp_template$_el_79, "mousedown", this.get$_handle_mousedown_79_6());
-        this.init$3([], [this._login_comp_template$_el_0, _text_1, this._login_comp_template$_el_2, _text_3, this._login_comp_template$_el_4, _text_5, _text_6, _text_7, this._login_comp_template$_el_8, _text_9, this._login_comp_template$_el_10, _text_11, this._login_comp_template$_el_12, _text_13, _text_14, _text_15, this._login_comp_template$_el_16, _text_17, this._login_comp_template$_el_18, _text_19, _text_20, _text_21, _text_22, this._login_comp_template$_el_23, _text_24, this._el_25, _text_26, this._login_comp_template$_el_27, this._login_comp_template$_el_28, _text_29, this._login_comp_template$_el_30, _text_31, _text_32, _text_33, _text_34, _text_35, this._login_comp_template$_el_36, _text_37, this._login_comp_template$_el_38, this._text_39, _text_40, this._el_41, _text_42, _anchor_43, _text_44, _text_45, this._login_comp_template$_el_46, _text_47, this._login_comp_template$_el_48, _text_49, this._login_comp_template$_el_50, _text_51, this._login_comp_template$_el_52, _text_53, _text_54, this._login_comp_template$_el_55, _text_56, _text_57, _text_58, this._login_comp_template$_el_59, _text_60, this._login_comp_template$_el_61, _text_62, _text_63, this._el_64, _text_65, _text_66, this._login_comp_template$_el_67, _text_68, this._login_comp_template$_el_69, _text_70, _text_71, this._login_comp_template$_el_72, this._login_comp_template$_el_73, _text_74, _text_75, this._login_comp_template$_el_76, _text_77, _text_78, this._login_comp_template$_el_79, _text_80, _text_81, _text_82, _text_83, _text_84, this._login_comp_template$_el_85, this._el_86, _text_87, _text_88, _text_89, this._el_90, _text_91, this._el_92, _text_93, this._login_comp_template$_el_94, _text_95, _text_96, this._el_97, _text_98, this._login_comp_template$_el_99, _text_100, _text_101, _text_102, _text_103, this._el_104, _text_105, this._el_106, _text_107, _text_108, _text_109], [subscription_0, subscription_1, subscription_2, subscription_3]);
+        this.init$3([], [this._login_comp_template$_el_0, _text_1, this._login_comp_template$_el_2, _text_3, this._login_comp_template$_el_4, _text_5, _text_6, _text_7, this._login_comp_template$_el_8, _text_9, this._login_comp_template$_el_10, _text_11, this._login_comp_template$_el_12, _text_13, _text_14, _text_15, this._login_comp_template$_el_16, _text_17, this._login_comp_template$_el_18, _text_19, _text_20, _text_21, _text_22, this._login_comp_template$_el_23, _text_24, this._el_25, _text_26, this._login_comp_template$_el_27, this._login_comp_template$_el_28, _text_29, this._login_comp_template$_el_30, _text_31, _text_32, _text_33, _text_34, _text_35, this._login_comp_template$_el_36, _text_37, this._login_comp_template$_el_38, this._text_39, _text_40, this._el_41, _text_42, _anchor_43, _text_44, _text_45, this._login_comp_template$_el_46, _text_47, this._el_48, _text_49, this._login_comp_template$_el_50, _text_51, this._login_comp_template$_el_52, _text_53, _text_54, this._login_comp_template$_el_55, _text_56, _text_57, _text_58, this._login_comp_template$_el_59, _text_60, this._login_comp_template$_el_61, _text_62, _text_63, this._el_64, _text_65, _text_66, this._login_comp_template$_el_67, _text_68, this._login_comp_template$_el_69, _text_70, _text_71, this._login_comp_template$_el_72, this._login_comp_template$_el_73, _text_74, _text_75, this._login_comp_template$_el_76, _text_77, _text_78, this._login_comp_template$_el_79, _text_80, _text_81, _text_82, _text_83, _text_84, this._login_comp_template$_el_85, this._el_86, _text_87, _text_88, _text_89, this._login_comp_template$_el_90, _text_91, this._el_92, _text_93, this._login_comp_template$_el_94, _text_95, _text_96, this._login_comp_template$_el_97, _text_98, this._login_comp_template$_el_99, _text_100, _text_101, _text_102, _text_103, this._el_104, _text_105, this._el_106, _text_107, _text_108, _text_109], [subscription_0, subscription_1, subscription_2, subscription_3]);
         return;
       },
       injectorGetInternal$3: function(token, requestNodeIndex, notFoundResult) {
@@ -76837,7 +77139,7 @@
         } else
           t2 = false;
         if (t2)
-          return this._MaterialDialogComponent_2_3;
+          return this._login_comp_template$_MaterialDialogComponent_2_3;
         t2 = token === C.Type_ModalComponent_Npb;
         if (t2) {
           if (typeof requestNodeIndex !== "number")
@@ -77130,7 +77432,7 @@
         if (changed)
           this._login_comp_template$_appEl_79.componentView.set$cdMode(C.ChangeDetectionStrategy_0);
         this.detectContentChildrenChanges$0();
-        this._MaterialDialogComponent_2_3._setHeaderFooterScrollBorder$0();
+        this._login_comp_template$_MaterialDialogComponent_2_3._setHeaderFooterScrollBorder$0();
         this._MaterialDialogComponent_10_3._setHeaderFooterScrollBorder$0();
         currVal_1 = this._login_comp_template$_ModalComponent_0_3._resolvedOverlayRef;
         currVal_1 = currVal_1 == null ? currVal_1 : J.get$attributes$x(currVal_1.elementRef)._html$_element.getAttribute("pane-id");
@@ -77181,10 +77483,10 @@
         }
         t1 = this._MaterialButtonComponent_79_4;
         currVal_32 = t1._isMouseDown || t1._focused ? 2 : 1;
-        if (Q.checkBinding(this._login_comp_template$_expr_32, currVal_32)) {
+        if (Q.checkBinding(this._expr_32, currVal_32)) {
           t1 = this._login_comp_template$_el_79;
           this.setAttr$3(t1, "elevation", C.JSInt_methods.toString$0(currVal_32));
-          this._login_comp_template$_expr_32 = currVal_32;
+          this._expr_32 = currVal_32;
         }
         this.detectViewChildrenChanges$0();
         if (this._cdState === C.ChangeDetectorState_0)
@@ -77193,7 +77495,7 @@
           this._MaterialInputComponent_76_8.ngAfterViewInit$0();
       },
       destroyInternal$0: function() {
-        this._MaterialDialogComponent_2_3._material_dialog$_disposer.dispose$0();
+        this._login_comp_template$_MaterialDialogComponent_2_3._material_dialog$_disposer.dispose$0();
         var t1 = this._login_comp_template$_ModalComponent_0_3;
         t1._isDestroyed = true;
         t1._disposer.dispose$0();
@@ -77646,7 +77948,7 @@
       M.initReflector9();
     },
     ViewProfileComp0: {
-      "^": "AppView;_profile_comp_template$_el_0,_profile_comp_template$_el_2,_profile_comp_template$_el_4,_profile_comp_template$_el_7,_profile_comp_template$_el_8,_profile_comp_template$_el_10,_NgForm_10_2,__ControlContainer_10_3,_profile_comp_template$_el_12,_profile_comp_template$_el_15,_profile_comp_template$_el_17,_profile_comp_template$_el_21,_profile_comp_template$_el_25,_profile_comp_template$_el_27,_text_28,_profile_comp_template$_el_30,_profile_comp_template$_appEl_32,_profile_comp_template$_TemplateRef_32_4,_profile_comp_template$_NgFor_32_5,_profile_comp_template$_el_35,_profile_comp_template$_el_37,_NgForm_37_2,__ControlContainer_37_3,_profile_comp_template$_el_39,_profile_comp_template$_el_41,_profile_comp_template$_el_44,_profile_comp_template$_appEl_44,_DeferredValidator_44_3,_NG_VALIDATORS_44_4,_NgModel_44_5,_RequiredValidator_44_6,_NgControl_44_7,_MaterialInputComponent_44_8,_BaseMaterialInput_44_9,_MaterialInputDefaultValueAccessor_44_10,__ReferenceDirective_44_11,__Focusable_44_12,_profile_comp_template$_el_46,_profile_comp_template$_el_49,_profile_comp_template$_el_51,_profile_comp_template$_el_54,_profile_comp_template$_appEl_54,_DeferredValidator_54_3,_NG_VALIDATORS_54_4,_NgModel_54_5,_NgControl_54_6,_MaterialInputComponent_54_7,_BaseMaterialInput_54_8,_MaterialInputDefaultValueAccessor_54_9,__ReferenceDirective_54_10,__Focusable_54_11,_profile_comp_template$_el_57,_el_60,_el_62,_profile_comp_template$_el_64,_profile_comp_template$_el_67,_profile_comp_template$_el_69,_profile_comp_template$_el_72,_appEl_72,_DeferredValidator_72_3,_NG_VALIDATORS_72_4,_NgModel_72_5,_NgControl_72_6,_MaterialInputComponent_72_7,_BaseMaterialInput_72_8,_MaterialInputDefaultValueAccessor_72_9,__ReferenceDirective_72_10,__Focusable_72_11,_el_75,_profile_comp_template$_el_77,_el_80,_appEl_80,_DeferredValidator_80_3,_NG_VALIDATORS_80_4,_NgModel_80_5,_NgControl_80_6,_MaterialInputComponent_80_7,_BaseMaterialInput_80_8,_MaterialInputDefaultValueAccessor_80_9,__ReferenceDirective_80_10,__Focusable_80_11,_profile_comp_template$_el_85,_profile_comp_template$_el_87,_profile_comp_template$_el_90,_appEl_90,_DeferredValidator_90_3,_NG_VALIDATORS_90_4,_NgModel_90_5,_RequiredValidator_90_6,_NgControl_90_7,_MaterialInputComponent_90_8,_BaseMaterialInput_90_9,_MaterialInputDefaultValueAccessor_90_10,__ReferenceDirective_90_11,__Focusable_90_12,_el_95,_profile_comp_template$_el_97,_el_98,_el_101,_el_103,_el_107,_el_109,_el_111,_el_115,_el_117,_el_120,_appEl_120,_DeferredValidator_120_3,_NG_VALIDATORS_120_4,_NgModel_120_5,_NgControl_120_6,_MaterialInputComponent_120_7,_BaseMaterialInput_120_8,_MaterialInputDefaultValueAccessor_120_9,__ReferenceDirective_120_10,__Focusable_120_11,_el_124,_el_127,_el_129,_appEl_129,_AcxDarkTheme_129_3,_MaterialButtonComponent_129_4,__ButtonDirective_129_5,_profile_comp_template$_expr_5,_profile_comp_template$_expr_6,_profile_comp_template$_expr_8,_profile_comp_template$_expr_9,_profile_comp_template$_expr_14,_profile_comp_template$_expr_15,_profile_comp_template$_expr_16,_profile_comp_template$_expr_17,_profile_comp_template$_expr_19,_profile_comp_template$_expr_20,_profile_comp_template$_expr_23,_profile_comp_template$_expr_25,_profile_comp_template$_expr_26,_profile_comp_template$_expr_30,_profile_comp_template$_expr_31,_profile_comp_template$_expr_34,_profile_comp_template$_expr_37,_profile_comp_template$_expr_38,_profile_comp_template$_expr_39,_expr_40,_expr_41,_expr_42,_expr_45,_expr_53,_expr_54,_expr_55,_expr_56,_expr_57,_expr_58,clazz,componentType,type,locals,parentInjector,declarationViewContainer,_cdMode,_skipChangeDetection,ref,rootNodesOrViewContainers,allNodes,_onDestroyCallbacks,subscriptions,contentChildren,viewChildren,renderParent,viewContainerElement,_cdState,ctx,projectableNodes,destroyed,_hasExternalHostElement",
+      "^": "AppView;_profile_comp_template$_el_0,_profile_comp_template$_el_2,_profile_comp_template$_el_4,_profile_comp_template$_el_7,_profile_comp_template$_el_8,_profile_comp_template$_el_10,_NgForm_10_2,__ControlContainer_10_3,_profile_comp_template$_el_12,_profile_comp_template$_el_15,_profile_comp_template$_el_17,_profile_comp_template$_el_21,_profile_comp_template$_el_25,_profile_comp_template$_el_27,_text_28,_profile_comp_template$_el_30,_profile_comp_template$_appEl_32,_profile_comp_template$_TemplateRef_32_4,_profile_comp_template$_NgFor_32_5,_profile_comp_template$_el_35,_profile_comp_template$_el_37,_NgForm_37_2,__ControlContainer_37_3,_profile_comp_template$_el_39,_profile_comp_template$_el_41,_profile_comp_template$_el_44,_profile_comp_template$_appEl_44,_DeferredValidator_44_3,_NG_VALIDATORS_44_4,_NgModel_44_5,_RequiredValidator_44_6,_NgControl_44_7,_MaterialInputComponent_44_8,_BaseMaterialInput_44_9,_MaterialInputDefaultValueAccessor_44_10,__ReferenceDirective_44_11,__Focusable_44_12,_profile_comp_template$_el_46,_profile_comp_template$_el_49,_profile_comp_template$_el_51,_profile_comp_template$_el_54,_profile_comp_template$_appEl_54,_DeferredValidator_54_3,_NG_VALIDATORS_54_4,_NgModel_54_5,_NgControl_54_6,_MaterialInputComponent_54_7,_BaseMaterialInput_54_8,_MaterialInputDefaultValueAccessor_54_9,__ReferenceDirective_54_10,__Focusable_54_11,_profile_comp_template$_el_57,_el_60,_el_62,_profile_comp_template$_el_64,_profile_comp_template$_el_67,_profile_comp_template$_el_69,_profile_comp_template$_el_72,_appEl_72,_DeferredValidator_72_3,_NG_VALIDATORS_72_4,_NgModel_72_5,_NgControl_72_6,_MaterialInputComponent_72_7,_BaseMaterialInput_72_8,_MaterialInputDefaultValueAccessor_72_9,__ReferenceDirective_72_10,__Focusable_72_11,_profile_comp_template$_el_75,_profile_comp_template$_el_77,_el_80,_appEl_80,_DeferredValidator_80_3,_NG_VALIDATORS_80_4,_NgModel_80_5,_NgControl_80_6,_MaterialInputComponent_80_7,_BaseMaterialInput_80_8,_MaterialInputDefaultValueAccessor_80_9,__ReferenceDirective_80_10,__Focusable_80_11,_profile_comp_template$_el_85,_profile_comp_template$_el_87,_profile_comp_template$_el_90,_appEl_90,_DeferredValidator_90_3,_NG_VALIDATORS_90_4,_NgModel_90_5,_RequiredValidator_90_6,_NgControl_90_7,_MaterialInputComponent_90_8,_BaseMaterialInput_90_9,_MaterialInputDefaultValueAccessor_90_10,__ReferenceDirective_90_11,__Focusable_90_12,_el_95,_profile_comp_template$_el_97,_el_98,_el_101,_el_103,_el_107,_el_109,_el_111,_el_115,_el_117,_el_120,_appEl_120,_DeferredValidator_120_3,_NG_VALIDATORS_120_4,_NgModel_120_5,_NgControl_120_6,_MaterialInputComponent_120_7,_BaseMaterialInput_120_8,_MaterialInputDefaultValueAccessor_120_9,__ReferenceDirective_120_10,__Focusable_120_11,_el_124,_el_127,_el_129,_appEl_129,_AcxDarkTheme_129_3,_MaterialButtonComponent_129_4,__ButtonDirective_129_5,_profile_comp_template$_expr_5,_profile_comp_template$_expr_6,_profile_comp_template$_expr_8,_profile_comp_template$_expr_9,_profile_comp_template$_expr_14,_profile_comp_template$_expr_15,_profile_comp_template$_expr_16,_profile_comp_template$_expr_17,_profile_comp_template$_expr_19,_profile_comp_template$_expr_20,_profile_comp_template$_expr_23,_profile_comp_template$_expr_25,_profile_comp_template$_expr_26,_profile_comp_template$_expr_30,_profile_comp_template$_expr_31,_profile_comp_template$_expr_34,_profile_comp_template$_expr_37,_profile_comp_template$_expr_38,_profile_comp_template$_expr_39,_expr_40,_expr_41,_expr_42,_expr_45,_expr_53,_expr_54,_expr_55,_expr_56,_expr_57,_expr_58,clazz,componentType,type,locals,parentInjector,declarationViewContainer,_cdMode,_skipChangeDetection,ref,rootNodesOrViewContainers,allNodes,_onDestroyCallbacks,subscriptions,contentChildren,viewChildren,renderParent,viewContainerElement,_cdState,ctx,projectableNodes,destroyed,_hasExternalHostElement",
       createInternal$1: function(rootSelector) {
         var parentRenderNode, doc, t1, _text_1, _text_3, _text_5, _text_6, _text_9, t2, _text_11, _text_13, _text_14, _text_16, _text_18, _text_19, _text_20, _text_22, _text_23, _text_24, _text_26, t3, _text_29, _text_31, _anchor_32, t4, t5, _text_33, _text_34, _text_36, _text_38, _text_40, _text_42, _text_43, compView_44, _text_45, _text_47, _text_48, _text_50, _text_52, _text_53, compView_54, _text_55, _text_56, _text_58, _text_59, _text_61, _text_63, _text_65, _text_66, _text_68, _text_70, _text_71, compView_72, _text_73, _text_74, _text_76, _text_78, _text_79, compView_80, _text_81, _text_82, _text_83, _text_84, _text_86, _text_88, _text_89, compView_90, _text_91, _text_92, _text_93, _text_94, _text_96, _text_99, _text_100, _text_102, _text_104, _text_105, _text_106, _text_108, _text_110, _text_112, _text_113, _text_114, _text_116, _text_118, _text_119, compView_120, _text_121, _text_122, _text_123, _text_125, _text_126, _text_128, compView_129, _text_130, _text_131, _text_132, subscription_0, subscription_1, subscription_2, subscription_3, subscription_4, subscription_5, subscription_6, subscription_7, subscription_8, subscription_9, subscription_10, subscription_11, subscription_12;
         parentRenderNode = this.initViewRoot$1(this.declarationViewContainer.nativeElement);
@@ -77999,27 +78301,27 @@
         _text_74 = doc.createTextNode("\n\n            ");
         this._el_62.appendChild(_text_74);
         t2 = doc.createElement("div");
-        this._el_75 = t2;
+        this._profile_comp_template$_el_75 = t2;
         t2.setAttribute(this.componentType._contentAttr, "");
-        this._el_62.appendChild(this._el_75);
-        t2 = this._el_75;
+        this._el_62.appendChild(this._profile_comp_template$_el_75);
+        t2 = this._profile_comp_template$_el_75;
         t2.className = "pass new";
         _text_76 = doc.createTextNode("\n              ");
         t2.appendChild(_text_76);
         t2 = doc.createElement("div");
         this._profile_comp_template$_el_77 = t2;
         t2.setAttribute(this.componentType._contentAttr, "");
-        this._el_75.appendChild(this._profile_comp_template$_el_77);
+        this._profile_comp_template$_el_75.appendChild(this._profile_comp_template$_el_77);
         t2 = this._profile_comp_template$_el_77;
         t2.className = "label";
         _text_78 = doc.createTextNode("New Password");
         t2.appendChild(_text_78);
         _text_79 = doc.createTextNode("\n              ");
-        this._el_75.appendChild(_text_79);
+        this._profile_comp_template$_el_75.appendChild(_text_79);
         t2 = doc.createElement("material-input");
         this._el_80 = t2;
         t2.setAttribute(this.componentType._contentAttr, "");
-        this._el_75.appendChild(this._el_80);
+        this._profile_comp_template$_el_75.appendChild(this._el_80);
         t2 = this._el_80;
         t2.className = "password themeable";
         t2.setAttribute("tabIndex", "-1");
@@ -78043,7 +78345,7 @@
         t2.componentView = compView_80;
         compView_80.createComp$2([[]], null);
         _text_81 = doc.createTextNode("\n            ");
-        this._el_75.appendChild(_text_81);
+        this._profile_comp_template$_el_75.appendChild(_text_81);
         _text_82 = doc.createTextNode("\n          ");
         this._el_62.appendChild(_text_82);
         _text_83 = doc.createTextNode("\n        ");
@@ -78324,7 +78626,7 @@
         this.listen$3(this._el_129, "keypress", this.get$_handle_keypress_129_3());
         this.listen$3(this._el_129, "focus", this.get$_handle_focus_129_4());
         this.listen$3(this._el_129, "mousedown", this.get$_handle_mousedown_129_5());
-        this.init$3([], [this._profile_comp_template$_el_0, _text_1, this._profile_comp_template$_el_2, _text_3, this._profile_comp_template$_el_4, _text_5, _text_6, this._profile_comp_template$_el_7, this._profile_comp_template$_el_8, _text_9, this._profile_comp_template$_el_10, _text_11, this._profile_comp_template$_el_12, _text_13, _text_14, this._profile_comp_template$_el_15, _text_16, this._profile_comp_template$_el_17, _text_18, _text_19, _text_20, this._profile_comp_template$_el_21, _text_22, _text_23, _text_24, this._profile_comp_template$_el_25, _text_26, this._profile_comp_template$_el_27, this._text_28, _text_29, this._profile_comp_template$_el_30, _text_31, _anchor_32, _text_33, _text_34, this._profile_comp_template$_el_35, _text_36, this._profile_comp_template$_el_37, _text_38, this._profile_comp_template$_el_39, _text_40, this._profile_comp_template$_el_41, _text_42, _text_43, this._profile_comp_template$_el_44, _text_45, this._profile_comp_template$_el_46, _text_47, _text_48, this._profile_comp_template$_el_49, _text_50, this._profile_comp_template$_el_51, _text_52, _text_53, this._profile_comp_template$_el_54, _text_55, _text_56, this._profile_comp_template$_el_57, _text_58, _text_59, this._el_60, _text_61, this._el_62, _text_63, this._profile_comp_template$_el_64, _text_65, _text_66, this._profile_comp_template$_el_67, _text_68, this._profile_comp_template$_el_69, _text_70, _text_71, this._profile_comp_template$_el_72, _text_73, _text_74, this._el_75, _text_76, this._profile_comp_template$_el_77, _text_78, _text_79, this._el_80, _text_81, _text_82, _text_83, _text_84, this._profile_comp_template$_el_85, _text_86, this._profile_comp_template$_el_87, _text_88, _text_89, this._profile_comp_template$_el_90, _text_91, _text_92, _text_93, _text_94, this._el_95, _text_96, this._profile_comp_template$_el_97, this._el_98, _text_99, _text_100, this._el_101, _text_102, this._el_103, _text_104, _text_105, _text_106, this._el_107, _text_108, this._el_109, _text_110, this._el_111, _text_112, _text_113, _text_114, this._el_115, _text_116, this._el_117, _text_118, _text_119, this._el_120, _text_121, _text_122, _text_123, this._el_124, _text_125, _text_126, this._el_127, _text_128, this._el_129, _text_130, _text_131, _text_132], [subscription_0, subscription_1, subscription_2, subscription_3, subscription_4, subscription_5, subscription_6, subscription_7, subscription_8, subscription_9, subscription_10, subscription_11, subscription_12]);
+        this.init$3([], [this._profile_comp_template$_el_0, _text_1, this._profile_comp_template$_el_2, _text_3, this._profile_comp_template$_el_4, _text_5, _text_6, this._profile_comp_template$_el_7, this._profile_comp_template$_el_8, _text_9, this._profile_comp_template$_el_10, _text_11, this._profile_comp_template$_el_12, _text_13, _text_14, this._profile_comp_template$_el_15, _text_16, this._profile_comp_template$_el_17, _text_18, _text_19, _text_20, this._profile_comp_template$_el_21, _text_22, _text_23, _text_24, this._profile_comp_template$_el_25, _text_26, this._profile_comp_template$_el_27, this._text_28, _text_29, this._profile_comp_template$_el_30, _text_31, _anchor_32, _text_33, _text_34, this._profile_comp_template$_el_35, _text_36, this._profile_comp_template$_el_37, _text_38, this._profile_comp_template$_el_39, _text_40, this._profile_comp_template$_el_41, _text_42, _text_43, this._profile_comp_template$_el_44, _text_45, this._profile_comp_template$_el_46, _text_47, _text_48, this._profile_comp_template$_el_49, _text_50, this._profile_comp_template$_el_51, _text_52, _text_53, this._profile_comp_template$_el_54, _text_55, _text_56, this._profile_comp_template$_el_57, _text_58, _text_59, this._el_60, _text_61, this._el_62, _text_63, this._profile_comp_template$_el_64, _text_65, _text_66, this._profile_comp_template$_el_67, _text_68, this._profile_comp_template$_el_69, _text_70, _text_71, this._profile_comp_template$_el_72, _text_73, _text_74, this._profile_comp_template$_el_75, _text_76, this._profile_comp_template$_el_77, _text_78, _text_79, this._el_80, _text_81, _text_82, _text_83, _text_84, this._profile_comp_template$_el_85, _text_86, this._profile_comp_template$_el_87, _text_88, _text_89, this._profile_comp_template$_el_90, _text_91, _text_92, _text_93, _text_94, this._el_95, _text_96, this._profile_comp_template$_el_97, this._el_98, _text_99, _text_100, this._el_101, _text_102, this._el_103, _text_104, _text_105, _text_106, this._el_107, _text_108, this._el_109, _text_110, this._el_111, _text_112, _text_113, _text_114, this._el_115, _text_116, this._el_117, _text_118, _text_119, this._el_120, _text_121, _text_122, _text_123, this._el_124, _text_125, _text_126, this._el_127, _text_128, this._el_129, _text_130, _text_131, _text_132], [subscription_0, subscription_1, subscription_2, subscription_3, subscription_4, subscription_5, subscription_6, subscription_7, subscription_8, subscription_9, subscription_10, subscription_11, subscription_12]);
         return;
       },
       injectorGetInternal$3: function(token, requestNodeIndex, notFoundResult) {
@@ -78756,7 +79058,7 @@
         }
         currVal_31 = !this.ctx.get$passwordChanging();
         if (Q.checkBinding(this._profile_comp_template$_expr_31, currVal_31)) {
-          this.updateClass$3(this._el_75, "hidden", currVal_31);
+          this.updateClass$3(this._profile_comp_template$_el_75, "hidden", currVal_31);
           this._profile_comp_template$_expr_31 = currVal_31;
         }
         currVal_39 = this.ctx.get$linkedToFacebook();
@@ -79713,7 +80015,7 @@
       M.initReflector9();
     },
     ViewSignupComp0: {
-      "^": "AppView;_signup_comp_template$_el_0,_signup_comp_template$_el_2,_signup_comp_template$_el_7,_signup_comp_template$_el_9,_signup_comp_template$_el_12,_signup_comp_template$_el_13,_signup_comp_template$_el_16,_signup_comp_template$_el_18,_signup_comp_template$_el_19,_signup_comp_template$_el_21,_signup_comp_template$_el_22,_signup_comp_template$_el_27,_signup_comp_template$_el_29,_text_30,_signup_comp_template$_el_32,_signup_comp_template$_el_34,_signup_comp_template$_el_36,_el_39,_appEl_39,_DeferredValidator_39_3,_NG_VALIDATORS_39_4,_NgModel_39_5,_RequiredValidator_39_6,_NgControl_39_7,_MaterialInputComponent_39_8,_BaseMaterialInput_39_9,_MaterialInputDefaultValueAccessor_39_10,__ReferenceDirective_39_11,__Focusable_39_12,_signup_comp_template$_el_42,_signup_comp_template$_el_44,_el_47,_appEl_47,_DeferredValidator_47_3,_NG_VALIDATORS_47_4,_NgModel_47_5,_RequiredValidator_47_6,_NgControl_47_7,_MaterialInputComponent_47_8,_BaseMaterialInput_47_9,_MaterialInputDefaultValueAccessor_47_10,__ReferenceDirective_47_11,__Focusable_47_12,_signup_comp_template$_el_50,_signup_comp_template$_el_52,_el_55,_appEl_55,_DeferredValidator_55_3,_NG_VALIDATORS_55_4,_NgModel_55_5,_RequiredValidator_55_6,_NgControl_55_7,_MaterialInputComponent_55_8,_BaseMaterialInput_55_9,_MaterialInputDefaultValueAccessor_55_10,__ReferenceDirective_55_11,__Focusable_55_12,_signup_comp_template$_el_59,_signup_comp_template$_el_61,_signup_comp_template$_el_63,_el_66,_el_68,_appEl_68,_DeferredValidator_68_3,_NG_VALIDATORS_68_4,_NgModel_68_5,_NgControl_68_6,_MaterialInputComponent_68_7,_BaseMaterialInput_68_8,_MaterialInputDefaultValueAccessor_68_9,__ReferenceDirective_68_10,__Focusable_68_11,_el_72,_signup_comp_template$_el_74,_el_77,_signup_comp_template$_el_79,_appEl_79,_DeferredValidator_79_3,_NG_VALIDATORS_79_4,_NgModel_79_5,_NgControl_79_6,_MaterialInputComponent_79_7,_BaseMaterialInput_79_8,_MaterialInputDefaultValueAccessor_79_9,__ReferenceDirective_79_10,__Focusable_79_11,_signup_comp_template$_el_85,_signup_comp_template$_el_87,_appEl_87,_AcxDarkTheme_87_3,_MaterialButtonComponent_87_4,__ButtonDirective_87_5,_signup_comp_template$_expr_1,_signup_comp_template$_expr_4,_signup_comp_template$_expr_5,_signup_comp_template$_expr_6,_signup_comp_template$_expr_9,_signup_comp_template$_expr_10,_signup_comp_template$_expr_11,_signup_comp_template$_expr_15,_signup_comp_template$_expr_16,_signup_comp_template$_expr_19,_signup_comp_template$_expr_20,_signup_comp_template$_expr_23,_signup_comp_template$_expr_24,_expr_33,_signup_comp_template$_expr_34,_signup_comp_template$_expr_35,_signup_comp_template$_expr_36,_signup_comp_template$_expr_37,_signup_comp_template$_expr_38,_expr_39,clazz,componentType,type,locals,parentInjector,declarationViewContainer,_cdMode,_skipChangeDetection,ref,rootNodesOrViewContainers,allNodes,_onDestroyCallbacks,subscriptions,contentChildren,viewChildren,renderParent,viewContainerElement,_cdState,ctx,projectableNodes,destroyed,_hasExternalHostElement",
+      "^": "AppView;_signup_comp_template$_el_0,_signup_comp_template$_el_2,_signup_comp_template$_el_7,_signup_comp_template$_el_9,_signup_comp_template$_el_12,_signup_comp_template$_el_13,_signup_comp_template$_el_16,_signup_comp_template$_el_18,_signup_comp_template$_el_19,_signup_comp_template$_el_21,_signup_comp_template$_el_22,_signup_comp_template$_el_27,_signup_comp_template$_el_29,_text_30,_signup_comp_template$_el_32,_signup_comp_template$_el_34,_signup_comp_template$_el_36,_el_39,_appEl_39,_DeferredValidator_39_3,_NG_VALIDATORS_39_4,_NgModel_39_5,_RequiredValidator_39_6,_NgControl_39_7,_MaterialInputComponent_39_8,_BaseMaterialInput_39_9,_MaterialInputDefaultValueAccessor_39_10,__ReferenceDirective_39_11,__Focusable_39_12,_signup_comp_template$_el_42,_signup_comp_template$_el_44,_el_47,_appEl_47,_DeferredValidator_47_3,_NG_VALIDATORS_47_4,_NgModel_47_5,_RequiredValidator_47_6,_NgControl_47_7,_MaterialInputComponent_47_8,_BaseMaterialInput_47_9,_MaterialInputDefaultValueAccessor_47_10,__ReferenceDirective_47_11,__Focusable_47_12,_signup_comp_template$_el_50,_signup_comp_template$_el_52,_el_55,_appEl_55,_DeferredValidator_55_3,_NG_VALIDATORS_55_4,_NgModel_55_5,_RequiredValidator_55_6,_NgControl_55_7,_MaterialInputComponent_55_8,_BaseMaterialInput_55_9,_MaterialInputDefaultValueAccessor_55_10,__ReferenceDirective_55_11,__Focusable_55_12,_signup_comp_template$_el_59,_signup_comp_template$_el_61,_signup_comp_template$_el_63,_el_66,_el_68,_appEl_68,_DeferredValidator_68_3,_NG_VALIDATORS_68_4,_NgModel_68_5,_NgControl_68_6,_MaterialInputComponent_68_7,_BaseMaterialInput_68_8,_MaterialInputDefaultValueAccessor_68_9,__ReferenceDirective_68_10,__Focusable_68_11,_el_72,_signup_comp_template$_el_74,_el_77,_signup_comp_template$_el_79,_appEl_79,_DeferredValidator_79_3,_NG_VALIDATORS_79_4,_NgModel_79_5,_NgControl_79_6,_MaterialInputComponent_79_7,_BaseMaterialInput_79_8,_MaterialInputDefaultValueAccessor_79_9,__ReferenceDirective_79_10,__Focusable_79_11,_signup_comp_template$_el_85,_el_87,_appEl_87,_AcxDarkTheme_87_3,_MaterialButtonComponent_87_4,__ButtonDirective_87_5,_signup_comp_template$_expr_1,_signup_comp_template$_expr_4,_signup_comp_template$_expr_5,_signup_comp_template$_expr_6,_signup_comp_template$_expr_9,_signup_comp_template$_expr_10,_signup_comp_template$_expr_11,_signup_comp_template$_expr_15,_signup_comp_template$_expr_16,_signup_comp_template$_expr_19,_signup_comp_template$_expr_20,_signup_comp_template$_expr_23,_signup_comp_template$_expr_24,_signup_comp_template$_expr_33,_expr_34,_expr_35,_signup_comp_template$_expr_36,_signup_comp_template$_expr_37,_signup_comp_template$_expr_38,_signup_comp_template$_expr_39,clazz,componentType,type,locals,parentInjector,declarationViewContainer,_cdMode,_skipChangeDetection,ref,rootNodesOrViewContainers,allNodes,_onDestroyCallbacks,subscriptions,contentChildren,viewChildren,renderParent,viewContainerElement,_cdState,ctx,projectableNodes,destroyed,_hasExternalHostElement",
       createInternal$1: function(rootSelector) {
         var parentRenderNode, doc, t1, _text_1, _text_3, _text_4, _text_5, _text_6, _text_8, _text_10, _text_11, _text_14, _text_15, _text_17, _text_20, _text_23, _text_24, _text_25, _text_26, _text_28, t2, _text_31, _text_33, _text_35, _text_37, _text_38, compView_39, _text_40, _text_41, _text_43, _text_45, _text_46, compView_47, _text_48, _text_49, _text_51, _text_53, _text_54, compView_55, _text_56, _text_57, _text_58, _text_60, _text_62, _text_64, _text_65, _text_67, compView_68, _text_69, _text_70, _text_71, _text_73, _text_75, _text_76, _text_78, compView_79, _text_80, _text_81, _text_82, _text_83, _text_84, _text_86, compView_87, _text_88, _text_89, _text_90, t3, subscription_0, subscription_1, subscription_2, subscription_3, subscription_4, subscription_5, subscription_6, subscription_7, subscription_8, subscription_9;
         parentRenderNode = this.initViewRoot$1(this.declarationViewContainer.nativeElement);
@@ -80127,21 +80429,21 @@
         _text_86 = doc.createTextNode("\n    ");
         this._signup_comp_template$_el_85.appendChild(_text_86);
         t1 = doc.createElement("material-button");
-        this._signup_comp_template$_el_87 = t1;
+        this._el_87 = t1;
         t1.setAttribute(this.componentType._contentAttr, "");
-        this._signup_comp_template$_el_85.appendChild(this._signup_comp_template$_el_87);
-        this._signup_comp_template$_el_87.setAttribute("animated", "true");
-        t1 = this._signup_comp_template$_el_87;
+        this._signup_comp_template$_el_85.appendChild(this._el_87);
+        this._el_87.setAttribute("animated", "true");
+        t1 = this._el_87;
         t1.className = "btn_login pos2";
         t1.setAttribute("raised", "");
-        this._signup_comp_template$_el_87.setAttribute("role", "button");
-        this._appEl_87 = new V.ViewContainer(87, 85, this, this._signup_comp_template$_el_87, null, null, null, null);
+        this._el_87.setAttribute("role", "button");
+        this._appEl_87 = new V.ViewContainer(87, 85, this, this._el_87, null, null, null, null);
         compView_87 = U.viewFactory_MaterialButtonComponent0(this.injector$1(87), this._appEl_87);
         t1 = J.$get$2$x(this.parentInjector, C.OpaqueToken_acxDarkTheme, null);
         t1 = new F.AcxDarkTheme(t1 == null ? false : t1);
         this._AcxDarkTheme_87_3 = t1;
         t2 = new Z.ElementRef(null);
-        t2.nativeElement = this._signup_comp_template$_el_87;
+        t2.nativeElement = this._el_87;
         t1 = B.MaterialButtonComponent$(t2, t1, compView_87.ref);
         this._MaterialButtonComponent_87_4 = t1;
         t2 = this._appEl_87;
@@ -80190,14 +80492,14 @@
         t3 = this._NgModel_79_5.update._controller;
         subscription_8 = new P._BroadcastStream(t3, [H.getTypeArgumentByIndex(t3, 0)]).listen$4$cancelOnError$onDone$onError(t2, null, null, null);
         subscription_9 = J.get$stream$x(this._MaterialInputComponent_79_7.onFocus.get$_lazy_event_emitter$_controller()).listen$4$cancelOnError$onDone$onError(t1, null, null, null);
-        this.listen$3(this._signup_comp_template$_el_87, "click", this.get$_handle_click_87_0());
-        this.listen$3(this._signup_comp_template$_el_87, "keyup.enter", this.get$_handle_keyup_enter_87_1());
-        this.listen$3(this._signup_comp_template$_el_87, "blur", this.get$_handle_blur_87_2());
-        this.listen$3(this._signup_comp_template$_el_87, "mouseup", this.get$_handle_mouseup_87_3());
-        this.listen$3(this._signup_comp_template$_el_87, "keypress", this.get$_handle_keypress_87_4());
-        this.listen$3(this._signup_comp_template$_el_87, "focus", this.get$_handle_focus_87_5());
-        this.listen$3(this._signup_comp_template$_el_87, "mousedown", this.get$_handle_mousedown_87_6());
-        this.init$3([], [this._signup_comp_template$_el_0, _text_1, this._signup_comp_template$_el_2, _text_3, _text_4, _text_5, _text_6, this._signup_comp_template$_el_7, _text_8, this._signup_comp_template$_el_9, _text_10, _text_11, this._signup_comp_template$_el_12, this._signup_comp_template$_el_13, _text_14, _text_15, this._signup_comp_template$_el_16, _text_17, this._signup_comp_template$_el_18, this._signup_comp_template$_el_19, _text_20, this._signup_comp_template$_el_21, this._signup_comp_template$_el_22, _text_23, _text_24, _text_25, _text_26, this._signup_comp_template$_el_27, _text_28, this._signup_comp_template$_el_29, this._text_30, _text_31, this._signup_comp_template$_el_32, _text_33, this._signup_comp_template$_el_34, _text_35, this._signup_comp_template$_el_36, _text_37, _text_38, this._el_39, _text_40, _text_41, this._signup_comp_template$_el_42, _text_43, this._signup_comp_template$_el_44, _text_45, _text_46, this._el_47, _text_48, _text_49, this._signup_comp_template$_el_50, _text_51, this._signup_comp_template$_el_52, _text_53, _text_54, this._el_55, _text_56, _text_57, _text_58, this._signup_comp_template$_el_59, _text_60, this._signup_comp_template$_el_61, _text_62, this._signup_comp_template$_el_63, _text_64, _text_65, this._el_66, _text_67, this._el_68, _text_69, _text_70, _text_71, this._el_72, _text_73, this._signup_comp_template$_el_74, _text_75, _text_76, this._el_77, _text_78, this._signup_comp_template$_el_79, _text_80, _text_81, _text_82, _text_83, _text_84, this._signup_comp_template$_el_85, _text_86, this._signup_comp_template$_el_87, _text_88, _text_89, _text_90], [subscription_0, subscription_1, subscription_2, subscription_3, subscription_4, subscription_5, subscription_6, subscription_7, subscription_8, subscription_9]);
+        this.listen$3(this._el_87, "click", this.get$_handle_click_87_0());
+        this.listen$3(this._el_87, "keyup.enter", this.get$_handle_keyup_enter_87_1());
+        this.listen$3(this._el_87, "blur", this.get$_handle_blur_87_2());
+        this.listen$3(this._el_87, "mouseup", this.get$_handle_mouseup_87_3());
+        this.listen$3(this._el_87, "keypress", this.get$_handle_keypress_87_4());
+        this.listen$3(this._el_87, "focus", this.get$_handle_focus_87_5());
+        this.listen$3(this._el_87, "mousedown", this.get$_handle_mousedown_87_6());
+        this.init$3([], [this._signup_comp_template$_el_0, _text_1, this._signup_comp_template$_el_2, _text_3, _text_4, _text_5, _text_6, this._signup_comp_template$_el_7, _text_8, this._signup_comp_template$_el_9, _text_10, _text_11, this._signup_comp_template$_el_12, this._signup_comp_template$_el_13, _text_14, _text_15, this._signup_comp_template$_el_16, _text_17, this._signup_comp_template$_el_18, this._signup_comp_template$_el_19, _text_20, this._signup_comp_template$_el_21, this._signup_comp_template$_el_22, _text_23, _text_24, _text_25, _text_26, this._signup_comp_template$_el_27, _text_28, this._signup_comp_template$_el_29, this._text_30, _text_31, this._signup_comp_template$_el_32, _text_33, this._signup_comp_template$_el_34, _text_35, this._signup_comp_template$_el_36, _text_37, _text_38, this._el_39, _text_40, _text_41, this._signup_comp_template$_el_42, _text_43, this._signup_comp_template$_el_44, _text_45, _text_46, this._el_47, _text_48, _text_49, this._signup_comp_template$_el_50, _text_51, this._signup_comp_template$_el_52, _text_53, _text_54, this._el_55, _text_56, _text_57, _text_58, this._signup_comp_template$_el_59, _text_60, this._signup_comp_template$_el_61, _text_62, this._signup_comp_template$_el_63, _text_64, _text_65, this._el_66, _text_67, this._el_68, _text_69, _text_70, _text_71, this._el_72, _text_73, this._signup_comp_template$_el_74, _text_75, _text_76, this._el_77, _text_78, this._signup_comp_template$_el_79, _text_80, _text_81, _text_82, _text_83, _text_84, this._signup_comp_template$_el_85, _text_86, this._el_87, _text_88, _text_89, _text_90], [subscription_0, subscription_1, subscription_2, subscription_3, subscription_4, subscription_5, subscription_6, subscription_7, subscription_8, subscription_9]);
         return;
       },
       injectorGetInternal$3: function(token, requestNodeIndex, notFoundResult) {
@@ -80499,19 +80801,19 @@
         if (changed)
           this._appEl_79.componentView.set$cdMode(C.ChangeDetectionStrategy_0);
         currVal_33 = this.ctx.get$submitEnabled() !== true;
-        if (Q.checkBinding(this._expr_33, currVal_33)) {
+        if (Q.checkBinding(this._signup_comp_template$_expr_33, currVal_33)) {
           t1 = this._MaterialButtonComponent_87_4;
           t1.toString;
           t1._button_decorator$_disabled = Y.getBool(currVal_33);
-          this._expr_33 = currVal_33;
+          this._signup_comp_template$_expr_33 = currVal_33;
           changed = true;
         } else
           changed = false;
-        if (Q.checkBinding(this._signup_comp_template$_expr_34, "")) {
+        if (Q.checkBinding(this._expr_34, "")) {
           t1 = this._MaterialButtonComponent_87_4;
           t1.toString;
           t1._raised = Y.getBool("");
-          this._signup_comp_template$_expr_34 = "";
+          this._expr_34 = "";
           changed = true;
         }
         if (changed)
@@ -80528,34 +80830,34 @@
           this._signup_comp_template$_expr_11 = currVal_11;
         }
         currVal_35 = this._MaterialButtonComponent_87_4._raised;
-        if (Q.checkBinding(this._signup_comp_template$_expr_35, currVal_35)) {
-          this.updateElemClass$3(this._signup_comp_template$_el_87, "is-raised", currVal_35);
-          this._signup_comp_template$_expr_35 = currVal_35;
+        if (Q.checkBinding(this._expr_35, currVal_35)) {
+          this.updateElemClass$3(this._el_87, "is-raised", currVal_35);
+          this._expr_35 = currVal_35;
         }
         currVal_36 = "" + this._MaterialButtonComponent_87_4._button_decorator$_disabled;
         if (Q.checkBinding(this._signup_comp_template$_expr_36, currVal_36)) {
-          t1 = this._signup_comp_template$_el_87;
+          t1 = this._el_87;
           this.setAttr$3(t1, "aria-disabled", currVal_36);
           this._signup_comp_template$_expr_36 = currVal_36;
         }
         t1 = this._MaterialButtonComponent_87_4;
         currVal_37 = t1._computeTabIndex$0();
         if (Q.checkBinding(this._signup_comp_template$_expr_37, currVal_37)) {
-          t1 = this._signup_comp_template$_el_87;
+          t1 = this._el_87;
           this.setAttr$3(t1, "tabindex", currVal_37 == null ? null : currVal_37);
           this._signup_comp_template$_expr_37 = currVal_37;
         }
         currVal_38 = this._MaterialButtonComponent_87_4._button_decorator$_disabled;
         if (Q.checkBinding(this._signup_comp_template$_expr_38, currVal_38)) {
-          this.updateElemClass$3(this._signup_comp_template$_el_87, "is-disabled", currVal_38);
+          this.updateElemClass$3(this._el_87, "is-disabled", currVal_38);
           this._signup_comp_template$_expr_38 = currVal_38;
         }
         t1 = this._MaterialButtonComponent_87_4;
         currVal_39 = t1._isMouseDown || t1._focused ? 2 : 1;
-        if (Q.checkBinding(this._expr_39, currVal_39)) {
-          t1 = this._signup_comp_template$_el_87;
+        if (Q.checkBinding(this._signup_comp_template$_expr_39, currVal_39)) {
+          t1 = this._el_87;
           this.setAttr$3(t1, "elevation", C.JSInt_methods.toString$0(currVal_39));
-          this._expr_39 = currVal_39;
+          this._signup_comp_template$_expr_39 = currVal_39;
         }
         this.detectViewChildrenChanges$0();
         if (this._cdState === C.ChangeDetectorState_0)
@@ -84350,6 +84652,8 @@
   C.List_UW6 = Isolate.makeConstantList([C.Type_ForgotPassComp_Ay6, C.List_empty]);
   C.ComponentFactory_43h = new D.ComponentFactory("forgot-pass-comp", D.forgot_pass_comp_template__viewFactory_ForgotPassCompHost0$closure(), C.Type_ForgotPassComp_Ay6, C.List_UW6);
   C.List_33r = Isolate.makeConstantList([C.ComponentFactory_43h]);
+  C.List_1qJ = Isolate.makeConstantList(['*[_ngcontent-%COMP%] {\r\n  font-family: Arial, Helvetica, sans-serif;\r\n}\r\n\r\n.files[_ngcontent-%COMP%] {\r\n  background-color: #e5e5e5 !important;\r\n}\r\n\r\n.files[_ngcontent-%COMP%]   .title[_ngcontent-%COMP%] {\r\n  background-color: #a4a383 !important;\r\n  width: calc(100% - 20px);\r\n  font-size: 20px;\r\n  color: #fff;\r\n  font-weight: normal !important;\r\n  height: 38px;\r\n  line-height: 36px;\r\n  padding: 0 10px;\r\n}\r\n\r\n.title[_ngcontent-%COMP%] {\r\n  font-weight: normal !important;\r\n}\r\n\r\nul[_ngcontent-%COMP%] {\r\n  padding: 0;\r\n}\r\n\r\n.fileThumb[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n  cursor: alias;\r\n  vertical-align: middle;\r\n}\r\n\r\n.rightDetails[_ngcontent-%COMP%] {\r\n  \r\n  display: inline-block;\r\n  vertical-align: middle;\r\n  \r\n}\r\n\r\n.line[_ngcontent-%COMP%]   a[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n  text-decoration: none;\r\n}\r\n\r\n.file[_ngcontent-%COMP%] {\r\n  width: 100%;\r\n  \r\n  \r\n  \r\n  clear: both;\r\n  border-radius: 3px;\r\n  -webkit-border-radius: 3px;\r\n  -moz-border-radius: 3px;\r\n  overflow: hidden;\r\n  padding: 0;\r\n}\r\n\r\n.file[_ngcontent-%COMP%]    > div[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n}\r\n\r\n.fileDesc[_ngcontent-%COMP%] {\r\n  position: relative;\r\n  \r\n  \r\n  width: 100%;\r\n}\r\n\r\n.thumb[_ngcontent-%COMP%] {\r\n  width: 100px;\r\n  height: 70px;\r\n  display: inline-block;\r\n}\r\n\r\n.fileProps[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n  vertical-align: top;\r\n  width: 100%;\r\n}\r\n\r\n.date[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n  padding-right: 0.5em;\r\n}\r\n\r\n.profileImg[_ngcontent-%COMP%] {\r\n  width: 28px;\r\n  height: 28px;\r\n  display: inherit;\r\n  \r\n  background-color: white;\r\n}\r\n\r\n.fileName[_ngcontent-%COMP%] {\r\n  color: #000;\r\n  font-weight: bold;\r\n  font-size: 13px;\r\n  text-decoration: none;\r\n}\r\n\r\n.content[_ngcontent-%COMP%] {\r\n}\r\n\r\n.list[_ngcontent-%COMP%] {\r\n  list-style-type: none;\r\n  padding: 0;\r\n  margin-top: 0;\r\n}\r\n\r\n.version[_ngcontent-%COMP%] {\r\n  color: #727272;\r\n  font-size: 14px;\r\n}\r\n\r\n.selected[_ngcontent-%COMP%] {\r\n  \r\n  font-weight: normal;\r\n  text-decoration: none;\r\n  color: inherit;\r\n}\r\n\r\n.newTopic[_ngcontent-%COMP%] {\r\n  padding: 20px 15px;\r\n  background: #D6D5CE;\r\n  margin-bottom: 1px;\r\n}\r\n\r\n.newComment[_ngcontent-%COMP%] {\r\n  width: calc(100% - 30px) !important;\r\n}\r\n\r\na[_ngcontent-%COMP%] {\r\n  color: #00AEF0;\r\n}\r\n\r\n.commentList[_ngcontent-%COMP%] {\r\n  list-style-type: none;\r\n}\r\n\r\n.commentList[_ngcontent-%COMP%]    > li[_ngcontent-%COMP%], .header_file[_ngcontent-%COMP%] {\r\n  clear: both;\r\n}\r\n\r\n.header_file[_ngcontent-%COMP%] {\r\n  position: relative;\r\n}\r\n\r\n.commentList[_ngcontent-%COMP%]    > li[_ngcontent-%COMP%] {\r\n  overflow: hidden;\r\n}\r\n\r\n.author[_ngcontent-%COMP%] {\r\n  display: block;\r\n}\r\n\r\n.author[_ngcontent-%COMP%]   .profileImg[_ngcontent-%COMP%] {\r\n  display: inline !important;\r\n}\r\n\r\n.comment[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n  padding: 0.2em;\r\n  width: calc(100% - 17em);\r\n  color: rgba(0, 0, 0, 0.85);\r\n  margin: 2px;\r\n  margin-left: 10px;\r\n}\r\n\r\n.comm-ts[_ngcontent-%COMP%], .action-ts[_ngcontent-%COMP%] {\r\n  margin-top: 2px;\r\n  font-size: 9px;\r\n  color: #B5B5B5;\r\n  display: block;\r\n  line-height: 9px;\r\n  letter-spacing: -0.3px;\r\n}\r\n\r\n.disabled[_ngcontent-%COMP%] {\r\n  opacity: 0.2;\r\n}\r\n\r\n.version_part_li[_ngcontent-%COMP%] {\r\n  border-bottom: 1px solid #e6e6e6;\r\n  background-color: rgba(255, 255, 255, 0.4);\r\n  overflow: hidden;\r\n  border-radius: 0 0 3px 3px;\r\n  -webkit-border-radius: 0 0 3px 3px;\r\n  -moz-border-radius: 0 0 3px 3px;\r\n}\r\n\r\n.version[_ngcontent-%COMP%]   .header[_ngcontent-%COMP%]   a[_ngcontent-%COMP%] {\r\n  color: black;\r\n  text-decoration: underline;\r\n}\r\n\r\n.version[_ngcontent-%COMP%]   .header[_ngcontent-%COMP%] {\r\n  position: relative;\r\n  color: black;\r\n  height: 2em;\r\n}\r\n\r\n.versionTitle[_ngcontent-%COMP%] {\r\n  height: 15px;\r\n  line-height: 13px;\r\n  padding: 0 0.5em;\r\n  background: white;\r\n  color: #727272;\r\n  font-size: 13px;\r\n  -webkit-border-radius: 0 0 3px 3px;\r\n  -moz-border-radius: 0 0 3px 3px;\r\n  border-radius: 0 0 3px 3px;\r\n  margin-bottom: 1px;\r\n  border-bottom: 1px solid #e6e6e6;\r\n}\r\n\r\n.versionTitle[_ngcontent-%COMP%]    > div[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n  vertical-align: middle;\r\n}\r\n\r\n.versionTitle[_ngcontent-%COMP%]   .switchOnComments[_ngcontent-%COMP%] {\r\n  font-family: FontAwesome;\r\n  height: 5px;\r\n}\r\n\r\n.version[_ngcontent-%COMP%]   .header[_ngcontent-%COMP%]   .left[_ngcontent-%COMP%] {\r\n  background-color: white;\r\n  z-index: 2;\r\n  position: absolute;\r\n  display: inline-block;\r\n  padding-right: 0.5em;\r\n}\r\n\r\n.version[_ngcontent-%COMP%]   .header[_ngcontent-%COMP%]   .right[_ngcontent-%COMP%] {\r\n  background-color: white;\r\n  z-index: 2;\r\n  position: absolute;\r\n  display: inline-block;\r\n  padding: 0 1.5em 0 0.5em;\r\n  right: 2em;\r\n}\r\n\r\n.switchOnComments[_ngcontent-%COMP%] {\r\n  float: right;\r\n  z-index: 2;\r\n  font-size: 2em;\r\n  color: rgba(0, 0, 0, 0.9);\r\n  cursor: pointer;\r\n  position: relative;\r\n  top: -5px;\r\n}\r\n\r\n.versions[_ngcontent-%COMP%]   li[_ngcontent-%COMP%] {\r\n  list-style-type: none;\r\n  margin-bottom: 2px;\r\n}\r\n\r\n.addCommentBlock[_ngcontent-%COMP%] {\r\n  margin-left: 1em;\r\n  padding: 1em 0;\r\n}\r\n\r\n.commentBlock[_ngcontent-%COMP%]   .author[_ngcontent-%COMP%], .approveBlock[_ngcontent-%COMP%]   .author[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n}\r\n\r\n.versionComments[_ngcontent-%COMP%] {\r\n  visibility: hidden;\r\n  transition: all 1s;\r\n}\r\n\r\n\r\n\r\n\r\n.versionComments.activep[_ngcontent-%COMP%] {\r\n  transition: all 1s;\r\n  visibility: visible !important;\r\n}\r\n\r\n.versionComments[_ngcontent-%COMP%]   .addCommentBlock[_ngcontent-%COMP%] {\r\n  margin-bottom: 2em;\r\n}\r\n\r\n.uploadStatus[_ngcontent-%COMP%] {\r\n  position: absolute;\r\n  left: -13px;\r\n  top: -13px;\r\n  z-index: 9;\r\n  opacity: 0.7;\r\n}\r\n\r\n.isUploading[_ngcontent-%COMP%] {\r\n  height: 0.8em;\r\n  width: 30%;\r\n  padding: 0;\r\n  margin: auto;\r\n  border: 1px solid;\r\n  border-radius: 2px;\r\n}\r\n\r\n.progress[_ngcontent-%COMP%] {\r\n  height: 0.8em;\r\n  width: 10%;\r\n  border-radius: 2px;\r\n  margin: 0;\r\n  animation: nomAnim;\r\n  animation-iteration-count: 100;\r\n  animation-duration: 5s;\r\n  animation-timing-function: linear;\r\n}\r\n\r\n.arrow_box_in[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n  width: calc(100% - 5em);\r\n  float: right;\r\n  \r\n}\r\n\r\n.arrow_box[_ngcontent-%COMP%] {\r\n  position: relative;\r\n  background: #fff;\r\n  border: 1px solid #d3d3d3;\r\n  display: inline-flex;\r\n  vertical-align: middle;\r\n  color: #000;\r\n  font-size: 12px;\r\n  min-height: calc(25px - 0.4em);\r\n  padding: 0.3em !important;\r\n  -webkit-border-radius: 3px;\r\n  -moz-border-radius: 3px;\r\n  border-radius: 3px;\r\n  line-height: 1.5;\r\n}\r\n\r\n.arrow_box[_ngcontent-%COMP%]:after, .arrow_box[_ngcontent-%COMP%]:before {\r\n  right: 100%;\r\n  top: 13px;\r\n  border: solid transparent;\r\n  content: " ";\r\n  height: 0;\r\n  width: 0;\r\n  position: absolute;\r\n  pointer-events: none;\r\n}\r\n\r\n.arrow_box[_ngcontent-%COMP%]:after {\r\n  border-color: rgba(250, 250, 250, 0);\r\n  border-right-color: #fff;\r\n  border-width: 7px;\r\n  margin-top: -7px;\r\n}\r\n\r\n.arrow_box[_ngcontent-%COMP%]:before {\r\n  border-color: rgba(230, 230, 230, 0);\r\n  border-right-color: #d3d3d3;\r\n  border-width: 8px;\r\n  margin-top: -8px;\r\n}\r\n\r\nli.more[_ngcontent-%COMP%]    > div[_ngcontent-%COMP%] {\r\n  border: 1px solid rgba(0, 0, 0, 0.2);\r\n  display: inline-block;\r\n  padding: 0em 0.5em;\r\n  border-radius: 0.2em;\r\n  margin: 0.5em 0;\r\n  cursor: pointer;\r\n}\r\n\r\nli.more[_ngcontent-%COMP%] {\r\n  text-align: center;\r\n}\r\n\r\n.menuItem[_ngcontent-%COMP%] {\r\n  display: block;\r\n  text-transform: initial;\r\n}\r\n\r\n.popupHeader[_ngcontent-%COMP%] {\r\n  padding: 0.5em;\r\n}\r\n\r\n.popupContent[_ngcontent-%COMP%] {\r\n  overflow: hidden;\r\n  padding: 0.2em;\r\n}\r\n\r\n.lockedFile[_ngcontent-%COMP%] {\r\n  border: 1px solid #a4a384;\r\n  background-color: rgba(0, 0, 0, 0.1);\r\n  padding: 0.1em;\r\n}\r\n\r\n.lockedFile[_ngcontent-%COMP%]   .left[_ngcontent-%COMP%]   img[_ngcontent-%COMP%] {\r\n  width: 30px;\r\n  height: 30px;\r\n  -webkit-border-radius: 50%;\r\n  -moz-border-radius: 50%;\r\n  -o-border-radius: 50%;\r\n  border-radius: 50%;\r\n\r\n}\r\n\r\n.lockTime[_ngcontent-%COMP%] {\r\n  font-size: 12px;\r\n  font-family: Arial, Helvetica, sans-serif\r\n}\r\n\r\n.lockedFile[_ngcontent-%COMP%]   .lockText[_ngcontent-%COMP%] {\r\n  margin-left: 10px\r\n}\r\n\r\n.lockedFile[_ngcontent-%COMP%]    > div[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n  vertical-align: middle;\r\n  text-align: center\r\n}\r\n\r\n.lockText[_ngcontent-%COMP%] {\r\n  color: #a4a384;\r\n  font-weight: bold;\r\n}\r\n\r\n\r\n.fileThumb[_ngcontent-%COMP%]   .fileThumb_bg[_ngcontent-%COMP%] {\r\n  \r\n  \r\n  position: relative;\r\n}\r\n\r\n.locked[_ngcontent-%COMP%]   .fileThumb[_ngcontent-%COMP%]   .fileThumb_bg[_ngcontent-%COMP%]:after {\r\n  content: "";\r\n  background: url("../images/pen_locked.png") no-repeat center center;\r\n  top: calc(50% - 18px);\r\n  width: 36px;\r\n  height: 36px;\r\n  position: absolute;\r\n  display: inline-block;\r\n  line-height: 0;\r\n  text-align: center;\r\n  opacity: 1;\r\n  z-index: 99 !important;\r\n  left: 0;\r\n  right: auto;\r\n  margin-left: calc(50% - 18px);\r\n}\r\n\r\n.locked[_ngcontent-%COMP%]   .fileThumb[_ngcontent-%COMP%]   .fileThumb_bg[_ngcontent-%COMP%]:before {\r\n  content: \'\';\r\n  background: rgba(164, 163, 132, 0.7);\r\n  bottom: 0;\r\n  top: 0;\r\n  opacity: 0;\r\n  \r\n}\r\n\r\n.fileThumb[_ngcontent-%COMP%]   .fileThumb_bg[_ngcontent-%COMP%]:after {\r\n  content: "";\r\n  \r\n  background: url("../images/valid_big.png") no-repeat center center;\r\n  top: 0;\r\n  right: 0;\r\n  width: 27px;\r\n  height: 27px;\r\n  position: absolute;\r\n  display: inline-block;\r\n  line-height: 0;\r\n  text-align: center;\r\n  opacity: 0;\r\n  margin-left: calc(99% - 27px);\r\n  z-index: 99 !important;\r\n}\r\n\r\n.fileThumb[_ngcontent-%COMP%]   img[_ngcontent-%COMP%] {\r\n  max-width: 100%;\r\n  height: auto;\r\n  \r\n}\r\n\r\n.thumbnail[_ngcontent-%COMP%] {\r\n\r\n  padding: 0 !important;\r\n  margin-bottom: 0 !important;\r\n  border-radius: 0 !important;\r\n\r\n}\r\n\r\n.locked[_ngcontent-%COMP%]   .fileThumb[_ngcontent-%COMP%]   .fileThumb_bg[_ngcontent-%COMP%]:before, .locked[_ngcontent-%COMP%]   .fileThumb[_ngcontent-%COMP%]   .fileThumb_bg[_ngcontent-%COMP%]:after, .approved[_ngcontent-%COMP%]   .fileThumb[_ngcontent-%COMP%]   .fileThumb_bg[_ngcontent-%COMP%]:after {\r\n  opacity: 1;\r\n  \r\n}\r\n\r\n.locked[_ngcontent-%COMP%]   .fileThumb[_ngcontent-%COMP%]   .fileThumb_bg[_ngcontent-%COMP%]:before, .locked[_ngcontent-%COMP%]   .fileThumb[_ngcontent-%COMP%]   .fileThumb_bg[_ngcontent-%COMP%]:after, .approved[_ngcontent-%COMP%]   .fileThumb[_ngcontent-%COMP%]   .fileThumb_bg[_ngcontent-%COMP%]:after {\r\n  position: absolute;\r\n  left: 0;\r\n  right: 0;\r\n  z-index: 1;\r\n  \r\n  \r\n  \r\n}\r\n\r\n.approved[_ngcontent-%COMP%]   .fileThumb[_ngcontent-%COMP%]   .fileThumb_bg[_ngcontent-%COMP%]   img[_ngcontent-%COMP%] {\r\n  opacity: 1 !important;\r\n}\r\n\r\n.icons[_ngcontent-%COMP%] {\r\n  float: right;\r\n  vertical-align: baseline;\r\n}\r\n\r\n.arrowbottom[_ngcontent-%COMP%] {\r\n  font-size: 30px;\r\n}\r\n\r\n.fileInfo[_ngcontent-%COMP%] {\r\n  font-size: 11px;\r\n}\r\n\r\n.menuItem[_ngcontent-%COMP%] {\r\n  border-bottom: 1px solid #cacaca !important;\r\n}\r\n\r\n.commentBlock[_ngcontent-%COMP%], .line1[_ngcontent-%COMP%], .approveBlock[_ngcontent-%COMP%] {\r\n  width: 4.3em;\r\n  display: inline-block;\r\n  vertical-align: top;\r\n  text-align: center;\r\n  padding: 0;\r\n}\r\n\r\n.rightdesc[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n  \r\n  vertical-align: middle;\r\n  position: relative;\r\n}\r\n\r\n.fileSize[_ngcontent-%COMP%], .filetypedoc[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n  font-size: 13px;\r\n  color: #000;\r\n}\r\n\r\n.fileversion[_ngcontent-%COMP%] {\r\n  background-color: #1A1A99;\r\n  color: white;\r\n  border-radius: 50%;\r\n  -webkit-border-radius: 50%;\r\n  width: 27px;\r\n  height: 27px;\r\n  line-height: 26px;\r\n  text-align: center;\r\n  display: inline-block;\r\n  font-size: 13px;\r\n  letter-spacing: -0.5px;\r\n  float: right;\r\n  margin: 3px 5px 0 0;\r\n}\r\n\r\n@keyframes nomAnim {\r\n  from {\r\n    background-color: #9D7E90;\r\n    margin-left: 0%;\r\n  }\r\n  50% {\r\n    background-color: #BFBB97;\r\n    margin-left: 90%;\r\n  }\r\n  to {\r\n    background-color: #9D7E90;\r\n    margin-left: 0%;\r\n  }\r\n}\r\n\r\n.ownAction[_ngcontent-%COMP%]   .arrow_box[_ngcontent-%COMP%] {\r\n  background: #D5F0FF !important;\r\n  border: 1px solid rgba(0, 0, 0, 0.25);\r\n}\r\n\r\n.ownAction[_ngcontent-%COMP%]   .arrow_box[_ngcontent-%COMP%]:after {\r\n  border-color: rgba(250, 250, 250, 0);\r\n  border-left-color: #D5F0FF;\r\n}\r\n\r\n.ownAction[_ngcontent-%COMP%]   .arrow_box[_ngcontent-%COMP%]:before {\r\n  border-color: rgba(230, 230, 230, 0);\r\n  border-left-color: rgba(0, 0, 0, 0.25);\r\n  border-width: 8px;\r\n  margin-top: -8px;\r\n}\r\n\r\n.ownAction[_ngcontent-%COMP%]   .approveBlock[_ngcontent-%COMP%], .ownAction[_ngcontent-%COMP%]   .commentBlock[_ngcontent-%COMP%] {\r\n  float: right;\r\n}\r\n\r\n.ownAction[_ngcontent-%COMP%]   .arrow_box_in[_ngcontent-%COMP%] {\r\n  float: left;\r\n  text-align: right;\r\n}\r\n\r\n.ownAction[_ngcontent-%COMP%]   .arrow_box[_ngcontent-%COMP%]:after, .ownAction[_ngcontent-%COMP%]   .arrow_box[_ngcontent-%COMP%]:before {\r\n  right: 0;\r\n  left: 100%;\r\n}\r\n\r\n.ownAction[_ngcontent-%COMP%]   .author[_ngcontent-%COMP%] {\r\n  display: none;\r\n}\r\n\r\n.ownAction[_ngcontent-%COMP%]   .comm-ts[_ngcontent-%COMP%], .ownAction[_ngcontent-%COMP%]   .action-ts[_ngcontent-%COMP%] {\r\n  margin-top: 6px;\r\n  display: inline-block;\r\n  vertical-align: middle;\r\n}']);
+  C.List_43h0 = Isolate.makeConstantList([C.List_1qJ]);
   C.Type_DomService_2jN = H.createRuntimeType("DomService");
   C.List_Type_DomService_2jN = Isolate.makeConstantList([C.Type_DomService_2jN]);
   C.Type_Focusable_Aov = H.createRuntimeType("Focusable");
@@ -84661,12 +84965,8 @@
   C.List_KLP = Isolate.makeConstantList([C.ComponentFactory_aLX]);
   C.List_Yy9 = Isolate.makeConstantList([".selected[_ngcontent-%COMP%] {\r\n\tbackground-color: #bfbb97 !important;\r\n\tcolor: white !important;\r\n}\r\n\r\n.label[_ngcontent-%COMP%] {\r\n\tcolor: rgba(255,255,255,0.4);\r\n}\r\n.label[_ngcontent-%COMP%]:first-letter { text-transform:  uppercase}\r\n\r\n\r\n.places[_ngcontent-%COMP%] {\r\n\tmargin: 0 0 2em 0;\r\n\tlist-style-type: none;\r\n\tpadding: 0;\r\n\tborder-bottom: 0.3em white;\r\n}\r\n\r\n.places[_ngcontent-%COMP%]   li[_ngcontent-%COMP%] {\r\n\tcursor: pointer;\r\n}\r\n\r\n.places[_ngcontent-%COMP%]   li[_ngcontent-%COMP%]:hover {\r\n\tcolor: #607D8B;\r\n\tbackground-color: #DDD;\r\n\tleft: .1em;\r\n\tpadding: 7px 5px 16px 5px;\r\n}\r\n\r\n.addplace[_ngcontent-%COMP%] {\r\n\tlist-style-type: none;\r\n\tbackground-color: #DDD;\r\n\tpadding: 7px 5px 16px 5px;\r\n\tcolor: #607D8B;\r\n}\r\n.places[_ngcontent-%COMP%]   li.selected[_ngcontent-%COMP%]:hover {\r\n\tbackground-color: #BBD8DC !important;\r\n\tcolor: white;\r\n}\r\n\r\n.places[_ngcontent-%COMP%]   .text[_ngcontent-%COMP%] {\r\n\tpadding: 0.5em;\r\n}\r\n\r\n.places[_ngcontent-%COMP%]   .badge[_ngcontent-%COMP%] {\r\n\tdisplay: none;\r\n}\r\n\r\nbutton[_ngcontent-%COMP%]:hover {\r\n\tbackground-color: #cfd8dc;\r\n}\r\n\r\n\r\n.header[_ngcontent-%COMP%]   .add[_ngcontent-%COMP%] {\r\n\tfloat: right;\r\n\tmargin-right: 0.5em;\r\n}\r\n\r\n.placeItem[_ngcontent-%COMP%] {\r\n\twidth: calc( 100% - 1em );\r\n\tbackground-color: rgba(255, 255, 255, 0.2);\r\n\tcolor: rgba(255, 255, 255, 0.5);\r\n\tbox-shadow: 0 0 0 2px rgba(192, 161, 107, 0.46);\r\n\tborder-radius: 0 0.3em 0.3em 0;\r\n\tmargin: 0.5em 0;\r\n\tpadding: 0.3em;\r\n}\r\n\r\n.placeItem[_ngcontent-%COMP%]    > span[_ngcontent-%COMP%] {\r\n\tpadding-left: 0.5em;\r\n}\r\n\r\n.addBtn[_ngcontent-%COMP%] {\r\n\tpadding-left: 0.5em;\r\n}\r\n\r\n.panel-name[_ngcontent-%COMP%]  {\r\n\tpadding-right: 0px;\r\n\twidth: 100%;\r\n\tfont-weight: bold !important;\r\n\r\n\tfont-size: 16px !important;\r\n}"]);
   C.List_KTp = Isolate.makeConstantList([C.List_Yy9]);
-  C.List_kW8 = Isolate.makeConstantList(['ul[_ngcontent-%COMP%] {\r\n  margin: 0;\r\n  padding: 0;\r\n}\r\n\r\n.subjects[_ngcontent-%COMP%] {\r\n  background-color: #c1cdd4;\r\n  border-radius: 0 0 7px 7px;\r\n  -webkit-border-radius: 0 0 7px 7px;\r\n  -moz-border-radius: 0 0 7px 7px;\r\n  -o-border-radius: 0 0 7px 7px;\r\n}\r\n\r\nli.user[_ngcontent-%COMP%] {\r\n  list-style-type: none;\r\n  display: inline-block;\r\n}\r\n\r\nli.subjectItem[_ngcontent-%COMP%] {\r\n  padding: 0 0.2em;\r\n  cursor: pointer;\r\n  border-bottom: 1px solid rgba(0, 0, 0, 0.1);\r\n  background: white;\r\n  position: relative;\r\n  line-height: 30px;\r\n  height: 33px;\r\n  overflow: hidden;\r\n}\r\n\r\nli.subjectItem.selected[_ngcontent-%COMP%], li.subjectItem[_ngcontent-%COMP%]:hover {\r\n  background-color: #a4a384;\r\n  color: white;\r\n  \r\n}\r\n\r\nli.subjectItem.selected[_ngcontent-%COMP%]   .version[_ngcontent-%COMP%], li.subjectItem[_ngcontent-%COMP%]:hover   .version[_ngcontent-%COMP%] {\r\n  background-color: rgba(255, 255, 255, 0.5);\r\n  color: #fff;\r\n}\r\n\r\nli.subjectItem.selected[_ngcontent-%COMP%]:after, li.subjectItem[_ngcontent-%COMP%]:hover:after {\r\n  left: 100%;\r\n  top: 50%;\r\n  border: solid transparent;\r\n  content: " ";\r\n  height: 0;\r\n  width: 0;\r\n  position: absolute;\r\n  pointer-events: none;\r\n  border-color: rgba(85, 134, 164, 0);\r\n  border-left-color: #a4a384;\r\n  border-width: 10px;\r\n  margin-top: -10px;\r\n}\r\n\r\nli.subjectItem[_ngcontent-%COMP%]:hover {\r\n  background: #a4a384;\r\n}\r\n\r\nli.subjectItem.selected[_ngcontent-%COMP%]   .name[_ngcontent-%COMP%], li.subjectItem[_ngcontent-%COMP%]:hover   .name[_ngcontent-%COMP%] {\r\n  color: white;\r\n}\r\n\r\nli.subjectItem.selected[_ngcontent-%COMP%]   .thumb[_ngcontent-%COMP%]    > img[_ngcontent-%COMP%] {\r\n  \r\n  border: 1px solid #a4a384;\r\n  position: relative;\r\n}\r\n\r\n.approved[_ngcontent-%COMP%]   .thumb[_ngcontent-%COMP%] {\r\n  position: relative\r\n}\r\n\r\n.approved[_ngcontent-%COMP%]   .thumb[_ngcontent-%COMP%]:before {\r\n  width: 17px;\r\n  height: 17px;\r\n  content: "";\r\n  position: absolute;\r\n  right: 0;\r\n  top: 1px;\r\n  z-index: 9;\r\n  background: url("../images/approved.png");\r\n  background-repeat: no-repeat;\r\n  display: block;\r\n}\r\n\r\n.locked[_ngcontent-%COMP%]   .thumb[_ngcontent-%COMP%]:after {\r\n  width: 18px;\r\n  height: 18px;\r\n  content: "";\r\n  position: absolute;\r\n  left: -9px;\r\n  top: 7px;\r\n  z-index: 9;\r\n  background: url("../images/locked_sm.png");\r\n  background-repeat: no-repeat;\r\n  display: block;\r\n}\r\n\r\n.subject[_ngcontent-%COMP%] {\r\n  margin: 0 5px 0 15px;\r\n}\r\n\r\n.subject[_ngcontent-%COMP%]    > div[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n  vertical-align: middle;\r\n}\r\n\r\n.thumb[_ngcontent-%COMP%] {\r\n  margin-right: 7px;\r\n  position: relative;\r\n  margin-top: 2px;\r\n}\r\n\r\n.thumb[_ngcontent-%COMP%]    > img[_ngcontent-%COMP%] {\r\n  border: 1px solid #aaaaaa;\r\n  height: 28px;\r\n}\r\n\r\n.name[_ngcontent-%COMP%] {\r\n  font-size: 13px;\r\n  color: #5587A2;\r\n}\r\n\r\n.version[_ngcontent-%COMP%] {\r\n  background-color: #5486a2;\r\n  color: white;\r\n  border-radius: 50%;\r\n  -webkit-border-radius: 50%;\r\n  padding: 0.1em;\r\n  font-size: 12px;\r\n  width: 26px;\r\n  height: 26px;\r\n  line-height: 26px;\r\n  text-align: center;\r\n  margin: -8px 0 0 5px !important;\r\n}\r\n\r\n.users[_ngcontent-%COMP%], .users[_ngcontent-%COMP%]   .user[_ngcontent-%COMP%] {\r\n  float: right;\r\n}\r\n\r\n.users[_ngcontent-%COMP%]   .user[_ngcontent-%COMP%] {\r\n  margin-right: 0;\r\n}\r\n\r\n.uploadDropZone[_ngcontent-%COMP%] {\r\n  border-radius: 0 0 7px 7px;\r\n  -webkit-border-radius: 0 0 7px 7px;\r\n  -moz-border-radius: 0 0 7px 7px;\r\n  margin: 0 auto;\r\n  background-color: #f2f2f2;\r\n  text-align: center;\r\n  -webkit-transition: 0.3s;\r\n  -o-transition: 0.3s;\r\n  transition: 0.3s;\r\n  position: relative;\r\n  border: 2px solid lightgray !important;\r\n  width: calc(100% - 4px);\r\n}\r\n\r\n.uploadFile[_ngcontent-%COMP%] {\r\n  border-radius: 0 0 7px 7px;\r\n  -webkit-border-radius: 0 0 7px 7px;\r\n  -moz-border-radius: 0 0 7px 7px;\r\n  padding: 34px 0 !important;\r\n  width: 100% !important;\r\n}\r\n\r\n.profileImg[_ngcontent-%COMP%]    > img[_ngcontent-%COMP%] {\r\n  width: 26px;\r\n  border-radius: 1em;\r\n  height: 26px;\r\n  padding: 1px;\r\n\r\n}\r\n\r\n.profileImg.validator[_ngcontent-%COMP%]    > img[_ngcontent-%COMP%] {\r\n  border: 2px solid green;\r\n}\r\n\r\n.title[_ngcontent-%COMP%] {\r\n  \r\n  width: calc(100% - 20px);\r\n  font-size: 20px;\r\n  color: #fff;\r\n  background-color: #5486a2;\r\n  font-family: Arial, Helvetica, sans-serif;\r\n  font-weight: normal;\r\n  height: 38px;\r\n  line-height: 36px;\r\n  padding: 0 10px;\r\n}\r\n\r\n.newTopic[_ngcontent-%COMP%] {\r\n  margin: 20px 15px;\r\n}\r\n\r\n.addBtn.addpeople[_ngcontent-%COMP%], .users_list[_ngcontent-%COMP%] {\r\n  float: right\r\n}\r\n\r\n.users_list[_ngcontent-%COMP%] {\r\n  margin-right: 3px;\r\n  margin-top: 4px;\r\n  list-style: none;\r\n}\r\n\r\n.useractive[_ngcontent-%COMP%] {\r\n  -webkit-border-radius: 50%;\r\n  -moz-border-radius: 50%;\r\n  border-radius: 50%;\r\n  float: right;\r\n  margin-right: 3px;\r\n}\r\n\r\n.useractive[_ngcontent-%COMP%]   img[_ngcontent-%COMP%] {\r\n  width: 30px;\r\n  height: 30px;\r\n  -webkit-border-radius: 50%;\r\n  -moz-border-radius: 50%;\r\n  border-radius: 50%;\r\n}\r\n\r\n.useractive.approver[_ngcontent-%COMP%]   img[_ngcontent-%COMP%] {\r\n  box-shadow: 0 0 0 2px #7FBB01;\r\n  margin-top: -1px;\r\n}\r\n\r\n.userInfoPopup[_ngcontent-%COMP%] {\r\n  width: 14em;\r\n  padding: 0.5em 0.4em 0.3em 0.5em;\r\n  -webkit-border-radius: 3px;\r\n  -moz-border-radius: 3px;\r\n  border-radius: 3px;\r\n  border: 1px solid rgba(0, 0, 0, 0.25);\r\n  font-size: 0.8em;\r\n  vertical-align: middle;\r\n}\r\n\r\n.userInfoPopup[_ngcontent-%COMP%]   .userInfo[_ngcontent-%COMP%] {\r\n  position: relative;\r\n  margin-bottom: 0.2em;\r\n}\r\n\r\n.userInfoPopup[_ngcontent-%COMP%]   .userInfo[_ngcontent-%COMP%]:before {\r\n  font-family: FontAwesome;\r\n  font-size: 22px;\r\n  margin-right: 0.6em;\r\n  width: 1em;\r\n  vertical-align: middle;\r\n  text-align: left;\r\n\r\n}\r\n\r\n.userInfoPopup[_ngcontent-%COMP%]   .userInfo.role[_ngcontent-%COMP%]:before {\r\n  display: inline-block;\r\n  content: \'\';\r\n  width: 17px;\r\n  height:17px;\r\n  background: url("../images/approved.png") no-repeat;\r\n  position: absolute;\r\n  left: 0;\r\n}\r\n.userInfoPopup[_ngcontent-%COMP%]   .userInfo.role[_ngcontent-%COMP%] {\r\n  padding-left: 26px;\r\n}\r\n\r\n.userInfoPopup[_ngcontent-%COMP%]   .userInfo.email[_ngcontent-%COMP%]:before {\r\n  content: "\\f0e0";\r\n  color: #F05D00;\r\n  font-size: 17px;\r\n}\r\n\r\n.userInfoPopup[_ngcontent-%COMP%]   .userInfo.skype[_ngcontent-%COMP%]:before {\r\n  content: "\\f17e";\r\n  color: #00AFF0;\r\n  margin-right: 0.2em;\r\n}\r\n\r\n.userInfoPopup[_ngcontent-%COMP%]   .userInfo.timezone[_ngcontent-%COMP%]:before {\r\n  content: "\\f041";\r\n  color: #F2542F;\r\n  margin-left: 0.1em;\r\n  margin-right: 8px;\r\n}\r\n\r\n.userInfoPopup[_ngcontent-%COMP%]   .userInfo.timezone[_ngcontent-%COMP%] {\r\n  margin-bottom: 1em;\r\n}\r\n\r\n.userInfoPopup[_ngcontent-%COMP%]   .lastcnx[_ngcontent-%COMP%] {\r\n  color: rgba(0, 0, 0, 0.28);\r\n}\r\n\r\n.userInfoPopup[_ngcontent-%COMP%]   .name[_ngcontent-%COMP%] {\r\n  margin-bottom: 0.5em;\r\n  background: url("../images/tiret-black.png") repeat-x center center;\r\n}\r\n\r\n.userInfoPopup[_ngcontent-%COMP%]   .name[_ngcontent-%COMP%]   span[_ngcontent-%COMP%] {\r\n  background: white;\r\n  padding-right: 0.5em;\r\n  display: inline;\r\n  color: #273B54;\r\n  font-weight: bold;\r\n}']);
-  C.List_KUR = Isolate.makeConstantList([C.List_kW8]);
   C.List_6e2 = Isolate.makeConstantList([".forgotPass[_ngcontent-%COMP%] {\r\n  background: #EDEEEF;\r\n  width: 23em;\r\n}\r\n\r\n.header[_ngcontent-%COMP%] {\r\n  background-color: #343E53;\r\n  color: white;\r\n  padding: 1em;\r\n  font-size: 1.2em;\r\n}\r\n\r\n.close[_ngcontent-%COMP%] {\r\n  float: right;\r\n  cursor: pointer;\r\n}\r\n\r\n.content[_ngcontent-%COMP%] {\r\n  padding: 1em 1em 0;\r\n}\r\n\r\n.content[_ngcontent-%COMP%]   p[_ngcontent-%COMP%] {\r\n  font-size: 1em;\r\n  color: #0A0A0A;\r\n  margin-bottom: 1.5em;\r\n}\r\n\r\n.messages[_ngcontent-%COMP%]    > div[_ngcontent-%COMP%] {\r\n  font-weight: bold;\r\n  color: #0DAF0D;\r\n  margin-bottom: 9px\r\n}\r\n\r\nmaterial-input[_ngcontent-%COMP%] {\r\n  width: 100% !important;\r\n}\r\n\r\nmaterial-button[_ngcontent-%COMP%] {\r\n  min-width: 10.14em !important;\r\n  margin: 0 0 24px 70px !important;\r\n}\r\n.emaillab[_ngcontent-%COMP%] {\r\n  font-weight: bold;\r\n}"]);
   C.List_L2O = Isolate.makeConstantList([C.List_6e2]);
-  C.List_l44 = Isolate.makeConstantList(['*[_ngcontent-%COMP%] {\r\n  font-family: Arial, Helvetica, sans-serif;\r\n}\r\n\r\n.files[_ngcontent-%COMP%] {\r\n  background-color: #e5e5e5 !important;\r\n}\r\n\r\n.files[_ngcontent-%COMP%]   .title[_ngcontent-%COMP%] {\r\n  background-color: #a4a383 !important;\r\n  width: calc(100% - 20px);\r\n  font-size: 20px;\r\n  color: #fff;\r\n  font-weight: normal !important;\r\n  height: 38px;\r\n  line-height: 36px;\r\n  padding: 0 10px;\r\n}\r\n\r\n.title[_ngcontent-%COMP%] {\r\n  font-weight: normal !important;\r\n}\r\n\r\nul[_ngcontent-%COMP%] {\r\n  padding: 0;\r\n}\r\n\r\n.fileThumb[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n  cursor: alias;\r\n  vertical-align: middle;\r\n}\r\n\r\n.rightDetails[_ngcontent-%COMP%] {\r\n  width: calc(100% - 110px);\r\n  display: inline-block;\r\n  vertical-align: middle;\r\n  \r\n}\r\n\r\n.line[_ngcontent-%COMP%]   a[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n  text-decoration: none;\r\n}\r\n\r\n.file[_ngcontent-%COMP%] {\r\n  width: 100%;\r\n  \r\n  \r\n  \r\n  clear: both;\r\n  border-radius: 3px;\r\n  -webkit-border-radius: 3px;\r\n  -moz-border-radius: 3px;\r\n  overflow: hidden;\r\n  padding: 0;\r\n}\r\n\r\n.file[_ngcontent-%COMP%]    > div[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n}\r\n\r\n.fileDesc[_ngcontent-%COMP%] {\r\n  position: relative;\r\n  \r\n  \r\n  width: 100%;\r\n}\r\n\r\n.thumb[_ngcontent-%COMP%] {\r\n  width: 100px;\r\n  height: 70px;\r\n  display: inline-block;\r\n}\r\n\r\n.fileProps[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n  vertical-align: top;\r\n  margin-left: 0.2em;\r\n  width: 100%;\r\n}\r\n\r\n.date[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n  padding-right: 0.5em;\r\n}\r\n\r\n.profileImg[_ngcontent-%COMP%] {\r\n  width: 28px;\r\n  height: 28px;\r\n  display: inherit;\r\n  \r\n  background-color: white;\r\n}\r\n\r\n.fileName[_ngcontent-%COMP%] {\r\n  color: #000;\r\n  font-weight: bold;\r\n  font-size: 13px;\r\n  text-decoration: none;\r\n}\r\n\r\n.content[_ngcontent-%COMP%] {\r\n}\r\n\r\n.list[_ngcontent-%COMP%] {\r\n  list-style-type: none;\r\n  padding: 0;\r\n  margin-top: 0;\r\n}\r\n\r\n.version[_ngcontent-%COMP%] {\r\n  color: #727272;\r\n  font-size: 14px;\r\n  background-color: rgba(255, 255, 255, 0.4);\r\n}\r\n\r\n.selected[_ngcontent-%COMP%] {\r\n  \r\n  font-weight: normal;\r\n  text-decoration: none;\r\n  color: inherit;\r\n}\r\n\r\n.newTopic[_ngcontent-%COMP%] {\r\n  padding: 20px 15px;\r\n  background: #D6D5CE;\r\n  margin-bottom: 1px;\r\n}\r\n\r\n.newComment[_ngcontent-%COMP%] {\r\n  width: calc(100% - 30px) !important;\r\n}\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\na[_ngcontent-%COMP%] {\r\n  color: #00AEF0;\r\n}\r\n\r\n.commentList[_ngcontent-%COMP%] {\r\n  list-style-type: none;\r\n  padding: 2px 3px;\r\n}\r\n\r\n.commentList[_ngcontent-%COMP%]    > li[_ngcontent-%COMP%], .header_file[_ngcontent-%COMP%] {\r\n  clear: both;\r\n  \r\n  \r\n  \r\n  \r\n  \r\n  padding: 0.2em 0.2em 0.1em;\r\n}\r\n\r\n.header_file[_ngcontent-%COMP%] {\r\n  position: relative;\r\n}\r\n\r\n.commentList[_ngcontent-%COMP%]    > li[_ngcontent-%COMP%] {\r\n  \r\n  overflow: hidden;\r\n}\r\n\r\n.author[_ngcontent-%COMP%] {\r\n  display: block;\r\n}\r\n\r\n.author[_ngcontent-%COMP%]   .profileImg[_ngcontent-%COMP%] {\r\n  display: inline !important;\r\n}\r\n\r\n.comment[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n  padding: 0.2em;\r\n  width: calc(100% - 17em);\r\n  color: rgba(0, 0, 0, 0.85);\r\n  margin: 2px;\r\n  margin-left: 10px;\r\n}\r\n\r\n.comm-ts[_ngcontent-%COMP%], .action-ts[_ngcontent-%COMP%] {\r\n  margin-top: 2px;\r\n  font-size: 9px;\r\n  color: #B5B5B5;\r\n  display: block;\r\n  line-height: 9px;\r\n  letter-spacing: -0.3px;\r\n}\r\n\r\n.disabled[_ngcontent-%COMP%] {\r\n  opacity: 0.2;\r\n}\r\n\r\n\r\n.version_part_li[_ngcontent-%COMP%] {\r\n  \r\n  padding-top: 0;\r\n  padding-bottom: 0.2em;\r\n  border-bottom: 1px solid #e6e6e6;\r\n}\r\n\r\n.versions[_ngcontent-%COMP%]   ul[_ngcontent-%COMP%] {\r\n}\r\n\r\n.version[_ngcontent-%COMP%]   .header[_ngcontent-%COMP%]   a[_ngcontent-%COMP%] {\r\n  color: black;\r\n  text-decoration: underline;\r\n}\r\n\r\n.version[_ngcontent-%COMP%]   .header[_ngcontent-%COMP%] {\r\n  position: relative;\r\n  color: black;\r\n  height: 2em;\r\n}\r\n\r\n.versionTitle[_ngcontent-%COMP%] {\r\n  height: 15px;\r\n  line-height: 13px;\r\n  padding: 0 0.5em;\r\n  background: white;\r\n  color: #727272;\r\n  font-size: 13px;\r\n  -webkit-border-radius: 3px;\r\n  -moz-border-radius: 3px;\r\n  border-radius: 3px;\r\n  margin-bottom: 1px;\r\n}\r\n\r\n.versionTitle[_ngcontent-%COMP%]    > div[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n  vertical-align: middle;\r\n}\r\n\r\n.versionTitle[_ngcontent-%COMP%]   .switchOnComments[_ngcontent-%COMP%] {\r\n  font-family: FontAwesome;\r\n  height: 5px;\r\n}\r\n\r\n.version[_ngcontent-%COMP%]   .header[_ngcontent-%COMP%]   .left[_ngcontent-%COMP%] {\r\n  background-color: white;\r\n  z-index: 2;\r\n  position: absolute;\r\n  display: inline-block;\r\n  padding-right: 0.5em;\r\n}\r\n\r\n.version[_ngcontent-%COMP%]   .header[_ngcontent-%COMP%]   .right[_ngcontent-%COMP%] {\r\n  background-color: white;\r\n  z-index: 2;\r\n  position: absolute;\r\n  display: inline-block;\r\n  padding: 0 1.5em 0 0.5em;\r\n  right: 2em;\r\n}\r\n\r\n.switchOnComments[_ngcontent-%COMP%] {\r\n  float: right;\r\n  z-index: 2;\r\n  font-size: 2em;\r\n  color: rgba(0, 0, 0, 0.9);\r\n  cursor: pointer;\r\n  position: relative;\r\n  top: -5px;\r\n}\r\n\r\n.versions[_ngcontent-%COMP%]   li[_ngcontent-%COMP%] {\r\n  list-style-type: none;\r\n  \r\n  \r\n  \r\n  \r\n}\r\n\r\n.addCommentBlock[_ngcontent-%COMP%] {\r\n  margin-left: 1em;\r\n  padding: 1em 0;\r\n}\r\n\r\n.commentBlock[_ngcontent-%COMP%]   .author[_ngcontent-%COMP%], .approveBlock[_ngcontent-%COMP%]   .author[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n}\r\n\r\n.versionComments[_ngcontent-%COMP%] {\r\n\r\n  visibility: hidden;\r\n  transition: all 1s;\r\n  min-height: 5em;\r\n  background: red;\r\n}\r\n\r\n\r\n\r\n\r\n.versionComments.activep[_ngcontent-%COMP%] {\r\n  transition: all 1s;\r\n  visibility: visible !important;\r\n  background: pink;\r\n}\r\n\r\n.versionComments[_ngcontent-%COMP%]   .addCommentBlock[_ngcontent-%COMP%] {\r\n  margin-bottom: 2em;\r\n}\r\n\r\n.uploadStatus[_ngcontent-%COMP%] {\r\n  position: absolute;\r\n  left: -13px;\r\n  top: -13px;\r\n  z-index: 9;\r\n  opacity: 0.7;\r\n}\r\n\r\n.isUploading[_ngcontent-%COMP%] {\r\n  height: 0.8em;\r\n  width: 30%;\r\n  padding: 0;\r\n  margin: auto;\r\n  border: 1px solid;\r\n  border-radius: 2px;\r\n}\r\n\r\n.progress[_ngcontent-%COMP%] {\r\n  height: 0.8em;\r\n  width: 10%;\r\n  border-radius: 2px;\r\n  margin: 0;\r\n  animation: nomAnim;\r\n  animation-iteration-count: 100;\r\n  animation-duration: 5s;\r\n  animation-timing-function: linear;\r\n}\r\n\r\n.arrow_box_in[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n  width: calc(100% - 5em);\r\n  float: right;\r\n}\r\n\r\n.arrow_box[_ngcontent-%COMP%] {\r\n  position: relative;\r\n  background: #fff;\r\n  border: 1px solid #d3d3d3;\r\n  display: inline-flex;\r\n  vertical-align: middle;\r\n  color: #000;\r\n  font-size: 12px;\r\n  min-height: calc(25px - 0.4em);\r\n  padding: 0.2em 0.8em !important;\r\n  -webkit-border-radius: 3px;\r\n  -moz-border-radius: 3px;\r\n  border-radius: 3px;\r\n  line-height: 1.5;\r\n}\r\n\r\n.arrow_box[_ngcontent-%COMP%]:after, .arrow_box[_ngcontent-%COMP%]:before {\r\n  right: 100%;\r\n  top: 13px;\r\n  border: solid transparent;\r\n  content: " ";\r\n  height: 0;\r\n  width: 0;\r\n  position: absolute;\r\n  pointer-events: none;\r\n}\r\n\r\n.arrow_box[_ngcontent-%COMP%]:after {\r\n  border-color: rgba(250, 250, 250, 0);\r\n  border-right-color: #fff;\r\n  border-width: 7px;\r\n  margin-top: -7px;\r\n}\r\n\r\n.arrow_box[_ngcontent-%COMP%]:before {\r\n  border-color: rgba(230, 230, 230, 0);\r\n  border-right-color: #d3d3d3;\r\n  border-width: 8px;\r\n  margin-top: -8px;\r\n}\r\n\r\nli.more[_ngcontent-%COMP%]    > div[_ngcontent-%COMP%] {\r\n  border: 1px solid rgba(0, 0, 0, 0.2);\r\n  display: inline-block;\r\n  padding: 0em 0.5em;\r\n  border-radius: 0.2em;\r\n  margin: 0.5em 0;\r\n  cursor: pointer;\r\n}\r\n\r\nli.more[_ngcontent-%COMP%] {\r\n  text-align: center;\r\n}\r\n\r\n.menuItem[_ngcontent-%COMP%] {\r\n  display: block;\r\n  text-transform: initial;\r\n}\r\n\r\n.popupHeader[_ngcontent-%COMP%] {\r\n  padding: 0.5em;\r\n}\r\n\r\n.popupContent[_ngcontent-%COMP%] {\r\n  overflow: hidden;\r\n  padding: 0.2em;\r\n}\r\n\r\n.lockedFile[_ngcontent-%COMP%] {\r\n  border: 1px solid #a4a384;\r\n  background-color: rgba(0, 0, 0, 0.1);\r\n  padding: 0.1em;\r\n}\r\n\r\n.lockedFile[_ngcontent-%COMP%]   .left[_ngcontent-%COMP%]   img[_ngcontent-%COMP%] {\r\n  width: 30px;\r\n  height: 30px;\r\n  -webkit-border-radius: 50%;\r\n  -moz-border-radius: 50%;\r\n  -o-border-radius: 50%;\r\n  border-radius: 50%;\r\n\r\n}\r\n\r\n.lockTime[_ngcontent-%COMP%] {\r\n  font-size: 12px;\r\n  font-family: Arial, Helvetica, sans-serif\r\n}\r\n\r\n.lockedFile[_ngcontent-%COMP%]   .lockText[_ngcontent-%COMP%] {\r\n  margin-left: 10px\r\n}\r\n\r\n.lockedFile[_ngcontent-%COMP%]    > div[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n  vertical-align: middle;\r\n  text-align: center\r\n}\r\n\r\n.lockText[_ngcontent-%COMP%] {\r\n  color: #a4a384;\r\n  font-weight: bold;\r\n}\r\n\r\n\r\n.fileThumb[_ngcontent-%COMP%]   .fileThumb_bg[_ngcontent-%COMP%] {\r\n  \r\n  \r\n  position: relative;\r\n}\r\n\r\n.locked[_ngcontent-%COMP%]   .fileThumb[_ngcontent-%COMP%]   .fileThumb_bg[_ngcontent-%COMP%]:after {\r\n  content: "";\r\n  background: url("../images/pen_locked.png") no-repeat center center;\r\n  top: calc(50% - 18px);\r\n  width: 36px;\r\n  height: 36px;\r\n  position: absolute;\r\n  display: inline-block;\r\n  line-height: 0;\r\n  text-align: center;\r\n  opacity: 1;\r\n  z-index: 99 !important;\r\n  left: 0;\r\n  right: auto;\r\n  margin-left: calc(50% - 18px);\r\n}\r\n\r\n.locked[_ngcontent-%COMP%]   .fileThumb[_ngcontent-%COMP%]   .fileThumb_bg[_ngcontent-%COMP%]:before {\r\n  content: \'\';\r\n  background: rgba(164, 163, 132, 0.7);\r\n  bottom: 0;\r\n  top: 0;\r\n  opacity: 0;\r\n  \r\n}\r\n\r\n.fileThumb[_ngcontent-%COMP%]   .fileThumb_bg[_ngcontent-%COMP%]:after {\r\n  content: "";\r\n  \r\n  background: url("../images/valid_big.png") no-repeat center center;\r\n  top: 0;\r\n  right: 0;\r\n  width: 27px;\r\n  height: 27px;\r\n  position: absolute;\r\n  display: inline-block;\r\n  line-height: 0;\r\n  text-align: center;\r\n  opacity: 0;\r\n  margin-left: calc(99% - 27px);\r\n  z-index: 99 !important;\r\n}\r\n\r\n.fileThumb[_ngcontent-%COMP%]   img[_ngcontent-%COMP%] {\r\n  max-width: 100%;\r\n  height: auto;\r\n  \r\n}\r\n\r\n.thumbnail[_ngcontent-%COMP%] {\r\n\r\n  padding: 0 !important;\r\n  margin-bottom: 0 !important;\r\n  border-radius: 0 !important;\r\n\r\n}\r\n\r\n.locked[_ngcontent-%COMP%]   .fileThumb[_ngcontent-%COMP%]   .fileThumb_bg[_ngcontent-%COMP%]:before, .locked[_ngcontent-%COMP%]   .fileThumb[_ngcontent-%COMP%]   .fileThumb_bg[_ngcontent-%COMP%]:after, .approved[_ngcontent-%COMP%]   .fileThumb[_ngcontent-%COMP%]   .fileThumb_bg[_ngcontent-%COMP%]:after {\r\n  opacity: 1;\r\n  \r\n}\r\n\r\n.locked[_ngcontent-%COMP%]   .fileThumb[_ngcontent-%COMP%]   .fileThumb_bg[_ngcontent-%COMP%]:before, .locked[_ngcontent-%COMP%]   .fileThumb[_ngcontent-%COMP%]   .fileThumb_bg[_ngcontent-%COMP%]:after, .approved[_ngcontent-%COMP%]   .fileThumb[_ngcontent-%COMP%]   .fileThumb_bg[_ngcontent-%COMP%]:after {\r\n  position: absolute;\r\n  left: 0;\r\n  right: 0;\r\n  z-index: 1;\r\n  \r\n  \r\n  \r\n}\r\n\r\n.approved[_ngcontent-%COMP%]   .fileThumb[_ngcontent-%COMP%]   .fileThumb_bg[_ngcontent-%COMP%]   img[_ngcontent-%COMP%] {\r\n  opacity: 1 !important;\r\n}\r\n\r\n.icons[_ngcontent-%COMP%] {\r\n  float: right;\r\n  vertical-align: baseline;\r\n}\r\n\r\n.arrowbottom[_ngcontent-%COMP%] {\r\n  font-size: 30px;\r\n}\r\n\r\n.fileInfo[_ngcontent-%COMP%] {\r\n  font-size: 11px;\r\n}\r\n\r\n.menuItem[_ngcontent-%COMP%] {\r\n  border-bottom: 1px solid #cacaca !important;\r\n}\r\n\r\n.commentBlock[_ngcontent-%COMP%], .line1[_ngcontent-%COMP%], .approveBlock[_ngcontent-%COMP%] {\r\n  width: 4.3em;\r\n  display: inline-block;\r\n  vertical-align: top;\r\n  text-align: center;\r\n  padding: 0;\r\n}\r\n\r\n.rightdesc[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n  width: calc(100% - 4em);\r\n  vertical-align: middle;\r\n  position: relative;\r\n}\r\n\r\n.fileSize[_ngcontent-%COMP%], .filetypedoc[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n  font-size: 13px;\r\n  color: #000;\r\n}\r\n\r\n.fileversion[_ngcontent-%COMP%] {\r\n  background-color: #1A1A99;\r\n  color: white;\r\n  border-radius: 50%;\r\n  -webkit-border-radius: 50%;\r\n  width: 27px;\r\n  height: 27px;\r\n  line-height: 26px;\r\n  text-align: center;\r\n  display: inline-block;\r\n  font-size: 13px;\r\n  letter-spacing: -0.5px;\r\n  position: absolute;\r\n  top: -14px;\r\n  right: 50%;\r\n}\r\n\r\n@keyframes nomAnim {\r\n  from {\r\n    background-color: #9D7E90;\r\n    margin-left: 0%;\r\n  }\r\n  50% {\r\n    background-color: #BFBB97;\r\n    margin-left: 90%;\r\n  }\r\n  to {\r\n    background-color: #9D7E90;\r\n    margin-left: 0%;\r\n  }\r\n}\r\n\r\n.ownAction[_ngcontent-%COMP%]   .arrow_box[_ngcontent-%COMP%] {\r\n  background: #D5F0FF !important;\r\n  border: 1px solid rgba(0, 0, 0, 0.25);\r\n}\r\n\r\n.ownAction[_ngcontent-%COMP%]   .arrow_box[_ngcontent-%COMP%]:after {\r\n  border-color: rgba(250, 250, 250, 0);\r\n  border-left-color: #D5F0FF;\r\n}\r\n\r\n.ownAction[_ngcontent-%COMP%]   .arrow_box[_ngcontent-%COMP%]:before {\r\n  border-color: rgba(230, 230, 230, 0);\r\n  border-left-color: rgba(0, 0, 0, 0.25);\r\n  border-width: 8px;\r\n  margin-top: -8px;\r\n}\r\n\r\n.ownAction[_ngcontent-%COMP%]   .approveBlock[_ngcontent-%COMP%], .ownAction[_ngcontent-%COMP%]   .commentBlock[_ngcontent-%COMP%] {\r\n  float: right;\r\n}\r\n\r\n.ownAction[_ngcontent-%COMP%]   .arrow_box_in[_ngcontent-%COMP%] {\r\n  float: left;\r\n  text-align: right;\r\n}\r\n\r\n.ownAction[_ngcontent-%COMP%]   .arrow_box[_ngcontent-%COMP%]:after, .ownAction[_ngcontent-%COMP%]   .arrow_box[_ngcontent-%COMP%]:before {\r\n  right: 0;\r\n  left: 100%;\r\n}\r\n\r\n.ownAction[_ngcontent-%COMP%]   .author[_ngcontent-%COMP%] {\r\n  display: none;\r\n}\r\n\r\n.ownAction[_ngcontent-%COMP%]   .comm-ts[_ngcontent-%COMP%], .ownAction[_ngcontent-%COMP%]   .action-ts[_ngcontent-%COMP%] {\r\n  margin-top: 6px;\r\n  display: inline-block;\r\n  vertical-align: middle;\r\n}']);
-  C.List_LcY = Isolate.makeConstantList([C.List_l44]);
   C.List_W7F = Isolate.makeConstantList(['[_nghost-%COMP%]{font-size:14px;font-weight:500;text-transform:uppercase;-moz-user-select:-moz-none;-ms-user-select:none;-webkit-user-select:none;user-select:none;background:transparent;border-radius:inherit;box-sizing:border-box;cursor:pointer;display:inline-block;letter-spacing:.01em;line-height:normal;outline:none;position:relative;text-align:center;z-index:0;display:-webkit-inline-flex;display:inline-flex;-webkit-justify-content:center;justify-content:center;-webkit-align-items:center;align-items:center;height:48px}[_nghost-%COMP%].acx-theme-dark{background:#4285f4;color:#fff}[_nghost-%COMP%][animated]{transition:box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1)}[_nghost-%COMP%][elevation="1"]{;box-shadow:0 2px 2px 0 rgba(0,0,0,0.14),0 3px 1px -2px rgba(0,0,0,0.12),0 1px 5px 0 rgba(0,0,0,0.2)}[_nghost-%COMP%][elevation="2"]{;box-shadow:0 4px 5px 0 rgba(0,0,0,0.14),0 1px 10px 0 rgba(0,0,0,0.12),0 2px 4px -1px rgba(0,0,0,0.2)}[_nghost-%COMP%][elevation="3"]{;box-shadow:0 6px 10px 0 rgba(0,0,0,0.14),0 1px 18px 0 rgba(0,0,0,0.12),0 3px 5px -1px rgba(0,0,0,0.2)}[_nghost-%COMP%][elevation="4"]{;box-shadow:0 8px 10px 1px rgba(0,0,0,0.14),0 3px 14px 2px rgba(0,0,0,0.12),0 5px 5px -3px rgba(0,0,0,0.2)}[_nghost-%COMP%][elevation="5"]{;box-shadow:0 16px 24px 2px rgba(0,0,0,0.14),0 6px 30px 5px rgba(0,0,0,0.12),0 8px 10px -5px rgba(0,0,0,0.2)}[_nghost-%COMP%][elevation="6"]{;box-shadow:0 24px 38px 3px rgba(0,0,0,0.14),0 9px 46px 8px rgba(0,0,0,0.12),0 11px 15px -7px rgba(0,0,0,0.2)}[_nghost-%COMP%]:not([icon]){margin:0 .29em}[_nghost-%COMP%][dense]{height:32px;font-size:13px}[_nghost-%COMP%].is-disabled{color:rgba(0,0,0,0.26);cursor:not-allowed}[_nghost-%COMP%].is-disabled.acx-theme-dark{color:rgba(255,255,255,0.3)}[_nghost-%COMP%].is-disabled>*{pointer-events:none}[_nghost-%COMP%].is-disabled.is-raised{background:rgba(0,0,0,0.12)}[_nghost-%COMP%].is-disabled.is-raised.acx-theme-dark{background:#4285f4}[_nghost-%COMP%]:not(.is-raised), [_nghost-%COMP%].is-disabled.is-raised{box-shadow:none}[_nghost-%COMP%][no-ink] material-ripple{display:none}[_nghost-%COMP%][clear-size]{margin:0}[_nghost-%COMP%] .keyboard-focus{font-weight:bold}[_nghost-%COMP%] .content{display:-webkit-inline-flex;display:inline-flex;-webkit-align-items:center;align-items:center}[_nghost-%COMP%] .content>  *{text-transform:inherit}.content[_ngcontent-%COMP%]{display:inline-block;overflow:hidden;padding:8px;text-overflow:ellipsis;white-space:nowrap}']);
   C.List_Le4 = Isolate.makeConstantList([C.List_W7F]);
   C.List_List_Type_ChangeDetectorRef_swi = Isolate.makeConstantList([C.List_Type_ChangeDetectorRef_swi]);
@@ -84857,8 +85157,8 @@
   C.List_ZeB = Isolate.makeConstantList([C.List_gkc]);
   C.Type_FocusTrapComponent_SGa = H.createRuntimeType("FocusTrapComponent");
   C.Type_FocusContentWrapper_4AN = H.createRuntimeType("FocusContentWrapper");
-  C.List_43h0 = Isolate.makeConstantList([C.Type_FocusTrapComponent_SGa, C.List_empty, C.Type_FocusContentWrapper_4AN, C.List_empty]);
-  C.ComponentFactory_i7B = new D.ComponentFactory("focus-trap", B.focus_trap_template__viewFactory_FocusTrapComponentHost0$closure(), C.Type_FocusTrapComponent_SGa, C.List_43h0);
+  C.List_43h1 = Isolate.makeConstantList([C.Type_FocusTrapComponent_SGa, C.List_empty, C.Type_FocusContentWrapper_4AN, C.List_empty]);
+  C.ComponentFactory_i7B = new D.ComponentFactory("focus-trap", B.focus_trap_template__viewFactory_FocusTrapComponentHost0$closure(), C.Type_FocusTrapComponent_SGa, C.List_43h1);
   C.List_a5W = Isolate.makeConstantList([C.ComponentFactory_i7B]);
   C.List_sC8 = Isolate.makeConstantList(["label[_ngcontent-%COMP%] {\r\n\tdisplay: inline-block;\r\n\twidth: 3em;\r\n\tmargin: .5em 0;\r\n\tcolor: #607D8B;\r\n\tfont-weight: bold;\r\n}\r\n\r\ninput[_ngcontent-%COMP%] {\r\n\theight: 2em;\r\n\tfont-size: 1em;\r\n\tpadding-left: .4em;\r\n}\r\n\r\nbutton[_ngcontent-%COMP%] {\r\n\tmargin-top: 20px;\r\n\tfont-family: Arial;\r\n\tbackground-color: #eee;\r\n\tborder: none;\r\n\tpadding: 5px 10px;\r\n\tborder-radius: 4px;\r\n\tcursor: pointer;\r\n\tcursor: hand;\r\n}\r\n\r\nbutton[_ngcontent-%COMP%]:hover {\r\n\tbackground-color: #cfd8dc;\r\n}\r\n\r\nbutton[_ngcontent-%COMP%]:disabled {\r\n\tbackground-color: #eee;\r\n\tcolor: #ccc;\r\n\tcursor: auto;\r\n}"]);
   C.List_a9w = Isolate.makeConstantList([C.List_sC8]);
@@ -85054,6 +85354,8 @@
   C.ComponentFactory_hhf = new D.ComponentFactory("my-app", V.app_component_template__viewFactory_AppComponentHost0$closure(), C.Type_AppComponent_TyU, C.List_OHH);
   C.List_vXC = Isolate.makeConstantList([C.RouteConfig_v1f, C.ComponentFactory_hhf]);
   C.List_w3P = Isolate.makeConstantList([C.Type_DeferredContentAware_BCk, C.Type_Modal_OjC, C.Type_OnDestroy_AWG]);
+  C.List_hcx = Isolate.makeConstantList(['ul[_ngcontent-%COMP%] {\r\n  margin: 0;\r\n  padding: 0;\r\n}\r\n\r\n.subjects[_ngcontent-%COMP%] {\r\n  background-color: #c1cdd4;\r\n  border-radius: 0 0 7px 7px;\r\n  -webkit-border-radius: 0 0 7px 7px;\r\n  -moz-border-radius: 0 0 7px 7px;\r\n  -o-border-radius: 0 0 7px 7px;\r\n}\r\n\r\nli.user[_ngcontent-%COMP%] {\r\n  list-style-type: none;\r\n  display: inline-block;\r\n}\r\n\r\nli.subjectItem[_ngcontent-%COMP%] {\r\n  padding: 0 0.2em;\r\n  cursor: pointer;\r\n  border-bottom: 1px solid rgba(0, 0, 0, 0.1);\r\n  background: white;\r\n  position: relative;\r\n  line-height: 30px;\r\n  height: 33px;\r\n  overflow: hidden;\r\n}\r\n\r\nli.subjectItem.selected[_ngcontent-%COMP%], li.subjectItem[_ngcontent-%COMP%]:hover {\r\n  background-color: #a4a384;\r\n  color: white;\r\n  \r\n}\r\n\r\nli.subjectItem.selected[_ngcontent-%COMP%]   .version[_ngcontent-%COMP%], li.subjectItem[_ngcontent-%COMP%]:hover   .version[_ngcontent-%COMP%] {\r\n  background-color: rgba(255, 255, 255, 0.5);\r\n  color: #fff;\r\n}\r\n\r\nli.subjectItem.selected[_ngcontent-%COMP%]:after, li.subjectItem[_ngcontent-%COMP%]:hover:after {\r\n  left: 100%;\r\n  top: 50%;\r\n  border: solid transparent;\r\n  content: " ";\r\n  height: 0;\r\n  width: 0;\r\n  position: absolute;\r\n  pointer-events: none;\r\n  border-color: rgba(85, 134, 164, 0);\r\n  border-left-color: #a4a384;\r\n  border-width: 10px;\r\n  margin-top: -10px;\r\n}\r\n\r\nli.subjectItem[_ngcontent-%COMP%]:hover {\r\n  background: #a4a384;\r\n}\r\n\r\nli.subjectItem.selected[_ngcontent-%COMP%]   .name[_ngcontent-%COMP%], li.subjectItem[_ngcontent-%COMP%]:hover   .name[_ngcontent-%COMP%] {\r\n  color: white;\r\n}\r\n\r\nli.subjectItem.selected[_ngcontent-%COMP%]   .thumb[_ngcontent-%COMP%]    > img[_ngcontent-%COMP%] {\r\n  \r\n  border: 1px solid #a4a384;\r\n  position: relative;\r\n}\r\n\r\n.approved[_ngcontent-%COMP%]   .thumb[_ngcontent-%COMP%] {\r\n  position: relative\r\n}\r\n\r\n.approved[_ngcontent-%COMP%]   .thumb[_ngcontent-%COMP%]:before {\r\n  width: 17px;\r\n  height: 17px;\r\n  content: "";\r\n  position: absolute;\r\n  right: 0;\r\n  top: 1px;\r\n  z-index: 9;\r\n  background: url("../images/approved.png");\r\n  background-repeat: no-repeat;\r\n  display: block;\r\n}\r\n\r\n.locked[_ngcontent-%COMP%]   .thumb[_ngcontent-%COMP%]:after {\r\n  width: 18px;\r\n  height: 18px;\r\n  content: "";\r\n  position: absolute;\r\n  left: -9px;\r\n  top: 7px;\r\n  z-index: 9;\r\n  background: url("../images/locked_sm.png");\r\n  background-repeat: no-repeat;\r\n  display: block;\r\n}\r\n\r\n.subject[_ngcontent-%COMP%] {\r\n  margin: 0 5px 0 15px;\r\n}\r\n\r\n.subject[_ngcontent-%COMP%]    > div[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n  vertical-align: middle;\r\n}\r\n\r\n.thumb[_ngcontent-%COMP%] {\r\n  margin-right: 7px;\r\n  position: relative;\r\n  margin-top: 2px;\r\n}\r\n\r\n.thumb[_ngcontent-%COMP%]    > img[_ngcontent-%COMP%] {\r\n  border: 1px solid #aaaaaa;\r\n  height: 28px;\r\n}\r\n\r\n.name[_ngcontent-%COMP%] {\r\n  font-size: 13px;\r\n  color: #5587A2;\r\n}\r\n\r\n.version[_ngcontent-%COMP%] {\r\n  background-color: #5486a2;\r\n  color: white;\r\n  border-radius: 50%;\r\n  -webkit-border-radius: 50%;\r\n  padding: 0.1em;\r\n  font-size: 12px;\r\n  width: 26px;\r\n  height: 26px;\r\n  line-height: 26px;\r\n  text-align: center;\r\n  margin: -8px 0 0 5px !important;\r\n}\r\n\r\n.users[_ngcontent-%COMP%], .users[_ngcontent-%COMP%]   .user[_ngcontent-%COMP%] {\r\n  float: right;\r\n}\r\n\r\n.users[_ngcontent-%COMP%]   .user[_ngcontent-%COMP%] {\r\n  margin-right: 0;\r\n}\r\n\r\n.uploadDropZone[_ngcontent-%COMP%] {\r\n  border-radius: 0 0 7px 7px;\r\n  -webkit-border-radius: 0 0 7px 7px;\r\n  -moz-border-radius: 0 0 7px 7px;\r\n  margin: 0 auto;\r\n  background-color: #f2f2f2;\r\n  text-align: center;\r\n  -webkit-transition: 0.3s;\r\n  -o-transition: 0.3s;\r\n  transition: 0.3s;\r\n  position: relative;\r\n  border: 2px solid lightgray !important;\r\n  width: calc(100% - 4px);\r\n}\r\n\r\n.uploadFile[_ngcontent-%COMP%] {\r\n  border-radius: 0 0 7px 7px;\r\n  -webkit-border-radius: 0 0 7px 7px;\r\n  -moz-border-radius: 0 0 7px 7px;\r\n  padding: 34px 0 !important;\r\n  width: 100% !important;\r\n}\r\n\r\n.profileImg[_ngcontent-%COMP%]    > img[_ngcontent-%COMP%] {\r\n  width: 26px;\r\n  border-radius: 1em;\r\n  height: 26px;\r\n  padding: 1px;\r\n\r\n}\r\n\r\n.profileImg.validator[_ngcontent-%COMP%]    > img[_ngcontent-%COMP%] {\r\n  border: 2px solid green;\r\n}\r\n\r\n.title[_ngcontent-%COMP%] {\r\n  \r\n  width: calc(100% - 20px);\r\n  font-size: 20px;\r\n  color: #fff;\r\n  background-color: #5486a2;\r\n  font-family: Arial, Helvetica, sans-serif;\r\n  font-weight: normal;\r\n  height: 38px;\r\n  line-height: 36px;\r\n  padding: 0 10px;\r\n}\r\n\r\n.newTopic[_ngcontent-%COMP%] {\r\n  margin: 20px 15px;\r\n}\r\n\r\n.addBtn.addpeople[_ngcontent-%COMP%], .users_list[_ngcontent-%COMP%] {\r\n  float: right\r\n}\r\n\r\n.users_list[_ngcontent-%COMP%] {\r\n  margin-right: 3px;\r\n  margin-top: 4px;\r\n  list-style: none;\r\n}\r\n\r\n.useractive[_ngcontent-%COMP%] {\r\n  -webkit-border-radius: 50%;\r\n  -moz-border-radius: 50%;\r\n  border-radius: 50%;\r\n  float: right;\r\n  margin-right: 3px;\r\n}\r\n\r\n.useractive[_ngcontent-%COMP%]   img[_ngcontent-%COMP%] {\r\n  width: 30px;\r\n  height: 30px;\r\n  -webkit-border-radius: 50%;\r\n  -moz-border-radius: 50%;\r\n  border-radius: 50%;\r\n}\r\n\r\n.useractive.approver[_ngcontent-%COMP%]   img[_ngcontent-%COMP%] {\r\n  box-shadow: 0 0 0 2px #7FBB01;\r\n  margin-top: -1px;\r\n}\r\n\r\n.userInfoPopup[_ngcontent-%COMP%] {\r\n  width: 14em;\r\n  padding: 0.5em 0.4em 0.3em 0.5em;\r\n  -webkit-border-radius: 3px;\r\n  -moz-border-radius: 3px;\r\n  border-radius: 3px;\r\n  border: 1px solid rgba(0, 0, 0, 0.25);\r\n  font-size: 0.8em;\r\n  vertical-align: middle;\r\n\r\n  -webkit-box-shadow: 0px 0px 21px 6px rgba(120, 120, 120, 0.55);\r\n  -moz-box-shadow: 0px 0px 21px 6px rgba(120, 120, 120, 0.55);\r\n  box-shadow: 0px 0px 21px 6px rgba(120, 120, 120, 0.55);\r\n  position: relative;\r\n}\r\n\r\n\r\n\r\n.userInfoPopup[_ngcontent-%COMP%]   .userInfo[_ngcontent-%COMP%] {\r\n  position: relative;\r\n  margin-bottom: 0.2em;\r\n}\r\n\r\n.userInfoPopup[_ngcontent-%COMP%]   .userInfo[_ngcontent-%COMP%]:before {\r\n  font-family: FontAwesome;\r\n  font-size: 22px;\r\n  margin-right: 0.6em;\r\n  width: 1em;\r\n  vertical-align: middle;\r\n  text-align: left;\r\n\r\n}\r\n\r\n.userInfoPopup[_ngcontent-%COMP%]   .userInfo.role[_ngcontent-%COMP%]:before {\r\n  display: inline-block;\r\n  content: \'\';\r\n  width: 17px;\r\n  height:17px;\r\n  background: url("../images/approved.png") no-repeat;\r\n  position: absolute;\r\n  left: 0;\r\n}\r\n.userInfoPopup[_ngcontent-%COMP%]   .userInfo.role[_ngcontent-%COMP%] {\r\n  padding-left: 26px;\r\n}\r\n\r\n.userInfoPopup[_ngcontent-%COMP%]   .userInfo.email[_ngcontent-%COMP%]:before {\r\n  content: "\\f0e0";\r\n  color: #F05D00;\r\n  font-size: 17px;\r\n}\r\n\r\n.userInfoPopup[_ngcontent-%COMP%]   .userInfo.skype[_ngcontent-%COMP%]:before {\r\n  content: "\\f17e";\r\n  color: #00AFF0;\r\n  margin-right: 0.2em;\r\n}\r\n\r\n.userInfoPopup[_ngcontent-%COMP%]   .userInfo.timezone[_ngcontent-%COMP%]:before {\r\n  content: "\\f041";\r\n  color: #F2542F;\r\n  margin-left: 0.1em;\r\n  margin-right: 8px;\r\n}\r\n\r\n.userInfoPopup[_ngcontent-%COMP%]   .userInfo.timezone[_ngcontent-%COMP%] {\r\n  margin-bottom: 1em;\r\n}\r\n\r\n.userInfoPopup[_ngcontent-%COMP%]   .lastcnx[_ngcontent-%COMP%] {\r\n  color: rgba(0, 0, 0, 0.28);\r\n}\r\n\r\n.userInfoPopup[_ngcontent-%COMP%]   .name[_ngcontent-%COMP%] {\r\n  margin-bottom: 0.5em;\r\n  background: url("../images/tiret-black.png") repeat-x center center;\r\n}\r\n\r\n.userInfoPopup[_ngcontent-%COMP%]   .name[_ngcontent-%COMP%]   span[_ngcontent-%COMP%] {\r\n  background: white;\r\n  padding-right: 0.5em;\r\n  display: inline;\r\n  color: #273B54;\r\n  font-weight: bold;\r\n}\r\nspan.txtskype[_ngcontent-%COMP%] {\r\n  color: #00AFF0;\r\n}\r\n\r\n\r\n\r\n.userInfoPopup[_ngcontent-%COMP%]:after, .userInfoPopup[_ngcontent-%COMP%]:before {\r\n  bottom: 100%;\r\n  left: 20px;\r\n  border: solid transparent;\r\n  content: " ";\r\n  height: 0;\r\n  width: 0;\r\n  position: absolute;\r\n  pointer-events: none;\r\n}\r\n\r\n.userInfoPopup[_ngcontent-%COMP%]:after {\r\n  border-color: rgba(53, 241, 59, 0);\r\n  border-bottom-color: #35f13b;\r\n  border-width: 5px;\r\n  margin-left: -5px;\r\n}\r\n.userInfoPopup[_ngcontent-%COMP%]:before {\r\n  border-color: rgba(221, 24, 175, 0);\r\n  border-bottom-color: #dd18af;\r\n  border-width: 6px;\r\n  margin-left: -6px;\r\n}']);
+  C.List_wD9 = Isolate.makeConstantList([C.List_hcx]);
   C.Type_AfterContentChecked_r2l = H.createRuntimeType("AfterContentChecked");
   C.List_wEo0 = Isolate.makeConstantList([C.Type_AfterContentChecked_r2l, C.Type_OnDestroy_AWG]);
   C.List_woc = Isolate.makeConstantList([C.Type_KeyUpBoundaryDirective_GF2, C.C_Optional]);
@@ -85257,6 +85559,7 @@
   C.Type_ViewFilesComp12_wEo = H.createRuntimeType("ViewFilesComp12");
   C.Type_ViewFilesComp13_wEo = H.createRuntimeType("ViewFilesComp13");
   C.Type_ViewFilesComp14_wEo = H.createRuntimeType("ViewFilesComp14");
+  C.Type_ViewFilesComp15_wEo = H.createRuntimeType("ViewFilesComp15");
   C.Type_ViewFilesComp1_KlB = H.createRuntimeType("ViewFilesComp1");
   C.Type_ViewFilesComp2_KlB = H.createRuntimeType("ViewFilesComp2");
   C.Type_ViewFilesComp3_KlB = H.createRuntimeType("ViewFilesComp3");

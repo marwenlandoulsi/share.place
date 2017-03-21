@@ -10,7 +10,7 @@ module.exports = Object.freeze({
   dataDir: path.join(__dirname,'..', "data"),
   usersFileData: path.join(__dirname,'..', "data","users.json"),
   logDir: path.join( __dirname, "log"),
-  /*urlLoginProxy: 'http://share-place.herokuapp.com:80/auth',
+  urlLoginProxy: 'http://share-place.herokuapp.com:80/auth',
   optionsPost: {
     url: 'http://share-place.herokuapp.com:80/sp',
     method: 'POST',
@@ -30,7 +30,7 @@ module.exports = Object.freeze({
     port: 80,
     path: '/auth',
     method: 'GET'
-  },*/
+  },/*
   optionsGetFromAuth: {
     host: "127.0.0.1",
     port: 3000,
@@ -52,7 +52,7 @@ module.exports = Object.freeze({
    port: 3000,
    path: '/sp',
    method: 'GET'
-   },
+   },*/
   userRoles: ['viewer', 'writer', 'owner', 'admin'],
   dbURI: 'mongodb://shareplace:Sp2_2016_17@ds155747.mlab.com:55747/heroku_pgbpj409',
   fileKeyDbURI: 'mongodb://shareplace:Sp2_2016_17@ds155747.mlab.com:55747/heroku_pgbpj409',

@@ -78,6 +78,7 @@ class Environment {
   User get connectedUser => _connected;
 
   void set connectedUser(User user) {
+    bool sameUser = _connected != null && _connected?.id == user?.id;
     this._connected = user;
     print("connected user set $user");
     _loggedIn = _connected != null;
@@ -91,14 +92,14 @@ class Environment {
     } else {
       connectSocket();
     }
-    eventBus.fire({PlaceParam.login: _loggedIn});
+    if (!sameUser)
+      eventBus.fire({PlaceParam.login: _loggedIn});
   }
 
   Future<Null> connectSocket() async {
     await socketIoClient.connect();
     socketIoClient.onSubjectCreate((data) =>
         print("data arrived: $data !!!"));
-
   }
 
   User get selectedUser => _user;

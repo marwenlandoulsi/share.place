@@ -633,7 +633,6 @@ module.exports.put = function (req, res) {
   let jsonToPut = req.body;
   let lock = req.body.l;
 
-  console.log("ggggg", global.onLine);
   if (global.onLine) {
     if (typeof (lock) != "undefined") {
       if (lock) {
@@ -669,6 +668,46 @@ module.exports.put = function (req, res) {
   } else {
     //globalService.sendError(res, 402, "sorry you are offline you can't do this");
     showDialogBox("info", "Share.place", "sorry you are offline you can't do this");
+
+  }
+
+}
+
+module.exports.putFolder = function (req, res) {
+  let url = req.url;
+  let userId = req.user._id;
+  let jsonToPut = req.body;
+  let newFolderName = req.body.name;
+  let folderId = req.params.folderId;
+  let placeId = req.params.placeId;
+  let pathToDbFolders = path.join(constants.dataDir, userId, 'place', placeId, 'folder', 'data.json');
+  let pathToDbPlaces = path.join(constants.dataDir, userId, 'place', 'data.json');
+  let dbFolders = taffy(jsonfile.readFileSync(pathToDbFolders));
+  let dbPlaces = taffy(jsonfile.readFileSync(pathToDbPlaces));
+  let placeName=dbPlaces({_id: placeId}).select("name")[0];
+  let dataFolder = dbFolders({_id: folderId}).get()[0];
+  if (global.onLine) {
+    getPathFolderInHomeDir(dataFolder, jsonfile.readFileSync(pathToDbFolders), newFolderName, (pathfolder, newPath) => {
+      let pathFolderInHomeDir = path.join(global.homeDir, 'share.place', userId,placeName,  pathfolder);
+      let newPathToFolderInHomeDir = path.join(global.homeDir, 'share.place', userId,placeName,  newPath);
+      fs.rename(pathFolderInHomeDir, newPathToFolderInHomeDir, (err)=>{
+        if(err){
+           showDialogBox("info", "rename folder", "please close opened files ");
+        }else{
+          httpPutJson(url, jsonToPut, (err, toReturn) => {
+            if (err)
+              globalService.sendError(res, err.statusCode, err.message)
+
+
+            globalService.sendJsonResponse(res, 200, toReturn);
+          })
+        }
+      })
+    });
+  }
+  else {
+    //globalService.sendError(res, 402, "sorry you are offline you can't do this");
+    showDialogBox("info", "Share.place", "sorry you are offline");
 
   }
 
@@ -879,6 +918,31 @@ let getPathFileInHomeDir = function (fileData, ListeOfFolder, callBack) {
   let pathToFileInDir = path.join(pathToHomDir, fileName);
 
   return callBack(pathToHomDir, pathToFileInDir);
+}
+
+let getPathFolderInHomeDir = function (folderData, ListeOfFolder, newNameFolder, callBack) {
+
+  let folderId = folderData._id;
+  let folderName = folderData.name;
+  let dbListeOfFolder = taffy(ListeOfFolder);
+
+  let parentId = dbListeOfFolder({_id: folderId}).select("parentId")[0];
+
+  let pathToHomDir = '';
+  while (parentId != null) {
+
+    let folderName = dbListeOfFolder({_id: folderId}).select("name")[0];
+    pathToHomDir = path.join(folderName, pathToHomDir);
+    folderId = parentId;
+    parentId = dbListeOfFolder({_id: folderId}).select("parentId")[0];
+  }
+
+  if (parentId == null) {
+    let folderName = dbListeOfFolder({_id: folderId}).select("name")[0];
+    pathToHomDir = path.join(folderName, pathToHomDir);
+  }
+  let newPathFolderInHomeDir = pathToHomDir.replace(folderName, newNameFolder);
+  return callBack(pathToHomDir, newPathFolderInHomeDir);
 }
 
 var showDialogBox = function (type, title, message) {

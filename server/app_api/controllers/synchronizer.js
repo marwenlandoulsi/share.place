@@ -28,11 +28,11 @@ var getData = function (url, callback) {
       var userId = global.userConnected._id;
       var pathToDbFiles = path.join(constants.dataDir, userId, "place", placeId, "folder", folderId, "file", "data.json");
       var mode = 0o0500;
-
       if (fs.existsSync(pathToDbFiles)) {
         var dataFromDbFiles = jsonfile.readFileSync(pathToDbFiles);
         var dbFiles = new taffy(dataFromDbFiles);
         var file = dbFiles({_id: fileId});
+
         var isLocked = file.select("isLocked")[0];
         var lockOwner = file.select("lockOwner")[0];
         if ((isLocked) && (lockOwner.userId == userId)) {

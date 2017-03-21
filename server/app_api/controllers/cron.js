@@ -16,6 +16,7 @@ module.exports.sync = () => {
         synchronizer.synchronizeRemoteData();
         console.error("sync executed");
       }
-    }, 1000000);
+    }, 60000);
+
   }
 }

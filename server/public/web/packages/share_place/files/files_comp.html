@@ -47,7 +47,7 @@
                     <div *ngIf="isCommentsOpen(selectedFile.id, versionItem.v)" class="versionComments"
                          [class.activep]="isCommentsOpen(selectedFile.id, versionItem.v)">
                       <ul class="commentList">
-                        <li *ngFor="let actionItem of getActionsForVersion(versionItem)">
+                        <li *ngFor="let actionItem of getActionsForVersion(versionItem)" class="litestme">
                           <div *ngIf="actionItem.action.actionType == 'comment'" class="ownAction">
                             <div class="commentBlock"><span
                                 class="author"> <img
@@ -126,6 +126,21 @@
                     </div>
                   </material-popup>
 
+                  <modal *ngIf="openFile" [visible]="openFile">
+                    <material-dialog class="basic-dialog fileOpen">
+                      <div header class="popupHeader">
+                        <div class="fileName">Version {{selectedFile.name}}</div>
+                        <div class="close" (click)="cancelFileOpen()">x</div>
+                      </div>
+                      <div class="content">
+                        <div class="explanation">Do you want to lock and modify or just take a look at the document?</div>
+                        <div class="actions">
+                          <div class="btn lock" (click)="lockAndOpen(versionItem.v)">Lock & Modify</div>
+                          <div class="btn openOnly" (click)="openFileLink(versionItem.v)">View</div>
+                        </div>
+                      </div>
+                    </material-dialog>
+                  </modal>
 
                   <div class="header_file" [class.approved]="versionItem.approved != null">
                     <div class="left commentBlock">
@@ -140,29 +155,23 @@
                     </div>
                     <div class="arrow_box_in">
                       <div class="arrow_box">
-                        <div class="rightdesc ">
+                        <div class="">
                           <div class="fileThumb" popupSource
                                #fileMenu="popupSource"
                                (click)="switchMenuState(versionItem.v)">
                             <div class="fileThumb_bg">
-                              <img
-                                  src="/sp/place/{{selectedPlace?.id}}/folder/{{selectedFolder?.id}}/file/{{selectedFile?.id}}/version/{{versionItem.v}}/thumb"
-                                  class="thumbnail"
-                              >
-                              <div class="uploadStatus" *ngIf="versionItem.status!='uploaded'"><img
-
-
-                                  src="../images/uploading.png"/></div>
+                              <img src="/sp/place/{{selectedPlace?.id}}/folder/{{selectedFolder?.id}}/file/{{selectedFile?.id}}/version/{{versionItem.v}}/thumb"
+                                  class="thumbnail">
+                              <div class="uploadStatus" *ngIf="versionItem.status!='uploaded'"><img src="../images/uploading.png"/></div>
                             </div>
                           </div>
                           <div class="rightDetails">
                             <div class="fileProps">
-
-
                               <div class="line">
-                                <a href="/sp/place/{{selectedPlace?.id}}/folder/{{selectedFolder?.id}}/file/{{selectedFile?.id}}/version/{{versionItem.v}}/download">
+                                <!--href="/sp/place/{{selectedPlace?.id}}/folder/{{selectedFolder?.id}}/file/{{selectedFile?.id}}/version/{{versionItem.v}}/download" -->
+                                <div (click)="openFileDialog()">
                                   <div class="fileName">{{selectedFile?.name}}</div>
-                                </a>
+                                </div>
                                 <span class="fileversion">v. {{versionItem.v}}</span>
                                 <div class="linerow">
                                   <span class="filetypedoc">{{formatDesc( versionItem )}}</span>
@@ -186,14 +195,9 @@
                 </li>
               </ul>
             </div>
-
-
           </div>
         </div>
-
       </li>
     </ul>
-
   </div>
-
 </div>

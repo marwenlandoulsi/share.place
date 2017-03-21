@@ -236,7 +236,14 @@ li.subjectItem.selected .thumb > img {
   border: 1px solid rgba(0, 0, 0, 0.25);
   font-size: 0.8em;
   vertical-align: middle;
+
+  -webkit-box-shadow: 0px 0px 21px 6px rgba(120, 120, 120, 0.55);
+  -moz-box-shadow: 0px 0px 21px 6px rgba(120, 120, 120, 0.55);
+  box-shadow: 0px 0px 21px 6px rgba(120, 120, 120, 0.55);
+  position: relative;
 }
+
+
 
 .userInfoPopup .userInfo {
   position: relative;
@@ -304,4 +311,33 @@ li.subjectItem.selected .thumb > img {
   display: inline;
   color: #273B54;
   font-weight: bold;
+}
+span.txtskype {
+  color: #00AFF0;
+}
+
+
+
+.userInfoPopup:after, .userInfoPopup:before {
+  bottom: 100%;
+  left: 20px;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
+.userInfoPopup:after {
+  border-color: rgba(53, 241, 59, 0);
+  border-bottom-color: #35f13b;
+  border-width: 5px;
+  margin-left: -5px;
+}
+.userInfoPopup:before {
+  border-color: rgba(221, 24, 175, 0);
+  border-bottom-color: #dd18af;
+  border-width: 6px;
+  margin-left: -6px;
 }

@@ -367,7 +367,7 @@ class ViewAppComponent0 extends AppView<import3.AppComponent> {
     _el_10 = doc.createElement('div');
     _el_10.setAttribute(shimCAttr,'');
     _el_6.append(_el_10);
-    _el_10.className = 'error';
+    _el_10.className = 'er_bd error';
     _text_11 = new Text('');
     _el_10.append(_text_11);
     Text _text_12 = new Text('\n    ');
@@ -375,7 +375,7 @@ class ViewAppComponent0 extends AppView<import3.AppComponent> {
     _el_13 = doc.createElement('div');
     _el_13.setAttribute(shimCAttr,'');
     _el_6.append(_el_13);
-    _el_13.className = 'messages';
+    _el_13.className = 'er_bd messages';
     Text _text_14 = new Text('\n      ');
     _el_13.append(_text_14);
     var _anchor_15 = new Comment('template bindings={}');

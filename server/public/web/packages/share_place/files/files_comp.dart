@@ -40,6 +40,8 @@ class FilesComp implements OnInit {
   int fileMenuVisible;
   int selectedVersion;
 
+  bool openFile;
+
   FilesComp(this._placeService, this._router, this._environment);
 
   Future<Null> ngOnInit() async {
@@ -250,6 +252,24 @@ class FilesComp implements OnInit {
       return "Text Document";
 
     return "$mimeType Document";
+  }
+
+  void openFileDialog() {
+    openFile = true;
+  }
+
+  void cancelFileOpen() {
+    openFile = false;
+  }
+
+  Future<Null> lockAndOpen(int version) async {
+    await _placeService.lockFile(selectedPlace.id, selectedSubject.folderId, selectedFile.id, true);
+    _environment.fireEvent(PlaceParam.lockStateChange, selectedFile.id);
+    openFileLink(version);
+  }
+
+  void openFileLink(int version) {
+    window.location.assign("/sp/place/${selectedPlace?.id}/folder/${selectedFolder?.id}/file/${selectedFile?.id}/version/${version}/download");
   }
 
 }
