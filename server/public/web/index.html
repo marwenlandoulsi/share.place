@@ -42,8 +42,8 @@
       var drop  = document.getElementById('fileForm');
       e = e || event;
       console.log('e.target.id' ,e.target.id) ;
-       // check wich element is our target
-        e.preventDefault();
+      // check wich element is our target
+      e.preventDefault();
 
     },false);
 
@@ -62,10 +62,9 @@
 
 <body>
 <my-app>Loading...</my-app>
+<!--<script src="/socket.io/socket.io.js"></script>-->
+<!--<script>
 
-<script src="/socket.io/socket.io.js"></script>
-<!--
-<script>
   var socket = io.connect();
   socket.on('connect', () => {
     console.log('connected to server');
@@ -75,12 +74,9 @@
     console.log('disconnected from server');
   });
   socket.on('comment', (data) => {
-  	window.alert("socketio : "+ data);
     console.log('information', data);
   });
-</script>
--->
-
+</script>-->
 <input type="hidden" id="baseUrl" value="err"/>
 <script type="application/javascript">
   document.getElementById('baseUrl').value = window.location.origin;

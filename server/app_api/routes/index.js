@@ -242,6 +242,7 @@ get('/me', ctrlProxy.get);
 
 put('/place/:placeId/folder/:folderId/file/:fileId/version/:version/approve', ctrlProxy.put);
 put('/place/:placeId/folder/:folderId/file/:fileId', ctrlProxy.put);
+put('/place/:placeId/folder/:folderId',ctrlProxy.put);
 put('/user/close-postit', ctrlProxy.put);
 module.exports = router;
 
