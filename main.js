@@ -40,15 +40,16 @@ ipcMain.on('online-status-changed', (event, status) => {
 
   global.onLine = status;
   if (status) {
-    mainWindow.setOverlayIcon('Online.ico', 'you are onLine');
+    mainWindow.setOverlayIcon(path.join(__dirname, 'Online.ico'), 'you are onLine');
   } else {
-    mainWindow.setOverlayIcon('Offline-red.ico', 'you are offLine');
+    mainWindow.setOverlayIcon(path.join(__dirname, 'Offline-red.ico'), 'you are offLine');
   }
 })
 app.on('window-all-closed', () => {
   app.quit()
 })
 app.on('ready', function () {
+
   autoUpdater.checkForUpdates();
   global.homeDir = app.getPath('home');
   getPort(function (port) {
@@ -79,10 +80,7 @@ app.on('ready', function () {
       server = null;
 
     });
-    /*
-     mainWindow.on('did-finish-load', function () {
-     appUpdater();
-     });*/
+
     global.mainWindow = mainWindow;
   });
 
