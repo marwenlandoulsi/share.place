@@ -180,41 +180,10 @@ module.exports.uploadFile = function (req, res) {
       });
     });
   } else {
-    showDialogBox("info", "Share.place", "sorry you are offline you can't do this");
+    showDialogBox("info", "Share.place", "sorry you are offline you can't upload File");
   }
 }
-/*
- module.exports.uploadFile = function (req, res) {
- let fileToUpload = req.files[0];
- let userId = req.user._id;
- let url = req.url;
- let placeId = req.params.placeId;
- let folderId = req.params.folderId;
- let pathDbDataPlace = path.join(__dirname, '../../data/' + userId + '/' + url.substring(0, nth_occurrence(url, '/', 2)) + '/data.json');
- let pathDbDataFolder = path.join(__dirname, '../../data/' + userId + '/' + url.substring(0, nth_occurrence(url, '/', 4)) + '/data.json');
 
- let dataPlace = jsonfile.readFileSync(pathDbDataPlace);
- let dataFolder = jsonfile.readFileSync(pathDbDataFolder);
-
- let dbPlace = new taffy(dataPlace);
- let dbFolder = new taffy(dataFolder);
- let place = dbPlace({_id: placeId});
- let folder = dbFolder({_id: folderId});
- let placeName = place.select("name")[0];
- let folderName = folder.select("name")[0];
- let pathToDir = path.join(global.homeDir, '/share.place/' + userId + '/' + placeName + '/' + folderName + '/');
- console.log("place Name ", fileToUpload.originalname);
- httpPostFileToUpload(url, fileToUpload, (err, received) => {
- if (err)
- log.error("error upload", err.message);
-
- let dataReceived = JSON.parse(received).data;
-
- globalService.sendJsonResponse(res, 200, dataReceived);
-
- });
-
- }*/
 module.exports.getFile = function (req, res) {
 
   let userId = req.user._id;
