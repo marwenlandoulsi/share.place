@@ -68692,7 +68692,7 @@
         return P._asyncHelper(null, $async$ngOnInit$0, $async$completer);
       },
       getFolders$1: function(placeId) {
-        var $async$goto = 0, $async$completer = new P.Completer_Completer$sync(), $async$handler = 1, $async$currentError, $async$self = this, $async$temp1;
+        var $async$goto = 0, $async$completer = new P.Completer_Completer$sync(), $async$handler = 1, $async$currentError, $async$self = this;
         var $async$getFolders$1 = P._wrapJsFunctionForAsync(function($async$errorCode, $async$result) {
           if ($async$errorCode === 1) {
             $async$currentError = $async$result;
@@ -68706,12 +68706,10 @@
                 break;
               case 2:
                 // then
-                $async$temp1 = $async$self;
                 $async$goto = 4;
-                return P._asyncHelper($async$self._tree_node_component$_placeService.getFolders$1(placeId), $async$getFolders$1, $async$completer);
+                return P._asyncHelper($async$self._folderComponent.getFolders$1(placeId), $async$getFolders$1, $async$completer);
               case 4:
                 // returning from await.
-                $async$temp1.nodes = $async$result;
               case 3:
                 // join
                 // implicit return
@@ -68818,7 +68816,7 @@
       var t1, t2, t3;
       t1 = $.renderType_TreeNodeComponent;
       if (t1 == null) {
-        t1 = $.appViewUtils.createRenderComponentType$4("", 0, C.ViewEncapsulation_0, C.List_CAN);
+        t1 = $.appViewUtils.createRenderComponentType$4("", 0, C.ViewEncapsulation_0, C.List_q0y);
         $.renderType_TreeNodeComponent = t1;
       }
       t2 = $.uninitialized;
@@ -68841,7 +68839,7 @@
       t1 = $.uninitialized;
       t2 = $.renderType_TreeNodeComponent;
       t3 = P.LinkedHashMap__makeEmpty();
-      t1 = new V.ViewTreeNodeComponent2(null, null, null, null, null, null, null, null, null, null, null, null, null, null, t1, t1, C.Type_ViewTreeNodeComponent2_Cpy, t2, C.ViewType_2, t3, parentInjector, declarationEl, C.ChangeDetectionStrategy_2, false, null, null, null, H.setRuntimeTypeInfo([], [{func: 1, v: true}]), null, [], [], null, null, C.ChangeDetectorState_0, null, null, false, null);
+      t1 = new V.ViewTreeNodeComponent2(null, null, null, null, null, null, null, null, null, t1, t1, C.Type_ViewTreeNodeComponent2_Cpy, t2, C.ViewType_2, t3, parentInjector, declarationEl, C.ChangeDetectionStrategy_2, false, null, null, null, H.setRuntimeTypeInfo([], [{func: 1, v: true}]), null, [], [], null, null, C.ChangeDetectorState_0, null, null, false, null);
       t1.AppView$7(C.Type_ViewTreeNodeComponent2_Cpy, t2, C.ViewType_2, t3, parentInjector, declarationEl, C.ChangeDetectionStrategy_2, N.TreeNodeComponent);
       return t1;
     }, "call$2", "tree_node_component_template__viewFactory_TreeNodeComponent2$closure", 4, 0, 4],
@@ -69005,25 +69003,18 @@
         return notFoundResult;
       },
       detectChangesInternal$0: function() {
-        var t1, t2, t3, currVal_1, currVal_2;
-        t1 = this._tree_node_component_template$_NgIf_2_5;
-        if (this.ctx.get$renaming() != null) {
-          t2 = this.ctx.get$renaming() == null ? null : J.get$id$x(this.ctx.get$renaming());
-          t3 = this.locals;
-          t2 = !J.$eq$(t2, t3.$index(0, "$implicit") == null ? null : J.get$id$x(t3.$index(0, "$implicit")));
-        } else
-          t2 = true;
-        t1.set$ngIf(t2);
-        t2 = this.locals;
-        this._tree_node_component_template$_NgIf_4_5.set$ngIf(this.ctx.isRenaming$1(t2.$index(0, "$implicit")));
+        var t1, t2, currVal_1, currVal_2;
+        t1 = this.locals;
+        this._tree_node_component_template$_NgIf_2_5.set$ngIf(!this.ctx.isRenaming$1(t1.$index(0, "$implicit")));
+        this._tree_node_component_template$_NgIf_4_5.set$ngIf(this.ctx.isRenaming$1(t1.$index(0, "$implicit")));
         this.detectContentChildrenChanges$0();
-        t1 = J.get$id$x(t2.$index(0, "$implicit"));
-        currVal_1 = J.$eq$(t1, this.ctx.get$selectedFolder() == null ? null : J.get$id$x(this.ctx.get$selectedFolder()));
+        t2 = J.get$id$x(t1.$index(0, "$implicit"));
+        currVal_1 = J.$eq$(t2, this.ctx.get$selectedFolder() == null ? null : J.get$id$x(this.ctx.get$selectedFolder()));
         if (Q.checkBinding(this._tree_node_component_template$_expr_1, currVal_1)) {
           this.updateClass$3(this._tree_node_component_template$_el_0, "selected", currVal_1);
           this._tree_node_component_template$_expr_1 = currVal_1;
         }
-        t1 = J.get$id$x(t2.$index(0, "$implicit"));
+        t1 = J.get$id$x(t1.$index(0, "$implicit"));
         currVal_2 = J.$eq$(t1, this.ctx.get$renaming() == null ? null : J.get$id$x(this.ctx.get$renaming()));
         if (Q.checkBinding(this._tree_node_component_template$_expr_2, currVal_2)) {
           this.updateClass$3(this._tree_node_component_template$_el_0, "edited", currVal_2);
@@ -69041,9 +69032,9 @@
       }
     },
     ViewTreeNodeComponent2: {
-      "^": "AppView;_tree_node_component_template$_el_0,_tree_node_component_template$_el_2,_tree_node_component_template$_el_4,_tree_node_component_template$_text_5,_tree_node_component_template$_el_7,_tree_node_component_template$_appEl_7,_ButtonComp_7_3,_tree_node_component_template$_el_9,_tree_node_component_template$_appEl_9,_ButtonComp_9_3,_tree_node_component_template$_el_11,_tree_node_component_template$_appEl_13,_tree_node_component_template$_TemplateRef_13_4,_tree_node_component_template$_NgIf_13_5,_tree_node_component_template$_expr_1,_tree_node_component_template$_expr_2,clazz,componentType,type,locals,parentInjector,declarationViewContainer,_cdMode,_skipChangeDetection,ref,rootNodesOrViewContainers,allNodes,_onDestroyCallbacks,subscriptions,contentChildren,viewChildren,renderParent,viewContainerElement,_cdState,ctx,projectableNodes,destroyed,_hasExternalHostElement",
+      "^": "AppView;_tree_node_component_template$_el_0,_tree_node_component_template$_el_2,_tree_node_component_template$_el_4,_tree_node_component_template$_text_5,_tree_node_component_template$_el_7,_tree_node_component_template$_el_9,_tree_node_component_template$_appEl_11,_tree_node_component_template$_TemplateRef_11_4,_tree_node_component_template$_NgIf_11_5,_tree_node_component_template$_expr_1,_tree_node_component_template$_expr_2,clazz,componentType,type,locals,parentInjector,declarationViewContainer,_cdMode,_skipChangeDetection,ref,rootNodesOrViewContainers,allNodes,_onDestroyCallbacks,subscriptions,contentChildren,viewChildren,renderParent,viewContainerElement,_cdState,ctx,projectableNodes,destroyed,_hasExternalHostElement",
       createInternal$1: function(rootSelector) {
-        var doc, t1, _text_1, _text_3, t2, _text_6, compView_7, _text_8, compView_9, _text_10, _text_12, _anchor_13, _text_14, _text_15;
+        var doc, t1, _text_1, _text_3, t2, _text_6, _text_8, _text_10, _anchor_11, _text_12, _text_13;
         doc = document;
         t1 = doc.createElement("div");
         this._tree_node_component_template$_el_0 = t1;
@@ -69069,80 +69060,50 @@
         t1.appendChild(t2);
         _text_6 = doc.createTextNode("\n\n        ");
         this._tree_node_component_template$_el_0.appendChild(_text_6);
-        t1 = doc.createElement("btn");
+        t1 = doc.createElement("div");
         this._tree_node_component_template$_el_7 = t1;
         t1.setAttribute(this.componentType._contentAttr, "");
         this._tree_node_component_template$_el_0.appendChild(this._tree_node_component_template$_el_7);
-        t1 = this._tree_node_component_template$_el_7;
-        t1.className = "delete_folder";
-        this._tree_node_component_template$_appEl_7 = new V.ViewContainer(7, 0, this, t1, null, null, null, null);
-        compView_7 = Y.viewFactory_ButtonComp0(this.injector$1(7), this._tree_node_component_template$_appEl_7);
-        t1 = new E.ButtonComp(null, null, true, null);
-        this._ButtonComp_7_3 = t1;
-        t2 = this._tree_node_component_template$_appEl_7;
-        t2.component = t1;
-        t2.componentView = compView_7;
-        compView_7.createComp$2([], null);
+        this._tree_node_component_template$_el_7.className = "rename_node";
         _text_8 = doc.createTextNode("\n        ");
         this._tree_node_component_template$_el_0.appendChild(_text_8);
-        t1 = doc.createElement("btn");
+        t1 = doc.createElement("div");
         this._tree_node_component_template$_el_9 = t1;
         t1.setAttribute(this.componentType._contentAttr, "");
         this._tree_node_component_template$_el_0.appendChild(this._tree_node_component_template$_el_9);
         t1 = this._tree_node_component_template$_el_9;
-        t1.className = "rename_folder";
-        this._tree_node_component_template$_appEl_9 = new V.ViewContainer(9, 0, this, t1, null, null, null, null);
-        compView_9 = Y.viewFactory_ButtonComp0(this.injector$1(9), this._tree_node_component_template$_appEl_9);
-        t1 = new E.ButtonComp(null, null, true, null);
-        this._ButtonComp_9_3 = t1;
-        t2 = this._tree_node_component_template$_appEl_9;
-        t2.component = t1;
-        t2.componentView = compView_9;
-        compView_9.createComp$2([], null);
-        _text_10 = doc.createTextNode("\n        ");
-        this._tree_node_component_template$_el_0.appendChild(_text_10);
-        t1 = doc.createElement("div");
-        this._tree_node_component_template$_el_11 = t1;
-        t1.setAttribute(this.componentType._contentAttr, "");
-        this._tree_node_component_template$_el_0.appendChild(this._tree_node_component_template$_el_11);
-        t1 = this._tree_node_component_template$_el_11;
         t1.className = "child";
-        _text_12 = doc.createTextNode("\n          ");
-        t1.appendChild(_text_12);
-        _anchor_13 = doc.createComment("template bindings={}");
-        t1 = this._tree_node_component_template$_el_11;
+        _text_10 = doc.createTextNode("\n          ");
+        t1.appendChild(_text_10);
+        _anchor_11 = doc.createComment("template bindings={}");
+        t1 = this._tree_node_component_template$_el_9;
         if (!(t1 == null))
-          t1.appendChild(_anchor_13);
-        t1 = new V.ViewContainer(13, 11, this, _anchor_13, null, null, null, null);
-        this._tree_node_component_template$_appEl_13 = t1;
+          t1.appendChild(_anchor_11);
+        t1 = new V.ViewContainer(11, 9, this, _anchor_11, null, null, null, null);
+        this._tree_node_component_template$_appEl_11 = t1;
         t2 = new D.TemplateRef(t1, V.tree_node_component_template__viewFactory_TreeNodeComponent3$closure());
-        this._tree_node_component_template$_TemplateRef_13_4 = t2;
-        this._tree_node_component_template$_NgIf_13_5 = new K.NgIf(t2, t1, false);
-        _text_14 = doc.createTextNode("\n        ");
-        this._tree_node_component_template$_el_11.appendChild(_text_14);
-        _text_15 = doc.createTextNode("\n      ");
-        this._tree_node_component_template$_el_0.appendChild(_text_15);
+        this._tree_node_component_template$_TemplateRef_11_4 = t2;
+        this._tree_node_component_template$_NgIf_11_5 = new K.NgIf(t2, t1, false);
+        _text_12 = doc.createTextNode("\n        ");
+        this._tree_node_component_template$_el_9.appendChild(_text_12);
+        _text_13 = doc.createTextNode("\n      ");
+        this._tree_node_component_template$_el_0.appendChild(_text_13);
         this.listen$3(this._tree_node_component_template$_el_2, "click", this.get$_handle_click_2_0());
-        this.listen$3(this._tree_node_component_template$_el_9, "click", this.get$_handle_click_9_0());
+        this.listen$3(this._tree_node_component_template$_el_7, "click", this.get$_handle_click_7_0());
         t1 = this._tree_node_component_template$_el_0;
-        this.init$3([t1], [t1, _text_1, this._tree_node_component_template$_el_2, _text_3, this._tree_node_component_template$_el_4, this._tree_node_component_template$_text_5, _text_6, this._tree_node_component_template$_el_7, _text_8, this._tree_node_component_template$_el_9, _text_10, this._tree_node_component_template$_el_11, _text_12, _anchor_13, _text_14, _text_15], []);
+        this.init$3([t1], [t1, _text_1, this._tree_node_component_template$_el_2, _text_3, this._tree_node_component_template$_el_4, this._tree_node_component_template$_text_5, _text_6, this._tree_node_component_template$_el_7, _text_8, this._tree_node_component_template$_el_9, _text_10, _anchor_11, _text_12, _text_13], []);
         return;
       },
       injectorGetInternal$3: function(token, requestNodeIndex, notFoundResult) {
-        var t1 = token === C.Type_ButtonComp_U01;
-        if (t1 && 7 === requestNodeIndex)
-          return this._ButtonComp_7_3;
-        if (t1 && 9 === requestNodeIndex)
-          return this._ButtonComp_9_3;
-        if (token === C.Type_TemplateRef_SSn && 13 === requestNodeIndex)
-          return this._tree_node_component_template$_TemplateRef_13_4;
-        if (token === C.Type_NgIf_43h && 13 === requestNodeIndex)
-          return this._tree_node_component_template$_NgIf_13_5;
+        if (token === C.Type_TemplateRef_SSn && 11 === requestNodeIndex)
+          return this._tree_node_component_template$_TemplateRef_11_4;
+        if (token === C.Type_NgIf_43h && 11 === requestNodeIndex)
+          return this._tree_node_component_template$_NgIf_11_5;
         return notFoundResult;
       },
       detectChangesInternal$0: function() {
         var t1, t2, t3, t4, currVal_1, currVal_2;
-        t1 = this._tree_node_component_template$_NgIf_13_5;
+        t1 = this._tree_node_component_template$_NgIf_11_5;
         t2 = this.ctx;
         t3 = this.declarationViewContainer;
         t4 = t3 == null;
@@ -69178,15 +69139,15 @@
         t1.switchExpanded$1((t2 == null ? t2 : t2.parentView).get$locals().$index(0, "$implicit"));
         return true;
       }, "call$1", "get$_handle_click_2_0", 2, 0, 1, 0, []],
-      _handle_click_9_0$1: [function($$event) {
+      _handle_click_7_0$1: [function($$event) {
         var t1, t2;
         this.markPathToRootAsCheckOnce$0();
         t1 = this.ctx;
         t2 = this.declarationViewContainer;
-        t1.gotoNode$1((t2 == null ? t2 : t2.parentView).get$locals().$index(0, "$implicit"));
+        t1.gotoNode$2((t2 == null ? t2 : t2.parentView).get$locals().$index(0, "$implicit"), $$event);
         this.ctx.rename$0();
         return true;
-      }, "call$1", "get$_handle_click_9_0", 2, 0, 1, 0, []],
+      }, "call$1", "get$_handle_click_7_0", 2, 0, 1, 0, []],
       $asAppView: function() {
         return [N.TreeNodeComponent];
       }
@@ -69245,7 +69206,7 @@
         this._tree_node_component_template$_el_0 = t1;
         t1.setAttribute(this.componentType._contentAttr, "");
         t1 = this._tree_node_component_template$_el_0;
-        t1.className = "test";
+        t1.className = "renameDiv";
         _text_1 = doc.createTextNode("\n        ");
         t1.appendChild(_text_1);
         t1 = doc.createElement("input");
@@ -69271,7 +69232,7 @@
         compView_4.createComp$2([], null);
         _text_5 = doc.createTextNode("\n      ");
         this._tree_node_component_template$_el_0.appendChild(_text_5);
-        this.listen$3(this._tree_node_component_template$_el_2, "keydown.enter", this.get$_handle_keydown_enter_2_0());
+        this.listen$3(this._tree_node_component_template$_el_2, "keyup.enter", this.get$_handle_keyup_enter_2_0());
         this.listen$3(this._tree_node_component_template$_el_4, "click", this.get$_handle_click_4_0());
         this._arr_0 = Q.pureProxy3(new V.ViewTreeNodeComponent4_createInternal_closure());
         t2 = this._tree_node_component_template$_el_0;
@@ -69285,7 +69246,7 @@
       },
       detectChangesInternal$0: function() {
         var currVal_3, t1, currVal_1;
-        currVal_3 = this._arr_0.call$3("../images/ok_white.png", "../images/ok_white.png", "../images/ok_white.png");
+        currVal_3 = this._arr_0.call$3("../../images/ok_white.png", "../../images/ok_white.png", "../../images/ok_white.png");
         if (Q.checkBinding(this._tree_node_component_template$_expr_3, currVal_3)) {
           this._ButtonComp_4_3.set$sources(currVal_3);
           this._tree_node_component_template$_expr_3 = currVal_3;
@@ -69299,11 +69260,11 @@
         }
         this.detectViewChildrenChanges$0();
       },
-      _handle_keydown_enter_2_0$1: [function($$event) {
+      _handle_keyup_enter_2_0$1: [function($$event) {
         this.markPathToRootAsCheckOnce$0();
         this.ctx.doRename$1(J.get$value$x(this._tree_node_component_template$_el_2));
         return true;
-      }, "call$1", "get$_handle_keydown_enter_2_0", 2, 0, 1, 0, []],
+      }, "call$1", "get$_handle_keyup_enter_2_0", 2, 0, 1, 0, []],
       _handle_click_4_0$1: [function($$event) {
         this.markPathToRootAsCheckOnce$0();
         this.ctx.doRename$1(J.get$value$x(this._tree_node_component_template$_el_2));
@@ -75744,7 +75705,7 @@
         this._el_52.appendChild(_text_56);
         _text_57 = t1.createTextNode("\n");
         this._invite_dialog_comp_template$_el_1.appendChild(_text_57);
-        this.listen$3(this._invite_dialog_comp_template$_el_9, "click", this.get$_invite_dialog_comp_template$_handle_click_9_0());
+        this.listen$3(this._invite_dialog_comp_template$_el_9, "click", this.get$_handle_click_9_0());
         this.listen$3(this._el_42, "click", this.get$_handle_click_42_0());
         t1 = this.get$_handle_ngModelChange_49_0();
         this.listen$3(this._el_49, "ngModelChange", t1);
@@ -75916,12 +75877,12 @@
         t1.popupSourceEl = null;
         this._MaterialInputDefaultValueAccessor_49_9._material_input_default_value_accessor$_disposer.dispose$0();
       },
-      _invite_dialog_comp_template$_handle_click_9_0$1: [function($$event) {
+      _handle_click_9_0$1: [function($$event) {
         var t1;
         this.markPathToRootAsCheckOnce$0();
         t1 = J.close$0$x(this.ctx);
         return t1 !== false;
-      }, "call$1", "get$_invite_dialog_comp_template$_handle_click_9_0", 2, 0, 1, 0, []],
+      }, "call$1", "get$_handle_click_9_0", 2, 0, 1, 0, []],
       _handle_click_42_0$1: [function($$event) {
         this.markPathToRootAsCheckOnce$0();
         this.ctx.addUserLine$0();
@@ -78303,7 +78264,7 @@
         _text_132 = doc.createTextNode("\n");
         this._profile_comp_template$_el_0.appendChild(_text_132);
         this.listen$3(this._profile_comp_template$_el_0, "keyup.esc", this.get$_handle_keyup_esc_0_0());
-        this.listen$3(this._profile_comp_template$_el_7, "click", this.get$_handle_click_7_0());
+        this.listen$3(this._profile_comp_template$_el_7, "click", this.get$_profile_comp_template$_handle_click_7_0());
         this.listen$3(this._profile_comp_template$_el_10, "dragenter", this.get$_handle_dragenter_10_0());
         this.listen$3(this._profile_comp_template$_el_10, "drop", this.get$_handle_drop_10_1());
         this.listen$3(this._profile_comp_template$_el_10, "submit", this.get$_handle_submit_10_2());
@@ -78900,12 +78861,12 @@
         t1 = J.cancel$0$x(this.ctx);
         return t1 !== false;
       }, "call$1", "get$_handle_keyup_esc_0_0", 2, 0, 1, 0, []],
-      _handle_click_7_0$1: [function($$event) {
+      _profile_comp_template$_handle_click_7_0$1: [function($$event) {
         var t1;
         this.markPathToRootAsCheckOnce$0();
         t1 = J.close$0$x(this.ctx);
         return t1 !== false;
-      }, "call$1", "get$_handle_click_7_0", 2, 0, 1, 0, []],
+      }, "call$1", "get$_profile_comp_template$_handle_click_7_0", 2, 0, 1, 0, []],
       _handle_dragenter_10_0$1: [function($$event) {
         var t1, t2;
         this.markPathToRootAsCheckOnce$0();
@@ -84505,8 +84466,6 @@
   C.List_B6W = Isolate.makeConstantList([C.List_Type_PlaceService_fcN, C.List_Type_Router_yx3, C.List_Type_Environment_iuz, C.List_Type_AppComponent_TyU]);
   C.List_EAC = Isolate.makeConstantList(['[_nghost-%COMP%]{display:-webkit-inline-flex;display:inline-flex}[_nghost-%COMP%][light]{opacity:0.54}[_nghost-%COMP%][size="x-small"]   i{font-size:12px;height:1em;line-height:1em;width:1em}[_nghost-%COMP%][size="small"]   i{font-size:13px;height:1em;line-height:1em;width:1em}[_nghost-%COMP%][size="medium"]   i{font-size:16px;height:1em;line-height:1em;width:1em}[_nghost-%COMP%][size="large"]   i{font-size:18px;height:1em;line-height:1em;width:1em}[_nghost-%COMP%][size="x-large"]   i{font-size:20px;height:1em;line-height:1em;width:1em}']);
   C.List_BCG = Isolate.makeConstantList([C.List_EAC]);
-  C.List_RsV = Isolate.makeConstantList([".folderItem[_ngcontent-%COMP%] {\r\n  cursor: pointer;\r\n}\r\n\r\n.folderItem.selected[_ngcontent-%COMP%]   .child[_ngcontent-%COMP%] {\r\n  font-weight: normal;\r\n  text-decoration: none;\r\n}\r\n\r\n.nodeArrow[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n}\r\n\r\n.folder-name[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n}\r\n\r\n.nodes[_ngcontent-%COMP%] {\r\n}\r\n\r\n.node[_ngcontent-%COMP%] {\r\n  padding-left: 1em;\r\n  position: relative;\r\n  font-size: 13px;\r\n\r\n}\r\n\r\n.node[_ngcontent-%COMP%]   btn[_ngcontent-%COMP%] {\r\n  position: absolute;\r\n  right: 0;\r\n\r\n}\r\n\r\n.header[_ngcontent-%COMP%] {\r\n  position: relative;\r\n  width: 100%;\r\n  padding-bottom: 0.5em;\r\n  margin: 14px 0;\r\n}\r\n\r\n.hTitle[_ngcontent-%COMP%] {\r\n  position: absolute;\r\n  left: 0;\r\n  top: 0;\r\n  font-size: 1em;\r\n}\r\n\r\n.header[_ngcontent-%COMP%]   .add[_ngcontent-%COMP%] {\r\n  position: absolute;\r\n  right: 0;\r\n}\r\n\r\n.nodeList[_ngcontent-%COMP%] {\r\n  list-style-type: none;\r\n  padding: 0.3em 0 0 0;\r\n  margin: 0 0 0 4px;\r\n}\r\n\r\n.nodeItem[_ngcontent-%COMP%] {\r\n  cursor: pointer;\r\n  color: rgba(0, 0, 0, 0.7);\r\n  \r\n  border-radius: 0;\r\n  \r\n  margin-bottom: 1px;\r\n  position: relative;\r\n  \r\n  line-height: 13px;\r\n  \r\n  padding: 11px 10px 11px 0;\r\n}\r\n\r\n.nodeItem[_ngcontent-%COMP%]:hover:after, .nodeItem.active[_ngcontent-%COMP%]:after, .nodeItem.selected[_ngcontent-%COMP%]:after {\r\n  left: 100%;\r\n  top: 50%;\r\n  content: \" \";\r\n  height: 0;\r\n  width: 0;\r\n  position: absolute;\r\n  pointer-events: none;\r\n  border: solid transparent;\r\n  border-color: rgba(85, 134, 164, 0);\r\n  border-left-color: #5586A4;\r\n  border-width: 10px;\r\n  margin-top: -10px;\r\n\r\n}\r\n\r\n.nodeItem[_ngcontent-%COMP%]:hover, .nodeItem.active[_ngcontent-%COMP%], .nodeItem.selected[_ngcontent-%COMP%] {\r\n  \r\n  \r\n  text-decoration: none;\r\n  background-color: #5586A4 !important;\r\n  color: white !important;\r\n  -webkit-transition: 0.3s;\r\n  -o-transition: 0.3s;\r\n  transition: 0.3s;\r\n\r\n}\r\n\r\n.editFolder[_ngcontent-%COMP%] {\r\n  color: #243c57;\r\n  width: 100%;\r\n  border-bottom: 1px solid #243c57;\r\n  border-top: 0;\r\n  border-right: 0;\r\n  border-left: 0;\r\n  border-radius: 0;\r\n  padding: 0 10px;\r\n  font-weight: normal;\r\n  font-size: 12px;\r\n}\r\n\r\n.buttonGroup[_ngcontent-%COMP%] {\r\n  float: right;\r\n  \r\n  width: 30%;\r\n  text-align: right;\r\n}\r\n\r\n.hTitle[_ngcontent-%COMP%] {\r\n  width: 70%;\r\n  color: #414c5f;\r\n  float: left;\r\n  background: url(\"../images/tiret-grey.png\") repeat-x center center;\r\n  font-weight: bold;\r\n}\r\n\r\n.hTitlein[_ngcontent-%COMP%] {\r\n  background: white;\r\n  padding-right: 0.5em;\r\n  display: inline;\r\n}\r\n\r\n.rename_node[_ngcontent-%COMP%]:after {\r\n  float: right;\r\n  \r\n  \r\n  \r\n  \r\n  content: '' !important;\r\n  background-image: url('../images/edit_blue.png') !important;\r\n  background-position: left top !important;\r\n  background-repeat: no-repeat !important;\r\n\r\n  display: block !important;\r\n  width: 16px !important;\r\n  height: 16px !important;\r\n  margin-right: 15px;\r\n\r\n}\r\n\r\n\r\n.node[_ngcontent-%COMP%]   btn[_ngcontent-%COMP%] {\r\n  display: inline;\r\n  vertical-align: middle;\r\n  float: right;\r\n  \r\n}\r\n\r\n.name_node[_ngcontent-%COMP%] {\r\n  width: calc(100% - 33px);\r\n  display: inline-block\r\n}\r\n\r\n.rename_node[_ngcontent-%COMP%] {\r\n  margin: 0 2px 0 0\r\n}\r\n\r\n.delete_node[_ngcontent-%COMP%] {\r\n  position: relative;\r\n}\r\n\r\n.delete_node[_ngcontent-%COMP%]:after {\r\n  content: '' !important;\r\n  background-image: url('../images/delete_node.png') !important;\r\n  background-position: left top !important;\r\n  background-repeat: no-repeat !important;\r\n\r\n  display: block !important;\r\n  width: 12px !important;\r\n  height: 12px !important;\r\n\r\n}\r\n\r\n.nodeItem[_ngcontent-%COMP%]:hover   .rename_node[_ngcontent-%COMP%]:after, .nodeItem.selected[_ngcontent-%COMP%]   .rename_node[_ngcontent-%COMP%]:after {\r\n  color: white\r\n}\r\n\r\n.nodeItem.active[_ngcontent-%COMP%]   .rename_node[_ngcontent-%COMP%]:after {\r\n  color: white\r\n}\r\n\r\n.li_add[_ngcontent-%COMP%] {\r\n  margin-bottom: 2px\r\n}\r\n\r\n.nodeItem.edited[_ngcontent-%COMP%] {\r\n  padding: 11px 8px 11px 16px;\r\n}\r\n\r\n.test[_ngcontent-%COMP%] {\r\n  position: relative;\r\n  margin-right: 0;\r\n}\r\n\r\n.test[_ngcontent-%COMP%]   input[_ngcontent-%COMP%] {\r\n  background: transparent !important;\r\n  \r\n  -webkit-appearance: normal !important;\r\n  -moz-appearance: normal !important;\r\n  border: 0 !important;\r\n  border-bottom: 1px solid #fff !important;\r\n  color: #fff;\r\n  font-size: 13px;\r\n  padding: 0 8px 0 0;\r\n  width: calc(100% - 44px);\r\n}\r\n\r\n.test[_ngcontent-%COMP%]:after {\r\n  content: '' !important;\r\n  background-image: url('../images/edit_white.png') !important;\r\n  background-position: left top !important;\r\n  background-repeat: no-repeat !important;\r\n  display: block !important;\r\n  width: 16px !important;\r\n  height: 16px !important;\r\n  position: absolute !important;\r\n  left: calc(100% - 47px) !important;\r\n  bottom: 0 !important;\r\n}\r\n\r\n.test[_ngcontent-%COMP%]   btn[_ngcontent-%COMP%] {\r\n  float: right\r\n}"]);
-  C.List_CAN = Isolate.makeConstantList([C.List_RsV]);
   C.Type_PlaceSearchComponent_v9V = H.createRuntimeType("PlaceSearchComponent");
   C.List_58b = Isolate.makeConstantList([C.Type_PlaceSearchComponent_v9V, C.List_empty]);
   C.ComponentFactory_c8d = new D.ComponentFactory("place-search", N.place_search_component_template__viewFactory_PlaceSearchComponentHost0$closure(), C.Type_PlaceSearchComponent_v9V, C.List_58b);
@@ -85024,6 +84983,8 @@
   C.List_Type_SanitizationService_bRS = Isolate.makeConstantList([C.Type_SanitizationService_bRS]);
   C.List_Type_EventManager_hsx = Isolate.makeConstantList([C.Type_EventManager_hsx]);
   C.List_pq7 = Isolate.makeConstantList([C.List_CFJ, C.List_Type_SanitizationService_bRS, C.List_Type_EventManager_hsx]);
+  C.List_PHx = Isolate.makeConstantList([".folderItem[_ngcontent-%COMP%] {\r\n  cursor: pointer;\r\n}\r\n\r\n.folderItem.selected[_ngcontent-%COMP%]   .child[_ngcontent-%COMP%] {\r\n  font-weight: normal;\r\n  text-decoration: none;\r\n}\r\n\r\n.nodeArrow[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n}\r\n\r\n.folder-name[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n}\r\n\r\n.nodes[_ngcontent-%COMP%] {\r\n}\r\n\r\n.node[_ngcontent-%COMP%] {\r\n  padding-left: 1em;\r\n  position: relative;\r\n  font-size: 13px;\r\n\r\n}\r\n\r\n.node[_ngcontent-%COMP%]   btn[_ngcontent-%COMP%] {\r\n  position: absolute;\r\n  right: 0;\r\n\r\n}\r\n\r\n.header[_ngcontent-%COMP%] {\r\n  position: relative;\r\n  width: 100%;\r\n  padding-bottom: 0.5em;\r\n  margin: 14px 0;\r\n}\r\n\r\n.hTitle[_ngcontent-%COMP%] {\r\n  position: absolute;\r\n  left: 0;\r\n  top: 0;\r\n  font-size: 1em;\r\n}\r\n\r\n.header[_ngcontent-%COMP%]   .add[_ngcontent-%COMP%] {\r\n  position: absolute;\r\n  right: 0;\r\n}\r\n\r\n.nodeList[_ngcontent-%COMP%] {\r\n  list-style-type: none;\r\n  padding: 0.3em 0 0 0;\r\n  margin: 0 0 0 4px;\r\n}\r\n\r\n.nodeItem[_ngcontent-%COMP%] {\r\n  cursor: pointer;\r\n  color: rgba(0, 0, 0, 0.7);\r\n  \r\n  border-radius: 0;\r\n  \r\n  margin-bottom: 1px;\r\n  position: relative;\r\n  \r\n  line-height: 13px;\r\n  \r\n  padding: 11px 10px 11px 0;\r\n}\r\n\r\n.nodeItem[_ngcontent-%COMP%]:hover:after, .nodeItem.active[_ngcontent-%COMP%]:after, .nodeItem.selected[_ngcontent-%COMP%]:after {\r\n  left: 100%;\r\n  top: 50%;\r\n  content: \" \";\r\n  height: 0;\r\n  width: 0;\r\n  position: absolute;\r\n  pointer-events: none;\r\n  border: solid transparent;\r\n  border-color: rgba(85, 134, 164, 0);\r\n  border-left-color: #5586A4;\r\n  border-width: 10px;\r\n  margin-top: -10px;\r\n\r\n}\r\n\r\n.nodeItem[_ngcontent-%COMP%]:hover, .nodeItem.active[_ngcontent-%COMP%], .nodeItem.selected[_ngcontent-%COMP%] {\r\n  \r\n  \r\n  text-decoration: none;\r\n  background-color: #5586A4 !important;\r\n  color: white !important;\r\n  -webkit-transition: 0.3s;\r\n  -o-transition: 0.3s;\r\n  transition: 0.3s;\r\n\r\n}\r\n\r\n.editFolder[_ngcontent-%COMP%] {\r\n  color: #243c57;\r\n  width: 100%;\r\n  border-bottom: 1px solid #243c57;\r\n  border-top: 0;\r\n  border-right: 0;\r\n  border-left: 0;\r\n  border-radius: 0;\r\n  padding: 0 10px;\r\n  font-weight: normal;\r\n  font-size: 12px;\r\n}\r\n\r\n.buttonGroup[_ngcontent-%COMP%] {\r\n  float: right;\r\n  \r\n  width: 30%;\r\n  text-align: right;\r\n}\r\n\r\n.hTitle[_ngcontent-%COMP%] {\r\n  width: 70%;\r\n  color: #414c5f;\r\n  float: left;\r\n  background: url(\"../images/tiret-grey.png\") repeat-x center center;\r\n  font-weight: bold;\r\n}\r\n\r\n.hTitlein[_ngcontent-%COMP%] {\r\n  background: white;\r\n  padding-right: 0.5em;\r\n  display: inline;\r\n}\r\n\r\n.rename_node[_ngcontent-%COMP%]:after {\r\n  float: right;\r\n  \r\n  \r\n  \r\n  \r\n  content: '' !important;\r\n  background-image: url('../images/edit_blue.png') !important;\r\n  background-position: left top !important;\r\n  background-repeat: no-repeat !important;\r\n\r\n  display: block !important;\r\n  width: 16px !important;\r\n  height: 16px !important;\r\n  margin-right: 15px;\r\n\r\n}\r\n\r\n\r\n.node[_ngcontent-%COMP%]   btn[_ngcontent-%COMP%] {\r\n  display: inline;\r\n  vertical-align: middle;\r\n  float: right;\r\n  \r\n}\r\n\r\n.name_node[_ngcontent-%COMP%] {\r\n  width: calc(100% - 33px);\r\n  display: inline-block;\r\n}\r\n\r\n.rename_node[_ngcontent-%COMP%] {\r\n  margin: 0 2px 0 0;\r\n  display: inline;\r\n}\r\n\r\n.delete_node[_ngcontent-%COMP%] {\r\n  position: relative;\r\n}\r\n\r\n.delete_node[_ngcontent-%COMP%]:after {\r\n  content: '' !important;\r\n  background-image: url('../../images/delete_folder.png') !important;\r\n  background-position: left top !important;\r\n  background-repeat: no-repeat !important;\r\n\r\n  display: block !important;\r\n  width: 12px !important;\r\n  height: 12px !important;\r\n\r\n}\r\n\r\n.nodeItem[_ngcontent-%COMP%]:hover   .rename_node[_ngcontent-%COMP%]:after, .nodeItem.selected[_ngcontent-%COMP%]   .rename_node[_ngcontent-%COMP%]:after {\r\n  color: white\r\n}\r\n\r\n.nodeItem.active[_ngcontent-%COMP%]   .rename_node[_ngcontent-%COMP%]:after {\r\n  color: white\r\n}\r\n\r\n.li_add[_ngcontent-%COMP%] {\r\n  margin-bottom: 2px\r\n}\r\n\r\n.nodeItem.edited[_ngcontent-%COMP%] {\r\n  padding: 11px 8px 11px 16px;\r\n}\r\n\r\n.renameDiv[_ngcontent-%COMP%] {\r\n  position: relative;\r\n  margin-right: 0;\r\n}\r\n\r\n.renameDiv[_ngcontent-%COMP%]   input[_ngcontent-%COMP%] {\r\n  font-size: 13px;\r\n  padding: 0 8px 0 0;\r\n  width: calc(100% - 44px);\r\n}\r\n\r\n.renameDiv[_ngcontent-%COMP%]:after {\r\n  content: '' !important;\r\n  background-image: url('../images/edit_white.png') !important;\r\n  background-position: left top !important;\r\n  background-repeat: no-repeat !important;\r\n  display: block !important;\r\n  width: 16px !important;\r\n  height: 16px !important;\r\n  position: absolute !important;\r\n  left: calc(100% - 47px) !important;\r\n  bottom: 0 !important;\r\n}\r\n\r\n.renameDiv[_ngcontent-%COMP%]   btn[_ngcontent-%COMP%] {\r\n  float: right\r\n}"]);
+  C.List_q0y = Isolate.makeConstantList([C.List_PHx]);
   C.List_qFt = Isolate.makeConstantList([0, 0, 27858, 1023, 65534, 51199, 65535, 32767]);
   C.List_USP = Isolate.makeConstantList([C.Type_MaterialRadioGroupComponent_GNs, C.List_empty]);
   C.ComponentFactory_ROM = new D.ComponentFactory("material-radio-group", L.material_radio_group_template__viewFactory_MaterialRadioGroupComponentHost0$closure(), C.Type_MaterialRadioGroupComponent_GNs, C.List_USP);
