@@ -263,12 +263,14 @@ class FilesComp implements OnInit {
   }
 
   Future<Null> lockAndOpen(int version) async {
+    openFile = false;
     await _placeService.lockFile(selectedPlace.id, selectedSubject.folderId, selectedFile.id, true);
     _environment.fireEvent(PlaceParam.lockStateChange, selectedFile.id);
     openFileLink(version);
   }
 
   void openFileLink(int version) {
+    openFile = false;
     window.location.assign("/sp/place/${selectedPlace?.id}/folder/${selectedFolder?.id}/file/${selectedFile?.id}/version/${version}/download");
   }
 

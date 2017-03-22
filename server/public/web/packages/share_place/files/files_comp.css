@@ -1,9 +1,6 @@
 /**
  * Comments were generated thanks to : http://www.cssarrowplease.com/
  */
-* {
-  font-family: Arial, Helvetica, sans-serif;
-}
 
 .files {
   background-color: #e5e5e5 !important;
@@ -32,20 +29,19 @@ ul {
   display: inline-block;
   cursor: alias;
   vertical-align: middle;
+  margin-right: 0.4em;
 }
 
 .rightDetails {
-  /*width: calc(100% - 110px);*/
   display: inline-block;
   vertical-align: middle;
-  /*padding-bottom: 1.5em;*/
+  position: relative;
 }
 
 .line a {
   display: inline-block;
   text-decoration: none;
 }
-
 .file {
   width: 100%;
   /*border-bottom: 2px solid #CDCDCD;*/
@@ -80,7 +76,14 @@ ul {
 .fileProps {
   display: inline-block;
   vertical-align: top;
-  width: 100%;
+  width: calc(100% - 47px);
+  word-break: break-all;
+}
+
+.fileMoreActions {
+  position: absolute;
+  right: 0;
+  top: 0;
 }
 
 .date {
@@ -97,13 +100,13 @@ ul {
 }
 
 .fileName {
-  color: #000;
-  font-weight: bold;
-  font-size: 13px;
   text-decoration: none;
+  line-height:1.1;
 }
 
-.content {
+.fileLink {
+  cursor: pointer;
+  font-weight: bold;
 }
 
 .list {
@@ -115,6 +118,21 @@ ul {
 .version {
   color: #727272;
   font-size: 14px;
+  padding: 0 0.4em;
+}
+
+.moreActions {
+  position: relative;
+  display: inline;
+}
+
+.moreActions:after {
+  /*position: absolute;*/
+  font-family: FontAwesome;
+  font-size: 20px;
+  content: "\f142";
+  color: #1A1A99;
+  float: right;
 }
 
 .selected {
@@ -148,6 +166,7 @@ a {
 
 .header_file {
   position: relative;
+  overflow: hidden;
 }
 
 .commentList > li {
@@ -191,6 +210,7 @@ a {
   border-radius: 0 0 3px 3px;
   -webkit-border-radius: 0 0 3px 3px;
   -moz-border-radius: 0 0 3px 3px;
+  padding-bottom: 0.4em;
 }
 
 .version .header a {
@@ -214,7 +234,7 @@ a {
   -webkit-border-radius: 0 0 3px 3px;
   -moz-border-radius: 0 0 3px 3px;
   border-radius: 0 0 3px 3px;
-  margin-bottom: 1px;
+  margin-bottom: 4px;
   border-bottom: 1px solid #e6e6e6;
 }
 
@@ -263,6 +283,7 @@ a {
 .addCommentBlock {
   margin-left: 1em;
   padding: 1em 0;
+  float: left;
 }
 
 .commentBlock .author, .approveBlock .author {
@@ -318,7 +339,7 @@ http://stackoverflow.com/questions/32918654/replicating-jquery-slidetoggle-witho
 
 .arrow_box_in {
   display: inline-block;
-  width: calc(100% - 5em);
+  width: calc(100% - 4.3em);
   float: right;
   /*background-color: rgba(255, 255, 255, 0.4);*/
 }
@@ -327,16 +348,18 @@ http://stackoverflow.com/questions/32918654/replicating-jquery-slidetoggle-witho
   position: relative;
   background: #fff;
   border: 1px solid #d3d3d3;
-  display: inline-flex;
+  /*display: inline-flex;*/
+  display: inline-block;
   vertical-align: middle;
   color: #000;
   font-size: 12px;
   min-height: calc(25px - 0.4em);
-  padding: 0.3em !important;
+  padding: 0.3em 0.6em 0.3em 0.3em !important;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
   line-height: 1.5;
+  /*width: 88%;*/
 }
 
 .arrow_box:after, .arrow_box:before {
@@ -382,19 +405,19 @@ li.more {
   text-transform: initial;
 }
 
-.popupHeader {
-  padding: 0.5em;
-}
-
 .popupContent {
   overflow: hidden;
   padding: 0.2em;
 }
 
 .lockedFile {
-  border: 1px solid #a4a384;
-  background-color: rgba(0, 0, 0, 0.1);
+  color: #fff;
+  border: 1px solid #888770;
+  background-color: #A4A384;
   padding: 0.1em;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
 }
 
 .lockedFile .left img {
@@ -423,15 +446,11 @@ li.more {
 }
 
 .lockText {
-  color: #a4a384;
+  color: #fff;
   font-weight: bold;
 }
 
-/* __ a.k__ */
 .fileThumb .fileThumb_bg {
-  /*display: inline-block;*/
-  /*max-width: 100%;
-  overflow: hidden;*/
   position: relative;
 }
 
@@ -562,8 +581,7 @@ li.more {
   display: inline-block;
   font-size: 13px;
   letter-spacing: -0.5px;
-  float: right;
-  margin: 3px 5px 0 0;
+  margin: 1px 5px 0;
 }
 
 @keyframes nomAnim {

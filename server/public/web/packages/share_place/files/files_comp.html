@@ -6,9 +6,7 @@
       <div class="icons">
         <!--<i class="material-icons">remove_red_eye</i>-->
         <!--<i class="material-icons arrowbottom">arrow_drop_down</i>-->
-
       </div>
-
     </div>
     <div *ngIf="isUploading" class="isUploading">
       <div class="progress"></div>
@@ -47,7 +45,7 @@
                     <div *ngIf="isCommentsOpen(selectedFile.id, versionItem.v)" class="versionComments"
                          [class.activep]="isCommentsOpen(selectedFile.id, versionItem.v)">
                       <ul class="commentList">
-                        <li *ngFor="let actionItem of getActionsForVersion(versionItem)" class="litestme">
+                        <li *ngFor="let actionItem of getActionsForVersion(versionItem)">
                           <div *ngIf="actionItem.action.actionType == 'comment'" class="ownAction">
                             <div class="commentBlock"><span
                                 class="author"> <img
@@ -60,7 +58,7 @@
                             </div>
                           </div>
                           <div *ngIf="actionItem.action.actionType == 'fileApprove'"
-                               [class.ownAction]="connectedUser.id == actionItem.user.userId">
+                               [class.ownAction0]="connectedUser.id == actionItem.user.userId">
                             <div class="approveBlock"><span
                                 class="author"> <img
                                 src="/auth/user/photo/s/{{actionItem.user.userId}}" class="profileImg"></span>
@@ -127,22 +125,29 @@
                   </material-popup>
 
                   <modal *ngIf="openFile" [visible]="openFile">
-                    <material-dialog class="basic-dialog fileOpen">
-                      <div header class="popupHeader">
-                        <div class="fileName">Version {{selectedFile.name}}</div>
-                        <div class="close" (click)="cancelFileOpen()">x</div>
+                    <material-dialog class="basic-dialog fileOpen" hideHeader="true" hideFooter="true">
+                      <div class="popupHeader">
+                        <div class="fileName">{{selectedFile.name}}</div>
+                        <div class="close" (click)="cancelFileOpen()"></div>
                       </div>
                       <div class="content">
-                        <div class="explanation">Do you want to lock and modify or just take a look at the document?</div>
-                        <div class="actions">
-                          <div class="btn lock" (click)="lockAndOpen(versionItem.v)">Lock & Modify</div>
-                          <div class="btn openOnly" (click)="openFileLink(versionItem.v)">View</div>
+                        <div class="explanation">Do you want to lock and modify or just take a look at the document?
+                        </div>
+                        <div class="fileActions">
+                          <div class="fileActions_btn">
+                            <div class="btn material-icons lock" (click)="lockAndOpen(versionItem.v)"><span>Lock & Modify</span>
+                            </div>
+                          </div>
+                          <div class="fileActions_btn posRight">
+                            <div class="btn material-icons openOnly" (click)="openFileLink(versionItem.v)">
+                              <span>View (read only)</span></div>
+                          </div>
                         </div>
                       </div>
                     </material-dialog>
                   </modal>
 
-                  <div class="header_file" [class.approved]="versionItem.approved != null">
+                    <div class="header_file" [class.approved]="versionItem.approved != null">
                     <div class="left commentBlock">
                       <!--<a href="/sp/place/{{selectedPlace?.id}}/folder/{{selectedFolder?.id}}/file/{{selectedFile?.id}}/version/{{versionItem?.v}}">Version-->
                       <!--{{versionItem?.v}}</a>-->
@@ -160,19 +165,24 @@
                                #fileMenu="popupSource"
                                (click)="switchMenuState(versionItem.v)">
                             <div class="fileThumb_bg">
-                              <img src="/sp/place/{{selectedPlace?.id}}/folder/{{selectedFolder?.id}}/file/{{selectedFile?.id}}/version/{{versionItem.v}}/thumb"
+                              <img
+                                  src="/sp/place/{{selectedPlace?.id}}/folder/{{selectedFolder?.id}}/file/{{selectedFile?.id}}/version/{{versionItem.v}}/thumb"
                                   class="thumbnail">
-                              <div class="uploadStatus" *ngIf="versionItem.status!='uploaded'"><img src="../images/uploading.png"/></div>
+                              <div class="uploadStatus" *ngIf="versionItem.status!='uploaded'"><img
+                                  src="../images/uploading.png"/></div>
                             </div>
                           </div>
                           <div class="rightDetails">
+                            <div class="fileMoreActions">
+                              <span class="fileversion">v. {{versionItem.v}}</span>
+                              <span class="moreActions"></span>
+                            </div>
                             <div class="fileProps">
                               <div class="line">
                                 <!--href="/sp/place/{{selectedPlace?.id}}/folder/{{selectedFolder?.id}}/file/{{selectedFile?.id}}/version/{{versionItem.v}}/download" -->
-                                <div (click)="openFileDialog()">
+                                <div (click)="openFileDialog()" class="fileLink">
                                   <div class="fileName">{{selectedFile?.name}}</div>
                                 </div>
-                                <span class="fileversion">v. {{versionItem.v}}</span>
                                 <div class="linerow">
                                   <span class="filetypedoc">{{formatDesc( versionItem )}}</span>
                                   <span class="fileSize">
@@ -180,15 +190,12 @@
                        </span>
                                 </div>
                               </div>
-
                               <!--<div class="line2">{{selectedFile.orderedVersions[0].actionCount == null ? "no " :-->
                               <!--selectedFile.orderedVersions[0].actionCount.toString()}} comments-->
                               <!--</div>-->
                             </div>
                           </div>
-
                         </div>
-
                       </div>
                     </div>
                   </div>

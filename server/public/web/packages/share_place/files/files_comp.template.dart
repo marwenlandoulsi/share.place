@@ -200,9 +200,9 @@ class ViewFilesComp1 extends AppView<import3.FilesComp> {
     _el_4.append(_text_5);
     Text _text_6 = new Text('\n        ');
     _el_4.append(_text_6);
-    Text _text_7 = new Text('\n\n      ');
+    Text _text_7 = new Text('\n      ');
     _el_4.append(_text_7);
-    Text _text_8 = new Text('\n\n    ');
+    Text _text_8 = new Text('\n    ');
     _el_2.append(_text_8);
     Text _text_9 = new Text('\n    ');
     _el_0.append(_text_9);
@@ -445,16 +445,18 @@ class ViewFilesComp3 extends AppView<import3.FilesComp> {
   Element _el_81;
   Element _el_83;
   Element _el_85;
+  Text _text_86;
   Element _el_88;
-  Element _el_90;
-  Text _text_91;
-  Element _el_94;
-  Text _text_95;
-  Element _el_97;
-  Element _el_99;
-  Text _text_100;
+  Element _el_91;
+  Element _el_93;
+  Element _el_96;
+  Element _el_98;
+  Text _text_99;
   Element _el_102;
-  Text _text_103;
+  Element _el_104;
+  Text _text_105;
+  Element _el_107;
+  Text _text_108;
   var _expr_0 = uninitialized;
   var _map_0;
   var _expr_2 = uninitialized;
@@ -474,7 +476,7 @@ class ViewFilesComp3 extends AppView<import3.FilesComp> {
   var _expr_30 = uninitialized;
   var _expr_31 = uninitialized;
   var _expr_33 = uninitialized;
-  var _expr_36 = uninitialized;
+  var _expr_35 = uninitialized;
   var _expr_37 = uninitialized;
   var _expr_38 = uninitialized;
   var _expr_39 = uninitialized;
@@ -667,7 +669,7 @@ class ViewFilesComp3 extends AppView<import3.FilesComp> {
     _appEl_48 = new ViewContainer(48,0,this,_anchor_48);
     _TemplateRef_48_4 = new TemplateRef(_appEl_48,viewFactory_FilesComp14);
     _NgIf_48_5 = new NgIf(_appEl_48,_TemplateRef_48_4);
-    Text _text_49 = new Text('\n\n                  ');
+    Text _text_49 = new Text('\n\n                    ');
     _el_0.append(_text_49);
     _el_50 = doc.createElement('div');
     _el_50.setAttribute(shimCAttr,'');
@@ -767,84 +769,99 @@ class ViewFilesComp3 extends AppView<import3.FilesComp> {
     _el_83 = doc.createElement('div');
     _el_83.setAttribute(shimCAttr,'');
     _el_81.append(_el_83);
-    _el_83.className = 'fileProps';
+    _el_83.className = 'fileMoreActions';
     Text _text_84 = new Text('\n                              ');
     _el_83.append(_text_84);
-    _el_85 = doc.createElement('div');
+    _el_85 = doc.createElement('span');
     _el_85.setAttribute(shimCAttr,'');
     _el_83.append(_el_85);
-    _el_85.className = 'line';
-    Text _text_86 = new Text('\n                                ');
+    _el_85.className = 'fileversion';
+    _text_86 = new Text('');
     _el_85.append(_text_86);
-    Text _text_87 = new Text('\n                                ');
-    _el_85.append(_text_87);
-    _el_88 = doc.createElement('div');
+    Text _text_87 = new Text('\n                              ');
+    _el_83.append(_text_87);
+    _el_88 = doc.createElement('span');
     _el_88.setAttribute(shimCAttr,'');
-    _el_85.append(_el_88);
-    Text _text_89 = new Text('\n                                  ');
-    _el_88.append(_text_89);
-    _el_90 = doc.createElement('div');
-    _el_90.setAttribute(shimCAttr,'');
-    _el_88.append(_el_90);
-    _el_90.className = 'fileName';
-    _text_91 = new Text('');
-    _el_90.append(_text_91);
-    Text _text_92 = new Text('\n                                ');
-    _el_88.append(_text_92);
-    Text _text_93 = new Text('\n                                ');
-    _el_85.append(_text_93);
-    _el_94 = doc.createElement('span');
-    _el_94.setAttribute(shimCAttr,'');
-    _el_85.append(_el_94);
-    _el_94.className = 'fileversion';
-    _text_95 = new Text('');
-    _el_94.append(_text_95);
-    Text _text_96 = new Text('\n                                ');
-    _el_85.append(_text_96);
-    _el_97 = doc.createElement('div');
-    _el_97.setAttribute(shimCAttr,'');
-    _el_85.append(_el_97);
-    _el_97.className = 'linerow';
-    Text _text_98 = new Text('\n                                  ');
-    _el_97.append(_text_98);
-    _el_99 = doc.createElement('span');
-    _el_99.setAttribute(shimCAttr,'');
-    _el_97.append(_el_99);
-    _el_99.className = 'filetypedoc';
-    _text_100 = new Text('');
-    _el_99.append(_text_100);
-    Text _text_101 = new Text('\n                                  ');
-    _el_97.append(_text_101);
-    _el_102 = doc.createElement('span');
+    _el_83.append(_el_88);
+    _el_88.className = 'moreActions';
+    Text _text_89 = new Text('\n                            ');
+    _el_83.append(_text_89);
+    Text _text_90 = new Text('\n                            ');
+    _el_81.append(_text_90);
+    _el_91 = doc.createElement('div');
+    _el_91.setAttribute(shimCAttr,'');
+    _el_81.append(_el_91);
+    _el_91.className = 'fileProps';
+    Text _text_92 = new Text('\n                              ');
+    _el_91.append(_text_92);
+    _el_93 = doc.createElement('div');
+    _el_93.setAttribute(shimCAttr,'');
+    _el_91.append(_el_93);
+    _el_93.className = 'line';
+    Text _text_94 = new Text('\n                                ');
+    _el_93.append(_text_94);
+    Text _text_95 = new Text('\n                                ');
+    _el_93.append(_text_95);
+    _el_96 = doc.createElement('div');
+    _el_96.setAttribute(shimCAttr,'');
+    _el_93.append(_el_96);
+    _el_96.className = 'fileLink';
+    Text _text_97 = new Text('\n                                  ');
+    _el_96.append(_text_97);
+    _el_98 = doc.createElement('div');
+    _el_98.setAttribute(shimCAttr,'');
+    _el_96.append(_el_98);
+    _el_98.className = 'fileName';
+    _text_99 = new Text('');
+    _el_98.append(_text_99);
+    Text _text_100 = new Text('\n                                ');
+    _el_96.append(_text_100);
+    Text _text_101 = new Text('\n                                ');
+    _el_93.append(_text_101);
+    _el_102 = doc.createElement('div');
     _el_102.setAttribute(shimCAttr,'');
-    _el_97.append(_el_102);
-    _el_102.className = 'fileSize';
-    _text_103 = new Text('');
+    _el_93.append(_el_102);
+    _el_102.className = 'linerow';
+    Text _text_103 = new Text('\n                                  ');
     _el_102.append(_text_103);
-    Text _text_104 = new Text('\n                                ');
-    _el_97.append(_text_104);
-    Text _text_105 = new Text('\n                              ');
-    _el_85.append(_text_105);
-    Text _text_106 = new Text('\n\n                              ');
-    _el_83.append(_text_106);
-    Text _text_107 = new Text('\n                              ');
-    _el_83.append(_text_107);
-    Text _text_108 = new Text('\n                              ');
-    _el_83.append(_text_108);
-    Text _text_109 = new Text('\n                            ');
-    _el_83.append(_text_109);
-    Text _text_110 = new Text('\n                          ');
-    _el_81.append(_text_110);
-    Text _text_111 = new Text('\n\n                        ');
-    _el_69.append(_text_111);
-    Text _text_112 = new Text('\n\n                      ');
-    _el_67.append(_text_112);
-    Text _text_113 = new Text('\n                    ');
-    _el_65.append(_text_113);
-    Text _text_114 = new Text('\n                  ');
-    _el_50.append(_text_114);
-    Text _text_115 = new Text('\n                ');
-    _el_0.append(_text_115);
+    _el_104 = doc.createElement('span');
+    _el_104.setAttribute(shimCAttr,'');
+    _el_102.append(_el_104);
+    _el_104.className = 'filetypedoc';
+    _text_105 = new Text('');
+    _el_104.append(_text_105);
+    Text _text_106 = new Text('\n                                  ');
+    _el_102.append(_text_106);
+    _el_107 = doc.createElement('span');
+    _el_107.setAttribute(shimCAttr,'');
+    _el_102.append(_el_107);
+    _el_107.className = 'fileSize';
+    _text_108 = new Text('');
+    _el_107.append(_text_108);
+    Text _text_109 = new Text('\n                                ');
+    _el_102.append(_text_109);
+    Text _text_110 = new Text('\n                              ');
+    _el_93.append(_text_110);
+    Text _text_111 = new Text('\n                              ');
+    _el_91.append(_text_111);
+    Text _text_112 = new Text('\n                              ');
+    _el_91.append(_text_112);
+    Text _text_113 = new Text('\n                              ');
+    _el_91.append(_text_113);
+    Text _text_114 = new Text('\n                            ');
+    _el_91.append(_text_114);
+    Text _text_115 = new Text('\n                          ');
+    _el_81.append(_text_115);
+    Text _text_116 = new Text('\n                        ');
+    _el_69.append(_text_116);
+    Text _text_117 = new Text('\n                      ');
+    _el_67.append(_text_117);
+    Text _text_118 = new Text('\n                    ');
+    _el_65.append(_text_118);
+    Text _text_119 = new Text('\n                  ');
+    _el_50.append(_text_119);
+    Text _text_120 = new Text('\n                ');
+    _el_0.append(_text_120);
     listen(_el_8,'click',evt(_handle_click_8_0));
     this._map_0 = import13.pureProxy2((p0,p1) {
       return {
@@ -861,7 +878,7 @@ class ViewFilesComp3 extends AppView<import3.FilesComp> {
     listen(_el_40,'focus',evt(_handle_focus_40_4));
     listen(_el_40,'mousedown',evt(_handle_mousedown_40_5));
     listen(_el_71,'click',evt(_handle_click_71_0));
-    listen(_el_88,'click',evt(_handle_click_88_0));
+    listen(_el_96,'click',evt(_handle_click_96_0));
     this._pipe_agoDateFormat_0_3 = import13.pureProxy1((parent.parent as ViewFilesComp0)._pipe_agoDateFormat_0.transform);
     this._pipe_agoDateFormat_0_4 = import13.pureProxy1((parent.parent as ViewFilesComp0)._pipe_agoDateFormat_0.transform);
     this._pipe_fileSizeFormat_1_0 = import13.pureProxy1((parent.parent as ViewFilesComp0)._pipe_fileSizeFormat_1.transform);
@@ -875,9 +892,10 @@ class ViewFilesComp3 extends AppView<import3.FilesComp> {
       _el_59,_text_60,_el_61,_text_62,_text_63,_text_64,_el_65,_text_66,_el_67,_text_68,
       _el_69,_text_70,_el_71,_text_72,_el_73,_text_74,_el_75,_text_76,_anchor_77,_text_78,
       _text_79,_text_80,_el_81,_text_82,_el_83,_text_84,_el_85,_text_86,_text_87,_el_88,
-      _text_89,_el_90,_text_91,_text_92,_text_93,_el_94,_text_95,_text_96,_el_97,_text_98,
-      _el_99,_text_100,_text_101,_el_102,_text_103,_text_104,_text_105,_text_106,_text_107,
-      _text_108,_text_109,_text_110,_text_111,_text_112,_text_113,_text_114,_text_115
+      _text_89,_text_90,_el_91,_text_92,_el_93,_text_94,_text_95,_el_96,_text_97,_el_98,
+      _text_99,_text_100,_text_101,_el_102,_text_103,_el_104,_text_105,_text_106,_el_107,
+      _text_108,_text_109,_text_110,_text_111,_text_112,_text_113,_text_114,_text_115,
+      _text_116,_text_117,_text_118,_text_119,_text_120
     ]
     ,[]);
     return null;
@@ -1013,25 +1031,25 @@ class ViewFilesComp3 extends AppView<import3.FilesComp> {
       setProp(_el_75,'src',import13.appViewUtils.sanitizer.sanitizeUrl(currVal_33));
       _expr_33 = currVal_33;
     }
-    final currVal_36 = import13.interpolate0(((ctx.selectedFile == null)? null: ctx.selectedFile.name));
-    if (import13.checkBinding(_expr_36,currVal_36)) {
-      _text_91.text = currVal_36;
-      _expr_36 = currVal_36;
+    final currVal_35 = import13.interpolate1('v. ',locals['\$implicit'].v,'');
+    if (import13.checkBinding(_expr_35,currVal_35)) {
+      _text_86.text = currVal_35;
+      _expr_35 = currVal_35;
     }
-    final currVal_37 = import13.interpolate1('v. ',locals['\$implicit'].v,'');
+    final currVal_37 = import13.interpolate0(((ctx.selectedFile == null)? null: ctx.selectedFile.name));
     if (import13.checkBinding(_expr_37,currVal_37)) {
-      _text_95.text = currVal_37;
+      _text_99.text = currVal_37;
       _expr_37 = currVal_37;
     }
     final currVal_38 = import13.interpolate0(ctx.formatDesc(locals['\$implicit']));
     if (import13.checkBinding(_expr_38,currVal_38)) {
-      _text_100.text = currVal_38;
+      _text_105.text = currVal_38;
       _expr_38 = currVal_38;
     }
     valUnwrapper.reset();
     final currVal_39 = import13.interpolate1('\n                         (',valUnwrapper.unwrap(import13.castByValue(_pipe_fileSizeFormat_1_0,(parent.parent as ViewFilesComp0)._pipe_fileSizeFormat_1.transform)(ctx.selectedFile.orderedVersions[0].size)),')\n                       ');
     if ((valUnwrapper.hasWrappedValue || import13.checkBinding(_expr_39,currVal_39))) {
-      _text_103.text = currVal_39;
+      _text_108.text = currVal_39;
       _expr_39 = currVal_39;
     }
     this.detectViewChildrenChanges();
@@ -1088,7 +1106,7 @@ class ViewFilesComp3 extends AppView<import3.FilesComp> {
     final dynamic pd_0 = !identical((ctx.switchMenuState(locals['\$implicit'].v) as dynamic), false);
     return (true && pd_0);
   }
-  bool _handle_click_88_0($event) {
+  bool _handle_click_96_0($event) {
     this.markPathToRootAsCheckOnce();
     final dynamic pd_0 = !identical((ctx.openFileDialog() as dynamic), false);
     return (true && pd_0);
@@ -1187,7 +1205,6 @@ class ViewFilesComp5 extends AppView<import3.FilesComp> {
     var doc = document;
     _el_0 = doc.createElement('li');
     _el_0.setAttribute(shimCAttr,'');
-    _el_0.className = 'litestme';
     Text _text_1 = new Text('\n                          ');
     _el_0.append(_text_1);
     var _anchor_2 = new Comment('template bindings={}');
@@ -1409,7 +1426,7 @@ class ViewFilesComp7 extends AppView<import3.FilesComp> {
     this.detectContentChildrenChanges();
     final currVal_0 = (ctx.connectedUser.id == parent.locals['\$implicit'].user.userId);
     if (import13.checkBinding(_expr_0,currVal_0)) {
-      updateClass(_el_0,'ownAction',currVal_0);
+      updateClass(_el_0,'ownAction0',currVal_0);
       _expr_0 = currVal_0;
     }
     final currVal_1 = import13.interpolate1('/auth/user/photo/s/',parent.locals['\$implicit'].user.userId,'');
@@ -2012,14 +2029,20 @@ class ViewFilesComp14 extends AppView<import3.FilesComp> {
   Element _el_6;
   Text _text_7;
   Element _el_9;
-  Element _el_13;
-  Element _el_15;
-  Element _el_18;
-  Element _el_20;
-  Element _el_23;
+  Element _el_12;
+  Element _el_14;
+  Element _el_17;
+  Element _el_19;
+  Element _el_21;
+  Element _el_22;
+  Element _el_27;
+  Element _el_29;
+  Element _el_31;
   var _expr_0 = uninitialized;
   var _expr_1 = uninitialized;
   var _expr_2 = uninitialized;
+  var _expr_3 = uninitialized;
+  var _expr_4 = uninitialized;
   ViewFilesComp14(import9.Injector parentInjector,ViewContainer declarationEl): super(ViewFilesComp14,renderType_FilesComp,import10.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
   dynamic get _DeferredContentAware_0_4 {
     if ((this.__DeferredContentAware_0_4 == null)) { (__DeferredContentAware_0_4 = this._ModalComponent_0_3); }
@@ -2041,6 +2064,8 @@ class ViewFilesComp14 extends AppView<import3.FilesComp> {
     _el_2 = doc.createElement('material-dialog');
     _el_2.setAttribute(shimCAttr,'');
     _el_2.className = 'basic-dialog fileOpen';
+    createAttr(_el_2,'hideFooter','true');
+    createAttr(_el_2,'hideHeader','true');
     _appEl_2 = new ViewContainer(2,0,this,_el_2);
     var compView_2 = import44.viewFactory_MaterialDialogComponent0(this.injector(2),_appEl_2);
     _MaterialDialogComponent_2_3 = new import42.MaterialDialogComponent(this.parentInjector.get(import25.DomService),compView_2.ref,_ModalComponent_0_3);
@@ -2049,7 +2074,6 @@ class ViewFilesComp14 extends AppView<import3.FilesComp> {
     _el_4 = doc.createElement('div');
     _el_4.setAttribute(shimCAttr,'');
     _el_4.className = 'popupHeader';
-    createAttr(_el_4,'header','');
     Text _text_5 = new Text('\n                        ');
     _el_4.append(_text_5);
     _el_6 = doc.createElement('div');
@@ -2064,85 +2088,125 @@ class ViewFilesComp14 extends AppView<import3.FilesComp> {
     _el_9.setAttribute(shimCAttr,'');
     _el_4.append(_el_9);
     _el_9.className = 'close';
-    Text _text_10 = new Text('x');
-    _el_9.append(_text_10);
+    Text _text_10 = new Text('\n                      ');
+    _el_4.append(_text_10);
     Text _text_11 = new Text('\n                      ');
-    _el_4.append(_text_11);
-    Text _text_12 = new Text('\n                      ');
-    _el_13 = doc.createElement('div');
-    _el_13.setAttribute(shimCAttr,'');
-    _el_13.className = 'content';
-    Text _text_14 = new Text('\n                        ');
-    _el_13.append(_text_14);
-    _el_15 = doc.createElement('div');
-    _el_15.setAttribute(shimCAttr,'');
-    _el_13.append(_el_15);
-    _el_15.className = 'explanation';
-    Text _text_16 = new Text('Do you want to lock and modify or just take a look at the document?');
-    _el_15.append(_text_16);
-    Text _text_17 = new Text('\n                        ');
-    _el_13.append(_text_17);
-    _el_18 = doc.createElement('div');
-    _el_18.setAttribute(shimCAttr,'');
-    _el_13.append(_el_18);
-    _el_18.className = 'actions';
-    Text _text_19 = new Text('\n                          ');
-    _el_18.append(_text_19);
-    _el_20 = doc.createElement('div');
-    _el_20.setAttribute(shimCAttr,'');
-    _el_18.append(_el_20);
-    _el_20.className = 'btn lock';
-    Text _text_21 = new Text('Lock & Modify');
-    _el_20.append(_text_21);
-    Text _text_22 = new Text('\n                          ');
-    _el_18.append(_text_22);
-    _el_23 = doc.createElement('div');
-    _el_23.setAttribute(shimCAttr,'');
-    _el_18.append(_el_23);
-    _el_23.className = 'btn openOnly';
-    Text _text_24 = new Text('View');
-    _el_23.append(_text_24);
-    Text _text_25 = new Text('\n                        ');
-    _el_18.append(_text_25);
-    Text _text_26 = new Text('\n                      ');
-    _el_13.append(_text_26);
-    Text _text_27 = new Text('\n                    ');
+    _el_12 = doc.createElement('div');
+    _el_12.setAttribute(shimCAttr,'');
+    _el_12.className = 'content';
+    Text _text_13 = new Text('\n                        ');
+    _el_12.append(_text_13);
+    _el_14 = doc.createElement('div');
+    _el_14.setAttribute(shimCAttr,'');
+    _el_12.append(_el_14);
+    _el_14.className = 'explanation';
+    Text _text_15 = new Text('Do you want to lock and modify or just take a look at the document?\n                        ');
+    _el_14.append(_text_15);
+    Text _text_16 = new Text('\n                        ');
+    _el_12.append(_text_16);
+    _el_17 = doc.createElement('div');
+    _el_17.setAttribute(shimCAttr,'');
+    _el_12.append(_el_17);
+    _el_17.className = 'fileActions';
+    Text _text_18 = new Text('\n                          ');
+    _el_17.append(_text_18);
+    _el_19 = doc.createElement('div');
+    _el_19.setAttribute(shimCAttr,'');
+    _el_17.append(_el_19);
+    _el_19.className = 'fileActions_btn';
+    Text _text_20 = new Text('\n                            ');
+    _el_19.append(_text_20);
+    _el_21 = doc.createElement('div');
+    _el_21.setAttribute(shimCAttr,'');
+    _el_19.append(_el_21);
+    _el_21.className = 'btn material-icons lock';
+    _el_22 = doc.createElement('span');
+    _el_22.setAttribute(shimCAttr,'');
+    _el_21.append(_el_22);
+    Text _text_23 = new Text('Lock & Modify');
+    _el_22.append(_text_23);
+    Text _text_24 = new Text('\n                            ');
+    _el_21.append(_text_24);
+    Text _text_25 = new Text('\n                          ');
+    _el_19.append(_text_25);
+    Text _text_26 = new Text('\n                          ');
+    _el_17.append(_text_26);
+    _el_27 = doc.createElement('div');
+    _el_27.setAttribute(shimCAttr,'');
+    _el_17.append(_el_27);
+    _el_27.className = 'fileActions_btn posRight';
+    Text _text_28 = new Text('\n                            ');
+    _el_27.append(_text_28);
+    _el_29 = doc.createElement('div');
+    _el_29.setAttribute(shimCAttr,'');
+    _el_27.append(_el_29);
+    _el_29.className = 'btn material-icons openOnly';
+    Text _text_30 = new Text('\n                              ');
+    _el_29.append(_text_30);
+    _el_31 = doc.createElement('span');
+    _el_31.setAttribute(shimCAttr,'');
+    _el_29.append(_el_31);
+    Text _text_32 = new Text('View (read only)');
+    _el_31.append(_text_32);
+    Text _text_33 = new Text('\n                          ');
+    _el_27.append(_text_33);
+    Text _text_34 = new Text('\n                        ');
+    _el_17.append(_text_34);
+    Text _text_35 = new Text('\n                      ');
+    _el_12.append(_text_35);
+    Text _text_36 = new Text('\n                    ');
     compView_2.createComp([
-      [_el_4],[
-        _text_3,_text_12,_el_13,_text_27
+      [],[
+        _text_3,_el_4,_text_11,_el_12,_text_36
       ]
       ,[]
     ]
     ,null);
-    Text _text_28 = new Text('\n                  ');
+    Text _text_37 = new Text('\n                  ');
       compView_0.createComp([[
-        _text_1,_el_2,_text_28
+        _text_1,_el_2,_text_37
       ]
     ],null);
     listen(_el_9,'click',evt(_handle_click_9_0));
-    listen(_el_20,'click',evt(_handle_click_20_0));
-    listen(_el_23,'click',evt(_handle_click_23_0));
+    listen(_el_21,'click',evt(_handle_click_21_0));
+    listen(_el_29,'click',evt(_handle_click_29_0));
     init([_el_0],[
       _el_0,_text_1,_el_2,_text_3,_el_4,_text_5,_el_6,_text_7,_text_8,_el_9,_text_10,
-      _text_11,_text_12,_el_13,_text_14,_el_15,_text_16,_text_17,_el_18,_text_19,_el_20,
-      _text_21,_text_22,_el_23,_text_24,_text_25,_text_26,_text_27,_text_28
+      _text_11,_el_12,_text_13,_el_14,_text_15,_text_16,_el_17,_text_18,_el_19,_text_20,
+      _el_21,_el_22,_text_23,_text_24,_text_25,_text_26,_el_27,_text_28,_el_29,_text_30,
+      _el_31,_text_32,_text_33,_text_34,_text_35,_text_36,_text_37
     ]
     ,[]);
     return null;
   }
   dynamic injectorGetInternal(dynamic token,int requestNodeIndex,dynamic notFoundResult) {
-    if ((identical(token, import42.MaterialDialogComponent) && ((2 <= requestNodeIndex) && (requestNodeIndex <= 27)))) { return _MaterialDialogComponent_2_3; }
-    if ((identical(token, import41.ModalComponent) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 28)))) { return _ModalComponent_0_3; }
-    if ((identical(token, import40.DeferredContentAware) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 28)))) { return _DeferredContentAware_0_4; }
-    if ((identical(token, import41.Modal) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 28)))) { return _Modal_0_5; }
+    if ((identical(token, import42.MaterialDialogComponent) && ((2 <= requestNodeIndex) && (requestNodeIndex <= 36)))) { return _MaterialDialogComponent_2_3; }
+    if ((identical(token, import41.ModalComponent) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 37)))) { return _ModalComponent_0_3; }
+    if ((identical(token, import40.DeferredContentAware) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 37)))) { return _DeferredContentAware_0_4; }
+    if ((identical(token, import41.Modal) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 37)))) { return _Modal_0_5; }
     return notFoundResult;
   }
   void detectChangesInternal() {
+    bool changed = true;
     final currVal_0 = ctx.openFile;
     if (import13.checkBinding(_expr_0,currVal_0)) {
       _ModalComponent_0_3.visible = currVal_0;
       _expr_0 = currVal_0;
     }
+    changed = false;
+    final currVal_2 = 'true';
+    if (import13.checkBinding(_expr_2,currVal_2)) {
+      _MaterialDialogComponent_2_3.hideHeader = currVal_2;
+      changed = true;
+      _expr_2 = currVal_2;
+    }
+    final currVal_3 = 'true';
+    if (import13.checkBinding(_expr_3,currVal_3)) {
+      _MaterialDialogComponent_2_3.hideFooter = currVal_3;
+      changed = true;
+      _expr_3 = currVal_3;
+    }
+    if (changed) { _appEl_2.componentView.markAsCheckOnce(); }
     this.detectContentChildrenChanges();
     _MaterialDialogComponent_2_3.ngAfterContentChecked();
     final currVal_1 = _ModalComponent_0_3.uniquePaneId;
@@ -2150,10 +2214,10 @@ class ViewFilesComp14 extends AppView<import3.FilesComp> {
       setAttr(_el_0,'pane-id',((currVal_1 == null)? null: currVal_1.toString()));
       _expr_1 = currVal_1;
     }
-    final currVal_2 = import13.interpolate1('Version ',ctx.selectedFile.name,'');
-    if (import13.checkBinding(_expr_2,currVal_2)) {
-      _text_7.text = currVal_2;
-      _expr_2 = currVal_2;
+    final currVal_4 = import13.interpolate0(ctx.selectedFile.name);
+    if (import13.checkBinding(_expr_4,currVal_4)) {
+      _text_7.text = currVal_4;
+      _expr_4 = currVal_4;
     }
     this.detectViewChildrenChanges();
   }
@@ -2166,12 +2230,12 @@ class ViewFilesComp14 extends AppView<import3.FilesComp> {
     final dynamic pd_0 = !identical((ctx.cancelFileOpen() as dynamic), false);
     return (true && pd_0);
   }
-  bool _handle_click_20_0($event) {
+  bool _handle_click_21_0($event) {
     this.markPathToRootAsCheckOnce();
     final dynamic pd_0 = !identical((ctx.lockAndOpen(parent.locals['\$implicit'].v) as dynamic), false);
     return (true && pd_0);
   }
-  bool _handle_click_23_0($event) {
+  bool _handle_click_29_0($event) {
     this.markPathToRootAsCheckOnce();
     final dynamic pd_0 = !identical((ctx.openFileLink(parent.locals['\$implicit'].v) as dynamic), false);
     return (true && pd_0);

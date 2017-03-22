@@ -35,8 +35,8 @@ body, input[text], button {
   left: 40%;
 }
 
-.error ,
-.messages{
+.error,
+.messages {
   padding-bottom: 4px;
   font-size: 12px;
   padding-top: 5px;
@@ -420,8 +420,6 @@ input {
   padding: 0 0 0 9px !important;
 }
 
-
-
 .profileImg {
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
@@ -499,6 +497,7 @@ textarea {
 .btn_login.is-raised {
   background: #00adef !important;
 }
+
 .roleChooser .imgBtn {
   cursor: pointer;
 }
@@ -658,24 +657,153 @@ form#fileForm {
   left: 17.5% !important;
   top: 5.2% !important;
 }
-.foldersPostit .postit{
+
+.foldersPostit .postit {
   position: fixed !important;
   left: 17.4% !important;
   top: 23.2% !important
 }
-.subjectsPostit .postit{
+
+.subjectsPostit .postit {
   position: fixed !important;
   left: 55% !important;
-  top: 3.5em!important;
+  top: 3.5em !important;
 }
 
-.filesPostit  .postit{
-  position: fixed!important;
+.filesPostit .postit {
+  position: fixed !important;
   left: 45% !important;
   top: 15em !important;
 }
 
-material-ripple {   font-size: 8px !important; }
+material-ripple {
+  font-size: 8px !important;
+}
+
+.basic-dialog.fileOpen {
+  background-color: #eeeef0;
+  width: 22em;
+}
+
+.basic-dialog.fileOpen .wrapper > header {
+  background: #263a53;
+  padding: 1em 0 !important;
+  position: relative;
+}
+
+.basic-dialog.fileOpen > main, .basic-dialog.fileOpen .content {
+  background: #eeeef0;
+  padding: 2em;
+  color: #030303;
+  overflow: hidden;
+}
+
+.basic-dialog.fileOpen .fileActions {
+  margin-top: 1em;
+}
+
+.fileActions_btn {
+  display: inline-block;
+  width: 44%;
+}
+
+.posRight {
+  float: right;
+}
+
+.basic-dialog.fileOpen .btn {
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  border-radius: 7px;
+  background-color: #d9d9d9;
+  padding: 5em 0.2em 1em;
+  color: rgba(255,255,255,0.57);
+  position: relative;
+  width: 100%;
+  text-align: center;
+  opacity: 0.7;
+
+}
+
+.basic-dialog.fileOpen .btn:hover, .basic-dialog.fileOpen .btn:focus {
+  background-color: #00adef;
+  -webkit-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+  box-shadow: 0 0 1em 0em rgba(0,0,0,0.3);
+}
+
+.basic-dialog.fileOpen .btn.material-icons:hover:after, .basic-dialog.fileOpen .btn.material-icons:focus:after{
+  color : white;
+}
+
+.basic-dialog.fileOpen .fileName {
+  color: #fff;
+  font-size: 1em;
+  text-decoration: none;
+  width: 90%;
+  word-break: break-all;
+  line-height: 1.2;
+}
+
+.basic-dialog.fileOpen .btn {
+  font: normal normal normal 2em/1 'Material-Design-Iconic-Font';
+  cursor: pointer;
+}
+
+.btn.material-icons.lock {
+  text-align: center;
+}
+
+.basic-dialog.fileOpen .btn.material-icons:after {
+  position: absolute;
+  top: 17%;
+  left: 0;
+  font-size: 3em;
+  width: 100%;
+  color: #eeeeee;
+}
+
+.basic-dialog.fileOpen .btn.material-icons.lock:after {
+  content: '\f158';
+}
+
+.basic-dialog.fileOpen .btn.material-icons.openOnly:after {
+  content: '\f15c';
+}
+
+.basic-dialog.fileOpen .btn.material-icons span {
+  font-size: 0.6em;
+  white-space: normal;
+  line-height: 1.2em;
+  width: 70%;
+  display: inline-block;
+}
+
+.popupHeader {
+  position: relative;
+  background-color: #263a53;
+  padding: 1.2em;
+}
+
+.popupHeader .close {
+  position: absolute;
+  top: 0;
+  right: 0.2em;
+  font: normal normal normal 2em/1 'Material-Design-Iconic-Font';
+  cursor: pointer;
+}
+
+.close:after {
+  content: '\f136';
+  color: white;
+}
+
+.close:hover {
+  opacity: 0.6;
+}
+
+
 /* CUSTOM RESPONSIVE STYLES */
 /* ------------------------------------ */
 

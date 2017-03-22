@@ -42670,10 +42670,10 @@
         this._material_dialog$_disposer.addStreamSubscription$1(J.get$onOpen$x(t1).listen$1(new D.MaterialDialogComponent_main_closure(this)));
       },
       get$shouldShowHeader: function() {
-        return true;
+        return this._shouldShowHeader;
       },
       get$shouldShowFooter: function() {
-        return true;
+        return this._shouldShowFooter;
       },
       onScroll$0: function(_) {
         return this._setHeaderFooterScrollBorder$0();
@@ -42864,13 +42864,9 @@
         return notFoundResult;
       },
       detectChangesInternal$0: function() {
-        var t1, currVal_1, currVal_2, currVal_4, currVal_5;
-        t1 = this._material_dialog_template$_NgIf_2_5;
-        this.ctx.get$shouldShowHeader();
-        t1.set$ngIf(true);
-        t1 = this._NgIf_6_5;
-        this.ctx.get$shouldShowFooter();
-        t1.set$ngIf(true);
+        var currVal_1, currVal_2, currVal_4, currVal_5;
+        this._material_dialog_template$_NgIf_2_5.set$ngIf(this.ctx.get$shouldShowHeader());
+        this._NgIf_6_5.set$ngIf(this.ctx.get$shouldShowFooter());
         this.detectContentChildrenChanges$0();
         currVal_1 = J.get$error$x(this.ctx) != null;
         if (Q.checkBinding(this._expr_1, currVal_1)) {
@@ -65299,6 +65295,7 @@
             switch ($async$goto) {
               case 0:
                 // Function start
+                $async$self.openFile = false;
                 t1 = $async$self._files_comp$_environment;
                 $async$goto = 2;
                 return P._asyncHelper($async$self._files_comp$_placeService.lockFile$4(J.get$id$x(t1.get$selectedPlace()), t1.get$selectedSubject().get$folderId(), J.get$id$x(t1.get$selectedFile()), true), $async$lockAndOpen$1, $async$completer);
@@ -65317,6 +65314,7 @@
       },
       openFileLink$1: function(version) {
         var t1, t2, t3, t4;
+        this.openFile = false;
         t1 = window.location;
         t2 = this._files_comp$_environment;
         t3 = t2.get$selectedPlace();
@@ -65345,7 +65343,7 @@
       var t1, t2, t3;
       t1 = $.renderType_FilesComp;
       if (t1 == null) {
-        t1 = $.appViewUtils.createRenderComponentType$4("", 0, C.ViewEncapsulation_0, C.List_43h0);
+        t1 = $.appViewUtils.createRenderComponentType$4("", 0, C.ViewEncapsulation_0, C.List_6m4);
         $.renderType_FilesComp = t1;
       }
       t2 = P.LinkedHashMap__makeEmpty();
@@ -65375,7 +65373,7 @@
       t1 = $.uninitialized;
       t2 = $.renderType_FilesComp;
       t3 = P.LinkedHashMap__makeLiteral(["$implicit", null, "index", null]);
-      t1 = new M.ViewFilesComp3(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, t1, null, t1, t1, t1, t1, t1, t1, t1, t1, t1, t1, t1, t1, t1, t1, t1, t1, t1, t1, t1, t1, t1, null, null, null, C.Type_ViewFilesComp3_KlB, t2, C.ViewType_2, t3, parentInjector, declarationEl, C.ChangeDetectionStrategy_2, false, null, null, null, H.setRuntimeTypeInfo([], [{func: 1, v: true}]), null, [], [], null, null, C.ChangeDetectorState_0, null, null, false, null);
+      t1 = new M.ViewFilesComp3(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, t1, null, t1, t1, t1, t1, t1, t1, t1, t1, t1, t1, t1, t1, t1, t1, t1, t1, t1, t1, t1, t1, t1, null, null, null, C.Type_ViewFilesComp3_KlB, t2, C.ViewType_2, t3, parentInjector, declarationEl, C.ChangeDetectionStrategy_2, false, null, null, null, H.setRuntimeTypeInfo([], [{func: 1, v: true}]), null, [], [], null, null, C.ChangeDetectorState_0, null, null, false, null);
       t1.AppView$7(C.Type_ViewFilesComp3_KlB, t2, C.ViewType_2, t3, parentInjector, declarationEl, C.ChangeDetectionStrategy_2, F.FilesComp);
       return t1;
     }, "call$2", "files_comp_template__viewFactory_FilesComp3$closure", 4, 0, 4],
@@ -65472,7 +65470,7 @@
       t1 = $.uninitialized;
       t2 = $.renderType_FilesComp;
       t3 = P.LinkedHashMap__makeEmpty();
-      t1 = new M.ViewFilesComp14(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, t1, t1, t1, C.Type_ViewFilesComp14_wEo, t2, C.ViewType_2, t3, parentInjector, declarationEl, C.ChangeDetectionStrategy_2, false, null, null, null, H.setRuntimeTypeInfo([], [{func: 1, v: true}]), null, [], [], null, null, C.ChangeDetectorState_0, null, null, false, null);
+      t1 = new M.ViewFilesComp14(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, t1, t1, t1, t1, t1, C.Type_ViewFilesComp14_wEo, t2, C.ViewType_2, t3, parentInjector, declarationEl, C.ChangeDetectionStrategy_2, false, null, null, null, H.setRuntimeTypeInfo([], [{func: 1, v: true}]), null, [], [], null, null, C.ChangeDetectorState_0, null, null, false, null);
       t1.AppView$7(C.Type_ViewFilesComp14_wEo, t2, C.ViewType_2, t3, parentInjector, declarationEl, C.ChangeDetectionStrategy_2, F.FilesComp);
       return t1;
     }, "call$2", "files_comp_template__viewFactory_FilesComp14$closure", 4, 0, 4],
@@ -65589,9 +65587,9 @@
         t1.appendChild(_text_5);
         _text_6 = doc.createTextNode("\n        ");
         this._files_comp_template$_el_4.appendChild(_text_6);
-        _text_7 = doc.createTextNode("\n\n      ");
+        _text_7 = doc.createTextNode("\n      ");
         this._files_comp_template$_el_4.appendChild(_text_7);
-        _text_8 = doc.createTextNode("\n\n    ");
+        _text_8 = doc.createTextNode("\n    ");
         this._files_comp_template$_el_2.appendChild(_text_8);
         _text_9 = doc.createTextNode("\n    ");
         this._files_comp_template$_el_0.appendChild(_text_9);
@@ -65796,7 +65794,7 @@
       }
     },
     ViewFilesComp3: {
-      "^": "AppView;_files_comp_template$_el_0,_files_comp_template$_el_2,_files_comp_template$_el_5,_files_comp_template$_text_6,_files_comp_template$_el_8,_NgClass_8_2,_files_comp_template$_el_11,_files_comp_template$_appEl_13,_files_comp_template$_TemplateRef_13_4,_files_comp_template$_NgIf_13_5,_files_comp_template$_el_16,_files_comp_template$_appEl_16,_MaterialPopupComponent_16_3,__PopupComponent_16_4,__DropdownHandle_16_5,__DeferredContentAware_16_6,__PopupHierarchy_16_7,__PopupRef_16_8,_files_comp_template$_el_18,_files_comp_template$_el_20,_text_21,_el_23,_text_24,_el_27,_el_29,_appEl_31,_TemplateRef_31_4,_NgIf_31_5,_appEl_33,_TemplateRef_33_4,_NgIf_33_5,_appEl_35,_TemplateRef_35_4,_NgIf_35_5,_appEl_37,_TemplateRef_37_4,_NgIf_37_5,_el_40,_appEl_40,_AcxDarkTheme_40_3,_MaterialButtonComponent_40_4,__ButtonDirective_40_5,_el_44,_appEl_48,_TemplateRef_48_4,_NgIf_48_5,_el_50,_el_52,_el_58,_el_59,_el_61,_text_62,_el_65,_el_67,_el_69,_el_71,_PopupSourceDirective_71_2,_el_73,_el_75,_appEl_77,_TemplateRef_77_4,_NgIf_77_5,_el_81,_el_83,_el_85,_el_88,_el_90,_text_91,_el_94,_text_95,_el_97,_el_99,_text_100,_el_102,_text_103,_files_comp_template$_expr_0,_map_0,_files_comp_template$_expr_2,_files_comp_template$_expr_3,_files_comp_template$_expr_6,_files_comp_template$_expr_7,_files_comp_template$_expr_8,_files_comp_template$_expr_9,_files_comp_template$_expr_10,_files_comp_template$_expr_11,_files_comp_template$_expr_23,_files_comp_template$_expr_24,_files_comp_template$_expr_25,_files_comp_template$_expr_26,_files_comp_template$_expr_27,_files_comp_template$_expr_29,_files_comp_template$_expr_30,_files_comp_template$_expr_31,_expr_33,_expr_36,_expr_37,_expr_38,_expr_39,_pipe_agoDateFormat_0_3,_pipe_agoDateFormat_0_4,_pipe_fileSizeFormat_1_0,clazz,componentType,type,locals,parentInjector,declarationViewContainer,_cdMode,_skipChangeDetection,ref,rootNodesOrViewContainers,allNodes,_onDestroyCallbacks,subscriptions,contentChildren,viewChildren,renderParent,viewContainerElement,_cdState,ctx,projectableNodes,destroyed,_hasExternalHostElement",
+      "^": "AppView;_files_comp_template$_el_0,_files_comp_template$_el_2,_files_comp_template$_el_5,_files_comp_template$_text_6,_files_comp_template$_el_8,_NgClass_8_2,_files_comp_template$_el_11,_files_comp_template$_appEl_13,_files_comp_template$_TemplateRef_13_4,_files_comp_template$_NgIf_13_5,_files_comp_template$_el_16,_files_comp_template$_appEl_16,_MaterialPopupComponent_16_3,__PopupComponent_16_4,__DropdownHandle_16_5,__DeferredContentAware_16_6,__PopupHierarchy_16_7,__PopupRef_16_8,_files_comp_template$_el_18,_files_comp_template$_el_20,_text_21,_el_23,_text_24,_el_27,_el_29,_appEl_31,_TemplateRef_31_4,_NgIf_31_5,_appEl_33,_TemplateRef_33_4,_NgIf_33_5,_appEl_35,_TemplateRef_35_4,_NgIf_35_5,_appEl_37,_TemplateRef_37_4,_NgIf_37_5,_el_40,_appEl_40,_AcxDarkTheme_40_3,_MaterialButtonComponent_40_4,__ButtonDirective_40_5,_el_44,_appEl_48,_TemplateRef_48_4,_NgIf_48_5,_el_50,_el_52,_el_58,_el_59,_el_61,_text_62,_el_65,_el_67,_el_69,_el_71,_PopupSourceDirective_71_2,_el_73,_el_75,_appEl_77,_TemplateRef_77_4,_NgIf_77_5,_el_81,_el_83,_el_85,_text_86,_el_88,_el_91,_el_93,_el_96,_el_98,_text_99,_el_102,_el_104,_text_105,_el_107,_text_108,_files_comp_template$_expr_0,_map_0,_files_comp_template$_expr_2,_files_comp_template$_expr_3,_files_comp_template$_expr_6,_files_comp_template$_expr_7,_files_comp_template$_expr_8,_files_comp_template$_expr_9,_files_comp_template$_expr_10,_files_comp_template$_expr_11,_files_comp_template$_expr_23,_files_comp_template$_expr_24,_files_comp_template$_expr_25,_files_comp_template$_expr_26,_files_comp_template$_expr_27,_files_comp_template$_expr_29,_files_comp_template$_expr_30,_files_comp_template$_expr_31,_expr_33,_expr_35,_expr_37,_expr_38,_expr_39,_pipe_agoDateFormat_0_3,_pipe_agoDateFormat_0_4,_pipe_fileSizeFormat_1_0,clazz,componentType,type,locals,parentInjector,declarationViewContainer,_cdMode,_skipChangeDetection,ref,rootNodesOrViewContainers,allNodes,_onDestroyCallbacks,subscriptions,contentChildren,viewChildren,renderParent,viewContainerElement,_cdState,ctx,projectableNodes,destroyed,_hasExternalHostElement",
       get$_PopupComponent_16_4: function() {
         var t1 = this.__PopupComponent_16_4;
         if (t1 == null) {
@@ -65806,7 +65804,7 @@
         return t1;
       },
       createInternal$1: function(rootSelector) {
-        var doc, t1, _text_1, _text_3, _text_4, t2, _text_7, t3, t4, t5, _text_9, _text_10, _text_12, _anchor_13, _text_14, _text_15, compView_16, t6, t7, t8, t9, t10, t11, t12, _text_17, _text_19, _text_22, _text_25, _text_26, _text_28, _text_30, _anchor_31, _text_32, _anchor_33, _text_34, _anchor_35, _text_36, _anchor_37, _text_38, _text_39, compView_40, _text_41, _text_42, _text_43, _text_45, _text_46, _text_47, _anchor_48, _text_49, _text_51, _text_53, _text_54, _text_55, _text_56, _text_57, _text_60, _text_63, _text_64, _text_66, _text_68, _text_70, _text_72, _text_74, _text_76, _anchor_77, _text_78, _text_79, _text_80, _text_82, _text_84, _text_86, _text_87, _text_89, _text_92, _text_93, _text_96, _text_98, _text_101, _text_104, _text_105, _text_106, _text_107, _text_108, _text_109, _text_110, _text_111, _text_112, _text_113, _text_114, _text_115;
+        var doc, t1, _text_1, _text_3, _text_4, t2, _text_7, t3, t4, t5, _text_9, _text_10, _text_12, _anchor_13, _text_14, _text_15, compView_16, t6, t7, t8, t9, t10, t11, t12, _text_17, _text_19, _text_22, _text_25, _text_26, _text_28, _text_30, _anchor_31, _text_32, _anchor_33, _text_34, _anchor_35, _text_36, _anchor_37, _text_38, _text_39, compView_40, _text_41, _text_42, _text_43, _text_45, _text_46, _text_47, _anchor_48, _text_49, _text_51, _text_53, _text_54, _text_55, _text_56, _text_57, _text_60, _text_63, _text_64, _text_66, _text_68, _text_70, _text_72, _text_74, _text_76, _anchor_77, _text_78, _text_79, _text_80, _text_82, _text_84, _text_87, _text_89, _text_90, _text_92, _text_94, _text_95, _text_97, _text_100, _text_101, _text_103, _text_106, _text_109, _text_110, _text_111, _text_112, _text_113, _text_114, _text_115, _text_116, _text_117, _text_118, _text_119, _text_120;
         doc = document;
         t1 = doc.createElement("li");
         this._files_comp_template$_el_0 = t1;
@@ -66034,7 +66032,7 @@
         t4 = new D.TemplateRef(t3, M.files_comp_template__viewFactory_FilesComp14$closure());
         this._TemplateRef_48_4 = t4;
         this._NgIf_48_5 = new K.NgIf(t4, t3, false);
-        _text_49 = doc.createTextNode("\n\n                  ");
+        _text_49 = doc.createTextNode("\n\n                    ");
         this._files_comp_template$_el_0.appendChild(_text_49);
         t3 = doc.createElement("div");
         this._el_50 = t3;
@@ -66165,101 +66163,120 @@
         t1.setAttribute(this.componentType._contentAttr, "");
         this._el_81.appendChild(this._el_83);
         t1 = this._el_83;
-        t1.className = "fileProps";
+        t1.className = "fileMoreActions";
         _text_84 = doc.createTextNode("\n                              ");
         t1.appendChild(_text_84);
-        t1 = doc.createElement("div");
+        t1 = doc.createElement("span");
         this._el_85 = t1;
         t1.setAttribute(this.componentType._contentAttr, "");
         this._el_83.appendChild(this._el_85);
         t1 = this._el_85;
-        t1.className = "line";
-        _text_86 = doc.createTextNode("\n                                ");
-        t1.appendChild(_text_86);
-        _text_87 = doc.createTextNode("\n                                ");
-        this._el_85.appendChild(_text_87);
-        t1 = doc.createElement("div");
-        this._el_88 = t1;
-        t1.setAttribute(this.componentType._contentAttr, "");
-        this._el_85.appendChild(this._el_88);
-        _text_89 = doc.createTextNode("\n                                  ");
-        this._el_88.appendChild(_text_89);
-        t1 = doc.createElement("div");
-        this._el_90 = t1;
-        t1.setAttribute(this.componentType._contentAttr, "");
-        this._el_88.appendChild(this._el_90);
-        t1 = this._el_90;
-        t1.className = "fileName";
-        t2 = doc.createTextNode("");
-        this._text_91 = t2;
-        t1.appendChild(t2);
-        _text_92 = doc.createTextNode("\n                                ");
-        this._el_88.appendChild(_text_92);
-        _text_93 = doc.createTextNode("\n                                ");
-        this._el_85.appendChild(_text_93);
-        t1 = doc.createElement("span");
-        this._el_94 = t1;
-        t1.setAttribute(this.componentType._contentAttr, "");
-        this._el_85.appendChild(this._el_94);
-        t1 = this._el_94;
         t1.className = "fileversion";
         t2 = doc.createTextNode("");
-        this._text_95 = t2;
+        this._text_86 = t2;
         t1.appendChild(t2);
-        _text_96 = doc.createTextNode("\n                                ");
-        this._el_85.appendChild(_text_96);
+        _text_87 = doc.createTextNode("\n                              ");
+        this._el_83.appendChild(_text_87);
+        t1 = doc.createElement("span");
+        this._el_88 = t1;
+        t1.setAttribute(this.componentType._contentAttr, "");
+        this._el_83.appendChild(this._el_88);
+        this._el_88.className = "moreActions";
+        _text_89 = doc.createTextNode("\n                            ");
+        this._el_83.appendChild(_text_89);
+        _text_90 = doc.createTextNode("\n                            ");
+        this._el_81.appendChild(_text_90);
         t1 = doc.createElement("div");
-        this._el_97 = t1;
+        this._el_91 = t1;
         t1.setAttribute(this.componentType._contentAttr, "");
-        this._el_85.appendChild(this._el_97);
-        t1 = this._el_97;
-        t1.className = "linerow";
-        _text_98 = doc.createTextNode("\n                                  ");
-        t1.appendChild(_text_98);
-        t1 = doc.createElement("span");
-        this._el_99 = t1;
+        this._el_81.appendChild(this._el_91);
+        t1 = this._el_91;
+        t1.className = "fileProps";
+        _text_92 = doc.createTextNode("\n                              ");
+        t1.appendChild(_text_92);
+        t1 = doc.createElement("div");
+        this._el_93 = t1;
         t1.setAttribute(this.componentType._contentAttr, "");
-        this._el_97.appendChild(this._el_99);
-        t1 = this._el_99;
-        t1.className = "filetypedoc";
+        this._el_91.appendChild(this._el_93);
+        t1 = this._el_93;
+        t1.className = "line";
+        _text_94 = doc.createTextNode("\n                                ");
+        t1.appendChild(_text_94);
+        _text_95 = doc.createTextNode("\n                                ");
+        this._el_93.appendChild(_text_95);
+        t1 = doc.createElement("div");
+        this._el_96 = t1;
+        t1.setAttribute(this.componentType._contentAttr, "");
+        this._el_93.appendChild(this._el_96);
+        t1 = this._el_96;
+        t1.className = "fileLink";
+        _text_97 = doc.createTextNode("\n                                  ");
+        t1.appendChild(_text_97);
+        t1 = doc.createElement("div");
+        this._el_98 = t1;
+        t1.setAttribute(this.componentType._contentAttr, "");
+        this._el_96.appendChild(this._el_98);
+        t1 = this._el_98;
+        t1.className = "fileName";
         t2 = doc.createTextNode("");
-        this._text_100 = t2;
+        this._text_99 = t2;
         t1.appendChild(t2);
-        _text_101 = doc.createTextNode("\n                                  ");
-        this._el_97.appendChild(_text_101);
-        t1 = doc.createElement("span");
+        _text_100 = doc.createTextNode("\n                                ");
+        this._el_96.appendChild(_text_100);
+        _text_101 = doc.createTextNode("\n                                ");
+        this._el_93.appendChild(_text_101);
+        t1 = doc.createElement("div");
         this._el_102 = t1;
         t1.setAttribute(this.componentType._contentAttr, "");
-        this._el_97.appendChild(this._el_102);
+        this._el_93.appendChild(this._el_102);
         t1 = this._el_102;
+        t1.className = "linerow";
+        _text_103 = doc.createTextNode("\n                                  ");
+        t1.appendChild(_text_103);
+        t1 = doc.createElement("span");
+        this._el_104 = t1;
+        t1.setAttribute(this.componentType._contentAttr, "");
+        this._el_102.appendChild(this._el_104);
+        t1 = this._el_104;
+        t1.className = "filetypedoc";
+        t2 = doc.createTextNode("");
+        this._text_105 = t2;
+        t1.appendChild(t2);
+        _text_106 = doc.createTextNode("\n                                  ");
+        this._el_102.appendChild(_text_106);
+        t1 = doc.createElement("span");
+        this._el_107 = t1;
+        t1.setAttribute(this.componentType._contentAttr, "");
+        this._el_102.appendChild(this._el_107);
+        t1 = this._el_107;
         t1.className = "fileSize";
         t2 = doc.createTextNode("");
-        this._text_103 = t2;
+        this._text_108 = t2;
         t1.appendChild(t2);
-        _text_104 = doc.createTextNode("\n                                ");
-        this._el_97.appendChild(_text_104);
-        _text_105 = doc.createTextNode("\n                              ");
-        this._el_85.appendChild(_text_105);
-        _text_106 = doc.createTextNode("\n\n                              ");
-        this._el_83.appendChild(_text_106);
-        _text_107 = doc.createTextNode("\n                              ");
-        this._el_83.appendChild(_text_107);
-        _text_108 = doc.createTextNode("\n                              ");
-        this._el_83.appendChild(_text_108);
-        _text_109 = doc.createTextNode("\n                            ");
-        this._el_83.appendChild(_text_109);
-        _text_110 = doc.createTextNode("\n                          ");
-        this._el_81.appendChild(_text_110);
-        _text_111 = doc.createTextNode("\n\n                        ");
-        this._el_69.appendChild(_text_111);
-        _text_112 = doc.createTextNode("\n\n                      ");
-        this._el_67.appendChild(_text_112);
-        _text_113 = doc.createTextNode("\n                    ");
-        this._el_65.appendChild(_text_113);
-        _text_114 = doc.createTextNode("\n                  ");
-        this._el_50.appendChild(_text_114);
-        _text_115 = doc.createTextNode("\n                ");
-        this._files_comp_template$_el_0.appendChild(_text_115);
+        _text_109 = doc.createTextNode("\n                                ");
+        this._el_102.appendChild(_text_109);
+        _text_110 = doc.createTextNode("\n                              ");
+        this._el_93.appendChild(_text_110);
+        _text_111 = doc.createTextNode("\n                              ");
+        this._el_91.appendChild(_text_111);
+        _text_112 = doc.createTextNode("\n                              ");
+        this._el_91.appendChild(_text_112);
+        _text_113 = doc.createTextNode("\n                              ");
+        this._el_91.appendChild(_text_113);
+        _text_114 = doc.createTextNode("\n                            ");
+        this._el_91.appendChild(_text_114);
+        _text_115 = doc.createTextNode("\n                          ");
+        this._el_81.appendChild(_text_115);
+        _text_116 = doc.createTextNode("\n                        ");
+        this._el_69.appendChild(_text_116);
+        _text_117 = doc.createTextNode("\n                      ");
+        this._el_67.appendChild(_text_117);
+        _text_118 = doc.createTextNode("\n                    ");
+        this._el_65.appendChild(_text_118);
+        _text_119 = doc.createTextNode("\n                  ");
+        this._el_50.appendChild(_text_119);
+        _text_120 = doc.createTextNode("\n                ");
+        this._files_comp_template$_el_0.appendChild(_text_120);
         this.listen$3(this._files_comp_template$_el_8, "click", this.get$_files_comp_template$_handle_click_8_0());
         this._map_0 = Q.pureProxy2(new M.ViewFilesComp3_createInternal_closure());
         this.listen$3(this._files_comp_template$_el_16, "visible", this.get$_handle_visible_16_0());
@@ -66270,7 +66287,7 @@
         this.listen$3(this._el_40, "focus", this.get$_handle_focus_40_4());
         this.listen$3(this._el_40, "mousedown", this.get$_handle_mousedown_40_5());
         this.listen$3(this._el_71, "click", this.get$_handle_click_71_0());
-        this.listen$3(this._el_88, "click", this.get$_handle_click_88_0());
+        this.listen$3(this._el_96, "click", this.get$_handle_click_96_0());
         t1 = this.declarationViewContainer;
         t2 = t1 == null;
         t3 = (t2 ? t1 : t1.parentView).get$declarationViewContainer();
@@ -66283,7 +66300,7 @@
         t1 = H.interceptedTypeCast(t1 == null ? t1 : t1.parentView, "$isViewFilesComp0")._pipe_fileSizeFormat_1;
         this._pipe_fileSizeFormat_1_0 = Q.pureProxy1(t1.get$transform(t1));
         t1 = this._files_comp_template$_el_0;
-        this.init$3([t1], [t1, _text_1, this._files_comp_template$_el_2, _text_3, _text_4, this._files_comp_template$_el_5, this._files_comp_template$_text_6, _text_7, this._files_comp_template$_el_8, _text_9, _text_10, this._files_comp_template$_el_11, _text_12, _anchor_13, _text_14, _text_15, this._files_comp_template$_el_16, _text_17, this._files_comp_template$_el_18, _text_19, this._files_comp_template$_el_20, this._text_21, _text_22, this._el_23, this._text_24, _text_25, _text_26, this._el_27, _text_28, this._el_29, _text_30, _anchor_31, _text_32, _anchor_33, _text_34, _anchor_35, _text_36, _anchor_37, _text_38, _text_39, this._el_40, _text_41, _text_42, _text_43, this._el_44, _text_45, _text_46, _text_47, _anchor_48, _text_49, this._el_50, _text_51, this._el_52, _text_53, _text_54, _text_55, _text_56, _text_57, this._el_58, this._el_59, _text_60, this._el_61, this._text_62, _text_63, _text_64, this._el_65, _text_66, this._el_67, _text_68, this._el_69, _text_70, this._el_71, _text_72, this._el_73, _text_74, this._el_75, _text_76, _anchor_77, _text_78, _text_79, _text_80, this._el_81, _text_82, this._el_83, _text_84, this._el_85, _text_86, _text_87, this._el_88, _text_89, this._el_90, this._text_91, _text_92, _text_93, this._el_94, this._text_95, _text_96, this._el_97, _text_98, this._el_99, this._text_100, _text_101, this._el_102, this._text_103, _text_104, _text_105, _text_106, _text_107, _text_108, _text_109, _text_110, _text_111, _text_112, _text_113, _text_114, _text_115], []);
+        this.init$3([t1], [t1, _text_1, this._files_comp_template$_el_2, _text_3, _text_4, this._files_comp_template$_el_5, this._files_comp_template$_text_6, _text_7, this._files_comp_template$_el_8, _text_9, _text_10, this._files_comp_template$_el_11, _text_12, _anchor_13, _text_14, _text_15, this._files_comp_template$_el_16, _text_17, this._files_comp_template$_el_18, _text_19, this._files_comp_template$_el_20, this._text_21, _text_22, this._el_23, this._text_24, _text_25, _text_26, this._el_27, _text_28, this._el_29, _text_30, _anchor_31, _text_32, _anchor_33, _text_34, _anchor_35, _text_36, _anchor_37, _text_38, _text_39, this._el_40, _text_41, _text_42, _text_43, this._el_44, _text_45, _text_46, _text_47, _anchor_48, _text_49, this._el_50, _text_51, this._el_52, _text_53, _text_54, _text_55, _text_56, _text_57, this._el_58, this._el_59, _text_60, this._el_61, this._text_62, _text_63, _text_64, this._el_65, _text_66, this._el_67, _text_68, this._el_69, _text_70, this._el_71, _text_72, this._el_73, _text_74, this._el_75, _text_76, _anchor_77, _text_78, _text_79, _text_80, this._el_81, _text_82, this._el_83, _text_84, this._el_85, this._text_86, _text_87, this._el_88, _text_89, _text_90, this._el_91, _text_92, this._el_93, _text_94, _text_95, this._el_96, _text_97, this._el_98, this._text_99, _text_100, _text_101, this._el_102, _text_103, this._el_104, this._text_105, _text_106, this._el_107, this._text_108, _text_109, _text_110, _text_111, _text_112, _text_113, _text_114, _text_115, _text_116, _text_117, _text_118, _text_119, _text_120], []);
         return;
       },
       injectorGetInternal$3: function(token, requestNodeIndex, notFoundResult) {
@@ -66438,7 +66455,7 @@
         return notFoundResult;
       },
       detectChangesInternal$0: function() {
-        var valUnwrapper, t1, t2, t3, currVal_2, currVal_7, currVal_8, currVal_0, currVal_9, currVal_10, t4, t5, t6, currVal_11, currVal_23, currVal_24, currVal_25, currVal_26, currVal_27, currVal_29, currVal_30, currVal_31, currVal_33, currVal_36, currVal_37, currVal_38, currVal_39;
+        var valUnwrapper, t1, t2, t3, currVal_2, currVal_7, currVal_8, currVal_0, currVal_9, currVal_10, t4, t5, t6, currVal_11, currVal_23, currVal_24, currVal_25, currVal_26, currVal_27, currVal_29, currVal_30, currVal_31, currVal_33, currVal_35, currVal_37, currVal_38, currVal_39;
         valUnwrapper = new A.ValueUnwrapper(false);
         t1 = this.ctx;
         t2 = this.locals;
@@ -66572,19 +66589,19 @@
           this._el_75.src = $.appViewUtils.get$sanitizer().sanitizeUrl$1(currVal_33);
           this._expr_33 = currVal_33;
         }
-        currVal_36 = Q.interpolate0(this.ctx.get$selectedFile() == null ? null : J.get$name$x(this.ctx.get$selectedFile()));
-        if (Q.checkBinding(this._expr_36, currVal_36)) {
-          this._text_91.textContent = currVal_36;
-          this._expr_36 = currVal_36;
+        currVal_35 = Q.interpolate1("v. ", t2.$index(0, "$implicit").get$v(), "");
+        if (Q.checkBinding(this._expr_35, currVal_35)) {
+          this._text_86.textContent = currVal_35;
+          this._expr_35 = currVal_35;
         }
-        currVal_37 = Q.interpolate1("v. ", t2.$index(0, "$implicit").get$v(), "");
+        currVal_37 = Q.interpolate0(this.ctx.get$selectedFile() == null ? null : J.get$name$x(this.ctx.get$selectedFile()));
         if (Q.checkBinding(this._expr_37, currVal_37)) {
-          this._text_95.textContent = currVal_37;
+          this._text_99.textContent = currVal_37;
           this._expr_37 = currVal_37;
         }
         currVal_38 = Q.interpolate0(this.ctx.formatDesc$1(t2.$index(0, "$implicit")));
         if (Q.checkBinding(this._expr_38, currVal_38)) {
-          this._text_100.textContent = currVal_38;
+          this._text_105.textContent = currVal_38;
           this._expr_38 = currVal_38;
         }
         valUnwrapper.hasWrappedValue = false;
@@ -66597,7 +66614,7 @@
           return H.ioore(t2, 0);
         currVal_39 = Q.interpolate1("\n                         (", valUnwrapper.unwrap$1(t1.call$1(J.get$size$x(t2[0]))), ")\n                       ");
         if (valUnwrapper.hasWrappedValue || Q.checkBinding(this._expr_39, currVal_39)) {
-          this._text_103.textContent = currVal_39;
+          this._text_108.textContent = currVal_39;
           this._expr_39 = currVal_39;
         }
         this.detectViewChildrenChanges$0();
@@ -66673,11 +66690,11 @@
         this.ctx.switchMenuState$1(this.locals.$index(0, "$implicit").get$v());
         return true;
       }, "call$1", "get$_handle_click_71_0", 2, 0, 1, 0, []],
-      _handle_click_88_0$1: [function($$event) {
+      _handle_click_96_0$1: [function($$event) {
         this.markPathToRootAsCheckOnce$0();
         this.ctx.openFileDialog$0();
         return true;
-      }, "call$1", "get$_handle_click_88_0", 2, 0, 1, 0, []],
+      }, "call$1", "get$_handle_click_96_0", 2, 0, 1, 0, []],
       $asAppView: function() {
         return [F.FilesComp];
       }
@@ -66786,10 +66803,8 @@
         t1 = doc.createElement("li");
         this._files_comp_template$_el_0 = t1;
         t1.setAttribute(this.componentType._contentAttr, "");
-        t1 = this._files_comp_template$_el_0;
-        t1.className = "litestme";
         _text_1 = doc.createTextNode("\n                          ");
-        t1.appendChild(_text_1);
+        this._files_comp_template$_el_0.appendChild(_text_1);
         _anchor_2 = doc.createComment("template bindings={}");
         t1 = this._files_comp_template$_el_0;
         if (!(t1 == null))
@@ -67051,7 +67066,7 @@
         t3 = t2 == null;
         currVal_0 = J.$eq$(t1, (t3 ? t2 : t2.parentView).get$locals().$index(0, "$implicit").get$user().get$userId());
         if (Q.checkBinding(this._files_comp_template$_expr_0, currVal_0)) {
-          this.updateClass$3(this._files_comp_template$_el_0, "ownAction", currVal_0);
+          this.updateClass$3(this._files_comp_template$_el_0, "ownAction0", currVal_0);
           this._files_comp_template$_expr_0 = currVal_0;
         }
         currVal_1 = Q.interpolate1("/auth/user/photo/s/", (t3 ? t2 : t2.parentView).get$locals().$index(0, "$implicit").get$user().get$userId(), "");
@@ -67818,9 +67833,9 @@
       }
     },
     ViewFilesComp14: {
-      "^": "AppView;_files_comp_template$_el_0,_files_comp_template$_appEl_0,_files_comp_template$_ModalComponent_0_3,_files_comp_template$__DeferredContentAware_0_4,_files_comp_template$__Modal_0_5,_files_comp_template$_el_2,_files_comp_template$_appEl_2,_MaterialDialogComponent_2_3,_files_comp_template$_el_4,_files_comp_template$_el_6,_files_comp_template$_text_7,_files_comp_template$_el_9,_files_comp_template$_el_13,_files_comp_template$_el_15,_files_comp_template$_el_18,_files_comp_template$_el_20,_el_23,_files_comp_template$_expr_0,_files_comp_template$_expr_1,_files_comp_template$_expr_2,clazz,componentType,type,locals,parentInjector,declarationViewContainer,_cdMode,_skipChangeDetection,ref,rootNodesOrViewContainers,allNodes,_onDestroyCallbacks,subscriptions,contentChildren,viewChildren,renderParent,viewContainerElement,_cdState,ctx,projectableNodes,destroyed,_hasExternalHostElement",
+      "^": "AppView;_files_comp_template$_el_0,_files_comp_template$_appEl_0,_files_comp_template$_ModalComponent_0_3,_files_comp_template$__DeferredContentAware_0_4,_files_comp_template$__Modal_0_5,_files_comp_template$_el_2,_files_comp_template$_appEl_2,_MaterialDialogComponent_2_3,_files_comp_template$_el_4,_files_comp_template$_el_6,_files_comp_template$_text_7,_files_comp_template$_el_9,_files_comp_template$_el_12,_files_comp_template$_el_14,_files_comp_template$_el_17,_files_comp_template$_el_19,_el_21,_files_comp_template$_el_22,_el_27,_el_29,_el_31,_files_comp_template$_expr_0,_files_comp_template$_expr_1,_files_comp_template$_expr_2,_files_comp_template$_expr_3,_files_comp_template$_expr_4,clazz,componentType,type,locals,parentInjector,declarationViewContainer,_cdMode,_skipChangeDetection,ref,rootNodesOrViewContainers,allNodes,_onDestroyCallbacks,subscriptions,contentChildren,viewChildren,renderParent,viewContainerElement,_cdState,ctx,projectableNodes,destroyed,_hasExternalHostElement",
       createInternal$1: function(rootSelector) {
-        var doc, t1, compView_0, t2, t3, t4, _text_1, compView_2, _text_3, _text_5, _text_8, _text_10, _text_11, _text_12, _text_14, _text_16, _text_17, _text_19, _text_21, _text_22, _text_24, _text_25, _text_26, _text_27, _text_28;
+        var doc, t1, compView_0, t2, t3, t4, _text_1, compView_2, _text_3, _text_5, _text_8, _text_10, _text_11, _text_13, _text_15, _text_16, _text_18, _text_20, _text_23, _text_24, _text_25, _text_26, _text_28, _text_30, _text_32, _text_33, _text_34, _text_35, _text_36, _text_37;
         doc = document;
         t1 = doc.createElement("modal");
         this._files_comp_template$_el_0 = t1;
@@ -67843,7 +67858,9 @@
         t3.setAttribute(this.componentType._contentAttr, "");
         t3 = this._files_comp_template$_el_2;
         t3.className = "basic-dialog fileOpen";
-        this._files_comp_template$_appEl_2 = new V.ViewContainer(2, 0, this, t3, null, null, null, null);
+        t3.setAttribute("hideFooter", "true");
+        this._files_comp_template$_el_2.setAttribute("hideHeader", "true");
+        this._files_comp_template$_appEl_2 = new V.ViewContainer(2, 0, this, this._files_comp_template$_el_2, null, null, null, null);
         compView_2 = Z.viewFactory_MaterialDialogComponent0(this.injector$1(2), this._files_comp_template$_appEl_2);
         t1 = new D.MaterialDialogComponent(t2.$get$1(t1, C.Type_DomService_2jN), compView_2.ref, this._files_comp_template$_ModalComponent_0_3, new O.Disposer(null, null, null, null, true, false), null, true, true, false, false, null);
         this._MaterialDialogComponent_2_3 = t1;
@@ -67856,9 +67873,8 @@
         t1.setAttribute(this.componentType._contentAttr, "");
         t1 = this._files_comp_template$_el_4;
         t1.className = "popupHeader";
-        t1.setAttribute("header", "");
         _text_5 = doc.createTextNode("\n                        ");
-        this._files_comp_template$_el_4.appendChild(_text_5);
+        t1.appendChild(_text_5);
         t1 = doc.createElement("div");
         this._files_comp_template$_el_6 = t1;
         t1.setAttribute(this.componentType._contentAttr, "");
@@ -67874,69 +67890,97 @@
         this._files_comp_template$_el_9 = t1;
         t1.setAttribute(this.componentType._contentAttr, "");
         this._files_comp_template$_el_4.appendChild(this._files_comp_template$_el_9);
-        t1 = this._files_comp_template$_el_9;
-        t1.className = "close";
-        _text_10 = doc.createTextNode("x");
-        t1.appendChild(_text_10);
+        this._files_comp_template$_el_9.className = "close";
+        _text_10 = doc.createTextNode("\n                      ");
+        this._files_comp_template$_el_4.appendChild(_text_10);
         _text_11 = doc.createTextNode("\n                      ");
-        this._files_comp_template$_el_4.appendChild(_text_11);
-        _text_12 = doc.createTextNode("\n                      ");
         t1 = doc.createElement("div");
-        this._files_comp_template$_el_13 = t1;
+        this._files_comp_template$_el_12 = t1;
         t1.setAttribute(this.componentType._contentAttr, "");
-        t1 = this._files_comp_template$_el_13;
+        t1 = this._files_comp_template$_el_12;
         t1.className = "content";
-        _text_14 = doc.createTextNode("\n                        ");
-        t1.appendChild(_text_14);
+        _text_13 = doc.createTextNode("\n                        ");
+        t1.appendChild(_text_13);
         t1 = doc.createElement("div");
-        this._files_comp_template$_el_15 = t1;
+        this._files_comp_template$_el_14 = t1;
         t1.setAttribute(this.componentType._contentAttr, "");
-        this._files_comp_template$_el_13.appendChild(this._files_comp_template$_el_15);
-        t1 = this._files_comp_template$_el_15;
+        this._files_comp_template$_el_12.appendChild(this._files_comp_template$_el_14);
+        t1 = this._files_comp_template$_el_14;
         t1.className = "explanation";
-        _text_16 = doc.createTextNode("Do you want to lock and modify or just take a look at the document?");
-        t1.appendChild(_text_16);
-        _text_17 = doc.createTextNode("\n                        ");
-        this._files_comp_template$_el_13.appendChild(_text_17);
+        _text_15 = doc.createTextNode("Do you want to lock and modify or just take a look at the document?\n                        ");
+        t1.appendChild(_text_15);
+        _text_16 = doc.createTextNode("\n                        ");
+        this._files_comp_template$_el_12.appendChild(_text_16);
         t1 = doc.createElement("div");
-        this._files_comp_template$_el_18 = t1;
+        this._files_comp_template$_el_17 = t1;
         t1.setAttribute(this.componentType._contentAttr, "");
-        this._files_comp_template$_el_13.appendChild(this._files_comp_template$_el_18);
-        t1 = this._files_comp_template$_el_18;
-        t1.className = "actions";
-        _text_19 = doc.createTextNode("\n                          ");
-        t1.appendChild(_text_19);
+        this._files_comp_template$_el_12.appendChild(this._files_comp_template$_el_17);
+        t1 = this._files_comp_template$_el_17;
+        t1.className = "fileActions";
+        _text_18 = doc.createTextNode("\n                          ");
+        t1.appendChild(_text_18);
         t1 = doc.createElement("div");
-        this._files_comp_template$_el_20 = t1;
+        this._files_comp_template$_el_19 = t1;
         t1.setAttribute(this.componentType._contentAttr, "");
-        this._files_comp_template$_el_18.appendChild(this._files_comp_template$_el_20);
-        t1 = this._files_comp_template$_el_20;
-        t1.className = "btn lock";
-        _text_21 = doc.createTextNode("Lock & Modify");
-        t1.appendChild(_text_21);
-        _text_22 = doc.createTextNode("\n                          ");
-        this._files_comp_template$_el_18.appendChild(_text_22);
+        this._files_comp_template$_el_17.appendChild(this._files_comp_template$_el_19);
+        t1 = this._files_comp_template$_el_19;
+        t1.className = "fileActions_btn";
+        _text_20 = doc.createTextNode("\n                            ");
+        t1.appendChild(_text_20);
         t1 = doc.createElement("div");
-        this._el_23 = t1;
+        this._el_21 = t1;
         t1.setAttribute(this.componentType._contentAttr, "");
-        this._files_comp_template$_el_18.appendChild(this._el_23);
-        t1 = this._el_23;
-        t1.className = "btn openOnly";
-        _text_24 = doc.createTextNode("View");
-        t1.appendChild(_text_24);
-        _text_25 = doc.createTextNode("\n                        ");
-        this._files_comp_template$_el_18.appendChild(_text_25);
-        _text_26 = doc.createTextNode("\n                      ");
-        this._files_comp_template$_el_13.appendChild(_text_26);
-        _text_27 = doc.createTextNode("\n                    ");
-        compView_2.createComp$2([[this._files_comp_template$_el_4], [_text_3, _text_12, this._files_comp_template$_el_13, _text_27], []], null);
-        _text_28 = doc.createTextNode("\n                  ");
-        compView_0.createComp$2([[_text_1, this._files_comp_template$_el_2, _text_28]], null);
+        this._files_comp_template$_el_19.appendChild(this._el_21);
+        this._el_21.className = "btn material-icons lock";
+        t1 = doc.createElement("span");
+        this._files_comp_template$_el_22 = t1;
+        t1.setAttribute(this.componentType._contentAttr, "");
+        this._el_21.appendChild(this._files_comp_template$_el_22);
+        _text_23 = doc.createTextNode("Lock & Modify");
+        this._files_comp_template$_el_22.appendChild(_text_23);
+        _text_24 = doc.createTextNode("\n                            ");
+        this._el_21.appendChild(_text_24);
+        _text_25 = doc.createTextNode("\n                          ");
+        this._files_comp_template$_el_19.appendChild(_text_25);
+        _text_26 = doc.createTextNode("\n                          ");
+        this._files_comp_template$_el_17.appendChild(_text_26);
+        t1 = doc.createElement("div");
+        this._el_27 = t1;
+        t1.setAttribute(this.componentType._contentAttr, "");
+        this._files_comp_template$_el_17.appendChild(this._el_27);
+        t1 = this._el_27;
+        t1.className = "fileActions_btn posRight";
+        _text_28 = doc.createTextNode("\n                            ");
+        t1.appendChild(_text_28);
+        t1 = doc.createElement("div");
+        this._el_29 = t1;
+        t1.setAttribute(this.componentType._contentAttr, "");
+        this._el_27.appendChild(this._el_29);
+        t1 = this._el_29;
+        t1.className = "btn material-icons openOnly";
+        _text_30 = doc.createTextNode("\n                              ");
+        t1.appendChild(_text_30);
+        t1 = doc.createElement("span");
+        this._el_31 = t1;
+        t1.setAttribute(this.componentType._contentAttr, "");
+        this._el_29.appendChild(this._el_31);
+        _text_32 = doc.createTextNode("View (read only)");
+        this._el_31.appendChild(_text_32);
+        _text_33 = doc.createTextNode("\n                          ");
+        this._el_27.appendChild(_text_33);
+        _text_34 = doc.createTextNode("\n                        ");
+        this._files_comp_template$_el_17.appendChild(_text_34);
+        _text_35 = doc.createTextNode("\n                      ");
+        this._files_comp_template$_el_12.appendChild(_text_35);
+        _text_36 = doc.createTextNode("\n                    ");
+        compView_2.createComp$2([[], [_text_3, this._files_comp_template$_el_4, _text_11, this._files_comp_template$_el_12, _text_36], []], null);
+        _text_37 = doc.createTextNode("\n                  ");
+        compView_0.createComp$2([[_text_1, this._files_comp_template$_el_2, _text_37]], null);
         this.listen$3(this._files_comp_template$_el_9, "click", this.get$_handle_click_9_0());
-        this.listen$3(this._files_comp_template$_el_20, "click", this.get$_handle_click_20_0());
-        this.listen$3(this._el_23, "click", this.get$_handle_click_23_0());
+        this.listen$3(this._el_21, "click", this.get$_handle_click_21_0());
+        this.listen$3(this._el_29, "click", this.get$_handle_click_29_0());
         t1 = this._files_comp_template$_el_0;
-        this.init$3([t1], [t1, _text_1, this._files_comp_template$_el_2, _text_3, this._files_comp_template$_el_4, _text_5, this._files_comp_template$_el_6, this._files_comp_template$_text_7, _text_8, this._files_comp_template$_el_9, _text_10, _text_11, _text_12, this._files_comp_template$_el_13, _text_14, this._files_comp_template$_el_15, _text_16, _text_17, this._files_comp_template$_el_18, _text_19, this._files_comp_template$_el_20, _text_21, _text_22, this._el_23, _text_24, _text_25, _text_26, _text_27, _text_28], []);
+        this.init$3([t1], [t1, _text_1, this._files_comp_template$_el_2, _text_3, this._files_comp_template$_el_4, _text_5, this._files_comp_template$_el_6, this._files_comp_template$_text_7, _text_8, this._files_comp_template$_el_9, _text_10, _text_11, this._files_comp_template$_el_12, _text_13, this._files_comp_template$_el_14, _text_15, _text_16, this._files_comp_template$_el_17, _text_18, this._files_comp_template$_el_19, _text_20, this._el_21, this._files_comp_template$_el_22, _text_23, _text_24, _text_25, _text_26, this._el_27, _text_28, this._el_29, _text_30, this._el_31, _text_32, _text_33, _text_34, _text_35, _text_36, _text_37], []);
         return;
       },
       injectorGetInternal$3: function(token, requestNodeIndex, notFoundResult) {
@@ -67944,7 +67988,7 @@
         if (token === C.Type_MaterialDialogComponent_Q5s) {
           if (typeof requestNodeIndex !== "number")
             return H.iae(requestNodeIndex);
-          t1 = 2 <= requestNodeIndex && requestNodeIndex <= 27;
+          t1 = 2 <= requestNodeIndex && requestNodeIndex <= 36;
         } else
           t1 = false;
         if (t1)
@@ -67952,7 +67996,7 @@
         if (token === C.Type_ModalComponent_Npb) {
           if (typeof requestNodeIndex !== "number")
             return H.iae(requestNodeIndex);
-          t1 = 0 <= requestNodeIndex && requestNodeIndex <= 28;
+          t1 = 0 <= requestNodeIndex && requestNodeIndex <= 37;
         } else
           t1 = false;
         if (t1)
@@ -67960,7 +68004,7 @@
         if (token === C.Type_DeferredContentAware_BCk) {
           if (typeof requestNodeIndex !== "number")
             return H.iae(requestNodeIndex);
-          t1 = 0 <= requestNodeIndex && requestNodeIndex <= 28;
+          t1 = 0 <= requestNodeIndex && requestNodeIndex <= 37;
         } else
           t1 = false;
         if (t1) {
@@ -67974,7 +68018,7 @@
         if (token === C.Type_Modal_OjC) {
           if (typeof requestNodeIndex !== "number")
             return H.iae(requestNodeIndex);
-          t1 = 0 <= requestNodeIndex && requestNodeIndex <= 28;
+          t1 = 0 <= requestNodeIndex && requestNodeIndex <= 37;
         } else
           t1 = false;
         if (t1) {
@@ -67988,12 +68032,29 @@
         return notFoundResult;
       },
       detectChangesInternal$0: function() {
-        var currVal_0, currVal_1, t1, currVal_2;
+        var currVal_0, t1, changed, currVal_1, currVal_4;
         currVal_0 = this.ctx.get$openFile();
         if (Q.checkBinding(this._files_comp_template$_expr_0, currVal_0)) {
           this._files_comp_template$_ModalComponent_0_3.set$visible(0, currVal_0);
           this._files_comp_template$_expr_0 = currVal_0;
         }
+        if (Q.checkBinding(this._files_comp_template$_expr_2, "true")) {
+          t1 = this._MaterialDialogComponent_2_3;
+          t1.toString;
+          t1._shouldShowHeader = !Y.getBool("true");
+          this._files_comp_template$_expr_2 = "true";
+          changed = true;
+        } else
+          changed = false;
+        if (Q.checkBinding(this._files_comp_template$_expr_3, "true")) {
+          t1 = this._MaterialDialogComponent_2_3;
+          t1.toString;
+          t1._shouldShowFooter = !Y.getBool("true");
+          this._files_comp_template$_expr_3 = "true";
+          changed = true;
+        }
+        if (changed)
+          this._files_comp_template$_appEl_2.componentView.set$cdMode(C.ChangeDetectionStrategy_0);
         this.detectContentChildrenChanges$0();
         this._MaterialDialogComponent_2_3._setHeaderFooterScrollBorder$0();
         currVal_1 = this._files_comp_template$_ModalComponent_0_3._resolvedOverlayRef;
@@ -68003,10 +68064,10 @@
           this.setAttr$3(t1, "pane-id", currVal_1 == null ? null : currVal_1);
           this._files_comp_template$_expr_1 = currVal_1;
         }
-        currVal_2 = Q.interpolate1("Version ", J.get$name$x(this.ctx.get$selectedFile()), "");
-        if (Q.checkBinding(this._files_comp_template$_expr_2, currVal_2)) {
-          this._files_comp_template$_text_7.textContent = currVal_2;
-          this._files_comp_template$_expr_2 = currVal_2;
+        currVal_4 = Q.interpolate0(J.get$name$x(this.ctx.get$selectedFile()));
+        if (Q.checkBinding(this._files_comp_template$_expr_4, currVal_4)) {
+          this._files_comp_template$_text_7.textContent = currVal_4;
+          this._files_comp_template$_expr_4 = currVal_4;
         }
         this.detectViewChildrenChanges$0();
       },
@@ -68021,22 +68082,22 @@
         this.ctx.cancelFileOpen$0();
         return true;
       }, "call$1", "get$_handle_click_9_0", 2, 0, 1, 0, []],
-      _handle_click_20_0$1: [function($$event) {
+      _handle_click_21_0$1: [function($$event) {
         var t1, t2;
         this.markPathToRootAsCheckOnce$0();
         t1 = this.ctx;
         t2 = this.declarationViewContainer;
         t1.lockAndOpen$1((t2 == null ? t2 : t2.parentView).get$locals().$index(0, "$implicit").get$v());
         return true;
-      }, "call$1", "get$_handle_click_20_0", 2, 0, 1, 0, []],
-      _handle_click_23_0$1: [function($$event) {
+      }, "call$1", "get$_handle_click_21_0", 2, 0, 1, 0, []],
+      _handle_click_29_0$1: [function($$event) {
         var t1, t2;
         this.markPathToRootAsCheckOnce$0();
         t1 = this.ctx;
         t2 = this.declarationViewContainer;
         t1.openFileLink$1((t2 == null ? t2 : t2.parentView).get$locals().$index(0, "$implicit").get$v());
         return true;
-      }, "call$1", "get$_handle_click_23_0", 2, 0, 1, 0, []],
+      }, "call$1", "get$_handle_click_29_0", 2, 0, 1, 0, []],
       $asAppView: function() {
         return [F.FilesComp];
       }
@@ -73802,7 +73863,7 @@
       }
     },
     ViewSubjectListComponent1: {
-      "^": "AppView;_subject_list_comp_template$_el_0,_subject_list_comp_template$_el_2,_subject_list_comp_template$_appEl_2,_MaterialPopupComponent_2_3,__PopupComponent_2_4,__DropdownHandle_2_5,__DeferredContentAware_2_6,__PopupHierarchy_2_7,__PopupRef_2_8,_subject_list_comp_template$_el_4,_subject_list_comp_template$_el_6,_subject_list_comp_template$_el_7,_subject_list_comp_template$_text_8,_subject_list_comp_template$_el_10,_subject_list_comp_template$_text_11,_subject_list_comp_template$_el_13,_subject_list_comp_template$_text_14,_subject_list_comp_template$_el_16,_subject_list_comp_template$_el_18,_subject_list_comp_template$_el_22,_subject_list_comp_template$_el_24,_subject_list_comp_template$_el_28,_el_31,_el_36,_text_37,_el_38,_appEl_38,_PostitComponent_38_3,_subject_list_comp_template$_el_40,_subject_list_comp_template$_appEl_40,_ButtonComp_40_3,_subject_list_comp_template$_el_42,_appEl_42,_ModalComponent_42_3,__DeferredContentAware_42_4,__Modal_42_5,_subject_list_comp_template$_el_44,_appEl_44,_MaterialDialogComponent_44_3,_subject_list_comp_template$_el_46,_appEl_46,_InviteUsersDialogComp_46_3,_el_51,_PopupSourceDirective_51_2,_appEl_53,_TemplateRef_53_4,_NgFor_53_5,_el_57,_subject_list_comp_template$_el_59,_subject_list_comp_template$_el_61,_el_63,_subject_list_comp_template$_el_65,_subject_list_comp_template$_el_67,_appEl_71,_TemplateRef_71_4,_NgFor_71_5,_el_74,_NgForm_74_2,__ControlContainer_74_3,_el_76,_el_79,_subject_list_comp_template$_el_81,_appEl_81,_PostitComponent_81_3,_subject_list_comp_template$_expr_1,_subject_list_comp_template$_expr_2,_subject_list_comp_template$_expr_3,_subject_list_comp_template$_expr_4,_subject_list_comp_template$_expr_5,_subject_list_comp_template$_expr_6,_subject_list_comp_template$_expr_7,_subject_list_comp_template$_expr_8,_subject_list_comp_template$_expr_9,_subject_list_comp_template$_expr_10,_subject_list_comp_template$_arr_0,_subject_list_comp_template$_expr_12,_subject_list_comp_template$_expr_13,_subject_list_comp_template$_expr_14,_subject_list_comp_template$_expr_15,_subject_list_comp_template$_expr_16,_subject_list_comp_template$_expr_19,_subject_list_comp_template$_expr_24,_subject_list_comp_template$_expr_25,_subject_list_comp_template$_expr_26,clazz,componentType,type,locals,parentInjector,declarationViewContainer,_cdMode,_skipChangeDetection,ref,rootNodesOrViewContainers,allNodes,_onDestroyCallbacks,subscriptions,contentChildren,viewChildren,renderParent,viewContainerElement,_cdState,ctx,projectableNodes,destroyed,_hasExternalHostElement",
+      "^": "AppView;_subject_list_comp_template$_el_0,_subject_list_comp_template$_el_2,_subject_list_comp_template$_appEl_2,_MaterialPopupComponent_2_3,__PopupComponent_2_4,__DropdownHandle_2_5,__DeferredContentAware_2_6,__PopupHierarchy_2_7,__PopupRef_2_8,_subject_list_comp_template$_el_4,_subject_list_comp_template$_el_6,_subject_list_comp_template$_el_7,_subject_list_comp_template$_text_8,_subject_list_comp_template$_el_10,_subject_list_comp_template$_text_11,_subject_list_comp_template$_el_13,_subject_list_comp_template$_text_14,_subject_list_comp_template$_el_16,_subject_list_comp_template$_el_18,_subject_list_comp_template$_el_22,_subject_list_comp_template$_el_24,_subject_list_comp_template$_el_28,_subject_list_comp_template$_el_31,_el_36,_text_37,_el_38,_appEl_38,_PostitComponent_38_3,_subject_list_comp_template$_el_40,_subject_list_comp_template$_appEl_40,_ButtonComp_40_3,_subject_list_comp_template$_el_42,_appEl_42,_ModalComponent_42_3,__DeferredContentAware_42_4,__Modal_42_5,_subject_list_comp_template$_el_44,_appEl_44,_MaterialDialogComponent_44_3,_subject_list_comp_template$_el_46,_appEl_46,_InviteUsersDialogComp_46_3,_el_51,_PopupSourceDirective_51_2,_appEl_53,_TemplateRef_53_4,_NgFor_53_5,_el_57,_subject_list_comp_template$_el_59,_subject_list_comp_template$_el_61,_el_63,_subject_list_comp_template$_el_65,_subject_list_comp_template$_el_67,_appEl_71,_TemplateRef_71_4,_NgFor_71_5,_el_74,_NgForm_74_2,__ControlContainer_74_3,_el_76,_el_79,_subject_list_comp_template$_el_81,_appEl_81,_PostitComponent_81_3,_subject_list_comp_template$_expr_1,_subject_list_comp_template$_expr_2,_subject_list_comp_template$_expr_3,_subject_list_comp_template$_expr_4,_subject_list_comp_template$_expr_5,_subject_list_comp_template$_expr_6,_subject_list_comp_template$_expr_7,_subject_list_comp_template$_expr_8,_subject_list_comp_template$_expr_9,_subject_list_comp_template$_expr_10,_subject_list_comp_template$_arr_0,_subject_list_comp_template$_expr_12,_subject_list_comp_template$_expr_13,_subject_list_comp_template$_expr_14,_subject_list_comp_template$_expr_15,_subject_list_comp_template$_expr_16,_subject_list_comp_template$_expr_19,_subject_list_comp_template$_expr_24,_subject_list_comp_template$_expr_25,_subject_list_comp_template$_expr_26,clazz,componentType,type,locals,parentInjector,declarationViewContainer,_cdMode,_skipChangeDetection,ref,rootNodesOrViewContainers,allNodes,_onDestroyCallbacks,subscriptions,contentChildren,viewChildren,renderParent,viewContainerElement,_cdState,ctx,projectableNodes,destroyed,_hasExternalHostElement",
       get$_PopupComponent_2_4: function() {
         var t1 = this.__PopupComponent_2_4;
         if (t1 == null) {
@@ -73941,10 +74002,10 @@
         _text_30 = doc.createTextNode("\n\n      ");
         this._subject_list_comp_template$_el_4.appendChild(_text_30);
         t3 = doc.createElement("div");
-        this._el_31 = t3;
+        this._subject_list_comp_template$_el_31 = t3;
         t3.setAttribute(this.componentType._contentAttr, "");
-        this._subject_list_comp_template$_el_4.appendChild(this._el_31);
-        t3 = this._el_31;
+        this._subject_list_comp_template$_el_4.appendChild(this._subject_list_comp_template$_el_31);
+        t3 = this._subject_list_comp_template$_el_31;
         t3.className = "userInfo lastcnx";
         _text_32 = doc.createTextNode("Last connection: 5 mn ago");
         t3.appendChild(_text_32);
@@ -74206,7 +74267,7 @@
         this.listen$3(this._el_74, "submit", this.get$_handle_submit_74_2());
         this.listen$3(this._el_79, "change", this.get$_handle_change_79_0());
         t2 = this._subject_list_comp_template$_el_0;
-        this.init$3([t2], [t2, _text_1, this._subject_list_comp_template$_el_2, _text_3, this._subject_list_comp_template$_el_4, _text_5, this._subject_list_comp_template$_el_6, this._subject_list_comp_template$_el_7, this._subject_list_comp_template$_text_8, _text_9, this._subject_list_comp_template$_el_10, this._subject_list_comp_template$_text_11, _text_12, this._subject_list_comp_template$_el_13, this._subject_list_comp_template$_text_14, _text_15, this._subject_list_comp_template$_el_16, _text_17, this._subject_list_comp_template$_el_18, _text_19, _text_20, _text_21, this._subject_list_comp_template$_el_22, _text_23, this._subject_list_comp_template$_el_24, _text_25, _text_26, _text_27, this._subject_list_comp_template$_el_28, _text_29, _text_30, this._el_31, _text_32, _text_33, _text_34, _text_35, this._el_36, this._text_37, this._el_38, _text_39, this._subject_list_comp_template$_el_40, _text_41, this._subject_list_comp_template$_el_42, _text_43, this._subject_list_comp_template$_el_44, _text_45, this._subject_list_comp_template$_el_46, _text_47, _text_48, _text_49, _text_50, this._el_51, _text_52, _anchor_53, _text_54, _text_55, _text_56, this._el_57, _text_58, this._subject_list_comp_template$_el_59, _text_60, this._subject_list_comp_template$_el_61, _text_62, this._el_63, _text_64, this._subject_list_comp_template$_el_65, _text_66, this._subject_list_comp_template$_el_67, _text_68, _text_69, _text_70, _anchor_71, _text_72, _text_73, this._el_74, _text_75, this._el_76, _text_77, _text_78, this._el_79, _text_80, this._subject_list_comp_template$_el_81, _text_82, _text_83, _text_84], [subscription_0]);
+        this.init$3([t2], [t2, _text_1, this._subject_list_comp_template$_el_2, _text_3, this._subject_list_comp_template$_el_4, _text_5, this._subject_list_comp_template$_el_6, this._subject_list_comp_template$_el_7, this._subject_list_comp_template$_text_8, _text_9, this._subject_list_comp_template$_el_10, this._subject_list_comp_template$_text_11, _text_12, this._subject_list_comp_template$_el_13, this._subject_list_comp_template$_text_14, _text_15, this._subject_list_comp_template$_el_16, _text_17, this._subject_list_comp_template$_el_18, _text_19, _text_20, _text_21, this._subject_list_comp_template$_el_22, _text_23, this._subject_list_comp_template$_el_24, _text_25, _text_26, _text_27, this._subject_list_comp_template$_el_28, _text_29, _text_30, this._subject_list_comp_template$_el_31, _text_32, _text_33, _text_34, _text_35, this._el_36, this._text_37, this._el_38, _text_39, this._subject_list_comp_template$_el_40, _text_41, this._subject_list_comp_template$_el_42, _text_43, this._subject_list_comp_template$_el_44, _text_45, this._subject_list_comp_template$_el_46, _text_47, _text_48, _text_49, _text_50, this._el_51, _text_52, _anchor_53, _text_54, _text_55, _text_56, this._el_57, _text_58, this._subject_list_comp_template$_el_59, _text_60, this._subject_list_comp_template$_el_61, _text_62, this._el_63, _text_64, this._subject_list_comp_template$_el_65, _text_66, this._subject_list_comp_template$_el_67, _text_68, _text_69, _text_70, _anchor_71, _text_72, _text_73, this._el_74, _text_75, this._el_76, _text_77, _text_78, this._el_79, _text_80, this._subject_list_comp_template$_el_81, _text_82, _text_83, _text_84], [subscription_0]);
         return;
       },
       injectorGetInternal$3: function(token, requestNodeIndex, notFoundResult) {
@@ -75751,7 +75812,7 @@
       B.initReflector110();
     },
     ViewInviteUsersDialogComp0: {
-      "^": "AppView;_invite_dialog_comp_template$_el_1,_invite_dialog_comp_template$_el_3,_invite_dialog_comp_template$_el_5,_invite_dialog_comp_template$_text_7,_invite_dialog_comp_template$_el_9,_invite_dialog_comp_template$_el_10,_invite_dialog_comp_template$_el_13,_invite_dialog_comp_template$_el_15,_invite_dialog_comp_template$_el_18,_invite_dialog_comp_template$_el_20,_el_21,_invite_dialog_comp_template$_el_23,_invite_dialog_comp_template$_el_24,_invite_dialog_comp_template$_el_27,_invite_dialog_comp_template$_el_28,_invite_dialog_comp_template$_appEl_32,_TemplateRef_32_4,_NgFor_32_5,_el_35,_el_37,_el_42,_el_46,_el_49,_appEl_49,_DeferredValidator_49_3,_NG_VALIDATORS_49_4,_NgModel_49_5,_NgControl_49_6,_MaterialMultilineInputComponent_49_7,_BaseMaterialInput_49_8,_MaterialInputDefaultValueAccessor_49_9,__ReferenceDirective_49_10,__Focusable_49_11,_invite_dialog_comp_template$_el_52,_el_54,_appEl_54,_AcxDarkTheme_54_3,_MaterialButtonComponent_54_4,__ButtonDirective_54_5,_invite_dialog_comp_template$_expr_0,_invite_dialog_comp_template$_expr_2,_invite_dialog_comp_template$_expr_6,_invite_dialog_comp_template$_expr_7,_invite_dialog_comp_template$_expr_15,_invite_dialog_comp_template$_expr_16,_invite_dialog_comp_template$_expr_17,_invite_dialog_comp_template$_expr_18,_invite_dialog_comp_template$_expr_19,_invite_dialog_comp_template$_expr_20,clazz,componentType,type,locals,parentInjector,declarationViewContainer,_cdMode,_skipChangeDetection,ref,rootNodesOrViewContainers,allNodes,_onDestroyCallbacks,subscriptions,contentChildren,viewChildren,renderParent,viewContainerElement,_cdState,ctx,projectableNodes,destroyed,_hasExternalHostElement",
+      "^": "AppView;_invite_dialog_comp_template$_el_1,_invite_dialog_comp_template$_el_3,_invite_dialog_comp_template$_el_5,_invite_dialog_comp_template$_text_7,_invite_dialog_comp_template$_el_9,_invite_dialog_comp_template$_el_10,_invite_dialog_comp_template$_el_13,_invite_dialog_comp_template$_el_15,_invite_dialog_comp_template$_el_18,_invite_dialog_comp_template$_el_20,_invite_dialog_comp_template$_el_21,_invite_dialog_comp_template$_el_23,_invite_dialog_comp_template$_el_24,_invite_dialog_comp_template$_el_27,_invite_dialog_comp_template$_el_28,_invite_dialog_comp_template$_appEl_32,_TemplateRef_32_4,_NgFor_32_5,_el_35,_el_37,_el_42,_el_46,_el_49,_appEl_49,_DeferredValidator_49_3,_NG_VALIDATORS_49_4,_NgModel_49_5,_NgControl_49_6,_MaterialMultilineInputComponent_49_7,_BaseMaterialInput_49_8,_MaterialInputDefaultValueAccessor_49_9,__ReferenceDirective_49_10,__Focusable_49_11,_invite_dialog_comp_template$_el_52,_el_54,_appEl_54,_AcxDarkTheme_54_3,_MaterialButtonComponent_54_4,__ButtonDirective_54_5,_invite_dialog_comp_template$_expr_0,_invite_dialog_comp_template$_expr_2,_invite_dialog_comp_template$_expr_6,_invite_dialog_comp_template$_expr_7,_invite_dialog_comp_template$_expr_15,_invite_dialog_comp_template$_expr_16,_invite_dialog_comp_template$_expr_17,_invite_dialog_comp_template$_expr_18,_invite_dialog_comp_template$_expr_19,_invite_dialog_comp_template$_expr_20,clazz,componentType,type,locals,parentInjector,declarationViewContainer,_cdMode,_skipChangeDetection,ref,rootNodesOrViewContainers,allNodes,_onDestroyCallbacks,subscriptions,contentChildren,viewChildren,renderParent,viewContainerElement,_cdState,ctx,projectableNodes,destroyed,_hasExternalHostElement",
       createInternal$1: function(rootSelector) {
         var parentRenderNode, t1, _text_0, t2, t3, _text_2, _text_4, _text_6, _text_8, _text_11, _text_12, _text_14, _text_16, _text_17, _text_19, _text_22, _text_25, _text_26, _text_29, _text_30, _text_31, _anchor_32, t4, t5, _text_33, _text_34, _text_36, _text_38, _text_39, _text_40, _text_41, _text_43, _text_44, _text_45, _text_47, _text_48, compView_49, t6, t7, t8, _text_50, _text_51, _text_53, compView_54, _text_55, _text_56, _text_57, subscription_0, subscription_1;
         parentRenderNode = this.initViewRoot$1(this.declarationViewContainer.nativeElement);
@@ -75836,15 +75897,15 @@
         t2.setAttribute(this.componentType._contentAttr, "");
         this._invite_dialog_comp_template$_el_18.appendChild(this._invite_dialog_comp_template$_el_20);
         t2 = t1.createElement("tr");
-        this._el_21 = t2;
+        this._invite_dialog_comp_template$_el_21 = t2;
         t2.setAttribute(this.componentType._contentAttr, "");
-        this._invite_dialog_comp_template$_el_20.appendChild(this._el_21);
+        this._invite_dialog_comp_template$_el_20.appendChild(this._invite_dialog_comp_template$_el_21);
         _text_22 = t1.createTextNode("\n        ");
-        this._el_21.appendChild(_text_22);
+        this._invite_dialog_comp_template$_el_21.appendChild(_text_22);
         t2 = t1.createElement("th");
         this._invite_dialog_comp_template$_el_23 = t2;
         t2.setAttribute(this.componentType._contentAttr, "");
-        this._el_21.appendChild(this._invite_dialog_comp_template$_el_23);
+        this._invite_dialog_comp_template$_el_21.appendChild(this._invite_dialog_comp_template$_el_23);
         this._invite_dialog_comp_template$_el_23.setAttribute("width", "70%");
         t2 = t1.createElement("span");
         this._invite_dialog_comp_template$_el_24 = t2;
@@ -75855,11 +75916,11 @@
         _text_25 = t1.createTextNode("Email");
         t2.appendChild(_text_25);
         _text_26 = t1.createTextNode("\n        ");
-        this._el_21.appendChild(_text_26);
+        this._invite_dialog_comp_template$_el_21.appendChild(_text_26);
         t2 = t1.createElement("th");
         this._invite_dialog_comp_template$_el_27 = t2;
         t2.setAttribute(this.componentType._contentAttr, "");
-        this._el_21.appendChild(this._invite_dialog_comp_template$_el_27);
+        this._invite_dialog_comp_template$_el_21.appendChild(this._invite_dialog_comp_template$_el_27);
         this._invite_dialog_comp_template$_el_27.setAttribute("width", "30%");
         t2 = t1.createElement("span");
         this._invite_dialog_comp_template$_el_28 = t2;
@@ -75870,7 +75931,7 @@
         _text_29 = t1.createTextNode("Authorization");
         t2.appendChild(_text_29);
         _text_30 = t1.createTextNode("\n      ");
-        this._el_21.appendChild(_text_30);
+        this._invite_dialog_comp_template$_el_21.appendChild(_text_30);
         _text_31 = t1.createTextNode("\n\n      ");
         this._invite_dialog_comp_template$_el_20.appendChild(_text_31);
         _anchor_32 = t1.createComment("template bindings={}");
@@ -76022,7 +76083,7 @@
         this.listen$3(this._el_54, "keypress", this.get$_handle_keypress_54_3());
         this.listen$3(this._el_54, "focus", this.get$_handle_focus_54_4());
         this.listen$3(this._el_54, "mousedown", this.get$_handle_mousedown_54_5());
-        this.init$3([], [_text_0, this._invite_dialog_comp_template$_el_1, _text_2, this._invite_dialog_comp_template$_el_3, _text_4, this._invite_dialog_comp_template$_el_5, _text_6, this._invite_dialog_comp_template$_text_7, _text_8, this._invite_dialog_comp_template$_el_9, this._invite_dialog_comp_template$_el_10, _text_11, _text_12, this._invite_dialog_comp_template$_el_13, _text_14, this._invite_dialog_comp_template$_el_15, _text_16, _text_17, this._invite_dialog_comp_template$_el_18, _text_19, this._invite_dialog_comp_template$_el_20, this._el_21, _text_22, this._invite_dialog_comp_template$_el_23, this._invite_dialog_comp_template$_el_24, _text_25, _text_26, this._invite_dialog_comp_template$_el_27, this._invite_dialog_comp_template$_el_28, _text_29, _text_30, _text_31, _anchor_32, _text_33, _text_34, this._el_35, _text_36, this._el_37, _text_38, _text_39, _text_40, _text_41, this._el_42, _text_43, _text_44, _text_45, this._el_46, _text_47, _text_48, this._el_49, _text_50, _text_51, this._invite_dialog_comp_template$_el_52, _text_53, this._el_54, _text_55, _text_56, _text_57], [subscription_0, subscription_1]);
+        this.init$3([], [_text_0, this._invite_dialog_comp_template$_el_1, _text_2, this._invite_dialog_comp_template$_el_3, _text_4, this._invite_dialog_comp_template$_el_5, _text_6, this._invite_dialog_comp_template$_text_7, _text_8, this._invite_dialog_comp_template$_el_9, this._invite_dialog_comp_template$_el_10, _text_11, _text_12, this._invite_dialog_comp_template$_el_13, _text_14, this._invite_dialog_comp_template$_el_15, _text_16, _text_17, this._invite_dialog_comp_template$_el_18, _text_19, this._invite_dialog_comp_template$_el_20, this._invite_dialog_comp_template$_el_21, _text_22, this._invite_dialog_comp_template$_el_23, this._invite_dialog_comp_template$_el_24, _text_25, _text_26, this._invite_dialog_comp_template$_el_27, this._invite_dialog_comp_template$_el_28, _text_29, _text_30, _text_31, _anchor_32, _text_33, _text_34, this._el_35, _text_36, this._el_37, _text_38, _text_39, _text_40, _text_41, this._el_42, _text_43, _text_44, _text_45, this._el_46, _text_47, _text_48, this._el_49, _text_50, _text_51, this._invite_dialog_comp_template$_el_52, _text_53, this._el_54, _text_55, _text_56, _text_57], [subscription_0, subscription_1]);
         return;
       },
       injectorGetInternal$3: function(token, requestNodeIndex, notFoundResult) {
@@ -76615,7 +76676,7 @@
       M.initReflector9();
     },
     ViewLoginComp0: {
-      "^": "AppView;_login_comp_template$_el_0,_login_comp_template$_appEl_0,_login_comp_template$_ModalComponent_0_3,_login_comp_template$__DeferredContentAware_0_4,_login_comp_template$__Modal_0_5,_login_comp_template$_el_2,_login_comp_template$_appEl_2,_login_comp_template$_MaterialDialogComponent_2_3,_login_comp_template$_el_4,_login_comp_template$_appEl_4,_SignupComp_4_3,_login_comp_template$_el_8,_login_comp_template$_appEl_8,_ModalComponent_8_3,__DeferredContentAware_8_4,__Modal_8_5,_login_comp_template$_el_10,_login_comp_template$_appEl_10,_MaterialDialogComponent_10_3,_login_comp_template$_el_12,_appEl_12,_ForgotPassComp_12_3,_login_comp_template$_el_16,_login_comp_template$_el_18,_login_comp_template$_el_23,_el_25,_login_comp_template$_el_27,_login_comp_template$_el_28,_login_comp_template$_el_30,_login_comp_template$_el_36,_login_comp_template$_el_38,_text_39,_el_41,_appEl_43,_TemplateRef_43_4,_NgFor_43_5,_login_comp_template$_el_46,_el_48,_NgForm_48_2,__ControlContainer_48_3,_login_comp_template$_el_50,_login_comp_template$_el_52,_login_comp_template$_el_55,_login_comp_template$_el_59,_login_comp_template$_el_61,_el_64,_appEl_64,_DeferredValidator_64_3,_NG_VALIDATORS_64_4,_NgModel_64_5,_RequiredValidator_64_6,_NgControl_64_7,_MaterialInputComponent_64_8,_BaseMaterialInput_64_9,_MaterialInputDefaultValueAccessor_64_10,__ReferenceDirective_64_11,__Focusable_64_12,_login_comp_template$_el_67,_login_comp_template$_el_69,_login_comp_template$_el_72,_login_comp_template$_el_73,_login_comp_template$_el_76,_appEl_76,_DeferredValidator_76_3,_NG_VALIDATORS_76_4,_NgModel_76_5,_RequiredValidator_76_6,_NgControl_76_7,_MaterialInputComponent_76_8,_BaseMaterialInput_76_9,_MaterialInputDefaultValueAccessor_76_10,__ReferenceDirective_76_11,__Focusable_76_12,_login_comp_template$_el_79,_login_comp_template$_appEl_79,_AcxDarkTheme_79_3,_MaterialButtonComponent_79_4,__ButtonDirective_79_5,_login_comp_template$_el_85,_el_86,_login_comp_template$_el_90,_el_92,_login_comp_template$_el_94,_login_comp_template$_el_97,_login_comp_template$_el_99,_el_104,_el_106,_login_comp_template$_expr_0,_login_comp_template$_expr_1,_login_comp_template$_expr_2,_login_comp_template$_expr_3,_login_comp_template$_expr_4,_login_comp_template$_expr_5,_login_comp_template$_expr_8,_login_comp_template$_expr_11,_login_comp_template$_expr_12,_login_comp_template$_expr_13,_login_comp_template$_expr_17,_login_comp_template$_expr_18,_login_comp_template$_expr_27,_login_comp_template$_expr_28,_login_comp_template$_expr_29,_login_comp_template$_expr_30,_login_comp_template$_expr_31,_expr_32,clazz,componentType,type,locals,parentInjector,declarationViewContainer,_cdMode,_skipChangeDetection,ref,rootNodesOrViewContainers,allNodes,_onDestroyCallbacks,subscriptions,contentChildren,viewChildren,renderParent,viewContainerElement,_cdState,ctx,projectableNodes,destroyed,_hasExternalHostElement",
+      "^": "AppView;_login_comp_template$_el_0,_login_comp_template$_appEl_0,_login_comp_template$_ModalComponent_0_3,_login_comp_template$__DeferredContentAware_0_4,_login_comp_template$__Modal_0_5,_login_comp_template$_el_2,_login_comp_template$_appEl_2,_login_comp_template$_MaterialDialogComponent_2_3,_login_comp_template$_el_4,_login_comp_template$_appEl_4,_SignupComp_4_3,_login_comp_template$_el_8,_login_comp_template$_appEl_8,_ModalComponent_8_3,__DeferredContentAware_8_4,__Modal_8_5,_login_comp_template$_el_10,_login_comp_template$_appEl_10,_MaterialDialogComponent_10_3,_login_comp_template$_el_12,_appEl_12,_ForgotPassComp_12_3,_login_comp_template$_el_16,_login_comp_template$_el_18,_login_comp_template$_el_23,_el_25,_login_comp_template$_el_27,_login_comp_template$_el_28,_login_comp_template$_el_30,_login_comp_template$_el_36,_login_comp_template$_el_38,_text_39,_el_41,_appEl_43,_TemplateRef_43_4,_NgFor_43_5,_login_comp_template$_el_46,_el_48,_NgForm_48_2,__ControlContainer_48_3,_login_comp_template$_el_50,_login_comp_template$_el_52,_login_comp_template$_el_55,_login_comp_template$_el_59,_login_comp_template$_el_61,_el_64,_appEl_64,_DeferredValidator_64_3,_NG_VALIDATORS_64_4,_NgModel_64_5,_RequiredValidator_64_6,_NgControl_64_7,_MaterialInputComponent_64_8,_BaseMaterialInput_64_9,_MaterialInputDefaultValueAccessor_64_10,__ReferenceDirective_64_11,__Focusable_64_12,_login_comp_template$_el_67,_login_comp_template$_el_69,_login_comp_template$_el_72,_login_comp_template$_el_73,_login_comp_template$_el_76,_appEl_76,_DeferredValidator_76_3,_NG_VALIDATORS_76_4,_NgModel_76_5,_RequiredValidator_76_6,_NgControl_76_7,_MaterialInputComponent_76_8,_BaseMaterialInput_76_9,_MaterialInputDefaultValueAccessor_76_10,__ReferenceDirective_76_11,__Focusable_76_12,_login_comp_template$_el_79,_login_comp_template$_appEl_79,_AcxDarkTheme_79_3,_MaterialButtonComponent_79_4,__ButtonDirective_79_5,_login_comp_template$_el_85,_el_86,_el_90,_el_92,_el_94,_el_97,_el_99,_login_comp_template$_el_104,_el_106,_login_comp_template$_expr_0,_login_comp_template$_expr_1,_login_comp_template$_expr_2,_login_comp_template$_expr_3,_login_comp_template$_expr_4,_login_comp_template$_expr_5,_login_comp_template$_expr_8,_login_comp_template$_expr_11,_login_comp_template$_expr_12,_login_comp_template$_expr_13,_login_comp_template$_expr_17,_login_comp_template$_expr_18,_login_comp_template$_expr_27,_login_comp_template$_expr_28,_login_comp_template$_expr_29,_login_comp_template$_expr_30,_login_comp_template$_expr_31,_expr_32,clazz,componentType,type,locals,parentInjector,declarationViewContainer,_cdMode,_skipChangeDetection,ref,rootNodesOrViewContainers,allNodes,_onDestroyCallbacks,subscriptions,contentChildren,viewChildren,renderParent,viewContainerElement,_cdState,ctx,projectableNodes,destroyed,_hasExternalHostElement",
       createInternal$1: function(rootSelector) {
         var parentRenderNode, doc, t1, compView_0, t2, t3, t4, t5, t6, t7, _text_1, compView_2, _text_3, compView_4, t8, t9, t10, _text_5, _text_6, _text_7, compView_8, _text_9, compView_10, _text_11, compView_12, _text_13, _text_14, _text_15, _text_17, _text_19, _text_20, _text_21, _text_22, _text_24, _text_26, _text_29, _text_31, _text_32, _text_33, _text_34, _text_35, _text_37, _text_40, _text_42, _anchor_43, _text_44, _text_45, _text_47, _text_49, _text_51, _text_53, _text_54, _text_56, _text_57, _text_58, _text_60, _text_62, _text_63, compView_64, _text_65, _text_66, _text_68, _text_70, _text_71, _text_74, _text_75, compView_76, _text_77, _text_78, compView_79, _text_80, _text_81, _text_82, _text_83, _text_84, _text_87, _text_88, _text_89, _text_91, _text_93, _text_95, _text_96, _text_98, _text_100, _text_101, _text_102, _text_103, _text_105, _text_107, _text_108, _text_109, subscription_0, subscription_1, subscription_2, subscription_3;
         parentRenderNode = this.initViewRoot$1(this.declarationViewContainer.nativeElement);
@@ -77035,69 +77096,69 @@
         _text_89 = doc.createTextNode("\n    ");
         this._login_comp_template$_el_36.appendChild(_text_89);
         t1 = doc.createElement("div");
-        this._login_comp_template$_el_90 = t1;
+        this._el_90 = t1;
         t1.setAttribute(this.componentType._contentAttr, "");
-        this._login_comp_template$_el_36.appendChild(this._login_comp_template$_el_90);
-        t1 = this._login_comp_template$_el_90;
+        this._login_comp_template$_el_36.appendChild(this._el_90);
+        t1 = this._el_90;
         t1.className = "social";
         _text_91 = doc.createTextNode("\n      ");
         t1.appendChild(_text_91);
         t1 = doc.createElement("a");
         this._el_92 = t1;
         t1.setAttribute(this.componentType._contentAttr, "");
-        this._login_comp_template$_el_90.appendChild(this._el_92);
+        this._el_90.appendChild(this._el_92);
         t1 = this._el_92;
         t1.className = "btn-social btn-facebook";
         t1.setAttribute("href", "/auth/facebook");
         _text_93 = doc.createTextNode("\n        ");
         this._el_92.appendChild(_text_93);
         t1 = doc.createElement("span");
-        this._login_comp_template$_el_94 = t1;
+        this._el_94 = t1;
         t1.setAttribute(this.componentType._contentAttr, "");
-        this._el_92.appendChild(this._login_comp_template$_el_94);
-        this._login_comp_template$_el_94.className = "fa fa-facebook";
+        this._el_92.appendChild(this._el_94);
+        this._el_94.className = "fa fa-facebook";
         _text_95 = doc.createTextNode(" Sign in with Facebook\n      ");
         this._el_92.appendChild(_text_95);
         _text_96 = doc.createTextNode("\n\n      ");
-        this._login_comp_template$_el_90.appendChild(_text_96);
+        this._el_90.appendChild(_text_96);
         t1 = doc.createElement("a");
-        this._login_comp_template$_el_97 = t1;
+        this._el_97 = t1;
         t1.setAttribute(this.componentType._contentAttr, "");
-        this._login_comp_template$_el_90.appendChild(this._login_comp_template$_el_97);
-        t1 = this._login_comp_template$_el_97;
+        this._el_90.appendChild(this._el_97);
+        t1 = this._el_97;
         t1.className = "btn-social btn-google";
         t1.setAttribute("href", "/auth/google");
         _text_98 = doc.createTextNode("\n        ");
-        this._login_comp_template$_el_97.appendChild(_text_98);
+        this._el_97.appendChild(_text_98);
         t1 = doc.createElement("span");
-        this._login_comp_template$_el_99 = t1;
+        this._el_99 = t1;
         t1.setAttribute(this.componentType._contentAttr, "");
-        this._login_comp_template$_el_97.appendChild(this._login_comp_template$_el_99);
-        this._login_comp_template$_el_99.className = "fa fa-google-plus";
+        this._el_97.appendChild(this._el_99);
+        this._el_99.className = "fa fa-google-plus";
         _text_100 = doc.createTextNode(" Sign in with Google\n      ");
-        this._login_comp_template$_el_97.appendChild(_text_100);
+        this._el_97.appendChild(_text_100);
         _text_101 = doc.createTextNode("\n    ");
-        this._login_comp_template$_el_90.appendChild(_text_101);
+        this._el_90.appendChild(_text_101);
         _text_102 = doc.createTextNode("\n  ");
         this._login_comp_template$_el_36.appendChild(_text_102);
         _text_103 = doc.createTextNode("\n\n  ");
         this._login_comp_template$_el_16.appendChild(_text_103);
         t1 = doc.createElement("footer");
-        this._el_104 = t1;
+        this._login_comp_template$_el_104 = t1;
         t1.setAttribute(this.componentType._contentAttr, "");
-        this._login_comp_template$_el_16.appendChild(this._el_104);
+        this._login_comp_template$_el_16.appendChild(this._login_comp_template$_el_104);
         _text_105 = doc.createTextNode("\n    ");
-        this._el_104.appendChild(_text_105);
+        this._login_comp_template$_el_104.appendChild(_text_105);
         t1 = doc.createElement("div");
         this._el_106 = t1;
         t1.setAttribute(this.componentType._contentAttr, "");
-        this._el_104.appendChild(this._el_106);
+        this._login_comp_template$_el_104.appendChild(this._el_106);
         t1 = this._el_106;
         t1.className = "copy";
         _text_107 = doc.createTextNode("Copyright (c) 2017 share.place. All rights reserved.");
         t1.appendChild(_text_107);
         _text_108 = doc.createTextNode("\n  ");
-        this._el_104.appendChild(_text_108);
+        this._login_comp_template$_el_104.appendChild(_text_108);
         _text_109 = doc.createTextNode("\n");
         this._login_comp_template$_el_16.appendChild(_text_109);
         this.listen$3(this._el_48, "submit", this.get$_handle_submit_48_0());
@@ -77124,7 +77185,7 @@
         this.listen$3(this._login_comp_template$_el_79, "keypress", this.get$_handle_keypress_79_4());
         this.listen$3(this._login_comp_template$_el_79, "focus", this.get$_handle_focus_79_5());
         this.listen$3(this._login_comp_template$_el_79, "mousedown", this.get$_handle_mousedown_79_6());
-        this.init$3([], [this._login_comp_template$_el_0, _text_1, this._login_comp_template$_el_2, _text_3, this._login_comp_template$_el_4, _text_5, _text_6, _text_7, this._login_comp_template$_el_8, _text_9, this._login_comp_template$_el_10, _text_11, this._login_comp_template$_el_12, _text_13, _text_14, _text_15, this._login_comp_template$_el_16, _text_17, this._login_comp_template$_el_18, _text_19, _text_20, _text_21, _text_22, this._login_comp_template$_el_23, _text_24, this._el_25, _text_26, this._login_comp_template$_el_27, this._login_comp_template$_el_28, _text_29, this._login_comp_template$_el_30, _text_31, _text_32, _text_33, _text_34, _text_35, this._login_comp_template$_el_36, _text_37, this._login_comp_template$_el_38, this._text_39, _text_40, this._el_41, _text_42, _anchor_43, _text_44, _text_45, this._login_comp_template$_el_46, _text_47, this._el_48, _text_49, this._login_comp_template$_el_50, _text_51, this._login_comp_template$_el_52, _text_53, _text_54, this._login_comp_template$_el_55, _text_56, _text_57, _text_58, this._login_comp_template$_el_59, _text_60, this._login_comp_template$_el_61, _text_62, _text_63, this._el_64, _text_65, _text_66, this._login_comp_template$_el_67, _text_68, this._login_comp_template$_el_69, _text_70, _text_71, this._login_comp_template$_el_72, this._login_comp_template$_el_73, _text_74, _text_75, this._login_comp_template$_el_76, _text_77, _text_78, this._login_comp_template$_el_79, _text_80, _text_81, _text_82, _text_83, _text_84, this._login_comp_template$_el_85, this._el_86, _text_87, _text_88, _text_89, this._login_comp_template$_el_90, _text_91, this._el_92, _text_93, this._login_comp_template$_el_94, _text_95, _text_96, this._login_comp_template$_el_97, _text_98, this._login_comp_template$_el_99, _text_100, _text_101, _text_102, _text_103, this._el_104, _text_105, this._el_106, _text_107, _text_108, _text_109], [subscription_0, subscription_1, subscription_2, subscription_3]);
+        this.init$3([], [this._login_comp_template$_el_0, _text_1, this._login_comp_template$_el_2, _text_3, this._login_comp_template$_el_4, _text_5, _text_6, _text_7, this._login_comp_template$_el_8, _text_9, this._login_comp_template$_el_10, _text_11, this._login_comp_template$_el_12, _text_13, _text_14, _text_15, this._login_comp_template$_el_16, _text_17, this._login_comp_template$_el_18, _text_19, _text_20, _text_21, _text_22, this._login_comp_template$_el_23, _text_24, this._el_25, _text_26, this._login_comp_template$_el_27, this._login_comp_template$_el_28, _text_29, this._login_comp_template$_el_30, _text_31, _text_32, _text_33, _text_34, _text_35, this._login_comp_template$_el_36, _text_37, this._login_comp_template$_el_38, this._text_39, _text_40, this._el_41, _text_42, _anchor_43, _text_44, _text_45, this._login_comp_template$_el_46, _text_47, this._el_48, _text_49, this._login_comp_template$_el_50, _text_51, this._login_comp_template$_el_52, _text_53, _text_54, this._login_comp_template$_el_55, _text_56, _text_57, _text_58, this._login_comp_template$_el_59, _text_60, this._login_comp_template$_el_61, _text_62, _text_63, this._el_64, _text_65, _text_66, this._login_comp_template$_el_67, _text_68, this._login_comp_template$_el_69, _text_70, _text_71, this._login_comp_template$_el_72, this._login_comp_template$_el_73, _text_74, _text_75, this._login_comp_template$_el_76, _text_77, _text_78, this._login_comp_template$_el_79, _text_80, _text_81, _text_82, _text_83, _text_84, this._login_comp_template$_el_85, this._el_86, _text_87, _text_88, _text_89, this._el_90, _text_91, this._el_92, _text_93, this._el_94, _text_95, _text_96, this._el_97, _text_98, this._el_99, _text_100, _text_101, _text_102, _text_103, this._login_comp_template$_el_104, _text_105, this._el_106, _text_107, _text_108, _text_109], [subscription_0, subscription_1, subscription_2, subscription_3]);
         return;
       },
       injectorGetInternal$3: function(token, requestNodeIndex, notFoundResult) {
@@ -77948,7 +78009,7 @@
       M.initReflector9();
     },
     ViewProfileComp0: {
-      "^": "AppView;_profile_comp_template$_el_0,_profile_comp_template$_el_2,_profile_comp_template$_el_4,_profile_comp_template$_el_7,_profile_comp_template$_el_8,_profile_comp_template$_el_10,_NgForm_10_2,__ControlContainer_10_3,_profile_comp_template$_el_12,_profile_comp_template$_el_15,_profile_comp_template$_el_17,_profile_comp_template$_el_21,_profile_comp_template$_el_25,_profile_comp_template$_el_27,_text_28,_profile_comp_template$_el_30,_profile_comp_template$_appEl_32,_profile_comp_template$_TemplateRef_32_4,_profile_comp_template$_NgFor_32_5,_profile_comp_template$_el_35,_profile_comp_template$_el_37,_NgForm_37_2,__ControlContainer_37_3,_profile_comp_template$_el_39,_profile_comp_template$_el_41,_profile_comp_template$_el_44,_profile_comp_template$_appEl_44,_DeferredValidator_44_3,_NG_VALIDATORS_44_4,_NgModel_44_5,_RequiredValidator_44_6,_NgControl_44_7,_MaterialInputComponent_44_8,_BaseMaterialInput_44_9,_MaterialInputDefaultValueAccessor_44_10,__ReferenceDirective_44_11,__Focusable_44_12,_profile_comp_template$_el_46,_profile_comp_template$_el_49,_profile_comp_template$_el_51,_profile_comp_template$_el_54,_profile_comp_template$_appEl_54,_DeferredValidator_54_3,_NG_VALIDATORS_54_4,_NgModel_54_5,_NgControl_54_6,_MaterialInputComponent_54_7,_BaseMaterialInput_54_8,_MaterialInputDefaultValueAccessor_54_9,__ReferenceDirective_54_10,__Focusable_54_11,_profile_comp_template$_el_57,_el_60,_el_62,_profile_comp_template$_el_64,_profile_comp_template$_el_67,_profile_comp_template$_el_69,_profile_comp_template$_el_72,_appEl_72,_DeferredValidator_72_3,_NG_VALIDATORS_72_4,_NgModel_72_5,_NgControl_72_6,_MaterialInputComponent_72_7,_BaseMaterialInput_72_8,_MaterialInputDefaultValueAccessor_72_9,__ReferenceDirective_72_10,__Focusable_72_11,_profile_comp_template$_el_75,_profile_comp_template$_el_77,_el_80,_appEl_80,_DeferredValidator_80_3,_NG_VALIDATORS_80_4,_NgModel_80_5,_NgControl_80_6,_MaterialInputComponent_80_7,_BaseMaterialInput_80_8,_MaterialInputDefaultValueAccessor_80_9,__ReferenceDirective_80_10,__Focusable_80_11,_profile_comp_template$_el_85,_profile_comp_template$_el_87,_profile_comp_template$_el_90,_appEl_90,_DeferredValidator_90_3,_NG_VALIDATORS_90_4,_NgModel_90_5,_RequiredValidator_90_6,_NgControl_90_7,_MaterialInputComponent_90_8,_BaseMaterialInput_90_9,_MaterialInputDefaultValueAccessor_90_10,__ReferenceDirective_90_11,__Focusable_90_12,_el_95,_profile_comp_template$_el_97,_el_98,_el_101,_el_103,_el_107,_el_109,_el_111,_el_115,_el_117,_el_120,_appEl_120,_DeferredValidator_120_3,_NG_VALIDATORS_120_4,_NgModel_120_5,_NgControl_120_6,_MaterialInputComponent_120_7,_BaseMaterialInput_120_8,_MaterialInputDefaultValueAccessor_120_9,__ReferenceDirective_120_10,__Focusable_120_11,_el_124,_el_127,_el_129,_appEl_129,_AcxDarkTheme_129_3,_MaterialButtonComponent_129_4,__ButtonDirective_129_5,_profile_comp_template$_expr_5,_profile_comp_template$_expr_6,_profile_comp_template$_expr_8,_profile_comp_template$_expr_9,_profile_comp_template$_expr_14,_profile_comp_template$_expr_15,_profile_comp_template$_expr_16,_profile_comp_template$_expr_17,_profile_comp_template$_expr_19,_profile_comp_template$_expr_20,_profile_comp_template$_expr_23,_profile_comp_template$_expr_25,_profile_comp_template$_expr_26,_profile_comp_template$_expr_30,_profile_comp_template$_expr_31,_profile_comp_template$_expr_34,_profile_comp_template$_expr_37,_profile_comp_template$_expr_38,_profile_comp_template$_expr_39,_expr_40,_expr_41,_expr_42,_expr_45,_expr_53,_expr_54,_expr_55,_expr_56,_expr_57,_expr_58,clazz,componentType,type,locals,parentInjector,declarationViewContainer,_cdMode,_skipChangeDetection,ref,rootNodesOrViewContainers,allNodes,_onDestroyCallbacks,subscriptions,contentChildren,viewChildren,renderParent,viewContainerElement,_cdState,ctx,projectableNodes,destroyed,_hasExternalHostElement",
+      "^": "AppView;_profile_comp_template$_el_0,_profile_comp_template$_el_2,_profile_comp_template$_el_4,_profile_comp_template$_el_7,_profile_comp_template$_el_8,_profile_comp_template$_el_10,_NgForm_10_2,__ControlContainer_10_3,_profile_comp_template$_el_12,_profile_comp_template$_el_15,_profile_comp_template$_el_17,_profile_comp_template$_el_21,_profile_comp_template$_el_25,_profile_comp_template$_el_27,_text_28,_profile_comp_template$_el_30,_profile_comp_template$_appEl_32,_profile_comp_template$_TemplateRef_32_4,_profile_comp_template$_NgFor_32_5,_profile_comp_template$_el_35,_profile_comp_template$_el_37,_NgForm_37_2,__ControlContainer_37_3,_profile_comp_template$_el_39,_profile_comp_template$_el_41,_profile_comp_template$_el_44,_profile_comp_template$_appEl_44,_DeferredValidator_44_3,_NG_VALIDATORS_44_4,_NgModel_44_5,_RequiredValidator_44_6,_NgControl_44_7,_MaterialInputComponent_44_8,_BaseMaterialInput_44_9,_MaterialInputDefaultValueAccessor_44_10,__ReferenceDirective_44_11,__Focusable_44_12,_profile_comp_template$_el_46,_profile_comp_template$_el_49,_profile_comp_template$_el_51,_profile_comp_template$_el_54,_profile_comp_template$_appEl_54,_DeferredValidator_54_3,_NG_VALIDATORS_54_4,_NgModel_54_5,_NgControl_54_6,_MaterialInputComponent_54_7,_BaseMaterialInput_54_8,_MaterialInputDefaultValueAccessor_54_9,__ReferenceDirective_54_10,__Focusable_54_11,_profile_comp_template$_el_57,_el_60,_el_62,_profile_comp_template$_el_64,_profile_comp_template$_el_67,_profile_comp_template$_el_69,_profile_comp_template$_el_72,_appEl_72,_DeferredValidator_72_3,_NG_VALIDATORS_72_4,_NgModel_72_5,_NgControl_72_6,_MaterialInputComponent_72_7,_BaseMaterialInput_72_8,_MaterialInputDefaultValueAccessor_72_9,__ReferenceDirective_72_10,__Focusable_72_11,_profile_comp_template$_el_75,_profile_comp_template$_el_77,_el_80,_appEl_80,_DeferredValidator_80_3,_NG_VALIDATORS_80_4,_NgModel_80_5,_NgControl_80_6,_MaterialInputComponent_80_7,_BaseMaterialInput_80_8,_MaterialInputDefaultValueAccessor_80_9,__ReferenceDirective_80_10,__Focusable_80_11,_profile_comp_template$_el_85,_profile_comp_template$_el_87,_profile_comp_template$_el_90,_appEl_90,_DeferredValidator_90_3,_NG_VALIDATORS_90_4,_NgModel_90_5,_RequiredValidator_90_6,_NgControl_90_7,_MaterialInputComponent_90_8,_BaseMaterialInput_90_9,_MaterialInputDefaultValueAccessor_90_10,__ReferenceDirective_90_11,__Focusable_90_12,_el_95,_profile_comp_template$_el_97,_profile_comp_template$_el_98,_el_101,_el_103,_profile_comp_template$_el_107,_el_109,_el_111,_el_115,_el_117,_el_120,_appEl_120,_DeferredValidator_120_3,_NG_VALIDATORS_120_4,_NgModel_120_5,_NgControl_120_6,_MaterialInputComponent_120_7,_BaseMaterialInput_120_8,_MaterialInputDefaultValueAccessor_120_9,__ReferenceDirective_120_10,__Focusable_120_11,_el_124,_el_127,_el_129,_appEl_129,_AcxDarkTheme_129_3,_MaterialButtonComponent_129_4,__ButtonDirective_129_5,_profile_comp_template$_expr_5,_profile_comp_template$_expr_6,_profile_comp_template$_expr_8,_profile_comp_template$_expr_9,_profile_comp_template$_expr_14,_profile_comp_template$_expr_15,_profile_comp_template$_expr_16,_profile_comp_template$_expr_17,_profile_comp_template$_expr_19,_profile_comp_template$_expr_20,_profile_comp_template$_expr_23,_profile_comp_template$_expr_25,_profile_comp_template$_expr_26,_profile_comp_template$_expr_30,_profile_comp_template$_expr_31,_profile_comp_template$_expr_34,_profile_comp_template$_expr_37,_profile_comp_template$_expr_38,_profile_comp_template$_expr_39,_expr_40,_expr_41,_expr_42,_expr_45,_expr_53,_expr_54,_expr_55,_expr_56,_expr_57,_expr_58,clazz,componentType,type,locals,parentInjector,declarationViewContainer,_cdMode,_skipChangeDetection,ref,rootNodesOrViewContainers,allNodes,_onDestroyCallbacks,subscriptions,contentChildren,viewChildren,renderParent,viewContainerElement,_cdState,ctx,projectableNodes,destroyed,_hasExternalHostElement",
       createInternal$1: function(rootSelector) {
         var parentRenderNode, doc, t1, _text_1, _text_3, _text_5, _text_6, _text_9, t2, _text_11, _text_13, _text_14, _text_16, _text_18, _text_19, _text_20, _text_22, _text_23, _text_24, _text_26, t3, _text_29, _text_31, _anchor_32, t4, t5, _text_33, _text_34, _text_36, _text_38, _text_40, _text_42, _text_43, compView_44, _text_45, _text_47, _text_48, _text_50, _text_52, _text_53, compView_54, _text_55, _text_56, _text_58, _text_59, _text_61, _text_63, _text_65, _text_66, _text_68, _text_70, _text_71, compView_72, _text_73, _text_74, _text_76, _text_78, _text_79, compView_80, _text_81, _text_82, _text_83, _text_84, _text_86, _text_88, _text_89, compView_90, _text_91, _text_92, _text_93, _text_94, _text_96, _text_99, _text_100, _text_102, _text_104, _text_105, _text_106, _text_108, _text_110, _text_112, _text_113, _text_114, _text_116, _text_118, _text_119, compView_120, _text_121, _text_122, _text_123, _text_125, _text_126, _text_128, compView_129, _text_130, _text_131, _text_132, subscription_0, subscription_1, subscription_2, subscription_3, subscription_4, subscription_5, subscription_6, subscription_7, subscription_8, subscription_9, subscription_10, subscription_11, subscription_12;
         parentRenderNode = this.initViewRoot$1(this.declarationViewContainer.nativeElement);
@@ -78419,11 +78480,11 @@
         this._el_95.appendChild(this._profile_comp_template$_el_97);
         this._profile_comp_template$_el_97.className = "line";
         t2 = doc.createElement("span");
-        this._el_98 = t2;
+        this._profile_comp_template$_el_98 = t2;
         t2.setAttribute(this.componentType._contentAttr, "");
-        this._profile_comp_template$_el_97.appendChild(this._el_98);
+        this._profile_comp_template$_el_97.appendChild(this._profile_comp_template$_el_98);
         _text_99 = doc.createTextNode("Logged in with ");
-        this._el_98.appendChild(_text_99);
+        this._profile_comp_template$_el_98.appendChild(_text_99);
         _text_100 = doc.createTextNode(" ");
         this._profile_comp_template$_el_97.appendChild(_text_100);
         t2 = doc.createElement("a");
@@ -78446,17 +78507,17 @@
         _text_106 = doc.createTextNode("\n      ");
         this._el_95.appendChild(_text_106);
         t2 = doc.createElement("div");
-        this._el_107 = t2;
+        this._profile_comp_template$_el_107 = t2;
         t2.setAttribute(this.componentType._contentAttr, "");
-        this._el_95.appendChild(this._el_107);
-        t2 = this._el_107;
+        this._el_95.appendChild(this._profile_comp_template$_el_107);
+        t2 = this._profile_comp_template$_el_107;
         t2.className = "line";
         _text_108 = doc.createTextNode(" Logged in with ");
         t2.appendChild(_text_108);
         t2 = doc.createElement("a");
         this._el_109 = t2;
         t2.setAttribute(this.componentType._contentAttr, "");
-        this._el_107.appendChild(this._el_109);
+        this._profile_comp_template$_el_107.appendChild(this._el_109);
         t2 = this._el_109;
         t2.className = "socialBtn google";
         _text_110 = doc.createTextNode("\n        ");
@@ -78469,7 +78530,7 @@
         _text_112 = doc.createTextNode("\n      ");
         this._el_109.appendChild(_text_112);
         _text_113 = doc.createTextNode("\n      ");
-        this._el_107.appendChild(_text_113);
+        this._profile_comp_template$_el_107.appendChild(_text_113);
         _text_114 = doc.createTextNode("\n      ");
         this._el_95.appendChild(_text_114);
         t2 = doc.createElement("div");
@@ -78626,7 +78687,7 @@
         this.listen$3(this._el_129, "keypress", this.get$_handle_keypress_129_3());
         this.listen$3(this._el_129, "focus", this.get$_handle_focus_129_4());
         this.listen$3(this._el_129, "mousedown", this.get$_handle_mousedown_129_5());
-        this.init$3([], [this._profile_comp_template$_el_0, _text_1, this._profile_comp_template$_el_2, _text_3, this._profile_comp_template$_el_4, _text_5, _text_6, this._profile_comp_template$_el_7, this._profile_comp_template$_el_8, _text_9, this._profile_comp_template$_el_10, _text_11, this._profile_comp_template$_el_12, _text_13, _text_14, this._profile_comp_template$_el_15, _text_16, this._profile_comp_template$_el_17, _text_18, _text_19, _text_20, this._profile_comp_template$_el_21, _text_22, _text_23, _text_24, this._profile_comp_template$_el_25, _text_26, this._profile_comp_template$_el_27, this._text_28, _text_29, this._profile_comp_template$_el_30, _text_31, _anchor_32, _text_33, _text_34, this._profile_comp_template$_el_35, _text_36, this._profile_comp_template$_el_37, _text_38, this._profile_comp_template$_el_39, _text_40, this._profile_comp_template$_el_41, _text_42, _text_43, this._profile_comp_template$_el_44, _text_45, this._profile_comp_template$_el_46, _text_47, _text_48, this._profile_comp_template$_el_49, _text_50, this._profile_comp_template$_el_51, _text_52, _text_53, this._profile_comp_template$_el_54, _text_55, _text_56, this._profile_comp_template$_el_57, _text_58, _text_59, this._el_60, _text_61, this._el_62, _text_63, this._profile_comp_template$_el_64, _text_65, _text_66, this._profile_comp_template$_el_67, _text_68, this._profile_comp_template$_el_69, _text_70, _text_71, this._profile_comp_template$_el_72, _text_73, _text_74, this._profile_comp_template$_el_75, _text_76, this._profile_comp_template$_el_77, _text_78, _text_79, this._el_80, _text_81, _text_82, _text_83, _text_84, this._profile_comp_template$_el_85, _text_86, this._profile_comp_template$_el_87, _text_88, _text_89, this._profile_comp_template$_el_90, _text_91, _text_92, _text_93, _text_94, this._el_95, _text_96, this._profile_comp_template$_el_97, this._el_98, _text_99, _text_100, this._el_101, _text_102, this._el_103, _text_104, _text_105, _text_106, this._el_107, _text_108, this._el_109, _text_110, this._el_111, _text_112, _text_113, _text_114, this._el_115, _text_116, this._el_117, _text_118, _text_119, this._el_120, _text_121, _text_122, _text_123, this._el_124, _text_125, _text_126, this._el_127, _text_128, this._el_129, _text_130, _text_131, _text_132], [subscription_0, subscription_1, subscription_2, subscription_3, subscription_4, subscription_5, subscription_6, subscription_7, subscription_8, subscription_9, subscription_10, subscription_11, subscription_12]);
+        this.init$3([], [this._profile_comp_template$_el_0, _text_1, this._profile_comp_template$_el_2, _text_3, this._profile_comp_template$_el_4, _text_5, _text_6, this._profile_comp_template$_el_7, this._profile_comp_template$_el_8, _text_9, this._profile_comp_template$_el_10, _text_11, this._profile_comp_template$_el_12, _text_13, _text_14, this._profile_comp_template$_el_15, _text_16, this._profile_comp_template$_el_17, _text_18, _text_19, _text_20, this._profile_comp_template$_el_21, _text_22, _text_23, _text_24, this._profile_comp_template$_el_25, _text_26, this._profile_comp_template$_el_27, this._text_28, _text_29, this._profile_comp_template$_el_30, _text_31, _anchor_32, _text_33, _text_34, this._profile_comp_template$_el_35, _text_36, this._profile_comp_template$_el_37, _text_38, this._profile_comp_template$_el_39, _text_40, this._profile_comp_template$_el_41, _text_42, _text_43, this._profile_comp_template$_el_44, _text_45, this._profile_comp_template$_el_46, _text_47, _text_48, this._profile_comp_template$_el_49, _text_50, this._profile_comp_template$_el_51, _text_52, _text_53, this._profile_comp_template$_el_54, _text_55, _text_56, this._profile_comp_template$_el_57, _text_58, _text_59, this._el_60, _text_61, this._el_62, _text_63, this._profile_comp_template$_el_64, _text_65, _text_66, this._profile_comp_template$_el_67, _text_68, this._profile_comp_template$_el_69, _text_70, _text_71, this._profile_comp_template$_el_72, _text_73, _text_74, this._profile_comp_template$_el_75, _text_76, this._profile_comp_template$_el_77, _text_78, _text_79, this._el_80, _text_81, _text_82, _text_83, _text_84, this._profile_comp_template$_el_85, _text_86, this._profile_comp_template$_el_87, _text_88, _text_89, this._profile_comp_template$_el_90, _text_91, _text_92, _text_93, _text_94, this._el_95, _text_96, this._profile_comp_template$_el_97, this._profile_comp_template$_el_98, _text_99, _text_100, this._el_101, _text_102, this._el_103, _text_104, _text_105, _text_106, this._profile_comp_template$_el_107, _text_108, this._el_109, _text_110, this._el_111, _text_112, _text_113, _text_114, this._el_115, _text_116, this._el_117, _text_118, _text_119, this._el_120, _text_121, _text_122, _text_123, this._el_124, _text_125, _text_126, this._el_127, _text_128, this._el_129, _text_130, _text_131, _text_132], [subscription_0, subscription_1, subscription_2, subscription_3, subscription_4, subscription_5, subscription_6, subscription_7, subscription_8, subscription_9, subscription_10, subscription_11, subscription_12]);
         return;
       },
       injectorGetInternal$3: function(token, requestNodeIndex, notFoundResult) {
@@ -79073,7 +79134,7 @@
         }
         currVal_41 = this.ctx.get$linkedToFacebook();
         if (Q.checkBinding(this._expr_41, currVal_41)) {
-          this.updateClass$3(this._el_107, "loggedIn", currVal_41);
+          this.updateClass$3(this._profile_comp_template$_el_107, "loggedIn", currVal_41);
           this._expr_41 = currVal_41;
         }
         currVal_42 = Q.interpolate0(this.ctx.get$googleUrl());
@@ -80015,7 +80076,7 @@
       M.initReflector9();
     },
     ViewSignupComp0: {
-      "^": "AppView;_signup_comp_template$_el_0,_signup_comp_template$_el_2,_signup_comp_template$_el_7,_signup_comp_template$_el_9,_signup_comp_template$_el_12,_signup_comp_template$_el_13,_signup_comp_template$_el_16,_signup_comp_template$_el_18,_signup_comp_template$_el_19,_signup_comp_template$_el_21,_signup_comp_template$_el_22,_signup_comp_template$_el_27,_signup_comp_template$_el_29,_text_30,_signup_comp_template$_el_32,_signup_comp_template$_el_34,_signup_comp_template$_el_36,_el_39,_appEl_39,_DeferredValidator_39_3,_NG_VALIDATORS_39_4,_NgModel_39_5,_RequiredValidator_39_6,_NgControl_39_7,_MaterialInputComponent_39_8,_BaseMaterialInput_39_9,_MaterialInputDefaultValueAccessor_39_10,__ReferenceDirective_39_11,__Focusable_39_12,_signup_comp_template$_el_42,_signup_comp_template$_el_44,_el_47,_appEl_47,_DeferredValidator_47_3,_NG_VALIDATORS_47_4,_NgModel_47_5,_RequiredValidator_47_6,_NgControl_47_7,_MaterialInputComponent_47_8,_BaseMaterialInput_47_9,_MaterialInputDefaultValueAccessor_47_10,__ReferenceDirective_47_11,__Focusable_47_12,_signup_comp_template$_el_50,_signup_comp_template$_el_52,_el_55,_appEl_55,_DeferredValidator_55_3,_NG_VALIDATORS_55_4,_NgModel_55_5,_RequiredValidator_55_6,_NgControl_55_7,_MaterialInputComponent_55_8,_BaseMaterialInput_55_9,_MaterialInputDefaultValueAccessor_55_10,__ReferenceDirective_55_11,__Focusable_55_12,_signup_comp_template$_el_59,_signup_comp_template$_el_61,_signup_comp_template$_el_63,_el_66,_el_68,_appEl_68,_DeferredValidator_68_3,_NG_VALIDATORS_68_4,_NgModel_68_5,_NgControl_68_6,_MaterialInputComponent_68_7,_BaseMaterialInput_68_8,_MaterialInputDefaultValueAccessor_68_9,__ReferenceDirective_68_10,__Focusable_68_11,_el_72,_signup_comp_template$_el_74,_el_77,_signup_comp_template$_el_79,_appEl_79,_DeferredValidator_79_3,_NG_VALIDATORS_79_4,_NgModel_79_5,_NgControl_79_6,_MaterialInputComponent_79_7,_BaseMaterialInput_79_8,_MaterialInputDefaultValueAccessor_79_9,__ReferenceDirective_79_10,__Focusable_79_11,_signup_comp_template$_el_85,_el_87,_appEl_87,_AcxDarkTheme_87_3,_MaterialButtonComponent_87_4,__ButtonDirective_87_5,_signup_comp_template$_expr_1,_signup_comp_template$_expr_4,_signup_comp_template$_expr_5,_signup_comp_template$_expr_6,_signup_comp_template$_expr_9,_signup_comp_template$_expr_10,_signup_comp_template$_expr_11,_signup_comp_template$_expr_15,_signup_comp_template$_expr_16,_signup_comp_template$_expr_19,_signup_comp_template$_expr_20,_signup_comp_template$_expr_23,_signup_comp_template$_expr_24,_signup_comp_template$_expr_33,_expr_34,_expr_35,_signup_comp_template$_expr_36,_signup_comp_template$_expr_37,_signup_comp_template$_expr_38,_signup_comp_template$_expr_39,clazz,componentType,type,locals,parentInjector,declarationViewContainer,_cdMode,_skipChangeDetection,ref,rootNodesOrViewContainers,allNodes,_onDestroyCallbacks,subscriptions,contentChildren,viewChildren,renderParent,viewContainerElement,_cdState,ctx,projectableNodes,destroyed,_hasExternalHostElement",
+      "^": "AppView;_signup_comp_template$_el_0,_signup_comp_template$_el_2,_signup_comp_template$_el_7,_signup_comp_template$_el_9,_signup_comp_template$_el_12,_signup_comp_template$_el_13,_signup_comp_template$_el_16,_signup_comp_template$_el_18,_signup_comp_template$_el_19,_signup_comp_template$_el_21,_signup_comp_template$_el_22,_signup_comp_template$_el_27,_signup_comp_template$_el_29,_text_30,_signup_comp_template$_el_32,_signup_comp_template$_el_34,_signup_comp_template$_el_36,_el_39,_appEl_39,_DeferredValidator_39_3,_NG_VALIDATORS_39_4,_NgModel_39_5,_RequiredValidator_39_6,_NgControl_39_7,_MaterialInputComponent_39_8,_BaseMaterialInput_39_9,_MaterialInputDefaultValueAccessor_39_10,__ReferenceDirective_39_11,__Focusable_39_12,_signup_comp_template$_el_42,_signup_comp_template$_el_44,_el_47,_appEl_47,_DeferredValidator_47_3,_NG_VALIDATORS_47_4,_NgModel_47_5,_RequiredValidator_47_6,_NgControl_47_7,_MaterialInputComponent_47_8,_BaseMaterialInput_47_9,_MaterialInputDefaultValueAccessor_47_10,__ReferenceDirective_47_11,__Focusable_47_12,_signup_comp_template$_el_50,_signup_comp_template$_el_52,_el_55,_appEl_55,_DeferredValidator_55_3,_NG_VALIDATORS_55_4,_NgModel_55_5,_RequiredValidator_55_6,_NgControl_55_7,_MaterialInputComponent_55_8,_BaseMaterialInput_55_9,_MaterialInputDefaultValueAccessor_55_10,__ReferenceDirective_55_11,__Focusable_55_12,_signup_comp_template$_el_59,_signup_comp_template$_el_61,_signup_comp_template$_el_63,_el_66,_el_68,_appEl_68,_DeferredValidator_68_3,_NG_VALIDATORS_68_4,_NgModel_68_5,_NgControl_68_6,_MaterialInputComponent_68_7,_BaseMaterialInput_68_8,_MaterialInputDefaultValueAccessor_68_9,__ReferenceDirective_68_10,__Focusable_68_11,_el_72,_signup_comp_template$_el_74,_el_77,_signup_comp_template$_el_79,_appEl_79,_DeferredValidator_79_3,_NG_VALIDATORS_79_4,_NgModel_79_5,_NgControl_79_6,_MaterialInputComponent_79_7,_BaseMaterialInput_79_8,_MaterialInputDefaultValueAccessor_79_9,__ReferenceDirective_79_10,__Focusable_79_11,_signup_comp_template$_el_85,_el_87,_appEl_87,_AcxDarkTheme_87_3,_MaterialButtonComponent_87_4,__ButtonDirective_87_5,_signup_comp_template$_expr_1,_signup_comp_template$_expr_4,_signup_comp_template$_expr_5,_signup_comp_template$_expr_6,_signup_comp_template$_expr_9,_signup_comp_template$_expr_10,_signup_comp_template$_expr_11,_signup_comp_template$_expr_15,_signup_comp_template$_expr_16,_signup_comp_template$_expr_19,_signup_comp_template$_expr_20,_signup_comp_template$_expr_23,_signup_comp_template$_expr_24,_signup_comp_template$_expr_33,_expr_34,_signup_comp_template$_expr_35,_expr_36,_signup_comp_template$_expr_37,_signup_comp_template$_expr_38,_signup_comp_template$_expr_39,clazz,componentType,type,locals,parentInjector,declarationViewContainer,_cdMode,_skipChangeDetection,ref,rootNodesOrViewContainers,allNodes,_onDestroyCallbacks,subscriptions,contentChildren,viewChildren,renderParent,viewContainerElement,_cdState,ctx,projectableNodes,destroyed,_hasExternalHostElement",
       createInternal$1: function(rootSelector) {
         var parentRenderNode, doc, t1, _text_1, _text_3, _text_4, _text_5, _text_6, _text_8, _text_10, _text_11, _text_14, _text_15, _text_17, _text_20, _text_23, _text_24, _text_25, _text_26, _text_28, t2, _text_31, _text_33, _text_35, _text_37, _text_38, compView_39, _text_40, _text_41, _text_43, _text_45, _text_46, compView_47, _text_48, _text_49, _text_51, _text_53, _text_54, compView_55, _text_56, _text_57, _text_58, _text_60, _text_62, _text_64, _text_65, _text_67, compView_68, _text_69, _text_70, _text_71, _text_73, _text_75, _text_76, _text_78, compView_79, _text_80, _text_81, _text_82, _text_83, _text_84, _text_86, compView_87, _text_88, _text_89, _text_90, t3, subscription_0, subscription_1, subscription_2, subscription_3, subscription_4, subscription_5, subscription_6, subscription_7, subscription_8, subscription_9;
         parentRenderNode = this.initViewRoot$1(this.declarationViewContainer.nativeElement);
@@ -80830,15 +80891,15 @@
           this._signup_comp_template$_expr_11 = currVal_11;
         }
         currVal_35 = this._MaterialButtonComponent_87_4._raised;
-        if (Q.checkBinding(this._expr_35, currVal_35)) {
+        if (Q.checkBinding(this._signup_comp_template$_expr_35, currVal_35)) {
           this.updateElemClass$3(this._el_87, "is-raised", currVal_35);
-          this._expr_35 = currVal_35;
+          this._signup_comp_template$_expr_35 = currVal_35;
         }
         currVal_36 = "" + this._MaterialButtonComponent_87_4._button_decorator$_disabled;
-        if (Q.checkBinding(this._signup_comp_template$_expr_36, currVal_36)) {
+        if (Q.checkBinding(this._expr_36, currVal_36)) {
           t1 = this._el_87;
           this.setAttr$3(t1, "aria-disabled", currVal_36);
-          this._signup_comp_template$_expr_36 = currVal_36;
+          this._expr_36 = currVal_36;
         }
         t1 = this._MaterialButtonComponent_87_4;
         currVal_37 = t1._computeTabIndex$0();
@@ -84652,8 +84713,6 @@
   C.List_UW6 = Isolate.makeConstantList([C.Type_ForgotPassComp_Ay6, C.List_empty]);
   C.ComponentFactory_43h = new D.ComponentFactory("forgot-pass-comp", D.forgot_pass_comp_template__viewFactory_ForgotPassCompHost0$closure(), C.Type_ForgotPassComp_Ay6, C.List_UW6);
   C.List_33r = Isolate.makeConstantList([C.ComponentFactory_43h]);
-  C.List_1qJ = Isolate.makeConstantList(['*[_ngcontent-%COMP%] {\r\n  font-family: Arial, Helvetica, sans-serif;\r\n}\r\n\r\n.files[_ngcontent-%COMP%] {\r\n  background-color: #e5e5e5 !important;\r\n}\r\n\r\n.files[_ngcontent-%COMP%]   .title[_ngcontent-%COMP%] {\r\n  background-color: #a4a383 !important;\r\n  width: calc(100% - 20px);\r\n  font-size: 20px;\r\n  color: #fff;\r\n  font-weight: normal !important;\r\n  height: 38px;\r\n  line-height: 36px;\r\n  padding: 0 10px;\r\n}\r\n\r\n.title[_ngcontent-%COMP%] {\r\n  font-weight: normal !important;\r\n}\r\n\r\nul[_ngcontent-%COMP%] {\r\n  padding: 0;\r\n}\r\n\r\n.fileThumb[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n  cursor: alias;\r\n  vertical-align: middle;\r\n}\r\n\r\n.rightDetails[_ngcontent-%COMP%] {\r\n  \r\n  display: inline-block;\r\n  vertical-align: middle;\r\n  \r\n}\r\n\r\n.line[_ngcontent-%COMP%]   a[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n  text-decoration: none;\r\n}\r\n\r\n.file[_ngcontent-%COMP%] {\r\n  width: 100%;\r\n  \r\n  \r\n  \r\n  clear: both;\r\n  border-radius: 3px;\r\n  -webkit-border-radius: 3px;\r\n  -moz-border-radius: 3px;\r\n  overflow: hidden;\r\n  padding: 0;\r\n}\r\n\r\n.file[_ngcontent-%COMP%]    > div[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n}\r\n\r\n.fileDesc[_ngcontent-%COMP%] {\r\n  position: relative;\r\n  \r\n  \r\n  width: 100%;\r\n}\r\n\r\n.thumb[_ngcontent-%COMP%] {\r\n  width: 100px;\r\n  height: 70px;\r\n  display: inline-block;\r\n}\r\n\r\n.fileProps[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n  vertical-align: top;\r\n  width: 100%;\r\n}\r\n\r\n.date[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n  padding-right: 0.5em;\r\n}\r\n\r\n.profileImg[_ngcontent-%COMP%] {\r\n  width: 28px;\r\n  height: 28px;\r\n  display: inherit;\r\n  \r\n  background-color: white;\r\n}\r\n\r\n.fileName[_ngcontent-%COMP%] {\r\n  color: #000;\r\n  font-weight: bold;\r\n  font-size: 13px;\r\n  text-decoration: none;\r\n}\r\n\r\n.content[_ngcontent-%COMP%] {\r\n}\r\n\r\n.list[_ngcontent-%COMP%] {\r\n  list-style-type: none;\r\n  padding: 0;\r\n  margin-top: 0;\r\n}\r\n\r\n.version[_ngcontent-%COMP%] {\r\n  color: #727272;\r\n  font-size: 14px;\r\n}\r\n\r\n.selected[_ngcontent-%COMP%] {\r\n  \r\n  font-weight: normal;\r\n  text-decoration: none;\r\n  color: inherit;\r\n}\r\n\r\n.newTopic[_ngcontent-%COMP%] {\r\n  padding: 20px 15px;\r\n  background: #D6D5CE;\r\n  margin-bottom: 1px;\r\n}\r\n\r\n.newComment[_ngcontent-%COMP%] {\r\n  width: calc(100% - 30px) !important;\r\n}\r\n\r\na[_ngcontent-%COMP%] {\r\n  color: #00AEF0;\r\n}\r\n\r\n.commentList[_ngcontent-%COMP%] {\r\n  list-style-type: none;\r\n}\r\n\r\n.commentList[_ngcontent-%COMP%]    > li[_ngcontent-%COMP%], .header_file[_ngcontent-%COMP%] {\r\n  clear: both;\r\n}\r\n\r\n.header_file[_ngcontent-%COMP%] {\r\n  position: relative;\r\n}\r\n\r\n.commentList[_ngcontent-%COMP%]    > li[_ngcontent-%COMP%] {\r\n  overflow: hidden;\r\n}\r\n\r\n.author[_ngcontent-%COMP%] {\r\n  display: block;\r\n}\r\n\r\n.author[_ngcontent-%COMP%]   .profileImg[_ngcontent-%COMP%] {\r\n  display: inline !important;\r\n}\r\n\r\n.comment[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n  padding: 0.2em;\r\n  width: calc(100% - 17em);\r\n  color: rgba(0, 0, 0, 0.85);\r\n  margin: 2px;\r\n  margin-left: 10px;\r\n}\r\n\r\n.comm-ts[_ngcontent-%COMP%], .action-ts[_ngcontent-%COMP%] {\r\n  margin-top: 2px;\r\n  font-size: 9px;\r\n  color: #B5B5B5;\r\n  display: block;\r\n  line-height: 9px;\r\n  letter-spacing: -0.3px;\r\n}\r\n\r\n.disabled[_ngcontent-%COMP%] {\r\n  opacity: 0.2;\r\n}\r\n\r\n.version_part_li[_ngcontent-%COMP%] {\r\n  border-bottom: 1px solid #e6e6e6;\r\n  background-color: rgba(255, 255, 255, 0.4);\r\n  overflow: hidden;\r\n  border-radius: 0 0 3px 3px;\r\n  -webkit-border-radius: 0 0 3px 3px;\r\n  -moz-border-radius: 0 0 3px 3px;\r\n}\r\n\r\n.version[_ngcontent-%COMP%]   .header[_ngcontent-%COMP%]   a[_ngcontent-%COMP%] {\r\n  color: black;\r\n  text-decoration: underline;\r\n}\r\n\r\n.version[_ngcontent-%COMP%]   .header[_ngcontent-%COMP%] {\r\n  position: relative;\r\n  color: black;\r\n  height: 2em;\r\n}\r\n\r\n.versionTitle[_ngcontent-%COMP%] {\r\n  height: 15px;\r\n  line-height: 13px;\r\n  padding: 0 0.5em;\r\n  background: white;\r\n  color: #727272;\r\n  font-size: 13px;\r\n  -webkit-border-radius: 0 0 3px 3px;\r\n  -moz-border-radius: 0 0 3px 3px;\r\n  border-radius: 0 0 3px 3px;\r\n  margin-bottom: 1px;\r\n  border-bottom: 1px solid #e6e6e6;\r\n}\r\n\r\n.versionTitle[_ngcontent-%COMP%]    > div[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n  vertical-align: middle;\r\n}\r\n\r\n.versionTitle[_ngcontent-%COMP%]   .switchOnComments[_ngcontent-%COMP%] {\r\n  font-family: FontAwesome;\r\n  height: 5px;\r\n}\r\n\r\n.version[_ngcontent-%COMP%]   .header[_ngcontent-%COMP%]   .left[_ngcontent-%COMP%] {\r\n  background-color: white;\r\n  z-index: 2;\r\n  position: absolute;\r\n  display: inline-block;\r\n  padding-right: 0.5em;\r\n}\r\n\r\n.version[_ngcontent-%COMP%]   .header[_ngcontent-%COMP%]   .right[_ngcontent-%COMP%] {\r\n  background-color: white;\r\n  z-index: 2;\r\n  position: absolute;\r\n  display: inline-block;\r\n  padding: 0 1.5em 0 0.5em;\r\n  right: 2em;\r\n}\r\n\r\n.switchOnComments[_ngcontent-%COMP%] {\r\n  float: right;\r\n  z-index: 2;\r\n  font-size: 2em;\r\n  color: rgba(0, 0, 0, 0.9);\r\n  cursor: pointer;\r\n  position: relative;\r\n  top: -5px;\r\n}\r\n\r\n.versions[_ngcontent-%COMP%]   li[_ngcontent-%COMP%] {\r\n  list-style-type: none;\r\n  margin-bottom: 2px;\r\n}\r\n\r\n.addCommentBlock[_ngcontent-%COMP%] {\r\n  margin-left: 1em;\r\n  padding: 1em 0;\r\n}\r\n\r\n.commentBlock[_ngcontent-%COMP%]   .author[_ngcontent-%COMP%], .approveBlock[_ngcontent-%COMP%]   .author[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n}\r\n\r\n.versionComments[_ngcontent-%COMP%] {\r\n  visibility: hidden;\r\n  transition: all 1s;\r\n}\r\n\r\n\r\n\r\n\r\n.versionComments.activep[_ngcontent-%COMP%] {\r\n  transition: all 1s;\r\n  visibility: visible !important;\r\n}\r\n\r\n.versionComments[_ngcontent-%COMP%]   .addCommentBlock[_ngcontent-%COMP%] {\r\n  margin-bottom: 2em;\r\n}\r\n\r\n.uploadStatus[_ngcontent-%COMP%] {\r\n  position: absolute;\r\n  left: -13px;\r\n  top: -13px;\r\n  z-index: 9;\r\n  opacity: 0.7;\r\n}\r\n\r\n.isUploading[_ngcontent-%COMP%] {\r\n  height: 0.8em;\r\n  width: 30%;\r\n  padding: 0;\r\n  margin: auto;\r\n  border: 1px solid;\r\n  border-radius: 2px;\r\n}\r\n\r\n.progress[_ngcontent-%COMP%] {\r\n  height: 0.8em;\r\n  width: 10%;\r\n  border-radius: 2px;\r\n  margin: 0;\r\n  animation: nomAnim;\r\n  animation-iteration-count: 100;\r\n  animation-duration: 5s;\r\n  animation-timing-function: linear;\r\n}\r\n\r\n.arrow_box_in[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n  width: calc(100% - 5em);\r\n  float: right;\r\n  \r\n}\r\n\r\n.arrow_box[_ngcontent-%COMP%] {\r\n  position: relative;\r\n  background: #fff;\r\n  border: 1px solid #d3d3d3;\r\n  display: inline-flex;\r\n  vertical-align: middle;\r\n  color: #000;\r\n  font-size: 12px;\r\n  min-height: calc(25px - 0.4em);\r\n  padding: 0.3em !important;\r\n  -webkit-border-radius: 3px;\r\n  -moz-border-radius: 3px;\r\n  border-radius: 3px;\r\n  line-height: 1.5;\r\n}\r\n\r\n.arrow_box[_ngcontent-%COMP%]:after, .arrow_box[_ngcontent-%COMP%]:before {\r\n  right: 100%;\r\n  top: 13px;\r\n  border: solid transparent;\r\n  content: " ";\r\n  height: 0;\r\n  width: 0;\r\n  position: absolute;\r\n  pointer-events: none;\r\n}\r\n\r\n.arrow_box[_ngcontent-%COMP%]:after {\r\n  border-color: rgba(250, 250, 250, 0);\r\n  border-right-color: #fff;\r\n  border-width: 7px;\r\n  margin-top: -7px;\r\n}\r\n\r\n.arrow_box[_ngcontent-%COMP%]:before {\r\n  border-color: rgba(230, 230, 230, 0);\r\n  border-right-color: #d3d3d3;\r\n  border-width: 8px;\r\n  margin-top: -8px;\r\n}\r\n\r\nli.more[_ngcontent-%COMP%]    > div[_ngcontent-%COMP%] {\r\n  border: 1px solid rgba(0, 0, 0, 0.2);\r\n  display: inline-block;\r\n  padding: 0em 0.5em;\r\n  border-radius: 0.2em;\r\n  margin: 0.5em 0;\r\n  cursor: pointer;\r\n}\r\n\r\nli.more[_ngcontent-%COMP%] {\r\n  text-align: center;\r\n}\r\n\r\n.menuItem[_ngcontent-%COMP%] {\r\n  display: block;\r\n  text-transform: initial;\r\n}\r\n\r\n.popupHeader[_ngcontent-%COMP%] {\r\n  padding: 0.5em;\r\n}\r\n\r\n.popupContent[_ngcontent-%COMP%] {\r\n  overflow: hidden;\r\n  padding: 0.2em;\r\n}\r\n\r\n.lockedFile[_ngcontent-%COMP%] {\r\n  border: 1px solid #a4a384;\r\n  background-color: rgba(0, 0, 0, 0.1);\r\n  padding: 0.1em;\r\n}\r\n\r\n.lockedFile[_ngcontent-%COMP%]   .left[_ngcontent-%COMP%]   img[_ngcontent-%COMP%] {\r\n  width: 30px;\r\n  height: 30px;\r\n  -webkit-border-radius: 50%;\r\n  -moz-border-radius: 50%;\r\n  -o-border-radius: 50%;\r\n  border-radius: 50%;\r\n\r\n}\r\n\r\n.lockTime[_ngcontent-%COMP%] {\r\n  font-size: 12px;\r\n  font-family: Arial, Helvetica, sans-serif\r\n}\r\n\r\n.lockedFile[_ngcontent-%COMP%]   .lockText[_ngcontent-%COMP%] {\r\n  margin-left: 10px\r\n}\r\n\r\n.lockedFile[_ngcontent-%COMP%]    > div[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n  vertical-align: middle;\r\n  text-align: center\r\n}\r\n\r\n.lockText[_ngcontent-%COMP%] {\r\n  color: #a4a384;\r\n  font-weight: bold;\r\n}\r\n\r\n\r\n.fileThumb[_ngcontent-%COMP%]   .fileThumb_bg[_ngcontent-%COMP%] {\r\n  \r\n  \r\n  position: relative;\r\n}\r\n\r\n.locked[_ngcontent-%COMP%]   .fileThumb[_ngcontent-%COMP%]   .fileThumb_bg[_ngcontent-%COMP%]:after {\r\n  content: "";\r\n  background: url("../images/pen_locked.png") no-repeat center center;\r\n  top: calc(50% - 18px);\r\n  width: 36px;\r\n  height: 36px;\r\n  position: absolute;\r\n  display: inline-block;\r\n  line-height: 0;\r\n  text-align: center;\r\n  opacity: 1;\r\n  z-index: 99 !important;\r\n  left: 0;\r\n  right: auto;\r\n  margin-left: calc(50% - 18px);\r\n}\r\n\r\n.locked[_ngcontent-%COMP%]   .fileThumb[_ngcontent-%COMP%]   .fileThumb_bg[_ngcontent-%COMP%]:before {\r\n  content: \'\';\r\n  background: rgba(164, 163, 132, 0.7);\r\n  bottom: 0;\r\n  top: 0;\r\n  opacity: 0;\r\n  \r\n}\r\n\r\n.fileThumb[_ngcontent-%COMP%]   .fileThumb_bg[_ngcontent-%COMP%]:after {\r\n  content: "";\r\n  \r\n  background: url("../images/valid_big.png") no-repeat center center;\r\n  top: 0;\r\n  right: 0;\r\n  width: 27px;\r\n  height: 27px;\r\n  position: absolute;\r\n  display: inline-block;\r\n  line-height: 0;\r\n  text-align: center;\r\n  opacity: 0;\r\n  margin-left: calc(99% - 27px);\r\n  z-index: 99 !important;\r\n}\r\n\r\n.fileThumb[_ngcontent-%COMP%]   img[_ngcontent-%COMP%] {\r\n  max-width: 100%;\r\n  height: auto;\r\n  \r\n}\r\n\r\n.thumbnail[_ngcontent-%COMP%] {\r\n\r\n  padding: 0 !important;\r\n  margin-bottom: 0 !important;\r\n  border-radius: 0 !important;\r\n\r\n}\r\n\r\n.locked[_ngcontent-%COMP%]   .fileThumb[_ngcontent-%COMP%]   .fileThumb_bg[_ngcontent-%COMP%]:before, .locked[_ngcontent-%COMP%]   .fileThumb[_ngcontent-%COMP%]   .fileThumb_bg[_ngcontent-%COMP%]:after, .approved[_ngcontent-%COMP%]   .fileThumb[_ngcontent-%COMP%]   .fileThumb_bg[_ngcontent-%COMP%]:after {\r\n  opacity: 1;\r\n  \r\n}\r\n\r\n.locked[_ngcontent-%COMP%]   .fileThumb[_ngcontent-%COMP%]   .fileThumb_bg[_ngcontent-%COMP%]:before, .locked[_ngcontent-%COMP%]   .fileThumb[_ngcontent-%COMP%]   .fileThumb_bg[_ngcontent-%COMP%]:after, .approved[_ngcontent-%COMP%]   .fileThumb[_ngcontent-%COMP%]   .fileThumb_bg[_ngcontent-%COMP%]:after {\r\n  position: absolute;\r\n  left: 0;\r\n  right: 0;\r\n  z-index: 1;\r\n  \r\n  \r\n  \r\n}\r\n\r\n.approved[_ngcontent-%COMP%]   .fileThumb[_ngcontent-%COMP%]   .fileThumb_bg[_ngcontent-%COMP%]   img[_ngcontent-%COMP%] {\r\n  opacity: 1 !important;\r\n}\r\n\r\n.icons[_ngcontent-%COMP%] {\r\n  float: right;\r\n  vertical-align: baseline;\r\n}\r\n\r\n.arrowbottom[_ngcontent-%COMP%] {\r\n  font-size: 30px;\r\n}\r\n\r\n.fileInfo[_ngcontent-%COMP%] {\r\n  font-size: 11px;\r\n}\r\n\r\n.menuItem[_ngcontent-%COMP%] {\r\n  border-bottom: 1px solid #cacaca !important;\r\n}\r\n\r\n.commentBlock[_ngcontent-%COMP%], .line1[_ngcontent-%COMP%], .approveBlock[_ngcontent-%COMP%] {\r\n  width: 4.3em;\r\n  display: inline-block;\r\n  vertical-align: top;\r\n  text-align: center;\r\n  padding: 0;\r\n}\r\n\r\n.rightdesc[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n  \r\n  vertical-align: middle;\r\n  position: relative;\r\n}\r\n\r\n.fileSize[_ngcontent-%COMP%], .filetypedoc[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n  font-size: 13px;\r\n  color: #000;\r\n}\r\n\r\n.fileversion[_ngcontent-%COMP%] {\r\n  background-color: #1A1A99;\r\n  color: white;\r\n  border-radius: 50%;\r\n  -webkit-border-radius: 50%;\r\n  width: 27px;\r\n  height: 27px;\r\n  line-height: 26px;\r\n  text-align: center;\r\n  display: inline-block;\r\n  font-size: 13px;\r\n  letter-spacing: -0.5px;\r\n  float: right;\r\n  margin: 3px 5px 0 0;\r\n}\r\n\r\n@keyframes nomAnim {\r\n  from {\r\n    background-color: #9D7E90;\r\n    margin-left: 0%;\r\n  }\r\n  50% {\r\n    background-color: #BFBB97;\r\n    margin-left: 90%;\r\n  }\r\n  to {\r\n    background-color: #9D7E90;\r\n    margin-left: 0%;\r\n  }\r\n}\r\n\r\n.ownAction[_ngcontent-%COMP%]   .arrow_box[_ngcontent-%COMP%] {\r\n  background: #D5F0FF !important;\r\n  border: 1px solid rgba(0, 0, 0, 0.25);\r\n}\r\n\r\n.ownAction[_ngcontent-%COMP%]   .arrow_box[_ngcontent-%COMP%]:after {\r\n  border-color: rgba(250, 250, 250, 0);\r\n  border-left-color: #D5F0FF;\r\n}\r\n\r\n.ownAction[_ngcontent-%COMP%]   .arrow_box[_ngcontent-%COMP%]:before {\r\n  border-color: rgba(230, 230, 230, 0);\r\n  border-left-color: rgba(0, 0, 0, 0.25);\r\n  border-width: 8px;\r\n  margin-top: -8px;\r\n}\r\n\r\n.ownAction[_ngcontent-%COMP%]   .approveBlock[_ngcontent-%COMP%], .ownAction[_ngcontent-%COMP%]   .commentBlock[_ngcontent-%COMP%] {\r\n  float: right;\r\n}\r\n\r\n.ownAction[_ngcontent-%COMP%]   .arrow_box_in[_ngcontent-%COMP%] {\r\n  float: left;\r\n  text-align: right;\r\n}\r\n\r\n.ownAction[_ngcontent-%COMP%]   .arrow_box[_ngcontent-%COMP%]:after, .ownAction[_ngcontent-%COMP%]   .arrow_box[_ngcontent-%COMP%]:before {\r\n  right: 0;\r\n  left: 100%;\r\n}\r\n\r\n.ownAction[_ngcontent-%COMP%]   .author[_ngcontent-%COMP%] {\r\n  display: none;\r\n}\r\n\r\n.ownAction[_ngcontent-%COMP%]   .comm-ts[_ngcontent-%COMP%], .ownAction[_ngcontent-%COMP%]   .action-ts[_ngcontent-%COMP%] {\r\n  margin-top: 6px;\r\n  display: inline-block;\r\n  vertical-align: middle;\r\n}']);
-  C.List_43h0 = Isolate.makeConstantList([C.List_1qJ]);
   C.Type_DomService_2jN = H.createRuntimeType("DomService");
   C.List_Type_DomService_2jN = Isolate.makeConstantList([C.Type_DomService_2jN]);
   C.Type_Focusable_Aov = H.createRuntimeType("Focusable");
@@ -84723,6 +84782,8 @@
   C.Type_RouteParams_scH = H.createRuntimeType("RouteParams");
   C.List_Type_RouteParams_scH = Isolate.makeConstantList([C.Type_RouteParams_scH]);
   C.List_6lh = Isolate.makeConstantList([C.List_Type_PlaceService_fcN, C.List_Type_RouteParams_scH]);
+  C.List_2zz = Isolate.makeConstantList(['.files[_ngcontent-%COMP%] {\r\n  background-color: #e5e5e5 !important;\r\n}\r\n\r\n.files[_ngcontent-%COMP%]   .title[_ngcontent-%COMP%] {\r\n  background-color: #a4a383 !important;\r\n  width: calc(100% - 20px);\r\n  font-size: 20px;\r\n  color: #fff;\r\n  font-weight: normal !important;\r\n  height: 38px;\r\n  line-height: 36px;\r\n  padding: 0 10px;\r\n}\r\n\r\n.title[_ngcontent-%COMP%] {\r\n  font-weight: normal !important;\r\n}\r\n\r\nul[_ngcontent-%COMP%] {\r\n  padding: 0;\r\n}\r\n\r\n.fileThumb[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n  cursor: alias;\r\n  vertical-align: middle;\r\n  margin-right: 0.4em;\r\n}\r\n\r\n.rightDetails[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n  vertical-align: middle;\r\n  position: relative;\r\n}\r\n\r\n.line[_ngcontent-%COMP%]   a[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n  text-decoration: none;\r\n}\r\n.file[_ngcontent-%COMP%] {\r\n  width: 100%;\r\n  \r\n  \r\n  \r\n  clear: both;\r\n  border-radius: 3px;\r\n  -webkit-border-radius: 3px;\r\n  -moz-border-radius: 3px;\r\n  overflow: hidden;\r\n  padding: 0;\r\n}\r\n\r\n.file[_ngcontent-%COMP%]    > div[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n}\r\n\r\n.fileDesc[_ngcontent-%COMP%] {\r\n  position: relative;\r\n  \r\n  \r\n  width: 100%;\r\n}\r\n\r\n.thumb[_ngcontent-%COMP%] {\r\n  width: 100px;\r\n  height: 70px;\r\n  display: inline-block;\r\n}\r\n\r\n.fileProps[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n  vertical-align: top;\r\n  width: calc(100% - 47px);\r\n  word-break: break-all;\r\n}\r\n\r\n.fileMoreActions[_ngcontent-%COMP%] {\r\n  position: absolute;\r\n  right: 0;\r\n  top: 0;\r\n}\r\n\r\n.date[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n  padding-right: 0.5em;\r\n}\r\n\r\n.profileImg[_ngcontent-%COMP%] {\r\n  width: 28px;\r\n  height: 28px;\r\n  display: inherit;\r\n  \r\n  background-color: white;\r\n}\r\n\r\n.fileName[_ngcontent-%COMP%] {\r\n  text-decoration: none;\r\n  line-height:1.1;\r\n}\r\n\r\n.fileLink[_ngcontent-%COMP%] {\r\n  cursor: pointer;\r\n  font-weight: bold;\r\n}\r\n\r\n.list[_ngcontent-%COMP%] {\r\n  list-style-type: none;\r\n  padding: 0;\r\n  margin-top: 0;\r\n}\r\n\r\n.version[_ngcontent-%COMP%] {\r\n  color: #727272;\r\n  font-size: 14px;\r\n  padding: 0 0.4em;\r\n}\r\n\r\n.moreActions[_ngcontent-%COMP%] {\r\n  position: relative;\r\n  display: inline;\r\n}\r\n\r\n.moreActions[_ngcontent-%COMP%]:after {\r\n  \r\n  font-family: FontAwesome;\r\n  font-size: 20px;\r\n  content: "\\f142";\r\n  color: #1A1A99;\r\n  float: right;\r\n}\r\n\r\n.selected[_ngcontent-%COMP%] {\r\n  \r\n  font-weight: normal;\r\n  text-decoration: none;\r\n  color: inherit;\r\n}\r\n\r\n.newTopic[_ngcontent-%COMP%] {\r\n  padding: 20px 15px;\r\n  background: #D6D5CE;\r\n  margin-bottom: 1px;\r\n}\r\n\r\n.newComment[_ngcontent-%COMP%] {\r\n  width: calc(100% - 30px) !important;\r\n}\r\n\r\na[_ngcontent-%COMP%] {\r\n  color: #00AEF0;\r\n}\r\n\r\n.commentList[_ngcontent-%COMP%] {\r\n  list-style-type: none;\r\n}\r\n\r\n.commentList[_ngcontent-%COMP%]    > li[_ngcontent-%COMP%], .header_file[_ngcontent-%COMP%] {\r\n  clear: both;\r\n}\r\n\r\n.header_file[_ngcontent-%COMP%] {\r\n  position: relative;\r\n  overflow: hidden;\r\n}\r\n\r\n.commentList[_ngcontent-%COMP%]    > li[_ngcontent-%COMP%] {\r\n  overflow: hidden;\r\n}\r\n\r\n.author[_ngcontent-%COMP%] {\r\n  display: block;\r\n}\r\n\r\n.author[_ngcontent-%COMP%]   .profileImg[_ngcontent-%COMP%] {\r\n  display: inline !important;\r\n}\r\n\r\n.comment[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n  padding: 0.2em;\r\n  width: calc(100% - 17em);\r\n  color: rgba(0, 0, 0, 0.85);\r\n  margin: 2px;\r\n  margin-left: 10px;\r\n}\r\n\r\n.comm-ts[_ngcontent-%COMP%], .action-ts[_ngcontent-%COMP%] {\r\n  margin-top: 2px;\r\n  font-size: 9px;\r\n  color: #B5B5B5;\r\n  display: block;\r\n  line-height: 9px;\r\n  letter-spacing: -0.3px;\r\n}\r\n\r\n.disabled[_ngcontent-%COMP%] {\r\n  opacity: 0.2;\r\n}\r\n\r\n.version_part_li[_ngcontent-%COMP%] {\r\n  border-bottom: 1px solid #e6e6e6;\r\n  background-color: rgba(255, 255, 255, 0.4);\r\n  overflow: hidden;\r\n  border-radius: 0 0 3px 3px;\r\n  -webkit-border-radius: 0 0 3px 3px;\r\n  -moz-border-radius: 0 0 3px 3px;\r\n  padding-bottom: 0.4em;\r\n}\r\n\r\n.version[_ngcontent-%COMP%]   .header[_ngcontent-%COMP%]   a[_ngcontent-%COMP%] {\r\n  color: black;\r\n  text-decoration: underline;\r\n}\r\n\r\n.version[_ngcontent-%COMP%]   .header[_ngcontent-%COMP%] {\r\n  position: relative;\r\n  color: black;\r\n  height: 2em;\r\n}\r\n\r\n.versionTitle[_ngcontent-%COMP%] {\r\n  height: 15px;\r\n  line-height: 13px;\r\n  padding: 0 0.5em;\r\n  background: white;\r\n  color: #727272;\r\n  font-size: 13px;\r\n  -webkit-border-radius: 0 0 3px 3px;\r\n  -moz-border-radius: 0 0 3px 3px;\r\n  border-radius: 0 0 3px 3px;\r\n  margin-bottom: 4px;\r\n  border-bottom: 1px solid #e6e6e6;\r\n}\r\n\r\n.versionTitle[_ngcontent-%COMP%]    > div[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n  vertical-align: middle;\r\n}\r\n\r\n.versionTitle[_ngcontent-%COMP%]   .switchOnComments[_ngcontent-%COMP%] {\r\n  font-family: FontAwesome;\r\n  height: 5px;\r\n}\r\n\r\n.version[_ngcontent-%COMP%]   .header[_ngcontent-%COMP%]   .left[_ngcontent-%COMP%] {\r\n  background-color: white;\r\n  z-index: 2;\r\n  position: absolute;\r\n  display: inline-block;\r\n  padding-right: 0.5em;\r\n}\r\n\r\n.version[_ngcontent-%COMP%]   .header[_ngcontent-%COMP%]   .right[_ngcontent-%COMP%] {\r\n  background-color: white;\r\n  z-index: 2;\r\n  position: absolute;\r\n  display: inline-block;\r\n  padding: 0 1.5em 0 0.5em;\r\n  right: 2em;\r\n}\r\n\r\n.switchOnComments[_ngcontent-%COMP%] {\r\n  float: right;\r\n  z-index: 2;\r\n  font-size: 2em;\r\n  color: rgba(0, 0, 0, 0.9);\r\n  cursor: pointer;\r\n  position: relative;\r\n  top: -5px;\r\n}\r\n\r\n.versions[_ngcontent-%COMP%]   li[_ngcontent-%COMP%] {\r\n  list-style-type: none;\r\n  margin-bottom: 2px;\r\n}\r\n\r\n.addCommentBlock[_ngcontent-%COMP%] {\r\n  margin-left: 1em;\r\n  padding: 1em 0;\r\n  float: left;\r\n}\r\n\r\n.commentBlock[_ngcontent-%COMP%]   .author[_ngcontent-%COMP%], .approveBlock[_ngcontent-%COMP%]   .author[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n}\r\n\r\n.versionComments[_ngcontent-%COMP%] {\r\n  visibility: hidden;\r\n  transition: all 1s;\r\n}\r\n\r\n\r\n\r\n\r\n.versionComments.activep[_ngcontent-%COMP%] {\r\n  transition: all 1s;\r\n  visibility: visible !important;\r\n}\r\n\r\n.versionComments[_ngcontent-%COMP%]   .addCommentBlock[_ngcontent-%COMP%] {\r\n  margin-bottom: 2em;\r\n}\r\n\r\n.uploadStatus[_ngcontent-%COMP%] {\r\n  position: absolute;\r\n  left: -13px;\r\n  top: -13px;\r\n  z-index: 9;\r\n  opacity: 0.7;\r\n}\r\n\r\n.isUploading[_ngcontent-%COMP%] {\r\n  height: 0.8em;\r\n  width: 30%;\r\n  padding: 0;\r\n  margin: auto;\r\n  border: 1px solid;\r\n  border-radius: 2px;\r\n}\r\n\r\n.progress[_ngcontent-%COMP%] {\r\n  height: 0.8em;\r\n  width: 10%;\r\n  border-radius: 2px;\r\n  margin: 0;\r\n  animation: nomAnim;\r\n  animation-iteration-count: 100;\r\n  animation-duration: 5s;\r\n  animation-timing-function: linear;\r\n}\r\n\r\n.arrow_box_in[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n  width: calc(100% - 4.3em);\r\n  float: right;\r\n  \r\n}\r\n\r\n.arrow_box[_ngcontent-%COMP%] {\r\n  position: relative;\r\n  background: #fff;\r\n  border: 1px solid #d3d3d3;\r\n  \r\n  display: inline-block;\r\n  vertical-align: middle;\r\n  color: #000;\r\n  font-size: 12px;\r\n  min-height: calc(25px - 0.4em);\r\n  padding: 0.3em 0.6em 0.3em 0.3em !important;\r\n  -webkit-border-radius: 3px;\r\n  -moz-border-radius: 3px;\r\n  border-radius: 3px;\r\n  line-height: 1.5;\r\n  \r\n}\r\n\r\n.arrow_box[_ngcontent-%COMP%]:after, .arrow_box[_ngcontent-%COMP%]:before {\r\n  right: 100%;\r\n  top: 13px;\r\n  border: solid transparent;\r\n  content: " ";\r\n  height: 0;\r\n  width: 0;\r\n  position: absolute;\r\n  pointer-events: none;\r\n}\r\n\r\n.arrow_box[_ngcontent-%COMP%]:after {\r\n  border-color: rgba(250, 250, 250, 0);\r\n  border-right-color: #fff;\r\n  border-width: 7px;\r\n  margin-top: -7px;\r\n}\r\n\r\n.arrow_box[_ngcontent-%COMP%]:before {\r\n  border-color: rgba(230, 230, 230, 0);\r\n  border-right-color: #d3d3d3;\r\n  border-width: 8px;\r\n  margin-top: -8px;\r\n}\r\n\r\nli.more[_ngcontent-%COMP%]    > div[_ngcontent-%COMP%] {\r\n  border: 1px solid rgba(0, 0, 0, 0.2);\r\n  display: inline-block;\r\n  padding: 0em 0.5em;\r\n  border-radius: 0.2em;\r\n  margin: 0.5em 0;\r\n  cursor: pointer;\r\n}\r\n\r\nli.more[_ngcontent-%COMP%] {\r\n  text-align: center;\r\n}\r\n\r\n.menuItem[_ngcontent-%COMP%] {\r\n  display: block;\r\n  text-transform: initial;\r\n}\r\n\r\n.popupContent[_ngcontent-%COMP%] {\r\n  overflow: hidden;\r\n  padding: 0.2em;\r\n}\r\n\r\n.lockedFile[_ngcontent-%COMP%] {\r\n  color: #fff;\r\n  border: 1px solid #888770;\r\n  background-color: #A4A384;\r\n  padding: 0.1em;\r\n  -webkit-border-radius: 3px;\r\n  -moz-border-radius: 3px;\r\n  border-radius: 3px;\r\n}\r\n\r\n.lockedFile[_ngcontent-%COMP%]   .left[_ngcontent-%COMP%]   img[_ngcontent-%COMP%] {\r\n  width: 30px;\r\n  height: 30px;\r\n  -webkit-border-radius: 50%;\r\n  -moz-border-radius: 50%;\r\n  -o-border-radius: 50%;\r\n  border-radius: 50%;\r\n\r\n}\r\n\r\n.lockTime[_ngcontent-%COMP%] {\r\n  font-size: 12px;\r\n  font-family: Arial, Helvetica, sans-serif\r\n}\r\n\r\n.lockedFile[_ngcontent-%COMP%]   .lockText[_ngcontent-%COMP%] {\r\n  margin-left: 10px\r\n}\r\n\r\n.lockedFile[_ngcontent-%COMP%]    > div[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n  vertical-align: middle;\r\n  text-align: center\r\n}\r\n\r\n.lockText[_ngcontent-%COMP%] {\r\n  color: #fff;\r\n  font-weight: bold;\r\n}\r\n\r\n.fileThumb[_ngcontent-%COMP%]   .fileThumb_bg[_ngcontent-%COMP%] {\r\n  position: relative;\r\n}\r\n\r\n.locked[_ngcontent-%COMP%]   .fileThumb[_ngcontent-%COMP%]   .fileThumb_bg[_ngcontent-%COMP%]:after {\r\n  content: "";\r\n  background: url("../images/pen_locked.png") no-repeat center center;\r\n  top: calc(50% - 18px);\r\n  width: 36px;\r\n  height: 36px;\r\n  position: absolute;\r\n  display: inline-block;\r\n  line-height: 0;\r\n  text-align: center;\r\n  opacity: 1;\r\n  z-index: 99 !important;\r\n  left: 0;\r\n  right: auto;\r\n  margin-left: calc(50% - 18px);\r\n}\r\n\r\n.locked[_ngcontent-%COMP%]   .fileThumb[_ngcontent-%COMP%]   .fileThumb_bg[_ngcontent-%COMP%]:before {\r\n  content: \'\';\r\n  background: rgba(164, 163, 132, 0.7);\r\n  bottom: 0;\r\n  top: 0;\r\n  opacity: 0;\r\n  \r\n}\r\n\r\n.fileThumb[_ngcontent-%COMP%]   .fileThumb_bg[_ngcontent-%COMP%]:after {\r\n  content: "";\r\n  \r\n  background: url("../images/valid_big.png") no-repeat center center;\r\n  top: 0;\r\n  right: 0;\r\n  width: 27px;\r\n  height: 27px;\r\n  position: absolute;\r\n  display: inline-block;\r\n  line-height: 0;\r\n  text-align: center;\r\n  opacity: 0;\r\n  margin-left: calc(99% - 27px);\r\n  z-index: 99 !important;\r\n}\r\n\r\n.fileThumb[_ngcontent-%COMP%]   img[_ngcontent-%COMP%] {\r\n  max-width: 100%;\r\n  height: auto;\r\n  \r\n}\r\n\r\n.thumbnail[_ngcontent-%COMP%] {\r\n\r\n  padding: 0 !important;\r\n  margin-bottom: 0 !important;\r\n  border-radius: 0 !important;\r\n\r\n}\r\n\r\n.locked[_ngcontent-%COMP%]   .fileThumb[_ngcontent-%COMP%]   .fileThumb_bg[_ngcontent-%COMP%]:before, .locked[_ngcontent-%COMP%]   .fileThumb[_ngcontent-%COMP%]   .fileThumb_bg[_ngcontent-%COMP%]:after, .approved[_ngcontent-%COMP%]   .fileThumb[_ngcontent-%COMP%]   .fileThumb_bg[_ngcontent-%COMP%]:after {\r\n  opacity: 1;\r\n  \r\n}\r\n\r\n.locked[_ngcontent-%COMP%]   .fileThumb[_ngcontent-%COMP%]   .fileThumb_bg[_ngcontent-%COMP%]:before, .locked[_ngcontent-%COMP%]   .fileThumb[_ngcontent-%COMP%]   .fileThumb_bg[_ngcontent-%COMP%]:after, .approved[_ngcontent-%COMP%]   .fileThumb[_ngcontent-%COMP%]   .fileThumb_bg[_ngcontent-%COMP%]:after {\r\n  position: absolute;\r\n  left: 0;\r\n  right: 0;\r\n  z-index: 1;\r\n  \r\n  \r\n  \r\n}\r\n\r\n.approved[_ngcontent-%COMP%]   .fileThumb[_ngcontent-%COMP%]   .fileThumb_bg[_ngcontent-%COMP%]   img[_ngcontent-%COMP%] {\r\n  opacity: 1 !important;\r\n}\r\n\r\n.icons[_ngcontent-%COMP%] {\r\n  float: right;\r\n  vertical-align: baseline;\r\n}\r\n\r\n.arrowbottom[_ngcontent-%COMP%] {\r\n  font-size: 30px;\r\n}\r\n\r\n.fileInfo[_ngcontent-%COMP%] {\r\n  font-size: 11px;\r\n}\r\n\r\n.menuItem[_ngcontent-%COMP%] {\r\n  border-bottom: 1px solid #cacaca !important;\r\n}\r\n\r\n.commentBlock[_ngcontent-%COMP%], .line1[_ngcontent-%COMP%], .approveBlock[_ngcontent-%COMP%] {\r\n  width: 4.3em;\r\n  display: inline-block;\r\n  vertical-align: top;\r\n  text-align: center;\r\n  padding: 0;\r\n}\r\n\r\n.rightdesc[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n  \r\n  vertical-align: middle;\r\n  position: relative;\r\n}\r\n\r\n.fileSize[_ngcontent-%COMP%], .filetypedoc[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n  font-size: 13px;\r\n  color: #000;\r\n}\r\n\r\n.fileversion[_ngcontent-%COMP%] {\r\n  background-color: #1A1A99;\r\n  color: white;\r\n  border-radius: 50%;\r\n  -webkit-border-radius: 50%;\r\n  width: 27px;\r\n  height: 27px;\r\n  line-height: 26px;\r\n  text-align: center;\r\n  display: inline-block;\r\n  font-size: 13px;\r\n  letter-spacing: -0.5px;\r\n  margin: 1px 5px 0;\r\n}\r\n\r\n@keyframes nomAnim {\r\n  from {\r\n    background-color: #9D7E90;\r\n    margin-left: 0%;\r\n  }\r\n  50% {\r\n    background-color: #BFBB97;\r\n    margin-left: 90%;\r\n  }\r\n  to {\r\n    background-color: #9D7E90;\r\n    margin-left: 0%;\r\n  }\r\n}\r\n\r\n.ownAction[_ngcontent-%COMP%]   .arrow_box[_ngcontent-%COMP%] {\r\n  background: #D5F0FF !important;\r\n  border: 1px solid rgba(0, 0, 0, 0.25);\r\n}\r\n\r\n.ownAction[_ngcontent-%COMP%]   .arrow_box[_ngcontent-%COMP%]:after {\r\n  border-color: rgba(250, 250, 250, 0);\r\n  border-left-color: #D5F0FF;\r\n}\r\n\r\n.ownAction[_ngcontent-%COMP%]   .arrow_box[_ngcontent-%COMP%]:before {\r\n  border-color: rgba(230, 230, 230, 0);\r\n  border-left-color: rgba(0, 0, 0, 0.25);\r\n  border-width: 8px;\r\n  margin-top: -8px;\r\n}\r\n\r\n.ownAction[_ngcontent-%COMP%]   .approveBlock[_ngcontent-%COMP%], .ownAction[_ngcontent-%COMP%]   .commentBlock[_ngcontent-%COMP%] {\r\n  float: right;\r\n}\r\n\r\n.ownAction[_ngcontent-%COMP%]   .arrow_box_in[_ngcontent-%COMP%] {\r\n  float: left;\r\n  text-align: right;\r\n}\r\n\r\n.ownAction[_ngcontent-%COMP%]   .arrow_box[_ngcontent-%COMP%]:after, .ownAction[_ngcontent-%COMP%]   .arrow_box[_ngcontent-%COMP%]:before {\r\n  right: 0;\r\n  left: 100%;\r\n}\r\n\r\n.ownAction[_ngcontent-%COMP%]   .author[_ngcontent-%COMP%] {\r\n  display: none;\r\n}\r\n\r\n.ownAction[_ngcontent-%COMP%]   .comm-ts[_ngcontent-%COMP%], .ownAction[_ngcontent-%COMP%]   .action-ts[_ngcontent-%COMP%] {\r\n  margin-top: 6px;\r\n  display: inline-block;\r\n  vertical-align: middle;\r\n}']);
+  C.List_6m4 = Isolate.makeConstantList([C.List_2zz]);
   C.Type_TreeNodeComponent_yXb = H.createRuntimeType("TreeNodeComponent");
   C.List_2eT = Isolate.makeConstantList([C.Type_TreeNodeComponent_yXb, C.List_empty]);
   C.ComponentFactory_vzi = new D.ComponentFactory("tree-node-comp", V.tree_node_component_template__viewFactory_TreeNodeComponentHost0$closure(), C.Type_TreeNodeComponent_yXb, C.List_2eT);
@@ -85157,8 +85218,8 @@
   C.List_ZeB = Isolate.makeConstantList([C.List_gkc]);
   C.Type_FocusTrapComponent_SGa = H.createRuntimeType("FocusTrapComponent");
   C.Type_FocusContentWrapper_4AN = H.createRuntimeType("FocusContentWrapper");
-  C.List_43h1 = Isolate.makeConstantList([C.Type_FocusTrapComponent_SGa, C.List_empty, C.Type_FocusContentWrapper_4AN, C.List_empty]);
-  C.ComponentFactory_i7B = new D.ComponentFactory("focus-trap", B.focus_trap_template__viewFactory_FocusTrapComponentHost0$closure(), C.Type_FocusTrapComponent_SGa, C.List_43h1);
+  C.List_43h0 = Isolate.makeConstantList([C.Type_FocusTrapComponent_SGa, C.List_empty, C.Type_FocusContentWrapper_4AN, C.List_empty]);
+  C.ComponentFactory_i7B = new D.ComponentFactory("focus-trap", B.focus_trap_template__viewFactory_FocusTrapComponentHost0$closure(), C.Type_FocusTrapComponent_SGa, C.List_43h0);
   C.List_a5W = Isolate.makeConstantList([C.ComponentFactory_i7B]);
   C.List_sC8 = Isolate.makeConstantList(["label[_ngcontent-%COMP%] {\r\n\tdisplay: inline-block;\r\n\twidth: 3em;\r\n\tmargin: .5em 0;\r\n\tcolor: #607D8B;\r\n\tfont-weight: bold;\r\n}\r\n\r\ninput[_ngcontent-%COMP%] {\r\n\theight: 2em;\r\n\tfont-size: 1em;\r\n\tpadding-left: .4em;\r\n}\r\n\r\nbutton[_ngcontent-%COMP%] {\r\n\tmargin-top: 20px;\r\n\tfont-family: Arial;\r\n\tbackground-color: #eee;\r\n\tborder: none;\r\n\tpadding: 5px 10px;\r\n\tborder-radius: 4px;\r\n\tcursor: pointer;\r\n\tcursor: hand;\r\n}\r\n\r\nbutton[_ngcontent-%COMP%]:hover {\r\n\tbackground-color: #cfd8dc;\r\n}\r\n\r\nbutton[_ngcontent-%COMP%]:disabled {\r\n\tbackground-color: #eee;\r\n\tcolor: #ccc;\r\n\tcursor: auto;\r\n}"]);
   C.List_a9w = Isolate.makeConstantList([C.List_sC8]);
@@ -85224,8 +85285,8 @@
   C.List_ij7 = Isolate.makeConstantList([C.ComponentFactory_yzp]);
   C.List_inH = Isolate.makeConstantList([C.List_orF, C.List_gDw, C.List_yXb0]);
   C.Type_GlyphComponent_Hp5 = H.createRuntimeType("GlyphComponent");
-  C.List_6m4 = Isolate.makeConstantList([C.Type_GlyphComponent_Hp5, C.List_empty]);
-  C.ComponentFactory_Tng = new D.ComponentFactory("glyph", M.glyph_template__viewFactory_GlyphComponentHost0$closure(), C.Type_GlyphComponent_Hp5, C.List_6m4);
+  C.List_6m40 = Isolate.makeConstantList([C.Type_GlyphComponent_Hp5, C.List_empty]);
+  C.ComponentFactory_Tng = new D.ComponentFactory("glyph", M.glyph_template__viewFactory_GlyphComponentHost0$closure(), C.Type_GlyphComponent_Hp5, C.List_6m40);
   C.List_int0 = Isolate.makeConstantList([C.ComponentFactory_Tng]);
   C.Type_PopupInterface_r4G = H.createRuntimeType("PopupInterface");
   C.List_int = Isolate.makeConstantList([C.Type_DeferredContentAware_BCk, C.Type_OnDestroy_AWG, C.Type_PopupInterface_r4G]);
