@@ -5,40 +5,40 @@ module.exports = Object.freeze({
   //hostURL: "localhost",
   //hostURLPort: "http://share-place.herokuapp.com:80",
   //hostURLPort: "http://localhost:3000",
-  port: 80,
+  port: 3000,
   debugServer: false,
-  dataDir: path.join(__dirname,'..', "data"),
-  usersFileData: path.join(__dirname,'..', "data","users.json"),
-  logDir: path.join( __dirname, "log"),
-  /*urlLoginProxy: 'http://share-place.herokuapp.com:80/auth',
+  dataDir: path.join(__dirname, '..', "data"),
+  usersFileData: path.join(__dirname, '..', "data", "users.json"),
+  logDir: path.join(__dirname, "log"),
+  urlLoginProxy: 'http://54.154.38.51:3000/auth',
   optionsPost: {
-    url: 'http://share-place.herokuapp.com:80/sp',
+    url: 'http://54.154.38.51:3000/sp',
     method: 'POST',
   },
   optionsPut: {
-    url: 'http://share-place.herokuapp.com:80/sp',
+    url: 'http://54.154.38.51:3000/sp',
     method: 'PUT',
   },
   optionsGet: {
-    host: "share-place.herokuapp.com",
-    port: 80,
+    host: "54.154.38.51",
+    port: 3000,
     path: '/sp',
     method: 'GET'
   },
   optionsGetFromAuth: {
-    host: "share-place.herokuapp.com",
-    port: 80,
-    path: '/auth',
-    method: 'GET'
-  },*/
-  optionsGetFromAuth: {
-    host: "127.0.0.1",
+    host: "54.154.38.51",
     port: 3000,
     path: '/auth',
     method: 'GET'
   },
+  /*optionsGetFromAuth: {
+   host: "127.0.0.1",
+   port: 3000,
+   path: '/auth',
+   method: 'GET'
+   },
 
-  urlLoginProxy :'http://127.0.0.1:3000/auth',
+   urlLoginProxy :'http://127.0.0.1:3000/auth',
    optionsPost: {
    url: 'http://127.0.0.1:3000/sp',
    method: 'POST',
@@ -52,12 +52,12 @@ module.exports = Object.freeze({
    port: 3000,
    path: '/sp',
    method: 'GET'
-   },
+   },*/
   userRoles: ['viewer', 'writer', 'owner', 'admin'],
   dbURI: 'mongodb://shareplace:Sp2_2016_17@ds155747.mlab.com:55747/heroku_pgbpj409',
   fileKeyDbURI: 'mongodb://shareplace:Sp2_2016_17@ds155747.mlab.com:55747/heroku_pgbpj409',
   ImageDbURI: 'mongodb://shareplace:Sp2_2016_17@ds155747.mlab.com:55747/heroku_pgbpj409',
-  defaultPicture: path.join( __dirname,"static","images","logo-profile.png"),
+  defaultPicture: path.join(__dirname, "static", "images", "logo-profile.png"),
   wordIcon: './static/images/icon/docicon1.bmp',
   excelIcon: './static/images/icon/docicon2.bmp',
   pptIcon: './static/images/icon/docicon3.bmp',
