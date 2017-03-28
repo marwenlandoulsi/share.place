@@ -27,7 +27,8 @@ import 'package:share_place/folder/node/tree_node_component.dart';
       TextComp,
       MaterialYesNoButtonsComponent,
       PostitComponent,
-      TreeNodeComponent
+      TreeNodeComponent,
+      materialDirectives
     ])
 class FolderComponent
     implements OnInit {
@@ -60,8 +61,11 @@ class FolderComponent
 
   handleEvent(Map<PlaceParam, dynamic> params) async {
     var placeId = params[PlaceParam.placeId];
-    if (placeId != null)
+    if (placeId != null) {
       await getFolders(placeId);
+    } else if (params.containsKey(PlaceParam.ioFolderCreated) || params.containsKey(PlaceParam.ioFolderChanged)) {
+      await getFolders(placeId);
+    }
 
     if (renaming != null || adding) {
       KeyEvent keyup = params[PlaceParam.keyPressed];
@@ -161,7 +165,7 @@ class FolderComponent
 
   void openHierarchy(Folder node) {
     var parentId = node.parentId;
-    if(parentId == null)
+    if (parentId == null)
       return;
 
     openTreeNodes.add(parentId);

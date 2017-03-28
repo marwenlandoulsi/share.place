@@ -4,7 +4,7 @@ var bcrypt = require('bcrypt-nodejs')
 var passport = require('passport')
 var express = require('express')
 
-
+var request = require('request');
 var LocalStrategy = require('passport-local').Strategy
 
 
@@ -24,10 +24,11 @@ var multer = require('multer');
 var http = require("http");
 var path = require('path');
 var globalService = require('../global')
-var upload = multer({
-  dest: path.join(__dirname, '../../tmp/upload/')
-})
 
+var upload = multer({
+  dest: path.join(__dirname, '..', '..', 'tmp', 'upload/')
+})
+var proxy = require('../controllers/proxy');
 
 // normal routes ===============================================================
 
@@ -37,7 +38,7 @@ router.get('/', function (req, res, next) {
   if (req.isAuthenticated()) {
     res.redirect(conf.onLoginRedirect)
   } else
-    res.render('index.ejs')
+    res.redirect('/web')
 })
 
 // PROFILE SECTION =========================
@@ -72,20 +73,27 @@ router.get('/login', function (req, res) {
 
 // process the login form
 router.post('/login', (req, res, next) => authenticate(req, res, next, 'local-login'));
-// process the signup form
-router.post('/signup', (req, res, next) => authenticate(req, res, next, 'local-signup'));
 
+
+router.post('/signup', upload.single('filename'), (req, res, next) => authenticate(req, res, next, 'local-signup'));
+/*
+ router.get('/facebook', proxy('localhost:3000', {
+
+ forwardPath: function(req, res) {
+ return '/auth/facebook/d/'+global.serverPort
+ }
+ }));*/
 
 var authenticate = (req, res, next, strategy) => {
+
   if ((strategy == 'local-signup') && (!global.onLine)) {
-
-    return globalService.sendError(res, 409, "sorry you are offline you can't do the signup");
-
+    proxy.dialogBox("info", "Share.place signup", "sorry you are offline you can't do the signup")
   }
   passport.authenticate(strategy, (err, user, info) => {
 
     if (!user)
       return globalService.sendError(res, 401, "wrong email or password");
+
 
     req.login(user, {}, function (err) {
       if (err) {
@@ -107,17 +115,78 @@ router.post('/login', passport.authenticate('local-login', {
 
 
 // edit profile ---------------------------------
-router.post('/profile/edit', isLoggedIn, upload.single('avatar'), function (req, res, next) {
+router.post('/profile/edit', isLoggedIn, upload.single('filename'), (req, res, next) => {
+  if (global.onLine) {
+    editProfile(req, res, (err, user) => {
+      if (err) {
+        log.error("error to edit user")
+        globalService.sendError(res, err.statusCode, err.message);
+      }
+      globalService.sendJsonResponse(res, 201, user);
+
+    })
+  } else {
+    proxy.dialogBox("info", "Share.place", "sorry you are offline you can't edit your profile")
+  }
 
 })
 
+router.get('/gridfs/file/:fileId', (req, res) => {
+  let url = req.url;
+  let pathToUserPicture = path.join(constants.dataDir, url, 'logo-profile_' + req.user._id + '.png');
+  let pathToUserPictureDir = path.join(constants.dataDir, url);
+  if(global.onLine){
+    downloadFile(url, pathToUserPictureDir, pathToUserPicture, (err, pathPicture)=>{
+      if(err)
+        globalService.sendError(res, 401, err.message)
+
+      return readFile(res, pathPicture);
+    })
+  }else{
+    proxy.dialogBox("info", "Share.place", "sorry you are offline you c")
+  }
+});
 // post picture servise not used yet
 router.post('/profile/picture', isLoggedIn, upload.single('avatar'), function (req, res, next) {
 
 })
 router.get('/user/photo/:size', function (req, res) {
 
-  readFile(res, constants.defaultPicture);
+  var url = req.url;
+
+  var pathToUserPicture = path.join(constants.dataDir, url, 'logo-profile_' + req.user._id + '.png');
+  var pathToUserPictureDir = path.join(constants.dataDir, url);
+
+  if (global.onLine) {
+
+    globalService.checkPathOrCreateSync(pathToUserPictureDir, pathToUserPicture)
+
+    var file = fs.createWriteStream(pathToUserPicture);
+    var options = {
+      host: conf.optionsGetFromAuth.host,
+      port: conf.optionsGetFromAuth.port,
+      path: conf.optionsGetFromAuth.path + url,
+      method: conf.optionsGetFromAuth.method,
+      headers: {
+        'Cookie': global.cookieReceived
+      }
+    };
+    var request = http.get(options, function (response) {
+      var stream = response.pipe(file);
+      stream.on('finish', function () {
+        readFile(res, pathToUserPicture);
+      });
+    }).on('error', function (e) {
+      globalService.sendError(res, 450, "error to download img")
+    });
+  } else {
+    if (!fs.existsSync(pathToUserPicture)) {
+      readFile(res, pathToUserPicture);
+    } else {
+      readFile(res, constants.defaultPicture);
+    }
+
+  }
 });
 // sends the image we saved by userId.
 router.get('/user/photo/:size/:userId', function (req, res) {
@@ -143,8 +212,10 @@ router.get('/user/photo/:size/:userId', function (req, res) {
       }
     };
     var request = http.get(options, function (response) {
-      response.pipe(file);
-      readFile(res, pathToUserPicture);
+      var stream = response.pipe(file);
+      stream.on('finish', function () {
+        readFile(res, pathToUserPicture);
+      });
     }).on('error', function (e) {
       globalService.sendError(res, 450, "error to download img")
     });
@@ -248,20 +319,28 @@ var streamFromBuffer = function (buffer, writestream) {
   bufferToStream.push(null) // Push null to end stream
   bufferToStream.pipe(writestream)
 }
-function downloadFile(url, directory, pathFile, mode) {
+function downloadFile(url, pathToUserPictureDir, pathToUserPicture, cb) {
+
+
+  globalService.checkPathOrCreateSync(pathToUserPictureDir, pathToUserPicture)
+
+  var file = fs.createWriteStream(pathToUserPicture);
   var options = {
-    host: conf.optionsGet.host,
-    port: conf.optionsGet.port,
-    path: conf.optionsGet.path + url,
-    method: conf.optionsGet.method,
+    host: conf.optionsGetFromAuth.host,
+    port: conf.optionsGetFromAuth.port,
+    path: conf.optionsGetFromAuth.path + url,
+    method: conf.optionsGetFromAuth.method,
     headers: {
       'Cookie': global.cookieReceived
     }
   };
-
-  httpGetFile(options, function (data) {
-    //fs.writeFileSync(path, data);
-    globalService.checkPathOrCreateSync(directory, pathFile, data, mode);
+  var request = http.get(options, function (response) {
+    var stream = response.pipe(file);
+    stream.on('finish', function () {
+      return cb(null, pathToUserPicture);
+    });
+  }).on('error', function (e) {
+    return cb(e);
   });
 };
 
@@ -293,5 +372,74 @@ var readFile = function (res, iconPath) {
     }
   });
 };
+var editProfile = function (req, res, cb) {
 
+  // Configure the request
+  let url = req.url;
+
+  let headers = {
+    'Cookie': global.cookieReceived
+  }
+
+// Configure the request
+  let options = {
+    url: constants.urlLoginProxy + url,
+    headers: headers,
+  }
+
+// Start the request
+  let r = request.post(options, function (error, response, body) {
+
+    if (error) {
+      log.error("error to signUp", error.message);
+      return cb(error)
+    }
+
+
+    if (!error && (response.statusCode == 200 || response.statusCode == 201)) {
+      // Print out the response body
+      var user = JSON.parse(body).data;
+      log.error("response.statusCode", user);
+      fs.unlink(pathToFile, function (err) {
+        if (err)
+          log.error('err  delete from tmp', err);
+
+        return cb(null, user);
+      });
+
+      return cb(null, user);
+    } else {
+      var err = new Error();
+      err.status = response.statusCode;
+      err.message = JSON.parse(body).error;
+      return cb(err);
+    }
+  });
+
+  let form = r.form();
+  if (req.file) {
+    var pathToFile = path.join(__dirname, '..', '..', 'tmp', 'upload', req.file.filename);
+    form.append('filename', fs.createReadStream(path.join(__dirname, '..', '..', 'tmp', 'upload', req.file.filename)),
+        {
+          filename: req.file.originalname,
+          contentType: req.file.mimeType
+        });
+  }
+
+  if (req.body.name)
+    form.append('name', req.body.name);
+
+  if (req.body.skype)
+    form.append('skype', req.body.skype);
+
+  if (req.body.password)
+    form.append('password', req.body.password);
+
+  if (req.body.passwordNew)
+    form.append('passwordNew', req.body.passwordNew);
+
+  if (req.body.email)
+    form.append('email', req.body.email);
+
+}
 module.exports = router

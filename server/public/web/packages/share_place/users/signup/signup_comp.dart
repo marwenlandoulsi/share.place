@@ -1,5 +1,5 @@
 import 'dart:async';
-
+import 'dart:html';
 import 'package:angular2/core.dart';
 import 'package:angular2/router.dart';
 import 'package:angular2/security.dart';
@@ -32,21 +32,44 @@ class SignupComp implements OnInit {
   String passVerif;
   bool _checkPasswords;
 
+  bool dragEnter;
+  bool drop;
+
   SignupComp(this._placeService, this._router, this._environment,
       this.urlSanitizer, this._loginComp);
 
   Future<Null> ngOnInit() async {
-    _environment.eventBus.getBus().listen( (params) => show(params));
+    _environment.eventBus.getBus().listen((params) => show(params));
   }
 
   show(Map<PlaceParam, String> params) async {
   }
 
+  User get connectedUser => _environment.connectedUser;
 
+  String get photoId => connectedUser?.photoIdMap == null ? null : connectedUser
+      .photoIdMap["photoIdM"];
+
+  Future<Null> signup() async {
+    uploading = true;
+    var fileForm = querySelector("#signupForm");
+    _environment.connectedUser = await _placeService.postImage(
+        new FormData(fileForm)
+          ..append("email", user.email)..append("password", user.pass)..append(
+            "skype ", user.skype)..append('name', user.name));
+    fileForm.style.border = "none";
+
+    //FIXME this shouldn't be called since the return value of the post should be up to date (on profile image update)
+    _environment.connectedUser = await _placeService.getConnectedUser();
+    uploading = false;
+  }
+
+/*
   Future<Null> signup() async{
     var connectedUser = await _placeService.signup(user);
     _environment.connectedUser = connectedUser;
   }
+*/
 
   void close() {
     _loginComp.showSignupDialog = false;
@@ -55,7 +78,7 @@ class SignupComp implements OnInit {
   String get error => _environment.serverError;
 
   bool passwordsError() {
-    if( !_checkPasswords )
+    if (!_checkPasswords)
       return false;
 
     return passVerif != user.pass;
@@ -66,10 +89,20 @@ class SignupComp implements OnInit {
   }
 
   bool get passwordsChecked => _checkPasswords;
-  bool get submitEnabled => isEmail(user.email) && _checkPasswords && !passwordsError();
+
+  bool get submitEnabled =>
+      isEmail(user.email) && _checkPasswords && !passwordsError();
 
   bool isEmail(String em) {
     return true;
+  }
+
+  bool get uploading => _environment.uploading;
+
+  void set uploading(bool uploading) {
+    dragEnter = false;
+    drop = false;
+    _environment.uploading = uploading;
   }
 
 }

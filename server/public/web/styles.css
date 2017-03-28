@@ -12,8 +12,16 @@ html, body, my-app, my-app > div, .leftP, my-place, .folders {
   font-size: 100%;
 }
 
+input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
+  background-color: transparent !important;
+}
+
+li.liAdd {
+  margin-bottom: 0.2em;
+}
+
 body {
-  background: #e6e6e6;
+  background: #fff;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: 500;
   font-size: 0.75em;
@@ -37,13 +45,13 @@ body, input[text], button {
 
 .error,
 .messages {
-  padding-bottom: 4px;
-  font-size: 12px;
-  padding-top: 5px;
   color: #dd4b39;
   font-weight: 500;
   position: relative;
-  z-index: 999;
+  z-index: 99;
+  padding-bottom: 0.1em;
+  font-size: 0.9em;
+  padding-top: 1.2em;
 }
 
 .hidden {
@@ -61,6 +69,7 @@ body, input[text], button {
 .rightPanelinside {
   width: 83%;
   padding: 0 !important;
+  background-color: white;
 }
 
 .centerP {
@@ -74,10 +83,12 @@ body, input[text], button {
 }
 
 .panel {
-  -moz-border-radius: 0 0 8px 8px;
-  -webkit-border-radius: 0 0 8px 8px;
-  -o-border-radius: 0 0 8px 8px;
-  border-radius: 0 0 8px 8px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  border: 0 !important;
+  margin: 0 0 0.25em 0 !important;
 }
 
 a {
@@ -231,7 +242,6 @@ TODO see what font to use
 
 .label {
   font-weight: normal;
-  font-size: 1.1em;
 }
 
 .title {
@@ -245,6 +255,7 @@ TODO see what font to use
 .buttonGroup {
   float: right;
   margin-right: 0.5em;
+  width: 1.3em;
 }
 
 .rightMenu {
@@ -258,23 +269,22 @@ TODO see what font to use
   font-size: 1.2em;
   position: relative;
   line-height: 21px;
-  padding: 3px 0 0 28px !important;
-  color: #273B54;
+  padding: 3px 0 0 1.8em !important;
+
 }
 
-/* add As*/
+.expand-button {
+  color: #8692a0 !important;
+}
+
 .placePanel .panel-name .primary-text:before {
-  content: "\f015";
-  font-family: FontAwesome;
-  font-weight: normal;
-  font-style: normal;
-  font-size: 25px;
-  vertical-align: middle;
-  text-decoration: none;
-  color: #243b59;
-  top: 2px;
+  content: "\f175";
+  font: normal normal normal 2em/1 'Material-Design-Iconic-Font';
+  color: #273B54;
+  top: -2px;
   position: absolute;
   left: 0;
+  font-size: 1.6em;
 }
 
 .content-wrapper {
@@ -308,6 +318,7 @@ TODO see what font to use
 .imgBtn {
   height: auto !important;
   vertical-align: middle;
+  cursor: pointer;
 }
 
 .header.headerplaces {
@@ -315,8 +326,9 @@ TODO see what font to use
 }
 
 .panel.open > header {
-  min-height: 30px !important;
+  min-height: 2em !important;
   padding-top: 0.5em !important;
+  padding-left: 0.3em !important;
 }
 
 .rightPanelinside_header {
@@ -324,10 +336,10 @@ TODO see what font to use
   height: 40px;
 }
 
-header.closed:hover, header.closed:focus, header:focus, header:focus {
-  -webkit-border-radius: 0 0 7px 7px !important;
-  -moz-border-radius: 0 0 7px 7px !important;
-  border-radius: 0 0 7px 7px !important;
+header.closed:hover,
+header.closed:focus,
+header:focus,
+header:focus {
   -webkit-transition: 0.3s;
   -o-transition: 0.3s;
   transition: 0.3s;
@@ -352,7 +364,7 @@ header.closed:hover, header.closed:focus, header:focus, header:focus {
   color: #273B54;
   font-size: 13px;
   padding: 0;
-  width: calc(100% - 53px);
+  width: calc(100% - 57px);
 }
 
 .text_comp:after {
@@ -424,8 +436,8 @@ input {
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   border-radius: 50%;
-  height: 25px;
-  width: 25px;
+  height: 2em;
+  width: 2em;
 }
 
 .verification_user > div {
@@ -485,7 +497,6 @@ textarea {
 }
 
 .btn_login {
-
   height: 36px;
   width: 98px;
   margin: 5px 0 15px 74px !important;
@@ -516,15 +527,32 @@ textarea {
 
 /* "x::-webkit-file-upload-button" forces the rules to only apply to browsers that support this pseudo-element */
 
+#labelfileupload {
+  cursor: pointer;
+  color: darkGray;
+  z-index: 1;
+  border-radius: 25px;
+  background-color: transparent;
+  font-size: 13px;
+  display: block;
+  position: absolute;
+
+  top: 45%;
+  width: 100%;
+  -webkit-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+}
+
 #labelfileupload:before {
   font-family: FontAwesome;
   content: "\f055";
   display: inline-block;
-  left: calc(50% - 86px);
+  left: 50%;
   position: absolute;
   font-size: 26px;
   color: #9E9E9E;
-  top: calc(50% - 13px);
+  top: -28px;
 }
 
 .uploadDropZone:hover #labelfileupload:before, .uploadDropZone:focus #labelfileupload:before, .uploadDropZone:hover #labelfileupload, .uploadDropZone:focus #labelfileupload {
@@ -538,23 +566,6 @@ textarea {
   transition: 0.3s;
 }
 
-#labelfileupload {
-  cursor: pointer;
-  color: darkGray;
-  z-index: 1;
-  padding-left: 27px;
-  border-radius: 25px;
-  background-color: transparent;
-  font-size: 13px;
-  display: block;
-  position: absolute;
-  left: 38%;
-  top: 45%;
-  -webkit-transition: 0.3s;
-  -o-transition: 0.3s;
-  transition: 0.3s;
-}
-
 .nomargin {
   margin: 0 !important;
   padding: 1px 0 0 0 !important;
@@ -563,10 +574,6 @@ textarea {
 
 .invites .top-section {
   padding: 2px 2px 4px 0 !important;
-}
-
-.roleChooser .selected {
-  background-color: white !important;
 }
 
 .newTopicBlock input {
@@ -655,29 +662,37 @@ form#fileForm {
 .placesPostit .postit {
   position: fixed !important;
   left: 17.5% !important;
-  top: 5.2% !important;
+  top: 3.8% !important;
 }
 
 .foldersPostit .postit {
   position: fixed !important;
   left: 17.4% !important;
-  top: 23.2% !important
+  top: 12.2% !important
 }
 
 .subjectsPostit .postit {
   position: fixed !important;
   left: 55% !important;
-  top: 3.5em !important;
+  top: 5.5em !important;
 }
 
 .filesPostit .postit {
   position: fixed !important;
   left: 45% !important;
-  top: 15em !important;
+  top: 19em !important;
+  transform: rotate(7deg);
+}
+
+.commentPostit .postit {
+  position: fixed !important;
+  right: 1% !important;
+  top: 13em !important;
+  transform: rotate(10deg);
 }
 
 material-ripple {
-  font-size: 8px !important;
+  font-size: .8em !important;
 }
 
 .basic-dialog.fileOpen {
@@ -717,7 +732,7 @@ material-ripple {
   border-radius: 7px;
   background-color: #d9d9d9;
   padding: 5em 0.2em 1em;
-  color: rgba(255,255,255,0.57);
+  color: rgba(255, 255, 255, 0.57);
   position: relative;
   width: 100%;
   text-align: center;
@@ -730,11 +745,11 @@ material-ripple {
   -webkit-transition: 0.3s;
   -o-transition: 0.3s;
   transition: 0.3s;
-  box-shadow: 0 0 1em 0em rgba(0,0,0,0.3);
+  box-shadow: 0 0 1em 0em rgba(0, 0, 0, 0.3);
 }
 
-.basic-dialog.fileOpen .btn.material-icons:hover:after, .basic-dialog.fileOpen .btn.material-icons:focus:after{
-  color : white;
+.basic-dialog.fileOpen .btn.material-icons:hover:after, .basic-dialog.fileOpen .btn.material-icons:focus:after {
+  color: white;
 }
 
 .basic-dialog.fileOpen .fileName {
@@ -786,11 +801,15 @@ material-ripple {
   padding: 1.2em;
 }
 
-.popupHeader .close {
+.header {
+  position: relative
+}
+
+.popupHeader .close, .close {
   position: absolute;
   top: 0;
   right: 0.2em;
-  font: normal normal normal 2em/1 'Material-Design-Iconic-Font';
+  font: normal normal normal 2em/1 'Material-Design-Iconic-Font' !important;
   cursor: pointer;
 }
 
@@ -803,7 +822,170 @@ material-ripple {
   opacity: 0.6;
 }
 
+.release .content {
+  padding: 0.3em 0.2em !important;
+  text-transform: none !important;
+}
 
-/* CUSTOM RESPONSIVE STYLES */
-/* ------------------------------------ */
+.userInfoPopup {
+  width: 14em;
+  padding: 0.5em 0.4em 0.3em 0.5em;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  /*border: 1px solid rgba(0, 0, 0, 0.25);*/
+  font-size: 0.9em;
+  vertical-align: middle;
+  background: #fff;
+  border: 1px solid #8d8d8d;
+  -webkit-box-shadow: 0px 0px 21px 6px rgba(120, 120, 120, 0.55);
+  -moz-box-shadow: 0px 0px 21px 6px rgba(120, 120, 120, 0.55);
+  box-shadow: 0px 0px 21px 6px rgba(120, 120, 120, 0.55);
+  position: relative;
 
+}
+
+.userInfoPopup:after, .userInfoPopup:before {
+  bottom: 100%;
+  right: 16%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
+.userInfoPopup:after {
+  border-color: rgba(255, 255, 255, 0);
+  border-bottom-color: #fff;
+  border-width: 9px;
+  margin-left: -9px;
+}
+
+.userInfoPopup:before {
+  border-color: rgba(141, 141, 141, 0);
+  border-bottom-color: #8d8d8d;
+  border-width: 10px;
+  margin-left: -10px;
+}
+
+.shadow .popup {
+  overflow: inherit !important;
+}
+
+#default-5 {
+  position: absolute;
+  top: 5em;
+  right: 2em;
+}
+
+material-popup#popVersion {
+  position: absolute !important;
+  top: 5em !important;
+  right: 2em !important;
+}
+
+.popVersion .menuItem {
+  background-color: turquoise;
+}
+
+.clearfix {
+  clear: both;
+}
+
+.panel .content {
+  padding-left: 0.3em;
+}
+
+.acx-overlay-container > .pane.align-y-center > * {
+  position: relative !important;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+.bgWhite {
+  background: url("../images/bgwhite.png") no-repeat 45% 45%;
+  background-size: 0.8em;
+}
+
+header.closed {
+  background-color: #263a53 !important;
+  color: #9ca2ab !important;
+  padding-left: 0.3em !important;
+}
+
+header.closed:hover,
+header.closed:focus {
+  opacity: 0.9;
+}
+
+header.closed .primary-text:before {
+  color: #9ca2ab !important;
+}
+
+.isUploading {
+  margin: 0.6em auto !important;
+  border: 1px solid #D5F0FF !important;
+  background-color: rgba(213, 240, 255, 0.5) !important;
+}
+
+
+.headerPopVersion {
+  background-color: white !important;
+  padding: 1em 1em 0.5em 1em;
+  color: #273B54;
+  /*font-size: 1em;*/
+}
+
+.headerPopVersion .fileName {
+  margin-bottom: 0.3em;
+  font-weight: bold;
+}
+
+.popinVersion {
+  background-color: #fff;
+  padding-top: 1em;
+}
+
+.popinVersion .menuItemVers {
+  width: 100%;
+  text-align: left !important;
+  text-transform: none !important;
+  color: #273B54 !important;
+  font-size: 1em !important;
+}
+
+.popinVersion .content {
+  padding: 0.1em 0.57em !important;
+}
+
+.popinVersion .menuItemVers i {
+  margin-right: 0.5em;
+  font-size: 2em;
+}
+
+.popinVersion .menuItemVers i.approve {
+  color: #7FBB01;
+}
+
+.popinVersion .menuItemVers i.nnApprove {
+  color: #BEBEBE;
+}
+
+.popinVersion .menuItemVers i.commentVers {
+  color: #63C7FE;
+}
+
+.popinVersion .menuItemVers i.delete {
+  color: #BEBEBE;
+  padding-left: 0.1em;
+}
+
+.spanVers {
+  /*width: 30%;*/
+  text-align: center !important;
+}

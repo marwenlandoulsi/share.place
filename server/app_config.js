@@ -10,7 +10,7 @@ module.exports = Object.freeze({
   dataDir: path.join(__dirname,'..', "data"),
   usersFileData: path.join(__dirname,'..', "data","users.json"),
   logDir: path.join( __dirname, "log"),
-  urlLoginProxy: 'http://share-place.herokuapp.com:80/auth',
+  /*urlLoginProxy: 'http://share-place.herokuapp.com:80/auth',
   optionsPost: {
     url: 'http://share-place.herokuapp.com:80/sp',
     method: 'POST',
@@ -30,7 +30,7 @@ module.exports = Object.freeze({
     port: 80,
     path: '/auth',
     method: 'GET'
-  },/*
+  },*/
   optionsGetFromAuth: {
     host: "127.0.0.1",
     port: 3000,
@@ -52,7 +52,7 @@ module.exports = Object.freeze({
    port: 3000,
    path: '/sp',
    method: 'GET'
-   },*/
+   },
   userRoles: ['viewer', 'writer', 'owner', 'admin'],
   dbURI: 'mongodb://shareplace:Sp2_2016_17@ds155747.mlab.com:55747/heroku_pgbpj409',
   fileKeyDbURI: 'mongodb://shareplace:Sp2_2016_17@ds155747.mlab.com:55747/heroku_pgbpj409',
@@ -83,11 +83,12 @@ module.exports = Object.freeze({
   service_mail: 'gmail',
   auth_email_user: 'noreply.share.place@gmail.com',
   auth_email_pass: 'noreplysp',
+
   oauth: {
     'facebookAuth': {
-      'clientID': '976749059092352', // your App ID
-      'clientSecret': '0e5262c1e335369cd5c31898bf3f1576', // your App Secret
-      'callbackURL': 'http://localhost:3000/auth/facebook/callback',
+      'clientID': '163347820840648', // your App ID
+      'clientSecret': '833ecd841c606f4fa5c9c224492a048f', // your App Secret
+      'callbackURL': 'https://localhost:3000/auth/facebook/callback',
       'profileFields': ['id', 'email', 'gender', 'link', 'locale', 'name', 'timezone', 'updated_time', 'verified', 'picture']
     },
 
@@ -99,8 +100,8 @@ module.exports = Object.freeze({
     },
 
     'googleAuth': {
-      'clientID': '1043614876357-css0c3uhsuhmm7rnqdq2b0d88qij305e.apps.googleusercontent.com',
-      'clientSecret': 'r7_zWN1LbzRrDFKpkbFRNDAl',
+      'clientID': '347589645243-c8t2oiesa7eer9k0daoojaasvfu5f0jv.apps.googleusercontent.com',
+      'clientSecret': 'YJo8E3Gc-8wi8PbLRGj7TSQx',
       'callbackURL': 'http://localhost:3000/auth/google/callback'
     }
 

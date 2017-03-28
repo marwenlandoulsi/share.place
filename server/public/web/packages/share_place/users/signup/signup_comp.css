@@ -7,19 +7,28 @@
 
 }
 
+#signup {
+  width: 25em;
+}
+
 #signup .header {
   position: relative;
-  background-color: #273B54;
+  background-color: #262D40;
   padding: 4px 11px 0;
 }
 
 #signup .signuptext {
-  padding-bottom: 52px;
-  font-size: 16px;
+  font-size: 1.4em;
   color: #fff;
-  padding-top: 10px;
+  padding-top: 1em;
 }
 
+#signup .label {
+  font-size: 0.8em;
+}
+.center {
+  text-align: center;
+}
 span, .logo_intro {
   vertical-align: middle;
   display: inline-block;
@@ -33,18 +42,18 @@ span, .logo_intro {
   padding: 0 !important;
 }
 
-.close {
-  position: absolute;
-  right: 0.5em;
-  top: 0.4em;
-  color: white;
-  opacity: 1;
-  cursor: pointer;
-}
+/*.close {*/
+  /*position: absolute;*/
+  /*right: 0.5em;*/
+  /*top: 0.4em;*/
+  /*color: white;*/
+  /*opacity: 1;*/
+  /*cursor: pointer;*/
+/*}*/
 
-.close:hover {
-  opacity: 0.7;
-}
+/*.close:hover {*/
+  /*opacity: 0.7;*/
+/*}*/
 
 a {
   color: #3A579A;
@@ -142,7 +151,6 @@ material-input.input.themeable {
   padding-bottom: 6%;
 }
 
-
 .profile {
   position: absolute;
   left: calc(50% - 35.5px);
@@ -165,6 +173,27 @@ material-input.input.themeable {
   transition: 0.3s;
 }
 
+/* drag and drop */
+.uploadFile {
+  padding: 1em 0 2em !important;
+}
+
+.spprof {
+  position: absolute;
+  top: 0;
+  right: 0;
+  text-decoration: underline;
+}
+
+.dragdrop_profil:hover #labelfileuploadprf:before, .dragdrop_profil:focus #labelfileuploadprf:before, .dragdrop_profil:hover #labelfileuploadprf,
+.dragdrop_profil:focus #labelfileuploadprf {
+  color: white;
+}
+
+.dragdrop_profil:hover #labelfileuploadprf:before, .dragdrop_profil:focus #labelfileuploadprf:before {
+  border: 3px solid rgba(255, 255, 255, 0.5);
+}
+
 material-input.mail.themeable, material-input.password.themeable, material-input {
   padding: 0 !important;
 }
@@ -172,7 +201,6 @@ material-input.mail.themeable, material-input.password.themeable, material-input
 #signup .top-section {
   padding: 4px 2px 7px 0;
 }
-
 
 .label, .input, .emaillab {
   font-size: 11px;
@@ -188,4 +216,213 @@ material-input.mail.themeable, material-input.password.themeable, material-input
 }
 
 @media (max-width: 479px) {
+}
+
+#login {
+  background: #EEEEF0;
+  width: 37em;
+  clear: both;
+}
+
+.panels {
+  padding: 2em 2em 0;
+  position: relative;
+  clear: both;
+  overflow: initial;
+}
+
+.changePass {
+  text-decoration: underline;
+  cursor: pointer;
+  margin: 0 0 1em 0;
+  color: #273B54;
+  z-index: 999;
+}
+
+.title {
+  color: #fff;
+  float: left;
+  width: 80%;
+  padding: 0;
+}
+
+.close {
+  float: right;
+  cursor: pointer;
+}
+
+.header {
+  background-color: #262D40;
+  padding: 1em 1em 0;
+}
+
+/* drag and drop */
+.uploadFile {
+  padding: 1em 0 2em !important;
+}
+
+#labelfileuploadprf {
+  left: 55%;
+  color: #bebebe;
+  text-decoration: underline;
+}
+
+#labelfileuploadprf img {
+  display: block;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.8);
+  width: 75px;
+  height: 75px;
+
+}
+
+.skype.bottom_input {
+  right: 27px;
+}
+
+.spprof {
+  position: absolute;
+  top: 0;
+  right: 0;
+  text-decoration: underline;
+}
+
+.dragdrop_profil:hover #labelfileuploadprf:before, .dragdrop_profil:focus #labelfileuploadprf:before, .dragdrop_profil:hover #labelfileuploadprf,
+.dragdrop_profil:focus #labelfileuploadprf {
+  color: white;
+}
+
+.dragdrop_profil:hover #labelfileuploadprf:before, .dragdrop_profil:focus #labelfileuploadprf:before {
+  border: 3px solid rgba(255, 255, 255, 0.5);
+}
+
+#labelfileuploadprf {
+  cursor: pointer;
+  color: darkGray;
+  z-index: 1;
+  padding-right: 45px;
+  border-radius: 25px;
+  background-color: transparent;
+  font-size: 13px;
+  display: block;
+  position: absolute;
+  left: 43%;
+  top: 38%;
+  -webkit-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+}
+
+/* */
+.local {
+  border-right: 1px solid rgba(86, 86, 86, 0.17);
+  width: calc(52% - 31px);
+  display: inline-block;
+  padding-right: 30px;
+  overflow: hidden;
+}
+
+.social {
+  width: 44%;
+  display: inline-block;
+  vertical-align: top;
+  padding-top: 20px;
+  padding-left: 3%;
+}
+
+/****/
+.changeMail {
+  cursor: pointer;
+  position: relative;
+}
+
+.socialBtn {
+  color: white;
+  /*padding: 0.2em;*/
+  display: inline-block;
+  font-size: 23px;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  text-align: center;
+  vertical-align: middle;
+  margin-left: 1em;
+}
+
+.socialBtn:hover, .socialBtn:focus {
+  box-shadow: 2px 2px 3px 0 rgba(26, 74, 76, 0.2);
+  -webkit-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.facebook {
+  background-color: #3A579A;
+}
+
+.google {
+  background-color: #DF4A32;
+}
+
+.label {
+  font-weight: bold;
+  font-size: 1em;
+}
+
+.btnvalidat {
+  text-align: center;
+}
+
+.bottom_input {
+  position: absolute;
+  bottom: -4em;
+}
+
+.social .line {
+  vertical-align: middle;
+  margin-bottom: 3.3em;
+  text-align: right;
+}
+
+.social .line span {
+  text-align: left;
+}
+
+.btn_login {
+  margin: 4em 0 2em 0 !important;
+}
+
+.passwordZone {
+  margin-bottom: 1.5em;
+}
+
+main, header, footer {
+  background-color: #00adef !important;
+}
+
+.email {
+  position: relative;
+}
+
+.changeMail {
+  position: absolute;
+  top: 36%;
+  right: -20px;
+}
+
+fieldset {
+  border: 1px solid rgba(39, 59, 84, 0.18) !important;
+}
+
+material-input {
+  padding: 1px 0 !important;
+}
+
+.uploading {
+  border: 2px solid greenyellow;
 }

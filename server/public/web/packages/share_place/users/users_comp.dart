@@ -52,9 +52,12 @@ class UsersComp implements OnInit {
     return null;
   }
 
-  SafeUrl skypeUrlFor(User user) {
+  SafeUrl skypeUrlFor(User user,call) {
     if (user.skype != null) {
+      if (call)
       return urlSanitizer.bypassSecurityTrustUrl("skype:${user.skype}?call");
+      else
+        return urlSanitizer.bypassSecurityTrustUrl("skype:${user.skype}?chat");
     }
     return null;
   }

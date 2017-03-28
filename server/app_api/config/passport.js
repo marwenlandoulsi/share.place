@@ -1,10 +1,10 @@
 'use strict';
 var LocalStrategy = require('passport-local').Strategy;
 var fs = require("fs");
-
-
+var CustomStrategy = require('passport-custom');
+var FacebookStrategy = require('passport-facebook').Strategy;
 var log = require('log4js').getLogger("app");
-
+var proxy = require('../controllers/proxy');
 //var localUser = require('../localModels/user')
 var constants = require('../../app_config');
 var ctrlLoginApi = require('../routes/login_api');
@@ -23,6 +23,7 @@ var sep = path.sep;
 
 var userfile = path.join(constants.usersFileData);
 var cron = require("../controllers/cron");
+var pro = require('express-http-proxy');
 
 
 module.exports = function (passport) {
@@ -40,17 +41,14 @@ module.exports = function (passport) {
   passport.serializeUser(function (user, done) {
     global.userConnected = user;
     done(null, user._id);
-
-
   });
 
   // used to deserialize the user
   passport.deserializeUser(function (id, done) {
+    users = jsonfile.readFileSync(userfile);
+    localUsers = taffy(users);
 
-    var userInDB = jsonfile.readFileSync(userfile);
-    var localUsersInDb = taffy(userInDB);
-    var userLocal = localUsersInDb({_id: id});
-    log.info("userLocaluserLocal", userLocal.get()[0]);
+    var userLocal = localUsers({_id: id});
     done(null, userLocal.get()[0]);
 
   });
@@ -94,7 +92,7 @@ module.exports = function (passport) {
                 jsonfile.writeFileSync(userfile, users);
                 localUsers = taffy(users);
                 global.userConnected = user;
-                cron.sync()
+                cron.sync();
                 return done(null, user);
               } else {
                 if (user) {
@@ -109,11 +107,11 @@ module.exports = function (passport) {
                     log.trace("local user updated", localUsers().get());
                     jsonfile.writeFileSync(userfile, localUsers().get());
                     global.userConnected = user;
-                    cron.sync()
+                    cron.sync();
                     return done(null, user);
                   }
                   global.userConnected = user;
-                  cron.sync()
+                  cron.sync();
                   return done(null, user);
                 } else {
 
@@ -164,20 +162,80 @@ module.exports = function (passport) {
         // asynchronous
         process.nextTick(function () {
           if (global.onLine) {
-            signUpFromServer(req, email, password, null, null, (err, user) => {
+            var name = req.body.name;
+            var skype = req.body.skype;
+            if(name.length == 0)
+              name=null;
+
+            signUpFromServer(req, email, password, name, skype, (err, user) => {
               if (err)
-                return done(err)
+                return done(err);
 
-              users.push(user);
-              jsonfile.writeFileSync(userfile, users)
-              global.userConnected = user;
 
+              users = jsonfile.readFileSync(userfile);
+              localUsers = taffy(users);
+              saveUserInLocalDb(users, userfile, localUsers, user);
+              console.log("users.length", users.length);
+              global.userConnected = user
+              console.log("users.user", user);
               return done(null, user);
             });
           }
 
         });
-      }))
+      }));
+
+  var saveUserInLocalDb = (listOfUserInLocalDb, pathUserDb, dbUsers, user) => {
+    console.log("listOfUserInLocalDb.length", listOfUserInLocalDb.length);
+
+    var idUserInDb = dbUsers({_id: user._id}).get()[0];
+
+    if (idUserInDb) {
+
+      dbUsers({_id: user._id}).update(user);
+
+      jsonfile.writeFileSync(pathUserDb, dbUsers().get());
+    } else {
+      listOfUserInLocalDb.push(user);
+      jsonfile.writeFileSync(pathUserDb, listOfUserInLocalDb);
+    }
+  };
+  // refresh user to login
+  passport.use('refresh-user', new CustomStrategy(
+      (req, callback) => {
+        log.info("calling remote server ", req.headers.cookie);
+        // Do your custom user finding logic here, or set to false based on req object
+        proxy.callRemoteServer(req.headers.cookie, "/user/connected", (err, dataReceived) => {
+
+          if (err)
+            return callback(err);
+
+          users = jsonfile.readFileSync(userfile);
+          localUsers = taffy(users);
+          var user = dataReceived.data;
+          console.log("users.length", users.length);
+          saveUserInLocalDb(users, userfile, localUsers, user);
+
+          return callback(null, user);
+        })
+
+      }
+  ));
+  // =========================================================================
+  // FACEBOOK ================================================================
+  // =========================================================================
+  var fbStrategy = configAuth.facebookAuth;
+  fbStrategy.passReqToCallback = true; // allows us to pass in the req from our route (lets us check if a user is logged in or not)
+  passport.use(new FacebookStrategy(fbStrategy,
+      function (req, token, refreshToken, profile, done) {
+
+        // asynchronous
+        process.nextTick(function () {
+          var email = profile.emails[0].value.toLowerCase();
+          console.log("emmmmmmmmmmmmmmmmm fff", email);
+        })
+      })
+  )
 
 
   // =========================================================================
@@ -193,24 +251,23 @@ module.exports = function (passport) {
 
 var validPassword = function (password, localPassword) {
   return bcrypt.compareSync(password, localPassword)
-}
+};
 
 
 var loginFromServer = function (req, email, password, cb) {
 
   var headers = {
-    'Content-Type': 'application/x-www-form-urlencoded',
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36'
-  }
+  };
 
 // Configure the request
-  var url = '/login/proxy'
+  var url = '/login/proxy';
   var options = {
     url: constants.urlLoginProxy + url,
     method: constants.optionsPost.method,
     headers: headers,
     form: {'email': email, 'password': password}
-  }
+  };
 
 // Start the request
   request(options, function (error, response, body) {
@@ -231,7 +288,7 @@ var loginFromServer = function (req, email, password, cb) {
     if (!error && response.statusCode == 200) {
       // Print out the response body
       var user = JSON.parse(body).data;
-      var cookie = ''
+      var cookie = '';
       if (response.headers['set-cookie'].length > 1) {
         return log.error("many cookie in set-cookie", response.headers['set-cookie'].length);
 
@@ -244,28 +301,18 @@ var loginFromServer = function (req, email, password, cb) {
       return cb(null, user);
     }
   })
-}
+};
+
 
 var signUpFromServer = function (req, email, password, name, skype, cb) {
 
-  var headers = {
-    'Content-Type': 'application/x-www-form-urlencoded',
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36'
-  }
 
 // Configure the request
   var url = req.url;
 
-  log.trace('uuuuurl ', url);
-  var options = {
-    url: constants.urlLoginProxy + url,
-    method: constants.optionsPost.method,
-    headers: headers,
-    form: {'email': email, 'password': password, 'name': name, 'skype': skype}
-  }
 
 // Start the request
-  request(options, function (error, response, body) {
+  var r = request.post(constants.urlLoginProxy + url, function (error, response, body) {
 
     if (error) {
       log.error("error to signUp", error.message);
@@ -273,7 +320,7 @@ var signUpFromServer = function (req, email, password, name, skype, cb) {
     }
 
 
-    if (!error && response.statusCode == 200) {
+    if (!error && (response.statusCode == 200 || response.statusCode == 201)) {
       // Print out the response body
       var user = JSON.parse(body).data;
       var cookie = ''
@@ -285,9 +332,28 @@ var signUpFromServer = function (req, email, password, name, skype, cb) {
         cookie += response.headers['set-cookie'][0];
       }
       global.cookieReceived = cookie;
-      log.trace("user found", user);
+      fs.unlink(pathToFile, function (err) {
+        if (err)
+          log.error('err  delete from tmp', err);
+
+        log.info("yess !! ");
+      });
       return cb(null, user);
     }
-  })
+  });
+  var form = r.form();
+  if(req.file){
+    var pathToFile = path.join(__dirname, '..', '..', 'tmp', 'upload', req.file.filename);
+    form.append('filename', fs.createReadStream(path.join(__dirname, '..', '..', 'tmp', 'upload', req.file.filename)),
+        { filename: req.file.originalname,
+          contentType: req.file.mimeType});
+  }
+  form.append('email', email);
+  form.append('password', password);
+  form.append('name', name);
+  form.append('skype', skype);
+
+
 }
+
 module.exports.loginFromServer = loginFromServer;

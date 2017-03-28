@@ -95,7 +95,7 @@ class ProfileComp implements OnInit {
 
   Future<Null> uploadFile() async {
     uploading = true;
-    var fileForm = querySelector("#fileForm");
+    var fileForm = querySelector("#profileImageForm");
     _environment.connectedUser = await _placeService.postProfileImage(
         new FormData(fileForm));
     fileForm.style.border = "none";

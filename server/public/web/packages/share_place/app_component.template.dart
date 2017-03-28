@@ -100,21 +100,21 @@ import 'package:angular2/src/router/router.dart' as import51;
 import 'environment.dart' as import52;
 import 'places_component.template.dart' as import53;
 import 'subject/subject_list_comp.template.dart' as import54;
-import 'files/files_comp.template.dart' as import55;
-import 'package:angular2_components/src/components/button_decorator/button_decorator.dart' as import56;
-import 'package:angular2_components/src/laminate/components/popup/popup.dart' as import57;
-import 'package:angular2_components/src/components/mixins/material_dropdown_base.dart' as import58;
-import 'package:angular2_components/src/components/content/deferred_content_aware.dart' as import59;
-import 'package:angular2_components/src/utils/angular/managed_zone/src/managed_zone.dart' as import60;
-import 'package:angular2/src/core/linker/app_view_utils.dart' as import61;
-import 'package:angular2/src/core/metadata/view.dart' as import62;
-import 'package:angular2_components/src/laminate/components/modal/modal.dart' as import63;
-import 'package:angular2_components/src/components/material_dialog/material_dialog.dart' as import64;
-import 'users/login/login_comp.dart' as import65;
-import 'package:angular2_components/src/laminate/components/modal/modal.template.dart' as import66;
-import 'package:angular2_components/src/components/material_dialog/material_dialog.template.dart' as import67;
-import 'users/login/login_comp.template.dart' as import68;
-import 'package:angular2/src/security/dom_sanitization_service.dart' as import69;
+import 'package:angular2/src/security/dom_sanitization_service.dart' as import55;
+import 'files/files_comp.template.dart' as import56;
+import 'package:angular2_components/src/components/button_decorator/button_decorator.dart' as import57;
+import 'package:angular2_components/src/laminate/components/popup/popup.dart' as import58;
+import 'package:angular2_components/src/components/mixins/material_dropdown_base.dart' as import59;
+import 'package:angular2_components/src/components/content/deferred_content_aware.dart' as import60;
+import 'package:angular2_components/src/utils/angular/managed_zone/src/managed_zone.dart' as import61;
+import 'package:angular2/src/core/linker/app_view_utils.dart' as import62;
+import 'package:angular2/src/core/metadata/view.dart' as import63;
+import 'package:angular2_components/src/laminate/components/modal/modal.dart' as import64;
+import 'package:angular2_components/src/components/material_dialog/material_dialog.dart' as import65;
+import 'users/login/login_comp.dart' as import66;
+import 'package:angular2_components/src/laminate/components/modal/modal.template.dart' as import67;
+import 'package:angular2_components/src/components/material_dialog/material_dialog.template.dart' as import68;
+import 'users/login/login_comp.template.dart' as import69;
 import 'users/profile/profile_comp.dart' as import70;
 import 'users/profile/profile_comp.template.dart' as import71;
 import 'package:angular2/src/router/route_registry.dart' as import72;
@@ -560,7 +560,7 @@ class ViewAppComponent0 extends AppView<import3.AppComponent> {
     _appEl_67 = new ViewContainer(67,65,this,_el_67);
     var compView_67 = import54.viewFactory_SubjectListComponent0(this.injector(67),_appEl_67);
     _UserListProvider_67_3 = new import14.UserListProvider(this.parentInjector.get(import52.Environment),this.parentInjector.get(import50.PlaceService));
-    _SubjectListComponent_67_4 = new import15.SubjectListComponent(this.parentInjector.get(import50.PlaceService),this.parentInjector.get(import51.Router),this.parentInjector.get(import52.Environment),_UserListProvider_67_3);
+    _SubjectListComponent_67_4 = new import15.SubjectListComponent(this.parentInjector.get(import50.PlaceService),this.parentInjector.get(import51.Router),this.parentInjector.get(import52.Environment),_UserListProvider_67_3,this.parentInjector.get(import55.DomSanitizationService));
     _appEl_67.initComponent(_SubjectListComponent_67_4,compView_67);
     compView_67.createComp([],null);
     Text _text_68 = new Text('\n      ');
@@ -589,7 +589,7 @@ class ViewAppComponent0 extends AppView<import3.AppComponent> {
     _el_76.setAttribute(shimCAttr,'');
     _el_74.append(_el_76);
     _appEl_76 = new ViewContainer(76,74,this,_el_76);
-    var compView_76 = import55.viewFactory_FilesComp0(this.injector(76),_appEl_76);
+    var compView_76 = import56.viewFactory_FilesComp0(this.injector(76),_appEl_76);
     _FilesComp_76_3 = new import16.FilesComp(this.parentInjector.get(import50.PlaceService),this.parentInjector.get(import51.Router),this.parentInjector.get(import52.Environment));
     _appEl_76.initComponent(_FilesComp_76_3,compView_76);
     compView_76.createComp([],null);
@@ -646,14 +646,14 @@ class ViewAppComponent0 extends AppView<import3.AppComponent> {
     if ((identical(token, import8.PopupSourceDirective) && (20 == requestNodeIndex))) { return _PopupSourceDirective_20_2; }
     if ((identical(token, import10.AcxDarkTheme) && ((33 <= requestNodeIndex) && (requestNodeIndex <= 37)))) { return _AcxDarkTheme_33_3; }
     if ((identical(token, import11.MaterialButtonComponent) && ((33 <= requestNodeIndex) && (requestNodeIndex <= 37)))) { return _MaterialButtonComponent_33_4; }
-    if ((identical(token, import56.ButtonDirective) && ((33 <= requestNodeIndex) && (requestNodeIndex <= 37)))) { return _ButtonDirective_33_5; }
+    if ((identical(token, import57.ButtonDirective) && ((33 <= requestNodeIndex) && (requestNodeIndex <= 37)))) { return _ButtonDirective_33_5; }
     if ((identical(token, import10.AcxDarkTheme) && ((39 <= requestNodeIndex) && (requestNodeIndex <= 43)))) { return _AcxDarkTheme_39_3; }
     if ((identical(token, import11.MaterialButtonComponent) && ((39 <= requestNodeIndex) && (requestNodeIndex <= 43)))) { return _MaterialButtonComponent_39_4; }
-    if ((identical(token, import56.ButtonDirective) && ((39 <= requestNodeIndex) && (requestNodeIndex <= 43)))) { return _ButtonDirective_39_5; }
+    if ((identical(token, import57.ButtonDirective) && ((39 <= requestNodeIndex) && (requestNodeIndex <= 43)))) { return _ButtonDirective_39_5; }
     if ((identical(token, import9.MaterialPopupComponent) && ((23 <= requestNodeIndex) && (requestNodeIndex <= 48)))) { return _MaterialPopupComponent_23_3; }
-    if ((identical(token, import57.PopupComponent) && ((23 <= requestNodeIndex) && (requestNodeIndex <= 48)))) { return _PopupComponent_23_4; }
-    if ((identical(token, import58.DropdownHandle) && ((23 <= requestNodeIndex) && (requestNodeIndex <= 48)))) { return _DropdownHandle_23_5; }
-    if ((identical(token, import59.DeferredContentAware) && ((23 <= requestNodeIndex) && (requestNodeIndex <= 48)))) { return _DeferredContentAware_23_6; }
+    if ((identical(token, import58.PopupComponent) && ((23 <= requestNodeIndex) && (requestNodeIndex <= 48)))) { return _PopupComponent_23_4; }
+    if ((identical(token, import59.DropdownHandle) && ((23 <= requestNodeIndex) && (requestNodeIndex <= 48)))) { return _DropdownHandle_23_5; }
+    if ((identical(token, import60.DeferredContentAware) && ((23 <= requestNodeIndex) && (requestNodeIndex <= 48)))) { return _DeferredContentAware_23_6; }
     if ((identical(token, import43.PopupHierarchy) && ((23 <= requestNodeIndex) && (requestNodeIndex <= 48)))) { return _PopupHierarchy_23_7; }
     if ((identical(token, import44.PopupRef) && ((23 <= requestNodeIndex) && (requestNodeIndex <= 48)))) { return _PopupRef_23_8; }
     if ((identical(token, import12.PostitComponent) && (54 == requestNodeIndex))) { return _PostitComponent_54_3; }
@@ -662,7 +662,7 @@ class ViewAppComponent0 extends AppView<import3.AppComponent> {
     if ((identical(token, import15.SubjectListComponent) && (67 == requestNodeIndex))) { return _SubjectListComponent_67_4; }
     if ((identical(token, import16.FilesComp) && (76 == requestNodeIndex))) { return _FilesComp_76_3; }
     if ((identical(token, import25.defaultPopupPositions) && (76 == requestNodeIndex))) { return _defaultPopupPositions_76_4; }
-    if ((identical(token, import60.ManagedZone) && (76 == requestNodeIndex))) { return _ManagedZone_76_5; }
+    if ((identical(token, import61.ManagedZone) && (76 == requestNodeIndex))) { return _ManagedZone_76_5; }
     if ((identical(token, Window) && (76 == requestNodeIndex))) { return _Window_76_6; }
     if ((identical(token, import33.DomService) && (76 == requestNodeIndex))) { return _DomService_76_7; }
     if ((identical(token, import18.AcxImperativeViewUtils) && (76 == requestNodeIndex))) { return _AcxImperativeViewUtils_76_8; }
@@ -684,113 +684,113 @@ class ViewAppComponent0 extends AppView<import3.AppComponent> {
     _NgIf_2_5.ngIf = (ctx.connectedUser == null);
     _NgIf_4_5.ngIf = (ctx.profilePopinVisible != null);
     final currVal_3 = ctx.messages;
-    if (import61.checkBinding(_expr_3,currVal_3)) {
+    if (import62.checkBinding(_expr_3,currVal_3)) {
       _NgFor_15_5.ngForOf = currVal_3;
       _expr_3 = currVal_3;
     }
-    if (!import61.AppViewUtils.throwOnChanges) { _NgFor_15_5.ngDoCheck(); }
+    if (!import62.AppViewUtils.throwOnChanges) { _NgFor_15_5.ngDoCheck(); }
     final currVal_7 = '';
-    if (import61.checkBinding(_expr_7,currVal_7)) {
+    if (import62.checkBinding(_expr_7,currVal_7)) {
       _MaterialPopupComponent_23_3.enforceSpaceConstraints = currVal_7;
       _expr_7 = currVal_7;
     }
     final currVal_8 = _PopupSourceDirective_20_2;
-    if (import61.checkBinding(_expr_8,currVal_8)) {
+    if (import62.checkBinding(_expr_8,currVal_8)) {
       _MaterialPopupComponent_23_3.source = currVal_8;
       _expr_8 = currVal_8;
     }
     final currVal_9 = ctx.profileMenuVisible;
-    if (import61.checkBinding(_expr_9,currVal_9)) {
+    if (import62.checkBinding(_expr_9,currVal_9)) {
       _MaterialPopupComponent_23_3.visible = currVal_9;
       _expr_9 = currVal_9;
     }
     final currVal_36 = 'places';
-    if (import61.checkBinding(_expr_36,currVal_36)) {
+    if (import62.checkBinding(_expr_36,currVal_36)) {
       _PostitComponent_54_3.name = currVal_36;
       _expr_36 = currVal_36;
     }
     final currVal_37 = 'Welcome!';
-    if (import61.checkBinding(_expr_37,currVal_37)) {
+    if (import62.checkBinding(_expr_37,currVal_37)) {
       _PostitComponent_54_3.header = currVal_37;
       _expr_37 = currVal_37;
     }
     final currVal_38 = 'You can create your place on clicking on the + icon';
-    if (import61.checkBinding(_expr_38,currVal_38)) {
+    if (import62.checkBinding(_expr_38,currVal_38)) {
       _PostitComponent_54_3.body = currVal_38;
       _expr_38 = currVal_38;
     }
-    if ((identical(this.cdState, ChangeDetectorState.NeverChecked) && !import61.AppViewUtils.throwOnChanges)) { _PostitComponent_54_3.ngOnInit(); }
-    if ((identical(this.cdState, ChangeDetectorState.NeverChecked) && !import61.AppViewUtils.throwOnChanges)) { _PlacesComponent_56_3.ngOnInit(); }
-    if ((identical(this.cdState, ChangeDetectorState.NeverChecked) && !import61.AppViewUtils.throwOnChanges)) { _SubjectListComponent_67_4.ngOnInit(); }
-    if ((identical(this.cdState, ChangeDetectorState.NeverChecked) && !import61.AppViewUtils.throwOnChanges)) { _FilesComp_76_3.ngOnInit(); }
+    if ((identical(this.cdState, ChangeDetectorState.NeverChecked) && !import62.AppViewUtils.throwOnChanges)) { _PostitComponent_54_3.ngOnInit(); }
+    if ((identical(this.cdState, ChangeDetectorState.NeverChecked) && !import62.AppViewUtils.throwOnChanges)) { _PlacesComponent_56_3.ngOnInit(); }
+    if ((identical(this.cdState, ChangeDetectorState.NeverChecked) && !import62.AppViewUtils.throwOnChanges)) { _SubjectListComponent_67_4.ngOnInit(); }
+    if ((identical(this.cdState, ChangeDetectorState.NeverChecked) && !import62.AppViewUtils.throwOnChanges)) { _FilesComp_76_3.ngOnInit(); }
     this.detectContentChildrenChanges();
-    final currVal_2 = import61.interpolate0(ctx.error);
-    if (import61.checkBinding(_expr_2,currVal_2)) {
+    final currVal_2 = import62.interpolate0(ctx.error);
+    if (import62.checkBinding(_expr_2,currVal_2)) {
       _text_11.text = currVal_2;
       _expr_2 = currVal_2;
     }
-    final currVal_5 = import61.interpolate1('/auth/user/photo/s/',((ctx.connectedUser == null)? null: ctx.connectedUser.id),'');
-    if (import61.checkBinding(_expr_5,currVal_5)) {
-      setProp(_el_20,'src',import61.appViewUtils.sanitizer.sanitizeUrl(currVal_5));
+    final currVal_5 = import62.interpolate1('/auth/user/photo/s/',((ctx.connectedUser == null)? null: ctx.connectedUser.id),'');
+    if (import62.checkBinding(_expr_5,currVal_5)) {
+      setProp(_el_20,'src',import62.appViewUtils.sanitizer.sanitizeUrl(currVal_5));
       _expr_5 = currVal_5;
     }
     final currVal_10 = _MaterialPopupComponent_23_3.uniqueId;
-    if (import61.checkBinding(_expr_10,currVal_10)) {
+    if (import62.checkBinding(_expr_10,currVal_10)) {
       setAttr(_el_23,'pane-id',((currVal_10 == null)? null: currVal_10.toString()));
       _expr_10 = currVal_10;
     }
-    final currVal_11 = import61.interpolate0(((ctx.connectedUser == null)? null: ctx.connectedUser.name));
-    if (import61.checkBinding(_expr_11,currVal_11)) {
+    final currVal_11 = import62.interpolate0(((ctx.connectedUser == null)? null: ctx.connectedUser.name));
+    if (import62.checkBinding(_expr_11,currVal_11)) {
       _text_28.text = currVal_11;
       _expr_11 = currVal_11;
     }
     final currVal_19 = _MaterialButtonComponent_33_4.raised;
-    if (import61.checkBinding(_expr_19,currVal_19)) {
+    if (import62.checkBinding(_expr_19,currVal_19)) {
       updateElemClass(_el_33,'is-raised',currVal_19);
       _expr_19 = currVal_19;
     }
     final currVal_20 = _MaterialButtonComponent_33_4.disabledStr;
-    if (import61.checkBinding(_expr_20,currVal_20)) {
+    if (import62.checkBinding(_expr_20,currVal_20)) {
       setAttr(_el_33,'aria-disabled',((currVal_20 == null)? null: currVal_20.toString()));
       _expr_20 = currVal_20;
     }
     final currVal_21 = _MaterialButtonComponent_33_4.tabIndex;
-    if (import61.checkBinding(_expr_21,currVal_21)) {
+    if (import62.checkBinding(_expr_21,currVal_21)) {
       setAttr(_el_33,'tabindex',((currVal_21 == null)? null: currVal_21.toString()));
       _expr_21 = currVal_21;
     }
     final currVal_22 = _MaterialButtonComponent_33_4.disabled;
-    if (import61.checkBinding(_expr_22,currVal_22)) {
+    if (import62.checkBinding(_expr_22,currVal_22)) {
       updateElemClass(_el_33,'is-disabled',currVal_22);
       _expr_22 = currVal_22;
     }
     final currVal_23 = _MaterialButtonComponent_33_4.zElevation;
-    if (import61.checkBinding(_expr_23,currVal_23)) {
+    if (import62.checkBinding(_expr_23,currVal_23)) {
       setAttr(_el_33,'elevation',((currVal_23 == null)? null: currVal_23.toString()));
       _expr_23 = currVal_23;
     }
     final currVal_31 = _MaterialButtonComponent_39_4.raised;
-    if (import61.checkBinding(_expr_31,currVal_31)) {
+    if (import62.checkBinding(_expr_31,currVal_31)) {
       updateElemClass(_el_39,'is-raised',currVal_31);
       _expr_31 = currVal_31;
     }
     final currVal_32 = _MaterialButtonComponent_39_4.disabledStr;
-    if (import61.checkBinding(_expr_32,currVal_32)) {
+    if (import62.checkBinding(_expr_32,currVal_32)) {
       setAttr(_el_39,'aria-disabled',((currVal_32 == null)? null: currVal_32.toString()));
       _expr_32 = currVal_32;
     }
     final currVal_33 = _MaterialButtonComponent_39_4.tabIndex;
-    if (import61.checkBinding(_expr_33,currVal_33)) {
+    if (import62.checkBinding(_expr_33,currVal_33)) {
       setAttr(_el_39,'tabindex',((currVal_33 == null)? null: currVal_33.toString()));
       _expr_33 = currVal_33;
     }
     final currVal_34 = _MaterialButtonComponent_39_4.disabled;
-    if (import61.checkBinding(_expr_34,currVal_34)) {
+    if (import62.checkBinding(_expr_34,currVal_34)) {
       updateElemClass(_el_39,'is-disabled',currVal_34);
       _expr_34 = currVal_34;
     }
     final currVal_35 = _MaterialButtonComponent_39_4.zElevation;
-    if (import61.checkBinding(_expr_35,currVal_35)) {
+    if (import62.checkBinding(_expr_35,currVal_35)) {
       setAttr(_el_39,'elevation',((currVal_35 == null)? null: currVal_35.toString()));
       _expr_35 = currVal_35;
     }
@@ -875,21 +875,21 @@ class ViewAppComponent0 extends AppView<import3.AppComponent> {
   }
 }
 AppView viewFactory_AppComponent0(import27.Injector parentInjector,ViewContainer declarationEl) {
-  if (identical(renderType_AppComponent, null)) { (renderType_AppComponent = import61.appViewUtils.createRenderComponentType('',0,import62.ViewEncapsulation.Emulated,styles_AppComponent)); }
+  if (identical(renderType_AppComponent, null)) { (renderType_AppComponent = import62.appViewUtils.createRenderComponentType('',0,import63.ViewEncapsulation.Emulated,styles_AppComponent)); }
   return new ViewAppComponent0(parentInjector,declarationEl);
 }
 class ViewAppComponent1 extends AppView<import3.AppComponent> {
   Element _el_0;
   ViewContainer _appEl_0;
-  import63.ModalComponent _ModalComponent_0_3;
+  import64.ModalComponent _ModalComponent_0_3;
   dynamic __DeferredContentAware_0_4;
   dynamic __Modal_0_5;
   Element _el_2;
   ViewContainer _appEl_2;
-  import64.MaterialDialogComponent _MaterialDialogComponent_2_3;
+  import65.MaterialDialogComponent _MaterialDialogComponent_2_3;
   Element _el_4;
   ViewContainer _appEl_4;
-  import65.LoginComp _LoginComp_4_3;
+  import66.LoginComp _LoginComp_4_3;
   var _expr_0 = uninitialized;
   var _expr_1 = uninitialized;
   ViewAppComponent1(import27.Injector parentInjector,ViewContainer declarationEl): super(ViewAppComponent1,renderType_AppComponent,import28.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
@@ -906,23 +906,23 @@ class ViewAppComponent1 extends AppView<import3.AppComponent> {
     _el_0 = doc.createElement('modal');
     _el_0.setAttribute(shimCAttr,'');
     _appEl_0 = new ViewContainer(0,null,this,_el_0);
-    var compView_0 = import66.viewFactory_ModalComponent0(this.injector(0),_appEl_0);
-    _ModalComponent_0_3 = new import63.ModalComponent(this.parentInjector.get(import37.OverlayService),this.parentInjector.get(import63.Modal,null),this.parentInjector.get(import63.GlobalModalStack,null));
+    var compView_0 = import67.viewFactory_ModalComponent0(this.injector(0),_appEl_0);
+    _ModalComponent_0_3 = new import64.ModalComponent(this.parentInjector.get(import37.OverlayService),this.parentInjector.get(import64.Modal,null),this.parentInjector.get(import64.GlobalModalStack,null));
     _appEl_0.initComponent(_ModalComponent_0_3,compView_0);
     Text _text_1 = new Text('\n    ');
     _el_2 = doc.createElement('material-dialog');
     _el_2.setAttribute(shimCAttr,'');
     _el_2.className = 'basic-dialog login_pop';
     _appEl_2 = new ViewContainer(2,0,this,_el_2);
-    var compView_2 = import67.viewFactory_MaterialDialogComponent0(this.injector(2),_appEl_2);
-    _MaterialDialogComponent_2_3 = new import64.MaterialDialogComponent(this.parentInjector.get(import33.DomService),compView_2.ref,_ModalComponent_0_3);
+    var compView_2 = import68.viewFactory_MaterialDialogComponent0(this.injector(2),_appEl_2);
+    _MaterialDialogComponent_2_3 = new import65.MaterialDialogComponent(this.parentInjector.get(import33.DomService),compView_2.ref,_ModalComponent_0_3);
     _appEl_2.initComponent(_MaterialDialogComponent_2_3,compView_2);
     Text _text_3 = new Text('\n      ');
     _el_4 = doc.createElement('login-comp');
     _el_4.setAttribute(shimCAttr,'');
     _appEl_4 = new ViewContainer(4,2,this,_el_4);
-    var compView_4 = import68.viewFactory_LoginComp0(this.injector(4),_appEl_4);
-    _LoginComp_4_3 = new import65.LoginComp(this.parentInjector.get(import50.PlaceService),this.parentInjector.get(import51.Router),this.parentInjector.get(import52.Environment),this.parentInjector.get(import69.DomSanitizationService));
+    var compView_4 = import69.viewFactory_LoginComp0(this.injector(4),_appEl_4);
+    _LoginComp_4_3 = new import66.LoginComp(this.parentInjector.get(import50.PlaceService),this.parentInjector.get(import51.Router),this.parentInjector.get(import52.Environment),this.parentInjector.get(import55.DomSanitizationService));
     _appEl_4.initComponent(_LoginComp_4_3,compView_4);
     compView_4.createComp([],null);
     Text _text_5 = new Text('\n    ');
@@ -945,24 +945,24 @@ class ViewAppComponent1 extends AppView<import3.AppComponent> {
     return null;
   }
   dynamic injectorGetInternal(dynamic token,int requestNodeIndex,dynamic notFoundResult) {
-    if ((identical(token, import65.LoginComp) && (4 == requestNodeIndex))) { return _LoginComp_4_3; }
-    if ((identical(token, import64.MaterialDialogComponent) && ((2 <= requestNodeIndex) && (requestNodeIndex <= 5)))) { return _MaterialDialogComponent_2_3; }
-    if ((identical(token, import63.ModalComponent) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 6)))) { return _ModalComponent_0_3; }
-    if ((identical(token, import59.DeferredContentAware) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 6)))) { return _DeferredContentAware_0_4; }
-    if ((identical(token, import63.Modal) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 6)))) { return _Modal_0_5; }
+    if ((identical(token, import66.LoginComp) && (4 == requestNodeIndex))) { return _LoginComp_4_3; }
+    if ((identical(token, import65.MaterialDialogComponent) && ((2 <= requestNodeIndex) && (requestNodeIndex <= 5)))) { return _MaterialDialogComponent_2_3; }
+    if ((identical(token, import64.ModalComponent) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 6)))) { return _ModalComponent_0_3; }
+    if ((identical(token, import60.DeferredContentAware) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 6)))) { return _DeferredContentAware_0_4; }
+    if ((identical(token, import64.Modal) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 6)))) { return _Modal_0_5; }
     return notFoundResult;
   }
   void detectChangesInternal() {
     final currVal_0 = true;
-    if (import61.checkBinding(_expr_0,currVal_0)) {
+    if (import62.checkBinding(_expr_0,currVal_0)) {
       _ModalComponent_0_3.visible = currVal_0;
       _expr_0 = currVal_0;
     }
-    if ((identical(this.cdState, ChangeDetectorState.NeverChecked) && !import61.AppViewUtils.throwOnChanges)) { _LoginComp_4_3.ngOnInit(); }
+    if ((identical(this.cdState, ChangeDetectorState.NeverChecked) && !import62.AppViewUtils.throwOnChanges)) { _LoginComp_4_3.ngOnInit(); }
     this.detectContentChildrenChanges();
     _MaterialDialogComponent_2_3.ngAfterContentChecked();
     final currVal_1 = _ModalComponent_0_3.uniquePaneId;
-    if (import61.checkBinding(_expr_1,currVal_1)) {
+    if (import62.checkBinding(_expr_1,currVal_1)) {
       setAttr(_el_0,'pane-id',((currVal_1 == null)? null: currVal_1.toString()));
       _expr_1 = currVal_1;
     }
@@ -979,12 +979,12 @@ AppView viewFactory_AppComponent1(import27.Injector parentInjector,ViewContainer
 class ViewAppComponent2 extends AppView<import3.AppComponent> {
   Element _el_0;
   ViewContainer _appEl_0;
-  import63.ModalComponent _ModalComponent_0_3;
+  import64.ModalComponent _ModalComponent_0_3;
   dynamic __DeferredContentAware_0_4;
   dynamic __Modal_0_5;
   Element _el_2;
   ViewContainer _appEl_2;
-  import64.MaterialDialogComponent _MaterialDialogComponent_2_3;
+  import65.MaterialDialogComponent _MaterialDialogComponent_2_3;
   Element _el_4;
   ViewContainer _appEl_4;
   import70.ProfileComp _ProfileComp_4_3;
@@ -1004,16 +1004,16 @@ class ViewAppComponent2 extends AppView<import3.AppComponent> {
     _el_0 = doc.createElement('modal');
     _el_0.setAttribute(shimCAttr,'');
     _appEl_0 = new ViewContainer(0,null,this,_el_0);
-    var compView_0 = import66.viewFactory_ModalComponent0(this.injector(0),_appEl_0);
-    _ModalComponent_0_3 = new import63.ModalComponent(this.parentInjector.get(import37.OverlayService),this.parentInjector.get(import63.Modal,null),this.parentInjector.get(import63.GlobalModalStack,null));
+    var compView_0 = import67.viewFactory_ModalComponent0(this.injector(0),_appEl_0);
+    _ModalComponent_0_3 = new import64.ModalComponent(this.parentInjector.get(import37.OverlayService),this.parentInjector.get(import64.Modal,null),this.parentInjector.get(import64.GlobalModalStack,null));
     _appEl_0.initComponent(_ModalComponent_0_3,compView_0);
     Text _text_1 = new Text('\n    ');
     _el_2 = doc.createElement('material-dialog');
     _el_2.setAttribute(shimCAttr,'');
     _el_2.className = 'basic-dialog profile_pop';
     _appEl_2 = new ViewContainer(2,0,this,_el_2);
-    var compView_2 = import67.viewFactory_MaterialDialogComponent0(this.injector(2),_appEl_2);
-    _MaterialDialogComponent_2_3 = new import64.MaterialDialogComponent(this.parentInjector.get(import33.DomService),compView_2.ref,_ModalComponent_0_3);
+    var compView_2 = import68.viewFactory_MaterialDialogComponent0(this.injector(2),_appEl_2);
+    _MaterialDialogComponent_2_3 = new import65.MaterialDialogComponent(this.parentInjector.get(import33.DomService),compView_2.ref,_ModalComponent_0_3);
     _appEl_2.initComponent(_MaterialDialogComponent_2_3,compView_2);
     Text _text_3 = new Text('\n      ');
     _el_4 = doc.createElement('profile-comp');
@@ -1044,23 +1044,23 @@ class ViewAppComponent2 extends AppView<import3.AppComponent> {
   }
   dynamic injectorGetInternal(dynamic token,int requestNodeIndex,dynamic notFoundResult) {
     if ((identical(token, import70.ProfileComp) && (4 == requestNodeIndex))) { return _ProfileComp_4_3; }
-    if ((identical(token, import64.MaterialDialogComponent) && ((2 <= requestNodeIndex) && (requestNodeIndex <= 5)))) { return _MaterialDialogComponent_2_3; }
-    if ((identical(token, import63.ModalComponent) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 6)))) { return _ModalComponent_0_3; }
-    if ((identical(token, import59.DeferredContentAware) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 6)))) { return _DeferredContentAware_0_4; }
-    if ((identical(token, import63.Modal) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 6)))) { return _Modal_0_5; }
+    if ((identical(token, import65.MaterialDialogComponent) && ((2 <= requestNodeIndex) && (requestNodeIndex <= 5)))) { return _MaterialDialogComponent_2_3; }
+    if ((identical(token, import64.ModalComponent) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 6)))) { return _ModalComponent_0_3; }
+    if ((identical(token, import60.DeferredContentAware) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 6)))) { return _DeferredContentAware_0_4; }
+    if ((identical(token, import64.Modal) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 6)))) { return _Modal_0_5; }
     return notFoundResult;
   }
   void detectChangesInternal() {
     final currVal_0 = ctx.profilePopinVisible;
-    if (import61.checkBinding(_expr_0,currVal_0)) {
+    if (import62.checkBinding(_expr_0,currVal_0)) {
       _ModalComponent_0_3.visible = currVal_0;
       _expr_0 = currVal_0;
     }
-    if ((identical(this.cdState, ChangeDetectorState.NeverChecked) && !import61.AppViewUtils.throwOnChanges)) { _ProfileComp_4_3.ngOnInit(); }
+    if ((identical(this.cdState, ChangeDetectorState.NeverChecked) && !import62.AppViewUtils.throwOnChanges)) { _ProfileComp_4_3.ngOnInit(); }
     this.detectContentChildrenChanges();
     _MaterialDialogComponent_2_3.ngAfterContentChecked();
     final currVal_1 = _ModalComponent_0_3.uniquePaneId;
-    if (import61.checkBinding(_expr_1,currVal_1)) {
+    if (import62.checkBinding(_expr_1,currVal_1)) {
       setAttr(_el_0,'pane-id',((currVal_1 == null)? null: currVal_1.toString()));
       _expr_1 = currVal_1;
     }
@@ -1093,8 +1093,8 @@ class ViewAppComponent3 extends AppView<import3.AppComponent> {
   }
   void detectChangesInternal() {
     this.detectContentChildrenChanges();
-    final currVal_0 = import61.interpolate0(locals['\$implicit']);
-    if (import61.checkBinding(_expr_0,currVal_0)) {
+    final currVal_0 = import62.interpolate0(locals['\$implicit']);
+    if (import62.checkBinding(_expr_0,currVal_0)) {
       _text_1.text = currVal_0;
       _expr_0 = currVal_0;
     }
@@ -1230,7 +1230,7 @@ class ViewAppComponentHost0 extends AppView<dynamic> {
     if ((identical(token, import50.PlaceService) && (0 == requestNodeIndex))) { return _PlaceService_0_9; }
     if ((identical(token, import3.AppComponent) && (0 == requestNodeIndex))) { return _AppComponent_0_10; }
     if ((identical(token, import25.defaultPopupPositions) && (0 == requestNodeIndex))) { return _defaultPopupPositions_0_11; }
-    if ((identical(token, import60.ManagedZone) && (0 == requestNodeIndex))) { return _ManagedZone_0_12; }
+    if ((identical(token, import61.ManagedZone) && (0 == requestNodeIndex))) { return _ManagedZone_0_12; }
     if ((identical(token, Window) && (0 == requestNodeIndex))) { return _Window_0_13; }
     if ((identical(token, import33.DomService) && (0 == requestNodeIndex))) { return _DomService_0_14; }
     if ((identical(token, import18.AcxImperativeViewUtils) && (0 == requestNodeIndex))) { return _AcxImperativeViewUtils_0_15; }
@@ -1249,13 +1249,13 @@ class ViewAppComponentHost0 extends AppView<dynamic> {
     return notFoundResult;
   }
   void detectChangesInternal() {
-    if ((identical(this.cdState, ChangeDetectorState.NeverChecked) && !import61.AppViewUtils.throwOnChanges)) { _AppComponent_0_10.ngOnInit(); }
+    if ((identical(this.cdState, ChangeDetectorState.NeverChecked) && !import62.AppViewUtils.throwOnChanges)) { _AppComponent_0_10.ngOnInit(); }
     this.detectContentChildrenChanges();
     this.detectViewChildrenChanges();
   }
 }
 AppView viewFactory_AppComponentHost0(import27.Injector parentInjector,ViewContainer declarationEl) {
-  if (identical(renderType_AppComponentHost, null)) { (renderType_AppComponentHost = import61.appViewUtils.createRenderComponentType('',0,import62.ViewEncapsulation.Emulated,styles_AppComponentHost)); }
+  if (identical(renderType_AppComponentHost, null)) { (renderType_AppComponentHost = import62.appViewUtils.createRenderComponentType('',0,import63.ViewEncapsulation.Emulated,styles_AppComponentHost)); }
   return new ViewAppComponentHost0(parentInjector,declarationEl);
 }
 const import81.ComponentFactory AppComponentNgFactory = const import81.ComponentFactory('my-app',viewFactory_AppComponentHost0,import3.AppComponent,_METADATA);

@@ -5,7 +5,7 @@
 'use strict';
 
 var constants = require('./app_config');
-if(constants.debugServer){
+if (constants.debugServer) {
   global.onLine = true;
   global.homeDir = "C:/Users/Marwen";
 }
@@ -27,7 +27,7 @@ var http = require('http');
 var routesApi = require('./app_api/routes/index'); //MongoDb Routes Api
 var cookieParser = require('cookie-parser');
 var session = require('express-session');//npm session module
-var NedbStore = require('nedb-session-store')( session );
+var NedbStore = require('nedb-session-store')(session);
 
 
 //passport require
@@ -39,11 +39,11 @@ var globalService = require('./app_api/global');
 var app = express();
 
 
-app.use(express.static(path.join(__dirname ,'public')));
+app.use(express.static(path.join(__dirname, 'public')));
 // routes ======================================================================
 var loginApi = require('./app_api/routes/login_api');
 var store = new NedbStore({
-  filename: path.join(constants.dataDir,'openSession.db')
+  filename: path.join(constants.dataDir, 'openSession.db')
 });
 
 app.use(function errorHandler(err, req, res, next) {
@@ -101,11 +101,31 @@ function isAuthenticatedRest(req, res, next) {
   }
   if (req.url.indexOf("/cron") != -1) {
     return next();
-  }
-  else {
+  } else {
     globalService.sendJsonResponse(res, 401, {error: 'not connected'});
   }
 }
+app.use('/refreshUser', (req, res, next) => authenticate(req, res, next, 'refresh-user'));
+
+var authenticate = (req, res, next, strategy) => {
+
+    passport.authenticate(strategy, (err, user, info) => {
+
+
+      req.login(user, {}, function (err) {
+
+        if (err) {
+          return next(err)
+        }
+
+        return res.redirect("http://localhost:"+global.serverPort+"/web");
+      });
+
+    })(req, res, next);
+
+
+}
+
 
 //app.use(isAuthenticated, express.static(path.join(__dirname, 'public/')));
 
@@ -133,7 +153,7 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-if(constants.debugServer){
+if (constants.debugServer) {
   app.set('port', 3001);
   var server = http.createServer(app);
   server.listen(3001);

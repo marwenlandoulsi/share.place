@@ -47,13 +47,12 @@ import 'package:angular2/src/core/linker/template_ref.dart';
 import 'package:angular2/src/core/change_detection/differs/iterable_differs.dart' as import11;
 import 'package:angular2/src/core/linker/app_view_utils.dart' as import12;
 import 'package:angular2/src/core/metadata/view.dart' as import13;
-import 'package:angular2/src/common/directives/ng_if.dart';
-import 'user_list_provider.dart' as import15;
-import '../environment.dart' as import16;
-import '../place_service.dart' as import17;
-import 'package:angular2/src/router/router.dart' as import18;
-import 'package:angular2/src/security/dom_sanitization_service.dart' as import19;
-import 'package:angular2/src/core/linker/component_factory.dart' as import20;
+import 'user_list_provider.dart' as import14;
+import '../environment.dart' as import15;
+import '../place_service.dart' as import16;
+import 'package:angular2/src/router/router.dart' as import17;
+import 'package:angular2/src/security/dom_sanitization_service.dart' as import18;
+import 'package:angular2/src/core/linker/component_factory.dart' as import19;
 const List<dynamic> styles_UsersComp = const [import0.styles];
 RenderComponentType renderType_UsersComp;
 class ViewUsersComp0 extends AppView<import3.UsersComp> {
@@ -170,13 +169,8 @@ class ViewUsersComp1 extends AppView<import3.UsersComp> {
   Element _el_2;
   Element _el_4;
   Text _text_5;
-  AnchorElement _el_7;
-  ViewContainer _appEl_8;
-  dynamic _TemplateRef_8_4;
-  NgIf _NgIf_8_5;
   var _expr_0 = uninitialized;
   var _expr_1 = uninitialized;
-  var _expr_2 = uninitialized;
   ViewUsersComp1(import8.Injector parentInjector,ViewContainer declarationEl): super(ViewUsersComp1,renderType_UsersComp,import9.ViewType.EMBEDDED,{'\$implicit': null},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
   ViewContainer createInternal(dynamic rootSelector) {
     var doc = document;
@@ -197,31 +191,15 @@ class ViewUsersComp1 extends AppView<import3.UsersComp> {
     _el_4.className = 'userName';
     _text_5 = new Text('');
     _el_4.append(_text_5);
-    Text _text_6 = new Text('\n      ');
+    Text _text_6 = new Text('\n    ');
     _el_0.append(_text_6);
-    _el_7 = doc.createElement('a');
-    _el_7.setAttribute(shimCAttr,'');
-    _el_0.append(_el_7);
-    var _anchor_8 = new Comment('template bindings={}');
-    _el_7?.append(_anchor_8);
-    _appEl_8 = new ViewContainer(8,7,this,_anchor_8);
-    _TemplateRef_8_4 = new TemplateRef(_appEl_8,viewFactory_UsersComp2);
-    _NgIf_8_5 = new NgIf(_appEl_8,_TemplateRef_8_4);
-    Text _text_9 = new Text('\n    ');
-    _el_0.append(_text_9);
     init([_el_0],[
-      _el_0,_text_1,_el_2,_text_3,_el_4,_text_5,_text_6,_el_7,_anchor_8,_text_9
+      _el_0,_text_1,_el_2,_text_3,_el_4,_text_5,_text_6
     ]
     ,[]);
     return null;
   }
-  dynamic injectorGetInternal(dynamic token,int requestNodeIndex,dynamic notFoundResult) {
-    if ((identical(token, TemplateRef) && (8 == requestNodeIndex))) { return _TemplateRef_8_4; }
-    if ((identical(token, NgIf) && (8 == requestNodeIndex))) { return _NgIf_8_5; }
-    return notFoundResult;
-  }
   void detectChangesInternal() {
-    _NgIf_8_5.ngIf = (locals['\$implicit'].skype != null);
     this.detectContentChildrenChanges();
     final currVal_0 = import12.interpolate1('/auth/user/photo/s/',locals['\$implicit'].id,'');
     if (import12.checkBinding(_expr_0,currVal_0)) {
@@ -233,53 +211,33 @@ class ViewUsersComp1 extends AppView<import3.UsersComp> {
       _text_5.text = currVal_1;
       _expr_1 = currVal_1;
     }
-    final currVal_2 = import12.interpolate0(ctx.skypeUrlFor(locals['\$implicit']));
-    if (import12.checkBinding(_expr_2,currVal_2)) {
-      setProp(_el_7,'href',import12.appViewUtils.sanitizer.sanitizeUrl(currVal_2));
-      _expr_2 = currVal_2;
-    }
     this.detectViewChildrenChanges();
   }
 }
 AppView viewFactory_UsersComp1(import8.Injector parentInjector,ViewContainer declarationEl) {
   return new ViewUsersComp1(parentInjector,declarationEl);
 }
-class ViewUsersComp2 extends AppView<import3.UsersComp> {
-  Element _el_0;
-  ViewUsersComp2(import8.Injector parentInjector,ViewContainer declarationEl): super(ViewUsersComp2,renderType_UsersComp,import9.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
-  ViewContainer createInternal(dynamic rootSelector) {
-    var doc = document;
-    _el_0 = doc.createElement('div');
-    _el_0.setAttribute(shimCAttr,'');
-    _el_0.className = 'fa fa-skype';
-    init([_el_0],[_el_0],[]);
-    return null;
-  }
-}
-AppView viewFactory_UsersComp2(import8.Injector parentInjector,ViewContainer declarationEl) {
-  return new ViewUsersComp2(parentInjector,declarationEl);
-}
 const List<dynamic> styles_UsersCompHost = const [];
 RenderComponentType renderType_UsersCompHost;
 class ViewUsersCompHost0 extends AppView<dynamic> {
   Element _el_0;
   ViewContainer _appEl_0;
-  import15.UserListProvider _UserListProvider_0_3;
+  import14.UserListProvider _UserListProvider_0_3;
   import3.UsersComp _UsersComp_0_4;
   ViewUsersCompHost0(import8.Injector parentInjector,ViewContainer declarationEl): super(ViewUsersCompHost0,renderType_UsersCompHost,import9.ViewType.HOST,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
   ViewContainer createInternal(dynamic rootSelector) {
     _el_0 = selectOrCreateHostElement('users-comp',rootSelector,null);
     _appEl_0 = new ViewContainer(0,null,this,_el_0);
     var compView_0 = viewFactory_UsersComp0(this.injector(0),_appEl_0);
-    _UserListProvider_0_3 = new import15.UserListProvider(this.parentInjector.get(import16.Environment),this.parentInjector.get(import17.PlaceService));
-    _UsersComp_0_4 = new import3.UsersComp(this.parentInjector.get(import17.PlaceService),this.parentInjector.get(import18.Router),this.parentInjector.get(import16.Environment),this.parentInjector.get(import19.DomSanitizationService),_UserListProvider_0_3);
+    _UserListProvider_0_3 = new import14.UserListProvider(this.parentInjector.get(import15.Environment),this.parentInjector.get(import16.PlaceService));
+    _UsersComp_0_4 = new import3.UsersComp(this.parentInjector.get(import16.PlaceService),this.parentInjector.get(import17.Router),this.parentInjector.get(import15.Environment),this.parentInjector.get(import18.DomSanitizationService),_UserListProvider_0_3);
     _appEl_0.initComponent(_UsersComp_0_4,compView_0);
     compView_0.createComp(projectableNodes,null);
     init([_el_0],[_el_0],[]);
     return _appEl_0;
   }
   dynamic injectorGetInternal(dynamic token,int requestNodeIndex,dynamic notFoundResult) {
-    if ((identical(token, import15.UserListProvider) && (0 == requestNodeIndex))) { return _UserListProvider_0_3; }
+    if ((identical(token, import14.UserListProvider) && (0 == requestNodeIndex))) { return _UserListProvider_0_3; }
     if ((identical(token, import3.UsersComp) && (0 == requestNodeIndex))) { return _UsersComp_0_4; }
     return notFoundResult;
   }
@@ -293,7 +251,7 @@ AppView viewFactory_UsersCompHost0(import8.Injector parentInjector,ViewContainer
   if (identical(renderType_UsersCompHost, null)) { (renderType_UsersCompHost = import12.appViewUtils.createRenderComponentType('',0,import13.ViewEncapsulation.Emulated,styles_UsersCompHost)); }
   return new ViewUsersCompHost0(parentInjector,declarationEl);
 }
-const import20.ComponentFactory UsersCompNgFactory = const import20.ComponentFactory('users-comp',viewFactory_UsersCompHost0,import3.UsersComp,_METADATA);
+const import19.ComponentFactory UsersCompNgFactory = const import19.ComponentFactory('users-comp',viewFactory_UsersCompHost0,import3.UsersComp,_METADATA);
 const _METADATA = const <dynamic>[UsersComp, const <dynamic>[]];
 var _visited = false;
 void initReflector() {

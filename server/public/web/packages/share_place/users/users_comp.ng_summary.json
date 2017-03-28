@@ -215,7 +215,7 @@
       ],
       "template": {
         "encapsulation": 0,
-        "template": "<div class=\"users\">\r\n  <div class=\"titleDiv\">\r\n    <!--<btn (click)=\"add()\"-->\r\n         <!--[sources]=\"['../images/addPerson.png', '../images/addPerson-h.png', '../images/addPerson-c.png']\"-->\r\n         <!--class=\"addBtn\" [disabled]=\"selectedPlace==null\"></btn>-->\r\n    <div class=\"title\">\r\n        <div class=\"hTitlein\">People</div>\r\n    </div>\r\n  </div>\r\n  <div class=\"subtitle\">in {{selectedPlace?.name}}</div>\r\n  <ul class=\"list\">\r\n\r\n    <li *ngFor=\"let userItem of users\" class=\"user\">\r\n      <img src=\"/auth/user/photo/s/{{userItem.id}}\" class=\"profileImg\">\r\n      <div class=\"userName\">{{userItem?.name}}</div>\r\n      <a href=\"{{skypeUrlFor(userItem)}}\"><div *ngIf=\"userItem.skype != null\" class=\"fa fa-skype\"></div></a>\r\n    </li>\r\n  </ul>\r\n</div>",
+        "template": "<div class=\"users\">\r\n  <div class=\"titleDiv\">\r\n    <!--<btn (click)=\"add()\"-->\r\n         <!--[sources]=\"['../images/addPerson.png', '../images/addPerson-h.png', '../images/addPerson-c.png']\"-->\r\n         <!--class=\"addBtn\" [disabled]=\"selectedPlace==null\"></btn>-->\r\n    <div class=\"title\">\r\n        <div class=\"hTitlein\">People</div>\r\n    </div>\r\n  </div>\r\n  <div class=\"subtitle\">in {{selectedPlace?.name}}</div>\r\n  <ul class=\"list\">\r\n\r\n    <li *ngFor=\"let userItem of users\" class=\"user\">\r\n      <img src=\"/auth/user/photo/s/{{userItem.id}}\" class=\"profileImg\">\r\n      <div class=\"userName\">{{userItem?.name}}</div>\r\n    </li>\r\n  </ul>\r\n</div>",
         "templateUrl": "asset:share_place/lib/users/users_comp.html",
         "styles": [],
         "styleUrls": [

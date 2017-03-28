@@ -1,7 +1,7 @@
 /* The Modal (background) */
 
 #inviteUsers {
-  width: 31em;
+  width: 57em;
 }
 
 h4, h5 {
@@ -16,11 +16,17 @@ h4, h5 {
   float: right;
 }
 
+.modal-title {
+  color: white;
+  font-weight: bold;
+}
+
 .close:hover {
   opacity: 0.5;
 }
 
-p {
+.pInvite {
+  width: 60%;
   margin-bottom: 25px;
   margin-top: 3px;
 }
@@ -45,11 +51,6 @@ h4 {
   background-color: rgba(0, 0, 0, 0.4);
 }
 
-tbody {
-  /*width: 100% !important;*/
-  /*background-color: turquoise !important;*/
-}
-
 .modal-content {
   margin: auto;
   float: none;
@@ -57,7 +58,7 @@ tbody {
 }
 
 .modal-header {
-  background-color: #273B54;
+  background-color: #262D40;
   color: #fff;
   padding: 0.7em;
 }
@@ -90,7 +91,7 @@ input.mailToAdd {
 
 role-chooser-comp {
   display: inline-block;
-  float: right;
+  width: 75%;
 }
 
 .modal-header button.close {
@@ -99,20 +100,33 @@ role-chooser-comp {
 }
 
 .labelinvit {
-  text-align: left;
-  font-size: 12px;
+  font-size: 1em;
   font-weight: bold;
   color: #000;
   display: block;
-  margin-bottom: 3px;
+  margin-bottom: 0;
+  text-align: left;
 }
-
-.textright {
-  text-align: right !important;
+.magBtm{
+  margin-bottom: 1em;
 }
-
 .invites {
   width: 100%;
+}
+
+.p_invi {
+  display: inline-block;
+  width: 31%;
+  font-size: 0.9em;
+  line-height: 1.2;
+  float: left;
+  font-weight: normal;
+  /*word-break: break-all;*/
+  margin: 0 0.8em 0 0;
+}
+
+.p_invi .fStrong {
+  font-weight: bold;
 }
 
 .emailinp {
@@ -168,4 +182,7 @@ material-input.themeable {
 
 material-input.themeable {
   width: 100%;
+}
+.textCenter, .rolesLine {
+  text-align: center;
 }

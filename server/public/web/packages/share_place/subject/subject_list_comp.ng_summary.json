@@ -23,6 +23,10 @@
         "5": false
       },
       {
+        "1": "package:angular2/security.dart",
+        "5": false
+      },
+      {
         "1": "package:share_place/environment.dart",
         "5": false
       },
@@ -94,6 +98,10 @@
           {
             "1": "UserListProvider",
             "4": "_userListProvider"
+          },
+          {
+            "1": "DomSanitizationService",
+            "4": "urlSanitizer"
           }
         ],
         "6": [
@@ -213,6 +221,26 @@
             "isSkipSelf": false,
             "isOptional": false,
             "isValue": false
+          },
+          {
+            "token": {
+              "value": null,
+              "identifier": {
+                "class": "Identifier",
+                "name": "DomSanitizationService",
+                "moduleUrl": null,
+                "prefix": null,
+                "value": null
+              },
+              "identifierIsInstance": false
+            },
+            "value": null,
+            "isAttribute": false,
+            "isSelf": false,
+            "isHost": false,
+            "isSkipSelf": false,
+            "isOptional": false,
+            "isValue": false
           }
         ]
       },
@@ -228,7 +256,7 @@
       ],
       "template": {
         "encapsulation": 0,
-        "template": "<div *ngIf=\"selectedFolder != null\" class=\"subjects\">\r\n\r\n  <material-popup [(visible)]=\"infoPopupOpen\" [source]=\"userInfoPopup\">\r\n    <div class=\"userInfoPopup\">\r\n      <div class=\"userInfo name\"><span>{{infoPopupUser?.name}}</span></div>\r\n      <div class=\"userInfo role\">{{getRoleStr(infoPopupUser)}}</div>\r\n      <div class=\"userInfo email\">{{getEmail(infoPopupUser)}}</div>\r\n      <div class=\"userInfo skype\"> <span class=\"txtskype\">Text:</span>  andjones</div>\r\n      <div class=\"userInfo skype\"> <span class=\"txtskype\">Call:</span> andjones </div>\r\n      <div class=\"userInfo timezone\"> Timezone UTC-7  9:24 am </div>\r\n\r\n      <div class=\"userInfo lastcnx\">Last connection: 5 mn ago</div>\r\n    </div>\r\n  </material-popup>\r\n\r\n  <div class=\"title\">{{selectedFolder.name}}\r\n\r\n    <postit-comp [name]=\"'subjects'\" [header]=\"'Great!'\"\r\n                 [body]=\"'Now invite some poople to join you clicking on the + icon'\"\r\n                 class=\"subjectsPostit\"></postit-comp>\r\n\r\n    <btn (click)=\"add()\"\r\n         [sources]=\"['../images/add-poeple.png', '../images/add-poeple.png', '../images/add-poeple.png']\"\r\n         class=\"addBtn addpeople\" [disabled]=\"selectedFolder==null\"></btn>\r\n\r\n    <modal [visible]=\"adding\">\r\n      <material-dialog defaultPopupSizeProvider\r\n                       enforceSpaceConstraints\r\n                       class=\"profilemenuvisible\">\r\n        <invite-users-dialog></invite-users-dialog>\r\n      </material-dialog>\r\n    </modal>\r\n    <!-- emplacement des users  -->\r\n    <ul class=\"users_list\" popupSource\r\n        #userInfoPopup=\"popupSource\">\r\n      <li *ngFor=\"let userItem of users\" class=\"useractive\" [class.approver]=\"isApprover(userItem)\"\r\n          (click)=\"userInfoRequested =userItem\">\r\n        <img src=\"/auth/user/photo/s/{{userItem.id}}\">\r\n      </li>\r\n\r\n\r\n    </ul>\r\n  </div>\r\n\r\n  <div>\r\n    <ul class=\"subjectList\">\r\n      <div class=\"newTopic\">\r\n        <div class=\"newTopicBlock\">\r\n          <input type=\"text\" #text (keyup.enter)=\"createQuickNote(text.value);text.value='';\"\r\n                 placeholder=\"Start a topic...\"\r\n                 class=\"txt\"/>\r\n          <div (click)=\"createQuickNote(text.value);text.value=''\" class=\"btn_valid\"></div>\r\n        </div>\r\n      </div>\r\n      <li *ngFor=\"let subject of subjects\" (click)=\"gotoSubject(subject)\" class=\"subjectItem\"\r\n          [class.qNote]=\"subject.dataType == 'quickNote'\"\r\n          [class.selected]=\"selectedSubject != null && subject.id == selectedSubject.id\"\r\n          [class.approved]=\"subject.approved != null\"\r\n          [class.locked]=\"subject.lockOwner != null\">\r\n        <div *ngIf=\"renaming == null || renaming?.id != subject?.id\" class=\"subject\">\r\n          <div class=\"thumb\"><img\r\n              src=\"/sp/place/{{selectedPlace.id}}/folder/{{selectedFolder?.id}}/file/{{subject.fileId}}/version/{{subject.v}}/thumb\">\r\n          </div>\r\n          <div class=\"name\">{{subject.name}}</div>\r\n\r\n          <div class=\"users\">\r\n            <ul>\r\n              <li *ngFor=\"let activeUser of subject.users\" class=\"user\">\r\n                <div class=\"profileImg\" [class.validator]=\"activeUser.role == 'admin'\"><img\r\n                    src=\"/auth/user/photo/s/{{activeUser.userId}}\"></div>\r\n              </li>\r\n            </ul>\r\n          </div>\r\n          <div *ngIf=\"subject.dataType == 'file'\" class=\"version\"> V.{{subject.v}}</div>\r\n        </div>\r\n        <input *ngIf=\"renaming != null && renaming.id == subject?.id\" type=\"text\" #folderRenamer\r\n               value=\"{{subject.name}}\"\r\n               (keydown.enter)=\"doRename(folderRenamer.value)\" class=\"editSubject\"/>\r\n      </li>\r\n    </ul>\r\n\r\n    <form id=\"fileForm\" #upload class=\"uploadDropZone\"\r\n          (dragenter)=\"upload.style.setProperty('border', '2px solid #9FC8FA')\"\r\n          (drop)=\"upload.style.setProperty('border', '2px dotted #273B54');\">\r\n      <label id=\"labelfileupload\" for=\"fileupload\"> Drag'n drop or browse file </label>\r\n      <input type=\"file\" id=\"fileupload\" (change)=\"uploadFiles()\" class=\"uploadFile\" name=\"toUpload\"\r\n             style=\"opacity: 0\"/>\r\n\r\n      <postit-comp [name]=\"'files'\" [header]=\"'Cool !'\"\r\n                   [body]=\"'Now you can Drag\\'n drop a file here and start collaborate with your team '\"\r\n                   class=\"filesPostit\"></postit-comp>\r\n    </form>\r\n  </div>\r\n</div>",
+        "template": "<div *ngIf=\"selectedFolder != null\" class=\"subjects\">\r\n\r\n  <material-popup *ngIf=\"infoPopupOpen\" [(visible)]=\"infoPopupOpen\" [source]=\"userInfoPopup\">\r\n    <div class=\"userInfoPopup\">\r\n      <div class=\"userInfo name\"><span>{{infoPopupUser?.name}}</span></div>\r\n      <div class=\"userInfo role\">{{getRoleStr(infoPopupUser)}}</div>\r\n      <div class=\"userInfo email\">{{getEmail(infoPopupUser)}}</div>\r\n\r\n\r\n      <div  *ngIf=\"infoPopupUser?.skype != null\" class=\"userInfo skype\"> <span class=\"txtskype\">Call:</span>  <a href=\"{{skypeUrlFor(infoPopupUser ,true)}}\"> skype:{{infoPopupUser?.skype}}?call  </a> </div>\r\n      <div  *ngIf=\"infoPopupUser?.skype != null\"  class=\"userInfo skype\"> <span class=\"txtskype\">Text:</span>  <a href=\"{{skypeUrlFor(infoPopupUser ,false)}}\"> skype:{{infoPopupUser?.skype}}?chat  </a> </div>\r\n\r\n\r\n      <div class=\"userInfo timezone\"> Timezone UTC-7  9:24 am </div>\r\n\r\n      <div class=\"userInfo lastcnx\">Last connection: 5 mn ago</div>\r\n    </div>\r\n  </material-popup>\r\n\r\n  <div class=\"title\">{{selectedFolder.name}}\r\n\r\n    <postit-comp [name]=\"'subjects'\" [header]=\"'Great!'\"\r\n                 [body]=\"'Now invite some poople to join you clicking on the + icon'\"\r\n                 class=\"subjectsPostit\"></postit-comp>\r\n\r\n    <btn (click)=\"add()\"\r\n         [sources]=\"['../images/add-poeple.png', '../images/add-poeple.png', '../images/add-poeple.png']\"\r\n         class=\"addBtn addpeople\" [disabled]=\"selectedFolder==null\"></btn>\r\n\r\n    <modal [visible]=\"adding\">\r\n      <material-dialog defaultPopupSizeProvider\r\n                       enforceSpaceConstraints\r\n                       class=\"profilemenuvisible\">\r\n        <invite-users-dialog></invite-users-dialog>\r\n      </material-dialog>\r\n    </modal>\r\n    <!-- emplacement des users  -->\r\n    <ul class=\"users_list\" popupSource\r\n        #userInfoPopup=\"popupSource\">\r\n      <li *ngFor=\"let userItem of users\" class=\"useractive\" [class.approver]=\"isApprover(userItem)\"\r\n          (click)=\"userInfoRequested=userItem\">\r\n        <img src=\"/auth/user/photo/s/{{userItem.id}}\">\r\n      </li>\r\n\r\n\r\n    </ul>\r\n  </div>\r\n\r\n  <div>\r\n    <ul class=\"subjectList\">\r\n      <div class=\"newTopic\">\r\n        <div class=\"newTopicBlock\">\r\n          <input type=\"text\" #text (keyup.enter)=\"createQuickNote(text.value);text.value='';\"\r\n                 placeholder=\"Start a topic...\"\r\n                 class=\"txt\"/>\r\n          <div (click)=\"createQuickNote(text.value);text.value=''\" class=\"btn_valid\"></div>\r\n        </div>\r\n      </div>\r\n      <li *ngFor=\"let subject of subjects\" (click)=\"gotoSubject(subject)\" class=\"subjectItem\"\r\n          [class.qNote]=\"subject.dataType == 'quickNote'\"\r\n          [class.selected]=\"selectedSubject != null && subject.id == selectedSubject.id\"\r\n          [class.approved]=\"subject.approved != null\"\r\n          [class.locked]=\"subject.lockOwner != null\">\r\n        <div *ngIf=\"renaming == null || renaming?.id != subject?.id\" class=\"subject\">\r\n          <div class=\"thumb\"><img\r\n              src=\"/sp/place/{{selectedPlace.id}}/folder/{{selectedFolder?.id}}/file/{{subject.fileId}}/version/{{subject.v}}/thumb\">\r\n          </div>\r\n          <div class=\"name\">{{subject.name}}</div>\r\n          <div *ngIf=\"subject.dataType == 'file'\" class=\"version\"> V.{{subject.v}}</div>\r\n          <div class=\"users\">\r\n            <ul>\r\n              <li *ngFor=\"let activeUser of subject.users\" class=\"user\">\r\n                <div class=\"profileImg\" [class.validator]=\"activeUser.role == 'admin'\"><img\r\n                    src=\"/auth/user/photo/s/{{activeUser.userId}}\"></div>\r\n              </li>\r\n            </ul>\r\n          </div>\r\n\r\n\r\n          <div class=\"clearfix\"></div>\r\n        </div>\r\n        <input *ngIf=\"renaming != null && renaming.id == subject?.id\" type=\"text\" #folderRenamer\r\n               value=\"{{subject.name}}\"\r\n               (keydown.enter)=\"doRename(folderRenamer.value)\" class=\"editSubject\"/>\r\n        <div class=\"clearfix\"></div>\r\n      </li>\r\n    </ul>\r\n\r\n    <form id=\"fileForm\" #upload class=\"uploadDropZone\"\r\n          (dragenter)=\"upload.style.setProperty('border', '2px solid #9FC8FA')\"\r\n          (drop)=\"upload.style.setProperty('border', '2px dotted #273B54');\">\r\n      <label id=\"labelfileupload\" for=\"fileupload\"> Drag'n drop or browse file </label>\r\n      <input type=\"file\" id=\"fileupload\" (change)=\"uploadFiles()\" class=\"uploadFile\" name=\"toUpload\"\r\n             style=\"opacity: 0\"/>\r\n\r\n      <postit-comp [name]=\"'files'\" [header]=\"'Cool !'\"\r\n                   [body]=\"'Now you can Drag\\'n drop a file here and start collaborate with your team '\"\r\n                   class=\"filesPostit\"></postit-comp>\r\n    </form>\r\n  </div>\r\n</div>",
         "templateUrl": "asset:share_place/lib/subject/subject_list_comp.html",
         "styles": [],
         "styleUrls": [

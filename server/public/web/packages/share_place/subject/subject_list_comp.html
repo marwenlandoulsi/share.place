@@ -1,12 +1,16 @@
 <div *ngIf="selectedFolder != null" class="subjects">
 
-  <material-popup [(visible)]="infoPopupOpen" [source]="userInfoPopup">
+  <material-popup *ngIf="infoPopupOpen" [(visible)]="infoPopupOpen" [source]="userInfoPopup">
     <div class="userInfoPopup">
       <div class="userInfo name"><span>{{infoPopupUser?.name}}</span></div>
       <div class="userInfo role">{{getRoleStr(infoPopupUser)}}</div>
       <div class="userInfo email">{{getEmail(infoPopupUser)}}</div>
-      <div class="userInfo skype"> <span class="txtskype">Text:</span>  andjones</div>
-      <div class="userInfo skype"> <span class="txtskype">Call:</span> andjones </div>
+
+
+      <div  *ngIf="infoPopupUser?.skype != null" class="userInfo skype"> <span class="txtskype">Call:</span>  <a href="{{skypeUrlFor(infoPopupUser ,true)}}"> skype:{{infoPopupUser?.skype}}?call  </a> </div>
+      <div  *ngIf="infoPopupUser?.skype != null"  class="userInfo skype"> <span class="txtskype">Text:</span>  <a href="{{skypeUrlFor(infoPopupUser ,false)}}"> skype:{{infoPopupUser?.skype}}?chat  </a> </div>
+
+
       <div class="userInfo timezone"> Timezone UTC-7  9:24 am </div>
 
       <div class="userInfo lastcnx">Last connection: 5 mn ago</div>
@@ -34,7 +38,7 @@
     <ul class="users_list" popupSource
         #userInfoPopup="popupSource">
       <li *ngFor="let userItem of users" class="useractive" [class.approver]="isApprover(userItem)"
-          (click)="userInfoRequested =userItem">
+          (click)="userInfoRequested=userItem">
         <img src="/auth/user/photo/s/{{userItem.id}}">
       </li>
 
@@ -62,7 +66,7 @@
               src="/sp/place/{{selectedPlace.id}}/folder/{{selectedFolder?.id}}/file/{{subject.fileId}}/version/{{subject.v}}/thumb">
           </div>
           <div class="name">{{subject.name}}</div>
-
+          <div *ngIf="subject.dataType == 'file'" class="version"> V.{{subject.v}}</div>
           <div class="users">
             <ul>
               <li *ngFor="let activeUser of subject.users" class="user">
@@ -71,11 +75,14 @@
               </li>
             </ul>
           </div>
-          <div *ngIf="subject.dataType == 'file'" class="version"> V.{{subject.v}}</div>
+
+
+          <div class="clearfix"></div>
         </div>
         <input *ngIf="renaming != null && renaming.id == subject?.id" type="text" #folderRenamer
                value="{{subject.name}}"
                (keydown.enter)="doRename(folderRenamer.value)" class="editSubject"/>
+        <div class="clearfix"></div>
       </li>
     </ul>
 

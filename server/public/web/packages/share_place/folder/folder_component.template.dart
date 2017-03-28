@@ -103,21 +103,21 @@ class ViewFolderComponent1 extends AppView<import3.FolderComponent> {
   Element _el_4;
   Element _el_6;
   Element _el_10;
-  Element _el_13;
-  ViewContainer _appEl_13;
-  import13.ButtonComp _ButtonComp_13_3;
-  Element _el_18;
-  UListElement _el_20;
+  Element _el_12;
+  ViewContainer _appEl_12;
+  import13.ButtonComp _ButtonComp_12_3;
+  Element _el_16;
+  UListElement _el_18;
+  Element _el_20;
+  ViewContainer _appEl_20;
+  import14.PostitComponent _PostitComponent_20_3;
   Element _el_22;
-  ViewContainer _appEl_22;
-  import14.PostitComponent _PostitComponent_22_3;
   Element _el_24;
-  Element _el_26;
-  ViewContainer _appEl_26;
-  import15.TextComp _TextComp_26_3;
-  Element _el_32;
-  ViewContainer _appEl_32;
-  import16.TreeNodeComponent _TreeNodeComponent_32_3;
+  ViewContainer _appEl_24;
+  import15.TextComp _TextComp_24_3;
+  Element _el_29;
+  ViewContainer _appEl_29;
+  import16.TreeNodeComponent _TreeNodeComponent_29_3;
   var _arr_0;
   var _expr_1 = uninitialized;
   var _expr_2 = uninitialized;
@@ -151,8 +151,8 @@ class ViewFolderComponent1 extends AppView<import3.FolderComponent> {
     _el_6 = doc.createElement('div');
     _el_6.setAttribute(shimCAttr,'');
     _el_4.append(_el_6);
-    _el_6.className = 'hTitlein';
-    Text _text_7 = new Text('Threads');
+    _el_6.className = 'hTitleIn';
+    Text _text_7 = new Text('Folders');
     _el_6.append(_text_7);
     Text _text_8 = new Text('\n		');
     _el_4.append(_text_8);
@@ -162,83 +162,77 @@ class ViewFolderComponent1 extends AppView<import3.FolderComponent> {
     _el_10.setAttribute(shimCAttr,'');
     _el_2.append(_el_10);
     _el_10.className = 'buttonGroup';
-    Text _text_11 = new Text('\n');
+    Text _text_11 = new Text('\n      ');
     _el_10.append(_text_11);
-    Text _text_12 = new Text('\n      ');
-    _el_10.append(_text_12);
-    _el_13 = doc.createElement('btn');
-    _el_13.setAttribute(shimCAttr,'');
-    _el_10.append(_el_13);
-    _appEl_13 = new ViewContainer(13,10,this,_el_13);
-    var compView_13 = import17.viewFactory_ButtonComp0(this.injector(13),_appEl_13);
-    _ButtonComp_13_3 = new import13.ButtonComp();
-    _appEl_13.initComponent(_ButtonComp_13_3,compView_13);
-    compView_13.createComp([],null);
-    Text _text_14 = new Text('\n      ');
-    _el_10.append(_text_14);
-    Text _text_15 = new Text('\n    ');
-    _el_10.append(_text_15);
-    Text _text_16 = new Text('\n  ');
-    _el_2.append(_text_16);
-    Text _text_17 = new Text('\n\n\n  ');
-    _el_0.append(_text_17);
-    _el_18 = doc.createElement('div');
+    _el_12 = doc.createElement('btn');
+    _el_12.setAttribute(shimCAttr,'');
+    _el_10.append(_el_12);
+    _appEl_12 = new ViewContainer(12,10,this,_el_12);
+    var compView_12 = import17.viewFactory_ButtonComp0(this.injector(12),_appEl_12);
+    _ButtonComp_12_3 = new import13.ButtonComp();
+    _appEl_12.initComponent(_ButtonComp_12_3,compView_12);
+    compView_12.createComp([],null);
+    Text _text_13 = new Text('\n    ');
+    _el_10.append(_text_13);
+    Text _text_14 = new Text('\n  ');
+    _el_2.append(_text_14);
+    Text _text_15 = new Text('\n  ');
+    _el_0.append(_text_15);
+    _el_16 = doc.createElement('div');
+    _el_16.setAttribute(shimCAttr,'');
+    _el_0.append(_el_16);
+    Text _text_17 = new Text('\n    ');
+    _el_16.append(_text_17);
+    _el_18 = doc.createElement('ul');
     _el_18.setAttribute(shimCAttr,'');
-    _el_0.append(_el_18);
-    Text _text_19 = new Text('\n    ');
+    _el_16.append(_el_18);
+    _el_18.className = 'folderList';
+    Text _text_19 = new Text('\n      ');
     _el_18.append(_text_19);
-    _el_20 = doc.createElement('ul');
+    _el_20 = doc.createElement('postit-comp');
     _el_20.setAttribute(shimCAttr,'');
     _el_18.append(_el_20);
-    _el_20.className = 'folderList';
+    _el_20.className = 'foldersPostit';
+    _appEl_20 = new ViewContainer(20,18,this,_el_20);
+    var compView_20 = import18.viewFactory_PostitComponent0(this.injector(20),_appEl_20);
+    _PostitComponent_20_3 = new import14.PostitComponent(this.parentInjector.get(import19.PlaceService),this.parentInjector.get(import20.Router),this.parentInjector.get(import21.Environment));
+    _appEl_20.initComponent(_PostitComponent_20_3,compView_20);
+    compView_20.createComp([],null);
     Text _text_21 = new Text('\n      ');
-    _el_20.append(_text_21);
-    _el_22 = doc.createElement('postit-comp');
+    _el_18.append(_text_21);
+    _el_22 = doc.createElement('li');
     _el_22.setAttribute(shimCAttr,'');
-    _el_20.append(_el_22);
-    _el_22.className = 'foldersPostit';
-    _appEl_22 = new ViewContainer(22,20,this,_el_22);
-    var compView_22 = import18.viewFactory_PostitComponent0(this.injector(22),_appEl_22);
-    _PostitComponent_22_3 = new import14.PostitComponent(this.parentInjector.get(import19.PlaceService),this.parentInjector.get(import20.Router),this.parentInjector.get(import21.Environment));
-    _appEl_22.initComponent(_PostitComponent_22_3,compView_22);
-    compView_22.createComp([],null);
-    Text _text_23 = new Text('\n      ');
-    _el_20.append(_text_23);
-    _el_24 = doc.createElement('li');
+    _el_18.append(_el_22);
+    _el_22.className = 'liAdd';
+    Text _text_23 = new Text('\n        ');
+    _el_22.append(_text_23);
+    _el_24 = doc.createElement('txt');
     _el_24.setAttribute(shimCAttr,'');
-    _el_20.append(_el_24);
-    _el_24.className = 'li_add';
-    Text _text_25 = new Text('\n        ');
-    _el_24.append(_text_25);
-    _el_26 = doc.createElement('txt');
-    _el_26.setAttribute(shimCAttr,'');
-    _el_24.append(_el_26);
-    _appEl_26 = new ViewContainer(26,24,this,_el_26);
-    var compView_26 = import22.viewFactory_TextComp0(this.injector(26),_appEl_26);
-    _TextComp_26_3 = new import15.TextComp();
-    _appEl_26.initComponent(_TextComp_26_3,compView_26);
-    compView_26.createComp([],null);
-    Text _text_27 = new Text('\n      ');
-    _el_24.append(_text_27);
-    Text _text_28 = new Text('\n      ');
-    _el_20.append(_text_28);
-    Text _text_29 = new Text('\n          ');
-    _el_20.append(_text_29);
-    Text _text_30 = new Text('\n        ');
-    _el_18.append(_text_30);
-    Text _text_31 = new Text('\n  ');
-    _el_0.append(_text_31);
-    _el_32 = doc.createElement('tree-node-comp');
-    _el_32.setAttribute(shimCAttr,'');
-    _el_0.append(_el_32);
-    _appEl_32 = new ViewContainer(32,0,this,_el_32);
-    var compView_32 = import23.viewFactory_TreeNodeComponent0(this.injector(32),_appEl_32);
-    _TreeNodeComponent_32_3 = new import16.TreeNodeComponent(this.parentInjector.get(import19.PlaceService),this.parentInjector.get(import21.Environment),this.parentInjector.get(import3.FolderComponent));
-    _appEl_32.initComponent(_TreeNodeComponent_32_3,compView_32);
-    compView_32.createComp([],null);
-    Text _text_33 = new Text('\n');
-    _el_0.append(_text_33);
-    listen(_el_13,'click',evt(_handle_click_13_0));
+    _el_22.append(_el_24);
+    _appEl_24 = new ViewContainer(24,22,this,_el_24);
+    var compView_24 = import22.viewFactory_TextComp0(this.injector(24),_appEl_24);
+    _TextComp_24_3 = new import15.TextComp();
+    _appEl_24.initComponent(_TextComp_24_3,compView_24);
+    compView_24.createComp([],null);
+    Text _text_25 = new Text('\n      ');
+    _el_22.append(_text_25);
+    Text _text_26 = new Text('\n    ');
+    _el_18.append(_text_26);
+    Text _text_27 = new Text('\n  ');
+    _el_16.append(_text_27);
+    Text _text_28 = new Text('\n  ');
+    _el_0.append(_text_28);
+    _el_29 = doc.createElement('tree-node-comp');
+    _el_29.setAttribute(shimCAttr,'');
+    _el_0.append(_el_29);
+    _appEl_29 = new ViewContainer(29,0,this,_el_29);
+    var compView_29 = import23.viewFactory_TreeNodeComponent0(this.injector(29),_appEl_29);
+    _TreeNodeComponent_29_3 = new import16.TreeNodeComponent(this.parentInjector.get(import19.PlaceService),this.parentInjector.get(import21.Environment),this.parentInjector.get(import3.FolderComponent));
+    _appEl_29.initComponent(_TreeNodeComponent_29_3,compView_29);
+    compView_29.createComp([],null);
+    Text _text_30 = new Text('\n');
+    _el_0.append(_text_30);
+    listen(_el_12,'click',evt(_handle_click_12_0));
     this._arr_0 = import11.pureProxy3((p0,p1,p2) {
       return [
         p0,p1,p2
@@ -253,67 +247,66 @@ class ViewFolderComponent1 extends AppView<import3.FolderComponent> {
     });
     init([_el_0],[
       _el_0,_text_1,_el_2,_text_3,_el_4,_text_5,_el_6,_text_7,_text_8,_text_9,_el_10,
-      _text_11,_text_12,_el_13,_text_14,_text_15,_text_16,_text_17,_el_18,_text_19,_el_20,
-      _text_21,_el_22,_text_23,_el_24,_text_25,_el_26,_text_27,_text_28,_text_29,_text_30,
-      _text_31,_el_32,_text_33
+      _text_11,_el_12,_text_13,_text_14,_text_15,_el_16,_text_17,_el_18,_text_19,_el_20,
+      _text_21,_el_22,_text_23,_el_24,_text_25,_text_26,_text_27,_text_28,_el_29,_text_30
     ]
     ,[]);
     return null;
   }
   dynamic injectorGetInternal(dynamic token,int requestNodeIndex,dynamic notFoundResult) {
-    if ((identical(token, import13.ButtonComp) && (13 == requestNodeIndex))) { return _ButtonComp_13_3; }
-    if ((identical(token, import14.PostitComponent) && (22 == requestNodeIndex))) { return _PostitComponent_22_3; }
-    if ((identical(token, import15.TextComp) && (26 == requestNodeIndex))) { return _TextComp_26_3; }
-    if ((identical(token, import16.TreeNodeComponent) && (32 == requestNodeIndex))) { return _TreeNodeComponent_32_3; }
+    if ((identical(token, import13.ButtonComp) && (12 == requestNodeIndex))) { return _ButtonComp_12_3; }
+    if ((identical(token, import14.PostitComponent) && (20 == requestNodeIndex))) { return _PostitComponent_20_3; }
+    if ((identical(token, import15.TextComp) && (24 == requestNodeIndex))) { return _TextComp_24_3; }
+    if ((identical(token, import16.TreeNodeComponent) && (29 == requestNodeIndex))) { return _TreeNodeComponent_29_3; }
     return notFoundResult;
   }
   void detectChangesInternal() {
     final currVal_1 = _arr_0('../images/add-new.png','../images/add-new.png','../images/addPerson.png');
     if (import11.checkBinding(_expr_1,currVal_1)) {
-      _ButtonComp_13_3.sources = currVal_1;
+      _ButtonComp_12_3.sources = currVal_1;
       _expr_1 = currVal_1;
     }
     final currVal_2 = 'folders';
     if (import11.checkBinding(_expr_2,currVal_2)) {
-      _PostitComponent_22_3.name = currVal_2;
+      _PostitComponent_20_3.name = currVal_2;
       _expr_2 = currVal_2;
     }
     final currVal_3 = 'Create a folder';
     if (import11.checkBinding(_expr_3,currVal_3)) {
-      _PostitComponent_22_3.header = currVal_3;
+      _PostitComponent_20_3.header = currVal_3;
       _expr_3 = currVal_3;
     }
     final currVal_4 = 'To start, create a folder clicking on the + icon';
     if (import11.checkBinding(_expr_4,currVal_4)) {
-      _PostitComponent_22_3.body = currVal_4;
+      _PostitComponent_20_3.body = currVal_4;
       _expr_4 = currVal_4;
     }
-    if ((identical(this.cdState, ChangeDetectorState.NeverChecked) && !import11.AppViewUtils.throwOnChanges)) { _PostitComponent_22_3.ngOnInit(); }
+    if ((identical(this.cdState, ChangeDetectorState.NeverChecked) && !import11.AppViewUtils.throwOnChanges)) { _PostitComponent_20_3.ngOnInit(); }
     final currVal_6 = ctx.save;
     if (import11.checkBinding(_expr_6,currVal_6)) {
-      _TextComp_26_3.confirm = currVal_6;
+      _TextComp_24_3.confirm = currVal_6;
       _expr_6 = currVal_6;
     }
     final currVal_7 = _arr_1('../images/ok.png','../images/ok.png','../images/ok-c.png');
     if (import11.checkBinding(_expr_7,currVal_7)) {
-      _TextComp_26_3.sources = currVal_7;
+      _TextComp_24_3.sources = currVal_7;
       _expr_7 = currVal_7;
     }
     final currVal_8 = ctx.folders;
     if (import11.checkBinding(_expr_8,currVal_8)) {
-      _TreeNodeComponent_32_3.nodes = currVal_8;
+      _TreeNodeComponent_29_3.nodes = currVal_8;
       _expr_8 = currVal_8;
     }
-    if ((identical(this.cdState, ChangeDetectorState.NeverChecked) && !import11.AppViewUtils.throwOnChanges)) { _TreeNodeComponent_32_3.ngOnInit(); }
+    if ((identical(this.cdState, ChangeDetectorState.NeverChecked) && !import11.AppViewUtils.throwOnChanges)) { _TreeNodeComponent_29_3.ngOnInit(); }
     this.detectContentChildrenChanges();
     final currVal_5 = (ctx.adding? 'block': 'none');
     if (import11.checkBinding(_expr_5,currVal_5)) {
-      _el_24.style.setProperty('display',currVal_5?.toString());
+      _el_22.style.setProperty('display',currVal_5?.toString());
       _expr_5 = currVal_5;
     }
     this.detectViewChildrenChanges();
   }
-  bool _handle_click_13_0($event) {
+  bool _handle_click_12_0($event) {
     this.markPathToRootAsCheckOnce();
     final dynamic pd_0 = !identical((ctx.add() as dynamic), false);
     return (true && pd_0);

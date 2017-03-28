@@ -33,4 +33,26 @@ module.exports = Object.freeze({
     path: '/sp',
     method: 'GET'
   },
+  oauth: {
+    'facebookAuth': {
+      'clientID': '163347820840648', // your App ID
+      'clientSecret': '833ecd841c606f4fa5c9c224492a048f', // your App Secret
+      'callbackURL': 'http://localhost:3000/auth/facebook/callback',
+      'profileFields': ['id', 'email', 'gender', 'link', 'locale', 'name', 'timezone', 'updated_time', 'verified', 'picture']
+    },
+
+
+    'twitterAuth': {
+      'consumerKey': 'your-consumer-key-here',
+      'consumerSecret': 'your-client-secret-here',
+      'callbackURL': 'https://share-place.herokuapp.com/auth/twitter/callback'
+    },
+
+    'googleAuth': {
+      'clientID': '347589645243-c8t2oiesa7eer9k0daoojaasvfu5f0jv.apps.googleusercontent.com',
+      'clientSecret': 'YJo8E3Gc-8wi8PbLRGj7TSQx',
+      'callbackURL': 'http://localhost:3000/auth/google/callback'
+    }
+
+  }
 });

@@ -85,7 +85,7 @@ nav a.router-link-active {
 }
 
 .leftP {
-  background-color: #273b54;
+  background-color: #262D40;
 }
 
 .news {
@@ -104,7 +104,9 @@ nav a.router-link-active {
   font-size: 15px;
   font-family: Arial, Helvetica, sans-serif;
 }
-
+.popupHeader.connectusername {
+  padding: 0;
+}
 .logout, .profile {
   width: 100% !important;
 }

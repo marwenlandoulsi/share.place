@@ -69,8 +69,13 @@ module.exports.downloadUtilFileToDisc = (url, callBack) => {
 module.exports.get = function (req, res) {
   let userId = req.user._id;
   let url = req.url;
-  let email = req.user.local.email;
-  let password = req.user.local.password;
+  let email = null;
+  let password = null;
+  if(req.user.local){
+     email = req.user.local.email;
+     password = req.user.local.password;
+  }
+
   let pathDirectory = path.join(constants.dataDir, userId, url);
   let pathToDataFile = path.join(constants.dataDir, userId, url, 'data.json');
   globalService.checkPathOrCreateSync(pathDirectory, pathToDataFile, '[]');
@@ -81,7 +86,7 @@ module.exports.get = function (req, res) {
 
   if (global.onLine) {
 
-    getDataFromServer(req, email, password, url, (err, received) => {
+    getDataFromServer(req, res, email, password, url, (err, received) => {
       if (err)
         globalService.sendError(res, err.statusCode, err.message);
 
@@ -117,7 +122,7 @@ module.exports.proxyGet = function (url, callBack) {
 
 
   if (global.onLine) {
-    getDataFromServer(null, email, password, url, (err, received) => {
+    getDataFromServer(null, null, email, password, url, (err, received) => {
       if (err) {
         return log.error("error to sync data ", err.message);
         callBack(err)
@@ -286,7 +291,7 @@ function downloadFileInDisc(url, mode, callBack) {
   let dataPlace = jsonfile.readFileSync(pathDbDataPlace);
   let dataFolder = jsonfile.readFileSync(pathDbDataFolder);
   let dataFile = jsonfile.readFileSync(pathDbDataFile);
-  getDataFromServer(null, global.userConnected.local.email, global.userConnected.local.password, urlListeFile, (err, dataReceived) => {
+  getDataFromServer(null, null, global.userConnected.local.email, global.userConnected.local.password, urlListeFile, (err, dataReceived) => {
     if (err)
       return log.error("error to receive data: ", err.message);
 
@@ -333,9 +338,12 @@ function downloadFileInDisc(url, mode, callBack) {
 }
 
 
-let getDataFromServer = function (req, email, password, url, cb) {
+let getDataFromServer = function (req, res, email, password, url, cb) {
 
   if (typeof (global.cookieReceived) == "undefined") {
+    if(!email ){
+      res.redirect('/web');
+    }
     login.loginFromServer(req, email, password, function () {
       httpGetJson(global.cookieReceived, url, cb)
     })
@@ -349,7 +357,7 @@ let httpPostFileToUpload = function (url, fileToUpload, cb) {
 
   let formData = {
     toUpload: {
-      value: fs.createReadStream(path.join(__dirname, '..', '..', 'tmp', 'upload', global.fileUploadedName)),
+      value: fs.createReadStream(path.join(__dirname, '..', '..', 'tmp', 'upload', fileToUpload.filename)),
       options: {
         filename: fileToUpload.originalname,
         contentType: fileToUpload.mimeType
@@ -409,6 +417,9 @@ let httpUploadNewVersion = function (url, pathOfFile, filename, contentType, cb)
 }
 
 let httpGetJson = function (cookie, url, cb) {
+  if(cookie)
+    global.cookieReceived=cookie;
+
   console.log('url 11', url)
   let options = {
     host: constants.optionsGet.host,
@@ -445,7 +456,7 @@ let httpGetJson = function (cookie, url, cb) {
     cb(e);
   });
 }
-
+module.exports.callRemoteServer = httpGetJson;
 function downloadFile(url, directory, pathFile, mode, cb) {
   /* let options = {
    host: constants.hostURL,
@@ -652,7 +663,7 @@ module.exports.put = function (req, res) {
           fs.chmodSync(pathToFile, '0555');
 
           globalService.sendJsonResponse(res, 200, toReturn);
-          return global.mainWindow.webContents.goBack();
+
         });
       }
     } else {
@@ -755,7 +766,7 @@ let UnlockFile = function (url, fileId, jsonToPut, callBack) {
         return callBack(err)
       }
 
-      getDataFromServer(null, global.userConnected.local.email, global.userConnected.local.password, urlListeFile, (err, dataReceived) => {
+      getDataFromServer(null, null, global.userConnected.local.email, global.userConnected.local.password, urlListeFile, (err, dataReceived) => {
         if (err) {
           log.error("error to receive data after Unlock: ", err.message);
           return callBack(err)
@@ -954,3 +965,4 @@ var showDialogBox = function (type, title, message) {
     return global.mainWindow.webContents.stop();
   })
 }
+module.exports.dialogBox = showDialogBox;

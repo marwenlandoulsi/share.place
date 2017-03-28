@@ -18,7 +18,7 @@ import 'package:share_place/common/format/file_size_pipe.dart';
 
 import 'cloud_file.dart';
 import 'package:angular2_components/angular2_components.dart';
-
+import 'package:share_place/postit/postit_component.dart';
 /**
  * Comments were generated thanks to : http://www.cssarrowplease.com/
  *
@@ -28,7 +28,7 @@ import 'package:angular2_components/angular2_components.dart';
     selector: 'files-comp',
     templateUrl: 'files_comp.html',
     styleUrls: const ['files_comp.css'],
-    directives: const [TextComp, NgClass, materialDirectives],
+    directives: const [TextComp, NgClass, materialDirectives, PostitComponent],
     providers: const[materialProviders],
     pipes: const [AgoDateFormatPipe, FileSizePipe])
 class FilesComp implements OnInit {
@@ -61,7 +61,12 @@ class FilesComp implements OnInit {
       await getFile(
           _environment.selectedPlace.id, _environment.selectedFolder.id,
           _environment.selectedSubject.fileId);
-    } else if (params[PlaceParam.placeId] != null) selectedFile = null;
+    } else if (params[PlaceParam.placeId] != null) {
+      selectedFile = null;
+    } else if( params.containsKey(PlaceParam.ioFileActionCreated) ) {
+      //FIXME performance : should not relaod all files, but only update the selected one
+      await reloadFile();
+    }
   }
 
   Future<CloudFile> getFile(String placeId, String folderId,
@@ -79,13 +84,13 @@ class FilesComp implements OnInit {
     selectedFile = file;
   }
 
-  Future<Null> addQuickNote(String note) async {
-    window.alert("quick notes are not implemented yet!");
-  }
-
   Future<Null> addComment(String comment, int fileVersionIndex) async {
     await _placeService.addComment(comment, fileVersionIndex);
     //FIXME performance : should not relaod all files, but only update the selected one
+    await reloadFile();
+  }
+
+  Future<CloudFile> reloadFile() async {
     selectedFile = await getFile(
         _environment.selectedPlace.id, _environment.selectedFolder.id,
         _environment.selectedSubject.fileId);
@@ -185,7 +190,8 @@ class FilesComp implements OnInit {
   }
 
   void switchMenuState(int versionPointed) {
-    print( "switching fileMenuVisible from version $fileMenuVisible to $versionPointed" );
+    print(
+        "switching fileMenuVisible from version $fileMenuVisible to $versionPointed");
 
     if (fileMenuVisible == versionPointed)
       hideMenu();
@@ -264,16 +270,41 @@ class FilesComp implements OnInit {
 
   Future<Null> lockAndOpen(int version) async {
     openFile = false;
-    await _placeService.lockFile(selectedPlace.id, selectedSubject.folderId, selectedFile.id, true);
+    await _placeService.lockFile(
+        selectedPlace.id, selectedSubject.folderId, selectedFile.id, true);
     _environment.fireEvent(PlaceParam.lockStateChange, selectedFile.id);
     openFileLink(version);
   }
 
   void openFileLink(int version) {
     openFile = false;
-    window.location.assign("/sp/place/${selectedPlace?.id}/folder/${selectedFolder?.id}/file/${selectedFile?.id}/version/${version}/download");
+    window.location.assign(
+        "/sp/place/${selectedPlace?.id}/folder/${selectedFolder
+            ?.id}/file/${selectedFile?.id}/version/${version}/download");
   }
 
+  bool isActionAuthor(FileAction action) {
+    return connectedUser.id == action.user.userId;
+  }
+
+  bool isActionOn(FileAction actionItem) {
+    return actionItem.action.value == "on";
+  }
+
+  String constructText(FileVersion version, FileAction actionItem) {
+    bool isAuthor = isActionAuthor(actionItem);
+    bool isOn = isActionOn(actionItem);
+    if (actionItem.action.actionType == 'fileLock') {
+      String userName = actionItem?.user?.userName;
+      return (isAuthor ? "I" : (userName == null? "" : userName)) +
+          (isOn ? " am editing " : " edited ") + ("version ${version?.v}");
+    }
+
+    if (actionItem.action.actionType == 'fileApprove') {
+      return (isAuthor ? "I" : actionItem.user.userName) +
+          (" approve the file.");
+    }
+  }
 }
 
 class FileVersionAttributes {

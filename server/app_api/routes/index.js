@@ -25,7 +25,6 @@ var storage = multer.diskStorage({
   filename: function (req, file, cb) {
     crypto.pseudoRandomBytes(16, function (err, raw) {
       var fileName = raw.toString('hex') + Date.now() + '.' + mime.extension(file.mimetype);
-      global.fileUploadedName = fileName;
       cb(null, fileName);
     });
   }

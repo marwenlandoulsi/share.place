@@ -24,6 +24,7 @@
   float: left;
   width: 80%;
   padding: 0;
+  font-size: 1.6em;
 }
 
 .close {
@@ -32,7 +33,7 @@
 }
 
 .header {
-  background-color: #273B54;
+  background-color: #262D40;
   padding: 1em 1em 0;
 }
 
@@ -57,9 +58,11 @@
   height: 75px;
 
 }
+
 .skype.bottom_input {
   right: 27px;
 }
+
 .spprof {
   position: absolute;
   top: 0;
@@ -95,10 +98,9 @@
 
 /* */
 .local {
-  border-right: 1px solid rgba(86, 86, 86, 0.17);
-  width: calc(52% - 31px);
+  width: calc(51% - 21px);
   display: inline-block;
-  padding-right: 30px;
+  padding-right: 21px;
   overflow: hidden;
 }
 
@@ -108,6 +110,7 @@
   vertical-align: top;
   padding-top: 20px;
   padding-left: 3%;
+  border-left: 1px solid rgba(86, 86, 86, 0.17);
 }
 
 /****/
@@ -130,7 +133,6 @@
 
 .socialBtn {
   color: white;
-  /*padding: 0.2em;*/
   display: inline-block;
   font-size: 23px;
   width: 32px;
@@ -141,7 +143,7 @@
   border-radius: 3px;
   text-align: center;
   vertical-align: middle;
-  margin-left: 1em;
+  margin-left: 0.2em;
 }
 
 .socialBtn:hover, .socialBtn:focus {
@@ -161,7 +163,7 @@
 
 .label {
   font-weight: bold;
-  font-size: 1em;
+  font-size: 0.9em;
 }
 
 .btnvalidat {
@@ -216,3 +218,38 @@ material-input {
 .uploading {
   border: 2px solid greenyellow;
 }
+
+.nameConnected {
+  color: #333;
+  text-decoration: none;
+  text-align: left;
+  font-weight: bold;
+}
+
+.logLeft, .socialBtn {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.socialBtn {
+  width: 1.5em;
+}
+
+.logLeft {
+  width: calc(100% - 4.8em);
+  line-height: 1.3;
+}
+
+.line {
+  width: 100%
+}
+
+.loggedIn .log {
+  display: none;
+}
+
+/*.loggedIn .socialBtn {*/
+/*background-color: rgba(214, 213, 213, 0.57);*/
+/*color: rgba(0, 0, 0, 0.21);*/
+/*box-shadow: 2px 2px 3px 0 rgba(26, 74, 76, 0.28);*/
+/*}*/

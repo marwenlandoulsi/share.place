@@ -44,6 +44,7 @@ class PlacesComponent implements OnInit {
 
   void add() {
     adding = !adding;
+    _environment.fireEvent(PlaceParam.addButtonPressed, "places");
   }
 
   Future<Null> save(String placeName) async {

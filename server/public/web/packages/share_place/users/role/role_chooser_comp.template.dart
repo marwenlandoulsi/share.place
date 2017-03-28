@@ -81,6 +81,7 @@ class ViewRoleChooser0 extends AppView<import3.RoleChooser> {
     _el_2 = doc.createElement('role-item');
     _el_2.setAttribute(shimCAttr,'');
     _el_0.append(_el_2);
+    _el_2.className = 'owner';
     _appEl_2 = new ViewContainer(2,0,this,_el_2);
     var compView_2 = import11.viewFactory_RoleItem0(this.injector(2),_appEl_2);
     _RoleItem_2_3 = new import7.RoleItem(this.parentInjector.get(import12.PlaceService),this.parentInjector.get(import13.Router),this.parentInjector.get(import14.Environment));
@@ -91,6 +92,7 @@ class ViewRoleChooser0 extends AppView<import3.RoleChooser> {
     _el_4 = doc.createElement('role-item');
     _el_4.setAttribute(shimCAttr,'');
     _el_0.append(_el_4);
+    _el_4.className = 'writer0';
     _appEl_4 = new ViewContainer(4,0,this,_el_4);
     var compView_4 = import11.viewFactory_RoleItem0(this.injector(4),_appEl_4);
     _RoleItem_4_3 = new import7.RoleItem(this.parentInjector.get(import12.PlaceService),this.parentInjector.get(import13.Router),this.parentInjector.get(import14.Environment));
@@ -101,6 +103,7 @@ class ViewRoleChooser0 extends AppView<import3.RoleChooser> {
     _el_6 = doc.createElement('role-item');
     _el_6.setAttribute(shimCAttr,'');
     _el_0.append(_el_6);
+    _el_6.className = 'viewer';
     _appEl_6 = new ViewContainer(6,0,this,_el_6);
     var compView_6 = import11.viewFactory_RoleItem0(this.injector(6),_appEl_6);
     _RoleItem_6_3 = new import7.RoleItem(this.parentInjector.get(import12.PlaceService),this.parentInjector.get(import13.Router),this.parentInjector.get(import14.Environment));

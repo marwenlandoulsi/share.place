@@ -29,6 +29,7 @@ class UserListProvider {
     if (params.containsKey(PlaceParam.userId) ||
         params.containsKey(PlaceParam.placeId) ||
         params.containsKey(PlaceParam.invitedUsers) ||
+        params.containsKey(PlaceParam.ioUserInvited) ||
         params.containsKey(PlaceParam.folderId)) {
 
       if (_environment.selectedFolder != null)

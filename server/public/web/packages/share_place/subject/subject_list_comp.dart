@@ -4,7 +4,7 @@ import 'dart:html';
 import 'package:angular2/core.dart';
 import 'package:angular2/router.dart';
 import 'package:share_place/files/cloud_file.dart';
-
+import 'package:angular2/security.dart';
 import 'package:share_place/environment.dart';
 import 'package:share_place/folder.dart';
 import 'package:share_place/place.dart';
@@ -26,13 +26,18 @@ import 'package:share_place/postit/postit_component.dart';
     templateUrl: 'subject_list_comp.html',
     styleUrls: const ['subject_list_comp.css'],
     directives: const [
-      ButtonComp, TextComp, materialDirectives, InviteUsersDialogComp, PostitComponent],
+      ButtonComp,
+      TextComp,
+      materialDirectives,
+      InviteUsersDialogComp,
+      PostitComponent
+    ],
     providers: const[UserListProvider])
 class SubjectListComponent implements OnInit {
   final PlaceService _placeService;
   final Router _router;
   final Environment _environment;
-
+  final DomSanitizationService urlSanitizer;
   final UserListProvider _userListProvider;
 
   List<FileInfo> subjects;
@@ -41,14 +46,13 @@ class SubjectListComponent implements OnInit {
   bool infoPopupOpen;
 
   SubjectListComponent(this._placeService, this._router, this._environment,
-      this._userListProvider);
+      this._userListProvider ,  this.urlSanitizer);
 
   Future<Null> ngOnInit() async {
     _environment.eventBus.getBus().listen((params) => show(params));
     if (_environment.selectedPlace != null &&
         _environment.selectedFolder != null)
-      await getSubjects(
-          _environment.selectedPlace.id, _environment.selectedFolder.id);
+      await reloadSubjects();
   }
 
   show(Map<PlaceParam, dynamic> params) async {
@@ -60,9 +64,12 @@ class SubjectListComponent implements OnInit {
     if (folderId != null) { // folder selected
       await getSubjects(_environment.selectedPlace.id, folderId);
     } else if (fileId != null) { // file changed
-      await getSubjects(
-          _environment.selectedPlace.id, _environment.selectedFolder.id);
+      await reloadSubjects();
+    } else if (params.containsKey(PlaceParam.ioSubjectCreated) ||
+        params.containsKey(PlaceParam.ioSubjectChanged) ) {
+      await reloadSubjects();
     }
+
     if (renaming != null || adding) {
       KeyEvent keyup = params[PlaceParam.keyPressed];
       if (keyup != null && keyup.keyCode == 27) {
@@ -75,6 +82,11 @@ class SubjectListComponent implements OnInit {
         //renaming = null;
       }
     }
+  }
+
+  Future reloadSubjects() async {
+    await getSubjects(
+        _environment.selectedPlace.id, _environment.selectedFolder.id);
   }
 
   bool get adding => _environment.inviteUsersDialog;
@@ -174,6 +186,16 @@ class SubjectListComponent implements OnInit {
 
   List<User> get users => _userListProvider.users;
 
+  SafeUrl skypeUrlFor(User user,call) {
+    if (user.skype != null) {
+      if (call)
+        return urlSanitizer.bypassSecurityTrustUrl("skype:${user.skype}?call");
+      else
+        return urlSanitizer.bypassSecurityTrustUrl("skype:${user.skype}?chat");
+    }
+    return null;
+  }
+
   set userInfoRequested(User user) {
     print("selected user ${user?.name}");
     infoPopupUser = user;
@@ -184,10 +206,12 @@ class SubjectListComponent implements OnInit {
     if (user == null)
       return null;
     return user.folders[selectedFolder.id]?.toString()?.substring(
-        "roleenum.".length);
+        "RoleEnum.".length);
   }
 
   String getEmail(User user) {
     return user?.email;
   }
+
+
 }

@@ -572,7 +572,7 @@ class ViewLoginComp0 extends AppView<import3.LoginComp> {
     _el_92.setAttribute(shimCAttr,'');
     _el_90.append(_el_92);
     _el_92.className = 'btn-social btn-facebook';
-    createAttr(_el_92,'href','/auth/facebook');
+    createAttr(_el_92,'href','/auth/facebook/');
     Text _text_93 = new Text('\n        ');
     _el_92.append(_text_93);
     _el_94 = doc.createElement('span');

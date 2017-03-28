@@ -53,7 +53,7 @@ class User {
   Map toJson() =>
       {
         '_id': id,
-        'name': name,
+        'name': name ,
         'emailList': emailList.toString(),
         'pass': pass,
         'photoIdMap': photoIdMap?.toString(),
@@ -93,32 +93,36 @@ class SocialAccount {
   String id;
   String email;
   String token;
-
-  SocialAccount(this.id, this.email, this.token);
+  String  firstName;
+  String lastName ;
+  String displayName ;
+  SocialAccount(this.id, this.email, this.token , this.firstName , this.lastName , this.displayName);
 
   factory SocialAccount.fromJson(Map<String, dynamic> user) =>
       user == null ? null :
-      new SocialAccount(user['id'], user['email'], user['token']);
+      new SocialAccount(user['id'], user['email'], user['token'] , user['firstName'] ,user['lastName'] , user['displayName']);
 
-  Map toJson() => {'id': id, 'email': email, 'token': token};
+  Map toJson() => {'id': id, 'email': email, 'token': token , 'firstName': firstName , 'lastName' : lastName ,'displayName' : displayName};
 }
 
 class FacebookAccount extends SocialAccount {
-  FacebookAccount(String email, String pass, String token)
-      : super(email, pass, token);
+  FacebookAccount(String email, String pass, String token , String  firstName ,
+  String lastName , String displayName )
+      : super(email, pass, token,firstName , lastName ,displayName );
 
   factory FacebookAccount.fromJson(Map<String, dynamic> user) =>
       user == null ? null :
-      new FacebookAccount(user['id'], user['email'], user['token']);
+      new FacebookAccount(user['id'], user['email'], user['token'] ,  user['firstName'] ,user['lastName'] ,user['displayName']);
 }
 
 class GoogleAccount extends SocialAccount {
-  GoogleAccount(String email, String pass, String token)
-      : super(email, pass, token);
+  GoogleAccount(String email, String pass, String token, String  firstName ,
+      String lastName , String displayName )
+      : super(email, pass, token,firstName , lastName, displayName);
 
   factory GoogleAccount.fromJson(Map<String, dynamic> user) =>
       user == null ? null :
-      new GoogleAccount(user['id'], user['email'], user['token']);
+      new GoogleAccount(user['id'], user['email'], user['token'] ,user['firstName'] ,user['lastName']  ,user['displayName']  );
 }
 
 class Role {

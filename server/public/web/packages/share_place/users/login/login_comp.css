@@ -9,7 +9,7 @@
 
 .header {
   position: relative;
-  background-color: #273B54;
+  background-color: #262D40;
   padding: 3px !important;
 }
 
@@ -83,12 +83,12 @@ a {
   min-height: 100px;
   float: right;
   vertical-align: middle;
-  padding-top: 52px;
+  padding-top: 4.7em;
 }
 
 .or {
   display: inline-block;
-  top: 43%;
+  top: 50%;
   right: 39.6%;
   background-color: #C2C2C2;
   color: #000;

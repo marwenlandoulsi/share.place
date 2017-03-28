@@ -101,17 +101,23 @@ class PlaceService {
         "/folder/" +
         _environment.selectedFolder.id +
         "/file";
-    Map<String,dynamic> response = await postFileForm(form, postUrl);
+    Map<String, dynamic> response = await postFileForm(form, postUrl);
     return new FileInfo.fromJson(response);
   }
 
   Future<User> postProfileImage(html.FormData form) async {
-    var postUrl = "/auth/profile/edit";
-    Map<String,dynamic> response = await postFileForm(form, postUrl);
+    var postUrl = "/auth/profile/uploadImage";
+    Map<String, dynamic> response = await postFileForm(form, postUrl);
+    return new User.fromJson(response);
+  }
+  Future<User> postImage(html.FormData form ) async {
+    print("posting file form $form");
+    Map<String, dynamic> response = await postFileForm(form, "/auth/signup");
     return new User.fromJson(response);
   }
 
-  Future<Map<String,dynamic>> postFileForm(html.FormData form, String postUrl) async {
+  Future<Map<String, dynamic>> postFileForm(html.FormData form,
+      String postUrl) async {
     html.HttpRequest response = await html.HttpRequest
         .request(
         postUrl,
@@ -318,7 +324,8 @@ class PlaceService {
     }
   }
 
-  Future<List<User>> inviteUsers(Map<String, RoleEnum> users, String message) async {
+  Future<List<User>> inviteUsers(Map<String, RoleEnum> users,
+      String message) async {
     try {
       List userList = [];
       users.forEach((mail, role) {
@@ -427,7 +434,7 @@ class PlaceService {
           "/sp/place/${placeId}/folder/${folderId}/file/$fileId",
           headers: _headers, body: JSON.encode({'l': lock}));
       var data = _extractData(response);
-      if( data == null )
+      if (data == null)
         return null;
 
       CloudFile lockedFile = new CloudFile.fromJson(data);
@@ -481,7 +488,11 @@ class PlaceService {
 
   Future<User> saveProfile(User user, {bool mailChanged,
     String newPass }) async {
-    var userBody = {"name": user.name, "skype": user.skype};
+    var userBody = {};
+    if(user.name != null)
+      userBody["name"] = user.name;
+    if(user.skype != null)
+      userBody["skype"] = user.skype;
     if (mailChanged || newPass != null) {
       userBody["password"] = user.pass;
       if (mailChanged)
@@ -489,9 +500,11 @@ class PlaceService {
       if (newPass != null && !newPass.isEmpty)
         userBody["passwordNew"] = newPass;
     }
+    print( "############## ${userBody.toString()}" );
 
     final response = await post(
         "/auth/profile/edit", body: userBody);
+
 
     var data = _extractData(response);
     if (data == null)
@@ -535,7 +548,8 @@ class PlaceService {
   }
 
   Future<bool> closePostit(String name) async {
-    var resp = await put("/sp/user/close-postit", headers: _headers, body: JSON.encode({"name" : name}));
-    _environment.connectedUser = new User.fromJson( _extractData(resp) );
+    var resp = await put("/sp/user/close-postit", headers: _headers,
+        body: JSON.encode({"name": name}));
+    _environment.connectedUser = new User.fromJson(_extractData(resp));
   }
 }

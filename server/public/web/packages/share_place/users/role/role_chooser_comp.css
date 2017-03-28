@@ -4,19 +4,50 @@
 
 .roleChooser role-item {
   display: inline-block;
-  border: 1px solid #D1D1D1;
-  width: 22px;
-  height: 22px;
+  width: 33%;
   text-align: center;
-  line-height: 20px;
-  color: #D1D1D1;
+  font: normal normal normal 2em/1 'Material-Design-Iconic-Font';
+  position: relative;
+  float: left;
+  background: url("../images/tiret-black.png") repeat-x center center;
+  /*border: 1px solid #D1D1D1;*/
+  /*width: 22px;*/
+  /*height: 22px;*/
+  /*text-align: center;*/
+  /*line-height: 20px;*/
+  /*color: #D1D1D1;*/
 }
 
+/*.roleChooser role-item:after {*/
+  /*content: "\f26d";*/
+  /*font-size: 0.9em;*/
+  /*left: calc(50% - 0.5em);*/
+  /*top: calc(50% - 0em);*/
+  /*position: absolute;*/
+  /*color: #8e919b;*/
+/*}*/
 
-.roleChooser role-item:hover,
-.roleChooser role-item:focus,
-.roleChooser role-item.selected ,
-.roleChooser role-item .role,
-.roleChooser .selected {
-  background-color : white !important;
-}
+/*.roleChooser role-item:hover,*/
+/*.roleChooser role-item:focus,*/
+/*.roleChooser role-item.selected ,*/
+/*.roleChooser role-item .role,*/
+/*.roleChooser role-item:hover .selected .selected {*/
+/*background-color : white !important;*/
+/*}*/
+
+/*.roleChooser role-item.owner:after {*/
+  /*color: #7FBB01;*/
+  /*left: 0;*/
+  /*font-size: 1em;*/
+  /*content: "\f158";*/
+/*}*/
+/*.roleChooser role-item.viewer:after {*/
+  /*color: #7FBB01;*/
+  /*left: auto;*/
+  /*right:-5px;*/
+  /*content: "\f15c";*/
+  /*font-size: 1em;*/
+/*}*/
+
+.roleChooser role-item.owner { text-align: left }
+.roleChooser role-item.viewer{ text-align:  right}

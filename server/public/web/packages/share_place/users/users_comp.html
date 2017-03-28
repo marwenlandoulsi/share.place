@@ -13,7 +13,6 @@
     <li *ngFor="let userItem of users" class="user">
       <img src="/auth/user/photo/s/{{userItem.id}}" class="profileImg">
       <div class="userName">{{userItem?.name}}</div>
-      <a href="{{skypeUrlFor(userItem)}}"><div *ngIf="userItem.skype != null" class="fa fa-skype"></div></a>
     </li>
   </ul>
 </div>

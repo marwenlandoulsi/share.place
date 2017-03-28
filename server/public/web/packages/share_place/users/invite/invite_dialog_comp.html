@@ -5,24 +5,32 @@
       <!--<img src="../images/logo-s.png" width="22px">-->
       Send invites {{selectedPlace.name}}
     </h4>
-    <div type="button" class="close" data-dismiss="modal" (click)="close()"><img _ngcontent-gie-13=""
-                                                                                 src="../images/close_pop.png"></div>
   </div>
+  <div class="close" (click)="close()"></div>
   <div class="modal-body inviteUsersbody">
-    <p>It's time to invite some colleagues and start to collaborate!</p>
+    <p>It's time to invite some colleagues and start to collaborate! <br/>
+      Type email (internal or external), set authorizations
+      and send invites!</p>
     <table class="invites">
       <tr>
-        <th width="70%"><span class="labelinvit">Email</span></th>
-        <th width="30%"><span class="labelinvit textright">Authorization</span></th>
+        <th width="40%"></th>
+        <th width="60%"><span class="labelinvit textCenter magBtm">Authorization</span>
+
+          <p class="p_invi">User can <span class="fStrong">approve</span>, read, export, modify document and <span class="fStrong">invite new people</span></p>
+          <p class="p_invi"> User can read, export and <span class="fStrong">modify</span> document</p>
+          <p class="p_invi">User can read and export document</p>
+
+        </th>
       </tr>
 
       <tr *ngFor="let userRole of usersWithRoles">
         <td>
+          <span class="labelinvit">Email</span>
           <material-input #search class="mailToAdd" type="email"
                           (keyup)="onKeyUp(search.inputText)" class="emailinp"
                           placeholder="example@mydomain.com" [(ngModel)]="userRole.email"></material-input>
         </td>
-        <td class="nomargin">
+        <td class="rolesLine">
           <role-chooser-comp #role [(selected)]="userRole.roleName"></role-chooser-comp>
         </td>
       </tr>
@@ -31,9 +39,9 @@
     <div class="addUserDiv">
       <div class="addUserDiv_inside"> More lines
         <!--<material-fab raised (click)="addUserLine()" class="addUser addbtnbluesmall">-->
-          <!--<glyph icon="add"></glyph>-->
+        <!--<glyph icon="add"></glyph>-->
         <!--</material-fab>-->
-        <img src="../images/add_blue.png" class="blueadd" (click)="addUserLine()" alt="" />
+        <img src="../images/add_blue.png" class="blueadd" (click)="addUserLine()" alt=""/>
       </div>
     </div>
 

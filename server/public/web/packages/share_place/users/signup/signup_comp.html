@@ -5,12 +5,21 @@
     <!--class="addBtn" [disabled]="selectedPlace==null"></btn>-->
     <div class="top">
       <div class="signuptext">Signup</div>
-      <div class="close" (click)="close()"><img src="../images/close_pop.png"/></div>
+      <div class="close" (click)="close()"></div>
     </div>
-    <div class="profile">
-      <div class="logo_intro"><img src="../images/img_profile.png"/></div>
-      <div class="changeProfilePicture"><a href="#">Change</a></div>
-    </div>
+
+
+    <form id="signupForm" #upload class="dragdrop_profil {{dragEnter ? 'drag' : ''}} {{drop ? 'drop' : ''}} " [class.uploading]="uploading"
+          (dragenter)="dragEnter = true"
+          (drop)="drop = true">
+      <label id="labelfileuploadprf" for="filename">
+        <!--?refreshHack=... obliges the browser to refresh the image if it changes-->
+        <img src="../images/img_profile.png" title=""/>
+        <span class="spprof">Change</span>
+      </label>
+      <input type="file" id="filename" class="uploadFile" name="filename"
+             style="opacity: 0"/>
+    </form>
   </div>
 
 
@@ -49,8 +58,8 @@
       </div>
     </div>
   </div>
-  <footer>
+  <div class="center">
     <material-button raised class="btn_login pos2" [disabled]="!submitEnabled" (click)="signup()"  (keyup.enter)="signup()">OK</material-button>
-  </footer>
+  </div>
 
 </div>

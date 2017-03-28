@@ -49,8 +49,15 @@ app.on('window-all-closed', () => {
   app.quit()
 })
 app.on('ready', function () {
+  if (global.onLine) {
+    autoUpdater.checkForUpdates();
+  }
+  setInterval(function () {
+    if (global.onLine) {
+      autoUpdater.checkForUpdates();
+    }
+  }, 900000);
 
-  autoUpdater.checkForUpdates();
   global.homeDir = app.getPath('home');
   getPort(function (port) {
 

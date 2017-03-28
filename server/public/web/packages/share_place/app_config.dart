@@ -1,9 +1,15 @@
-//version à prendre
+//version de prod
 import 'dart:html';
 
-String _baseUrlValue = 'http://localhost:3000';
-//const baseUrl = 'https://share-place.herokuapp.com';
+String _baseUrlValue = 'https://share-place.herokuapp.com';
 String get baseUrl => _baseUrlValue;
+
+int get port {
+  var startIndex = _baseUrlValue.indexOf(":") + 1;
+  if( startIndex == 0 )
+    return 80;
+  return int.parse( _baseUrlValue.substring(startIndex, _baseUrlValue.length) );
+}
 
 void readConf() {
   print("reading base url");

@@ -54,6 +54,8 @@ class InviteUsersDialogComp implements OnInit {
     close();
     Map<String, RoleEnum> users = {};
     usersWithRoles.forEach((UserWithRole user) => users[user.email] = user.role);
+    usersWithRoles.clear();
+    addUserLine();
     List<User> folderUsers =  await _placeService.inviteUsers(users, message);
     //OPTIMIZE the server returns the new list of folderUsers, we should exploit this result instead of requesting users again
   }

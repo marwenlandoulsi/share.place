@@ -30,9 +30,11 @@ class Environment {
   bool profilePopinVisible;
   String serverError = null;
   List<String> _messages = [];
-  SocketIoClient socketIoClient = new SocketIoClient();
+  SocketIoClient socketIoClient;
 
-  Environment(this.eventBus);
+  Environment(this.eventBus) {
+    socketIoClient = new SocketIoClient(eventBus);
+  }
 
   Place get selectedPlace => _place;
 
@@ -98,8 +100,6 @@ class Environment {
 
   Future<Null> connectSocket() async {
     await socketIoClient.connect();
-    socketIoClient.onSubjectCreate((data) =>
-        print("data arrived: $data !!!"));
   }
 
   User get selectedUser => _user;
@@ -161,5 +161,14 @@ enum PlaceParam {
   approvalStateChange,
   lockStateChange,
   login,
-  subscribe
+  subscribe,
+  addButtonPressed, //to remove post-its
+
+  ioFolderUserConnected,
+  ioFolderCreated,
+  ioFolderChanged,
+  ioUserInvited,
+  ioSubjectCreated,
+  ioSubjectChanged, //user invite, rename, new active user (need to refresh from db)
+  ioFileActionCreated,
 }

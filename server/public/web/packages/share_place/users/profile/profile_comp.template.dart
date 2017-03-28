@@ -78,125 +78,131 @@ class ViewProfileComp0 extends AppView<import3.ProfileComp> {
   Element _el_2;
   Element _el_4;
   Element _el_7;
-  Element _el_8;
-  FormElement _el_10;
-  import5.NgForm _NgForm_10_2;
-  dynamic __ControlContainer_10_3;
-  Element _el_12;
-  Element _el_15;
-  Element _el_17;
-  InputElement _el_21;
-  Element _el_25;
-  Element _el_27;
-  Text _text_28;
-  Element _el_30;
-  ViewContainer _appEl_32;
-  dynamic _TemplateRef_32_4;
-  import7.NgFor _NgFor_32_5;
-  Element _el_35;
-  FormElement _el_37;
-  import5.NgForm _NgForm_37_2;
-  dynamic __ControlContainer_37_3;
-  Element _el_39;
-  Element _el_41;
-  Element _el_44;
-  ViewContainer _appEl_44;
-  import8.DeferredValidator _DeferredValidator_44_3;
-  List<dynamic> _NG_VALIDATORS_44_4;
-  import9.NgModel _NgModel_44_5;
-  import10.RequiredValidator _RequiredValidator_44_6;
-  dynamic _NgControl_44_7;
-  import11.MaterialInputComponent _MaterialInputComponent_44_8;
-  dynamic _BaseMaterialInput_44_9;
-  import12.MaterialInputDefaultValueAccessor _MaterialInputDefaultValueAccessor_44_10;
-  dynamic __ReferenceDirective_44_11;
-  dynamic __Focusable_44_12;
-  Element _el_46;
-  Element _el_49;
-  Element _el_51;
-  Element _el_54;
-  ViewContainer _appEl_54;
-  import8.DeferredValidator _DeferredValidator_54_3;
-  List<dynamic> _NG_VALIDATORS_54_4;
-  import9.NgModel _NgModel_54_5;
-  dynamic _NgControl_54_6;
-  import11.MaterialInputComponent _MaterialInputComponent_54_7;
-  dynamic _BaseMaterialInput_54_8;
-  import12.MaterialInputDefaultValueAccessor _MaterialInputDefaultValueAccessor_54_9;
-  dynamic __ReferenceDirective_54_10;
-  dynamic __Focusable_54_11;
-  Element _el_57;
-  Element _el_60;
-  Element _el_62;
-  Element _el_64;
-  Element _el_67;
-  Element _el_69;
-  Element _el_72;
-  ViewContainer _appEl_72;
-  import8.DeferredValidator _DeferredValidator_72_3;
-  List<dynamic> _NG_VALIDATORS_72_4;
-  import9.NgModel _NgModel_72_5;
-  dynamic _NgControl_72_6;
-  import11.MaterialInputComponent _MaterialInputComponent_72_7;
-  dynamic _BaseMaterialInput_72_8;
-  import12.MaterialInputDefaultValueAccessor _MaterialInputDefaultValueAccessor_72_9;
-  dynamic __ReferenceDirective_72_10;
-  dynamic __Focusable_72_11;
-  Element _el_75;
-  Element _el_77;
-  Element _el_80;
-  ViewContainer _appEl_80;
-  import8.DeferredValidator _DeferredValidator_80_3;
-  List<dynamic> _NG_VALIDATORS_80_4;
-  import9.NgModel _NgModel_80_5;
-  dynamic _NgControl_80_6;
-  import11.MaterialInputComponent _MaterialInputComponent_80_7;
-  dynamic _BaseMaterialInput_80_8;
-  import12.MaterialInputDefaultValueAccessor _MaterialInputDefaultValueAccessor_80_9;
-  dynamic __ReferenceDirective_80_10;
-  dynamic __Focusable_80_11;
-  Element _el_85;
-  Element _el_87;
-  Element _el_90;
-  ViewContainer _appEl_90;
-  import8.DeferredValidator _DeferredValidator_90_3;
-  List<dynamic> _NG_VALIDATORS_90_4;
-  import9.NgModel _NgModel_90_5;
-  import10.RequiredValidator _RequiredValidator_90_6;
-  dynamic _NgControl_90_7;
-  import11.MaterialInputComponent _MaterialInputComponent_90_8;
-  dynamic _BaseMaterialInput_90_9;
-  import12.MaterialInputDefaultValueAccessor _MaterialInputDefaultValueAccessor_90_10;
-  dynamic __ReferenceDirective_90_11;
-  dynamic __Focusable_90_12;
-  Element _el_95;
-  Element _el_97;
+  FormElement _el_9;
+  import5.NgForm _NgForm_9_2;
+  dynamic __ControlContainer_9_3;
+  Element _el_11;
+  Element _el_14;
+  Element _el_16;
+  InputElement _el_20;
+  Element _el_24;
+  Element _el_26;
+  Text _text_27;
+  Element _el_29;
+  ViewContainer _appEl_31;
+  dynamic _TemplateRef_31_4;
+  import7.NgFor _NgFor_31_5;
+  Element _el_34;
+  FormElement _el_36;
+  import5.NgForm _NgForm_36_2;
+  dynamic __ControlContainer_36_3;
+  Element _el_38;
+  Element _el_40;
+  Element _el_43;
+  ViewContainer _appEl_43;
+  import8.DeferredValidator _DeferredValidator_43_3;
+  List<dynamic> _NG_VALIDATORS_43_4;
+  import9.NgModel _NgModel_43_5;
+  import10.RequiredValidator _RequiredValidator_43_6;
+  dynamic _NgControl_43_7;
+  import11.MaterialInputComponent _MaterialInputComponent_43_8;
+  dynamic _BaseMaterialInput_43_9;
+  import12.MaterialInputDefaultValueAccessor _MaterialInputDefaultValueAccessor_43_10;
+  dynamic __ReferenceDirective_43_11;
+  dynamic __Focusable_43_12;
+  Element _el_45;
+  Element _el_48;
+  Element _el_50;
+  Element _el_53;
+  ViewContainer _appEl_53;
+  import8.DeferredValidator _DeferredValidator_53_3;
+  List<dynamic> _NG_VALIDATORS_53_4;
+  import9.NgModel _NgModel_53_5;
+  dynamic _NgControl_53_6;
+  import11.MaterialInputComponent _MaterialInputComponent_53_7;
+  dynamic _BaseMaterialInput_53_8;
+  import12.MaterialInputDefaultValueAccessor _MaterialInputDefaultValueAccessor_53_9;
+  dynamic __ReferenceDirective_53_10;
+  dynamic __Focusable_53_11;
+  Element _el_56;
+  Element _el_59;
+  Element _el_61;
+  Element _el_63;
+  Element _el_66;
+  Element _el_68;
+  Element _el_71;
+  ViewContainer _appEl_71;
+  import8.DeferredValidator _DeferredValidator_71_3;
+  List<dynamic> _NG_VALIDATORS_71_4;
+  import9.NgModel _NgModel_71_5;
+  dynamic _NgControl_71_6;
+  import11.MaterialInputComponent _MaterialInputComponent_71_7;
+  dynamic _BaseMaterialInput_71_8;
+  import12.MaterialInputDefaultValueAccessor _MaterialInputDefaultValueAccessor_71_9;
+  dynamic __ReferenceDirective_71_10;
+  dynamic __Focusable_71_11;
+  Element _el_74;
+  Element _el_76;
+  Element _el_79;
+  ViewContainer _appEl_79;
+  import8.DeferredValidator _DeferredValidator_79_3;
+  List<dynamic> _NG_VALIDATORS_79_4;
+  import9.NgModel _NgModel_79_5;
+  dynamic _NgControl_79_6;
+  import11.MaterialInputComponent _MaterialInputComponent_79_7;
+  dynamic _BaseMaterialInput_79_8;
+  import12.MaterialInputDefaultValueAccessor _MaterialInputDefaultValueAccessor_79_9;
+  dynamic __ReferenceDirective_79_10;
+  dynamic __Focusable_79_11;
+  Element _el_84;
+  Element _el_86;
+  Element _el_89;
+  ViewContainer _appEl_89;
+  import8.DeferredValidator _DeferredValidator_89_3;
+  List<dynamic> _NG_VALIDATORS_89_4;
+  import9.NgModel _NgModel_89_5;
+  import10.RequiredValidator _RequiredValidator_89_6;
+  dynamic _NgControl_89_7;
+  import11.MaterialInputComponent _MaterialInputComponent_89_8;
+  dynamic _BaseMaterialInput_89_9;
+  import12.MaterialInputDefaultValueAccessor _MaterialInputDefaultValueAccessor_89_10;
+  dynamic __ReferenceDirective_89_11;
+  dynamic __Focusable_89_12;
+  Element _el_94;
+  Element _el_96;
   Element _el_98;
-  AnchorElement _el_101;
-  Element _el_103;
-  Element _el_107;
-  AnchorElement _el_109;
-  Element _el_111;
+  Element _el_99;
+  Element _el_102;
+  Text _text_103;
+  AnchorElement _el_106;
+  Element _el_108;
+  Element _el_113;
   Element _el_115;
-  Element _el_117;
-  Element _el_120;
-  ViewContainer _appEl_120;
-  import8.DeferredValidator _DeferredValidator_120_3;
-  List<dynamic> _NG_VALIDATORS_120_4;
-  import9.NgModel _NgModel_120_5;
-  dynamic _NgControl_120_6;
-  import11.MaterialInputComponent _MaterialInputComponent_120_7;
-  dynamic _BaseMaterialInput_120_8;
-  import12.MaterialInputDefaultValueAccessor _MaterialInputDefaultValueAccessor_120_9;
-  dynamic __ReferenceDirective_120_10;
-  dynamic __Focusable_120_11;
-  Element _el_124;
-  Element _el_127;
+  Element _el_116;
+  Element _el_119;
+  Text _text_120;
+  AnchorElement _el_123;
+  Element _el_125;
   Element _el_129;
-  ViewContainer _appEl_129;
-  import13.AcxDarkTheme _AcxDarkTheme_129_3;
-  import14.MaterialButtonComponent _MaterialButtonComponent_129_4;
-  dynamic __ButtonDirective_129_5;
+  Element _el_131;
+  Element _el_134;
+  ViewContainer _appEl_134;
+  import8.DeferredValidator _DeferredValidator_134_3;
+  List<dynamic> _NG_VALIDATORS_134_4;
+  import9.NgModel _NgModel_134_5;
+  dynamic _NgControl_134_6;
+  import11.MaterialInputComponent _MaterialInputComponent_134_7;
+  dynamic _BaseMaterialInput_134_8;
+  import12.MaterialInputDefaultValueAccessor _MaterialInputDefaultValueAccessor_134_9;
+  dynamic __ReferenceDirective_134_10;
+  dynamic __Focusable_134_11;
+  Element _el_138;
+  Element _el_141;
+  Element _el_143;
+  ViewContainer _appEl_143;
+  import13.AcxDarkTheme _AcxDarkTheme_143_3;
+  import14.MaterialButtonComponent _MaterialButtonComponent_143_4;
+  dynamic __ButtonDirective_143_5;
   var _expr_5 = uninitialized;
   var _expr_6 = uninitialized;
   var _expr_8 = uninitialized;
@@ -219,73 +225,75 @@ class ViewProfileComp0 extends AppView<import3.ProfileComp> {
   var _expr_40 = uninitialized;
   var _expr_41 = uninitialized;
   var _expr_42 = uninitialized;
-  var _expr_45 = uninitialized;
-  var _expr_53 = uninitialized;
-  var _expr_54 = uninitialized;
+  var _expr_43 = uninitialized;
+  var _expr_44 = uninitialized;
+  var _expr_47 = uninitialized;
   var _expr_55 = uninitialized;
   var _expr_56 = uninitialized;
   var _expr_57 = uninitialized;
   var _expr_58 = uninitialized;
+  var _expr_59 = uninitialized;
+  var _expr_60 = uninitialized;
   ViewProfileComp0(import16.Injector parentInjector,ViewContainer declarationEl): super(ViewProfileComp0,renderType_ProfileComp,import17.ViewType.COMPONENT,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
-  dynamic get _ControlContainer_10_3 {
-    if ((this.__ControlContainer_10_3 == null)) { (__ControlContainer_10_3 = this._NgForm_10_2); }
-    return this.__ControlContainer_10_3;
+  dynamic get _ControlContainer_9_3 {
+    if ((this.__ControlContainer_9_3 == null)) { (__ControlContainer_9_3 = this._NgForm_9_2); }
+    return this.__ControlContainer_9_3;
   }
-  dynamic get _ControlContainer_37_3 {
-    if ((this.__ControlContainer_37_3 == null)) { (__ControlContainer_37_3 = this._NgForm_37_2); }
-    return this.__ControlContainer_37_3;
+  dynamic get _ControlContainer_36_3 {
+    if ((this.__ControlContainer_36_3 == null)) { (__ControlContainer_36_3 = this._NgForm_36_2); }
+    return this.__ControlContainer_36_3;
   }
-  dynamic get _ReferenceDirective_44_11 {
-    if ((this.__ReferenceDirective_44_11 == null)) { (__ReferenceDirective_44_11 = this._MaterialInputComponent_44_8); }
-    return this.__ReferenceDirective_44_11;
+  dynamic get _ReferenceDirective_43_11 {
+    if ((this.__ReferenceDirective_43_11 == null)) { (__ReferenceDirective_43_11 = this._MaterialInputComponent_43_8); }
+    return this.__ReferenceDirective_43_11;
   }
-  dynamic get _Focusable_44_12 {
-    if ((this.__Focusable_44_12 == null)) { (__Focusable_44_12 = this._MaterialInputComponent_44_8); }
-    return this.__Focusable_44_12;
+  dynamic get _Focusable_43_12 {
+    if ((this.__Focusable_43_12 == null)) { (__Focusable_43_12 = this._MaterialInputComponent_43_8); }
+    return this.__Focusable_43_12;
   }
-  dynamic get _ReferenceDirective_54_10 {
-    if ((this.__ReferenceDirective_54_10 == null)) { (__ReferenceDirective_54_10 = this._MaterialInputComponent_54_7); }
-    return this.__ReferenceDirective_54_10;
+  dynamic get _ReferenceDirective_53_10 {
+    if ((this.__ReferenceDirective_53_10 == null)) { (__ReferenceDirective_53_10 = this._MaterialInputComponent_53_7); }
+    return this.__ReferenceDirective_53_10;
   }
-  dynamic get _Focusable_54_11 {
-    if ((this.__Focusable_54_11 == null)) { (__Focusable_54_11 = this._MaterialInputComponent_54_7); }
-    return this.__Focusable_54_11;
+  dynamic get _Focusable_53_11 {
+    if ((this.__Focusable_53_11 == null)) { (__Focusable_53_11 = this._MaterialInputComponent_53_7); }
+    return this.__Focusable_53_11;
   }
-  dynamic get _ReferenceDirective_72_10 {
-    if ((this.__ReferenceDirective_72_10 == null)) { (__ReferenceDirective_72_10 = this._MaterialInputComponent_72_7); }
-    return this.__ReferenceDirective_72_10;
+  dynamic get _ReferenceDirective_71_10 {
+    if ((this.__ReferenceDirective_71_10 == null)) { (__ReferenceDirective_71_10 = this._MaterialInputComponent_71_7); }
+    return this.__ReferenceDirective_71_10;
   }
-  dynamic get _Focusable_72_11 {
-    if ((this.__Focusable_72_11 == null)) { (__Focusable_72_11 = this._MaterialInputComponent_72_7); }
-    return this.__Focusable_72_11;
+  dynamic get _Focusable_71_11 {
+    if ((this.__Focusable_71_11 == null)) { (__Focusable_71_11 = this._MaterialInputComponent_71_7); }
+    return this.__Focusable_71_11;
   }
-  dynamic get _ReferenceDirective_80_10 {
-    if ((this.__ReferenceDirective_80_10 == null)) { (__ReferenceDirective_80_10 = this._MaterialInputComponent_80_7); }
-    return this.__ReferenceDirective_80_10;
+  dynamic get _ReferenceDirective_79_10 {
+    if ((this.__ReferenceDirective_79_10 == null)) { (__ReferenceDirective_79_10 = this._MaterialInputComponent_79_7); }
+    return this.__ReferenceDirective_79_10;
   }
-  dynamic get _Focusable_80_11 {
-    if ((this.__Focusable_80_11 == null)) { (__Focusable_80_11 = this._MaterialInputComponent_80_7); }
-    return this.__Focusable_80_11;
+  dynamic get _Focusable_79_11 {
+    if ((this.__Focusable_79_11 == null)) { (__Focusable_79_11 = this._MaterialInputComponent_79_7); }
+    return this.__Focusable_79_11;
   }
-  dynamic get _ReferenceDirective_90_11 {
-    if ((this.__ReferenceDirective_90_11 == null)) { (__ReferenceDirective_90_11 = this._MaterialInputComponent_90_8); }
-    return this.__ReferenceDirective_90_11;
+  dynamic get _ReferenceDirective_89_11 {
+    if ((this.__ReferenceDirective_89_11 == null)) { (__ReferenceDirective_89_11 = this._MaterialInputComponent_89_8); }
+    return this.__ReferenceDirective_89_11;
   }
-  dynamic get _Focusable_90_12 {
-    if ((this.__Focusable_90_12 == null)) { (__Focusable_90_12 = this._MaterialInputComponent_90_8); }
-    return this.__Focusable_90_12;
+  dynamic get _Focusable_89_12 {
+    if ((this.__Focusable_89_12 == null)) { (__Focusable_89_12 = this._MaterialInputComponent_89_8); }
+    return this.__Focusable_89_12;
   }
-  dynamic get _ReferenceDirective_120_10 {
-    if ((this.__ReferenceDirective_120_10 == null)) { (__ReferenceDirective_120_10 = this._MaterialInputComponent_120_7); }
-    return this.__ReferenceDirective_120_10;
+  dynamic get _ReferenceDirective_134_10 {
+    if ((this.__ReferenceDirective_134_10 == null)) { (__ReferenceDirective_134_10 = this._MaterialInputComponent_134_7); }
+    return this.__ReferenceDirective_134_10;
   }
-  dynamic get _Focusable_120_11 {
-    if ((this.__Focusable_120_11 == null)) { (__Focusable_120_11 = this._MaterialInputComponent_120_7); }
-    return this.__Focusable_120_11;
+  dynamic get _Focusable_134_11 {
+    if ((this.__Focusable_134_11 == null)) { (__Focusable_134_11 = this._MaterialInputComponent_134_7); }
+    return this.__Focusable_134_11;
   }
-  dynamic get _ButtonDirective_129_5 {
-    if ((this.__ButtonDirective_129_5 == null)) { (__ButtonDirective_129_5 = this._MaterialButtonComponent_129_4); }
-    return this.__ButtonDirective_129_5;
+  dynamic get _ButtonDirective_143_5 {
+    if ((this.__ButtonDirective_143_5 == null)) { (__ButtonDirective_143_5 = this._MaterialButtonComponent_143_4); }
+    return this.__ButtonDirective_143_5;
   }
   ViewContainer createInternal(dynamic rootSelector) {
     final Node parentRenderNode = initViewRoot(this.declarationViewContainer.nativeElement);
@@ -315,508 +323,547 @@ class ViewProfileComp0 extends AppView<import3.ProfileComp> {
     _el_7.setAttribute(shimCAttr,'');
     _el_2.append(_el_7);
     _el_7.className = 'close';
-    _el_8 = doc.createElement('img');
-    _el_8.setAttribute(shimCAttr,'');
-    _el_7.append(_el_8);
-    createAttr(_el_8,'src','../images/close_pop.png');
-    Text _text_9 = new Text('\n\n    ');
-    _el_2.append(_text_9);
-    _el_10 = doc.createElement('form');
-    _el_10.setAttribute(shimCAttr,'');
-    _el_2.append(_el_10);
-    _el_10.className = 'dragdrop_profil';
-    createAttr(_el_10,'id','fileForm');
-    _NgForm_10_2 = new import5.NgForm(null,null);
-    Text _text_11 = new Text('\n      ');
-    _el_10.append(_text_11);
-    _el_12 = doc.createElement('label');
-    _el_12.setAttribute(shimCAttr,'');
-    _el_10.append(_el_12);
-    createAttr(_el_12,'for','filename');
-    createAttr(_el_12,'id','labelfileuploadprf');
+    Text _text_8 = new Text('\n\n    ');
+    _el_2.append(_text_8);
+    _el_9 = doc.createElement('form');
+    _el_9.setAttribute(shimCAttr,'');
+    _el_2.append(_el_9);
+    _el_9.className = 'dragdrop_profil';
+    createAttr(_el_9,'id','profileImageForm');
+    _NgForm_9_2 = new import5.NgForm(null,null);
+    Text _text_10 = new Text('\n      ');
+    _el_9.append(_text_10);
+    _el_11 = doc.createElement('label');
+    _el_11.setAttribute(shimCAttr,'');
+    _el_9.append(_el_11);
+    createAttr(_el_11,'for','filename');
+    createAttr(_el_11,'id','labelfileuploadprf');
+    Text _text_12 = new Text('\n        ');
+    _el_11.append(_text_12);
     Text _text_13 = new Text('\n        ');
-    _el_12.append(_text_13);
-    Text _text_14 = new Text('\n        ');
-    _el_12.append(_text_14);
-    _el_15 = doc.createElement('img');
-    _el_15.setAttribute(shimCAttr,'');
-    _el_12.append(_el_15);
-    createAttr(_el_15,'title','');
-    Text _text_16 = new Text('\n        ');
-    _el_12.append(_text_16);
-    _el_17 = doc.createElement('span');
-    _el_17.setAttribute(shimCAttr,'');
-    _el_12.append(_el_17);
-    _el_17.className = 'spprof';
-    Text _text_18 = new Text('Change');
-    _el_17.append(_text_18);
+    _el_11.append(_text_13);
+    _el_14 = doc.createElement('img');
+    _el_14.setAttribute(shimCAttr,'');
+    _el_11.append(_el_14);
+    createAttr(_el_14,'title','');
+    Text _text_15 = new Text('\n        ');
+    _el_11.append(_text_15);
+    _el_16 = doc.createElement('span');
+    _el_16.setAttribute(shimCAttr,'');
+    _el_11.append(_el_16);
+    _el_16.className = 'spprof';
+    Text _text_17 = new Text('Change');
+    _el_16.append(_text_17);
+    Text _text_18 = new Text('\n      ');
+    _el_11.append(_text_18);
     Text _text_19 = new Text('\n      ');
-    _el_12.append(_text_19);
-    Text _text_20 = new Text('\n      ');
-    _el_10.append(_text_20);
-    _el_21 = doc.createElement('input');
-    _el_21.setAttribute(shimCAttr,'');
-    _el_10.append(_el_21);
-    _el_21.className = 'uploadFile';
-    createAttr(_el_21,'id','filename');
-    createAttr(_el_21,'name','filename');
-    createAttr(_el_21,'style','opacity: 0');
-    createAttr(_el_21,'type','file');
-    Text _text_22 = new Text('\n    ');
-    _el_10.append(_text_22);
+    _el_9.append(_text_19);
+    _el_20 = doc.createElement('input');
+    _el_20.setAttribute(shimCAttr,'');
+    _el_9.append(_el_20);
+    _el_20.className = 'uploadFile';
+    createAttr(_el_20,'id','filename');
+    createAttr(_el_20,'name','avatar');
+    createAttr(_el_20,'style','opacity: 0');
+    createAttr(_el_20,'type','file');
+    Text _text_21 = new Text('\n    ');
+    _el_9.append(_text_21);
+    Text _text_22 = new Text('\n\n  ');
+    _el_2.append(_text_22);
     Text _text_23 = new Text('\n\n  ');
-    _el_2.append(_text_23);
-    Text _text_24 = new Text('\n\n  ');
-    _el_0.append(_text_24);
-    _el_25 = doc.createElement('div');
-    _el_25.setAttribute(shimCAttr,'');
-    _el_0.append(_el_25);
-    _el_25.className = 'panels';
-    Text _text_26 = new Text('\n    ');
-    _el_25.append(_text_26);
-    _el_27 = doc.createElement('div');
-    _el_27.setAttribute(shimCAttr,'');
-    _el_25.append(_el_27);
-    _el_27.className = 'error';
-    _text_28 = new Text('');
-    _el_27.append(_text_28);
-    Text _text_29 = new Text('\n    ');
-    _el_25.append(_text_29);
-    _el_30 = doc.createElement('div');
-    _el_30.setAttribute(shimCAttr,'');
-    _el_25.append(_el_30);
-    _el_30.className = 'messages';
-    Text _text_31 = new Text('\n      ');
-    _el_30.append(_text_31);
-    var _anchor_32 = new Comment('template bindings={}');
-    _el_30?.append(_anchor_32);
-    _appEl_32 = new ViewContainer(32,30,this,_anchor_32);
-    _TemplateRef_32_4 = new TemplateRef(_appEl_32,viewFactory_ProfileComp1);
-    _NgFor_32_5 = new import7.NgFor(_appEl_32,_TemplateRef_32_4,this.parentInjector.get(import19.IterableDiffers),ref);
-    Text _text_33 = new Text('\n    ');
-    _el_30.append(_text_33);
-    Text _text_34 = new Text('\n\n    ');
-    _el_25.append(_text_34);
-    _el_35 = doc.createElement('div');
-    _el_35.setAttribute(shimCAttr,'');
-    _el_25.append(_el_35);
-    _el_35.className = 'local';
-    Text _text_36 = new Text('\n      ');
-    _el_35.append(_text_36);
-    _el_37 = doc.createElement('form');
-    _el_37.setAttribute(shimCAttr,'');
-    _el_35.append(_el_37);
-    createAttr(_el_37,'action','#');
-    createAttr(_el_37,'method','post');
-    _NgForm_37_2 = new import5.NgForm(null,null);
-    Text _text_38 = new Text('\n\n        ');
-    _el_37.append(_text_38);
-    _el_39 = doc.createElement('div');
-    _el_39.setAttribute(shimCAttr,'');
-    _el_37.append(_el_39);
-    _el_39.className = 'email';
-    Text _text_40 = new Text('\n          ');
-    _el_39.append(_text_40);
-    _el_41 = doc.createElement('div');
-    _el_41.setAttribute(shimCAttr,'');
-    _el_39.append(_el_41);
-    _el_41.className = 'label';
-    Text _text_42 = new Text('Email');
-    _el_41.append(_text_42);
-    Text _text_43 = new Text('\n          ');
-    _el_39.append(_text_43);
-    _el_44 = doc.createElement('material-input');
-    _el_44.setAttribute(shimCAttr,'');
-    _el_39.append(_el_44);
-    _el_44.className = 'mail iconM themeable';
-    createAttr(_el_44,'label','example@domain.com');
-    createAttr(_el_44,'required','');
-    createAttr(_el_44,'tabIndex','-1');
-    createAttr(_el_44,'type','email');
-    _appEl_44 = new ViewContainer(44,39,this,_el_44);
-    var compView_44 = import20.viewFactory_MaterialInputComponent0(this.injector(44),_appEl_44);
-    _DeferredValidator_44_3 = new import8.DeferredValidator();
-    _NG_VALIDATORS_44_4 = [
-      _DeferredValidator_44_3,import10.REQUIRED
+    _el_0.append(_text_23);
+    _el_24 = doc.createElement('div');
+    _el_24.setAttribute(shimCAttr,'');
+    _el_0.append(_el_24);
+    _el_24.className = 'panels';
+    Text _text_25 = new Text('\n    ');
+    _el_24.append(_text_25);
+    _el_26 = doc.createElement('div');
+    _el_26.setAttribute(shimCAttr,'');
+    _el_24.append(_el_26);
+    _el_26.className = 'error';
+    _text_27 = new Text('');
+    _el_26.append(_text_27);
+    Text _text_28 = new Text('\n    ');
+    _el_24.append(_text_28);
+    _el_29 = doc.createElement('div');
+    _el_29.setAttribute(shimCAttr,'');
+    _el_24.append(_el_29);
+    _el_29.className = 'messages';
+    Text _text_30 = new Text('\n      ');
+    _el_29.append(_text_30);
+    var _anchor_31 = new Comment('template bindings={}');
+    _el_29?.append(_anchor_31);
+    _appEl_31 = new ViewContainer(31,29,this,_anchor_31);
+    _TemplateRef_31_4 = new TemplateRef(_appEl_31,viewFactory_ProfileComp1);
+    _NgFor_31_5 = new import7.NgFor(_appEl_31,_TemplateRef_31_4,this.parentInjector.get(import19.IterableDiffers),ref);
+    Text _text_32 = new Text('\n    ');
+    _el_29.append(_text_32);
+    Text _text_33 = new Text('\n\n    ');
+    _el_24.append(_text_33);
+    _el_34 = doc.createElement('div');
+    _el_34.setAttribute(shimCAttr,'');
+    _el_24.append(_el_34);
+    _el_34.className = 'local';
+    Text _text_35 = new Text('\n      ');
+    _el_34.append(_text_35);
+    _el_36 = doc.createElement('form');
+    _el_36.setAttribute(shimCAttr,'');
+    _el_34.append(_el_36);
+    createAttr(_el_36,'action','#');
+    createAttr(_el_36,'method','post');
+    _NgForm_36_2 = new import5.NgForm(null,null);
+    Text _text_37 = new Text('\n\n        ');
+    _el_36.append(_text_37);
+    _el_38 = doc.createElement('div');
+    _el_38.setAttribute(shimCAttr,'');
+    _el_36.append(_el_38);
+    _el_38.className = 'email';
+    Text _text_39 = new Text('\n          ');
+    _el_38.append(_text_39);
+    _el_40 = doc.createElement('div');
+    _el_40.setAttribute(shimCAttr,'');
+    _el_38.append(_el_40);
+    _el_40.className = 'label';
+    Text _text_41 = new Text('Email');
+    _el_40.append(_text_41);
+    Text _text_42 = new Text('\n          ');
+    _el_38.append(_text_42);
+    _el_43 = doc.createElement('material-input');
+    _el_43.setAttribute(shimCAttr,'');
+    _el_38.append(_el_43);
+    _el_43.className = 'mail iconM themeable';
+    createAttr(_el_43,'label','example@domain.com');
+    createAttr(_el_43,'required','');
+    createAttr(_el_43,'tabIndex','-1');
+    createAttr(_el_43,'type','email');
+    _appEl_43 = new ViewContainer(43,38,this,_el_43);
+    var compView_43 = import20.viewFactory_MaterialInputComponent0(this.injector(43),_appEl_43);
+    _DeferredValidator_43_3 = new import8.DeferredValidator();
+    _NG_VALIDATORS_43_4 = [
+      _DeferredValidator_43_3,import10.REQUIRED
     ]
     ;
-    _NgModel_44_5 = new import9.NgModel(_NG_VALIDATORS_44_4,null,null);
-    _RequiredValidator_44_6 = new import10.RequiredValidator();
-    _NgControl_44_7 = _NgModel_44_5;
-    _MaterialInputComponent_44_8 = new import11.MaterialInputComponent('email',_NgControl_44_7,compView_44.ref,_DeferredValidator_44_3);
-    _BaseMaterialInput_44_9 = _MaterialInputComponent_44_8;
-    _MaterialInputDefaultValueAccessor_44_10 = new import12.MaterialInputDefaultValueAccessor(_BaseMaterialInput_44_9,_NgControl_44_7);
-    _appEl_44.initComponent(_MaterialInputComponent_44_8,compView_44);
-    compView_44.createComp([[]],null);
-    Text _text_45 = new Text('\n          ');
-    _el_39.append(_text_45);
-    _el_46 = doc.createElement('div');
-    _el_46.setAttribute(shimCAttr,'');
-    _el_39.append(_el_46);
-    _el_46.className = 'changeMail';
-    Text _text_47 = new Text('\n        ');
-    _el_39.append(_text_47);
-    Text _text_48 = new Text('\n\n        ');
-    _el_37.append(_text_48);
-    _el_49 = doc.createElement('div');
-    _el_49.setAttribute(shimCAttr,'');
-    _el_37.append(_el_49);
-    _el_49.className = 'pass';
-    Text _text_50 = new Text('\n          ');
-    _el_49.append(_text_50);
-    _el_51 = doc.createElement('div');
-    _el_51.setAttribute(shimCAttr,'');
-    _el_49.append(_el_51);
-    _el_51.className = 'label';
-    Text _text_52 = new Text('Password');
-    _el_51.append(_text_52);
-    Text _text_53 = new Text('\n          ');
-    _el_49.append(_text_53);
-    _el_54 = doc.createElement('material-input');
-    _el_54.setAttribute(shimCAttr,'');
-    _el_49.append(_el_54);
-    _el_54.className = 'password themeable';
-    createAttr(_el_54,'tabIndex','-1');
-    createAttr(_el_54,'type','password');
-    _appEl_54 = new ViewContainer(54,49,this,_el_54);
-    var compView_54 = import20.viewFactory_MaterialInputComponent0(this.injector(54),_appEl_54);
-    _DeferredValidator_54_3 = new import8.DeferredValidator();
-    _NG_VALIDATORS_54_4 = [_DeferredValidator_54_3];
-    _NgModel_54_5 = new import9.NgModel(_NG_VALIDATORS_54_4,null,null);
-    _NgControl_54_6 = _NgModel_54_5;
-    _MaterialInputComponent_54_7 = new import11.MaterialInputComponent('password',_NgControl_54_6,compView_54.ref,_DeferredValidator_54_3);
-    _BaseMaterialInput_54_8 = _MaterialInputComponent_54_7;
-    _MaterialInputDefaultValueAccessor_54_9 = new import12.MaterialInputDefaultValueAccessor(_BaseMaterialInput_54_8,_NgControl_54_6);
-    _appEl_54.initComponent(_MaterialInputComponent_54_7,compView_54);
-    compView_54.createComp([[]],null);
-    Text _text_55 = new Text('\n        ');
-    _el_49.append(_text_55);
-    Text _text_56 = new Text('\n\n        ');
-    _el_37.append(_text_56);
-    _el_57 = doc.createElement('div');
-    _el_57.setAttribute(shimCAttr,'');
-    _el_37.append(_el_57);
-    _el_57.className = 'changePass';
-    Text _text_58 = new Text('Change\n          password\n        ');
-    _el_57.append(_text_58);
-    Text _text_59 = new Text('\n\n        ');
-    _el_37.append(_text_59);
-    _el_60 = doc.createElement('div');
-    _el_60.setAttribute(shimCAttr,'');
-    _el_37.append(_el_60);
-    _el_60.className = 'passwordZone';
-    Text _text_61 = new Text('\n          ');
-    _el_60.append(_text_61);
-    _el_62 = doc.createElement('fieldset');
-    _el_62.setAttribute(shimCAttr,'');
-    _el_60.append(_el_62);
-    Text _text_63 = new Text('\n            ');
-    _el_62.append(_text_63);
-    _el_64 = doc.createElement('legend');
-    _el_64.setAttribute(shimCAttr,'');
-    _el_62.append(_el_64);
-    _el_64.className = 'changePass';
-    Text _text_65 = new Text('Change password');
-    _el_64.append(_text_65);
-    Text _text_66 = new Text('\n\n            ');
-    _el_62.append(_text_66);
-    _el_67 = doc.createElement('div');
-    _el_67.setAttribute(shimCAttr,'');
-    _el_62.append(_el_67);
-    _el_67.className = 'pass';
-    Text _text_68 = new Text('\n              ');
-    _el_67.append(_text_68);
-    _el_69 = doc.createElement('div');
-    _el_69.setAttribute(shimCAttr,'');
-    _el_67.append(_el_69);
-    _el_69.className = 'label';
-    Text _text_70 = new Text('Old Password');
-    _el_69.append(_text_70);
-    Text _text_71 = new Text('\n              ');
-    _el_67.append(_text_71);
-    _el_72 = doc.createElement('material-input');
-    _el_72.setAttribute(shimCAttr,'');
-    _el_67.append(_el_72);
-    _el_72.className = 'password themeable';
-    createAttr(_el_72,'tabIndex','-1');
-    createAttr(_el_72,'type','password');
-    _appEl_72 = new ViewContainer(72,67,this,_el_72);
-    var compView_72 = import20.viewFactory_MaterialInputComponent0(this.injector(72),_appEl_72);
-    _DeferredValidator_72_3 = new import8.DeferredValidator();
-    _NG_VALIDATORS_72_4 = [_DeferredValidator_72_3];
-    _NgModel_72_5 = new import9.NgModel(_NG_VALIDATORS_72_4,null,null);
-    _NgControl_72_6 = _NgModel_72_5;
-    _MaterialInputComponent_72_7 = new import11.MaterialInputComponent('password',_NgControl_72_6,compView_72.ref,_DeferredValidator_72_3);
-    _BaseMaterialInput_72_8 = _MaterialInputComponent_72_7;
-    _MaterialInputDefaultValueAccessor_72_9 = new import12.MaterialInputDefaultValueAccessor(_BaseMaterialInput_72_8,_NgControl_72_6);
-    _appEl_72.initComponent(_MaterialInputComponent_72_7,compView_72);
-    compView_72.createComp([[]],null);
-    Text _text_73 = new Text('\n            ');
-    _el_67.append(_text_73);
-    Text _text_74 = new Text('\n\n            ');
-    _el_62.append(_text_74);
-    _el_75 = doc.createElement('div');
-    _el_75.setAttribute(shimCAttr,'');
-    _el_62.append(_el_75);
-    _el_75.className = 'pass new';
-    Text _text_76 = new Text('\n              ');
-    _el_75.append(_text_76);
-    _el_77 = doc.createElement('div');
-    _el_77.setAttribute(shimCAttr,'');
-    _el_75.append(_el_77);
-    _el_77.className = 'label';
-    Text _text_78 = new Text('New Password');
-    _el_77.append(_text_78);
-    Text _text_79 = new Text('\n              ');
-    _el_75.append(_text_79);
-    _el_80 = doc.createElement('material-input');
-    _el_80.setAttribute(shimCAttr,'');
-    _el_75.append(_el_80);
-    _el_80.className = 'password themeable';
-    createAttr(_el_80,'tabIndex','-1');
-    createAttr(_el_80,'type','password');
-    _appEl_80 = new ViewContainer(80,75,this,_el_80);
-    var compView_80 = import20.viewFactory_MaterialInputComponent0(this.injector(80),_appEl_80);
-    _DeferredValidator_80_3 = new import8.DeferredValidator();
-    _NG_VALIDATORS_80_4 = [_DeferredValidator_80_3];
-    _NgModel_80_5 = new import9.NgModel(_NG_VALIDATORS_80_4,null,null);
-    _NgControl_80_6 = _NgModel_80_5;
-    _MaterialInputComponent_80_7 = new import11.MaterialInputComponent('password',_NgControl_80_6,compView_80.ref,_DeferredValidator_80_3);
-    _BaseMaterialInput_80_8 = _MaterialInputComponent_80_7;
-    _MaterialInputDefaultValueAccessor_80_9 = new import12.MaterialInputDefaultValueAccessor(_BaseMaterialInput_80_8,_NgControl_80_6);
-    _appEl_80.initComponent(_MaterialInputComponent_80_7,compView_80);
-    compView_80.createComp([[]],null);
-    Text _text_81 = new Text('\n            ');
-    _el_75.append(_text_81);
-    Text _text_82 = new Text('\n          ');
-    _el_62.append(_text_82);
-    Text _text_83 = new Text('\n        ');
-    _el_60.append(_text_83);
-    Text _text_84 = new Text('\n\n        ');
-    _el_37.append(_text_84);
-    _el_85 = doc.createElement('div');
-    _el_85.setAttribute(shimCAttr,'');
-    _el_37.append(_el_85);
-    _el_85.className = 'userName bottom_input';
-    Text _text_86 = new Text('\n          ');
-    _el_85.append(_text_86);
-    _el_87 = doc.createElement('div');
-    _el_87.setAttribute(shimCAttr,'');
-    _el_85.append(_el_87);
-    _el_87.className = 'label';
-    Text _text_88 = new Text('User name');
-    _el_87.append(_text_88);
-    Text _text_89 = new Text('\n          ');
-    _el_85.append(_text_89);
-    _el_90 = doc.createElement('material-input');
-    _el_90.setAttribute(shimCAttr,'');
-    _el_85.append(_el_90);
-    _el_90.className = 'name themeable';
-    createAttr(_el_90,'required','');
-    createAttr(_el_90,'tabIndex','-1');
-    _appEl_90 = new ViewContainer(90,85,this,_el_90);
-    var compView_90 = import20.viewFactory_MaterialInputComponent0(this.injector(90),_appEl_90);
-    _DeferredValidator_90_3 = new import8.DeferredValidator();
-    _NG_VALIDATORS_90_4 = [
-      _DeferredValidator_90_3,import10.REQUIRED
+    _NgModel_43_5 = new import9.NgModel(_NG_VALIDATORS_43_4,null,null);
+    _RequiredValidator_43_6 = new import10.RequiredValidator();
+    _NgControl_43_7 = _NgModel_43_5;
+    _MaterialInputComponent_43_8 = new import11.MaterialInputComponent('email',_NgControl_43_7,compView_43.ref,_DeferredValidator_43_3);
+    _BaseMaterialInput_43_9 = _MaterialInputComponent_43_8;
+    _MaterialInputDefaultValueAccessor_43_10 = new import12.MaterialInputDefaultValueAccessor(_BaseMaterialInput_43_9,_NgControl_43_7);
+    _appEl_43.initComponent(_MaterialInputComponent_43_8,compView_43);
+    compView_43.createComp([[]],null);
+    Text _text_44 = new Text('\n          ');
+    _el_38.append(_text_44);
+    _el_45 = doc.createElement('div');
+    _el_45.setAttribute(shimCAttr,'');
+    _el_38.append(_el_45);
+    _el_45.className = 'changeMail';
+    Text _text_46 = new Text('\n        ');
+    _el_38.append(_text_46);
+    Text _text_47 = new Text('\n\n        ');
+    _el_36.append(_text_47);
+    _el_48 = doc.createElement('div');
+    _el_48.setAttribute(shimCAttr,'');
+    _el_36.append(_el_48);
+    _el_48.className = 'pass';
+    Text _text_49 = new Text('\n          ');
+    _el_48.append(_text_49);
+    _el_50 = doc.createElement('div');
+    _el_50.setAttribute(shimCAttr,'');
+    _el_48.append(_el_50);
+    _el_50.className = 'label';
+    Text _text_51 = new Text('Password');
+    _el_50.append(_text_51);
+    Text _text_52 = new Text('\n          ');
+    _el_48.append(_text_52);
+    _el_53 = doc.createElement('material-input');
+    _el_53.setAttribute(shimCAttr,'');
+    _el_48.append(_el_53);
+    _el_53.className = 'password themeable';
+    createAttr(_el_53,'tabIndex','-1');
+    createAttr(_el_53,'type','password');
+    _appEl_53 = new ViewContainer(53,48,this,_el_53);
+    var compView_53 = import20.viewFactory_MaterialInputComponent0(this.injector(53),_appEl_53);
+    _DeferredValidator_53_3 = new import8.DeferredValidator();
+    _NG_VALIDATORS_53_4 = [_DeferredValidator_53_3];
+    _NgModel_53_5 = new import9.NgModel(_NG_VALIDATORS_53_4,null,null);
+    _NgControl_53_6 = _NgModel_53_5;
+    _MaterialInputComponent_53_7 = new import11.MaterialInputComponent('password',_NgControl_53_6,compView_53.ref,_DeferredValidator_53_3);
+    _BaseMaterialInput_53_8 = _MaterialInputComponent_53_7;
+    _MaterialInputDefaultValueAccessor_53_9 = new import12.MaterialInputDefaultValueAccessor(_BaseMaterialInput_53_8,_NgControl_53_6);
+    _appEl_53.initComponent(_MaterialInputComponent_53_7,compView_53);
+    compView_53.createComp([[]],null);
+    Text _text_54 = new Text('\n        ');
+    _el_48.append(_text_54);
+    Text _text_55 = new Text('\n\n        ');
+    _el_36.append(_text_55);
+    _el_56 = doc.createElement('div');
+    _el_56.setAttribute(shimCAttr,'');
+    _el_36.append(_el_56);
+    _el_56.className = 'changePass';
+    Text _text_57 = new Text('Change\n          password\n        ');
+    _el_56.append(_text_57);
+    Text _text_58 = new Text('\n\n        ');
+    _el_36.append(_text_58);
+    _el_59 = doc.createElement('div');
+    _el_59.setAttribute(shimCAttr,'');
+    _el_36.append(_el_59);
+    _el_59.className = 'passwordZone';
+    Text _text_60 = new Text('\n          ');
+    _el_59.append(_text_60);
+    _el_61 = doc.createElement('fieldset');
+    _el_61.setAttribute(shimCAttr,'');
+    _el_59.append(_el_61);
+    Text _text_62 = new Text('\n            ');
+    _el_61.append(_text_62);
+    _el_63 = doc.createElement('legend');
+    _el_63.setAttribute(shimCAttr,'');
+    _el_61.append(_el_63);
+    _el_63.className = 'changePass';
+    Text _text_64 = new Text('Change password');
+    _el_63.append(_text_64);
+    Text _text_65 = new Text('\n\n            ');
+    _el_61.append(_text_65);
+    _el_66 = doc.createElement('div');
+    _el_66.setAttribute(shimCAttr,'');
+    _el_61.append(_el_66);
+    _el_66.className = 'pass';
+    Text _text_67 = new Text('\n              ');
+    _el_66.append(_text_67);
+    _el_68 = doc.createElement('div');
+    _el_68.setAttribute(shimCAttr,'');
+    _el_66.append(_el_68);
+    _el_68.className = 'label';
+    Text _text_69 = new Text('Old Password');
+    _el_68.append(_text_69);
+    Text _text_70 = new Text('\n              ');
+    _el_66.append(_text_70);
+    _el_71 = doc.createElement('material-input');
+    _el_71.setAttribute(shimCAttr,'');
+    _el_66.append(_el_71);
+    _el_71.className = 'password themeable';
+    createAttr(_el_71,'tabIndex','-1');
+    createAttr(_el_71,'type','password');
+    _appEl_71 = new ViewContainer(71,66,this,_el_71);
+    var compView_71 = import20.viewFactory_MaterialInputComponent0(this.injector(71),_appEl_71);
+    _DeferredValidator_71_3 = new import8.DeferredValidator();
+    _NG_VALIDATORS_71_4 = [_DeferredValidator_71_3];
+    _NgModel_71_5 = new import9.NgModel(_NG_VALIDATORS_71_4,null,null);
+    _NgControl_71_6 = _NgModel_71_5;
+    _MaterialInputComponent_71_7 = new import11.MaterialInputComponent('password',_NgControl_71_6,compView_71.ref,_DeferredValidator_71_3);
+    _BaseMaterialInput_71_8 = _MaterialInputComponent_71_7;
+    _MaterialInputDefaultValueAccessor_71_9 = new import12.MaterialInputDefaultValueAccessor(_BaseMaterialInput_71_8,_NgControl_71_6);
+    _appEl_71.initComponent(_MaterialInputComponent_71_7,compView_71);
+    compView_71.createComp([[]],null);
+    Text _text_72 = new Text('\n            ');
+    _el_66.append(_text_72);
+    Text _text_73 = new Text('\n\n            ');
+    _el_61.append(_text_73);
+    _el_74 = doc.createElement('div');
+    _el_74.setAttribute(shimCAttr,'');
+    _el_61.append(_el_74);
+    _el_74.className = 'pass new';
+    Text _text_75 = new Text('\n              ');
+    _el_74.append(_text_75);
+    _el_76 = doc.createElement('div');
+    _el_76.setAttribute(shimCAttr,'');
+    _el_74.append(_el_76);
+    _el_76.className = 'label';
+    Text _text_77 = new Text('New Password');
+    _el_76.append(_text_77);
+    Text _text_78 = new Text('\n              ');
+    _el_74.append(_text_78);
+    _el_79 = doc.createElement('material-input');
+    _el_79.setAttribute(shimCAttr,'');
+    _el_74.append(_el_79);
+    _el_79.className = 'password themeable';
+    createAttr(_el_79,'tabIndex','-1');
+    createAttr(_el_79,'type','password');
+    _appEl_79 = new ViewContainer(79,74,this,_el_79);
+    var compView_79 = import20.viewFactory_MaterialInputComponent0(this.injector(79),_appEl_79);
+    _DeferredValidator_79_3 = new import8.DeferredValidator();
+    _NG_VALIDATORS_79_4 = [_DeferredValidator_79_3];
+    _NgModel_79_5 = new import9.NgModel(_NG_VALIDATORS_79_4,null,null);
+    _NgControl_79_6 = _NgModel_79_5;
+    _MaterialInputComponent_79_7 = new import11.MaterialInputComponent('password',_NgControl_79_6,compView_79.ref,_DeferredValidator_79_3);
+    _BaseMaterialInput_79_8 = _MaterialInputComponent_79_7;
+    _MaterialInputDefaultValueAccessor_79_9 = new import12.MaterialInputDefaultValueAccessor(_BaseMaterialInput_79_8,_NgControl_79_6);
+    _appEl_79.initComponent(_MaterialInputComponent_79_7,compView_79);
+    compView_79.createComp([[]],null);
+    Text _text_80 = new Text('\n            ');
+    _el_74.append(_text_80);
+    Text _text_81 = new Text('\n          ');
+    _el_61.append(_text_81);
+    Text _text_82 = new Text('\n        ');
+    _el_59.append(_text_82);
+    Text _text_83 = new Text('\n\n        ');
+    _el_36.append(_text_83);
+    _el_84 = doc.createElement('div');
+    _el_84.setAttribute(shimCAttr,'');
+    _el_36.append(_el_84);
+    _el_84.className = 'userName bottom_input';
+    Text _text_85 = new Text('\n          ');
+    _el_84.append(_text_85);
+    _el_86 = doc.createElement('div');
+    _el_86.setAttribute(shimCAttr,'');
+    _el_84.append(_el_86);
+    _el_86.className = 'label';
+    Text _text_87 = new Text('User name');
+    _el_86.append(_text_87);
+    Text _text_88 = new Text('\n          ');
+    _el_84.append(_text_88);
+    _el_89 = doc.createElement('material-input');
+    _el_89.setAttribute(shimCAttr,'');
+    _el_84.append(_el_89);
+    _el_89.className = 'name themeable';
+    createAttr(_el_89,'required','');
+    createAttr(_el_89,'tabIndex','-1');
+    _appEl_89 = new ViewContainer(89,84,this,_el_89);
+    var compView_89 = import20.viewFactory_MaterialInputComponent0(this.injector(89),_appEl_89);
+    _DeferredValidator_89_3 = new import8.DeferredValidator();
+    _NG_VALIDATORS_89_4 = [
+      _DeferredValidator_89_3,import10.REQUIRED
     ]
     ;
-    _NgModel_90_5 = new import9.NgModel(_NG_VALIDATORS_90_4,null,null);
-    _RequiredValidator_90_6 = new import10.RequiredValidator();
-    _NgControl_90_7 = _NgModel_90_5;
-    _MaterialInputComponent_90_8 = new import11.MaterialInputComponent(null,_NgControl_90_7,compView_90.ref,_DeferredValidator_90_3);
-    _BaseMaterialInput_90_9 = _MaterialInputComponent_90_8;
-    _MaterialInputDefaultValueAccessor_90_10 = new import12.MaterialInputDefaultValueAccessor(_BaseMaterialInput_90_9,_NgControl_90_7);
-    _appEl_90.initComponent(_MaterialInputComponent_90_8,compView_90);
-    compView_90.createComp([[]],null);
-    Text _text_91 = new Text('\n        ');
-    _el_85.append(_text_91);
-    Text _text_92 = new Text('\n\n      ');
-    _el_37.append(_text_92);
-    Text _text_93 = new Text('\n\n    ');
-    _el_35.append(_text_93);
-    Text _text_94 = new Text('\n\n\n    ');
-    _el_25.append(_text_94);
-    _el_95 = doc.createElement('div');
-    _el_95.setAttribute(shimCAttr,'');
-    _el_25.append(_el_95);
-    _el_95.className = 'social';
-    Text _text_96 = new Text('\n      ');
-    _el_95.append(_text_96);
-    _el_97 = doc.createElement('div');
-    _el_97.setAttribute(shimCAttr,'');
-    _el_95.append(_el_97);
-    _el_97.className = 'line';
-    _el_98 = doc.createElement('span');
+    _NgModel_89_5 = new import9.NgModel(_NG_VALIDATORS_89_4,null,null);
+    _RequiredValidator_89_6 = new import10.RequiredValidator();
+    _NgControl_89_7 = _NgModel_89_5;
+    _MaterialInputComponent_89_8 = new import11.MaterialInputComponent(null,_NgControl_89_7,compView_89.ref,_DeferredValidator_89_3);
+    _BaseMaterialInput_89_9 = _MaterialInputComponent_89_8;
+    _MaterialInputDefaultValueAccessor_89_10 = new import12.MaterialInputDefaultValueAccessor(_BaseMaterialInput_89_9,_NgControl_89_7);
+    _appEl_89.initComponent(_MaterialInputComponent_89_8,compView_89);
+    compView_89.createComp([[]],null);
+    Text _text_90 = new Text('\n        ');
+    _el_84.append(_text_90);
+    Text _text_91 = new Text('\n\n      ');
+    _el_36.append(_text_91);
+    Text _text_92 = new Text('\n\n    ');
+    _el_34.append(_text_92);
+    Text _text_93 = new Text('\n\n\n    ');
+    _el_24.append(_text_93);
+    _el_94 = doc.createElement('div');
+    _el_94.setAttribute(shimCAttr,'');
+    _el_24.append(_el_94);
+    _el_94.className = 'social';
+    Text _text_95 = new Text('\n      ');
+    _el_94.append(_text_95);
+    _el_96 = doc.createElement('div');
+    _el_96.setAttribute(shimCAttr,'');
+    _el_94.append(_el_96);
+    _el_96.className = 'line';
+    Text _text_97 = new Text('\n        ');
+    _el_96.append(_text_97);
+    _el_98 = doc.createElement('div');
     _el_98.setAttribute(shimCAttr,'');
-    _el_97.append(_el_98);
-    Text _text_99 = new Text('Logged in with ');
-    _el_98.append(_text_99);
-    Text _text_100 = new Text(' ');
-    _el_97.append(_text_100);
-    _el_101 = doc.createElement('a');
-    _el_101.setAttribute(shimCAttr,'');
-    _el_97.append(_el_101);
-    _el_101.className = 'socialBtn facebook';
-    Text _text_102 = new Text('\n        ');
-    _el_101.append(_text_102);
-    _el_103 = doc.createElement('span');
-    _el_103.setAttribute(shimCAttr,'');
-    _el_101.append(_el_103);
-    _el_103.className = 'fa fa-facebook';
-    Text _text_104 = new Text('\n      ');
-    _el_101.append(_text_104);
-    Text _text_105 = new Text('\n      ');
-    _el_97.append(_text_105);
-    Text _text_106 = new Text('\n      ');
-    _el_95.append(_text_106);
-    _el_107 = doc.createElement('div');
-    _el_107.setAttribute(shimCAttr,'');
-    _el_95.append(_el_107);
-    _el_107.className = 'line';
-    Text _text_108 = new Text(' Logged in with ');
-    _el_107.append(_text_108);
-    _el_109 = doc.createElement('a');
-    _el_109.setAttribute(shimCAttr,'');
-    _el_107.append(_el_109);
-    _el_109.className = 'socialBtn google';
+    _el_96.append(_el_98);
+    _el_98.className = 'logLeft';
+    _el_99 = doc.createElement('span');
+    _el_99.setAttribute(shimCAttr,'');
+    _el_98.append(_el_99);
+    _el_99.className = 'log';
+    Text _text_100 = new Text('Logged in with');
+    _el_99.append(_text_100);
+    Text _text_101 = new Text('\n        ');
+    _el_98.append(_text_101);
+    _el_102 = doc.createElement('span');
+    _el_102.setAttribute(shimCAttr,'');
+    _el_98.append(_el_102);
+    _el_102.className = 'nameConnected';
+    _text_103 = new Text('');
+    _el_102.append(_text_103);
+    Text _text_104 = new Text('\n        ');
+    _el_98.append(_text_104);
+    Text _text_105 = new Text('\n        ');
+    _el_96.append(_text_105);
+    _el_106 = doc.createElement('a');
+    _el_106.setAttribute(shimCAttr,'');
+    _el_96.append(_el_106);
+    _el_106.className = 'socialBtn facebook';
+    Text _text_107 = new Text('\n          ');
+    _el_106.append(_text_107);
+    _el_108 = doc.createElement('span');
+    _el_108.setAttribute(shimCAttr,'');
+    _el_106.append(_el_108);
+    _el_108.className = 'fa fa-facebook';
+    Text _text_109 = new Text('  ');
+    _el_108.append(_text_109);
     Text _text_110 = new Text('\n        ');
-    _el_109.append(_text_110);
-    _el_111 = doc.createElement('span');
-    _el_111.setAttribute(shimCAttr,'');
-    _el_109.append(_el_111);
-    _el_111.className = 'fa fa-google';
-    Text _text_112 = new Text('\n      ');
-    _el_109.append(_text_112);
-    Text _text_113 = new Text('\n      ');
-    _el_107.append(_text_113);
-    Text _text_114 = new Text('\n      ');
-    _el_95.append(_text_114);
+    _el_106.append(_text_110);
+    Text _text_111 = new Text('\n      ');
+    _el_96.append(_text_111);
+    Text _text_112 = new Text('\n\n\n\n      ');
+    _el_94.append(_text_112);
+    _el_113 = doc.createElement('div');
+    _el_113.setAttribute(shimCAttr,'');
+    _el_94.append(_el_113);
+    _el_113.className = 'line';
+    Text _text_114 = new Text('\n        ');
+    _el_113.append(_text_114);
     _el_115 = doc.createElement('div');
     _el_115.setAttribute(shimCAttr,'');
-    _el_95.append(_el_115);
-    _el_115.className = 'skype bottom_input';
-    Text _text_116 = new Text('\n        ');
-    _el_115.append(_text_116);
-    _el_117 = doc.createElement('div');
-    _el_117.setAttribute(shimCAttr,'');
-    _el_115.append(_el_117);
-    _el_117.className = 'label';
-    Text _text_118 = new Text('Skype');
-    _el_117.append(_text_118);
-    Text _text_119 = new Text('\n        ');
-    _el_115.append(_text_119);
-    _el_120 = doc.createElement('material-input');
-    _el_120.setAttribute(shimCAttr,'');
-    _el_115.append(_el_120);
-    _el_120.className = 'value themeable';
-    createAttr(_el_120,'tabIndex','-1');
-    _appEl_120 = new ViewContainer(120,115,this,_el_120);
-    var compView_120 = import20.viewFactory_MaterialInputComponent0(this.injector(120),_appEl_120);
-    _DeferredValidator_120_3 = new import8.DeferredValidator();
-    _NG_VALIDATORS_120_4 = [_DeferredValidator_120_3];
-    _NgModel_120_5 = new import9.NgModel(_NG_VALIDATORS_120_4,null,null);
-    _NgControl_120_6 = _NgModel_120_5;
-    _MaterialInputComponent_120_7 = new import11.MaterialInputComponent(null,_NgControl_120_6,compView_120.ref,_DeferredValidator_120_3);
-    _BaseMaterialInput_120_8 = _MaterialInputComponent_120_7;
-    _MaterialInputDefaultValueAccessor_120_9 = new import12.MaterialInputDefaultValueAccessor(_BaseMaterialInput_120_8,_NgControl_120_6);
-    _appEl_120.initComponent(_MaterialInputComponent_120_7,compView_120);
-    compView_120.createComp([[]],null);
+    _el_113.append(_el_115);
+    _el_115.className = 'logLeft';
+    _el_116 = doc.createElement('span');
+    _el_116.setAttribute(shimCAttr,'');
+    _el_115.append(_el_116);
+    _el_116.className = 'log';
+    Text _text_117 = new Text('Logged in with');
+    _el_116.append(_text_117);
+    Text _text_118 = new Text('\n        ');
+    _el_115.append(_text_118);
+    _el_119 = doc.createElement('span');
+    _el_119.setAttribute(shimCAttr,'');
+    _el_115.append(_el_119);
+    _el_119.className = 'nameConnected';
+    _text_120 = new Text('');
+    _el_119.append(_text_120);
     Text _text_121 = new Text('\n      ');
     _el_115.append(_text_121);
-    Text _text_122 = new Text('\n\n\n    ');
-    _el_95.append(_text_122);
-    Text _text_123 = new Text('\n    ');
-    _el_25.append(_text_123);
-    _el_124 = doc.createElement('div');
-    _el_124.setAttribute(shimCAttr,'');
-    _el_25.append(_el_124);
-    _el_124.className = 'clearfix';
-    Text _text_125 = new Text('\n  ');
-    _el_25.append(_text_125);
-    Text _text_126 = new Text('\n  ');
-    _el_0.append(_text_126);
-    _el_127 = doc.createElement('div');
-    _el_127.setAttribute(shimCAttr,'');
-    _el_0.append(_el_127);
-    _el_127.className = 'btnvalidat';
-    Text _text_128 = new Text('\n    ');
-    _el_127.append(_text_128);
-    _el_129 = doc.createElement('material-button');
+    Text _text_122 = new Text('\n        ');
+    _el_113.append(_text_122);
+    _el_123 = doc.createElement('a');
+    _el_123.setAttribute(shimCAttr,'');
+    _el_113.append(_el_123);
+    _el_123.className = 'socialBtn google';
+    Text _text_124 = new Text('\n          ');
+    _el_123.append(_text_124);
+    _el_125 = doc.createElement('span');
+    _el_125.setAttribute(shimCAttr,'');
+    _el_123.append(_el_125);
+    _el_125.className = 'fa fa-google';
+    Text _text_126 = new Text('\n        ');
+    _el_123.append(_text_126);
+    Text _text_127 = new Text('\n      ');
+    _el_113.append(_text_127);
+    Text _text_128 = new Text('\n      ');
+    _el_94.append(_text_128);
+    _el_129 = doc.createElement('div');
     _el_129.setAttribute(shimCAttr,'');
-    _el_127.append(_el_129);
-    createAttr(_el_129,'animated','true');
-    _el_129.className = 'btn_login';
-    createAttr(_el_129,'raised','');
-    createAttr(_el_129,'role','button');
-    _appEl_129 = new ViewContainer(129,127,this,_el_129);
-    var compView_129 = import21.viewFactory_MaterialButtonComponent0(this.injector(129),_appEl_129);
-    _AcxDarkTheme_129_3 = new import13.AcxDarkTheme(this.parentInjector.get(import22.darkThemeToken,null));
-    _MaterialButtonComponent_129_4 = new import14.MaterialButtonComponent(new ElementRef(_el_129),_AcxDarkTheme_129_3,compView_129.ref);
-    _appEl_129.initComponent(_MaterialButtonComponent_129_4,compView_129);
-    Text _text_130 = new Text('Save');
-    compView_129.createComp([[_text_130]],null);
-    Text _text_131 = new Text('\n  ');
-    _el_127.append(_text_131);
-    Text _text_132 = new Text('\n');
-    _el_0.append(_text_132);
+    _el_94.append(_el_129);
+    _el_129.className = 'skype bottom_input';
+    Text _text_130 = new Text('\n        ');
+    _el_129.append(_text_130);
+    _el_131 = doc.createElement('div');
+    _el_131.setAttribute(shimCAttr,'');
+    _el_129.append(_el_131);
+    _el_131.className = 'label';
+    Text _text_132 = new Text('Skype');
+    _el_131.append(_text_132);
+    Text _text_133 = new Text('\n        ');
+    _el_129.append(_text_133);
+    _el_134 = doc.createElement('material-input');
+    _el_134.setAttribute(shimCAttr,'');
+    _el_129.append(_el_134);
+    _el_134.className = 'value themeable';
+    createAttr(_el_134,'tabIndex','-1');
+    _appEl_134 = new ViewContainer(134,129,this,_el_134);
+    var compView_134 = import20.viewFactory_MaterialInputComponent0(this.injector(134),_appEl_134);
+    _DeferredValidator_134_3 = new import8.DeferredValidator();
+    _NG_VALIDATORS_134_4 = [_DeferredValidator_134_3];
+    _NgModel_134_5 = new import9.NgModel(_NG_VALIDATORS_134_4,null,null);
+    _NgControl_134_6 = _NgModel_134_5;
+    _MaterialInputComponent_134_7 = new import11.MaterialInputComponent(null,_NgControl_134_6,compView_134.ref,_DeferredValidator_134_3);
+    _BaseMaterialInput_134_8 = _MaterialInputComponent_134_7;
+    _MaterialInputDefaultValueAccessor_134_9 = new import12.MaterialInputDefaultValueAccessor(_BaseMaterialInput_134_8,_NgControl_134_6);
+    _appEl_134.initComponent(_MaterialInputComponent_134_7,compView_134);
+    compView_134.createComp([[]],null);
+    Text _text_135 = new Text('\n      ');
+    _el_129.append(_text_135);
+    Text _text_136 = new Text('\n\n\n    ');
+    _el_94.append(_text_136);
+    Text _text_137 = new Text('\n    ');
+    _el_24.append(_text_137);
+    _el_138 = doc.createElement('div');
+    _el_138.setAttribute(shimCAttr,'');
+    _el_24.append(_el_138);
+    _el_138.className = 'clearfix';
+    Text _text_139 = new Text('\n  ');
+    _el_24.append(_text_139);
+    Text _text_140 = new Text('\n  ');
+    _el_0.append(_text_140);
+    _el_141 = doc.createElement('div');
+    _el_141.setAttribute(shimCAttr,'');
+    _el_0.append(_el_141);
+    _el_141.className = 'btnvalidat';
+    Text _text_142 = new Text('\n    ');
+    _el_141.append(_text_142);
+    _el_143 = doc.createElement('material-button');
+    _el_143.setAttribute(shimCAttr,'');
+    _el_141.append(_el_143);
+    createAttr(_el_143,'animated','true');
+    _el_143.className = 'btn_login';
+    createAttr(_el_143,'raised','');
+    createAttr(_el_143,'role','button');
+    _appEl_143 = new ViewContainer(143,141,this,_el_143);
+    var compView_143 = import21.viewFactory_MaterialButtonComponent0(this.injector(143),_appEl_143);
+    _AcxDarkTheme_143_3 = new import13.AcxDarkTheme(this.parentInjector.get(import22.darkThemeToken,null));
+    _MaterialButtonComponent_143_4 = new import14.MaterialButtonComponent(new ElementRef(_el_143),_AcxDarkTheme_143_3,compView_143.ref);
+    _appEl_143.initComponent(_MaterialButtonComponent_143_4,compView_143);
+    Text _text_144 = new Text('Save');
+    compView_143.createComp([[_text_144]],null);
+    Text _text_145 = new Text('\n  ');
+    _el_141.append(_text_145);
+    Text _text_146 = new Text('\n');
+    _el_0.append(_text_146);
     listen(_el_0,'keyup.esc',evt(_handle_keyup_esc_0_0));
     listen(_el_7,'click',evt(_handle_click_7_0));
-    listen(_el_10,'dragenter',evt(_handle_dragenter_10_0));
-    listen(_el_10,'drop',evt(_handle_drop_10_1));
-    listen(_el_10,'submit',evt(_handle_submit_10_2));
-    listen(_el_21,'change',evt(_handle_change_21_0));
-    listen(_el_37,'submit',evt(_handle_submit_37_0));
-    listen(_el_44,'change',evt(_handle_change_44_0));
-    listen(_el_44,'ngModelChange',evt(_handle_ngModelChange_44_1));
-    listen(_el_44,'focus',evt(_handle_focus_44_2));
-    final subscription_0 = _NgModel_44_5.update.listen(evt(_handle_ngModelChange_44_1));
-    final subscription_1 = _MaterialInputComponent_44_8.onChange.listen(evt(_handle_change_44_0));
-    final subscription_2 = _MaterialInputComponent_44_8.onFocus.listen(evt(_handle_focus_44_2));
-    listen(_el_46,'click',evt(_handle_click_46_0));
-    listen(_el_54,'ngModelChange',evt(_handle_ngModelChange_54_0));
-    listen(_el_54,'focus',evt(_handle_focus_54_1));
-    final subscription_3 = _NgModel_54_5.update.listen(evt(_handle_ngModelChange_54_0));
-    final subscription_4 = _MaterialInputComponent_54_7.onFocus.listen(evt(_handle_focus_54_1));
-    listen(_el_57,'click',evt(_handle_click_57_0));
-    listen(_el_64,'click',evt(_handle_click_64_0));
-    listen(_el_72,'ngModelChange',evt(_handle_ngModelChange_72_0));
-    listen(_el_72,'focus',evt(_handle_focus_72_1));
-    final subscription_5 = _NgModel_72_5.update.listen(evt(_handle_ngModelChange_72_0));
-    final subscription_6 = _MaterialInputComponent_72_7.onFocus.listen(evt(_handle_focus_72_1));
-    listen(_el_80,'ngModelChange',evt(_handle_ngModelChange_80_0));
-    listen(_el_80,'focus',evt(_handle_focus_80_1));
-    final subscription_7 = _NgModel_80_5.update.listen(evt(_handle_ngModelChange_80_0));
-    final subscription_8 = _MaterialInputComponent_80_7.onFocus.listen(evt(_handle_focus_80_1));
-    listen(_el_90,'ngModelChange',evt(_handle_ngModelChange_90_0));
-    listen(_el_90,'focus',evt(_handle_focus_90_1));
-    final subscription_9 = _NgModel_90_5.update.listen(evt(_handle_ngModelChange_90_0));
-    final subscription_10 = _MaterialInputComponent_90_8.onFocus.listen(evt(_handle_focus_90_1));
-    listen(_el_120,'ngModelChange',evt(_handle_ngModelChange_120_0));
-    listen(_el_120,'focus',evt(_handle_focus_120_1));
-    final subscription_11 = _NgModel_120_5.update.listen(evt(_handle_ngModelChange_120_0));
-    final subscription_12 = _MaterialInputComponent_120_7.onFocus.listen(evt(_handle_focus_120_1));
-    listen(_el_129,'click',evt(_handle_click_129_0));
-    listen(_el_129,'blur',evt(_handle_blur_129_1));
-    listen(_el_129,'mouseup',evt(_handle_mouseup_129_2));
-    listen(_el_129,'keypress',evt(_handle_keypress_129_3));
-    listen(_el_129,'focus',evt(_handle_focus_129_4));
-    listen(_el_129,'mousedown',evt(_handle_mousedown_129_5));
+    listen(_el_9,'dragenter',evt(_handle_dragenter_9_0));
+    listen(_el_9,'drop',evt(_handle_drop_9_1));
+    listen(_el_9,'submit',evt(_handle_submit_9_2));
+    listen(_el_20,'change',evt(_handle_change_20_0));
+    listen(_el_36,'submit',evt(_handle_submit_36_0));
+    listen(_el_43,'change',evt(_handle_change_43_0));
+    listen(_el_43,'ngModelChange',evt(_handle_ngModelChange_43_1));
+    listen(_el_43,'focus',evt(_handle_focus_43_2));
+    final subscription_0 = _NgModel_43_5.update.listen(evt(_handle_ngModelChange_43_1));
+    final subscription_1 = _MaterialInputComponent_43_8.onChange.listen(evt(_handle_change_43_0));
+    final subscription_2 = _MaterialInputComponent_43_8.onFocus.listen(evt(_handle_focus_43_2));
+    listen(_el_45,'click',evt(_handle_click_45_0));
+    listen(_el_53,'ngModelChange',evt(_handle_ngModelChange_53_0));
+    listen(_el_53,'focus',evt(_handle_focus_53_1));
+    final subscription_3 = _NgModel_53_5.update.listen(evt(_handle_ngModelChange_53_0));
+    final subscription_4 = _MaterialInputComponent_53_7.onFocus.listen(evt(_handle_focus_53_1));
+    listen(_el_56,'click',evt(_handle_click_56_0));
+    listen(_el_63,'click',evt(_handle_click_63_0));
+    listen(_el_71,'ngModelChange',evt(_handle_ngModelChange_71_0));
+    listen(_el_71,'focus',evt(_handle_focus_71_1));
+    final subscription_5 = _NgModel_71_5.update.listen(evt(_handle_ngModelChange_71_0));
+    final subscription_6 = _MaterialInputComponent_71_7.onFocus.listen(evt(_handle_focus_71_1));
+    listen(_el_79,'ngModelChange',evt(_handle_ngModelChange_79_0));
+    listen(_el_79,'focus',evt(_handle_focus_79_1));
+    final subscription_7 = _NgModel_79_5.update.listen(evt(_handle_ngModelChange_79_0));
+    final subscription_8 = _MaterialInputComponent_79_7.onFocus.listen(evt(_handle_focus_79_1));
+    listen(_el_89,'ngModelChange',evt(_handle_ngModelChange_89_0));
+    listen(_el_89,'focus',evt(_handle_focus_89_1));
+    final subscription_9 = _NgModel_89_5.update.listen(evt(_handle_ngModelChange_89_0));
+    final subscription_10 = _MaterialInputComponent_89_8.onFocus.listen(evt(_handle_focus_89_1));
+    listen(_el_134,'ngModelChange',evt(_handle_ngModelChange_134_0));
+    listen(_el_134,'focus',evt(_handle_focus_134_1));
+    final subscription_11 = _NgModel_134_5.update.listen(evt(_handle_ngModelChange_134_0));
+    final subscription_12 = _MaterialInputComponent_134_7.onFocus.listen(evt(_handle_focus_134_1));
+    listen(_el_143,'click',evt(_handle_click_143_0));
+    listen(_el_143,'blur',evt(_handle_blur_143_1));
+    listen(_el_143,'mouseup',evt(_handle_mouseup_143_2));
+    listen(_el_143,'keypress',evt(_handle_keypress_143_3));
+    listen(_el_143,'focus',evt(_handle_focus_143_4));
+    listen(_el_143,'mousedown',evt(_handle_mousedown_143_5));
     init([],[
-      _el_0,_text_1,_el_2,_text_3,_el_4,_text_5,_text_6,_el_7,_el_8,_text_9,_el_10,_text_11,
-      _el_12,_text_13,_text_14,_el_15,_text_16,_el_17,_text_18,_text_19,_text_20,_el_21,
-      _text_22,_text_23,_text_24,_el_25,_text_26,_el_27,_text_28,_text_29,_el_30,_text_31,
-      _anchor_32,_text_33,_text_34,_el_35,_text_36,_el_37,_text_38,_el_39,_text_40,_el_41,
-      _text_42,_text_43,_el_44,_text_45,_el_46,_text_47,_text_48,_el_49,_text_50,_el_51,
-      _text_52,_text_53,_el_54,_text_55,_text_56,_el_57,_text_58,_text_59,_el_60,_text_61,
-      _el_62,_text_63,_el_64,_text_65,_text_66,_el_67,_text_68,_el_69,_text_70,_text_71,
-      _el_72,_text_73,_text_74,_el_75,_text_76,_el_77,_text_78,_text_79,_el_80,_text_81,
-      _text_82,_text_83,_text_84,_el_85,_text_86,_el_87,_text_88,_text_89,_el_90,_text_91,
-      _text_92,_text_93,_text_94,_el_95,_text_96,_el_97,_el_98,_text_99,_text_100,_el_101,
-      _text_102,_el_103,_text_104,_text_105,_text_106,_el_107,_text_108,_el_109,_text_110,
-      _el_111,_text_112,_text_113,_text_114,_el_115,_text_116,_el_117,_text_118,_text_119,
-      _el_120,_text_121,_text_122,_text_123,_el_124,_text_125,_text_126,_el_127,_text_128,
-      _el_129,_text_130,_text_131,_text_132
+      _el_0,_text_1,_el_2,_text_3,_el_4,_text_5,_text_6,_el_7,_text_8,_el_9,_text_10,
+      _el_11,_text_12,_text_13,_el_14,_text_15,_el_16,_text_17,_text_18,_text_19,_el_20,
+      _text_21,_text_22,_text_23,_el_24,_text_25,_el_26,_text_27,_text_28,_el_29,_text_30,
+      _anchor_31,_text_32,_text_33,_el_34,_text_35,_el_36,_text_37,_el_38,_text_39,_el_40,
+      _text_41,_text_42,_el_43,_text_44,_el_45,_text_46,_text_47,_el_48,_text_49,_el_50,
+      _text_51,_text_52,_el_53,_text_54,_text_55,_el_56,_text_57,_text_58,_el_59,_text_60,
+      _el_61,_text_62,_el_63,_text_64,_text_65,_el_66,_text_67,_el_68,_text_69,_text_70,
+      _el_71,_text_72,_text_73,_el_74,_text_75,_el_76,_text_77,_text_78,_el_79,_text_80,
+      _text_81,_text_82,_text_83,_el_84,_text_85,_el_86,_text_87,_text_88,_el_89,_text_90,
+      _text_91,_text_92,_text_93,_el_94,_text_95,_el_96,_text_97,_el_98,_el_99,_text_100,
+      _text_101,_el_102,_text_103,_text_104,_text_105,_el_106,_text_107,_el_108,_text_109,
+      _text_110,_text_111,_text_112,_el_113,_text_114,_el_115,_el_116,_text_117,_text_118,
+      _el_119,_text_120,_text_121,_text_122,_el_123,_text_124,_el_125,_text_126,_text_127,
+      _text_128,_el_129,_text_130,_el_131,_text_132,_text_133,_el_134,_text_135,_text_136,
+      _text_137,_el_138,_text_139,_text_140,_el_141,_text_142,_el_143,_text_144,_text_145,
+      _text_146
     ]
     ,[
       subscription_0,subscription_1,subscription_2,subscription_3,subscription_4,subscription_5,
@@ -827,71 +874,71 @@ class ViewProfileComp0 extends AppView<import3.ProfileComp> {
     return null;
   }
   dynamic injectorGetInternal(dynamic token,int requestNodeIndex,dynamic notFoundResult) {
-    if ((identical(token, import5.NgForm) && ((10 <= requestNodeIndex) && (requestNodeIndex <= 22)))) { return _NgForm_10_2; }
-    if ((identical(token, import24.ControlContainer) && ((10 <= requestNodeIndex) && (requestNodeIndex <= 22)))) { return _ControlContainer_10_3; }
-    if ((identical(token, TemplateRef) && (32 == requestNodeIndex))) { return _TemplateRef_32_4; }
-    if ((identical(token, import7.NgFor) && (32 == requestNodeIndex))) { return _NgFor_32_5; }
-    if ((identical(token, import8.DeferredValidator) && (44 == requestNodeIndex))) { return _DeferredValidator_44_3; }
-    if ((identical(token, import25.NG_VALIDATORS) && (44 == requestNodeIndex))) { return _NG_VALIDATORS_44_4; }
-    if ((identical(token, import9.NgModel) && (44 == requestNodeIndex))) { return _NgModel_44_5; }
-    if ((identical(token, import10.RequiredValidator) && (44 == requestNodeIndex))) { return _RequiredValidator_44_6; }
-    if ((identical(token, import26.NgControl) && (44 == requestNodeIndex))) { return _NgControl_44_7; }
-    if ((identical(token, import11.MaterialInputComponent) && (44 == requestNodeIndex))) { return _MaterialInputComponent_44_8; }
-    if ((identical(token, import27.BaseMaterialInput) && (44 == requestNodeIndex))) { return _BaseMaterialInput_44_9; }
-    if ((identical(token, import12.MaterialInputDefaultValueAccessor) && (44 == requestNodeIndex))) { return _MaterialInputDefaultValueAccessor_44_10; }
-    if ((identical(token, import28.ReferenceDirective) && (44 == requestNodeIndex))) { return _ReferenceDirective_44_11; }
-    if ((identical(token, import29.Focusable) && (44 == requestNodeIndex))) { return _Focusable_44_12; }
-    if ((identical(token, import8.DeferredValidator) && (54 == requestNodeIndex))) { return _DeferredValidator_54_3; }
-    if ((identical(token, import25.NG_VALIDATORS) && (54 == requestNodeIndex))) { return _NG_VALIDATORS_54_4; }
-    if ((identical(token, import9.NgModel) && (54 == requestNodeIndex))) { return _NgModel_54_5; }
-    if ((identical(token, import26.NgControl) && (54 == requestNodeIndex))) { return _NgControl_54_6; }
-    if ((identical(token, import11.MaterialInputComponent) && (54 == requestNodeIndex))) { return _MaterialInputComponent_54_7; }
-    if ((identical(token, import27.BaseMaterialInput) && (54 == requestNodeIndex))) { return _BaseMaterialInput_54_8; }
-    if ((identical(token, import12.MaterialInputDefaultValueAccessor) && (54 == requestNodeIndex))) { return _MaterialInputDefaultValueAccessor_54_9; }
-    if ((identical(token, import28.ReferenceDirective) && (54 == requestNodeIndex))) { return _ReferenceDirective_54_10; }
-    if ((identical(token, import29.Focusable) && (54 == requestNodeIndex))) { return _Focusable_54_11; }
-    if ((identical(token, import8.DeferredValidator) && (72 == requestNodeIndex))) { return _DeferredValidator_72_3; }
-    if ((identical(token, import25.NG_VALIDATORS) && (72 == requestNodeIndex))) { return _NG_VALIDATORS_72_4; }
-    if ((identical(token, import9.NgModel) && (72 == requestNodeIndex))) { return _NgModel_72_5; }
-    if ((identical(token, import26.NgControl) && (72 == requestNodeIndex))) { return _NgControl_72_6; }
-    if ((identical(token, import11.MaterialInputComponent) && (72 == requestNodeIndex))) { return _MaterialInputComponent_72_7; }
-    if ((identical(token, import27.BaseMaterialInput) && (72 == requestNodeIndex))) { return _BaseMaterialInput_72_8; }
-    if ((identical(token, import12.MaterialInputDefaultValueAccessor) && (72 == requestNodeIndex))) { return _MaterialInputDefaultValueAccessor_72_9; }
-    if ((identical(token, import28.ReferenceDirective) && (72 == requestNodeIndex))) { return _ReferenceDirective_72_10; }
-    if ((identical(token, import29.Focusable) && (72 == requestNodeIndex))) { return _Focusable_72_11; }
-    if ((identical(token, import8.DeferredValidator) && (80 == requestNodeIndex))) { return _DeferredValidator_80_3; }
-    if ((identical(token, import25.NG_VALIDATORS) && (80 == requestNodeIndex))) { return _NG_VALIDATORS_80_4; }
-    if ((identical(token, import9.NgModel) && (80 == requestNodeIndex))) { return _NgModel_80_5; }
-    if ((identical(token, import26.NgControl) && (80 == requestNodeIndex))) { return _NgControl_80_6; }
-    if ((identical(token, import11.MaterialInputComponent) && (80 == requestNodeIndex))) { return _MaterialInputComponent_80_7; }
-    if ((identical(token, import27.BaseMaterialInput) && (80 == requestNodeIndex))) { return _BaseMaterialInput_80_8; }
-    if ((identical(token, import12.MaterialInputDefaultValueAccessor) && (80 == requestNodeIndex))) { return _MaterialInputDefaultValueAccessor_80_9; }
-    if ((identical(token, import28.ReferenceDirective) && (80 == requestNodeIndex))) { return _ReferenceDirective_80_10; }
-    if ((identical(token, import29.Focusable) && (80 == requestNodeIndex))) { return _Focusable_80_11; }
-    if ((identical(token, import8.DeferredValidator) && (90 == requestNodeIndex))) { return _DeferredValidator_90_3; }
-    if ((identical(token, import25.NG_VALIDATORS) && (90 == requestNodeIndex))) { return _NG_VALIDATORS_90_4; }
-    if ((identical(token, import9.NgModel) && (90 == requestNodeIndex))) { return _NgModel_90_5; }
-    if ((identical(token, import10.RequiredValidator) && (90 == requestNodeIndex))) { return _RequiredValidator_90_6; }
-    if ((identical(token, import26.NgControl) && (90 == requestNodeIndex))) { return _NgControl_90_7; }
-    if ((identical(token, import11.MaterialInputComponent) && (90 == requestNodeIndex))) { return _MaterialInputComponent_90_8; }
-    if ((identical(token, import27.BaseMaterialInput) && (90 == requestNodeIndex))) { return _BaseMaterialInput_90_9; }
-    if ((identical(token, import12.MaterialInputDefaultValueAccessor) && (90 == requestNodeIndex))) { return _MaterialInputDefaultValueAccessor_90_10; }
-    if ((identical(token, import28.ReferenceDirective) && (90 == requestNodeIndex))) { return _ReferenceDirective_90_11; }
-    if ((identical(token, import29.Focusable) && (90 == requestNodeIndex))) { return _Focusable_90_12; }
-    if ((identical(token, import5.NgForm) && ((37 <= requestNodeIndex) && (requestNodeIndex <= 92)))) { return _NgForm_37_2; }
-    if ((identical(token, import24.ControlContainer) && ((37 <= requestNodeIndex) && (requestNodeIndex <= 92)))) { return _ControlContainer_37_3; }
-    if ((identical(token, import8.DeferredValidator) && (120 == requestNodeIndex))) { return _DeferredValidator_120_3; }
-    if ((identical(token, import25.NG_VALIDATORS) && (120 == requestNodeIndex))) { return _NG_VALIDATORS_120_4; }
-    if ((identical(token, import9.NgModel) && (120 == requestNodeIndex))) { return _NgModel_120_5; }
-    if ((identical(token, import26.NgControl) && (120 == requestNodeIndex))) { return _NgControl_120_6; }
-    if ((identical(token, import11.MaterialInputComponent) && (120 == requestNodeIndex))) { return _MaterialInputComponent_120_7; }
-    if ((identical(token, import27.BaseMaterialInput) && (120 == requestNodeIndex))) { return _BaseMaterialInput_120_8; }
-    if ((identical(token, import12.MaterialInputDefaultValueAccessor) && (120 == requestNodeIndex))) { return _MaterialInputDefaultValueAccessor_120_9; }
-    if ((identical(token, import28.ReferenceDirective) && (120 == requestNodeIndex))) { return _ReferenceDirective_120_10; }
-    if ((identical(token, import29.Focusable) && (120 == requestNodeIndex))) { return _Focusable_120_11; }
-    if ((identical(token, import13.AcxDarkTheme) && ((129 <= requestNodeIndex) && (requestNodeIndex <= 130)))) { return _AcxDarkTheme_129_3; }
-    if ((identical(token, import14.MaterialButtonComponent) && ((129 <= requestNodeIndex) && (requestNodeIndex <= 130)))) { return _MaterialButtonComponent_129_4; }
-    if ((identical(token, import30.ButtonDirective) && ((129 <= requestNodeIndex) && (requestNodeIndex <= 130)))) { return _ButtonDirective_129_5; }
+    if ((identical(token, import5.NgForm) && ((9 <= requestNodeIndex) && (requestNodeIndex <= 21)))) { return _NgForm_9_2; }
+    if ((identical(token, import24.ControlContainer) && ((9 <= requestNodeIndex) && (requestNodeIndex <= 21)))) { return _ControlContainer_9_3; }
+    if ((identical(token, TemplateRef) && (31 == requestNodeIndex))) { return _TemplateRef_31_4; }
+    if ((identical(token, import7.NgFor) && (31 == requestNodeIndex))) { return _NgFor_31_5; }
+    if ((identical(token, import8.DeferredValidator) && (43 == requestNodeIndex))) { return _DeferredValidator_43_3; }
+    if ((identical(token, import25.NG_VALIDATORS) && (43 == requestNodeIndex))) { return _NG_VALIDATORS_43_4; }
+    if ((identical(token, import9.NgModel) && (43 == requestNodeIndex))) { return _NgModel_43_5; }
+    if ((identical(token, import10.RequiredValidator) && (43 == requestNodeIndex))) { return _RequiredValidator_43_6; }
+    if ((identical(token, import26.NgControl) && (43 == requestNodeIndex))) { return _NgControl_43_7; }
+    if ((identical(token, import11.MaterialInputComponent) && (43 == requestNodeIndex))) { return _MaterialInputComponent_43_8; }
+    if ((identical(token, import27.BaseMaterialInput) && (43 == requestNodeIndex))) { return _BaseMaterialInput_43_9; }
+    if ((identical(token, import12.MaterialInputDefaultValueAccessor) && (43 == requestNodeIndex))) { return _MaterialInputDefaultValueAccessor_43_10; }
+    if ((identical(token, import28.ReferenceDirective) && (43 == requestNodeIndex))) { return _ReferenceDirective_43_11; }
+    if ((identical(token, import29.Focusable) && (43 == requestNodeIndex))) { return _Focusable_43_12; }
+    if ((identical(token, import8.DeferredValidator) && (53 == requestNodeIndex))) { return _DeferredValidator_53_3; }
+    if ((identical(token, import25.NG_VALIDATORS) && (53 == requestNodeIndex))) { return _NG_VALIDATORS_53_4; }
+    if ((identical(token, import9.NgModel) && (53 == requestNodeIndex))) { return _NgModel_53_5; }
+    if ((identical(token, import26.NgControl) && (53 == requestNodeIndex))) { return _NgControl_53_6; }
+    if ((identical(token, import11.MaterialInputComponent) && (53 == requestNodeIndex))) { return _MaterialInputComponent_53_7; }
+    if ((identical(token, import27.BaseMaterialInput) && (53 == requestNodeIndex))) { return _BaseMaterialInput_53_8; }
+    if ((identical(token, import12.MaterialInputDefaultValueAccessor) && (53 == requestNodeIndex))) { return _MaterialInputDefaultValueAccessor_53_9; }
+    if ((identical(token, import28.ReferenceDirective) && (53 == requestNodeIndex))) { return _ReferenceDirective_53_10; }
+    if ((identical(token, import29.Focusable) && (53 == requestNodeIndex))) { return _Focusable_53_11; }
+    if ((identical(token, import8.DeferredValidator) && (71 == requestNodeIndex))) { return _DeferredValidator_71_3; }
+    if ((identical(token, import25.NG_VALIDATORS) && (71 == requestNodeIndex))) { return _NG_VALIDATORS_71_4; }
+    if ((identical(token, import9.NgModel) && (71 == requestNodeIndex))) { return _NgModel_71_5; }
+    if ((identical(token, import26.NgControl) && (71 == requestNodeIndex))) { return _NgControl_71_6; }
+    if ((identical(token, import11.MaterialInputComponent) && (71 == requestNodeIndex))) { return _MaterialInputComponent_71_7; }
+    if ((identical(token, import27.BaseMaterialInput) && (71 == requestNodeIndex))) { return _BaseMaterialInput_71_8; }
+    if ((identical(token, import12.MaterialInputDefaultValueAccessor) && (71 == requestNodeIndex))) { return _MaterialInputDefaultValueAccessor_71_9; }
+    if ((identical(token, import28.ReferenceDirective) && (71 == requestNodeIndex))) { return _ReferenceDirective_71_10; }
+    if ((identical(token, import29.Focusable) && (71 == requestNodeIndex))) { return _Focusable_71_11; }
+    if ((identical(token, import8.DeferredValidator) && (79 == requestNodeIndex))) { return _DeferredValidator_79_3; }
+    if ((identical(token, import25.NG_VALIDATORS) && (79 == requestNodeIndex))) { return _NG_VALIDATORS_79_4; }
+    if ((identical(token, import9.NgModel) && (79 == requestNodeIndex))) { return _NgModel_79_5; }
+    if ((identical(token, import26.NgControl) && (79 == requestNodeIndex))) { return _NgControl_79_6; }
+    if ((identical(token, import11.MaterialInputComponent) && (79 == requestNodeIndex))) { return _MaterialInputComponent_79_7; }
+    if ((identical(token, import27.BaseMaterialInput) && (79 == requestNodeIndex))) { return _BaseMaterialInput_79_8; }
+    if ((identical(token, import12.MaterialInputDefaultValueAccessor) && (79 == requestNodeIndex))) { return _MaterialInputDefaultValueAccessor_79_9; }
+    if ((identical(token, import28.ReferenceDirective) && (79 == requestNodeIndex))) { return _ReferenceDirective_79_10; }
+    if ((identical(token, import29.Focusable) && (79 == requestNodeIndex))) { return _Focusable_79_11; }
+    if ((identical(token, import8.DeferredValidator) && (89 == requestNodeIndex))) { return _DeferredValidator_89_3; }
+    if ((identical(token, import25.NG_VALIDATORS) && (89 == requestNodeIndex))) { return _NG_VALIDATORS_89_4; }
+    if ((identical(token, import9.NgModel) && (89 == requestNodeIndex))) { return _NgModel_89_5; }
+    if ((identical(token, import10.RequiredValidator) && (89 == requestNodeIndex))) { return _RequiredValidator_89_6; }
+    if ((identical(token, import26.NgControl) && (89 == requestNodeIndex))) { return _NgControl_89_7; }
+    if ((identical(token, import11.MaterialInputComponent) && (89 == requestNodeIndex))) { return _MaterialInputComponent_89_8; }
+    if ((identical(token, import27.BaseMaterialInput) && (89 == requestNodeIndex))) { return _BaseMaterialInput_89_9; }
+    if ((identical(token, import12.MaterialInputDefaultValueAccessor) && (89 == requestNodeIndex))) { return _MaterialInputDefaultValueAccessor_89_10; }
+    if ((identical(token, import28.ReferenceDirective) && (89 == requestNodeIndex))) { return _ReferenceDirective_89_11; }
+    if ((identical(token, import29.Focusable) && (89 == requestNodeIndex))) { return _Focusable_89_12; }
+    if ((identical(token, import5.NgForm) && ((36 <= requestNodeIndex) && (requestNodeIndex <= 91)))) { return _NgForm_36_2; }
+    if ((identical(token, import24.ControlContainer) && ((36 <= requestNodeIndex) && (requestNodeIndex <= 91)))) { return _ControlContainer_36_3; }
+    if ((identical(token, import8.DeferredValidator) && (134 == requestNodeIndex))) { return _DeferredValidator_134_3; }
+    if ((identical(token, import25.NG_VALIDATORS) && (134 == requestNodeIndex))) { return _NG_VALIDATORS_134_4; }
+    if ((identical(token, import9.NgModel) && (134 == requestNodeIndex))) { return _NgModel_134_5; }
+    if ((identical(token, import26.NgControl) && (134 == requestNodeIndex))) { return _NgControl_134_6; }
+    if ((identical(token, import11.MaterialInputComponent) && (134 == requestNodeIndex))) { return _MaterialInputComponent_134_7; }
+    if ((identical(token, import27.BaseMaterialInput) && (134 == requestNodeIndex))) { return _BaseMaterialInput_134_8; }
+    if ((identical(token, import12.MaterialInputDefaultValueAccessor) && (134 == requestNodeIndex))) { return _MaterialInputDefaultValueAccessor_134_9; }
+    if ((identical(token, import28.ReferenceDirective) && (134 == requestNodeIndex))) { return _ReferenceDirective_134_10; }
+    if ((identical(token, import29.Focusable) && (134 == requestNodeIndex))) { return _Focusable_134_11; }
+    if ((identical(token, import13.AcxDarkTheme) && ((143 <= requestNodeIndex) && (requestNodeIndex <= 144)))) { return _AcxDarkTheme_143_3; }
+    if ((identical(token, import14.MaterialButtonComponent) && ((143 <= requestNodeIndex) && (requestNodeIndex <= 144)))) { return _MaterialButtonComponent_143_4; }
+    if ((identical(token, import30.ButtonDirective) && ((143 <= requestNodeIndex) && (requestNodeIndex <= 144)))) { return _ButtonDirective_143_5; }
     return notFoundResult;
   }
   void detectChangesInternal() {
@@ -899,207 +946,217 @@ class ViewProfileComp0 extends AppView<import3.ProfileComp> {
     Map<String, SimpleChange> changes;
     final currVal_9 = ctx.messages;
     if (import31.checkBinding(_expr_9,currVal_9)) {
-      _NgFor_32_5.ngForOf = currVal_9;
+      _NgFor_31_5.ngForOf = currVal_9;
       _expr_9 = currVal_9;
     }
-    if (!import31.AppViewUtils.throwOnChanges) { _NgFor_32_5.ngDoCheck(); }
+    if (!import31.AppViewUtils.throwOnChanges) { _NgFor_31_5.ngDoCheck(); }
     changes = null;
     final currVal_14 = ctx.connectedUser.email;
     if (import31.checkBinding(_expr_14,currVal_14)) {
-      _NgModel_44_5.model = currVal_14;
+      _NgModel_43_5.model = currVal_14;
       if (identical(changes, null)) { (changes = <String, SimpleChange>{}); }
       changes['model'] = new SimpleChange(_expr_14,currVal_14);
       _expr_14 = currVal_14;
     }
-    if (!identical(changes, null)) { _NgModel_44_5.ngOnChanges(changes); }
+    if (!identical(changes, null)) { _NgModel_43_5.ngOnChanges(changes); }
     changed = false;
     final currVal_15 = 'example@domain.com';
     if (import31.checkBinding(_expr_15,currVal_15)) {
-      _MaterialInputComponent_44_8.label = currVal_15;
+      _MaterialInputComponent_43_8.label = currVal_15;
       changed = true;
       _expr_15 = currVal_15;
     }
     final currVal_16 = '';
     if (import31.checkBinding(_expr_16,currVal_16)) {
-      _MaterialInputComponent_44_8.required = currVal_16;
+      _MaterialInputComponent_43_8.required = currVal_16;
       changed = true;
       _expr_16 = currVal_16;
     }
     final bool currVal_17 = !ctx.emailChanging;
     if (import31.checkBinding(_expr_17,currVal_17)) {
-      _MaterialInputComponent_44_8.disabled = currVal_17;
+      _MaterialInputComponent_43_8.disabled = currVal_17;
       changed = true;
       _expr_17 = currVal_17;
     }
-    if (changed) { _appEl_44.componentView.markAsCheckOnce(); }
+    if (changed) { _appEl_43.componentView.markAsCheckOnce(); }
     changes = null;
     final currVal_23 = ctx.connectedUser.pass;
     if (import31.checkBinding(_expr_23,currVal_23)) {
-      _NgModel_54_5.model = currVal_23;
+      _NgModel_53_5.model = currVal_23;
       if (identical(changes, null)) { (changes = <String, SimpleChange>{}); }
       changes['model'] = new SimpleChange(_expr_23,currVal_23);
       _expr_23 = currVal_23;
     }
-    if (!identical(changes, null)) { _NgModel_54_5.ngOnChanges(changes); }
+    if (!identical(changes, null)) { _NgModel_53_5.ngOnChanges(changes); }
     changes = null;
     final currVal_30 = ctx.connectedUser.pass;
     if (import31.checkBinding(_expr_30,currVal_30)) {
-      _NgModel_72_5.model = currVal_30;
+      _NgModel_71_5.model = currVal_30;
       if (identical(changes, null)) { (changes = <String, SimpleChange>{}); }
       changes['model'] = new SimpleChange(_expr_30,currVal_30);
       _expr_30 = currVal_30;
     }
-    if (!identical(changes, null)) { _NgModel_72_5.ngOnChanges(changes); }
+    if (!identical(changes, null)) { _NgModel_71_5.ngOnChanges(changes); }
     changes = null;
     final currVal_34 = ctx.newPass;
     if (import31.checkBinding(_expr_34,currVal_34)) {
-      _NgModel_80_5.model = currVal_34;
+      _NgModel_79_5.model = currVal_34;
       if (identical(changes, null)) { (changes = <String, SimpleChange>{}); }
       changes['model'] = new SimpleChange(_expr_34,currVal_34);
       _expr_34 = currVal_34;
     }
-    if (!identical(changes, null)) { _NgModel_80_5.ngOnChanges(changes); }
+    if (!identical(changes, null)) { _NgModel_79_5.ngOnChanges(changes); }
     changes = null;
     final currVal_37 = ctx.connectedUser.name;
     if (import31.checkBinding(_expr_37,currVal_37)) {
-      _NgModel_90_5.model = currVal_37;
+      _NgModel_89_5.model = currVal_37;
       if (identical(changes, null)) { (changes = <String, SimpleChange>{}); }
       changes['model'] = new SimpleChange(_expr_37,currVal_37);
       _expr_37 = currVal_37;
     }
-    if (!identical(changes, null)) { _NgModel_90_5.ngOnChanges(changes); }
+    if (!identical(changes, null)) { _NgModel_89_5.ngOnChanges(changes); }
     changed = false;
     final currVal_38 = '';
     if (import31.checkBinding(_expr_38,currVal_38)) {
-      _MaterialInputComponent_90_8.required = currVal_38;
+      _MaterialInputComponent_89_8.required = currVal_38;
       changed = true;
       _expr_38 = currVal_38;
     }
-    if (changed) { _appEl_90.componentView.markAsCheckOnce(); }
+    if (changed) { _appEl_89.componentView.markAsCheckOnce(); }
     changes = null;
-    final currVal_45 = ctx.connectedUser.skype;
-    if (import31.checkBinding(_expr_45,currVal_45)) {
-      _NgModel_120_5.model = currVal_45;
+    final currVal_47 = ctx.connectedUser.skype;
+    if (import31.checkBinding(_expr_47,currVal_47)) {
+      _NgModel_134_5.model = currVal_47;
       if (identical(changes, null)) { (changes = <String, SimpleChange>{}); }
-      changes['model'] = new SimpleChange(_expr_45,currVal_45);
-      _expr_45 = currVal_45;
+      changes['model'] = new SimpleChange(_expr_47,currVal_47);
+      _expr_47 = currVal_47;
     }
-    if (!identical(changes, null)) { _NgModel_120_5.ngOnChanges(changes); }
+    if (!identical(changes, null)) { _NgModel_134_5.ngOnChanges(changes); }
     changed = false;
-    final currVal_53 = '';
-    if (import31.checkBinding(_expr_53,currVal_53)) {
-      _MaterialButtonComponent_129_4.raised = currVal_53;
+    final currVal_55 = '';
+    if (import31.checkBinding(_expr_55,currVal_55)) {
+      _MaterialButtonComponent_143_4.raised = currVal_55;
       changed = true;
-      _expr_53 = currVal_53;
+      _expr_55 = currVal_55;
     }
-    if (changed) { _appEl_129.componentView.markAsCheckOnce(); }
+    if (changed) { _appEl_143.componentView.markAsCheckOnce(); }
     this.detectContentChildrenChanges();
     final currVal_5 = ctx.uploading;
     if (import31.checkBinding(_expr_5,currVal_5)) {
-      updateClass(_el_10,'uploading',currVal_5);
+      updateClass(_el_9,'uploading',currVal_5);
       _expr_5 = currVal_5;
     }
-    final currVal_6 = import31.interpolate2('/auth/user/photo/s/',ctx.connectedUser.id,'?refreshHack=',ctx.photoId,'');
+    final currVal_6 = import31.interpolate1('/auth/gridfs/file/',ctx.photoId,'');
     if (import31.checkBinding(_expr_6,currVal_6)) {
-      setProp(_el_15,'src',import31.appViewUtils.sanitizer.sanitizeUrl(currVal_6));
+      setProp(_el_14,'src',import31.appViewUtils.sanitizer.sanitizeUrl(currVal_6));
       _expr_6 = currVal_6;
     }
     final currVal_8 = import31.interpolate0(ctx.error);
     if (import31.checkBinding(_expr_8,currVal_8)) {
-      _text_28.text = currVal_8;
+      _text_27.text = currVal_8;
       _expr_8 = currVal_8;
     }
     final currVal_19 = ctx.emailChanging;
     if (import31.checkBinding(_expr_19,currVal_19)) {
-      updateClass(_el_46,'hidden',currVal_19);
+      updateClass(_el_45,'hidden',currVal_19);
       _expr_19 = currVal_19;
     }
     final bool currVal_20 = !ctx.emailChanging;
     if (import31.checkBinding(_expr_20,currVal_20)) {
-      updateClass(_el_49,'hidden',currVal_20);
+      updateClass(_el_48,'hidden',currVal_20);
       _expr_20 = currVal_20;
     }
     final currVal_25 = (ctx.emailChanging || ctx.passwordChanging);
     if (import31.checkBinding(_expr_25,currVal_25)) {
-      updateClass(_el_57,'hidden',currVal_25);
+      updateClass(_el_56,'hidden',currVal_25);
       _expr_25 = currVal_25;
     }
     final currVal_26 = (ctx.emailChanging || !ctx.passwordChanging);
     if (import31.checkBinding(_expr_26,currVal_26)) {
-      updateClass(_el_60,'hidden',currVal_26);
+      updateClass(_el_59,'hidden',currVal_26);
       _expr_26 = currVal_26;
     }
     final bool currVal_31 = !ctx.passwordChanging;
     if (import31.checkBinding(_expr_31,currVal_31)) {
-      updateClass(_el_75,'hidden',currVal_31);
+      updateClass(_el_74,'hidden',currVal_31);
       _expr_31 = currVal_31;
     }
     final currVal_39 = ctx.linkedToFacebook;
     if (import31.checkBinding(_expr_39,currVal_39)) {
-      updateClass(_el_97,'loggedIn',currVal_39);
+      updateClass(_el_96,'loggedIn',currVal_39);
       _expr_39 = currVal_39;
     }
-    final currVal_40 = import31.interpolate0(ctx.facebookUrl);
+    final currVal_40 = import31.interpolate2(' ',((((ctx.connectedUser == null)? null: ctx.connectedUser.facebookAccount) == null)? null: ((ctx.connectedUser == null)? null: ctx.connectedUser.facebookAccount).firstName),' ',((((ctx.connectedUser == null)? null: ctx.connectedUser.facebookAccount) == null)? null: ((ctx.connectedUser == null)? null: ctx.connectedUser.facebookAccount).lastName),'');
     if (import31.checkBinding(_expr_40,currVal_40)) {
-      setProp(_el_101,'href',import31.appViewUtils.sanitizer.sanitizeUrl(currVal_40));
+      _text_103.text = currVal_40;
       _expr_40 = currVal_40;
     }
-    final currVal_41 = ctx.linkedToFacebook;
+    final currVal_41 = import31.interpolate0(ctx.facebookUrl);
     if (import31.checkBinding(_expr_41,currVal_41)) {
-      updateClass(_el_107,'loggedIn',currVal_41);
+      setProp(_el_106,'href',import31.appViewUtils.sanitizer.sanitizeUrl(currVal_41));
       _expr_41 = currVal_41;
     }
-    final currVal_42 = import31.interpolate0(ctx.googleUrl);
+    final currVal_42 = ctx.linkedToFacebook;
     if (import31.checkBinding(_expr_42,currVal_42)) {
-      setProp(_el_109,'href',import31.appViewUtils.sanitizer.sanitizeUrl(currVal_42));
+      updateClass(_el_113,'loggedIn',currVal_42);
       _expr_42 = currVal_42;
     }
-    final currVal_54 = _MaterialButtonComponent_129_4.raised;
-    if (import31.checkBinding(_expr_54,currVal_54)) {
-      updateElemClass(_el_129,'is-raised',currVal_54);
-      _expr_54 = currVal_54;
+    final currVal_43 = import31.interpolate1(' ',((((ctx.connectedUser == null)? null: ctx.connectedUser.googleAccount) == null)? null: ((ctx.connectedUser == null)? null: ctx.connectedUser.googleAccount).displayName),'');
+    if (import31.checkBinding(_expr_43,currVal_43)) {
+      _text_120.text = currVal_43;
+      _expr_43 = currVal_43;
     }
-    final currVal_55 = _MaterialButtonComponent_129_4.disabledStr;
-    if (import31.checkBinding(_expr_55,currVal_55)) {
-      setAttr(_el_129,'aria-disabled',((currVal_55 == null)? null: currVal_55.toString()));
-      _expr_55 = currVal_55;
+    final currVal_44 = import31.interpolate0(ctx.googleUrl);
+    if (import31.checkBinding(_expr_44,currVal_44)) {
+      setProp(_el_123,'href',import31.appViewUtils.sanitizer.sanitizeUrl(currVal_44));
+      _expr_44 = currVal_44;
     }
-    final currVal_56 = _MaterialButtonComponent_129_4.tabIndex;
+    final currVal_56 = _MaterialButtonComponent_143_4.raised;
     if (import31.checkBinding(_expr_56,currVal_56)) {
-      setAttr(_el_129,'tabindex',((currVal_56 == null)? null: currVal_56.toString()));
+      updateElemClass(_el_143,'is-raised',currVal_56);
       _expr_56 = currVal_56;
     }
-    final currVal_57 = _MaterialButtonComponent_129_4.disabled;
+    final currVal_57 = _MaterialButtonComponent_143_4.disabledStr;
     if (import31.checkBinding(_expr_57,currVal_57)) {
-      updateElemClass(_el_129,'is-disabled',currVal_57);
+      setAttr(_el_143,'aria-disabled',((currVal_57 == null)? null: currVal_57.toString()));
       _expr_57 = currVal_57;
     }
-    final currVal_58 = _MaterialButtonComponent_129_4.zElevation;
+    final currVal_58 = _MaterialButtonComponent_143_4.tabIndex;
     if (import31.checkBinding(_expr_58,currVal_58)) {
-      setAttr(_el_129,'elevation',((currVal_58 == null)? null: currVal_58.toString()));
+      setAttr(_el_143,'tabindex',((currVal_58 == null)? null: currVal_58.toString()));
       _expr_58 = currVal_58;
     }
+    final currVal_59 = _MaterialButtonComponent_143_4.disabled;
+    if (import31.checkBinding(_expr_59,currVal_59)) {
+      updateElemClass(_el_143,'is-disabled',currVal_59);
+      _expr_59 = currVal_59;
+    }
+    final currVal_60 = _MaterialButtonComponent_143_4.zElevation;
+    if (import31.checkBinding(_expr_60,currVal_60)) {
+      setAttr(_el_143,'elevation',((currVal_60 == null)? null: currVal_60.toString()));
+      _expr_60 = currVal_60;
+    }
     this.detectViewChildrenChanges();
-    if (identical(this.cdState, ChangeDetectorState.NeverChecked)) { _MaterialInputComponent_44_8.ngAfterViewInit(); }
-    if (identical(this.cdState, ChangeDetectorState.NeverChecked)) { _MaterialInputComponent_54_7.ngAfterViewInit(); }
-    if (identical(this.cdState, ChangeDetectorState.NeverChecked)) { _MaterialInputComponent_72_7.ngAfterViewInit(); }
-    if (identical(this.cdState, ChangeDetectorState.NeverChecked)) { _MaterialInputComponent_80_7.ngAfterViewInit(); }
-    if (identical(this.cdState, ChangeDetectorState.NeverChecked)) { _MaterialInputComponent_90_8.ngAfterViewInit(); }
-    if (identical(this.cdState, ChangeDetectorState.NeverChecked)) { _MaterialInputComponent_120_7.ngAfterViewInit(); }
+    if (identical(this.cdState, ChangeDetectorState.NeverChecked)) { _MaterialInputComponent_43_8.ngAfterViewInit(); }
+    if (identical(this.cdState, ChangeDetectorState.NeverChecked)) { _MaterialInputComponent_53_7.ngAfterViewInit(); }
+    if (identical(this.cdState, ChangeDetectorState.NeverChecked)) { _MaterialInputComponent_71_7.ngAfterViewInit(); }
+    if (identical(this.cdState, ChangeDetectorState.NeverChecked)) { _MaterialInputComponent_79_7.ngAfterViewInit(); }
+    if (identical(this.cdState, ChangeDetectorState.NeverChecked)) { _MaterialInputComponent_89_8.ngAfterViewInit(); }
+    if (identical(this.cdState, ChangeDetectorState.NeverChecked)) { _MaterialInputComponent_134_7.ngAfterViewInit(); }
   }
   void destroyInternal() {
-    _MaterialInputComponent_44_8.ngOnDestroy();
-    _MaterialInputDefaultValueAccessor_44_10.ngOnDestroy();
-    _MaterialInputComponent_54_7.ngOnDestroy();
-    _MaterialInputDefaultValueAccessor_54_9.ngOnDestroy();
-    _MaterialInputComponent_72_7.ngOnDestroy();
-    _MaterialInputDefaultValueAccessor_72_9.ngOnDestroy();
-    _MaterialInputComponent_80_7.ngOnDestroy();
-    _MaterialInputDefaultValueAccessor_80_9.ngOnDestroy();
-    _MaterialInputComponent_90_8.ngOnDestroy();
-    _MaterialInputDefaultValueAccessor_90_10.ngOnDestroy();
-    _MaterialInputComponent_120_7.ngOnDestroy();
-    _MaterialInputDefaultValueAccessor_120_9.ngOnDestroy();
+    _MaterialInputComponent_43_8.ngOnDestroy();
+    _MaterialInputDefaultValueAccessor_43_10.ngOnDestroy();
+    _MaterialInputComponent_53_7.ngOnDestroy();
+    _MaterialInputDefaultValueAccessor_53_9.ngOnDestroy();
+    _MaterialInputComponent_71_7.ngOnDestroy();
+    _MaterialInputDefaultValueAccessor_71_9.ngOnDestroy();
+    _MaterialInputComponent_79_7.ngOnDestroy();
+    _MaterialInputDefaultValueAccessor_79_9.ngOnDestroy();
+    _MaterialInputComponent_89_8.ngOnDestroy();
+    _MaterialInputDefaultValueAccessor_89_10.ngOnDestroy();
+    _MaterialInputComponent_134_7.ngOnDestroy();
+    _MaterialInputDefaultValueAccessor_134_9.ngOnDestroy();
   }
   bool _handle_keyup_esc_0_0($event) {
     this.markPathToRootAsCheckOnce();
@@ -1111,141 +1168,141 @@ class ViewProfileComp0 extends AppView<import3.ProfileComp> {
     final dynamic pd_0 = !identical((ctx.close() as dynamic), false);
     return (true && pd_0);
   }
-  bool _handle_dragenter_10_0($event) {
+  bool _handle_dragenter_9_0($event) {
     this.markPathToRootAsCheckOnce();
-    final dynamic pd_0 = !identical((_el_10.style.setProperty('border','2px solid #9FC8FA') as dynamic), false);
+    final dynamic pd_0 = !identical((_el_9.style.setProperty('border','2px solid #9FC8FA') as dynamic), false);
     return (true && pd_0);
   }
-  bool _handle_drop_10_1($event) {
+  bool _handle_drop_9_1($event) {
     this.markPathToRootAsCheckOnce();
-    final dynamic pd_0 = !identical((_el_10.style.setProperty('border','2px dotted #273B54') as dynamic), false);
+    final dynamic pd_0 = !identical((_el_9.style.setProperty('border','2px dotted #273B54') as dynamic), false);
     return (true && pd_0);
   }
-  bool _handle_submit_10_2($event) {
+  bool _handle_submit_9_2($event) {
     this.markPathToRootAsCheckOnce();
-    final dynamic pd_0 = !identical((_NgForm_10_2.onSubmit() as dynamic), false);
+    final dynamic pd_0 = !identical((_NgForm_9_2.onSubmit() as dynamic), false);
     return (true && pd_0);
   }
-  bool _handle_change_21_0($event) {
+  bool _handle_change_20_0($event) {
     this.markPathToRootAsCheckOnce();
     final dynamic pd_0 = !identical((ctx.uploadFile() as dynamic), false);
     return (true && pd_0);
   }
-  bool _handle_submit_37_0($event) {
+  bool _handle_submit_36_0($event) {
     this.markPathToRootAsCheckOnce();
-    final dynamic pd_0 = !identical((_NgForm_37_2.onSubmit() as dynamic), false);
+    final dynamic pd_0 = !identical((_NgForm_36_2.onSubmit() as dynamic), false);
     return (true && pd_0);
   }
-  bool _handle_change_44_0($event) {
+  bool _handle_change_43_0($event) {
     this.markPathToRootAsCheckOnce();
     final dynamic pd_0 = !identical((ctx.checkEmailChanged() as dynamic), false);
     return (true && pd_0);
   }
-  bool _handle_ngModelChange_44_1($event) {
+  bool _handle_ngModelChange_43_1($event) {
     this.markPathToRootAsCheckOnce();
     final dynamic pd_0 = !identical(((ctx.connectedUser.email = $event) as dynamic), false);
     return (true && pd_0);
   }
-  bool _handle_focus_44_2($event) {
-    _appEl_44.componentView.markPathToRootAsCheckOnce();
-    final dynamic pd_0 = !identical((_MaterialInputComponent_44_8.focus() as dynamic), false);
+  bool _handle_focus_43_2($event) {
+    _appEl_43.componentView.markPathToRootAsCheckOnce();
+    final dynamic pd_0 = !identical((_MaterialInputComponent_43_8.focus() as dynamic), false);
     return (true && pd_0);
   }
-  bool _handle_click_46_0($event) {
+  bool _handle_click_45_0($event) {
     this.markPathToRootAsCheckOnce();
     ctx.startEmailChange();
-    final dynamic pd_0 = !identical((_MaterialInputComponent_44_8.focus() as dynamic), false);
+    final dynamic pd_0 = !identical((_MaterialInputComponent_43_8.focus() as dynamic), false);
     return (true && pd_0);
   }
-  bool _handle_ngModelChange_54_0($event) {
+  bool _handle_ngModelChange_53_0($event) {
     this.markPathToRootAsCheckOnce();
     final dynamic pd_0 = !identical(((ctx.connectedUser.pass = $event) as dynamic), false);
     return (true && pd_0);
   }
-  bool _handle_focus_54_1($event) {
-    _appEl_54.componentView.markPathToRootAsCheckOnce();
-    final dynamic pd_0 = !identical((_MaterialInputComponent_54_7.focus() as dynamic), false);
+  bool _handle_focus_53_1($event) {
+    _appEl_53.componentView.markPathToRootAsCheckOnce();
+    final dynamic pd_0 = !identical((_MaterialInputComponent_53_7.focus() as dynamic), false);
     return (true && pd_0);
   }
-  bool _handle_click_57_0($event) {
+  bool _handle_click_56_0($event) {
     this.markPathToRootAsCheckOnce();
     final dynamic pd_0 = !identical(((ctx.passwordChanging = !ctx.passwordChanging) as dynamic), false);
     return (true && pd_0);
   }
-  bool _handle_click_64_0($event) {
+  bool _handle_click_63_0($event) {
     this.markPathToRootAsCheckOnce();
     final dynamic pd_0 = !identical(((ctx.passwordChanging = !ctx.passwordChanging) as dynamic), false);
     return (true && pd_0);
   }
-  bool _handle_ngModelChange_72_0($event) {
+  bool _handle_ngModelChange_71_0($event) {
     this.markPathToRootAsCheckOnce();
     final dynamic pd_0 = !identical(((ctx.connectedUser.pass = $event) as dynamic), false);
     return (true && pd_0);
   }
-  bool _handle_focus_72_1($event) {
-    _appEl_72.componentView.markPathToRootAsCheckOnce();
-    final dynamic pd_0 = !identical((_MaterialInputComponent_72_7.focus() as dynamic), false);
+  bool _handle_focus_71_1($event) {
+    _appEl_71.componentView.markPathToRootAsCheckOnce();
+    final dynamic pd_0 = !identical((_MaterialInputComponent_71_7.focus() as dynamic), false);
     return (true && pd_0);
   }
-  bool _handle_ngModelChange_80_0($event) {
+  bool _handle_ngModelChange_79_0($event) {
     this.markPathToRootAsCheckOnce();
     final dynamic pd_0 = !identical(((ctx.newPass = $event) as dynamic), false);
     return (true && pd_0);
   }
-  bool _handle_focus_80_1($event) {
-    _appEl_80.componentView.markPathToRootAsCheckOnce();
-    final dynamic pd_0 = !identical((_MaterialInputComponent_80_7.focus() as dynamic), false);
+  bool _handle_focus_79_1($event) {
+    _appEl_79.componentView.markPathToRootAsCheckOnce();
+    final dynamic pd_0 = !identical((_MaterialInputComponent_79_7.focus() as dynamic), false);
     return (true && pd_0);
   }
-  bool _handle_ngModelChange_90_0($event) {
+  bool _handle_ngModelChange_89_0($event) {
     this.markPathToRootAsCheckOnce();
     final dynamic pd_0 = !identical(((ctx.connectedUser.name = $event) as dynamic), false);
     return (true && pd_0);
   }
-  bool _handle_focus_90_1($event) {
-    _appEl_90.componentView.markPathToRootAsCheckOnce();
-    final dynamic pd_0 = !identical((_MaterialInputComponent_90_8.focus() as dynamic), false);
+  bool _handle_focus_89_1($event) {
+    _appEl_89.componentView.markPathToRootAsCheckOnce();
+    final dynamic pd_0 = !identical((_MaterialInputComponent_89_8.focus() as dynamic), false);
     return (true && pd_0);
   }
-  bool _handle_ngModelChange_120_0($event) {
+  bool _handle_ngModelChange_134_0($event) {
     this.markPathToRootAsCheckOnce();
     final dynamic pd_0 = !identical(((ctx.connectedUser.skype = $event) as dynamic), false);
     return (true && pd_0);
   }
-  bool _handle_focus_120_1($event) {
-    _appEl_120.componentView.markPathToRootAsCheckOnce();
-    final dynamic pd_0 = !identical((_MaterialInputComponent_120_7.focus() as dynamic), false);
+  bool _handle_focus_134_1($event) {
+    _appEl_134.componentView.markPathToRootAsCheckOnce();
+    final dynamic pd_0 = !identical((_MaterialInputComponent_134_7.focus() as dynamic), false);
     return (true && pd_0);
   }
-  bool _handle_click_129_0($event) {
-    _appEl_129.componentView.markPathToRootAsCheckOnce();
+  bool _handle_click_143_0($event) {
+    _appEl_143.componentView.markPathToRootAsCheckOnce();
     final dynamic pd_0 = !identical((ctx.save() as dynamic), false);
-    final dynamic pd_1 = !identical((_MaterialButtonComponent_129_4.handleClick($event) as dynamic), false);
+    final dynamic pd_1 = !identical((_MaterialButtonComponent_143_4.handleClick($event) as dynamic), false);
     return ((true && pd_0) && pd_1);
   }
-  bool _handle_blur_129_1($event) {
-    _appEl_129.componentView.markPathToRootAsCheckOnce();
-    final dynamic pd_0 = !identical((_MaterialButtonComponent_129_4.onBlur($event) as dynamic), false);
+  bool _handle_blur_143_1($event) {
+    _appEl_143.componentView.markPathToRootAsCheckOnce();
+    final dynamic pd_0 = !identical((_MaterialButtonComponent_143_4.onBlur($event) as dynamic), false);
     return (true && pd_0);
   }
-  bool _handle_mouseup_129_2($event) {
-    _appEl_129.componentView.markPathToRootAsCheckOnce();
-    final dynamic pd_0 = !identical((_MaterialButtonComponent_129_4.onMouseUp($event) as dynamic), false);
+  bool _handle_mouseup_143_2($event) {
+    _appEl_143.componentView.markPathToRootAsCheckOnce();
+    final dynamic pd_0 = !identical((_MaterialButtonComponent_143_4.onMouseUp($event) as dynamic), false);
     return (true && pd_0);
   }
-  bool _handle_keypress_129_3($event) {
-    _appEl_129.componentView.markPathToRootAsCheckOnce();
-    final dynamic pd_0 = !identical((_MaterialButtonComponent_129_4.handleKeyPress($event) as dynamic), false);
+  bool _handle_keypress_143_3($event) {
+    _appEl_143.componentView.markPathToRootAsCheckOnce();
+    final dynamic pd_0 = !identical((_MaterialButtonComponent_143_4.handleKeyPress($event) as dynamic), false);
     return (true && pd_0);
   }
-  bool _handle_focus_129_4($event) {
-    _appEl_129.componentView.markPathToRootAsCheckOnce();
-    final dynamic pd_0 = !identical((_MaterialButtonComponent_129_4.onFocus($event) as dynamic), false);
+  bool _handle_focus_143_4($event) {
+    _appEl_143.componentView.markPathToRootAsCheckOnce();
+    final dynamic pd_0 = !identical((_MaterialButtonComponent_143_4.onFocus($event) as dynamic), false);
     return (true && pd_0);
   }
-  bool _handle_mousedown_129_5($event) {
-    _appEl_129.componentView.markPathToRootAsCheckOnce();
-    final dynamic pd_0 = !identical((_MaterialButtonComponent_129_4.onMouseDown($event) as dynamic), false);
+  bool _handle_mousedown_143_5($event) {
+    _appEl_143.componentView.markPathToRootAsCheckOnce();
+    final dynamic pd_0 = !identical((_MaterialButtonComponent_143_4.onMouseDown($event) as dynamic), false);
     return (true && pd_0);
   }
 }
