@@ -109,6 +109,9 @@ app.use('/refreshUser', (req, res, next) => authenticate(req, res, next, 'refres
 
 var authenticate = (req, res, next, strategy) => {
 
+    global.cookieReceived = req.query.cookie
+  //res.cookie('connect.sid', value [, options]);
+    log.info( "global.cookieReceived",  global.cookieReceived )
     passport.authenticate(strategy, (err, user, info) => {
 
 

@@ -76,13 +76,7 @@ router.post('/login', (req, res, next) => authenticate(req, res, next, 'local-lo
 
 
 router.post('/signup', upload.single('filename'), (req, res, next) => authenticate(req, res, next, 'local-signup'));
-/*
- router.get('/facebook', proxy('localhost:3000', {
 
- forwardPath: function(req, res) {
- return '/auth/facebook/d/'+global.serverPort
- }
- }));*/
 
 var authenticate = (req, res, next, strategy) => {
 
@@ -115,13 +109,16 @@ router.post('/login', passport.authenticate('local-login', {
 
 
 // edit profile ---------------------------------
-router.post('/profile/edit', isLoggedIn, upload.single('filename'), (req, res, next) => {
+router.post('/profile/edit', isLoggedIn, (req, res, next) => {
+  console.log("req.body", req.body);
+  console.log("req.file", req.file)
   if (global.onLine) {
     editProfile(req, res, (err, user) => {
       if (err) {
         log.error("error to edit user")
         globalService.sendError(res, err.statusCode, err.message);
       }
+
       globalService.sendJsonResponse(res, 201, user);
 
     })
@@ -133,7 +130,7 @@ router.post('/profile/edit', isLoggedIn, upload.single('filename'), (req, res, n
 
 router.get('/gridfs/file/:fileId', (req, res) => {
   let url = req.url;
-  let pathToUserPicture = path.join(constants.dataDir, url, 'logo-profile_' + req.user._id + '.png');
+  let pathToUserPicture = path.join(constants.dataDir, url, 'logo-profile.png');
   let pathToUserPictureDir = path.join(constants.dataDir, url);
   if(global.onLine){
     downloadFile(url, pathToUserPictureDir, pathToUserPicture, (err, pathPicture)=>{
@@ -150,11 +147,22 @@ router.get('/gridfs/file/:fileId', (req, res) => {
 router.post('/profile/picture', isLoggedIn, upload.single('avatar'), function (req, res, next) {
 
 })
+
+router.post('/profile/uploadImage', isLoggedIn, upload.single('avatar'), function (req, res, next) {
+  editProfile(req, res, (err, user)=>{
+      if(err)
+        globalService.sendError(res, 403, err.message);
+
+      globalService.sendJsonResponse(res, 201, user);
+  })
+})
+
+
 router.get('/user/photo/:size', function (req, res) {
 
   var url = req.url;
 
-  var pathToUserPicture = path.join(constants.dataDir, url, 'logo-profile_' + req.user._id + '.png');
+  var pathToUserPicture = path.join(constants.dataDir, url, 'logo-profile.png');
   var pathToUserPictureDir = path.join(constants.dataDir, url);
 
   if (global.onLine) {
@@ -376,70 +384,97 @@ var editProfile = function (req, res, cb) {
 
   // Configure the request
   let url = req.url;
-
   let headers = {
     'Cookie': global.cookieReceived
   }
 
+
+
 // Configure the request
-  let options = {
-    url: constants.urlLoginProxy + url,
-    headers: headers,
-  }
-
-// Start the request
-  let r = request.post(options, function (error, response, body) {
-
-    if (error) {
-      log.error("error to signUp", error.message);
-      return cb(error)
+  if(req.file){
+    let options = {
+      url: constants.urlLoginProxy + url,
+      headers: headers,
     }
+    var pathToFile = null;
+// Start the request
+    let r = request.post(options, function (error, response, body) {
+
+      if (error) {
+        log.error("error to edit user", error.message);
+        return cb(error)
+      }
 
 
-    if (!error && (response.statusCode == 200 || response.statusCode == 201)) {
-      // Print out the response body
-      var user = JSON.parse(body).data;
-      log.error("response.statusCode", user);
-      fs.unlink(pathToFile, function (err) {
-        if (err)
-          log.error('err  delete from tmp', err);
+      if (!error && (response.statusCode == 200 || response.statusCode == 201)) {
+        // Print out the response body
+        var user = JSON.parse(body).data;
+        log.error("response.statusCode", user);
+        if(pathToFile){
+          fs.unlink(pathToFile, function (err) {
+            if (err)
+              log.error('err  delete from tmp', err);
+
+
+          });
+        }
 
         return cb(null, user);
-      });
+      } else {
+        var err = new Error();
+        err.status = response.statusCode;
+        err.message = JSON.parse(body).error;
+        return cb(err);
+      }
+    });
 
-      return cb(null, user);
-    } else {
-      var err = new Error();
-      err.status = response.statusCode;
-      err.message = JSON.parse(body).error;
-      return cb(err);
+    let form = r.form();
+    if (req.file) {
+      pathToFile = path.join(__dirname, '..', '..', 'tmp', 'upload', req.file.filename);
+      form.append('avatar', fs.createReadStream(path.join(__dirname, '..', '..', 'tmp', 'upload', req.file.filename)),
+          {
+            filename: req.file.originalname,
+            contentType: req.file.mimeType
+          });
     }
-  });
+  }else{
+    let options = {
+      url: constants.urlLoginProxy + url,
+      headers: headers,
+      form:req.body
+    }
+    request.post(options, function (error, response, body) {
 
-  let form = r.form();
-  if (req.file) {
-    var pathToFile = path.join(__dirname, '..', '..', 'tmp', 'upload', req.file.filename);
-    form.append('filename', fs.createReadStream(path.join(__dirname, '..', '..', 'tmp', 'upload', req.file.filename)),
-        {
-          filename: req.file.originalname,
-          contentType: req.file.mimeType
-        });
+      if (error) {
+        log.error("error to edit user", error.message);
+        return cb(error)
+      }
+
+
+      if (!error && (response.statusCode == 200 || response.statusCode == 201)) {
+        // Print out the response body
+        var user = JSON.parse(body).data;
+        log.error("response.statusCode", user);
+        if(pathToFile){
+          fs.unlink(pathToFile, function (err) {
+            if (err)
+              log.error('err  delete from tmp', err);
+
+
+          });
+        }
+
+        return cb(null, user);
+      } else {
+        var err = new Error();
+        err.status = response.statusCode;
+        err.message = JSON.parse(body).error;
+        return cb(err);
+      }
+    })
   }
 
-  if (req.body.name)
-    form.append('name', req.body.name);
 
-  if (req.body.skype)
-    form.append('skype', req.body.skype);
-
-  if (req.body.password)
-    form.append('password', req.body.password);
-
-  if (req.body.passwordNew)
-    form.append('passwordNew', req.body.passwordNew);
-
-  if (req.body.email)
-    form.append('email', req.body.email);
 
 }
 module.exports = router

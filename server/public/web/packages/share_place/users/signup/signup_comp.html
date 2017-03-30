@@ -9,16 +9,19 @@
     </div>
 
 
+
+
     <form id="signupForm" #upload class="dragdrop_profil {{dragEnter ? 'drag' : ''}} {{drop ? 'drop' : ''}} " [class.uploading]="uploading"
           (dragenter)="dragEnter = true"
           (drop)="drop = true">
       <label id="labelfileuploadprf" for="filename">
         <!--?refreshHack=... obliges the browser to refresh the image if it changes-->
-        <img src="../images/img_profile.png" title=""/>
-        <span class="spprof">Change</span>
+        <img   id="imgPrev" src="../images/img_profile.png" title=""/>
+        <span class="spprof" >Change</span>
       </label>
       <input type="file" id="filename" class="uploadFile" name="filename"
-             style="opacity: 0"/>
+             (change)="imgChange($event)"   style="opacity: 0"/>
+
     </form>
   </div>
 

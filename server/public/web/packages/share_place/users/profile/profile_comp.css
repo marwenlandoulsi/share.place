@@ -54,9 +54,9 @@
   -moz-border-radius: 50%;
   border-radius: 50%;
   border: 3px solid rgba(255, 255, 255, 0.8);
-  width: 75px;
-  height: 75px;
-
+  width: 6em;
+  height: 6em;
+  background-color: white;
 }
 
 .skype.bottom_input {
@@ -86,11 +86,11 @@
   padding-right: 45px;
   border-radius: 25px;
   background-color: transparent;
-  font-size: 13px;
+  font-size: 1em;
   display: block;
   position: absolute;
   left: 43%;
-  top: 38%;
+  top: 50%;
   -webkit-transition: 0.3s;
   -o-transition: 0.3s;
   transition: 0.3s;
@@ -146,7 +146,7 @@
   margin-left: 0.2em;
 }
 
-.socialBtn:hover, .socialBtn:focus {
+.socialBtn, .socialBtn:focus {
   box-shadow: 2px 2px 3px 0 rgba(26, 74, 76, 0.2);
   -webkit-transition: 0.3s;
   -o-transition: 0.3s;
@@ -215,9 +215,6 @@ material-input {
   padding: 1px 0 !important;
 }
 
-.uploading {
-  border: 2px solid greenyellow;
-}
 
 .nameConnected {
   color: #333;
@@ -253,3 +250,55 @@ material-input {
 /*color: rgba(0, 0, 0, 0.21);*/
 /*box-shadow: 2px 2px 3px 0 rgba(26, 74, 76, 0.28);*/
 /*}*/
+
+/*_________Animation adit profile______________*/
+/*.spinAnim img{*/
+  /*border: 2px solid greenyellow;*/
+/*}*/
+
+#labelfileuploadprf .spinAnim {
+  background: transparent;
+  border: 0;
+  box-sizing: border-box;
+  position: relative;
+  border-radius: 100%;
+  box-shadow: none;
+}
+.uploading #labelfileuploadprf .spinAnim {
+  color: #7FBB01;
+}
+ #labelfileuploadprf .spinAnim::before,  #labelfileuploadprf .spinAnim::after {
+  top: 0;
+  left: 0;
+  box-sizing: inherit;
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+}
+.uploading #labelfileuploadprf .spinAnim::before {
+  border: 3px solid transparent;
+}
+.uploading #labelfileuploadprf .spinAnim::before {
+  border-top-color: #7FBB01;
+  border-right-color: #7FBB01;
+  border-bottom-color: #7FBB01;
+  -webkit-transition: border-top-color 0.15s linear, border-right-color 0.15s linear 0.1s, border-bottom-color 0.15s linear 0.2s;
+  transition: border-top-color 0.15s linear, border-right-color 0.15s linear 0.1s, border-bottom-color 0.15s linear 0.2s;
+}
+ #labelfileuploadprf .spinAnim::after {
+  border: 0 solid transparent;
+}
+.uploading #labelfileuploadprf .spinAnim::after {
+  border-top: 3px solid #7FBB01;
+  border-left-width: 3px;
+  border-right-width: 3px;
+  -webkit-transform: rotate(270deg);
+  transform: rotate(270deg);
+  -webkit-transition: border-left-width 0s linear 0.35s, -webkit-transform 0.4s linear 0s;
+  transition: border-left-width 0s linear 0.35s, -webkit-transform 0.4s linear 0s;
+  transition: transform 0.4s linear 0s, border-left-width 0s linear 0.35s;
+  transition: transform 0.4s linear 0s, border-left-width 0s linear 0.35s, -webkit-transform 0.4s linear 0s;
+}
+

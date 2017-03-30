@@ -13,6 +13,7 @@ import 'package:share_place/common/ui/button_comp.dart';
 import 'package:share_place/common/ui/text_comp.dart';
 import 'package:share_place/users/signup/signup_comp.dart';
 import 'package:share_place/users/forgot_pass/forgot_pass_comp.dart';
+import 'package:share_place/app_config.dart' as conf;
 
 import 'package:angular2_components/angular2_components.dart';
 
@@ -67,5 +68,10 @@ class LoginComp implements OnInit {
   String get error => _environment.serverError;
 
   List<String> get messages => _environment.messages;
+
+  SafeUrl get loginFacebookUrl => urlSanitizer.bypassSecurityTrustUrl(conf.isWebApp ? "/auth/facebook/" : "http://ec2-54-154-38-51.eu-west-1.compute.amazonaws.com/auth/facebook/d/${conf.port}");
+  SafeUrl get loginGoogleUrl => urlSanitizer.bypassSecurityTrustUrl(conf.isWebApp ? "/auth/google/" : "http://ec2-54-154-38-51.eu-west-1.compute.amazonaws.com/auth/google/d/${conf.port}");
+  //SafeUrl get loginFacebookUrl => urlSanitizer.bypassSecurityTrustUrl(conf.isWebApp ? "/auth/facebook/" : "http://localhost:3000/auth/facebook/d/${conf.port}");
+  //SafeUrl get loginGoogleUrl => urlSanitizer.bypassSecurityTrustUrl(conf.isWebApp ? "/auth/google/" : "http://localhost:3000/auth/google/d/${conf.port}");
 
 }

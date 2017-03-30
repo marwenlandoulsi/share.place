@@ -1,15 +1,18 @@
 <div class="login" id="login" (keyup.esc)="cancel()">
   <div class="header">
-
     <div class="title">Profile</div>
     <div class="close" (click)="close()"></div>
+
 
     <form  id="profileImageForm" #upload class="dragdrop_profil" [class.uploading]="uploading"
           (dragenter)="upload.style.setProperty('border', '2px solid #9FC8FA')"
           (drop)="upload.style.setProperty('border', '2px dotted #273B54');">
       <label id="labelfileuploadprf" for="filename">
         <!--?refreshHack=... obliges the browser to refresh the image if it changes-->
-        <img src="/auth/gridfs/file/{{photoId}}" title=""/>
+        <div class="spinAnim">  <img src="/auth/gridfs/file/{{photoId}}" title=""/></div>
+
+        <!--<div class="spinAnim">  <img title=""  src="https://farm9.staticflickr.com/8609/16683256545_9320714255_k.jpg" /></div>-->
+
         <span class="spprof">Change</span>
       </label>
       <input type="file" id="filename" (change)="uploadFile()" class="uploadFile" name="avatar"

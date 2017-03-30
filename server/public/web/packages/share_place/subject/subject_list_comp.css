@@ -108,14 +108,19 @@ li.subjectItem.active .name {
 
 .thumb {
   position: relative;
-  width: calc(2.9em - 2px);
+  /*width: calc(2.9em - 2px);*/
   background-color: #DDE2E5;
   text-align: center;
   /*line-height: 2.3em;*/
+  width: 3.3em;
+  height: 1.8em;
 }
 
 .thumb > img {
-  height: 2em;
+  height: auto;
+  max-width: 100%;
+  width: 40px;
+  height: 28px;
 }
 
 .name {
@@ -132,11 +137,12 @@ li.subjectItem.active .name {
   color: white;
   border-radius: 50%;
   -webkit-border-radius: 50%;
-  font-size: 1em;
+  font-size: 0.6em;
   height: 2em;
   line-height: 2em;
   text-align: center;
   width: 2em;
+  vertical-align: baseline !important;
 }
 
 .users {
@@ -290,6 +296,7 @@ li.subjectItem.active .name {
   margin-bottom: 0.5em;
   background: url("../images/tiret-black.png") repeat-x center center;
   width: 100%;
+  max-width: 100%;
 }
 
 .userInfoPopup .name span {
@@ -298,6 +305,7 @@ li.subjectItem.active .name {
   display: inline;
   color: #273B54;
   font-weight: bold;
+  font-size: 1.5em;
 }
 
 span.txtskype {
@@ -307,3 +315,4 @@ span.txtskype {
 .selected {
   font-weight: normal;
 }
+

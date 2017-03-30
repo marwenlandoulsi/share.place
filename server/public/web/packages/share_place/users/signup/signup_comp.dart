@@ -15,6 +15,8 @@ import 'package:share_place/users/login/login_comp.dart';
 
 import 'package:angular2_components/angular2_components.dart';
 
+import 'dart:js';
+
 @Component(
     selector: 'signup-comp',
     templateUrl: 'signup_comp.html',
@@ -63,6 +65,13 @@ class SignupComp implements OnInit {
     _environment.connectedUser = await _placeService.getConnectedUser();
     uploading = false;
   }
+
+
+  Future<Null> imgChange(event){
+    JsObject Url = context['URL'];
+    querySelector("#imgPrev").setAttribute('src', Url.callMethod('createObjectURL',[event.target.files[0]]));
+  }
+
 
 /*
   Future<Null> signup() async{

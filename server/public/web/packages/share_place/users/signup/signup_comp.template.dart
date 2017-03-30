@@ -23,6 +23,7 @@ import 'package:share_place/common/ui/button_comp.dart';
 import 'package:share_place/common/ui/text_comp.dart';
 import 'package:share_place/users/login/login_comp.dart';
 import 'package:angular2_components/angular2_components.dart';
+import 'dart:js';
 import 'package:angular2/core.template.dart' as i0;
 import 'package:angular2/router.template.dart' as i1;
 import 'package:angular2/security.template.dart' as i2;
@@ -169,26 +170,26 @@ class ViewSignupComp0 extends AppView<import3.SignupComp> {
   dynamic __ButtonDirective_90_5;
   var _expr_4 = uninitialized;
   var _expr_5 = uninitialized;
-  var _expr_6 = uninitialized;
-  var _expr_9 = uninitialized;
+  var _expr_7 = uninitialized;
   var _expr_10 = uninitialized;
   var _expr_11 = uninitialized;
-  var _expr_14 = uninitialized;
+  var _expr_12 = uninitialized;
   var _expr_15 = uninitialized;
   var _expr_16 = uninitialized;
-  var _expr_20 = uninitialized;
+  var _expr_17 = uninitialized;
   var _expr_21 = uninitialized;
-  var _expr_24 = uninitialized;
+  var _expr_22 = uninitialized;
   var _expr_25 = uninitialized;
-  var _expr_28 = uninitialized;
+  var _expr_26 = uninitialized;
   var _expr_29 = uninitialized;
-  var _expr_38 = uninitialized;
+  var _expr_30 = uninitialized;
   var _expr_39 = uninitialized;
   var _expr_40 = uninitialized;
   var _expr_41 = uninitialized;
   var _expr_42 = uninitialized;
   var _expr_43 = uninitialized;
   var _expr_44 = uninitialized;
+  var _expr_45 = uninitialized;
   ViewSignupComp0(import15.Injector parentInjector,ViewContainer declarationEl): super(ViewSignupComp0,renderType_SignupComp,import16.ViewType.COMPONENT,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
   dynamic get _ControlContainer_15_3 {
     if ((this.__ControlContainer_15_3 == null)) { (__ControlContainer_15_3 = this._NgForm_15_2); }
@@ -280,7 +281,7 @@ class ViewSignupComp0 extends AppView<import3.SignupComp> {
     _el_12.className = 'close';
     Text _text_13 = new Text('\n    ');
     _el_7.append(_text_13);
-    Text _text_14 = new Text('\n\n\n    ');
+    Text _text_14 = new Text('\n\n\n\n\n    ');
     _el_2.append(_text_14);
     _el_15 = doc.createElement('form');
     _el_15.setAttribute(shimCAttr,'');
@@ -301,6 +302,7 @@ class ViewSignupComp0 extends AppView<import3.SignupComp> {
     _el_20 = doc.createElement('img');
     _el_20.setAttribute(shimCAttr,'');
     _el_17.append(_el_20);
+    createAttr(_el_20,'id','imgPrev');
     createAttr(_el_20,'src','../images/img_profile.png');
     createAttr(_el_20,'title','');
     Text _text_21 = new Text('\n        ');
@@ -323,7 +325,7 @@ class ViewSignupComp0 extends AppView<import3.SignupComp> {
     createAttr(_el_26,'name','filename');
     createAttr(_el_26,'style','opacity: 0');
     createAttr(_el_26,'type','file');
-    Text _text_27 = new Text('\n    ');
+    Text _text_27 = new Text('\n\n    ');
     _el_15.append(_text_27);
     Text _text_28 = new Text('\n  ');
     _el_2.append(_text_28);
@@ -596,6 +598,7 @@ class ViewSignupComp0 extends AppView<import3.SignupComp> {
     listen(_el_15,'dragenter',evt(_handle_dragenter_15_0));
     listen(_el_15,'drop',evt(_handle_drop_15_1));
     listen(_el_15,'submit',evt(_handle_submit_15_2));
+    listen(_el_26,'change',evt(_handle_change_26_0));
     listen(_el_42,'ngModelChange',evt(_handle_ngModelChange_42_0));
     listen(_el_42,'focus',evt(_handle_focus_42_1));
     final subscription_0 = _NgModel_42_5.update.listen(evt(_handle_ngModelChange_42_0));
@@ -703,108 +706,108 @@ class ViewSignupComp0 extends AppView<import3.SignupComp> {
     bool changed = true;
     Map<String, SimpleChange> changes;
     changes = null;
-    final currVal_9 = ctx.user.email;
-    if (import28.checkBinding(_expr_9,currVal_9)) {
-      _NgModel_42_5.model = currVal_9;
+    final currVal_10 = ctx.user.email;
+    if (import28.checkBinding(_expr_10,currVal_10)) {
+      _NgModel_42_5.model = currVal_10;
       if (identical(changes, null)) { (changes = <String, SimpleChange>{}); }
-      changes['model'] = new SimpleChange(_expr_9,currVal_9);
-      _expr_9 = currVal_9;
+      changes['model'] = new SimpleChange(_expr_10,currVal_10);
+      _expr_10 = currVal_10;
     }
     if (!identical(changes, null)) { _NgModel_42_5.ngOnChanges(changes); }
     changed = false;
-    final currVal_10 = 'example@domain.com';
-    if (import28.checkBinding(_expr_10,currVal_10)) {
-      _MaterialInputComponent_42_8.label = currVal_10;
-      changed = true;
-      _expr_10 = currVal_10;
-    }
-    final currVal_11 = '';
+    final currVal_11 = 'example@domain.com';
     if (import28.checkBinding(_expr_11,currVal_11)) {
-      _MaterialInputComponent_42_8.required = currVal_11;
+      _MaterialInputComponent_42_8.label = currVal_11;
       changed = true;
       _expr_11 = currVal_11;
     }
+    final currVal_12 = '';
+    if (import28.checkBinding(_expr_12,currVal_12)) {
+      _MaterialInputComponent_42_8.required = currVal_12;
+      changed = true;
+      _expr_12 = currVal_12;
+    }
     if (changed) { _appEl_42.componentView.markAsCheckOnce(); }
     changes = null;
-    final currVal_14 = ctx.user.pass;
-    if (import28.checkBinding(_expr_14,currVal_14)) {
-      _NgModel_50_5.model = currVal_14;
+    final currVal_15 = ctx.user.pass;
+    if (import28.checkBinding(_expr_15,currVal_15)) {
+      _NgModel_50_5.model = currVal_15;
       if (identical(changes, null)) { (changes = <String, SimpleChange>{}); }
-      changes['model'] = new SimpleChange(_expr_14,currVal_14);
-      _expr_14 = currVal_14;
+      changes['model'] = new SimpleChange(_expr_15,currVal_15);
+      _expr_15 = currVal_15;
     }
     if (!identical(changes, null)) { _NgModel_50_5.ngOnChanges(changes); }
     changed = false;
-    final currVal_15 = '';
-    if (import28.checkBinding(_expr_15,currVal_15)) {
-      _MaterialInputComponent_50_8.required = currVal_15;
+    final currVal_16 = '';
+    if (import28.checkBinding(_expr_16,currVal_16)) {
+      _MaterialInputComponent_50_8.required = currVal_16;
       changed = true;
-      _expr_15 = currVal_15;
+      _expr_16 = currVal_16;
     }
     if (changed) { _appEl_50.componentView.markAsCheckOnce(); }
     changes = null;
-    final currVal_20 = ctx.passVerif;
-    if (import28.checkBinding(_expr_20,currVal_20)) {
-      _NgModel_58_5.model = currVal_20;
+    final currVal_21 = ctx.passVerif;
+    if (import28.checkBinding(_expr_21,currVal_21)) {
+      _NgModel_58_5.model = currVal_21;
       if (identical(changes, null)) { (changes = <String, SimpleChange>{}); }
-      changes['model'] = new SimpleChange(_expr_20,currVal_20);
-      _expr_20 = currVal_20;
+      changes['model'] = new SimpleChange(_expr_21,currVal_21);
+      _expr_21 = currVal_21;
     }
     if (!identical(changes, null)) { _NgModel_58_5.ngOnChanges(changes); }
     changed = false;
-    final currVal_21 = '';
-    if (import28.checkBinding(_expr_21,currVal_21)) {
-      _MaterialInputComponent_58_8.required = currVal_21;
+    final currVal_22 = '';
+    if (import28.checkBinding(_expr_22,currVal_22)) {
+      _MaterialInputComponent_58_8.required = currVal_22;
       changed = true;
-      _expr_21 = currVal_21;
+      _expr_22 = currVal_22;
     }
     if (changed) { _appEl_58.componentView.markAsCheckOnce(); }
     changes = null;
-    final currVal_24 = ctx.user.name;
-    if (import28.checkBinding(_expr_24,currVal_24)) {
-      _NgModel_71_5.model = currVal_24;
+    final currVal_25 = ctx.user.name;
+    if (import28.checkBinding(_expr_25,currVal_25)) {
+      _NgModel_71_5.model = currVal_25;
       if (identical(changes, null)) { (changes = <String, SimpleChange>{}); }
-      changes['model'] = new SimpleChange(_expr_24,currVal_24);
-      _expr_24 = currVal_24;
+      changes['model'] = new SimpleChange(_expr_25,currVal_25);
+      _expr_25 = currVal_25;
     }
     if (!identical(changes, null)) { _NgModel_71_5.ngOnChanges(changes); }
     changed = false;
-    final currVal_25 = '';
-    if (import28.checkBinding(_expr_25,currVal_25)) {
-      _MaterialInputComponent_71_7.label = currVal_25;
+    final currVal_26 = '';
+    if (import28.checkBinding(_expr_26,currVal_26)) {
+      _MaterialInputComponent_71_7.label = currVal_26;
       changed = true;
-      _expr_25 = currVal_25;
+      _expr_26 = currVal_26;
     }
     if (changed) { _appEl_71.componentView.markAsCheckOnce(); }
     changes = null;
-    final currVal_28 = ctx.user.skype;
-    if (import28.checkBinding(_expr_28,currVal_28)) {
-      _NgModel_82_5.model = currVal_28;
+    final currVal_29 = ctx.user.skype;
+    if (import28.checkBinding(_expr_29,currVal_29)) {
+      _NgModel_82_5.model = currVal_29;
       if (identical(changes, null)) { (changes = <String, SimpleChange>{}); }
-      changes['model'] = new SimpleChange(_expr_28,currVal_28);
-      _expr_28 = currVal_28;
+      changes['model'] = new SimpleChange(_expr_29,currVal_29);
+      _expr_29 = currVal_29;
     }
     if (!identical(changes, null)) { _NgModel_82_5.ngOnChanges(changes); }
     changed = false;
-    final currVal_29 = '';
-    if (import28.checkBinding(_expr_29,currVal_29)) {
-      _MaterialInputComponent_82_7.label = currVal_29;
+    final currVal_30 = '';
+    if (import28.checkBinding(_expr_30,currVal_30)) {
+      _MaterialInputComponent_82_7.label = currVal_30;
       changed = true;
-      _expr_29 = currVal_29;
+      _expr_30 = currVal_30;
     }
     if (changed) { _appEl_82.componentView.markAsCheckOnce(); }
     changed = false;
-    final bool currVal_38 = !ctx.submitEnabled;
-    if (import28.checkBinding(_expr_38,currVal_38)) {
-      _MaterialButtonComponent_90_4.disabled = currVal_38;
-      changed = true;
-      _expr_38 = currVal_38;
-    }
-    final currVal_39 = '';
+    final bool currVal_39 = !ctx.submitEnabled;
     if (import28.checkBinding(_expr_39,currVal_39)) {
-      _MaterialButtonComponent_90_4.raised = currVal_39;
+      _MaterialButtonComponent_90_4.disabled = currVal_39;
       changed = true;
       _expr_39 = currVal_39;
+    }
+    final currVal_40 = '';
+    if (import28.checkBinding(_expr_40,currVal_40)) {
+      _MaterialButtonComponent_90_4.raised = currVal_40;
+      changed = true;
+      _expr_40 = currVal_40;
     }
     if (changed) { _appEl_90.componentView.markAsCheckOnce(); }
     this.detectContentChildrenChanges();
@@ -818,40 +821,40 @@ class ViewSignupComp0 extends AppView<import3.SignupComp> {
       updateClass(_el_15,'uploading',currVal_5);
       _expr_5 = currVal_5;
     }
-    final currVal_6 = import28.interpolate0(ctx.error);
-    if (import28.checkBinding(_expr_6,currVal_6)) {
-      _text_33.text = currVal_6;
-      _expr_6 = currVal_6;
+    final currVal_7 = import28.interpolate0(ctx.error);
+    if (import28.checkBinding(_expr_7,currVal_7)) {
+      _text_33.text = currVal_7;
+      _expr_7 = currVal_7;
     }
-    final currVal_16 = ctx.passwordsError();
-    if (import28.checkBinding(_expr_16,currVal_16)) {
-      updateClass(_el_53,'passEqual',currVal_16);
-      _expr_16 = currVal_16;
+    final currVal_17 = ctx.passwordsError();
+    if (import28.checkBinding(_expr_17,currVal_17)) {
+      updateClass(_el_53,'passEqual',currVal_17);
+      _expr_17 = currVal_17;
     }
-    final currVal_40 = _MaterialButtonComponent_90_4.raised;
-    if (import28.checkBinding(_expr_40,currVal_40)) {
-      updateElemClass(_el_90,'is-raised',currVal_40);
-      _expr_40 = currVal_40;
-    }
-    final currVal_41 = _MaterialButtonComponent_90_4.disabledStr;
+    final currVal_41 = _MaterialButtonComponent_90_4.raised;
     if (import28.checkBinding(_expr_41,currVal_41)) {
-      setAttr(_el_90,'aria-disabled',((currVal_41 == null)? null: currVal_41.toString()));
+      updateElemClass(_el_90,'is-raised',currVal_41);
       _expr_41 = currVal_41;
     }
-    final currVal_42 = _MaterialButtonComponent_90_4.tabIndex;
+    final currVal_42 = _MaterialButtonComponent_90_4.disabledStr;
     if (import28.checkBinding(_expr_42,currVal_42)) {
-      setAttr(_el_90,'tabindex',((currVal_42 == null)? null: currVal_42.toString()));
+      setAttr(_el_90,'aria-disabled',((currVal_42 == null)? null: currVal_42.toString()));
       _expr_42 = currVal_42;
     }
-    final currVal_43 = _MaterialButtonComponent_90_4.disabled;
+    final currVal_43 = _MaterialButtonComponent_90_4.tabIndex;
     if (import28.checkBinding(_expr_43,currVal_43)) {
-      updateElemClass(_el_90,'is-disabled',currVal_43);
+      setAttr(_el_90,'tabindex',((currVal_43 == null)? null: currVal_43.toString()));
       _expr_43 = currVal_43;
     }
-    final currVal_44 = _MaterialButtonComponent_90_4.zElevation;
+    final currVal_44 = _MaterialButtonComponent_90_4.disabled;
     if (import28.checkBinding(_expr_44,currVal_44)) {
-      setAttr(_el_90,'elevation',((currVal_44 == null)? null: currVal_44.toString()));
+      updateElemClass(_el_90,'is-disabled',currVal_44);
       _expr_44 = currVal_44;
+    }
+    final currVal_45 = _MaterialButtonComponent_90_4.zElevation;
+    if (import28.checkBinding(_expr_45,currVal_45)) {
+      setAttr(_el_90,'elevation',((currVal_45 == null)? null: currVal_45.toString()));
+      _expr_45 = currVal_45;
     }
     this.detectViewChildrenChanges();
     if (identical(this.cdState, ChangeDetectorState.NeverChecked)) { _MaterialInputComponent_42_8.ngAfterViewInit(); }
@@ -890,6 +893,11 @@ class ViewSignupComp0 extends AppView<import3.SignupComp> {
   bool _handle_submit_15_2($event) {
     this.markPathToRootAsCheckOnce();
     final dynamic pd_0 = !identical((_NgForm_15_2.onSubmit() as dynamic), false);
+    return (true && pd_0);
+  }
+  bool _handle_change_26_0($event) {
+    this.markPathToRootAsCheckOnce();
+    final dynamic pd_0 = !identical((ctx.imgChange($event) as dynamic), false);
     return (true && pd_0);
   }
   bool _handle_ngModelChange_42_0($event) {

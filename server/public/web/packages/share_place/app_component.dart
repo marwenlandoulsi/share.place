@@ -77,7 +77,6 @@ class AppComponent
     _environment.eventBus.getBus().listen( (params) => show(params));
     _placeService.getConnectedUser();
     conf.readConf();
-
   }
 
   show(Map<PlaceParam, dynamic> params) async {

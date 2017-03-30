@@ -584,7 +584,7 @@
     if (!init.globalFunctions)
       init.globalFunctions = map();
     if (!init.interceptedNames)
-      init.interceptedNames = {set$_children: 1, set$_count: 1, set$action: 1, set$active: 1, set$altKey: 1, set$body: 1, set$bottom: 1, set$checked: 1, set$children: 1, set$className: 1, set$client: 1, set$clientHeight: 1, set$content: 1, set$control: 1, set$ctrlKey: 1, set$data: 1, set$dataTransfer: 1, set$defaultValue: 1, set$description: 1, set$disabled: 1, set$documentElement: 1, set$draggable: 1, set$enabled: 1, set$end: 1, set$error: 1, set$first: 1, set$focused: 1, set$hash: 1, set$header: 1, set$headers: 1, set$height: 1, set$hidden: 1, set$host: 1, set$href: 1, set$icon: 1, set$id: 1, set$indeterminate: 1, set$isEmpty: 1, set$isNotEmpty: 1, set$item: 1, set$items: 1, set$key: 1, set$keys: 1, set$label: 1, set$last: 1, set$left: 1, set$length: 1, set$level: 1, set$list: 1, set$location: 1, set$map: 1, set$max: 1, set$message: 1, set$metaKey: 1, set$method: 1, set$min: 1, set$minWidth: 1, set$name: 1, set$next: 1, set$nextElementSibling: 1, set$nextNode: 1, set$nodes: 1, set$offset: 1, set$onClose: 1, set$onError: 1, set$onOpen: 1, set$opacity: 1, set$open: 1, set$parent: 1, set$parentNode: 1, set$path: 1, set$pathname: 1, set$pending: 1, set$placeholder: 1, set$position: 1, set$previousElementSibling: 1, set$print: 1, set$request: 1, set$required: 1, set$responseText: 1, set$responseType: 1, set$result: 1, set$reversed: 1, set$right: 1, set$root: 1, set$rows: 1, set$scrollTop: 1, set$search: 1, set$selected: 1, set$shiftKey: 1, set$size: 1, set$source: 1, set$span: 1, set$src: 1, set$start: 1, set$state: 1, set$status: 1, set$statusCode: 1, set$stream: 1, set$style: 1, set$tabIndex: 1, set$target: 1, set$text: 1, set$top: 1, set$transform: 1, set$transition: 1, set$type: 1, set$url: 1, set$uuid: 1, set$valid: 1, set$validationMessage: 1, set$validity: 1, set$value: 1, set$values: 1, set$visibility: 1, set$visible: 1, set$width: 1, set$withCredentials: 1, set$x: 1, set$y: 1, set$z: 1, set$zIndex: 1, get$_children: 1, get$_count: 1, get$action: 1, get$active: 1, get$altKey: 1, get$attributes: 1, get$body: 1, get$borderEdge: 1, get$bottom: 1, get$bottomLeft: 1, get$bottomRight: 1, get$cancel: 1, get$checked: 1, get$children: 1, get$classes: 1, get$clear: 1, get$client: 1, get$clientHeight: 1, get$close: 1, get$codeUnits: 1, get$context: 1, get$control: 1, get$ctrlKey: 1, get$currentTarget: 1, get$data: 1, get$dataTransfer: 1, get$defaultValue: 1, get$description: 1, get$disabled: 1, get$documentElement: 1, get$enabled: 1, get$encoding: 1, get$end: 1, get$error: 1, get$first: 1, get$focused: 1, get$hash: 1, get$hashCode: 1, get$header: 1, get$headers: 1, get$height: 1, get$host: 1, get$icon: 1, get$id: 1, get$indeterminate: 1, get$isEmpty: 1, get$isNegative: 1, get$isNotEmpty: 1, get$item: 1, get$iterator: 1, get$key: 1, get$keyCode: 1, get$keys: 1, get$label: 1, get$last: 1, get$left: 1, get$length: 1, get$level: 1, get$location: 1, get$map: 1, get$max: 1, get$message: 1, get$metaKey: 1, get$method: 1, get$min: 1, get$minWidth: 1, get$name: 1, get$next: 1, get$nextElementSibling: 1, get$nextNode: 1, get$nodes: 1, get$offset: 1, get$offsetHeight: 1, get$offsetWidth: 1, get$on: 1, get$onAnimationEnd: 1, get$onBlocked: 1, get$onBlur: 1, get$onClose: 1, get$onDragEnd: 1, get$onDragOver: 1, get$onDragStart: 1, get$onError: 1, get$onHashChange: 1, get$onKeyDown: 1, get$onKeyUp: 1, get$onMouseDown: 1, get$onMouseUp: 1, get$onOpen: 1, get$onPopState: 1, get$onResize: 1, get$onScroll: 1, get$onTransitionEnd: 1, get$onUpgradeNeeded: 1, get$onWrite: 1, get$opacity: 1, get$open: 1, get$parent: 1, get$parentNode: 1, get$path: 1, get$pathname: 1, get$pending: 1, get$port: 1, get$position: 1, get$previousElementSibling: 1, get$print: 1, get$query: 1, get$radius: 1, get$request: 1, get$required: 1, get$responseHeaders: 1, get$responseText: 1, get$result: 1, get$reversed: 1, get$right: 1, get$root: 1, get$rows: 1, get$runes: 1, get$runtimeType: 1, get$save: 1, get$scrollHeight: 1, get$scrollLeft: 1, get$scrollTop: 1, get$scrollWidth: 1, get$scrollX: 1, get$scrollY: 1, get$search: 1, get$selected: 1, get$shadowRoot: 1, get$shiftKey: 1, get$show: 1, get$single: 1, get$size: 1, get$source: 1, get$span: 1, get$src: 1, get$start: 1, get$state: 1, get$status: 1, get$statusCode: 1, get$stream: 1, get$style: 1, get$tabIndex: 1, get$target: 1, get$text: 1, get$top: 1, get$topLeft: 1, get$topRight: 1, get$transform: 1, get$transformOrigin: 1, get$transition: 1, get$type: 1, get$url: 1, get$uuid: 1, get$valid: 1, get$validationMessage: 1, get$validity: 1, get$value: 1, get$values: 1, get$visibility: 1, get$width: 1, get$x: 1, get$y: 1, get$z: 1, get$zIndex: 1, $add: 1, $and: 1, $div: 1, $eq: 1, $ge: 1, $get$1: 1, $get$2: 1, $get$2$headers: 1, $gt: 1, $index: 1, $indexSet: 1, $le: 1, $lt: 1, $mod: 1, $mul: 1, $negate: 1, $or: 1, $set$2: 1, $set$3: 1, $shl: 1, $shr: 1, $sub: 1, $tdiv: 1, $xor: 1, __isolate_helper$_add$1: 1, _add$1: 1, _addEventListener$3: 1, _animate$0: 1, _async$_add$1: 1, _browserPropertyName$1: 1, _checkPosition$3: 1, _clearChildren$0: 1, _defaultSplit$1: 1, _ensureRequestAnimationFrame$0: 1, _get$1: 1, _getPropertyValueHelper$1: 1, _html$_remove$2: 1, _indexed_db$_add$1: 1, _indexed_db$_add$2: 1, _invalidPosition$3: 1, _remove$1: 1, _removeEventListener$3: 1, _replaceChild$2: 1, _requestAnimationFrame$1: 1, _setRangeFast$4: 1, _shlPositive$1: 1, _shrOtherPositive$1: 1, _shrReceiverPositive$1: 1, _tdivFast$1: 1, _tdivSlow$1: 1, abort$0: 1, abs$0: 1, absolute$1: 1, absolute$7: 1, activate$0: 1, activate$1: 1, add$0: 1, add$1: 1, add$2: 1, addAll$1: 1, addEventListener$2: 1, addEventListener$3: 1, addKey$2: 1, addKey$4: 1, addStream$1: 1, addStream$2: 1, addStream$2$cancelOnError: 1, allMatches$1: 1, allMatches$2: 1, any$1: 1, append$1: 1, blur$0: 1, cancel$0: 1, cancel$1: 1, capture$1: 1, check$1: 1, checkGrowable$1: 1, checkMutable$1: 1, clamp$2: 1, clear$0: 1, clear$1: 1, close$0: 1, close$1: 1, close$2: 1, codeUnitAt$1: 1, collapse$0: 1, collapse$1: 1, collapse$1$byUserAction: 1, compareTo$1: 1, complete$0: 1, complete$1: 1, connect$0: 1, contains$1: 1, contains$2: 1, containsKey$1: 1, control$1: 1, control$2: 1, control$3: 1, createElement$3: 1, deactivate$0: 1, deactivate$1: 1, defaultValue$1: 1, defer$1: 1, delete$0: 1, detach$0: 1, detach$1: 1, dispatchEvent$1: 1, elementAt$1: 1, end$1: 1, endsWith$1: 1, error$1: 1, error$3$length$position: 1, error$4$length$match$position: 1, every$1: 1, expand$0: 1, expand$1$byUserAction: 1, fillRange$3: 1, find$1: 1, firstWhere$1: 1, firstWhere$2$defaultValue: 1, firstWhere$2$orElse: 1, floor$0: 1, flush$0: 1, flush$2: 1, focus$0: 1, focus$1: 1, fold$2: 1, forEach$1: 1, forEach$2: 1, getBoundingClientRect$0: 1, getComputedStyle$0: 1, getComputedStyle$1: 1, getFile$3: 1, getPropertyValue$1: 1, getRange$2: 1, go$2: 1, hash$0: 1, hash$1: 1, highlight$1$color: 1, indexOf$1: 1, indexOf$2: 1, insert$2: 1, insertAll$2: 1, insertBefore$2: 1, item$1: 1, join$0: 1, join$1: 1, join$2: 1, join$8: 1, keys$0: 1, lastIndexOf$1: 1, lastIndexOf$2: 1, location$1: 1, lock$0: 1, map$1: 1, match$1: 1, matchAsPrefix$2: 1, measure$1: 1, measure$2$offset: 1, message$1: 1, message$2$color: 1, method$1: 1, modify$1: 1, name$1: 1, next$0: 1, next$1: 1, nextNode$0: 1, noSuchMethod$1: 1, normalize$0: 1, normalize$1: 1, normalize$1$canonicalize: 1, on$2: 1, on$3: 1, onBlur$0: 1, onBlur$1: 1, onError$1: 1, onFocus$1: 1, onHashChange$1: 1, onKeyUp$1: 1, onMouseDown$1: 1, onMouseUp$1: 1, onPopState$1: 1, onScroll$0: 1, onSubmit$0: 1, onWrite$0: 1, open$0: 1, open$1: 1, open$2: 1, open$3: 1, open$3$async: 1, open$4$onBlocked$onUpgradeNeeded$version: 1, open$5$async$password$user: 1, padLeft$2: 1, padRight$1: 1, padRight$2: 1, parentNode$0: 1, path$0: 1, pause$0: 1, pause$1: 1, preventDefault$0: 1, print$0: 1, print$1: 1, print$2: 1, pushState$3: 1, pushState$4: 1, put$1: 1, put$3$body$headers: 1, put$4$body$encoding$headers: 1, putIfAbsent$2: 1, querySelector$1: 1, register$0: 1, remove$0: 1, remove$1: 1, removeAt$1: 1, removeEventListener$3: 1, removeLast$0: 1, removeRange$2: 1, replaceAll$2: 1, replaceAllMapped$2: 1, replaceFirst$2: 1, replaceFirst$3: 1, replaceRange$3: 1, replaceState$2: 1, replaceState$3: 1, replaceState$4: 1, replaceWith$1: 1, request$0: 1, request$1: 1, requestAnimationFrame$1: 1, reset$1: 1, result$0: 1, resume$0: 1, reversed$0: 1, reversed$1$wraps: 1, round$0: 1, save$0: 1, save$1: 1, scrollLeft$0: 1, search$1: 1, select$0: 1, select$1: 1, send$0: 1, send$1: 1, send$2: 1, setAttribute$2: 1, setProperty$2: 1, setProperty$3: 1, setRange$3: 1, setRange$4: 1, setRequestHeader$2: 1, show$0: 1, show$1: 1, size$0: 1, skip$1: 1, skipWhile$1: 1, sort$0: 1, sort$1: 1, span$1: 1, span$2: 1, split$1: 1, start$0: 1, start$1: 1, start$2: 1, start$3: 1, startsWith$1: 1, startsWith$2: 1, stopPropagation$0: 1, sublist$1: 1, sublist$2: 1, subscribe$1: 1, subscribe$2: 1, subscribe$3: 1, substring$1: 1, substring$2: 1, supports$1: 1, take$1: 1, text$0: 1, toInt$0: 1, toList$0: 1, toList$1$growable: 1, toLowerCase$0: 1, toRadixString$1: 1, toString$0: 1, toString$1$color: 1, toStringAsFixed$1: 1, toUpperCase$0: 1, track$1: 1, transform$1: 1, transform$2: 1, transform$2$maxUnit: 1, transform$4: 1, trim$0: 1, type$1: 1, unlock$0: 1, update$1: 1, update$12$bottom$cssClasses$height$left$position$right$top$useCssTransform$visibility$width$zIndex: 1, where$1: 1, write$1: 1, writeValue$1: 1};
+      init.interceptedNames = {set$_children: 1, set$_count: 1, set$action: 1, set$active: 1, set$altKey: 1, set$body: 1, set$bottom: 1, set$checked: 1, set$children: 1, set$className: 1, set$client: 1, set$clientHeight: 1, set$content: 1, set$control: 1, set$ctrlKey: 1, set$data: 1, set$dataTransfer: 1, set$defaultValue: 1, set$description: 1, set$disabled: 1, set$documentElement: 1, set$draggable: 1, set$enabled: 1, set$end: 1, set$error: 1, set$files: 1, set$first: 1, set$focused: 1, set$hash: 1, set$header: 1, set$headers: 1, set$height: 1, set$hidden: 1, set$host: 1, set$href: 1, set$icon: 1, set$id: 1, set$indeterminate: 1, set$isEmpty: 1, set$isNotEmpty: 1, set$item: 1, set$items: 1, set$key: 1, set$keys: 1, set$label: 1, set$last: 1, set$left: 1, set$length: 1, set$level: 1, set$list: 1, set$location: 1, set$map: 1, set$max: 1, set$message: 1, set$metaKey: 1, set$method: 1, set$min: 1, set$minWidth: 1, set$name: 1, set$next: 1, set$nextElementSibling: 1, set$nextNode: 1, set$nodes: 1, set$offset: 1, set$onClose: 1, set$onError: 1, set$onOpen: 1, set$opacity: 1, set$open: 1, set$parent: 1, set$parentNode: 1, set$path: 1, set$pathname: 1, set$pending: 1, set$placeholder: 1, set$position: 1, set$previousElementSibling: 1, set$print: 1, set$request: 1, set$required: 1, set$responseText: 1, set$responseType: 1, set$result: 1, set$reversed: 1, set$right: 1, set$root: 1, set$rows: 1, set$scrollTop: 1, set$search: 1, set$selected: 1, set$shiftKey: 1, set$size: 1, set$source: 1, set$span: 1, set$src: 1, set$start: 1, set$state: 1, set$status: 1, set$statusCode: 1, set$stream: 1, set$style: 1, set$tabIndex: 1, set$target: 1, set$text: 1, set$top: 1, set$transform: 1, set$transition: 1, set$type: 1, set$url: 1, set$uuid: 1, set$valid: 1, set$validationMessage: 1, set$validity: 1, set$value: 1, set$values: 1, set$visibility: 1, set$visible: 1, set$width: 1, set$withCredentials: 1, set$x: 1, set$y: 1, set$z: 1, set$zIndex: 1, get$_children: 1, get$_count: 1, get$action: 1, get$active: 1, get$altKey: 1, get$attributes: 1, get$body: 1, get$borderEdge: 1, get$bottom: 1, get$bottomLeft: 1, get$bottomRight: 1, get$cancel: 1, get$checked: 1, get$children: 1, get$classes: 1, get$clear: 1, get$client: 1, get$clientHeight: 1, get$close: 1, get$codeUnits: 1, get$context: 1, get$control: 1, get$ctrlKey: 1, get$currentTarget: 1, get$data: 1, get$dataTransfer: 1, get$defaultValue: 1, get$description: 1, get$disabled: 1, get$documentElement: 1, get$enabled: 1, get$encoding: 1, get$end: 1, get$error: 1, get$files: 1, get$first: 1, get$focused: 1, get$hash: 1, get$hashCode: 1, get$header: 1, get$headers: 1, get$height: 1, get$host: 1, get$icon: 1, get$id: 1, get$indeterminate: 1, get$isEmpty: 1, get$isNegative: 1, get$isNotEmpty: 1, get$item: 1, get$iterator: 1, get$key: 1, get$keyCode: 1, get$keys: 1, get$label: 1, get$last: 1, get$left: 1, get$length: 1, get$level: 1, get$location: 1, get$map: 1, get$max: 1, get$message: 1, get$metaKey: 1, get$method: 1, get$min: 1, get$minWidth: 1, get$name: 1, get$next: 1, get$nextElementSibling: 1, get$nextNode: 1, get$nodes: 1, get$offset: 1, get$offsetHeight: 1, get$offsetWidth: 1, get$on: 1, get$onAnimationEnd: 1, get$onBlocked: 1, get$onBlur: 1, get$onClose: 1, get$onDragEnd: 1, get$onDragOver: 1, get$onDragStart: 1, get$onError: 1, get$onHashChange: 1, get$onKeyDown: 1, get$onKeyUp: 1, get$onMouseDown: 1, get$onMouseUp: 1, get$onOpen: 1, get$onPopState: 1, get$onResize: 1, get$onScroll: 1, get$onTransitionEnd: 1, get$onUpgradeNeeded: 1, get$onWrite: 1, get$opacity: 1, get$open: 1, get$parent: 1, get$parentNode: 1, get$path: 1, get$pathname: 1, get$pending: 1, get$port: 1, get$position: 1, get$previousElementSibling: 1, get$print: 1, get$query: 1, get$radius: 1, get$request: 1, get$required: 1, get$responseHeaders: 1, get$responseText: 1, get$result: 1, get$reversed: 1, get$right: 1, get$root: 1, get$rows: 1, get$runes: 1, get$runtimeType: 1, get$save: 1, get$scrollHeight: 1, get$scrollLeft: 1, get$scrollTop: 1, get$scrollWidth: 1, get$scrollX: 1, get$scrollY: 1, get$search: 1, get$selected: 1, get$shadowRoot: 1, get$shiftKey: 1, get$show: 1, get$single: 1, get$size: 1, get$source: 1, get$span: 1, get$src: 1, get$start: 1, get$state: 1, get$status: 1, get$statusCode: 1, get$stream: 1, get$style: 1, get$tabIndex: 1, get$target: 1, get$text: 1, get$top: 1, get$topLeft: 1, get$topRight: 1, get$transform: 1, get$transformOrigin: 1, get$transition: 1, get$type: 1, get$url: 1, get$uuid: 1, get$valid: 1, get$validationMessage: 1, get$validity: 1, get$value: 1, get$values: 1, get$visibility: 1, get$width: 1, get$x: 1, get$y: 1, get$z: 1, get$zIndex: 1, $add: 1, $and: 1, $div: 1, $eq: 1, $ge: 1, $get$1: 1, $get$2: 1, $get$2$headers: 1, $gt: 1, $index: 1, $indexSet: 1, $le: 1, $lt: 1, $mod: 1, $mul: 1, $negate: 1, $or: 1, $set$2: 1, $set$3: 1, $shl: 1, $shr: 1, $sub: 1, $tdiv: 1, $xor: 1, __isolate_helper$_add$1: 1, _add$1: 1, _addEventListener$3: 1, _animate$0: 1, _async$_add$1: 1, _browserPropertyName$1: 1, _checkPosition$3: 1, _clearChildren$0: 1, _defaultSplit$1: 1, _ensureRequestAnimationFrame$0: 1, _get$1: 1, _getPropertyValueHelper$1: 1, _html$_remove$2: 1, _indexed_db$_add$1: 1, _indexed_db$_add$2: 1, _invalidPosition$3: 1, _remove$1: 1, _removeEventListener$3: 1, _replaceChild$2: 1, _requestAnimationFrame$1: 1, _setRangeFast$4: 1, _shlPositive$1: 1, _shrOtherPositive$1: 1, _shrReceiverPositive$1: 1, _tdivFast$1: 1, _tdivSlow$1: 1, abort$0: 1, abs$0: 1, absolute$1: 1, absolute$7: 1, activate$0: 1, activate$1: 1, add$0: 1, add$1: 1, add$2: 1, addAll$1: 1, addEventListener$2: 1, addEventListener$3: 1, addKey$2: 1, addKey$4: 1, addStream$1: 1, addStream$2: 1, addStream$2$cancelOnError: 1, allMatches$1: 1, allMatches$2: 1, any$1: 1, append$1: 1, blur$0: 1, cancel$0: 1, cancel$1: 1, capture$1: 1, check$1: 1, checkGrowable$1: 1, checkMutable$1: 1, clamp$2: 1, clear$0: 1, clear$1: 1, close$0: 1, close$1: 1, close$2: 1, codeUnitAt$1: 1, collapse$0: 1, collapse$1: 1, collapse$1$byUserAction: 1, compareTo$1: 1, complete$0: 1, complete$1: 1, connect$0: 1, contains$1: 1, contains$2: 1, containsKey$1: 1, control$1: 1, control$2: 1, control$3: 1, createElement$3: 1, deactivate$0: 1, deactivate$1: 1, defaultValue$1: 1, defer$1: 1, delete$0: 1, detach$0: 1, detach$1: 1, dispatchEvent$1: 1, elementAt$1: 1, end$1: 1, endsWith$1: 1, error$1: 1, error$3$length$position: 1, error$4$length$match$position: 1, every$1: 1, expand$0: 1, expand$1$byUserAction: 1, fillRange$3: 1, find$1: 1, firstWhere$1: 1, firstWhere$2$defaultValue: 1, firstWhere$2$orElse: 1, floor$0: 1, flush$0: 1, flush$2: 1, focus$0: 1, focus$1: 1, fold$2: 1, forEach$1: 1, forEach$2: 1, getBoundingClientRect$0: 1, getComputedStyle$0: 1, getComputedStyle$1: 1, getFile$3: 1, getPropertyValue$1: 1, getRange$2: 1, go$2: 1, hash$0: 1, hash$1: 1, highlight$1$color: 1, indexOf$1: 1, indexOf$2: 1, insert$2: 1, insertAll$2: 1, insertBefore$2: 1, item$1: 1, join$0: 1, join$1: 1, join$2: 1, join$8: 1, keys$0: 1, lastIndexOf$1: 1, lastIndexOf$2: 1, location$1: 1, map$1: 1, match$1: 1, matchAsPrefix$2: 1, measure$1: 1, measure$2$offset: 1, message$1: 1, message$2$color: 1, method$1: 1, modify$1: 1, name$1: 1, next$0: 1, next$1: 1, nextNode$0: 1, noSuchMethod$1: 1, normalize$0: 1, normalize$1: 1, normalize$1$canonicalize: 1, on$2: 1, on$3: 1, onBlur$0: 1, onBlur$1: 1, onError$1: 1, onFocus$1: 1, onHashChange$1: 1, onKeyUp$1: 1, onMouseDown$1: 1, onMouseUp$1: 1, onPopState$1: 1, onScroll$0: 1, onSubmit$0: 1, onWrite$0: 1, open$0: 1, open$1: 1, open$2: 1, open$3: 1, open$3$async: 1, open$4$onBlocked$onUpgradeNeeded$version: 1, open$5$async$password$user: 1, padLeft$2: 1, padRight$1: 1, padRight$2: 1, parentNode$0: 1, path$0: 1, pause$0: 1, pause$1: 1, preventDefault$0: 1, print$0: 1, print$1: 1, print$2: 1, pushState$3: 1, pushState$4: 1, put$1: 1, put$3$body$headers: 1, put$4$body$encoding$headers: 1, putIfAbsent$2: 1, querySelector$1: 1, register$0: 1, remove$0: 1, remove$1: 1, removeAt$1: 1, removeEventListener$3: 1, removeLast$0: 1, removeRange$2: 1, replaceAll$2: 1, replaceAllMapped$2: 1, replaceFirst$2: 1, replaceFirst$3: 1, replaceRange$3: 1, replaceState$2: 1, replaceState$3: 1, replaceState$4: 1, replaceWith$1: 1, request$0: 1, request$1: 1, requestAnimationFrame$1: 1, reset$1: 1, result$0: 1, resume$0: 1, reversed$0: 1, reversed$1$wraps: 1, round$0: 1, save$0: 1, save$1: 1, scrollLeft$0: 1, search$1: 1, select$0: 1, select$1: 1, send$0: 1, send$1: 1, send$2: 1, setAttribute$2: 1, setProperty$2: 1, setProperty$3: 1, setRange$3: 1, setRange$4: 1, setRequestHeader$2: 1, show$0: 1, show$1: 1, size$0: 1, skip$1: 1, skipWhile$1: 1, sort$0: 1, sort$1: 1, span$1: 1, span$2: 1, split$1: 1, start$0: 1, start$1: 1, start$2: 1, start$3: 1, startsWith$1: 1, startsWith$2: 1, stopPropagation$0: 1, sublist$1: 1, sublist$2: 1, subscribe$1: 1, subscribe$2: 1, subscribe$3: 1, substring$1: 1, substring$2: 1, supports$1: 1, take$1: 1, text$0: 1, toInt$0: 1, toList$0: 1, toList$1$growable: 1, toLowerCase$0: 1, toRadixString$1: 1, toString$0: 1, toString$1$color: 1, toStringAsFixed$1: 1, toUpperCase$0: 1, track$1: 1, transform$1: 1, transform$2: 1, transform$2$maxUnit: 1, transform$4: 1, trim$0: 1, type$1: 1, unlock$0: 1, update$1: 1, update$12$bottom$cssClasses$height$left$position$right$top$useCssTransform$visibility$width$zIndex: 1, where$1: 1, write$1: 1, writeValue$1: 1};
     var libraries = init.libraries;
     var mangledNames = init.mangledNames;
     var mangledGlobalNames = init.mangledGlobalNames;
@@ -685,7 +685,7 @@
       get$runtimeType: function(receiver) {
         return new H.TypeImpl(H.getRuntimeTypeString(receiver), null);
       },
-      "%": "ANGLEInstancedArrays|ANGLE_instanced_arrays|AnimationEffectReadOnly|AnimationEffectTiming|AnimationTimeline|AppBannerPromptResult|AudioListener|BarProp|Bluetooth|BluetoothGATTRemoteServer|BluetoothUUID|CHROMIUMSubscribeUniform|CHROMIUMValuebuffer|CSS|Cache|CanvasGradient|CanvasPattern|Clients|ConsoleBase|Coordinates|Crypto|DOMFileSystemSync|DOMImplementation|DOMParser|DataTransfer|Database|DeprecatedStorageInfo|DeprecatedStorageQuota|DeviceRotationRate|DirectoryEntrySync|DirectoryReader|DirectoryReaderSync|EXTBlendMinMax|EXTFragDepth|EXTShaderTextureLOD|EXTTextureFilterAnisotropic|EXT_blend_minmax|EXT_frag_depth|EXT_sRGB|EXT_shader_texture_lod|EXT_texture_filter_anisotropic|EXTsRGB|EffectModel|EntrySync|FileEntrySync|FileReaderSync|FileWriterSync|Geofencing|Geolocation|Geoposition|HMDVRDevice|HTMLAllCollection|Headers|InjectedScriptHost|InputDevice|KeyframeEffect|MediaDevices|MediaError|MediaKeyError|MediaKeySystemAccess|MediaKeys|MemoryInfo|MessageChannel|MutationObserver|NavigatorStorageUtils|NodeFilter|NonElementParentNode|OESElementIndexUint|OESStandardDerivatives|OESTextureFloat|OESTextureFloatLinear|OESTextureHalfFloat|OESTextureHalfFloatLinear|OESVertexArrayObject|OES_element_index_uint|OES_standard_derivatives|OES_texture_float|OES_texture_float_linear|OES_texture_half_float|OES_texture_half_float_linear|OES_vertex_array_object|PagePopupController|PerformanceTiming|PeriodicSyncManager|PeriodicSyncRegistration|PeriodicWave|Permissions|PositionSensorVRDevice|PushSubscription|RTCIceCandidate|SQLTransaction|SVGAnimatedAngle|SVGAnimatedBoolean|SVGAnimatedEnumeration|SVGAnimatedInteger|SVGAnimatedLength|SVGAnimatedLengthList|SVGAnimatedNumber|SVGAnimatedNumberList|SVGAnimatedPreserveAspectRatio|SVGAnimatedRect|SVGAnimatedString|SVGAnimatedTransformList|SVGPreserveAspectRatio|SVGUnitTypes|ScrollState|SharedArrayBuffer|StorageInfo|StorageQuota|SubtleCrypto|SyncManager|SyncRegistration|VRDevice|VREyeParameters|VRFieldOfView|VideoPlaybackQuality|WEBGL_compressed_texture_atc|WEBGL_compressed_texture_etc1|WEBGL_compressed_texture_pvrtc|WEBGL_compressed_texture_s3tc|WEBGL_debug_renderer_info|WEBGL_debug_shaders|WEBGL_depth_texture|WEBGL_draw_buffers|WEBGL_lose_context|WebGLBuffer|WebGLCompressedTextureATC|WebGLCompressedTextureETC1|WebGLCompressedTexturePVRTC|WebGLCompressedTextureS3TC|WebGLDebugRendererInfo|WebGLDebugShaders|WebGLDepthTexture|WebGLDrawBuffers|WebGLExtensionLoseContext|WebGLFramebuffer|WebGLLoseContext|WebGLProgram|WebGLQuery|WebGLRenderbuffer|WebGLSampler|WebGLShader|WebGLShaderPrecisionFormat|WebGLSync|WebGLTexture|WebGLTransformFeedback|WebGLUniformLocation|WebGLVertexArrayObject|WebGLVertexArrayObjectOES|WebKitCSSMatrix|WebKitMutationObserver|WorkerConsole|XMLSerializer|XPathEvaluator|XPathExpression|XPathNSResolver|XPathResult|XSLTProcessor|mozRTCIceCandidate"
+      "%": "ANGLEInstancedArrays|ANGLE_instanced_arrays|AnimationEffectReadOnly|AnimationEffectTiming|AnimationTimeline|AppBannerPromptResult|AudioListener|BarProp|Bluetooth|BluetoothGATTRemoteServer|BluetoothUUID|CHROMIUMSubscribeUniform|CHROMIUMValuebuffer|CSS|Cache|CanvasGradient|CanvasPattern|Clients|ConsoleBase|Coordinates|Crypto|DOMFileSystemSync|DOMImplementation|DOMParser|Database|DeprecatedStorageInfo|DeprecatedStorageQuota|DeviceRotationRate|DirectoryEntrySync|DirectoryReader|DirectoryReaderSync|EXTBlendMinMax|EXTFragDepth|EXTShaderTextureLOD|EXTTextureFilterAnisotropic|EXT_blend_minmax|EXT_frag_depth|EXT_sRGB|EXT_shader_texture_lod|EXT_texture_filter_anisotropic|EXTsRGB|EffectModel|EntrySync|FileEntrySync|FileReaderSync|FileWriterSync|Geofencing|Geolocation|Geoposition|HMDVRDevice|HTMLAllCollection|Headers|InjectedScriptHost|InputDevice|KeyframeEffect|MediaDevices|MediaError|MediaKeyError|MediaKeySystemAccess|MediaKeys|MemoryInfo|MessageChannel|MutationObserver|NavigatorStorageUtils|NodeFilter|NonElementParentNode|OESElementIndexUint|OESStandardDerivatives|OESTextureFloat|OESTextureFloatLinear|OESTextureHalfFloat|OESTextureHalfFloatLinear|OESVertexArrayObject|OES_element_index_uint|OES_standard_derivatives|OES_texture_float|OES_texture_float_linear|OES_texture_half_float|OES_texture_half_float_linear|OES_vertex_array_object|PagePopupController|PerformanceTiming|PeriodicSyncManager|PeriodicSyncRegistration|PeriodicWave|Permissions|PositionSensorVRDevice|PushSubscription|RTCIceCandidate|SQLTransaction|SVGAnimatedAngle|SVGAnimatedBoolean|SVGAnimatedEnumeration|SVGAnimatedInteger|SVGAnimatedLength|SVGAnimatedLengthList|SVGAnimatedNumber|SVGAnimatedNumberList|SVGAnimatedPreserveAspectRatio|SVGAnimatedRect|SVGAnimatedString|SVGAnimatedTransformList|SVGPreserveAspectRatio|SVGUnitTypes|ScrollState|SharedArrayBuffer|StorageInfo|StorageQuota|SubtleCrypto|SyncManager|SyncRegistration|VRDevice|VREyeParameters|VRFieldOfView|VideoPlaybackQuality|WEBGL_compressed_texture_atc|WEBGL_compressed_texture_etc1|WEBGL_compressed_texture_pvrtc|WEBGL_compressed_texture_s3tc|WEBGL_debug_renderer_info|WEBGL_debug_shaders|WEBGL_depth_texture|WEBGL_draw_buffers|WEBGL_lose_context|WebGLBuffer|WebGLCompressedTextureATC|WebGLCompressedTextureETC1|WebGLCompressedTexturePVRTC|WebGLCompressedTextureS3TC|WebGLDebugRendererInfo|WebGLDebugShaders|WebGLDepthTexture|WebGLDrawBuffers|WebGLExtensionLoseContext|WebGLFramebuffer|WebGLLoseContext|WebGLProgram|WebGLQuery|WebGLRenderbuffer|WebGLSampler|WebGLShader|WebGLShaderPrecisionFormat|WebGLSync|WebGLTexture|WebGLTransformFeedback|WebGLUniformLocation|WebGLVertexArrayObject|WebGLVertexArrayObjectOES|WebKitCSSMatrix|WebKitMutationObserver|WorkerConsole|XMLSerializer|XPathEvaluator|XPathExpression|XPathNSResolver|XPathResult|XSLTProcessor|mozRTCIceCandidate"
     },
     JSBool: {
       "^": "Interceptor;",
@@ -21239,6 +21239,10 @@
       "^": "CssRule;style=",
       "%": "CSSViewportRule"
     },
+    DataTransfer: {
+      "^": "Interceptor;files=",
+      "%": "DataTransfer"
+    },
     DataTransferItem: {
       "^": "Interceptor;type=",
       $isDataTransferItem: 1,
@@ -22535,7 +22539,7 @@
       "%": "HTMLImageElement"
     },
     InputElement: {
-      "^": "HtmlElement;checked%,defaultValue=,disabled=,height=,indeterminate=,max=,min=,name%,placeholder},required=,size=,src=,type=,validationMessage=,validity=,value%,width%",
+      "^": "HtmlElement;checked%,defaultValue=,disabled=,files=,height=,indeterminate=,max=,min=,name%,placeholder},required=,size=,src=,type=,validationMessage=,validity=,value%,width%",
       size$0: function($receiver) {
         return $receiver.size.call$0();
       },
@@ -59792,8 +59796,8 @@
                     contentType = request.get$_contentType();
                     if (contentType == null)
                       t2.$indexSet(0, "content-type", R.MediaType$("application", "x-www-form-urlencoded", null).toString$0(0));
-                    else if (contentType.get$mimeType() !== "application/x-www-form-urlencoded")
-                      H.throwExpression(new P.StateError('Cannot set the body fields of a Request with content-type "' + contentType.get$mimeType() + '".'));
+                    else if (!J.$eq$(contentType.get$mimeType(), "application/x-www-form-urlencoded"))
+                      H.throwExpression(new P.StateError('Cannot set the body fields of a Request with content-type "' + H.S(contentType.get$mimeType()) + '".'));
                     request.set$body(0, B.mapToQuery(body, request.get$encoding(request)));
                   } else
                     throw H.wrapException(P.ArgumentError$('Invalid request body "' + H.S(body) + '".'));
@@ -61744,7 +61748,7 @@
     AppComponent: {
       "^": "Object;_app_component$_router,_environment,_app_component$_placeService,profileMenuVisible@",
       ngOnInit$0: function() {
-        var $async$goto = 0, $async$completer = new P.Completer_Completer$sync(), $async$handler = 1, $async$currentError, $async$self = this, t1, urlInput;
+        var $async$goto = 0, $async$completer = new P.Completer_Completer$sync(), $async$handler = 1, $async$currentError, $async$self = this, t1, urlInput, port;
         var $async$ngOnInit$0 = P._wrapJsFunctionForAsync(function($async$errorCode, $async$result) {
           if ($async$errorCode === 1) {
             $async$currentError = $async$result;
@@ -61763,7 +61767,11 @@
                 urlInput = t1.querySelector("#baseUrl");
                 if (urlInput != null)
                   $._baseUrlValue = J.get$value$x(urlInput);
-                P.print(C.JSString_methods.$add("base url : ", $._baseUrlValue));
+                port = t1.querySelector("#port");
+                if (port != null)
+                  $._port = H.Primitives_parseInt(J.get$value$x(port), null, null);
+                $._env = J.get$value$x(t1.querySelector("#env"));
+                P.print("base url: " + H.S($._baseUrlValue) + ", port: " + H.S($._port) + ", environement: " + H.S($._env));
                 // implicit return
                 return P._asyncHelper(null, 0, $async$completer);
               case 1:
@@ -61916,7 +61924,7 @@
       K.initReflector20();
     },
     ViewAppComponent0: {
-      "^": "AppView;_app_component_template$_el_0,_app_component_template$_appEl_2,_app_component_template$_TemplateRef_2_4,_app_component_template$_NgIf_2_5,_app_component_template$_appEl_4,_app_component_template$_TemplateRef_4_4,_app_component_template$_NgIf_4_5,_app_component_template$_el_6,_app_component_template$_el_8,_app_component_template$_el_10,_text_11,_app_component_template$_el_13,_app_component_template$_appEl_15,_app_component_template$_TemplateRef_15_4,_app_component_template$_NgFor_15_5,_app_component_template$_el_18,_app_component_template$_el_20,_PopupSourceDirective_20_2,_app_component_template$_el_23,_appEl_23,_MaterialPopupComponent_23_3,__PopupComponent_23_4,__DropdownHandle_23_5,__DeferredContentAware_23_6,__PopupHierarchy_23_7,__PopupRef_23_8,_app_component_template$_el_25,_app_component_template$_el_27,_text_28,_app_component_template$_el_31,_app_component_template$_el_33,_appEl_33,_AcxDarkTheme_33_3,_MaterialButtonComponent_33_4,__ButtonDirective_33_5,_app_component_template$_el_35,_app_component_template$_el_39,_app_component_template$_appEl_39,_AcxDarkTheme_39_3,_MaterialButtonComponent_39_4,__ButtonDirective_39_5,_app_component_template$_el_41,_app_component_template$_el_46,_app_component_template$_el_52,_app_component_template$_el_54,_appEl_54,_PostitComponent_54_3,_app_component_template$_el_56,_appEl_56,_PlacesComponent_56_3,_app_component_template$_el_59,_app_component_template$_el_61,_app_component_template$_el_63,_el_65,_app_component_template$_el_67,_appEl_67,_UserListProvider_67_3,_SubjectListComponent_67_4,_el_70,_app_component_template$_el_72,_app_component_template$_el_74,_app_component_template$_el_76,_app_component_template$_appEl_76,_FilesComp_76_3,__defaultPopupPositions_76_4,__ManagedZone_76_5,__Window_76_6,__DomService_76_7,__AcxImperativeViewUtils_76_8,__Document_76_9,__DomRuler_76_10,__overlayContainerName_76_11,__overlayContainerParent_76_12,__overlayContainerToken_76_13,__overlaySyncDom_76_14,__OverlayStyleConfig_76_15,__ZIndexer_76_16,__OverlayDomRenderService_76_17,__OverlayService_76_18,__DomPopupSourceFactory_76_19,__PopupService_76_20,_app_component_template$_expr_2,_app_component_template$_expr_3,_app_component_template$_expr_5,_app_component_template$_expr_7,_app_component_template$_expr_8,_app_component_template$_expr_9,_app_component_template$_expr_10,_app_component_template$_expr_11,_app_component_template$_expr_19,_app_component_template$_expr_20,_app_component_template$_expr_21,_app_component_template$_expr_22,_app_component_template$_expr_23,_app_component_template$_expr_31,_app_component_template$_expr_32,_app_component_template$_expr_33,_app_component_template$_expr_34,_app_component_template$_expr_35,_expr_36,_app_component_template$_expr_37,_app_component_template$_expr_38,clazz,componentType,type,locals,parentInjector,declarationViewContainer,_cdMode,_skipChangeDetection,ref,rootNodesOrViewContainers,allNodes,_onDestroyCallbacks,subscriptions,contentChildren,viewChildren,renderParent,viewContainerElement,_cdState,ctx,projectableNodes,destroyed,_hasExternalHostElement",
+      "^": "AppView;_app_component_template$_el_0,_app_component_template$_appEl_2,_app_component_template$_TemplateRef_2_4,_app_component_template$_NgIf_2_5,_app_component_template$_appEl_4,_app_component_template$_TemplateRef_4_4,_app_component_template$_NgIf_4_5,_app_component_template$_el_6,_app_component_template$_el_8,_app_component_template$_el_10,_text_11,_app_component_template$_el_13,_app_component_template$_appEl_15,_app_component_template$_TemplateRef_15_4,_app_component_template$_NgFor_15_5,_app_component_template$_el_18,_app_component_template$_el_20,_PopupSourceDirective_20_2,_app_component_template$_el_23,_appEl_23,_MaterialPopupComponent_23_3,__PopupComponent_23_4,__DropdownHandle_23_5,__DeferredContentAware_23_6,__PopupHierarchy_23_7,__PopupRef_23_8,_app_component_template$_el_25,_app_component_template$_el_27,_text_28,_app_component_template$_el_31,_app_component_template$_el_33,_appEl_33,_AcxDarkTheme_33_3,_MaterialButtonComponent_33_4,__ButtonDirective_33_5,_app_component_template$_el_35,_app_component_template$_el_39,_app_component_template$_appEl_39,_AcxDarkTheme_39_3,_MaterialButtonComponent_39_4,__ButtonDirective_39_5,_app_component_template$_el_41,_app_component_template$_el_46,_app_component_template$_el_52,_app_component_template$_el_54,_appEl_54,_PostitComponent_54_3,_app_component_template$_el_56,_app_component_template$_appEl_56,_PlacesComponent_56_3,_app_component_template$_el_59,_app_component_template$_el_61,_app_component_template$_el_63,_el_65,_app_component_template$_el_67,_appEl_67,_UserListProvider_67_3,_SubjectListComponent_67_4,_el_70,_app_component_template$_el_72,_app_component_template$_el_74,_app_component_template$_el_76,_app_component_template$_appEl_76,_FilesComp_76_3,__defaultPopupPositions_76_4,__ManagedZone_76_5,__Window_76_6,__DomService_76_7,__AcxImperativeViewUtils_76_8,__Document_76_9,__DomRuler_76_10,__overlayContainerName_76_11,__overlayContainerParent_76_12,__overlayContainerToken_76_13,__overlaySyncDom_76_14,__OverlayStyleConfig_76_15,__ZIndexer_76_16,__OverlayDomRenderService_76_17,__OverlayService_76_18,__DomPopupSourceFactory_76_19,__PopupService_76_20,_app_component_template$_expr_2,_app_component_template$_expr_3,_app_component_template$_expr_5,_app_component_template$_expr_7,_app_component_template$_expr_8,_app_component_template$_expr_9,_app_component_template$_expr_10,_app_component_template$_expr_11,_app_component_template$_expr_19,_app_component_template$_expr_20,_app_component_template$_expr_21,_app_component_template$_expr_22,_app_component_template$_expr_23,_app_component_template$_expr_31,_app_component_template$_expr_32,_app_component_template$_expr_33,_app_component_template$_expr_34,_expr_35,_expr_36,_app_component_template$_expr_37,_app_component_template$_expr_38,clazz,componentType,type,locals,parentInjector,declarationViewContainer,_cdMode,_skipChangeDetection,ref,rootNodesOrViewContainers,allNodes,_onDestroyCallbacks,subscriptions,contentChildren,viewChildren,renderParent,viewContainerElement,_cdState,ctx,projectableNodes,destroyed,_hasExternalHostElement",
       get$_PopupComponent_23_4: function() {
         var t1 = this.__PopupComponent_23_4;
         if (t1 == null) {
@@ -62341,11 +62349,11 @@
         this._app_component_template$_el_56 = t1;
         t1.setAttribute(this.componentType._contentAttr, "");
         this._app_component_template$_el_52.appendChild(this._app_component_template$_el_56);
-        this._appEl_56 = new V.ViewContainer(56, 52, this, this._app_component_template$_el_56, null, null, null, null);
-        compView_56 = D.viewFactory_PlacesComponent0(this.injector$1(56), this._appEl_56);
+        this._app_component_template$_appEl_56 = new V.ViewContainer(56, 52, this, this._app_component_template$_el_56, null, null, null, null);
+        compView_56 = D.viewFactory_PlacesComponent0(this.injector$1(56), this._app_component_template$_appEl_56);
         t1 = new M.PlacesComponent(null, false, t4.$get$1(t3, C.Type_PlaceService_fcN), t4.$get$1(t3, C.Type_Router_yx3), t4.$get$1(t3, C.Type_Environment_iuz));
         this._PlacesComponent_56_3 = t1;
-        t2 = this._appEl_56;
+        t2 = this._app_component_template$_appEl_56;
         t2.component = t1;
         t2.componentView = compView_56;
         compView_56.createComp$2([], null);
@@ -62813,10 +62821,10 @@
         }
         t1 = this._MaterialButtonComponent_39_4;
         currVal_35 = t1._isMouseDown || t1._focused ? 2 : 1;
-        if (Q.checkBinding(this._app_component_template$_expr_35, currVal_35)) {
+        if (Q.checkBinding(this._expr_35, currVal_35)) {
           t1 = this._app_component_template$_el_39;
           this.setAttr$3(t1, "elevation", C.JSInt_methods.toString$0(currVal_35));
-          this._app_component_template$_expr_35 = currVal_35;
+          this._expr_35 = currVal_35;
         }
         this.detectViewChildrenChanges$0();
         if (this._cdState === C.ChangeDetectorState_0)
@@ -64729,7 +64737,7 @@
       }, null, null, 2, 0, null, 121, [], "call"]
     },
     FileVersion: {
-      "^": "Object;_cloud_file$_id,v<,ts<,userId<,userName<,status>,size>,actionCount,actions<,approved<",
+      "^": "Object;_cloud_file$_id,v<,mimeType<,ts<,userId<,userName<,status>,size>,actionCount,actions<,approved<",
       toJson$0: function() {
         var t1, t2, t3;
         t1 = this._cloud_file$_id;
@@ -64737,7 +64745,7 @@
         t2 = t2 == null ? t2 : t2._value;
         t3 = this.approved;
         t3 = t3 == null ? t3 : P.LinkedHashMap__makeLiteral(["userId", t3.userId, "userName", t3.userName, "photoId", t3.photoId]);
-        return P.LinkedHashMap__makeLiteral(["_id", t1, "v", this.v, "status", this.status, "size", this.size, "ts", t2, "userId", this.userId, "userName", this.userName, "commentCount", this.actionCount, "approved", t3, "actions", J.toString$0$(this.actions)]);
+        return P.LinkedHashMap__makeLiteral(["_id", t1, "v", this.v, "mimeType", this.mimeType, "status", this.status, "size", this.size, "ts", t2, "userId", this.userId, "userName", this.userName, "commentCount", this.actionCount, "approved", t3, "actions", J.toString$0$(this.actions)]);
       },
       get$id: function(_) {
         return this._cloud_file$_id;
@@ -64750,7 +64758,7 @@
       },
       static: {
         FileVersion_FileVersion$fromJson: function(file) {
-          var toReturn, e, stack, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, exception;
+          var toReturn, e, stack, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, exception;
           try {
             t1 = J.getInterceptor$asx(file);
             t2 = t1.$index(file, "_id");
@@ -64759,26 +64767,27 @@
               t1.$indexSet(file, "v", 0);
               t3 = 0;
             }
-            t4 = t1.$index(file, "status");
-            t5 = t1.$index(file, "size");
-            if (t5 == null) {
-              t1.$indexSet(file, "size", -1);
-              t5 = -1;
-            }
-            t6 = t1.$index(file, "ts");
+            t4 = t1.$index(file, "mimeType");
+            t5 = t1.$index(file, "status");
+            t6 = t1.$index(file, "size");
             if (t6 == null) {
-              t1.$indexSet(file, "ts", 0);
-              t6 = 0;
+              t1.$indexSet(file, "size", -1);
+              t6 = -1;
             }
-            t6 = H.Primitives_parseInt(t6, null, null);
-            t7 = new P.DateTime(t6, true);
-            t7.DateTime$_withValue$2$isUtc(t6, true);
-            t6 = t1.$index(file, "userId");
-            t8 = t1.$index(file, "userName");
-            t9 = t1.$index(file, "commentCount");
-            t10 = N.Approved_Approved$fromJson(t1.$index(file, "approved"));
+            t7 = t1.$index(file, "ts");
+            if (t7 == null) {
+              t1.$indexSet(file, "ts", 0);
+              t7 = 0;
+            }
+            t7 = H.Primitives_parseInt(t7, null, null);
+            t8 = new P.DateTime(t7, true);
+            t8.DateTime$_withValue$2$isUtc(t7, true);
+            t7 = t1.$index(file, "userId");
+            t9 = t1.$index(file, "userName");
+            t10 = t1.$index(file, "commentCount");
+            t11 = N.Approved_Approved$fromJson(t1.$index(file, "approved"));
             t1 = t1.$index(file, "actions");
-            toReturn = new N.FileVersion(t2, t3, t7, t6, t8, t4, t5, t9, J.toList$0$ax(t1 == null ? t1 : J.map$1$ax(t1, new N.closure38())), t10);
+            toReturn = new N.FileVersion(t2, t3, t4, t8, t7, t9, t5, t6, t10, J.toList$0$ax(t1 == null ? t1 : J.map$1$ax(t1, new N.closure38())), t11);
             P.print("constructed file version : " + H.S(toReturn));
             return toReturn;
           } catch (exception) {
@@ -64787,7 +64796,7 @@
             stack = H.getTraceFromException(exception);
             P.print(e);
             P.print(stack);
-            return new N.FileVersion("nnn", 0, null, null, null, "failure", 0, 0, null, null);
+            return new N.FileVersion("nnn", 0, null, null, null, null, "failure", 0, 0, null, null);
           }
         }
       }
@@ -64908,7 +64917,7 @@
   }], ["", "package:share_place/files/files_comp.dart",, F, {
     "^": "",
     FilesComp: {
-      "^": "Object;_files_comp$_placeService,_files_comp$_router,_files_comp$_environment,versionAttributes,fileMenuVisible<,selectedVersion,openFile<",
+      "^": "Object;_files_comp$_placeService,_files_comp$_router,_files_comp$_environment,versionAttributes,fileMenuVisible<,selectedVersion,openFileVersion<",
       ngOnInit$0: function() {
         var $async$goto = 0, $async$completer = new P.Completer_Completer$sync(), $async$handler = 1, $async$currentError, $async$self = this;
         var $async$ngOnInit$0 = P._wrapJsFunctionForAsync(function($async$errorCode, $async$result) {
@@ -65208,35 +65217,6 @@
         });
         return P._asyncHelper(null, $async$unapprove$1, $async$completer);
       },
-      lock$0: function(_) {
-        var $async$goto = 0, $async$completer = new P.Completer_Completer$sync(), $async$handler = 1, $async$currentError, $async$self = this, t1, $async$temp1;
-        var $async$lock$0 = P._wrapJsFunctionForAsync(function($async$errorCode, $async$result) {
-          if ($async$errorCode === 1) {
-            $async$currentError = $async$result;
-            $async$goto = $async$handler;
-          }
-          while (true)
-            switch ($async$goto) {
-              case 0:
-                // Function start
-                $async$self.fileMenuVisible = -1;
-                t1 = $async$self._files_comp$_environment;
-                $async$temp1 = t1;
-                $async$goto = 2;
-                return P._asyncHelper($async$self._files_comp$_placeService.lockFile$4(J.get$id$x(t1.get$selectedPlace()), t1.get$selectedSubject().get$folderId(), J.get$id$x(t1.get$selectedFile()), true), $async$lock$0, $async$completer);
-              case 2:
-                // returning from await.
-                $async$temp1.set$selectedFile($async$result);
-                t1.fireEvent$2(C.PlaceParam_11, J.get$id$x(t1.get$selectedFile()));
-                // implicit return
-                return P._asyncHelper(null, 0, $async$completer);
-              case 1:
-                // rethrow
-                return P._asyncHelper($async$currentError, 1, $async$completer);
-            }
-        });
-        return P._asyncHelper(null, $async$lock$0, $async$completer);
-      },
       unlock$0: function(_) {
         var $async$goto = 0, $async$completer = new P.Completer_Completer$sync(), $async$handler = 1, $async$currentError, $async$self = this, t1, $async$temp1;
         var $async$unlock$0 = P._wrapJsFunctionForAsync(function($async$errorCode, $async$result) {
@@ -65283,11 +65263,12 @@
           return "Text Document";
         return mimeType + " Document";
       },
-      openFileDialog$0: function() {
-        this.openFile = true;
+      openFileDialog$1: function(version) {
+        P.print("opening file version " + H.S(version));
+        this.openFileVersion = version;
       },
       cancelFileOpen$0: function() {
-        this.openFile = false;
+        this.openFileVersion = -1;
       },
       lockAndOpen$1: function(version) {
         var $async$goto = 0, $async$completer = new P.Completer_Completer$sync(), $async$handler = 1, $async$currentError, $async$self = this, t1;
@@ -65300,7 +65281,7 @@
             switch ($async$goto) {
               case 0:
                 // Function start
-                $async$self.openFile = false;
+                $async$self.openFileVersion = -1;
                 t1 = $async$self._files_comp$_environment;
                 $async$goto = 2;
                 return P._asyncHelper($async$self._files_comp$_placeService.lockFile$4(J.get$id$x(t1.get$selectedPlace()), t1.get$selectedSubject().get$folderId(), J.get$id$x(t1.get$selectedFile()), true), $async$lockAndOpen$1, $async$completer);
@@ -65319,7 +65300,7 @@
       },
       openFileLink$1: function(version) {
         var t1, t2, t3, t4;
-        this.openFile = false;
+        this.openFileVersion = -1;
         t1 = window.location;
         t2 = this._files_comp$_environment;
         t3 = t2.get$selectedPlace();
@@ -65372,7 +65353,7 @@
       var t1, t2, t3;
       t1 = $.renderType_FilesComp;
       if (t1 == null) {
-        t1 = $.appViewUtils.createRenderComponentType$4("", 0, C.ViewEncapsulation_0, C.List_39x);
+        t1 = $.appViewUtils.createRenderComponentType$4("", 0, C.ViewEncapsulation_0, C.List_Xqx);
         $.renderType_FilesComp = t1;
       }
       t2 = P.LinkedHashMap__makeEmpty();
@@ -65385,7 +65366,7 @@
       t1 = $.uninitialized;
       t2 = $.renderType_FilesComp;
       t3 = P.LinkedHashMap__makeEmpty();
-      t1 = new M.ViewFilesComp1(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, t1, t1, t1, t1, C.Type_ViewFilesComp1_KlB, t2, C.ViewType_2, t3, parentInjector, declarationEl, C.ChangeDetectionStrategy_2, false, null, null, null, H.setRuntimeTypeInfo([], [{func: 1, v: true}]), null, [], [], null, null, C.ChangeDetectorState_0, null, null, false, null);
+      t1 = new M.ViewFilesComp1(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, t1, t1, t1, t1, C.Type_ViewFilesComp1_KlB, t2, C.ViewType_2, t3, parentInjector, declarationEl, C.ChangeDetectionStrategy_2, false, null, null, null, H.setRuntimeTypeInfo([], [{func: 1, v: true}]), null, [], [], null, null, C.ChangeDetectorState_0, null, null, false, null);
       t1.AppView$7(C.Type_ViewFilesComp1_KlB, t2, C.ViewType_2, t3, parentInjector, declarationEl, C.ChangeDetectionStrategy_2, F.FilesComp);
       return t1;
     }, "call$2", "files_comp_template__viewFactory_FilesComp1$closure", 4, 0, 4],
@@ -65411,7 +65392,7 @@
       t1 = $.uninitialized;
       t2 = $.renderType_FilesComp;
       t3 = P.LinkedHashMap__makeEmpty();
-      t1 = new M.ViewFilesComp4(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, t1, t1, t1, t1, t1, t1, t1, t1, t1, t1, t1, t1, t1, t1, t1, t1, t1, t1, t1, t1, t1, t1, null, null, null, C.Type_ViewFilesComp4_KlB, t2, C.ViewType_2, t3, parentInjector, declarationEl, C.ChangeDetectionStrategy_2, false, null, null, null, H.setRuntimeTypeInfo([], [{func: 1, v: true}]), null, [], [], null, null, C.ChangeDetectorState_0, null, null, false, null);
+      t1 = new M.ViewFilesComp4(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, t1, t1, t1, t1, t1, t1, t1, t1, t1, t1, t1, t1, t1, t1, t1, t1, t1, t1, t1, t1, t1, t1, t1, t1, t1, t1, null, null, null, C.Type_ViewFilesComp4_KlB, t2, C.ViewType_2, t3, parentInjector, declarationEl, C.ChangeDetectionStrategy_2, false, null, null, null, H.setRuntimeTypeInfo([], [{func: 1, v: true}]), null, [], [], null, null, C.ChangeDetectorState_0, null, null, false, null);
       t1.AppView$7(C.Type_ViewFilesComp4_KlB, t2, C.ViewType_2, t3, parentInjector, declarationEl, C.ChangeDetectionStrategy_2, F.FilesComp);
       return t1;
     }, "call$2", "files_comp_template__viewFactory_FilesComp4$closure", 4, 0, 4],
@@ -65473,7 +65454,7 @@
       t1 = $.uninitialized;
       t2 = $.renderType_FilesComp;
       t3 = P.LinkedHashMap__makeEmpty();
-      t1 = new M.ViewFilesComp11(null, null, null, null, null, t1, t1, t1, t1, t1, C.Type_ViewFilesComp11_wEo, t2, C.ViewType_2, t3, parentInjector, declarationEl, C.ChangeDetectionStrategy_2, false, null, null, null, H.setRuntimeTypeInfo([], [{func: 1, v: true}]), null, [], [], null, null, C.ChangeDetectorState_0, null, null, false, null);
+      t1 = new M.ViewFilesComp11(null, null, null, null, null, null, null, t1, t1, t1, t1, t1, C.Type_ViewFilesComp11_wEo, t2, C.ViewType_2, t3, parentInjector, declarationEl, C.ChangeDetectionStrategy_2, false, null, null, null, H.setRuntimeTypeInfo([], [{func: 1, v: true}]), null, [], [], null, null, C.ChangeDetectorState_0, null, null, false, null);
       t1.AppView$7(C.Type_ViewFilesComp11_wEo, t2, C.ViewType_2, t3, parentInjector, declarationEl, C.ChangeDetectionStrategy_2, F.FilesComp);
       return t1;
     }, "call$2", "files_comp_template__viewFactory_FilesComp11$closure", 4, 0, 4],
@@ -65482,7 +65463,7 @@
       t1 = $.uninitialized;
       t2 = $.renderType_FilesComp;
       t3 = P.LinkedHashMap__makeEmpty();
-      t1 = new M.ViewFilesComp12(null, null, null, null, null, t1, t1, t1, t1, t1, C.Type_ViewFilesComp12_wEo, t2, C.ViewType_2, t3, parentInjector, declarationEl, C.ChangeDetectionStrategy_2, false, null, null, null, H.setRuntimeTypeInfo([], [{func: 1, v: true}]), null, [], [], null, null, C.ChangeDetectorState_0, null, null, false, null);
+      t1 = new M.ViewFilesComp12(null, null, null, null, null, null, null, t1, t1, t1, t1, t1, C.Type_ViewFilesComp12_wEo, t2, C.ViewType_2, t3, parentInjector, declarationEl, C.ChangeDetectionStrategy_2, false, null, null, null, H.setRuntimeTypeInfo([], [{func: 1, v: true}]), null, [], [], null, null, C.ChangeDetectorState_0, null, null, false, null);
       t1.AppView$7(C.Type_ViewFilesComp12_wEo, t2, C.ViewType_2, t3, parentInjector, declarationEl, C.ChangeDetectionStrategy_2, F.FilesComp);
       return t1;
     }, "call$2", "files_comp_template__viewFactory_FilesComp12$closure", 4, 0, 4],
@@ -65491,28 +65472,10 @@
       t1 = $.uninitialized;
       t2 = $.renderType_FilesComp;
       t3 = P.LinkedHashMap__makeEmpty();
-      t1 = new M.ViewFilesComp13(null, null, null, null, null, t1, t1, t1, t1, t1, C.Type_ViewFilesComp13_wEo, t2, C.ViewType_2, t3, parentInjector, declarationEl, C.ChangeDetectionStrategy_2, false, null, null, null, H.setRuntimeTypeInfo([], [{func: 1, v: true}]), null, [], [], null, null, C.ChangeDetectorState_0, null, null, false, null);
+      t1 = new M.ViewFilesComp13(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, t1, t1, t1, t1, t1, C.Type_ViewFilesComp13_wEo, t2, C.ViewType_2, t3, parentInjector, declarationEl, C.ChangeDetectionStrategy_2, false, null, null, null, H.setRuntimeTypeInfo([], [{func: 1, v: true}]), null, [], [], null, null, C.ChangeDetectorState_0, null, null, false, null);
       t1.AppView$7(C.Type_ViewFilesComp13_wEo, t2, C.ViewType_2, t3, parentInjector, declarationEl, C.ChangeDetectionStrategy_2, F.FilesComp);
       return t1;
     }, "call$2", "files_comp_template__viewFactory_FilesComp13$closure", 4, 0, 4],
-    viewFactory_FilesComp14: [function(parentInjector, declarationEl) {
-      var t1, t2, t3;
-      t1 = $.uninitialized;
-      t2 = $.renderType_FilesComp;
-      t3 = P.LinkedHashMap__makeEmpty();
-      t1 = new M.ViewFilesComp14(null, null, null, null, null, t1, t1, t1, t1, t1, C.Type_ViewFilesComp14_wEo, t2, C.ViewType_2, t3, parentInjector, declarationEl, C.ChangeDetectionStrategy_2, false, null, null, null, H.setRuntimeTypeInfo([], [{func: 1, v: true}]), null, [], [], null, null, C.ChangeDetectorState_0, null, null, false, null);
-      t1.AppView$7(C.Type_ViewFilesComp14_wEo, t2, C.ViewType_2, t3, parentInjector, declarationEl, C.ChangeDetectionStrategy_2, F.FilesComp);
-      return t1;
-    }, "call$2", "files_comp_template__viewFactory_FilesComp14$closure", 4, 0, 4],
-    viewFactory_FilesComp15: [function(parentInjector, declarationEl) {
-      var t1, t2, t3;
-      t1 = $.uninitialized;
-      t2 = $.renderType_FilesComp;
-      t3 = P.LinkedHashMap__makeEmpty();
-      t1 = new M.ViewFilesComp15(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, t1, t1, t1, t1, t1, C.Type_ViewFilesComp15_wEo, t2, C.ViewType_2, t3, parentInjector, declarationEl, C.ChangeDetectionStrategy_2, false, null, null, null, H.setRuntimeTypeInfo([], [{func: 1, v: true}]), null, [], [], null, null, C.ChangeDetectorState_0, null, null, false, null);
-      t1.AppView$7(C.Type_ViewFilesComp15_wEo, t2, C.ViewType_2, t3, parentInjector, declarationEl, C.ChangeDetectionStrategy_2, F.FilesComp);
-      return t1;
-    }, "call$2", "files_comp_template__viewFactory_FilesComp15$closure", 4, 0, 4],
     viewFactory_FilesCompHost0: [function(parentInjector, declarationEl) {
       var t1, t2, t3;
       t1 = $.renderType_FilesCompHost;
@@ -65590,16 +65553,16 @@
       }
     },
     ViewFilesComp1: {
-      "^": "AppView;_files_comp_template$_el_0,_files_comp_template$_el_2,_files_comp_template$_el_4,_files_comp_template$_appEl_7,_files_comp_template$_TemplateRef_7_4,_files_comp_template$_NgIf_7_5,_files_comp_template$_el_9,_files_comp_template$_el_11,_files_comp_template$_el_13,_files_comp_template$_el_15,_files_comp_template$_el_17,_files_comp_template$_el_19,_files_comp_template$_appEl_19,_PostitComponent_19_3,_el_23,_el_25,_el_27,_files_comp_template$_el_29,_el_31,_el_33,_appEl_35,_TemplateRef_35_4,_NgFor_35_5,_files_comp_template$_expr_1,_files_comp_template$_expr_4,_files_comp_template$_expr_5,_files_comp_template$_expr_6,clazz,componentType,type,locals,parentInjector,declarationViewContainer,_cdMode,_skipChangeDetection,ref,rootNodesOrViewContainers,allNodes,_onDestroyCallbacks,subscriptions,contentChildren,viewChildren,renderParent,viewContainerElement,_cdState,ctx,projectableNodes,destroyed,_hasExternalHostElement",
+      "^": "AppView;_files_comp_template$_el_0,_files_comp_template$_el_2,_files_comp_template$_el_4,_files_comp_template$_appEl_7,_files_comp_template$_TemplateRef_7_4,_files_comp_template$_NgIf_7_5,_files_comp_template$_el_9,_files_comp_template$_el_11,_files_comp_template$_el_13,_files_comp_template$_el_15,_files_comp_template$_el_17,_files_comp_template$_el_19,_el_21,_files_comp_template$_appEl_21,_PostitComponent_21_3,_el_25,_el_27,_files_comp_template$_el_29,_el_31,_el_33,_el_35,_appEl_37,_TemplateRef_37_4,_NgFor_37_5,_files_comp_template$_expr_1,_files_comp_template$_expr_4,_files_comp_template$_expr_5,_files_comp_template$_expr_6,clazz,componentType,type,locals,parentInjector,declarationViewContainer,_cdMode,_skipChangeDetection,ref,rootNodesOrViewContainers,allNodes,_onDestroyCallbacks,subscriptions,contentChildren,viewChildren,renderParent,viewContainerElement,_cdState,ctx,projectableNodes,destroyed,_hasExternalHostElement",
       createInternal$1: function(rootSelector) {
-        var doc, t1, _text_1, _text_3, _text_5, _text_6, _anchor_7, t2, _text_8, _text_10, _text_12, _text_14, _text_16, _text_18, compView_19, t3, t4, _text_20, _text_21, _text_22, _text_24, _text_26, _text_28, _text_30, _text_32, _text_34, _anchor_35, _text_36, _text_37, _text_38, _text_39, _text_40, _text_41, _text_42;
+        var doc, t1, _text_1, _text_3, _text_5, _text_6, _anchor_7, t2, _text_8, _text_10, _text_12, _text_14, _text_16, _text_18, _text_20, compView_21, t3, t4, _text_22, _text_23, _text_24, _text_26, _text_28, _text_30, _text_32, _text_34, _text_36, _anchor_37, _text_38, _text_39, _text_40, _text_41, _text_42, _text_43, _text_44;
         doc = document;
         t1 = doc.createElement("div");
         this._files_comp_template$_el_0 = t1;
         t1.setAttribute(this.componentType._contentAttr, "");
         t1 = this._files_comp_template$_el_0;
         t1.className = "content";
-        _text_1 = doc.createTextNode("\n\n\n    ");
+        _text_1 = doc.createTextNode("\n\n    ");
         t1.appendChild(_text_1);
         t1 = doc.createElement("div");
         this._files_comp_template$_el_2 = t1;
@@ -65652,115 +65615,123 @@
         this._files_comp_template$_el_13.className = "profileImg";
         _text_14 = doc.createTextNode("\n        ");
         this._files_comp_template$_el_11.appendChild(_text_14);
-        t1 = doc.createElement("input");
+        t1 = doc.createElement("div");
         this._files_comp_template$_el_15 = t1;
         t1.setAttribute(this.componentType._contentAttr, "");
         this._files_comp_template$_el_11.appendChild(this._files_comp_template$_el_15);
-        this._files_comp_template$_el_15.className = "txt";
-        _text_16 = doc.createTextNode("\n\n        ");
-        this._files_comp_template$_el_11.appendChild(_text_16);
-        t1 = doc.createElement("div");
+        t1 = this._files_comp_template$_el_15;
+        t1.className = "arowmenow";
+        _text_16 = doc.createTextNode("   ");
+        t1.appendChild(_text_16);
+        t1 = doc.createElement("input");
         this._files_comp_template$_el_17 = t1;
         t1.setAttribute(this.componentType._contentAttr, "");
-        this._files_comp_template$_el_11.appendChild(this._files_comp_template$_el_17);
-        this._files_comp_template$_el_17.className = "btn_valid";
+        this._files_comp_template$_el_15.appendChild(this._files_comp_template$_el_17);
+        this._files_comp_template$_el_17.className = "txt";
         _text_18 = doc.createTextNode("\n\n        ");
-        this._files_comp_template$_el_11.appendChild(_text_18);
-        t1 = doc.createElement("postit-comp");
+        this._files_comp_template$_el_15.appendChild(_text_18);
+        t1 = doc.createElement("div");
         this._files_comp_template$_el_19 = t1;
         t1.setAttribute(this.componentType._contentAttr, "");
-        this._files_comp_template$_el_11.appendChild(this._files_comp_template$_el_19);
-        t1 = this._files_comp_template$_el_19;
+        this._files_comp_template$_el_15.appendChild(this._files_comp_template$_el_19);
+        this._files_comp_template$_el_19.className = "btn_valid";
+        _text_20 = doc.createTextNode("\n\n        ");
+        this._files_comp_template$_el_11.appendChild(_text_20);
+        t1 = doc.createElement("postit-comp");
+        this._el_21 = t1;
+        t1.setAttribute(this.componentType._contentAttr, "");
+        this._files_comp_template$_el_11.appendChild(this._el_21);
+        t1 = this._el_21;
         t1.className = "commentPostit";
-        this._files_comp_template$_appEl_19 = new V.ViewContainer(19, 11, this, t1, null, null, null, null);
-        compView_19 = K.viewFactory_PostitComponent0(this.injector$1(19), this._files_comp_template$_appEl_19);
+        this._files_comp_template$_appEl_21 = new V.ViewContainer(21, 11, this, t1, null, null, null, null);
+        compView_21 = K.viewFactory_PostitComponent0(this.injector$1(21), this._files_comp_template$_appEl_21);
         t1 = this.parentInjector;
         t2 = J.getInterceptor$x(t1);
         t3 = new S.PostitComponent(t2.$get$1(t1, C.Type_PlaceService_fcN), t2.$get$1(t1, C.Type_Router_yx3), t2.$get$1(t1, C.Type_Environment_iuz), null, null, null);
-        this._PostitComponent_19_3 = t3;
-        t4 = this._files_comp_template$_appEl_19;
+        this._PostitComponent_21_3 = t3;
+        t4 = this._files_comp_template$_appEl_21;
         t4.component = t3;
-        t4.componentView = compView_19;
-        compView_19.createComp$2([], null);
-        _text_20 = doc.createTextNode("\n      ");
-        this._files_comp_template$_el_11.appendChild(_text_20);
-        _text_21 = doc.createTextNode("\n    ");
-        this._files_comp_template$_el_9.appendChild(_text_21);
-        _text_22 = doc.createTextNode("\n\n    ");
-        this._files_comp_template$_el_0.appendChild(_text_22);
+        t4.componentView = compView_21;
+        compView_21.createComp$2([], null);
+        _text_22 = doc.createTextNode("\n      ");
+        this._files_comp_template$_el_11.appendChild(_text_22);
+        _text_23 = doc.createTextNode("\n    ");
+        this._files_comp_template$_el_9.appendChild(_text_23);
+        _text_24 = doc.createTextNode("\n\n    ");
+        this._files_comp_template$_el_0.appendChild(_text_24);
         t3 = doc.createElement("ul");
-        this._el_23 = t3;
-        t3.setAttribute(this.componentType._contentAttr, "");
-        this._files_comp_template$_el_0.appendChild(this._el_23);
-        t3 = this._el_23;
-        t3.className = "list";
-        _text_24 = doc.createTextNode("\n      ");
-        t3.appendChild(_text_24);
-        t3 = doc.createElement("li");
         this._el_25 = t3;
         t3.setAttribute(this.componentType._contentAttr, "");
-        this._el_23.appendChild(this._el_25);
+        this._files_comp_template$_el_0.appendChild(this._el_25);
         t3 = this._el_25;
-        t3.className = "file";
-        _text_26 = doc.createTextNode("\n        ");
+        t3.className = "list";
+        _text_26 = doc.createTextNode("\n      ");
         t3.appendChild(_text_26);
-        t3 = doc.createElement("div");
+        t3 = doc.createElement("li");
         this._el_27 = t3;
         t3.setAttribute(this.componentType._contentAttr, "");
         this._el_25.appendChild(this._el_27);
         t3 = this._el_27;
-        t3.className = "fileDesc";
-        _text_28 = doc.createTextNode("\n          ");
+        t3.className = "file";
+        _text_28 = doc.createTextNode("\n        ");
         t3.appendChild(_text_28);
         t3 = doc.createElement("div");
         this._files_comp_template$_el_29 = t3;
         t3.setAttribute(this.componentType._contentAttr, "");
         this._el_27.appendChild(this._files_comp_template$_el_29);
         t3 = this._files_comp_template$_el_29;
-        t3.className = "latestVersionComments";
-        _text_30 = doc.createTextNode("\n            ");
+        t3.className = "fileDesc";
+        _text_30 = doc.createTextNode("\n          ");
         t3.appendChild(_text_30);
         t3 = doc.createElement("div");
         this._el_31 = t3;
         t3.setAttribute(this.componentType._contentAttr, "");
         this._files_comp_template$_el_29.appendChild(this._el_31);
         t3 = this._el_31;
-        t3.className = "versions";
-        _text_32 = doc.createTextNode("\n              ");
+        t3.className = "latestVersionComments";
+        _text_32 = doc.createTextNode("\n            ");
         t3.appendChild(_text_32);
-        t3 = doc.createElement("ul");
+        t3 = doc.createElement("div");
         this._el_33 = t3;
         t3.setAttribute(this.componentType._contentAttr, "");
         this._el_31.appendChild(this._el_33);
-        _text_34 = doc.createTextNode("\n                ");
-        this._el_33.appendChild(_text_34);
-        _anchor_35 = doc.createComment("template bindings={}");
         t3 = this._el_33;
+        t3.className = "versions";
+        _text_34 = doc.createTextNode("\n              ");
+        t3.appendChild(_text_34);
+        t3 = doc.createElement("ul");
+        this._el_35 = t3;
+        t3.setAttribute(this.componentType._contentAttr, "");
+        this._el_33.appendChild(this._el_35);
+        _text_36 = doc.createTextNode("\n                ");
+        this._el_35.appendChild(_text_36);
+        _anchor_37 = doc.createComment("template bindings={}");
+        t3 = this._el_35;
         if (!(t3 == null))
-          t3.appendChild(_anchor_35);
-        t3 = new V.ViewContainer(35, 33, this, _anchor_35, null, null, null, null);
-        this._appEl_35 = t3;
+          t3.appendChild(_anchor_37);
+        t3 = new V.ViewContainer(37, 35, this, _anchor_37, null, null, null, null);
+        this._appEl_37 = t3;
         t4 = new D.TemplateRef(t3, M.files_comp_template__viewFactory_FilesComp3$closure());
-        this._TemplateRef_35_4 = t4;
-        this._NgFor_35_5 = new R.NgFor(t3, t4, t2.$get$1(t1, C.Type_IterableDiffers_gQA), this.ref, null, null, null);
-        _text_36 = doc.createTextNode("\n              ");
-        this._el_33.appendChild(_text_36);
-        _text_37 = doc.createTextNode("\n            ");
-        this._el_31.appendChild(_text_37);
-        _text_38 = doc.createTextNode("\n          ");
-        this._files_comp_template$_el_29.appendChild(_text_38);
-        _text_39 = doc.createTextNode("\n        ");
-        this._el_27.appendChild(_text_39);
-        _text_40 = doc.createTextNode("\n      ");
-        this._el_25.appendChild(_text_40);
-        _text_41 = doc.createTextNode("\n    ");
-        this._el_23.appendChild(_text_41);
-        _text_42 = doc.createTextNode("\n  ");
-        this._files_comp_template$_el_0.appendChild(_text_42);
-        this.listen$3(this._files_comp_template$_el_15, "keyup.enter", this.get$_handle_keyup_enter_15_0());
-        this.listen$3(this._files_comp_template$_el_17, "click", this.get$_handle_click_17_0());
+        this._TemplateRef_37_4 = t4;
+        this._NgFor_37_5 = new R.NgFor(t3, t4, t2.$get$1(t1, C.Type_IterableDiffers_gQA), this.ref, null, null, null);
+        _text_38 = doc.createTextNode("\n              ");
+        this._el_35.appendChild(_text_38);
+        _text_39 = doc.createTextNode("\n            ");
+        this._el_33.appendChild(_text_39);
+        _text_40 = doc.createTextNode("\n          ");
+        this._el_31.appendChild(_text_40);
+        _text_41 = doc.createTextNode("\n        ");
+        this._files_comp_template$_el_29.appendChild(_text_41);
+        _text_42 = doc.createTextNode("\n      ");
+        this._el_27.appendChild(_text_42);
+        _text_43 = doc.createTextNode("\n    ");
+        this._el_25.appendChild(_text_43);
+        _text_44 = doc.createTextNode("\n  ");
+        this._files_comp_template$_el_0.appendChild(_text_44);
+        this.listen$3(this._files_comp_template$_el_17, "keyup.enter", this.get$_handle_keyup_enter_17_0());
+        this.listen$3(this._files_comp_template$_el_19, "click", this.get$_files_comp_template$_handle_click_19_0());
         t1 = this._files_comp_template$_el_0;
-        this.init$3([t1], [t1, _text_1, this._files_comp_template$_el_2, _text_3, this._files_comp_template$_el_4, _text_5, _text_6, _anchor_7, _text_8, this._files_comp_template$_el_9, _text_10, this._files_comp_template$_el_11, _text_12, this._files_comp_template$_el_13, _text_14, this._files_comp_template$_el_15, _text_16, this._files_comp_template$_el_17, _text_18, this._files_comp_template$_el_19, _text_20, _text_21, _text_22, this._el_23, _text_24, this._el_25, _text_26, this._el_27, _text_28, this._files_comp_template$_el_29, _text_30, this._el_31, _text_32, this._el_33, _text_34, _anchor_35, _text_36, _text_37, _text_38, _text_39, _text_40, _text_41, _text_42], []);
+        this.init$3([t1], [t1, _text_1, this._files_comp_template$_el_2, _text_3, this._files_comp_template$_el_4, _text_5, _text_6, _anchor_7, _text_8, this._files_comp_template$_el_9, _text_10, this._files_comp_template$_el_11, _text_12, this._files_comp_template$_el_13, _text_14, this._files_comp_template$_el_15, _text_16, this._files_comp_template$_el_17, _text_18, this._files_comp_template$_el_19, _text_20, this._el_21, _text_22, _text_23, _text_24, this._el_25, _text_26, this._el_27, _text_28, this._files_comp_template$_el_29, _text_30, this._el_31, _text_32, this._el_33, _text_34, this._el_35, _text_36, _anchor_37, _text_38, _text_39, _text_40, _text_41, _text_42, _text_43, _text_44], []);
         return;
       },
       injectorGetInternal$3: function(token, requestNodeIndex, notFoundResult) {
@@ -65769,34 +65740,34 @@
           return this._files_comp_template$_TemplateRef_7_4;
         if (token === C.Type_NgIf_43h && 7 === requestNodeIndex)
           return this._files_comp_template$_NgIf_7_5;
-        if (token === C.Type_PostitComponent_fFE && 19 === requestNodeIndex)
-          return this._PostitComponent_19_3;
-        if (t1 && 35 === requestNodeIndex)
-          return this._TemplateRef_35_4;
-        if (token === C.Type_NgFor_FUV && 35 === requestNodeIndex)
-          return this._NgFor_35_5;
+        if (token === C.Type_PostitComponent_fFE && 21 === requestNodeIndex)
+          return this._PostitComponent_21_3;
+        if (t1 && 37 === requestNodeIndex)
+          return this._TemplateRef_37_4;
+        if (token === C.Type_NgFor_FUV && 37 === requestNodeIndex)
+          return this._NgFor_37_5;
         return notFoundResult;
       },
       detectChangesInternal$0: function() {
         var currVal_6, currVal_1;
         this._files_comp_template$_NgIf_7_5.set$ngIf(this.ctx.get$isUploading());
         if (Q.checkBinding(this._files_comp_template$_expr_4, "comment")) {
-          this._PostitComponent_19_3.name = "comment";
+          this._PostitComponent_21_3.name = "comment";
           this._files_comp_template$_expr_4 = "comment";
         }
         if (Q.checkBinding(this._files_comp_template$_expr_5, "To talk to the team, type a comment here...")) {
-          this._PostitComponent_19_3.body = "To talk to the team, type a comment here...";
+          this._PostitComponent_21_3.body = "To talk to the team, type a comment here...";
           this._files_comp_template$_expr_5 = "To talk to the team, type a comment here...";
         }
         if (this._cdState === C.ChangeDetectorState_0 && !$.AppViewUtils_throwOnChanges)
-          this._PostitComponent_19_3.ngOnInit$0();
+          this._PostitComponent_21_3.ngOnInit$0();
         currVal_6 = this.ctx.get$selectedFile().get$orderedVersions();
         if (Q.checkBinding(this._files_comp_template$_expr_6, currVal_6)) {
-          this._NgFor_35_5.set$ngForOf(currVal_6);
+          this._NgFor_37_5.set$ngForOf(currVal_6);
           this._files_comp_template$_expr_6 = currVal_6;
         }
         if (!$.AppViewUtils_throwOnChanges)
-          this._NgFor_35_5.ngDoCheck$0();
+          this._NgFor_37_5.ngDoCheck$0();
         this.detectContentChildrenChanges$0();
         currVal_1 = Q.interpolate1("/auth/user/photo/s/", J.get$id$x(this.ctx.get$connectedUser()), "");
         if (Q.checkBinding(this._files_comp_template$_expr_1, currVal_1)) {
@@ -65805,18 +65776,18 @@
         }
         this.detectViewChildrenChanges$0();
       },
-      _handle_keyup_enter_15_0$1: [function($$event) {
+      _handle_keyup_enter_17_0$1: [function($$event) {
         this.markPathToRootAsCheckOnce$0();
-        this.ctx.addComment$2(J.get$value$x(this._files_comp_template$_el_15), J.get$last$ax(this.ctx.get$selectedFile().get$versions()).get$v());
-        J.set$value$x(this._files_comp_template$_el_15, "");
+        this.ctx.addComment$2(J.get$value$x(this._files_comp_template$_el_17), J.get$last$ax(this.ctx.get$selectedFile().get$versions()).get$v());
+        J.set$value$x(this._files_comp_template$_el_17, "");
         return true;
-      }, "call$1", "get$_handle_keyup_enter_15_0", 2, 0, 1, 0, []],
-      _handle_click_17_0$1: [function($$event) {
+      }, "call$1", "get$_handle_keyup_enter_17_0", 2, 0, 1, 0, []],
+      _files_comp_template$_handle_click_19_0$1: [function($$event) {
         this.markPathToRootAsCheckOnce$0();
-        this.ctx.addComment$2(J.get$value$x(this._files_comp_template$_el_15), J.get$last$ax(this.ctx.get$selectedFile().get$versions()).get$v());
-        J.set$value$x(this._files_comp_template$_el_15, "");
+        this.ctx.addComment$2(J.get$value$x(this._files_comp_template$_el_17), J.get$last$ax(this.ctx.get$selectedFile().get$versions()).get$v());
+        J.set$value$x(this._files_comp_template$_el_17, "");
         return true;
-      }, "call$1", "get$_handle_click_17_0", 2, 0, 1, 0, []],
+      }, "call$1", "get$_files_comp_template$_handle_click_19_0", 2, 0, 1, 0, []],
       $asAppView: function() {
         return [F.FilesComp];
       }
@@ -65856,10 +65827,8 @@
         t1 = doc.createElement("li");
         this._files_comp_template$_el_0 = t1;
         t1.setAttribute(this.componentType._contentAttr, "");
-        t1 = this._files_comp_template$_el_0;
-        t1.className = "version_part_li";
         _text_1 = doc.createTextNode("\n\n                  ");
-        t1.appendChild(_text_1);
+        this._files_comp_template$_el_0.appendChild(_text_1);
         t1 = doc.createElement("div");
         this._files_comp_template$_el_2 = t1;
         t1.setAttribute(this.componentType._contentAttr, "");
@@ -65922,10 +65891,10 @@
           t1.appendChild(_anchor_15);
         t1 = new V.ViewContainer(15, 0, this, _anchor_15, null, null, null, null);
         this._files_comp_template$_appEl_15 = t1;
-        t2 = new D.TemplateRef(t1, M.files_comp_template__viewFactory_FilesComp15$closure());
+        t2 = new D.TemplateRef(t1, M.files_comp_template__viewFactory_FilesComp13$closure());
         this._files_comp_template$_TemplateRef_15_4 = t2;
         this._files_comp_template$_NgIf_15_5 = new K.NgIf(t2, t1, false);
-        _text_16 = doc.createTextNode("\n\n\n                ");
+        _text_16 = doc.createTextNode("\n                ");
         this._files_comp_template$_el_0.appendChild(_text_16);
         this.listen$3(this._files_comp_template$_el_7, "click", this.get$_handle_click_7_0());
         this._map_0 = Q.pureProxy2(new M.ViewFilesComp3_createInternal_closure());
@@ -65970,7 +65939,7 @@
         t1 = this._NgIf_12_5;
         t3 = this.ctx;
         t1.set$ngIf(t3.isCommentsOpen$2(J.get$id$x(t3.get$selectedFile()), t2.$index(0, "$implicit").get$v()));
-        this._files_comp_template$_NgIf_15_5.set$ngIf(this.ctx.get$openFile());
+        this._files_comp_template$_NgIf_15_5.set$ngIf(!J.$eq$(this.ctx.get$openFileVersion(), -1));
         this.detectContentChildrenChanges$0();
         currVal_0 = Q.interpolate1("Version ", t2.$index(0, "$implicit") == null ? null : t2.$index(0, "$implicit").get$v(), "");
         if (Q.checkBinding(this._files_comp_template$_expr_0, currVal_0)) {
@@ -66002,7 +65971,7 @@
       }
     },
     ViewFilesComp4: {
-      "^": "AppView;_files_comp_template$_el_0,_files_comp_template$_el_2,_files_comp_template$_appEl_4,_files_comp_template$_TemplateRef_4_4,_files_comp_template$_NgFor_4_5,_files_comp_template$_el_6,_files_comp_template$_el_8,_files_comp_template$_el_10,_files_comp_template$_el_12,_files_comp_template$_el_13,_files_comp_template$_el_15,_text_16,_files_comp_template$_el_19,_files_comp_template$_el_22,_files_comp_template$_el_24,_el_26,_el_28,_el_30,_appEl_32,_TemplateRef_32_4,_NgIf_32_5,_el_36,_el_39,_el_41,_el_43,_el_45,_text_46,_el_49,_el_51,_text_52,_el_54,_text_55,_el_62,_el_64,_text_65,_el_67,_PopupSourceDirective_67_2,_el_73,_appEl_73,_MaterialPopupComponent_73_3,__PopupComponent_73_4,__DropdownHandle_73_5,__DeferredContentAware_73_6,__PopupHierarchy_73_7,__PopupRef_73_8,_el_75,_el_77,_text_78,_el_80,_text_81,_el_84,_el_86,_appEl_88,_TemplateRef_88_4,_NgIf_88_5,_appEl_90,_TemplateRef_90_4,_NgIf_90_5,_appEl_92,_TemplateRef_92_4,_NgIf_92_5,_appEl_94,_TemplateRef_94_4,_NgIf_94_5,_el_97,_appEl_97,_AcxDarkTheme_97_3,_MaterialButtonComponent_97_4,__ButtonDirective_97_5,_files_comp_template$_expr_0,_files_comp_template$_expr_1,_files_comp_template$_expr_2,_files_comp_template$_expr_3,_files_comp_template$_expr_4,_files_comp_template$_expr_5,_files_comp_template$_expr_7,_files_comp_template$_expr_9,_files_comp_template$_expr_10,_files_comp_template$_expr_11,_files_comp_template$_expr_12,_files_comp_template$_expr_14,_files_comp_template$_expr_15,_files_comp_template$_expr_16,_files_comp_template$_expr_17,_files_comp_template$_expr_18,_files_comp_template$_expr_19,_files_comp_template$_expr_31,_expr_32,_expr_33,_expr_34,_expr_35,_pipe_agoDateFormat_0_3,_pipe_agoDateFormat_0_4,_pipe_fileSizeFormat_1_0,clazz,componentType,type,locals,parentInjector,declarationViewContainer,_cdMode,_skipChangeDetection,ref,rootNodesOrViewContainers,allNodes,_onDestroyCallbacks,subscriptions,contentChildren,viewChildren,renderParent,viewContainerElement,_cdState,ctx,projectableNodes,destroyed,_hasExternalHostElement",
+      "^": "AppView;_files_comp_template$_el_0,_files_comp_template$_el_2,_files_comp_template$_appEl_4,_files_comp_template$_TemplateRef_4_4,_files_comp_template$_NgFor_4_5,_files_comp_template$_el_7,_files_comp_template$_el_9,_files_comp_template$_el_11,_files_comp_template$_el_13,_files_comp_template$_el_14,_files_comp_template$_el_16,_text_17,_files_comp_template$_el_20,_files_comp_template$_el_22,_files_comp_template$_el_24,_el_26,_el_28,_el_30,_appEl_32,_TemplateRef_32_4,_NgIf_32_5,_el_36,_el_39,_el_41,_el_43,_el_45,_text_46,_el_49,_el_51,_text_52,_el_54,_text_55,_el_62,_el_64,_text_65,_el_67,_PopupSourceDirective_67_2,_el_73,_appEl_73,_MaterialPopupComponent_73_3,__PopupComponent_73_4,__DropdownHandle_73_5,__DeferredContentAware_73_6,__PopupHierarchy_73_7,__PopupRef_73_8,_el_75,_el_77,_text_78,_el_80,_text_81,_el_84,_el_86,_appEl_88,_TemplateRef_88_4,_NgIf_88_5,_appEl_90,_TemplateRef_90_4,_NgIf_90_5,_el_99,_appEl_99,_AcxDarkTheme_99_3,_MaterialButtonComponent_99_4,__ButtonDirective_99_5,_el_101,_el_102,_el_106,_appEl_106,_AcxDarkTheme_106_3,_MaterialButtonComponent_106_4,__ButtonDirective_106_5,_el_108,_el_109,_files_comp_template$_expr_0,_files_comp_template$_expr_1,_files_comp_template$_expr_2,_files_comp_template$_expr_3,_files_comp_template$_expr_4,_files_comp_template$_expr_6,_files_comp_template$_expr_8,_files_comp_template$_expr_9,_files_comp_template$_expr_10,_files_comp_template$_expr_11,_files_comp_template$_expr_13,_files_comp_template$_expr_14,_files_comp_template$_expr_15,_files_comp_template$_expr_16,_files_comp_template$_expr_17,_files_comp_template$_expr_18,_files_comp_template$_expr_27,_files_comp_template$_expr_28,_files_comp_template$_expr_29,_files_comp_template$_expr_30,_files_comp_template$_expr_31,_expr_39,_expr_40,_expr_41,_expr_42,_expr_43,_pipe_agoDateFormat_0_3,_pipe_agoDateFormat_0_4,_pipe_fileSizeFormat_1_0,clazz,componentType,type,locals,parentInjector,declarationViewContainer,_cdMode,_skipChangeDetection,ref,rootNodesOrViewContainers,allNodes,_onDestroyCallbacks,subscriptions,contentChildren,viewChildren,renderParent,viewContainerElement,_cdState,ctx,projectableNodes,destroyed,_hasExternalHostElement",
       get$_PopupComponent_73_4: function() {
         var t1 = this.__PopupComponent_73_4;
         if (t1 == null) {
@@ -66012,7 +65981,7 @@
         return t1;
       },
       createInternal$1: function(rootSelector) {
-        var doc, t1, _text_1, _text_3, _anchor_4, t2, t3, t4, _text_5, _text_7, _text_9, _text_11, _text_14, _text_17, _text_18, _text_20, _text_21, _text_23, _text_25, _text_27, _text_29, _text_31, _anchor_32, _text_33, _text_34, _text_35, _text_37, _text_38, _text_40, _text_42, _text_44, _text_47, _text_48, _text_50, _text_53, _text_56, _text_57, _text_58, _text_59, _text_60, _text_61, _text_63, _text_66, _text_68, _text_69, _text_70, _text_71, _text_72, compView_73, t5, t6, t7, t8, t9, t10, t11, t12, _text_74, _text_76, _text_79, _text_82, _text_83, _text_85, _text_87, _anchor_88, _text_89, _anchor_90, _text_91, _anchor_92, _text_93, _anchor_94, _text_95, _text_96, compView_97, _text_98, _text_99, _text_100, _text_101, _text_102, _text_103;
+        var doc, t1, _text_1, _text_3, _anchor_4, t2, t3, t4, _text_5, _text_6, _text_8, _text_10, _text_12, _text_15, _text_18, _text_19, _text_21, _text_23, _text_25, _text_27, _text_29, _text_31, _anchor_32, _text_33, _text_34, _text_35, _text_37, _text_38, _text_40, _text_42, _text_44, _text_47, _text_48, _text_50, _text_53, _text_56, _text_57, _text_58, _text_59, _text_60, _text_61, _text_63, _text_66, _text_68, _text_69, _text_70, _text_71, _text_72, compView_73, t5, t6, t7, t8, t9, t10, t11, t12, _text_74, _text_76, _text_79, _text_82, _text_83, _text_85, _text_87, _anchor_88, _text_89, _anchor_90, _text_91, _text_92, _text_93, _text_94, _text_95, _text_96, _text_97, _text_98, compView_99, _text_100, _text_103, _text_104, _text_105, compView_106, _text_107, _text_110, _text_111, _text_112, _text_113, _text_114, _text_115, _text_116;
         doc = document;
         t1 = doc.createElement("div");
         this._files_comp_template$_el_0 = t1;
@@ -66042,67 +66011,67 @@
         this._files_comp_template$_NgFor_4_5 = new R.NgFor(t1, t2, t4.$get$1(t3, C.Type_IterableDiffers_gQA), this.ref, null, null, null);
         _text_5 = doc.createTextNode("\n                        ");
         this._files_comp_template$_el_2.appendChild(_text_5);
+        _text_6 = doc.createTextNode("\n                        ");
+        this._files_comp_template$_el_2.appendChild(_text_6);
         t1 = doc.createElement("li");
-        this._files_comp_template$_el_6 = t1;
+        this._files_comp_template$_el_7 = t1;
         t1.setAttribute(this.componentType._contentAttr, "");
-        this._files_comp_template$_el_2.appendChild(this._files_comp_template$_el_6);
-        t1 = this._files_comp_template$_el_6;
+        this._files_comp_template$_el_2.appendChild(this._files_comp_template$_el_7);
+        t1 = this._files_comp_template$_el_7;
         t1.className = "actionLiElem";
-        _text_7 = doc.createTextNode("\n                          ");
-        t1.appendChild(_text_7);
+        _text_8 = doc.createTextNode("\n                          ");
+        t1.appendChild(_text_8);
         t1 = doc.createElement("div");
-        this._files_comp_template$_el_8 = t1;
+        this._files_comp_template$_el_9 = t1;
         t1.setAttribute(this.componentType._contentAttr, "");
-        this._files_comp_template$_el_6.appendChild(this._files_comp_template$_el_8);
-        _text_9 = doc.createTextNode("\n                            ");
-        this._files_comp_template$_el_8.appendChild(_text_9);
+        this._files_comp_template$_el_7.appendChild(this._files_comp_template$_el_9);
+        _text_10 = doc.createTextNode("\n                            ");
+        this._files_comp_template$_el_9.appendChild(_text_10);
         t1 = doc.createElement("div");
-        this._files_comp_template$_el_10 = t1;
+        this._files_comp_template$_el_11 = t1;
         t1.setAttribute(this.componentType._contentAttr, "");
-        this._files_comp_template$_el_8.appendChild(this._files_comp_template$_el_10);
-        t1 = this._files_comp_template$_el_10;
+        this._files_comp_template$_el_9.appendChild(this._files_comp_template$_el_11);
+        t1 = this._files_comp_template$_el_11;
         t1.className = "actionPropsBlock";
-        _text_11 = doc.createTextNode("\n                              ");
-        t1.appendChild(_text_11);
+        _text_12 = doc.createTextNode("\n                              ");
+        t1.appendChild(_text_12);
         t1 = doc.createElement("span");
-        this._files_comp_template$_el_12 = t1;
-        t1.setAttribute(this.componentType._contentAttr, "");
-        this._files_comp_template$_el_10.appendChild(this._files_comp_template$_el_12);
-        this._files_comp_template$_el_12.className = "author";
-        t1 = doc.createElement("img");
         this._files_comp_template$_el_13 = t1;
         t1.setAttribute(this.componentType._contentAttr, "");
-        this._files_comp_template$_el_12.appendChild(this._files_comp_template$_el_13);
-        this._files_comp_template$_el_13.className = "profileImg";
-        _text_14 = doc.createTextNode("\n                              ");
-        this._files_comp_template$_el_10.appendChild(_text_14);
-        t1 = doc.createElement("span");
-        this._files_comp_template$_el_15 = t1;
+        this._files_comp_template$_el_11.appendChild(this._files_comp_template$_el_13);
+        this._files_comp_template$_el_13.className = "author";
+        t1 = doc.createElement("img");
+        this._files_comp_template$_el_14 = t1;
         t1.setAttribute(this.componentType._contentAttr, "");
-        this._files_comp_template$_el_10.appendChild(this._files_comp_template$_el_15);
-        t1 = this._files_comp_template$_el_15;
+        this._files_comp_template$_el_13.appendChild(this._files_comp_template$_el_14);
+        this._files_comp_template$_el_14.className = "profileImg";
+        _text_15 = doc.createTextNode("\n                              ");
+        this._files_comp_template$_el_11.appendChild(_text_15);
+        t1 = doc.createElement("span");
+        this._files_comp_template$_el_16 = t1;
+        t1.setAttribute(this.componentType._contentAttr, "");
+        this._files_comp_template$_el_11.appendChild(this._files_comp_template$_el_16);
+        t1 = this._files_comp_template$_el_16;
         t1.className = "comm-ts";
         t2 = doc.createTextNode("");
-        this._text_16 = t2;
+        this._text_17 = t2;
         t1.appendChild(t2);
-        _text_17 = doc.createTextNode("\n                            ");
-        this._files_comp_template$_el_10.appendChild(_text_17);
-        _text_18 = doc.createTextNode("\n\n                            ");
-        this._files_comp_template$_el_8.appendChild(_text_18);
+        _text_18 = doc.createTextNode("\n                            ");
+        this._files_comp_template$_el_11.appendChild(_text_18);
+        _text_19 = doc.createTextNode("\n\n                            ");
+        this._files_comp_template$_el_9.appendChild(_text_19);
         t1 = doc.createElement("div");
-        this._files_comp_template$_el_19 = t1;
+        this._files_comp_template$_el_20 = t1;
         t1.setAttribute(this.componentType._contentAttr, "");
-        this._files_comp_template$_el_8.appendChild(this._files_comp_template$_el_19);
-        t1 = this._files_comp_template$_el_19;
+        this._files_comp_template$_el_9.appendChild(this._files_comp_template$_el_20);
+        t1 = this._files_comp_template$_el_20;
         t1.className = "bubble";
-        _text_20 = doc.createTextNode("\n                              ");
-        t1.appendChild(_text_20);
-        _text_21 = doc.createTextNode("\n                              ");
-        this._files_comp_template$_el_19.appendChild(_text_21);
+        _text_21 = doc.createTextNode("\n\n                              ");
+        t1.appendChild(_text_21);
         t1 = doc.createElement("div");
         this._files_comp_template$_el_22 = t1;
         t1.setAttribute(this.componentType._contentAttr, "");
-        this._files_comp_template$_el_19.appendChild(this._files_comp_template$_el_22);
+        this._files_comp_template$_el_20.appendChild(this._files_comp_template$_el_22);
         t1 = this._files_comp_template$_el_22;
         t1.className = "bubbleContent";
         _text_23 = doc.createTextNode("\n                                ");
@@ -66274,21 +66243,21 @@
         this._el_62.appendChild(_text_68);
         _text_69 = doc.createTextNode("\n\n                              ");
         this._files_comp_template$_el_22.appendChild(_text_69);
-        _text_70 = doc.createTextNode("\n                            ");
-        this._files_comp_template$_el_19.appendChild(_text_70);
+        _text_70 = doc.createTextNode("\n\n                            ");
+        this._files_comp_template$_el_20.appendChild(_text_70);
         _text_71 = doc.createTextNode("\n                          ");
-        this._files_comp_template$_el_8.appendChild(_text_71);
+        this._files_comp_template$_el_9.appendChild(_text_71);
         _text_72 = doc.createTextNode("\n\n                          ");
-        this._files_comp_template$_el_6.appendChild(_text_72);
+        this._files_comp_template$_el_7.appendChild(_text_72);
         t1 = doc.createElement("material-popup");
         this._el_73 = t1;
         t1.setAttribute(this.componentType._contentAttr, "");
-        this._files_comp_template$_el_6.appendChild(this._el_73);
+        this._files_comp_template$_el_7.appendChild(this._el_73);
         t1 = this._el_73;
-        t1.className = "popVersion";
+        t1.className = "popVersion ";
         t1.setAttribute("defaultPopupSizeProvider", "");
         this._el_73.setAttribute("enforceSpaceConstraints", "");
-        this._appEl_73 = new V.ViewContainer(73, 6, this, this._el_73, null, null, null, null);
+        this._appEl_73 = new V.ViewContainer(73, 7, this, this._el_73, null, null, null, null);
         compView_73 = A.viewFactory_MaterialPopupComponent0(this.injector$1(73), this._appEl_73);
         t1 = t4.$get$1(t3, C.Type_DomService_2jN);
         t2 = t4.$get$2(t3, C.Type_PopupHierarchy_gkc, null);
@@ -66312,7 +66281,7 @@
         this._el_75 = t1;
         t1.setAttribute(this.componentType._contentAttr, "");
         t1 = this._el_75;
-        t1.className = "";
+        t1.className = "headerPopVersion";
         t1.setAttribute("header", "");
         _text_76 = doc.createTextNode("\n                              ");
         this._el_75.appendChild(_text_76);
@@ -66343,7 +66312,7 @@
         this._el_84 = t1;
         t1.setAttribute(this.componentType._contentAttr, "");
         t1 = this._el_84;
-        t1.className = "popupContent";
+        t1.className = "popupContent popinVersion";
         _text_85 = doc.createTextNode("\n                              ");
         t1.appendChild(_text_85);
         t1 = doc.createElement("div");
@@ -66375,70 +66344,114 @@
         this._NgIf_90_5 = new K.NgIf(t2, t1, false);
         _text_91 = doc.createTextNode("\n                                ");
         this._el_86.appendChild(_text_91);
-        _anchor_92 = doc.createComment("template bindings={}");
-        t1 = this._el_86;
-        if (!(t1 == null))
-          t1.appendChild(_anchor_92);
-        t1 = new V.ViewContainer(92, 86, this, _anchor_92, null, null, null, null);
-        this._appEl_92 = t1;
-        t2 = new D.TemplateRef(t1, M.files_comp_template__viewFactory_FilesComp13$closure());
-        this._TemplateRef_92_4 = t2;
-        this._NgIf_92_5 = new K.NgIf(t2, t1, false);
+        _text_92 = doc.createTextNode("\n                                ");
+        this._el_86.appendChild(_text_92);
         _text_93 = doc.createTextNode("\n                                ");
         this._el_86.appendChild(_text_93);
-        _anchor_94 = doc.createComment("template bindings={}");
-        t1 = this._el_86;
-        if (!(t1 == null))
-          t1.appendChild(_anchor_94);
-        t1 = new V.ViewContainer(94, 86, this, _anchor_94, null, null, null, null);
-        this._appEl_94 = t1;
-        t2 = new D.TemplateRef(t1, M.files_comp_template__viewFactory_FilesComp14$closure());
-        this._TemplateRef_94_4 = t2;
-        this._NgIf_94_5 = new K.NgIf(t2, t1, false);
-        _text_95 = doc.createTextNode("\n                              ");
+        _text_94 = doc.createTextNode("\n                                ");
+        this._el_86.appendChild(_text_94);
+        _text_95 = doc.createTextNode("\n                                ");
         this._el_86.appendChild(_text_95);
-        _text_96 = doc.createTextNode("\n                              ");
-        this._el_84.appendChild(_text_96);
+        _text_96 = doc.createTextNode("\n                                ");
+        this._el_86.appendChild(_text_96);
+        _text_97 = doc.createTextNode("\n                              ");
+        this._el_86.appendChild(_text_97);
+        _text_98 = doc.createTextNode("\n                              ");
+        this._el_84.appendChild(_text_98);
         t1 = doc.createElement("material-button");
-        this._el_97 = t1;
+        this._el_99 = t1;
         t1.setAttribute(this.componentType._contentAttr, "");
-        this._el_84.appendChild(this._el_97);
-        this._el_97.setAttribute("animated", "true");
-        t1 = this._el_97;
-        t1.className = "menuItem";
+        this._el_84.appendChild(this._el_99);
+        this._el_99.setAttribute("animated", "true");
+        t1 = this._el_99;
+        t1.className = "menuItemVers";
         t1.setAttribute("role", "button");
-        this._appEl_97 = new V.ViewContainer(97, 84, this, this._el_97, null, null, null, null);
-        compView_97 = U.viewFactory_MaterialButtonComponent0(this.injector$1(97), this._appEl_97);
+        this._appEl_99 = new V.ViewContainer(99, 84, this, this._el_99, null, null, null, null);
+        compView_99 = U.viewFactory_MaterialButtonComponent0(this.injector$1(99), this._appEl_99);
+        t1 = t4.$get$2(t3, C.OpaqueToken_acxDarkTheme, null);
+        t1 = new F.AcxDarkTheme(t1 == null ? false : t1);
+        this._AcxDarkTheme_99_3 = t1;
+        t2 = new Z.ElementRef(null);
+        t2.nativeElement = this._el_99;
+        t1 = B.MaterialButtonComponent$(t2, t1, compView_99.ref);
+        this._MaterialButtonComponent_99_4 = t1;
+        t2 = this._appEl_99;
+        t2.component = t1;
+        t2.componentView = compView_99;
+        _text_100 = doc.createTextNode("\n                                ");
+        t1 = doc.createElement("span");
+        this._el_101 = t1;
+        t1.setAttribute(this.componentType._contentAttr, "");
+        this._el_101.className = "spanVers";
+        t1 = doc.createElement("i");
+        this._el_102 = t1;
+        t1.setAttribute(this.componentType._contentAttr, "");
+        this._el_101.appendChild(this._el_102);
+        this._el_102.className = "zmdi zmdi-comment commentVers";
+        _text_103 = doc.createTextNode(" ");
+        this._el_101.appendChild(_text_103);
+        _text_104 = doc.createTextNode("Comment\n\n                              ");
+        compView_99.createComp$2([[_text_100, this._el_101, _text_104]], null);
+        _text_105 = doc.createTextNode("\n                              ");
+        this._el_84.appendChild(_text_105);
+        t1 = doc.createElement("material-button");
+        this._el_106 = t1;
+        t1.setAttribute(this.componentType._contentAttr, "");
+        this._el_84.appendChild(this._el_106);
+        this._el_106.setAttribute("animated", "true");
+        t1 = this._el_106;
+        t1.className = "menuItemVers";
+        t1.setAttribute("role", "button");
+        this._appEl_106 = new V.ViewContainer(106, 84, this, this._el_106, null, null, null, null);
+        compView_106 = U.viewFactory_MaterialButtonComponent0(this.injector$1(106), this._appEl_106);
         t3 = t4.$get$2(t3, C.OpaqueToken_acxDarkTheme, null);
         t1 = new F.AcxDarkTheme(t3 == null ? false : t3);
-        this._AcxDarkTheme_97_3 = t1;
+        this._AcxDarkTheme_106_3 = t1;
         t2 = new Z.ElementRef(null);
-        t2.nativeElement = this._el_97;
-        t1 = B.MaterialButtonComponent$(t2, t1, compView_97.ref);
-        this._MaterialButtonComponent_97_4 = t1;
-        t2 = this._appEl_97;
+        t2.nativeElement = this._el_106;
+        t1 = B.MaterialButtonComponent$(t2, t1, compView_106.ref);
+        this._MaterialButtonComponent_106_4 = t1;
+        t2 = this._appEl_106;
         t2.component = t1;
-        t2.componentView = compView_97;
-        _text_98 = doc.createTextNode("\n                                Delete\n                              ");
-        compView_97.createComp$2([[_text_98]], null);
-        _text_99 = doc.createTextNode("\n                            ");
-        this._el_84.appendChild(_text_99);
-        _text_100 = doc.createTextNode("\n                          ");
-        compView_73.createComp$2([[this._el_75], [_text_74, _text_83, this._el_84, _text_100], []], null);
-        _text_101 = doc.createTextNode("\n                        ");
-        this._files_comp_template$_el_6.appendChild(_text_101);
-        _text_102 = doc.createTextNode("\n                      ");
-        this._files_comp_template$_el_2.appendChild(_text_102);
-        _text_103 = doc.createTextNode("\n                    ");
-        this._files_comp_template$_el_0.appendChild(_text_103);
+        t2.componentView = compView_106;
+        _text_107 = doc.createTextNode("\n                                ");
+        t1 = doc.createElement("span");
+        this._el_108 = t1;
+        t1.setAttribute(this.componentType._contentAttr, "");
+        this._el_108.className = "spanVers";
+        t1 = doc.createElement("i");
+        this._el_109 = t1;
+        t1.setAttribute(this.componentType._contentAttr, "");
+        this._el_108.appendChild(this._el_109);
+        this._el_109.className = "zmdi zmdi-delete delete";
+        _text_110 = doc.createTextNode(" ");
+        this._el_108.appendChild(_text_110);
+        _text_111 = doc.createTextNode(" Delete\n                              ");
+        compView_106.createComp$2([[_text_107, this._el_108, _text_111]], null);
+        _text_112 = doc.createTextNode("\n                            ");
+        this._el_84.appendChild(_text_112);
+        _text_113 = doc.createTextNode("\n                          ");
+        compView_73.createComp$2([[this._el_75], [_text_74, _text_83, this._el_84, _text_113], []], null);
+        _text_114 = doc.createTextNode("\n                        ");
+        this._files_comp_template$_el_7.appendChild(_text_114);
+        _text_115 = doc.createTextNode("\n                      ");
+        this._files_comp_template$_el_2.appendChild(_text_115);
+        _text_116 = doc.createTextNode("\n                    ");
+        this._files_comp_template$_el_0.appendChild(_text_116);
         this.listen$3(this._files_comp_template$_el_24, "click", this.get$_handle_click_24_0());
         this.listen$3(this._el_67, "click", this.get$_handle_click_67_0());
-        this.listen$3(this._el_97, "click", this.get$_handle_click_97_0());
-        this.listen$3(this._el_97, "blur", this.get$_handle_blur_97_1());
-        this.listen$3(this._el_97, "mouseup", this.get$_handle_mouseup_97_2());
-        this.listen$3(this._el_97, "keypress", this.get$_handle_keypress_97_3());
-        this.listen$3(this._el_97, "focus", this.get$_handle_focus_97_4());
-        this.listen$3(this._el_97, "mousedown", this.get$_handle_mousedown_97_5());
+        this.listen$3(this._el_99, "click", this.get$_handle_click_99_0());
+        this.listen$3(this._el_99, "blur", this.get$_handle_blur_99_1());
+        this.listen$3(this._el_99, "mouseup", this.get$_handle_mouseup_99_2());
+        this.listen$3(this._el_99, "keypress", this.get$_handle_keypress_99_3());
+        this.listen$3(this._el_99, "focus", this.get$_handle_focus_99_4());
+        this.listen$3(this._el_99, "mousedown", this.get$_handle_mousedown_99_5());
+        this.listen$3(this._el_106, "click", this.get$_handle_click_106_0());
+        this.listen$3(this._el_106, "blur", this.get$_handle_blur_106_1());
+        this.listen$3(this._el_106, "mouseup", this.get$_handle_mouseup_106_2());
+        this.listen$3(this._el_106, "keypress", this.get$_handle_keypress_106_3());
+        this.listen$3(this._el_106, "focus", this.get$_handle_focus_106_4());
+        this.listen$3(this._el_106, "mousedown", this.get$_handle_mousedown_106_5());
         t1 = this.declarationViewContainer;
         t2 = t1 == null;
         t3 = (t2 ? t1 : t1.parentView).get$declarationViewContainer();
@@ -66454,11 +66467,11 @@
         t1 = H.interceptedTypeCast(t1 == null ? t1 : t1.parentView, "$isViewFilesComp0")._pipe_fileSizeFormat_1;
         this._pipe_fileSizeFormat_1_0 = Q.pureProxy1(t1.get$transform(t1));
         t1 = this._files_comp_template$_el_0;
-        this.init$3([t1], [t1, _text_1, this._files_comp_template$_el_2, _text_3, _anchor_4, _text_5, this._files_comp_template$_el_6, _text_7, this._files_comp_template$_el_8, _text_9, this._files_comp_template$_el_10, _text_11, this._files_comp_template$_el_12, this._files_comp_template$_el_13, _text_14, this._files_comp_template$_el_15, this._text_16, _text_17, _text_18, this._files_comp_template$_el_19, _text_20, _text_21, this._files_comp_template$_el_22, _text_23, this._files_comp_template$_el_24, _text_25, this._el_26, _text_27, this._el_28, _text_29, this._el_30, _text_31, _anchor_32, _text_33, _text_34, _text_35, this._el_36, _text_37, _text_38, this._el_39, _text_40, this._el_41, _text_42, this._el_43, _text_44, this._el_45, this._text_46, _text_47, _text_48, this._el_49, _text_50, this._el_51, this._text_52, _text_53, this._el_54, this._text_55, _text_56, _text_57, _text_58, _text_59, _text_60, _text_61, this._el_62, _text_63, this._el_64, this._text_65, _text_66, this._el_67, _text_68, _text_69, _text_70, _text_71, _text_72, this._el_73, _text_74, this._el_75, _text_76, this._el_77, this._text_78, _text_79, this._el_80, this._text_81, _text_82, _text_83, this._el_84, _text_85, this._el_86, _text_87, _anchor_88, _text_89, _anchor_90, _text_91, _anchor_92, _text_93, _anchor_94, _text_95, _text_96, this._el_97, _text_98, _text_99, _text_100, _text_101, _text_102, _text_103], []);
+        this.init$3([t1], [t1, _text_1, this._files_comp_template$_el_2, _text_3, _anchor_4, _text_5, _text_6, this._files_comp_template$_el_7, _text_8, this._files_comp_template$_el_9, _text_10, this._files_comp_template$_el_11, _text_12, this._files_comp_template$_el_13, this._files_comp_template$_el_14, _text_15, this._files_comp_template$_el_16, this._text_17, _text_18, _text_19, this._files_comp_template$_el_20, _text_21, this._files_comp_template$_el_22, _text_23, this._files_comp_template$_el_24, _text_25, this._el_26, _text_27, this._el_28, _text_29, this._el_30, _text_31, _anchor_32, _text_33, _text_34, _text_35, this._el_36, _text_37, _text_38, this._el_39, _text_40, this._el_41, _text_42, this._el_43, _text_44, this._el_45, this._text_46, _text_47, _text_48, this._el_49, _text_50, this._el_51, this._text_52, _text_53, this._el_54, this._text_55, _text_56, _text_57, _text_58, _text_59, _text_60, _text_61, this._el_62, _text_63, this._el_64, this._text_65, _text_66, this._el_67, _text_68, _text_69, _text_70, _text_71, _text_72, this._el_73, _text_74, this._el_75, _text_76, this._el_77, this._text_78, _text_79, this._el_80, this._text_81, _text_82, _text_83, this._el_84, _text_85, this._el_86, _text_87, _anchor_88, _text_89, _anchor_90, _text_91, _text_92, _text_93, _text_94, _text_95, _text_96, _text_97, _text_98, this._el_99, _text_100, this._el_101, this._el_102, _text_103, _text_104, _text_105, this._el_106, _text_107, this._el_108, this._el_109, _text_110, _text_111, _text_112, _text_113, _text_114, _text_115, _text_116], []);
         return;
       },
       injectorGetInternal$3: function(token, requestNodeIndex, notFoundResult) {
-        var t1, t2;
+        var t1, t2, t3, t4;
         t1 = token === C.Type_TemplateRef_SSn;
         if (t1 && 4 === requestNodeIndex)
           return this._files_comp_template$_TemplateRef_4_4;
@@ -66479,48 +66492,73 @@
           return this._TemplateRef_90_4;
         if (t2 && 90 === requestNodeIndex)
           return this._NgIf_90_5;
-        if (t1 && 92 === requestNodeIndex)
-          return this._TemplateRef_92_4;
-        if (t2 && 92 === requestNodeIndex)
-          return this._NgIf_92_5;
-        if (t1 && 94 === requestNodeIndex)
-          return this._TemplateRef_94_4;
-        if (t2 && 94 === requestNodeIndex)
-          return this._NgIf_94_5;
-        if (token === C.Type_AcxDarkTheme_Tng) {
+        t1 = token === C.Type_AcxDarkTheme_Tng;
+        if (t1) {
           if (typeof requestNodeIndex !== "number")
             return H.iae(requestNodeIndex);
-          t1 = 97 <= requestNodeIndex && requestNodeIndex <= 98;
+          t2 = 99 <= requestNodeIndex && requestNodeIndex <= 104;
+        } else
+          t2 = false;
+        if (t2)
+          return this._AcxDarkTheme_99_3;
+        t2 = token === C.Type_MaterialButtonComponent_xw8;
+        if (t2) {
+          if (typeof requestNodeIndex !== "number")
+            return H.iae(requestNodeIndex);
+          t3 = 99 <= requestNodeIndex && requestNodeIndex <= 104;
+        } else
+          t3 = false;
+        if (t3)
+          return this._MaterialButtonComponent_99_4;
+        t3 = token === C.Type_ButtonDirective_hH0;
+        if (t3) {
+          if (typeof requestNodeIndex !== "number")
+            return H.iae(requestNodeIndex);
+          t4 = 99 <= requestNodeIndex && requestNodeIndex <= 104;
+        } else
+          t4 = false;
+        if (t4) {
+          t1 = this.__ButtonDirective_99_5;
+          if (t1 == null) {
+            t1 = this._MaterialButtonComponent_99_4;
+            this.__ButtonDirective_99_5 = t1;
+          }
+          return t1;
+        }
+        if (t1) {
+          if (typeof requestNodeIndex !== "number")
+            return H.iae(requestNodeIndex);
+          t1 = 106 <= requestNodeIndex && requestNodeIndex <= 111;
         } else
           t1 = false;
         if (t1)
-          return this._AcxDarkTheme_97_3;
-        if (token === C.Type_MaterialButtonComponent_xw8) {
+          return this._AcxDarkTheme_106_3;
+        if (t2) {
           if (typeof requestNodeIndex !== "number")
             return H.iae(requestNodeIndex);
-          t1 = 97 <= requestNodeIndex && requestNodeIndex <= 98;
+          t1 = 106 <= requestNodeIndex && requestNodeIndex <= 111;
         } else
           t1 = false;
         if (t1)
-          return this._MaterialButtonComponent_97_4;
-        if (token === C.Type_ButtonDirective_hH0) {
+          return this._MaterialButtonComponent_106_4;
+        if (t3) {
           if (typeof requestNodeIndex !== "number")
             return H.iae(requestNodeIndex);
-          t1 = 97 <= requestNodeIndex && requestNodeIndex <= 98;
+          t1 = 106 <= requestNodeIndex && requestNodeIndex <= 111;
         } else
           t1 = false;
         if (t1) {
-          t1 = this.__ButtonDirective_97_5;
+          t1 = this.__ButtonDirective_106_5;
           if (t1 == null) {
-            t1 = this._MaterialButtonComponent_97_4;
-            this.__ButtonDirective_97_5 = t1;
+            t1 = this._MaterialButtonComponent_106_4;
+            this.__ButtonDirective_106_5 = t1;
           }
           return t1;
         }
         if (token === C.Type_MaterialPopupComponent_OpB) {
           if (typeof requestNodeIndex !== "number")
             return H.iae(requestNodeIndex);
-          t1 = 73 <= requestNodeIndex && requestNodeIndex <= 100;
+          t1 = 73 <= requestNodeIndex && requestNodeIndex <= 113;
         } else
           t1 = false;
         if (t1)
@@ -66528,7 +66566,7 @@
         if (token === C.Type_PopupComponent_K9i) {
           if (typeof requestNodeIndex !== "number")
             return H.iae(requestNodeIndex);
-          t1 = 73 <= requestNodeIndex && requestNodeIndex <= 100;
+          t1 = 73 <= requestNodeIndex && requestNodeIndex <= 113;
         } else
           t1 = false;
         if (t1)
@@ -66536,7 +66574,7 @@
         if (token === C.Type_DropdownHandle_YMM) {
           if (typeof requestNodeIndex !== "number")
             return H.iae(requestNodeIndex);
-          t1 = 73 <= requestNodeIndex && requestNodeIndex <= 100;
+          t1 = 73 <= requestNodeIndex && requestNodeIndex <= 113;
         } else
           t1 = false;
         if (t1) {
@@ -66550,7 +66588,7 @@
         if (token === C.Type_DeferredContentAware_BCk) {
           if (typeof requestNodeIndex !== "number")
             return H.iae(requestNodeIndex);
-          t1 = 73 <= requestNodeIndex && requestNodeIndex <= 100;
+          t1 = 73 <= requestNodeIndex && requestNodeIndex <= 113;
         } else
           t1 = false;
         if (t1) {
@@ -66564,7 +66602,7 @@
         if (token === C.Type_PopupHierarchy_gkc) {
           if (typeof requestNodeIndex !== "number")
             return H.iae(requestNodeIndex);
-          t1 = 73 <= requestNodeIndex && requestNodeIndex <= 100;
+          t1 = 73 <= requestNodeIndex && requestNodeIndex <= 113;
         } else
           t1 = false;
         if (t1) {
@@ -66583,7 +66621,7 @@
         if (token === C.Type_PopupRef_AWk) {
           if (typeof requestNodeIndex !== "number")
             return H.iae(requestNodeIndex);
-          t1 = 73 <= requestNodeIndex && requestNodeIndex <= 100;
+          t1 = 73 <= requestNodeIndex && requestNodeIndex <= 113;
         } else
           t1 = false;
         if (t1) {
@@ -66597,64 +66635,63 @@
         return notFoundResult;
       },
       detectChangesInternal$0: function() {
-        var valUnwrapper, t1, t2, t3, currVal_1, currVal_15, currVal_16, t4, currVal_0, currVal_2, currVal_3, currVal_4, currVal_5, t5, currVal_7, currVal_9, currVal_10, currVal_11, currVal_12, currVal_17, currVal_18, currVal_19, currVal_31, currVal_32, currVal_33, currVal_34, currVal_35;
+        var valUnwrapper, t1, t2, t3, currVal_0, t4, currVal_14, currVal_15, currVal_1, currVal_2, currVal_3, currVal_4, t5, currVal_6, currVal_8, currVal_9, currVal_10, currVal_11, currVal_16, currVal_17, currVal_18, currVal_27, currVal_28, currVal_29, currVal_30, currVal_31, currVal_39, currVal_40, currVal_41, currVal_42, currVal_43;
         valUnwrapper = new A.ValueUnwrapper(false);
         t1 = this.ctx;
         t2 = this.declarationViewContainer;
         t3 = t2 == null;
-        currVal_1 = t1.getActionsForVersion$1((t3 ? t2 : t2.parentView).get$locals().$index(0, "$implicit"));
-        if (Q.checkBinding(this._files_comp_template$_expr_1, currVal_1)) {
-          this._files_comp_template$_NgFor_4_5.set$ngForOf(currVal_1);
-          this._files_comp_template$_expr_1 = currVal_1;
+        currVal_0 = t1.getActionsForVersion$1((t3 ? t2 : t2.parentView).get$locals().$index(0, "$implicit"));
+        if (Q.checkBinding(this._files_comp_template$_expr_0, currVal_0)) {
+          this._files_comp_template$_NgFor_4_5.set$ngForOf(currVal_0);
+          this._files_comp_template$_expr_0 = currVal_0;
         }
         if (!$.AppViewUtils_throwOnChanges)
           this._files_comp_template$_NgFor_4_5.ngDoCheck$0();
         t1 = this._NgIf_32_5;
-        t1.set$ngIf(!J.$eq$(J.get$status$x((t3 ? t2 : t2.parentView).get$locals().$index(0, "$implicit")), "uploaded"));
-        if (Q.checkBinding(this._files_comp_template$_expr_14, "")) {
+        if (!J.$eq$(J.get$status$x((t3 ? t2 : t2.parentView).get$locals().$index(0, "$implicit")), "uploaded")) {
+          if ((t3 ? t2 : t2.parentView).get$locals().$index(0, "$implicit") == null)
+            t4 = null;
+          else
+            t4 = (t3 ? t2 : t2.parentView).get$locals().$index(0, "$implicit").get$mimeType();
+          t4 = !J.$eq$(t4, "application/quickNote");
+        } else
+          t4 = false;
+        t1.set$ngIf(t4);
+        if (Q.checkBinding(this._files_comp_template$_expr_13, "")) {
           this._MaterialPopupComponent_73_3.state._backingMap.$indexSet(0, C.Symbol_enforceSpaceConstraints, Y.getBool(Y.getBool("")));
-          this._files_comp_template$_expr_14 = "";
+          this._files_comp_template$_expr_13 = "";
         }
-        currVal_15 = this._PopupSourceDirective_67_2;
-        if (Q.checkBinding(this._files_comp_template$_expr_15, currVal_15)) {
-          this._MaterialPopupComponent_73_3.set$source(0, currVal_15);
-          this._files_comp_template$_expr_15 = currVal_15;
+        currVal_14 = this._PopupSourceDirective_67_2;
+        if (Q.checkBinding(this._files_comp_template$_expr_14, currVal_14)) {
+          this._MaterialPopupComponent_73_3.set$source(0, currVal_14);
+          this._files_comp_template$_expr_14 = currVal_14;
         }
         t1 = this.ctx.get$fileMenuVisible();
-        currVal_16 = J.$eq$(t1, (t3 ? t2 : t2.parentView).get$locals().$index(0, "$implicit").get$v());
-        if (Q.checkBinding(this._files_comp_template$_expr_16, currVal_16)) {
-          this._MaterialPopupComponent_73_3.set$visible(0, currVal_16);
-          this._files_comp_template$_expr_16 = currVal_16;
+        currVal_15 = J.$eq$(t1, (t3 ? t2 : t2.parentView).get$locals().$index(0, "$implicit").get$v());
+        if (Q.checkBinding(this._files_comp_template$_expr_15, currVal_15)) {
+          this._MaterialPopupComponent_73_3.set$visible(0, currVal_15);
+          this._files_comp_template$_expr_15 = currVal_15;
         }
         t1 = this._NgIf_88_5;
         t1.set$ngIf((t3 ? t2 : t2.parentView).get$locals().$index(0, "$implicit").get$approved() == null);
         t1 = this._NgIf_90_5;
         t1.set$ngIf((t3 ? t2 : t2.parentView).get$locals().$index(0, "$implicit").get$approved() != null);
-        this._NgIf_92_5.set$ngIf(this.ctx.get$selectedFile().get$isLocked() !== true);
-        this._NgIf_94_5.set$ngIf(this.ctx.get$selectedFile().get$isLocked());
         this.detectContentChildrenChanges$0();
-        t1 = this.ctx;
-        t4 = J.get$id$x(t1.get$selectedFile());
-        currVal_0 = t1.isCommentsOpen$2(t4, (t3 ? t2 : t2.parentView).get$locals().$index(0, "$implicit").get$v());
-        if (Q.checkBinding(this._files_comp_template$_expr_0, currVal_0)) {
-          this.updateClass$3(this._files_comp_template$_el_0, "activep", currVal_0);
-          this._files_comp_template$_expr_0 = currVal_0;
-        }
         t1 = J.get$id$x(this.ctx.get$connectedUser());
-        currVal_2 = J.$eq$(t1, (t3 ? t2 : t2.parentView).get$locals().$index(0, "$implicit").get$userId());
+        currVal_1 = J.$eq$(t1, (t3 ? t2 : t2.parentView).get$locals().$index(0, "$implicit").get$userId());
+        if (Q.checkBinding(this._files_comp_template$_expr_1, currVal_1)) {
+          this.updateClass$3(this._files_comp_template$_el_7, "ownAction", currVal_1);
+          this._files_comp_template$_expr_1 = currVal_1;
+        }
+        currVal_2 = Q.interpolate1("actionBlock ", (t3 ? t2 : t2.parentView).get$locals().$index(0, "$implicit").get$approved() == null ? "draft" : "approved", "");
         if (Q.checkBinding(this._files_comp_template$_expr_2, currVal_2)) {
-          this.updateClass$3(this._files_comp_template$_el_6, "ownAction", currVal_2);
+          this._files_comp_template$_el_9.className = currVal_2;
           this._files_comp_template$_expr_2 = currVal_2;
         }
-        currVal_3 = Q.interpolate1("actionBlock ", (t3 ? t2 : t2.parentView).get$locals().$index(0, "$implicit").get$approved() == null ? "draft" : "approved", "");
+        currVal_3 = Q.interpolate1("/auth/user/photo/s/", (t3 ? t2 : t2.parentView).get$locals().$index(0, "$implicit").get$userId(), "");
         if (Q.checkBinding(this._files_comp_template$_expr_3, currVal_3)) {
-          this._files_comp_template$_el_8.className = currVal_3;
+          this._files_comp_template$_el_14.src = $.appViewUtils.get$sanitizer().sanitizeUrl$1(currVal_3);
           this._files_comp_template$_expr_3 = currVal_3;
-        }
-        currVal_4 = Q.interpolate1("/auth/user/photo/s/", (t3 ? t2 : t2.parentView).get$locals().$index(0, "$implicit").get$userId(), "");
-        if (Q.checkBinding(this._files_comp_template$_expr_4, currVal_4)) {
-          this._files_comp_template$_el_13.src = $.appViewUtils.get$sanitizer().sanitizeUrl$1(currVal_4);
-          this._files_comp_template$_expr_4 = currVal_4;
         }
         valUnwrapper.hasWrappedValue = false;
         t1 = this._pipe_agoDateFormat_0_3;
@@ -66666,29 +66703,29 @@
           t4 = null;
         else
           t4 = (t3 ? t2 : t2.parentView).get$locals().$index(0, "$implicit").get$ts();
-        currVal_5 = Q.interpolate0(valUnwrapper.unwrap$1(t1.call$1(t4)));
-        if (valUnwrapper.hasWrappedValue || Q.checkBinding(this._files_comp_template$_expr_5, currVal_5)) {
-          this._text_16.textContent = currVal_5;
-          this._files_comp_template$_expr_5 = currVal_5;
+        currVal_4 = Q.interpolate0(valUnwrapper.unwrap$1(t1.call$1(t4)));
+        if (valUnwrapper.hasWrappedValue || Q.checkBinding(this._files_comp_template$_expr_4, currVal_4)) {
+          this._text_17.textContent = currVal_4;
+          this._files_comp_template$_expr_4 = currVal_4;
         }
         t1 = this.ctx.get$selectedPlace() == null ? null : J.get$id$x(this.ctx.get$selectedPlace());
         t4 = this.ctx.get$selectedFolder() == null ? null : J.get$id$x(this.ctx.get$selectedFolder());
         t5 = this.ctx.get$selectedFile() == null ? null : J.get$id$x(this.ctx.get$selectedFile());
-        currVal_7 = Q.interpolate(4, "/sp/place/", t1, "/folder/", t4, "/file/", t5, "/version/", (t3 ? t2 : t2.parentView).get$locals().$index(0, "$implicit").get$v(), "/thumb", null, null, null, null, null, null, null, null, null, null);
-        if (Q.checkBinding(this._files_comp_template$_expr_7, currVal_7)) {
-          this._el_30.src = $.appViewUtils.get$sanitizer().sanitizeUrl$1(currVal_7);
-          this._files_comp_template$_expr_7 = currVal_7;
+        currVal_6 = Q.interpolate(4, "/sp/place/", t1, "/folder/", t4, "/file/", t5, "/version/", (t3 ? t2 : t2.parentView).get$locals().$index(0, "$implicit").get$v(), "/thumb", null, null, null, null, null, null, null, null, null, null);
+        if (Q.checkBinding(this._files_comp_template$_expr_6, currVal_6)) {
+          this._el_30.src = $.appViewUtils.get$sanitizer().sanitizeUrl$1(currVal_6);
+          this._files_comp_template$_expr_6 = currVal_6;
         }
-        currVal_9 = Q.interpolate0(this.ctx.get$selectedFile() == null ? null : J.get$name$x(this.ctx.get$selectedFile()));
-        if (Q.checkBinding(this._files_comp_template$_expr_9, currVal_9)) {
-          this._text_46.textContent = currVal_9;
-          this._files_comp_template$_expr_9 = currVal_9;
+        currVal_8 = Q.interpolate0(this.ctx.get$selectedFile() == null ? null : J.get$name$x(this.ctx.get$selectedFile()));
+        if (Q.checkBinding(this._files_comp_template$_expr_8, currVal_8)) {
+          this._text_46.textContent = currVal_8;
+          this._files_comp_template$_expr_8 = currVal_8;
         }
         t1 = this.ctx;
-        currVal_10 = Q.interpolate0(t1.formatDesc$1((t3 ? t2 : t2.parentView).get$locals().$index(0, "$implicit")));
-        if (Q.checkBinding(this._files_comp_template$_expr_10, currVal_10)) {
-          this._text_52.textContent = currVal_10;
-          this._files_comp_template$_expr_10 = currVal_10;
+        currVal_9 = Q.interpolate0(t1.formatDesc$1((t3 ? t2 : t2.parentView).get$locals().$index(0, "$implicit")));
+        if (Q.checkBinding(this._files_comp_template$_expr_9, currVal_9)) {
+          this._text_52.textContent = currVal_9;
+          this._files_comp_template$_expr_9 = currVal_9;
         }
         valUnwrapper.hasWrappedValue = false;
         t1 = this._pipe_fileSizeFormat_1_0;
@@ -66699,27 +66736,27 @@
         t4 = this.ctx.get$selectedFile().get$orderedVersions();
         if (0 >= t4.length)
           return H.ioore(t4, 0);
-        currVal_11 = Q.interpolate1("\n                                            ", valUnwrapper.unwrap$1(t1.call$1(J.get$size$x(t4[0]))), "\n                                          ");
-        if (valUnwrapper.hasWrappedValue || Q.checkBinding(this._files_comp_template$_expr_11, currVal_11)) {
-          this._text_55.textContent = currVal_11;
+        currVal_10 = Q.interpolate1("\n                                            ", valUnwrapper.unwrap$1(t1.call$1(J.get$size$x(t4[0]))), "\n                                          ");
+        if (valUnwrapper.hasWrappedValue || Q.checkBinding(this._files_comp_template$_expr_10, currVal_10)) {
+          this._text_55.textContent = currVal_10;
+          this._files_comp_template$_expr_10 = currVal_10;
+        }
+        currVal_11 = Q.interpolate1("v. ", (t3 ? t2 : t2.parentView).get$locals().$index(0, "$implicit").get$v(), "");
+        if (Q.checkBinding(this._files_comp_template$_expr_11, currVal_11)) {
+          this._text_65.textContent = currVal_11;
           this._files_comp_template$_expr_11 = currVal_11;
         }
-        currVal_12 = Q.interpolate1("v. ", (t3 ? t2 : t2.parentView).get$locals().$index(0, "$implicit").get$v(), "");
-        if (Q.checkBinding(this._files_comp_template$_expr_12, currVal_12)) {
-          this._text_65.textContent = currVal_12;
-          this._files_comp_template$_expr_12 = currVal_12;
-        }
-        currVal_17 = this._MaterialPopupComponent_73_3._resolvedPopupRef;
-        currVal_17 = currVal_17 == null ? currVal_17 : currVal_17._overlayRef.get$uniqueId();
-        if (Q.checkBinding(this._files_comp_template$_expr_17, currVal_17)) {
+        currVal_16 = this._MaterialPopupComponent_73_3._resolvedPopupRef;
+        currVal_16 = currVal_16 == null ? currVal_16 : currVal_16._overlayRef.get$uniqueId();
+        if (Q.checkBinding(this._files_comp_template$_expr_16, currVal_16)) {
           t1 = this._el_73;
-          this.setAttr$3(t1, "pane-id", currVal_17 == null ? null : currVal_17);
-          this._files_comp_template$_expr_17 = currVal_17;
+          this.setAttr$3(t1, "pane-id", currVal_16 == null ? null : currVal_16);
+          this._files_comp_template$_expr_16 = currVal_16;
         }
-        currVal_18 = Q.interpolate0(J.get$name$x(this.ctx.get$selectedFile()));
-        if (Q.checkBinding(this._files_comp_template$_expr_18, currVal_18)) {
-          this._text_78.textContent = currVal_18;
-          this._files_comp_template$_expr_18 = currVal_18;
+        currVal_17 = Q.interpolate0(J.get$name$x(this.ctx.get$selectedFile()));
+        if (Q.checkBinding(this._files_comp_template$_expr_17, currVal_17)) {
+          this._text_78.textContent = currVal_17;
+          this._files_comp_template$_expr_17 = currVal_17;
         }
         valUnwrapper.hasWrappedValue = false;
         t1 = (t3 ? t2 : t2.parentView).get$locals().$index(0, "$implicit").get$v();
@@ -66732,40 +66769,70 @@
         t1 = t1 == null ? t1 : J.toString$0$(t1);
         t1 = C.JSString_methods.$add("\n                                Version ", t1 == null ? "" : t1) + " ";
         t2 = t2 == null ? t2 : J.toString$0$(t2);
-        currVal_19 = C.JSString_methods.$add(t1, t2 == null ? "" : t2) + "\n                              ";
-        if (valUnwrapper.hasWrappedValue || Q.checkBinding(this._files_comp_template$_expr_19, currVal_19)) {
-          this._text_81.textContent = currVal_19;
-          this._files_comp_template$_expr_19 = currVal_19;
+        currVal_18 = C.JSString_methods.$add(t1, t2 == null ? "" : t2) + "\n                              ";
+        if (valUnwrapper.hasWrappedValue || Q.checkBinding(this._files_comp_template$_expr_18, currVal_18)) {
+          this._text_81.textContent = currVal_18;
+          this._files_comp_template$_expr_18 = currVal_18;
         }
-        currVal_31 = this._MaterialButtonComponent_97_4._raised;
+        currVal_27 = this._MaterialButtonComponent_99_4._raised;
+        if (Q.checkBinding(this._files_comp_template$_expr_27, currVal_27)) {
+          this.updateElemClass$3(this._el_99, "is-raised", currVal_27);
+          this._files_comp_template$_expr_27 = currVal_27;
+        }
+        currVal_28 = "" + this._MaterialButtonComponent_99_4._button_decorator$_disabled;
+        if (Q.checkBinding(this._files_comp_template$_expr_28, currVal_28)) {
+          t1 = this._el_99;
+          this.setAttr$3(t1, "aria-disabled", currVal_28);
+          this._files_comp_template$_expr_28 = currVal_28;
+        }
+        t1 = this._MaterialButtonComponent_99_4;
+        currVal_29 = t1._computeTabIndex$0();
+        if (Q.checkBinding(this._files_comp_template$_expr_29, currVal_29)) {
+          t1 = this._el_99;
+          this.setAttr$3(t1, "tabindex", currVal_29 == null ? null : currVal_29);
+          this._files_comp_template$_expr_29 = currVal_29;
+        }
+        currVal_30 = this._MaterialButtonComponent_99_4._button_decorator$_disabled;
+        if (Q.checkBinding(this._files_comp_template$_expr_30, currVal_30)) {
+          this.updateElemClass$3(this._el_99, "is-disabled", currVal_30);
+          this._files_comp_template$_expr_30 = currVal_30;
+        }
+        t1 = this._MaterialButtonComponent_99_4;
+        currVal_31 = t1._isMouseDown || t1._focused ? 2 : 1;
         if (Q.checkBinding(this._files_comp_template$_expr_31, currVal_31)) {
-          this.updateElemClass$3(this._el_97, "is-raised", currVal_31);
+          t1 = this._el_99;
+          this.setAttr$3(t1, "elevation", C.JSInt_methods.toString$0(currVal_31));
           this._files_comp_template$_expr_31 = currVal_31;
         }
-        currVal_32 = "" + this._MaterialButtonComponent_97_4._button_decorator$_disabled;
-        if (Q.checkBinding(this._expr_32, currVal_32)) {
-          t1 = this._el_97;
-          this.setAttr$3(t1, "aria-disabled", currVal_32);
-          this._expr_32 = currVal_32;
+        currVal_39 = this._MaterialButtonComponent_106_4._raised;
+        if (Q.checkBinding(this._expr_39, currVal_39)) {
+          this.updateElemClass$3(this._el_106, "is-raised", currVal_39);
+          this._expr_39 = currVal_39;
         }
-        t1 = this._MaterialButtonComponent_97_4;
-        currVal_33 = t1._computeTabIndex$0();
-        if (Q.checkBinding(this._expr_33, currVal_33)) {
-          t1 = this._el_97;
-          this.setAttr$3(t1, "tabindex", currVal_33 == null ? null : currVal_33);
-          this._expr_33 = currVal_33;
+        currVal_40 = "" + this._MaterialButtonComponent_106_4._button_decorator$_disabled;
+        if (Q.checkBinding(this._expr_40, currVal_40)) {
+          t1 = this._el_106;
+          this.setAttr$3(t1, "aria-disabled", currVal_40);
+          this._expr_40 = currVal_40;
         }
-        currVal_34 = this._MaterialButtonComponent_97_4._button_decorator$_disabled;
-        if (Q.checkBinding(this._expr_34, currVal_34)) {
-          this.updateElemClass$3(this._el_97, "is-disabled", currVal_34);
-          this._expr_34 = currVal_34;
+        t1 = this._MaterialButtonComponent_106_4;
+        currVal_41 = t1._computeTabIndex$0();
+        if (Q.checkBinding(this._expr_41, currVal_41)) {
+          t1 = this._el_106;
+          this.setAttr$3(t1, "tabindex", currVal_41 == null ? null : currVal_41);
+          this._expr_41 = currVal_41;
         }
-        t1 = this._MaterialButtonComponent_97_4;
-        currVal_35 = t1._isMouseDown || t1._focused ? 2 : 1;
-        if (Q.checkBinding(this._expr_35, currVal_35)) {
-          t1 = this._el_97;
-          this.setAttr$3(t1, "elevation", C.JSInt_methods.toString$0(currVal_35));
-          this._expr_35 = currVal_35;
+        currVal_42 = this._MaterialButtonComponent_106_4._button_decorator$_disabled;
+        if (Q.checkBinding(this._expr_42, currVal_42)) {
+          this.updateElemClass$3(this._el_106, "is-disabled", currVal_42);
+          this._expr_42 = currVal_42;
+        }
+        t1 = this._MaterialButtonComponent_106_4;
+        currVal_43 = t1._isMouseDown || t1._focused ? 2 : 1;
+        if (Q.checkBinding(this._expr_43, currVal_43)) {
+          t1 = this._el_106;
+          this.setAttr$3(t1, "elevation", C.JSInt_methods.toString$0(currVal_43));
+          this._expr_43 = currVal_43;
         }
         this.detectViewChildrenChanges$0();
         if (this._cdState === C.ChangeDetectorState_0)
@@ -66782,8 +66849,11 @@
         t1._material_popup$_isDestroyed = true;
       },
       _handle_click_24_0$1: [function($$event) {
+        var t1, t2;
         this.markPathToRootAsCheckOnce$0();
-        this.ctx.openFileDialog$0();
+        t1 = this.ctx;
+        t2 = this.declarationViewContainer;
+        t1.openFileDialog$1((t2 == null ? t2 : t2.parentView).get$locals().$index(0, "$implicit").get$v());
         return true;
       }, "call$1", "get$_handle_click_24_0", 2, 0, 1, 0, []],
       _handle_click_67_0$1: [function($$event) {
@@ -66794,82 +66864,112 @@
         t1.switchMenuState$1((t2 == null ? t2 : t2.parentView).get$locals().$index(0, "$implicit").get$v());
         return true;
       }, "call$1", "get$_handle_click_67_0", 2, 0, 1, 0, []],
-      _handle_click_97_0$1: [function($$event) {
+      _handle_click_99_0$1: [function($$event) {
+        this._appEl_99.componentView.markPathToRootAsCheckOnce$0();
+        this._MaterialButtonComponent_99_4.handleClick$1($$event);
+        return true;
+      }, "call$1", "get$_handle_click_99_0", 2, 0, 1, 0, []],
+      _handle_blur_99_1$1: [function($$event) {
         var t1;
-        this._appEl_97.componentView.markPathToRootAsCheckOnce$0();
-        t1 = J.delete$0$x(this.ctx);
-        this._MaterialButtonComponent_97_4.handleClick$1($$event);
-        return t1 !== false && true;
-      }, "call$1", "get$_handle_click_97_0", 2, 0, 1, 0, []],
-      _handle_blur_97_1$1: [function($$event) {
-        var t1;
-        this._appEl_97.componentView.markPathToRootAsCheckOnce$0();
-        t1 = this._MaterialButtonComponent_97_4;
+        this._appEl_99.componentView.markPathToRootAsCheckOnce$0();
+        t1 = this._MaterialButtonComponent_99_4;
         if (t1._clickFocused)
           t1._clickFocused = false;
         t1._setFocused$1(false);
         return true;
-      }, "call$1", "get$_handle_blur_97_1", 2, 0, 1, 0, []],
-      _handle_mouseup_97_2$1: [function($$event) {
-        this._appEl_97.componentView.markPathToRootAsCheckOnce$0();
-        this._MaterialButtonComponent_97_4._isMouseDown = false;
+      }, "call$1", "get$_handle_blur_99_1", 2, 0, 1, 0, []],
+      _handle_mouseup_99_2$1: [function($$event) {
+        this._appEl_99.componentView.markPathToRootAsCheckOnce$0();
+        this._MaterialButtonComponent_99_4._isMouseDown = false;
         return true;
-      }, "call$1", "get$_handle_mouseup_97_2", 2, 0, 1, 0, []],
-      _handle_keypress_97_3$1: [function($$event) {
-        this._appEl_97.componentView.markPathToRootAsCheckOnce$0();
-        this._MaterialButtonComponent_97_4.handleKeyPress$1($$event);
+      }, "call$1", "get$_handle_mouseup_99_2", 2, 0, 1, 0, []],
+      _handle_keypress_99_3$1: [function($$event) {
+        this._appEl_99.componentView.markPathToRootAsCheckOnce$0();
+        this._MaterialButtonComponent_99_4.handleKeyPress$1($$event);
         return true;
-      }, "call$1", "get$_handle_keypress_97_3", 2, 0, 1, 0, []],
-      _handle_focus_97_4$1: [function($$event) {
-        this._appEl_97.componentView.markPathToRootAsCheckOnce$0();
-        this._MaterialButtonComponent_97_4.onFocus$1(0, $$event);
+      }, "call$1", "get$_handle_keypress_99_3", 2, 0, 1, 0, []],
+      _handle_focus_99_4$1: [function($$event) {
+        this._appEl_99.componentView.markPathToRootAsCheckOnce$0();
+        this._MaterialButtonComponent_99_4.onFocus$1(0, $$event);
         return true;
-      }, "call$1", "get$_handle_focus_97_4", 2, 0, 1, 0, []],
-      _handle_mousedown_97_5$1: [function($$event) {
+      }, "call$1", "get$_handle_focus_99_4", 2, 0, 1, 0, []],
+      _handle_mousedown_99_5$1: [function($$event) {
         var t1;
-        this._appEl_97.componentView.markPathToRootAsCheckOnce$0();
-        t1 = this._MaterialButtonComponent_97_4;
+        this._appEl_99.componentView.markPathToRootAsCheckOnce$0();
+        t1 = this._MaterialButtonComponent_99_4;
         t1._clickFocused = true;
         t1._isMouseDown = true;
         return true;
-      }, "call$1", "get$_handle_mousedown_97_5", 2, 0, 1, 0, []],
+      }, "call$1", "get$_handle_mousedown_99_5", 2, 0, 1, 0, []],
+      _handle_click_106_0$1: [function($$event) {
+        var t1;
+        this._appEl_106.componentView.markPathToRootAsCheckOnce$0();
+        t1 = J.delete$0$x(this.ctx);
+        this._MaterialButtonComponent_106_4.handleClick$1($$event);
+        return t1 !== false && true;
+      }, "call$1", "get$_handle_click_106_0", 2, 0, 1, 0, []],
+      _handle_blur_106_1$1: [function($$event) {
+        var t1;
+        this._appEl_106.componentView.markPathToRootAsCheckOnce$0();
+        t1 = this._MaterialButtonComponent_106_4;
+        if (t1._clickFocused)
+          t1._clickFocused = false;
+        t1._setFocused$1(false);
+        return true;
+      }, "call$1", "get$_handle_blur_106_1", 2, 0, 1, 0, []],
+      _handle_mouseup_106_2$1: [function($$event) {
+        this._appEl_106.componentView.markPathToRootAsCheckOnce$0();
+        this._MaterialButtonComponent_106_4._isMouseDown = false;
+        return true;
+      }, "call$1", "get$_handle_mouseup_106_2", 2, 0, 1, 0, []],
+      _handle_keypress_106_3$1: [function($$event) {
+        this._appEl_106.componentView.markPathToRootAsCheckOnce$0();
+        this._MaterialButtonComponent_106_4.handleKeyPress$1($$event);
+        return true;
+      }, "call$1", "get$_handle_keypress_106_3", 2, 0, 1, 0, []],
+      _handle_focus_106_4$1: [function($$event) {
+        this._appEl_106.componentView.markPathToRootAsCheckOnce$0();
+        this._MaterialButtonComponent_106_4.onFocus$1(0, $$event);
+        return true;
+      }, "call$1", "get$_handle_focus_106_4", 2, 0, 1, 0, []],
+      _handle_mousedown_106_5$1: [function($$event) {
+        var t1;
+        this._appEl_106.componentView.markPathToRootAsCheckOnce$0();
+        t1 = this._MaterialButtonComponent_106_4;
+        t1._clickFocused = true;
+        t1._isMouseDown = true;
+        return true;
+      }, "call$1", "get$_handle_mousedown_106_5", 2, 0, 1, 0, []],
       $asAppView: function() {
         return [F.FilesComp];
       }
     },
     ViewFilesComp5: {
-      "^": "AppView;_files_comp_template$_el_0,_files_comp_template$_appEl_2,_files_comp_template$_TemplateRef_2_4,_files_comp_template$_NgIf_2_5,_files_comp_template$_appEl_4,_files_comp_template$_TemplateRef_4_4,_files_comp_template$_NgIf_4_5,_files_comp_template$_appEl_6,_files_comp_template$_TemplateRef_6_4,_files_comp_template$_NgIf_6_5,_files_comp_template$_expr_0,_files_comp_template$_expr_1,clazz,componentType,type,locals,parentInjector,declarationViewContainer,_cdMode,_skipChangeDetection,ref,rootNodesOrViewContainers,allNodes,_onDestroyCallbacks,subscriptions,contentChildren,viewChildren,renderParent,viewContainerElement,_cdState,ctx,projectableNodes,destroyed,_hasExternalHostElement",
+      "^": "AppView;_files_comp_template$_el_0,_files_comp_template$_appEl_3,_files_comp_template$_TemplateRef_3_4,_files_comp_template$_NgIf_3_5,_files_comp_template$_appEl_6,_files_comp_template$_TemplateRef_6_4,_files_comp_template$_NgIf_6_5,_files_comp_template$_appEl_9,_files_comp_template$_TemplateRef_9_4,_files_comp_template$_NgIf_9_5,_files_comp_template$_expr_0,_files_comp_template$_expr_1,clazz,componentType,type,locals,parentInjector,declarationViewContainer,_cdMode,_skipChangeDetection,ref,rootNodesOrViewContainers,allNodes,_onDestroyCallbacks,subscriptions,contentChildren,viewChildren,renderParent,viewContainerElement,_cdState,ctx,projectableNodes,destroyed,_hasExternalHostElement",
       createInternal$1: function(rootSelector) {
-        var doc, t1, _text_1, _anchor_2, t2, _text_3, _anchor_4, _text_5, _anchor_6, _text_7;
+        var doc, t1, _text_1, _text_2, _anchor_3, t2, _text_4, _text_5, _anchor_6, _text_7, _text_8, _anchor_9, _text_10;
         doc = document;
         t1 = doc.createElement("li");
         this._files_comp_template$_el_0 = t1;
         t1.setAttribute(this.componentType._contentAttr, "");
         t1 = this._files_comp_template$_el_0;
         t1.className = "actionLiElem";
-        _text_1 = doc.createTextNode("\n                          ");
+        _text_1 = doc.createTextNode("\n\n                          ");
         t1.appendChild(_text_1);
-        _anchor_2 = doc.createComment("template bindings={}");
+        _text_2 = doc.createTextNode("\n                          ");
+        this._files_comp_template$_el_0.appendChild(_text_2);
+        _anchor_3 = doc.createComment("template bindings={}");
         t1 = this._files_comp_template$_el_0;
         if (!(t1 == null))
-          t1.appendChild(_anchor_2);
-        t1 = new V.ViewContainer(2, 0, this, _anchor_2, null, null, null, null);
-        this._files_comp_template$_appEl_2 = t1;
+          t1.appendChild(_anchor_3);
+        t1 = new V.ViewContainer(3, 0, this, _anchor_3, null, null, null, null);
+        this._files_comp_template$_appEl_3 = t1;
         t2 = new D.TemplateRef(t1, M.files_comp_template__viewFactory_FilesComp6$closure());
-        this._files_comp_template$_TemplateRef_2_4 = t2;
-        this._files_comp_template$_NgIf_2_5 = new K.NgIf(t2, t1, false);
-        _text_3 = doc.createTextNode("\n\n                          ");
-        this._files_comp_template$_el_0.appendChild(_text_3);
-        _anchor_4 = doc.createComment("template bindings={}");
-        t1 = this._files_comp_template$_el_0;
-        if (!(t1 == null))
-          t1.appendChild(_anchor_4);
-        t1 = new V.ViewContainer(4, 0, this, _anchor_4, null, null, null, null);
-        this._files_comp_template$_appEl_4 = t1;
-        t2 = new D.TemplateRef(t1, M.files_comp_template__viewFactory_FilesComp7$closure());
-        this._files_comp_template$_TemplateRef_4_4 = t2;
-        this._files_comp_template$_NgIf_4_5 = new K.NgIf(t2, t1, false);
-        _text_5 = doc.createTextNode("\n\n                          ");
+        this._files_comp_template$_TemplateRef_3_4 = t2;
+        this._files_comp_template$_NgIf_3_5 = new K.NgIf(t2, t1, false);
+        _text_4 = doc.createTextNode("\n                          ");
+        this._files_comp_template$_el_0.appendChild(_text_4);
+        _text_5 = doc.createTextNode("\n                          ");
         this._files_comp_template$_el_0.appendChild(_text_5);
         _anchor_6 = doc.createComment("template bindings={}");
         t1 = this._files_comp_template$_el_0;
@@ -66877,39 +66977,52 @@
           t1.appendChild(_anchor_6);
         t1 = new V.ViewContainer(6, 0, this, _anchor_6, null, null, null, null);
         this._files_comp_template$_appEl_6 = t1;
-        t2 = new D.TemplateRef(t1, M.files_comp_template__viewFactory_FilesComp8$closure());
+        t2 = new D.TemplateRef(t1, M.files_comp_template__viewFactory_FilesComp7$closure());
         this._files_comp_template$_TemplateRef_6_4 = t2;
         this._files_comp_template$_NgIf_6_5 = new K.NgIf(t2, t1, false);
-        _text_7 = doc.createTextNode("\n\n                        ");
+        _text_7 = doc.createTextNode("\n                          ");
         this._files_comp_template$_el_0.appendChild(_text_7);
+        _text_8 = doc.createTextNode("\n                          ");
+        this._files_comp_template$_el_0.appendChild(_text_8);
+        _anchor_9 = doc.createComment("template bindings={}");
         t1 = this._files_comp_template$_el_0;
-        this.init$3([t1], [t1, _text_1, _anchor_2, _text_3, _anchor_4, _text_5, _anchor_6, _text_7], []);
+        if (!(t1 == null))
+          t1.appendChild(_anchor_9);
+        t1 = new V.ViewContainer(9, 0, this, _anchor_9, null, null, null, null);
+        this._files_comp_template$_appEl_9 = t1;
+        t2 = new D.TemplateRef(t1, M.files_comp_template__viewFactory_FilesComp8$closure());
+        this._files_comp_template$_TemplateRef_9_4 = t2;
+        this._files_comp_template$_NgIf_9_5 = new K.NgIf(t2, t1, false);
+        _text_10 = doc.createTextNode("\n\n\n                        ");
+        this._files_comp_template$_el_0.appendChild(_text_10);
+        t1 = this._files_comp_template$_el_0;
+        this.init$3([t1], [t1, _text_1, _text_2, _anchor_3, _text_4, _text_5, _anchor_6, _text_7, _text_8, _anchor_9, _text_10], []);
         return;
       },
       injectorGetInternal$3: function(token, requestNodeIndex, notFoundResult) {
         var t1, t2;
         t1 = token === C.Type_TemplateRef_SSn;
-        if (t1 && 2 === requestNodeIndex)
-          return this._files_comp_template$_TemplateRef_2_4;
+        if (t1 && 3 === requestNodeIndex)
+          return this._files_comp_template$_TemplateRef_3_4;
         t2 = token === C.Type_NgIf_43h;
-        if (t2 && 2 === requestNodeIndex)
-          return this._files_comp_template$_NgIf_2_5;
-        if (t1 && 4 === requestNodeIndex)
-          return this._files_comp_template$_TemplateRef_4_4;
-        if (t2 && 4 === requestNodeIndex)
-          return this._files_comp_template$_NgIf_4_5;
+        if (t2 && 3 === requestNodeIndex)
+          return this._files_comp_template$_NgIf_3_5;
         if (t1 && 6 === requestNodeIndex)
           return this._files_comp_template$_TemplateRef_6_4;
         if (t2 && 6 === requestNodeIndex)
           return this._files_comp_template$_NgIf_6_5;
+        if (t1 && 9 === requestNodeIndex)
+          return this._files_comp_template$_TemplateRef_9_4;
+        if (t2 && 9 === requestNodeIndex)
+          return this._files_comp_template$_NgIf_9_5;
         return notFoundResult;
       },
       detectChangesInternal$0: function() {
         var t1, currVal_0, currVal_1;
         t1 = this.locals;
-        this._files_comp_template$_NgIf_2_5.set$ngIf(J.$eq$(J.get$action$x(t1.$index(0, "$implicit")).get$actionType(), "comment"));
-        this._files_comp_template$_NgIf_4_5.set$ngIf(J.$eq$(J.get$action$x(t1.$index(0, "$implicit")).get$actionType(), "fileApprove"));
-        this._files_comp_template$_NgIf_6_5.set$ngIf(J.$eq$(J.get$action$x(t1.$index(0, "$implicit")).get$actionType(), "fileLock"));
+        this._files_comp_template$_NgIf_3_5.set$ngIf(J.$eq$(J.get$action$x(t1.$index(0, "$implicit")).get$actionType(), "comment"));
+        this._files_comp_template$_NgIf_6_5.set$ngIf(J.$eq$(J.get$action$x(t1.$index(0, "$implicit")).get$actionType(), "fileApprove"));
+        this._files_comp_template$_NgIf_9_5.set$ngIf(J.$eq$(J.get$action$x(t1.$index(0, "$implicit")).get$actionType(), "fileLock"));
         this.detectContentChildrenChanges$0();
         currVal_0 = this.ctx.isActionAuthor$1(t1.$index(0, "$implicit"));
         if (Q.checkBinding(this._files_comp_template$_expr_0, currVal_0)) {
@@ -67023,15 +67136,10 @@
         t4 = (t4 == null ? t4 : t4.parentView).get$declarationViewContainer();
         t4 = H.interceptedTypeCast(t4 == null ? t4 : t4.parentView, "$isViewFilesComp0")._pipe_agoDateFormat_0;
         t4.get$transform(t4);
-        t4 = (t2 ? t1 : t1.parentView).get$declarationViewContainer();
-        t4 = (t4 == null ? t4 : t4.parentView).get$declarationViewContainer();
-        if ((t4 == null ? t4 : t4.parentView).get$locals().$index(0, "$implicit") == null)
+        if ((t2 ? t1 : t1.parentView).get$locals().$index(0, "$implicit") == null)
           t4 = null;
-        else {
-          t4 = (t2 ? t1 : t1.parentView).get$declarationViewContainer();
-          t4 = (t4 == null ? t4 : t4.parentView).get$declarationViewContainer();
-          t4 = (t4 == null ? t4 : t4.parentView).get$locals().$index(0, "$implicit").get$ts();
-        }
+        else
+          t4 = (t2 ? t1 : t1.parentView).get$locals().$index(0, "$implicit").get$ts();
         currVal_1 = Q.interpolate0(valUnwrapper.unwrap$1(t3.call$1(t4)));
         if (valUnwrapper.hasWrappedValue || Q.checkBinding(this._files_comp_template$_expr_1, currVal_1)) {
           this._files_comp_template$_text_8.textContent = currVal_1;
@@ -67161,15 +67269,10 @@
         t4 = (t4 == null ? t4 : t4.parentView).get$declarationViewContainer();
         t4 = H.interceptedTypeCast(t4 == null ? t4 : t4.parentView, "$isViewFilesComp0")._pipe_agoDateFormat_0;
         t4.get$transform(t4);
-        t4 = (t2 ? t1 : t1.parentView).get$declarationViewContainer();
-        t4 = (t4 == null ? t4 : t4.parentView).get$declarationViewContainer();
-        if ((t4 == null ? t4 : t4.parentView).get$locals().$index(0, "$implicit") == null)
+        if ((t2 ? t1 : t1.parentView).get$locals().$index(0, "$implicit") == null)
           t4 = null;
-        else {
-          t4 = (t2 ? t1 : t1.parentView).get$declarationViewContainer();
-          t4 = (t4 == null ? t4 : t4.parentView).get$declarationViewContainer();
-          t4 = (t4 == null ? t4 : t4.parentView).get$locals().$index(0, "$implicit").get$ts();
-        }
+        else
+          t4 = (t2 ? t1 : t1.parentView).get$locals().$index(0, "$implicit").get$ts();
         currVal_1 = Q.interpolate0(valUnwrapper.unwrap$1(t3.call$1(t4)));
         if (valUnwrapper.hasWrappedValue || Q.checkBinding(this._files_comp_template$_expr_1, currVal_1)) {
           this._files_comp_template$_text_8.textContent = currVal_1;
@@ -67191,9 +67294,9 @@
       }
     },
     ViewFilesComp8: {
-      "^": "AppView;_files_comp_template$_el_0,_files_comp_template$_el_2,_files_comp_template$_el_4,_files_comp_template$_el_5,_files_comp_template$_el_7,_files_comp_template$_text_8,_files_comp_template$_el_11,_files_comp_template$_el_13,_files_comp_template$_el_15,_text_16,_files_comp_template$_appEl_18,_files_comp_template$_TemplateRef_18_4,_files_comp_template$_NgIf_18_5,_files_comp_template$_el_20,_files_comp_template$_expr_0,_files_comp_template$_expr_1,_files_comp_template$_expr_2,_pipe_agoDateFormat_0_2,clazz,componentType,type,locals,parentInjector,declarationViewContainer,_cdMode,_skipChangeDetection,ref,rootNodesOrViewContainers,allNodes,_onDestroyCallbacks,subscriptions,contentChildren,viewChildren,renderParent,viewContainerElement,_cdState,ctx,projectableNodes,destroyed,_hasExternalHostElement",
+      "^": "AppView;_files_comp_template$_el_0,_files_comp_template$_el_2,_files_comp_template$_el_4,_files_comp_template$_el_5,_files_comp_template$_el_7,_files_comp_template$_text_8,_files_comp_template$_el_11,_files_comp_template$_el_13,_files_comp_template$_appEl_15,_files_comp_template$_TemplateRef_15_4,_files_comp_template$_NgIf_15_5,_files_comp_template$_el_17,_text_18,_files_comp_template$_el_20,_files_comp_template$_expr_0,_files_comp_template$_expr_1,_files_comp_template$_expr_3,_pipe_agoDateFormat_0_2,clazz,componentType,type,locals,parentInjector,declarationViewContainer,_cdMode,_skipChangeDetection,ref,rootNodesOrViewContainers,allNodes,_onDestroyCallbacks,subscriptions,contentChildren,viewChildren,renderParent,viewContainerElement,_cdState,ctx,projectableNodes,destroyed,_hasExternalHostElement",
       createInternal$1: function(rootSelector) {
-        var doc, t1, _text_1, _text_3, _text_6, t2, _text_9, _text_10, _text_12, _text_14, _text_17, _anchor_18, _text_19, _text_21, _text_22, _text_23;
+        var doc, t1, _text_1, _text_3, _text_6, t2, _text_9, _text_10, _text_12, _text_14, _anchor_15, _text_16, _text_19, _text_21, _text_22, _text_23;
         doc = document;
         t1 = doc.createElement("div");
         this._files_comp_template$_el_0 = t1;
@@ -67251,26 +67354,26 @@
         t1.className = "bubbleContent";
         _text_14 = doc.createTextNode("\n                                ");
         t1.appendChild(_text_14);
-        t1 = doc.createElement("span");
-        this._files_comp_template$_el_15 = t1;
-        t1.setAttribute(this.componentType._contentAttr, "");
-        this._files_comp_template$_el_13.appendChild(this._files_comp_template$_el_15);
-        t1 = this._files_comp_template$_el_15;
-        t1.className = "constructText";
-        t2 = doc.createTextNode("");
-        this._text_16 = t2;
-        t1.appendChild(t2);
-        _text_17 = doc.createTextNode("\n                                ");
-        this._files_comp_template$_el_13.appendChild(_text_17);
-        _anchor_18 = doc.createComment("template bindings={}");
+        _anchor_15 = doc.createComment("template bindings={}");
         t1 = this._files_comp_template$_el_13;
         if (!(t1 == null))
-          t1.appendChild(_anchor_18);
-        t1 = new V.ViewContainer(18, 13, this, _anchor_18, null, null, null, null);
-        this._files_comp_template$_appEl_18 = t1;
+          t1.appendChild(_anchor_15);
+        t1 = new V.ViewContainer(15, 13, this, _anchor_15, null, null, null, null);
+        this._files_comp_template$_appEl_15 = t1;
         t2 = new D.TemplateRef(t1, M.files_comp_template__viewFactory_FilesComp9$closure());
-        this._files_comp_template$_TemplateRef_18_4 = t2;
-        this._files_comp_template$_NgIf_18_5 = new K.NgIf(t2, t1, false);
+        this._files_comp_template$_TemplateRef_15_4 = t2;
+        this._files_comp_template$_NgIf_15_5 = new K.NgIf(t2, t1, false);
+        _text_16 = doc.createTextNode("\n                                ");
+        this._files_comp_template$_el_13.appendChild(_text_16);
+        t1 = doc.createElement("span");
+        this._files_comp_template$_el_17 = t1;
+        t1.setAttribute(this.componentType._contentAttr, "");
+        this._files_comp_template$_el_13.appendChild(this._files_comp_template$_el_17);
+        t1 = this._files_comp_template$_el_17;
+        t1.className = "constructText";
+        t2 = doc.createTextNode("");
+        this._text_18 = t2;
+        t1.appendChild(t2);
         _text_19 = doc.createTextNode("\n                                ");
         this._files_comp_template$_el_13.appendChild(_text_19);
         t1 = doc.createElement("div");
@@ -67292,20 +67395,20 @@
         t1 = H.interceptedTypeCast(t1 == null ? t1 : t1.parentView, "$isViewFilesComp0")._pipe_agoDateFormat_0;
         this._pipe_agoDateFormat_0_2 = Q.pureProxy1(t1.get$transform(t1));
         t1 = this._files_comp_template$_el_0;
-        this.init$3([t1], [t1, _text_1, this._files_comp_template$_el_2, _text_3, this._files_comp_template$_el_4, this._files_comp_template$_el_5, _text_6, this._files_comp_template$_el_7, this._files_comp_template$_text_8, _text_9, _text_10, this._files_comp_template$_el_11, _text_12, this._files_comp_template$_el_13, _text_14, this._files_comp_template$_el_15, this._text_16, _text_17, _anchor_18, _text_19, this._files_comp_template$_el_20, _text_21, _text_22, _text_23], []);
+        this.init$3([t1], [t1, _text_1, this._files_comp_template$_el_2, _text_3, this._files_comp_template$_el_4, this._files_comp_template$_el_5, _text_6, this._files_comp_template$_el_7, this._files_comp_template$_text_8, _text_9, _text_10, this._files_comp_template$_el_11, _text_12, this._files_comp_template$_el_13, _text_14, _anchor_15, _text_16, this._files_comp_template$_el_17, this._text_18, _text_19, this._files_comp_template$_el_20, _text_21, _text_22, _text_23], []);
         return;
       },
       injectorGetInternal$3: function(token, requestNodeIndex, notFoundResult) {
-        if (token === C.Type_TemplateRef_SSn && 18 === requestNodeIndex)
-          return this._files_comp_template$_TemplateRef_18_4;
-        if (token === C.Type_NgIf_43h && 18 === requestNodeIndex)
-          return this._files_comp_template$_NgIf_18_5;
+        if (token === C.Type_TemplateRef_SSn && 15 === requestNodeIndex)
+          return this._files_comp_template$_TemplateRef_15_4;
+        if (token === C.Type_NgIf_43h && 15 === requestNodeIndex)
+          return this._files_comp_template$_NgIf_15_5;
         return notFoundResult;
       },
       detectChangesInternal$0: function() {
-        var valUnwrapper, t1, t2, t3, currVal_0, t4, currVal_1, currVal_2;
+        var valUnwrapper, t1, t2, t3, currVal_0, t4, currVal_1, currVal_3;
         valUnwrapper = new A.ValueUnwrapper(false);
-        t1 = this._files_comp_template$_NgIf_18_5;
+        t1 = this._files_comp_template$_NgIf_15_5;
         if (this.ctx.get$selectedFile().get$isLocked() === true) {
           t2 = this.ctx;
           t3 = this.declarationViewContainer;
@@ -67342,15 +67445,10 @@
         t4 = (t4 == null ? t4 : t4.parentView).get$declarationViewContainer();
         t4 = H.interceptedTypeCast(t4 == null ? t4 : t4.parentView, "$isViewFilesComp0")._pipe_agoDateFormat_0;
         t4.get$transform(t4);
-        t4 = (t2 ? t1 : t1.parentView).get$declarationViewContainer();
-        t4 = (t4 == null ? t4 : t4.parentView).get$declarationViewContainer();
-        if ((t4 == null ? t4 : t4.parentView).get$locals().$index(0, "$implicit") == null)
+        if ((t2 ? t1 : t1.parentView).get$locals().$index(0, "$implicit") == null)
           t4 = null;
-        else {
-          t4 = (t2 ? t1 : t1.parentView).get$declarationViewContainer();
-          t4 = (t4 == null ? t4 : t4.parentView).get$declarationViewContainer();
-          t4 = (t4 == null ? t4 : t4.parentView).get$locals().$index(0, "$implicit").get$ts();
-        }
+        else
+          t4 = (t2 ? t1 : t1.parentView).get$locals().$index(0, "$implicit").get$ts();
         currVal_1 = Q.interpolate0(valUnwrapper.unwrap$1(t3.call$1(t4)));
         if (valUnwrapper.hasWrappedValue || Q.checkBinding(this._files_comp_template$_expr_1, currVal_1)) {
           this._files_comp_template$_text_8.textContent = currVal_1;
@@ -67360,10 +67458,10 @@
         t4 = (t2 ? t1 : t1.parentView).get$declarationViewContainer();
         t4 = (t4 == null ? t4 : t4.parentView).get$declarationViewContainer();
         t4 = (t4 == null ? t4 : t4.parentView).get$locals().$index(0, "$implicit");
-        currVal_2 = Q.interpolate0(t3.constructText$2(t4, (t2 ? t1 : t1.parentView).get$locals().$index(0, "$implicit")));
-        if (Q.checkBinding(this._files_comp_template$_expr_2, currVal_2)) {
-          this._text_16.textContent = currVal_2;
-          this._files_comp_template$_expr_2 = currVal_2;
+        currVal_3 = Q.interpolate0(t3.constructText$2(t4, (t2 ? t1 : t1.parentView).get$locals().$index(0, "$implicit")));
+        if (Q.checkBinding(this._files_comp_template$_expr_3, currVal_3)) {
+          this._text_18.textContent = currVal_3;
+          this._files_comp_template$_expr_3 = currVal_3;
         }
         this.detectViewChildrenChanges$0();
       },
@@ -67541,16 +67639,16 @@
       }
     },
     ViewFilesComp11: {
-      "^": "AppView;_files_comp_template$_el_0,_files_comp_template$_appEl_0,_files_comp_template$_AcxDarkTheme_0_3,_files_comp_template$_MaterialButtonComponent_0_4,_files_comp_template$__ButtonDirective_0_5,_files_comp_template$_expr_7,_files_comp_template$_expr_8,_files_comp_template$_expr_9,_files_comp_template$_expr_10,_files_comp_template$_expr_11,clazz,componentType,type,locals,parentInjector,declarationViewContainer,_cdMode,_skipChangeDetection,ref,rootNodesOrViewContainers,allNodes,_onDestroyCallbacks,subscriptions,contentChildren,viewChildren,renderParent,viewContainerElement,_cdState,ctx,projectableNodes,destroyed,_hasExternalHostElement",
+      "^": "AppView;_files_comp_template$_el_0,_files_comp_template$_appEl_0,_files_comp_template$_AcxDarkTheme_0_3,_files_comp_template$_MaterialButtonComponent_0_4,_files_comp_template$__ButtonDirective_0_5,_files_comp_template$_el_2,_files_comp_template$_el_4,_files_comp_template$_expr_7,_files_comp_template$_expr_8,_files_comp_template$_expr_9,_files_comp_template$_expr_10,_files_comp_template$_expr_11,clazz,componentType,type,locals,parentInjector,declarationViewContainer,_cdMode,_skipChangeDetection,ref,rootNodesOrViewContainers,allNodes,_onDestroyCallbacks,subscriptions,contentChildren,viewChildren,renderParent,viewContainerElement,_cdState,ctx,projectableNodes,destroyed,_hasExternalHostElement",
       createInternal$1: function(rootSelector) {
-        var doc, t1, compView_0, t2, _text_1;
+        var doc, t1, compView_0, t2, _text_1, _text_3, _text_5, _text_6;
         doc = document;
         t1 = doc.createElement("material-button");
         this._files_comp_template$_el_0 = t1;
         t1.setAttribute(this.componentType._contentAttr, "");
         this._files_comp_template$_el_0.setAttribute("animated", "true");
         t1 = this._files_comp_template$_el_0;
-        t1.className = "menuItem";
+        t1.className = "menuItemVers";
         t1.setAttribute("role", "button");
         this._files_comp_template$_appEl_0 = new V.ViewContainer(0, null, this, this._files_comp_template$_el_0, null, null, null, null);
         compView_0 = U.viewFactory_MaterialButtonComponent0(this.injector$1(0), this._files_comp_template$_appEl_0);
@@ -67564,16 +67662,31 @@
         t2 = this._files_comp_template$_appEl_0;
         t2.component = t1;
         t2.componentView = compView_0;
-        _text_1 = doc.createTextNode("\n                                  Approve\n                                ");
-        compView_0.createComp$2([[_text_1]], null);
+        _text_1 = doc.createTextNode("\n                                  ");
+        t1 = doc.createElement("span");
+        this._files_comp_template$_el_2 = t1;
+        t1.setAttribute(this.componentType._contentAttr, "");
+        t1 = this._files_comp_template$_el_2;
+        t1.className = "spanVers";
+        _text_3 = doc.createTextNode(" ");
+        t1.appendChild(_text_3);
+        t1 = doc.createElement("i");
+        this._files_comp_template$_el_4 = t1;
+        t1.setAttribute(this.componentType._contentAttr, "");
+        this._files_comp_template$_el_2.appendChild(this._files_comp_template$_el_4);
+        this._files_comp_template$_el_4.className = "zmdi zmdi-check-circle approve";
+        _text_5 = doc.createTextNode(" ");
+        this._files_comp_template$_el_2.appendChild(_text_5);
+        _text_6 = doc.createTextNode(" Approve\n                                ");
+        compView_0.createComp$2([[_text_1, this._files_comp_template$_el_2, _text_6]], null);
         this.listen$3(this._files_comp_template$_el_0, "click", this.get$_files_comp_template$_handle_click_0_0());
         this.listen$3(this._files_comp_template$_el_0, "blur", this.get$_files_comp_template$_handle_blur_0_1());
         this.listen$3(this._files_comp_template$_el_0, "mouseup", this.get$_files_comp_template$_handle_mouseup_0_2());
         this.listen$3(this._files_comp_template$_el_0, "keypress", this.get$_files_comp_template$_handle_keypress_0_3());
         this.listen$3(this._files_comp_template$_el_0, "focus", this.get$_files_comp_template$_handle_focus_0_4());
         this.listen$3(this._files_comp_template$_el_0, "mousedown", this.get$_files_comp_template$_handle_mousedown_0_5());
-        t2 = this._files_comp_template$_el_0;
-        this.init$3([t2], [t2, _text_1], []);
+        t1 = this._files_comp_template$_el_0;
+        this.init$3([t1], [t1, _text_1, this._files_comp_template$_el_2, _text_3, this._files_comp_template$_el_4, _text_5, _text_6], []);
         return;
       },
       injectorGetInternal$3: function(token, requestNodeIndex, notFoundResult) {
@@ -67581,7 +67694,7 @@
         if (token === C.Type_AcxDarkTheme_Tng) {
           if (typeof requestNodeIndex !== "number")
             return H.iae(requestNodeIndex);
-          t1 = 0 <= requestNodeIndex && requestNodeIndex <= 1;
+          t1 = 0 <= requestNodeIndex && requestNodeIndex <= 6;
         } else
           t1 = false;
         if (t1)
@@ -67589,7 +67702,7 @@
         if (token === C.Type_MaterialButtonComponent_xw8) {
           if (typeof requestNodeIndex !== "number")
             return H.iae(requestNodeIndex);
-          t1 = 0 <= requestNodeIndex && requestNodeIndex <= 1;
+          t1 = 0 <= requestNodeIndex && requestNodeIndex <= 6;
         } else
           t1 = false;
         if (t1)
@@ -67597,7 +67710,7 @@
         if (token === C.Type_ButtonDirective_hH0) {
           if (typeof requestNodeIndex !== "number")
             return H.iae(requestNodeIndex);
-          t1 = 0 <= requestNodeIndex && requestNodeIndex <= 1;
+          t1 = 0 <= requestNodeIndex && requestNodeIndex <= 6;
         } else
           t1 = false;
         if (t1) {
@@ -67692,16 +67805,16 @@
       }
     },
     ViewFilesComp12: {
-      "^": "AppView;_files_comp_template$_el_0,_files_comp_template$_appEl_0,_files_comp_template$_AcxDarkTheme_0_3,_files_comp_template$_MaterialButtonComponent_0_4,_files_comp_template$__ButtonDirective_0_5,_files_comp_template$_expr_7,_files_comp_template$_expr_8,_files_comp_template$_expr_9,_files_comp_template$_expr_10,_files_comp_template$_expr_11,clazz,componentType,type,locals,parentInjector,declarationViewContainer,_cdMode,_skipChangeDetection,ref,rootNodesOrViewContainers,allNodes,_onDestroyCallbacks,subscriptions,contentChildren,viewChildren,renderParent,viewContainerElement,_cdState,ctx,projectableNodes,destroyed,_hasExternalHostElement",
+      "^": "AppView;_files_comp_template$_el_0,_files_comp_template$_appEl_0,_files_comp_template$_AcxDarkTheme_0_3,_files_comp_template$_MaterialButtonComponent_0_4,_files_comp_template$__ButtonDirective_0_5,_files_comp_template$_el_2,_files_comp_template$_el_3,_files_comp_template$_expr_7,_files_comp_template$_expr_8,_files_comp_template$_expr_9,_files_comp_template$_expr_10,_files_comp_template$_expr_11,clazz,componentType,type,locals,parentInjector,declarationViewContainer,_cdMode,_skipChangeDetection,ref,rootNodesOrViewContainers,allNodes,_onDestroyCallbacks,subscriptions,contentChildren,viewChildren,renderParent,viewContainerElement,_cdState,ctx,projectableNodes,destroyed,_hasExternalHostElement",
       createInternal$1: function(rootSelector) {
-        var doc, t1, compView_0, t2, _text_1;
+        var doc, t1, compView_0, t2, _text_1, _text_4, _text_5;
         doc = document;
         t1 = doc.createElement("material-button");
         this._files_comp_template$_el_0 = t1;
         t1.setAttribute(this.componentType._contentAttr, "");
         this._files_comp_template$_el_0.setAttribute("animated", "true");
         t1 = this._files_comp_template$_el_0;
-        t1.className = "menuItem";
+        t1.className = "menuItemVers";
         t1.setAttribute("role", "button");
         this._files_comp_template$_appEl_0 = new V.ViewContainer(0, null, this, this._files_comp_template$_el_0, null, null, null, null);
         compView_0 = U.viewFactory_MaterialButtonComponent0(this.injector$1(0), this._files_comp_template$_appEl_0);
@@ -67715,16 +67828,28 @@
         t2 = this._files_comp_template$_appEl_0;
         t2.component = t1;
         t2.componentView = compView_0;
-        _text_1 = doc.createTextNode("\n                                  Unapprove\n                                ");
-        compView_0.createComp$2([[_text_1]], null);
+        _text_1 = doc.createTextNode("\n                                  ");
+        t1 = doc.createElement("span");
+        this._files_comp_template$_el_2 = t1;
+        t1.setAttribute(this.componentType._contentAttr, "");
+        this._files_comp_template$_el_2.className = "spanVers";
+        t1 = doc.createElement("i");
+        this._files_comp_template$_el_3 = t1;
+        t1.setAttribute(this.componentType._contentAttr, "");
+        this._files_comp_template$_el_2.appendChild(this._files_comp_template$_el_3);
+        this._files_comp_template$_el_3.className = "zmdi zmdi-check-circle nnApprove";
+        _text_4 = doc.createTextNode(" ");
+        this._files_comp_template$_el_2.appendChild(_text_4);
+        _text_5 = doc.createTextNode("\n                                  Unapprove\n                                ");
+        compView_0.createComp$2([[_text_1, this._files_comp_template$_el_2, _text_5]], null);
         this.listen$3(this._files_comp_template$_el_0, "click", this.get$_files_comp_template$_handle_click_0_0());
         this.listen$3(this._files_comp_template$_el_0, "blur", this.get$_files_comp_template$_handle_blur_0_1());
         this.listen$3(this._files_comp_template$_el_0, "mouseup", this.get$_files_comp_template$_handle_mouseup_0_2());
         this.listen$3(this._files_comp_template$_el_0, "keypress", this.get$_files_comp_template$_handle_keypress_0_3());
         this.listen$3(this._files_comp_template$_el_0, "focus", this.get$_files_comp_template$_handle_focus_0_4());
         this.listen$3(this._files_comp_template$_el_0, "mousedown", this.get$_files_comp_template$_handle_mousedown_0_5());
-        t2 = this._files_comp_template$_el_0;
-        this.init$3([t2], [t2, _text_1], []);
+        t1 = this._files_comp_template$_el_0;
+        this.init$3([t1], [t1, _text_1, this._files_comp_template$_el_2, this._files_comp_template$_el_3, _text_4, _text_5], []);
         return;
       },
       injectorGetInternal$3: function(token, requestNodeIndex, notFoundResult) {
@@ -67732,7 +67857,7 @@
         if (token === C.Type_AcxDarkTheme_Tng) {
           if (typeof requestNodeIndex !== "number")
             return H.iae(requestNodeIndex);
-          t1 = 0 <= requestNodeIndex && requestNodeIndex <= 1;
+          t1 = 0 <= requestNodeIndex && requestNodeIndex <= 5;
         } else
           t1 = false;
         if (t1)
@@ -67740,7 +67865,7 @@
         if (token === C.Type_MaterialButtonComponent_xw8) {
           if (typeof requestNodeIndex !== "number")
             return H.iae(requestNodeIndex);
-          t1 = 0 <= requestNodeIndex && requestNodeIndex <= 1;
+          t1 = 0 <= requestNodeIndex && requestNodeIndex <= 5;
         } else
           t1 = false;
         if (t1)
@@ -67748,7 +67873,7 @@
         if (token === C.Type_ButtonDirective_hH0) {
           if (typeof requestNodeIndex !== "number")
             return H.iae(requestNodeIndex);
-          t1 = 0 <= requestNodeIndex && requestNodeIndex <= 1;
+          t1 = 0 <= requestNodeIndex && requestNodeIndex <= 5;
         } else
           t1 = false;
         if (t1) {
@@ -67843,300 +67968,6 @@
       }
     },
     ViewFilesComp13: {
-      "^": "AppView;_files_comp_template$_el_0,_files_comp_template$_appEl_0,_files_comp_template$_AcxDarkTheme_0_3,_files_comp_template$_MaterialButtonComponent_0_4,_files_comp_template$__ButtonDirective_0_5,_files_comp_template$_expr_7,_files_comp_template$_expr_8,_files_comp_template$_expr_9,_files_comp_template$_expr_10,_files_comp_template$_expr_11,clazz,componentType,type,locals,parentInjector,declarationViewContainer,_cdMode,_skipChangeDetection,ref,rootNodesOrViewContainers,allNodes,_onDestroyCallbacks,subscriptions,contentChildren,viewChildren,renderParent,viewContainerElement,_cdState,ctx,projectableNodes,destroyed,_hasExternalHostElement",
-      createInternal$1: function(rootSelector) {
-        var doc, t1, compView_0, t2, _text_1;
-        doc = document;
-        t1 = doc.createElement("material-button");
-        this._files_comp_template$_el_0 = t1;
-        t1.setAttribute(this.componentType._contentAttr, "");
-        this._files_comp_template$_el_0.setAttribute("animated", "true");
-        t1 = this._files_comp_template$_el_0;
-        t1.className = "menuItem";
-        t1.setAttribute("role", "button");
-        this._files_comp_template$_appEl_0 = new V.ViewContainer(0, null, this, this._files_comp_template$_el_0, null, null, null, null);
-        compView_0 = U.viewFactory_MaterialButtonComponent0(this.injector$1(0), this._files_comp_template$_appEl_0);
-        t1 = J.$get$2$x(this.parentInjector, C.OpaqueToken_acxDarkTheme, null);
-        t1 = new F.AcxDarkTheme(t1 == null ? false : t1);
-        this._files_comp_template$_AcxDarkTheme_0_3 = t1;
-        t2 = new Z.ElementRef(null);
-        t2.nativeElement = this._files_comp_template$_el_0;
-        t1 = B.MaterialButtonComponent$(t2, t1, compView_0.ref);
-        this._files_comp_template$_MaterialButtonComponent_0_4 = t1;
-        t2 = this._files_comp_template$_appEl_0;
-        t2.component = t1;
-        t2.componentView = compView_0;
-        _text_1 = doc.createTextNode("\n                                  Lock\n                                ");
-        compView_0.createComp$2([[_text_1]], null);
-        this.listen$3(this._files_comp_template$_el_0, "click", this.get$_files_comp_template$_handle_click_0_0());
-        this.listen$3(this._files_comp_template$_el_0, "blur", this.get$_files_comp_template$_handle_blur_0_1());
-        this.listen$3(this._files_comp_template$_el_0, "mouseup", this.get$_files_comp_template$_handle_mouseup_0_2());
-        this.listen$3(this._files_comp_template$_el_0, "keypress", this.get$_files_comp_template$_handle_keypress_0_3());
-        this.listen$3(this._files_comp_template$_el_0, "focus", this.get$_files_comp_template$_handle_focus_0_4());
-        this.listen$3(this._files_comp_template$_el_0, "mousedown", this.get$_files_comp_template$_handle_mousedown_0_5());
-        t2 = this._files_comp_template$_el_0;
-        this.init$3([t2], [t2, _text_1], []);
-        return;
-      },
-      injectorGetInternal$3: function(token, requestNodeIndex, notFoundResult) {
-        var t1;
-        if (token === C.Type_AcxDarkTheme_Tng) {
-          if (typeof requestNodeIndex !== "number")
-            return H.iae(requestNodeIndex);
-          t1 = 0 <= requestNodeIndex && requestNodeIndex <= 1;
-        } else
-          t1 = false;
-        if (t1)
-          return this._files_comp_template$_AcxDarkTheme_0_3;
-        if (token === C.Type_MaterialButtonComponent_xw8) {
-          if (typeof requestNodeIndex !== "number")
-            return H.iae(requestNodeIndex);
-          t1 = 0 <= requestNodeIndex && requestNodeIndex <= 1;
-        } else
-          t1 = false;
-        if (t1)
-          return this._files_comp_template$_MaterialButtonComponent_0_4;
-        if (token === C.Type_ButtonDirective_hH0) {
-          if (typeof requestNodeIndex !== "number")
-            return H.iae(requestNodeIndex);
-          t1 = 0 <= requestNodeIndex && requestNodeIndex <= 1;
-        } else
-          t1 = false;
-        if (t1) {
-          t1 = this._files_comp_template$__ButtonDirective_0_5;
-          if (t1 == null) {
-            t1 = this._files_comp_template$_MaterialButtonComponent_0_4;
-            this._files_comp_template$__ButtonDirective_0_5 = t1;
-          }
-          return t1;
-        }
-        return notFoundResult;
-      },
-      detectChangesInternal$0: function() {
-        var currVal_7, currVal_8, t1, currVal_9, currVal_10, currVal_11;
-        this.detectContentChildrenChanges$0();
-        currVal_7 = this._files_comp_template$_MaterialButtonComponent_0_4._raised;
-        if (Q.checkBinding(this._files_comp_template$_expr_7, currVal_7)) {
-          this.updateElemClass$3(this._files_comp_template$_el_0, "is-raised", currVal_7);
-          this._files_comp_template$_expr_7 = currVal_7;
-        }
-        currVal_8 = "" + this._files_comp_template$_MaterialButtonComponent_0_4._button_decorator$_disabled;
-        if (Q.checkBinding(this._files_comp_template$_expr_8, currVal_8)) {
-          t1 = this._files_comp_template$_el_0;
-          this.setAttr$3(t1, "aria-disabled", currVal_8);
-          this._files_comp_template$_expr_8 = currVal_8;
-        }
-        t1 = this._files_comp_template$_MaterialButtonComponent_0_4;
-        currVal_9 = t1._computeTabIndex$0();
-        if (Q.checkBinding(this._files_comp_template$_expr_9, currVal_9)) {
-          t1 = this._files_comp_template$_el_0;
-          this.setAttr$3(t1, "tabindex", currVal_9 == null ? null : currVal_9);
-          this._files_comp_template$_expr_9 = currVal_9;
-        }
-        currVal_10 = this._files_comp_template$_MaterialButtonComponent_0_4._button_decorator$_disabled;
-        if (Q.checkBinding(this._files_comp_template$_expr_10, currVal_10)) {
-          this.updateElemClass$3(this._files_comp_template$_el_0, "is-disabled", currVal_10);
-          this._files_comp_template$_expr_10 = currVal_10;
-        }
-        t1 = this._files_comp_template$_MaterialButtonComponent_0_4;
-        currVal_11 = t1._isMouseDown || t1._focused ? 2 : 1;
-        if (Q.checkBinding(this._files_comp_template$_expr_11, currVal_11)) {
-          t1 = this._files_comp_template$_el_0;
-          this.setAttr$3(t1, "elevation", C.JSInt_methods.toString$0(currVal_11));
-          this._files_comp_template$_expr_11 = currVal_11;
-        }
-        this.detectViewChildrenChanges$0();
-      },
-      _files_comp_template$_handle_click_0_0$1: [function($$event) {
-        this._files_comp_template$_appEl_0.componentView.markPathToRootAsCheckOnce$0();
-        J.lock$0$x(this.ctx);
-        this._files_comp_template$_MaterialButtonComponent_0_4.handleClick$1($$event);
-        return true;
-      }, "call$1", "get$_files_comp_template$_handle_click_0_0", 2, 0, 1, 0, []],
-      _files_comp_template$_handle_blur_0_1$1: [function($$event) {
-        var t1;
-        this._files_comp_template$_appEl_0.componentView.markPathToRootAsCheckOnce$0();
-        t1 = this._files_comp_template$_MaterialButtonComponent_0_4;
-        if (t1._clickFocused)
-          t1._clickFocused = false;
-        t1._setFocused$1(false);
-        return true;
-      }, "call$1", "get$_files_comp_template$_handle_blur_0_1", 2, 0, 1, 0, []],
-      _files_comp_template$_handle_mouseup_0_2$1: [function($$event) {
-        this._files_comp_template$_appEl_0.componentView.markPathToRootAsCheckOnce$0();
-        this._files_comp_template$_MaterialButtonComponent_0_4._isMouseDown = false;
-        return true;
-      }, "call$1", "get$_files_comp_template$_handle_mouseup_0_2", 2, 0, 1, 0, []],
-      _files_comp_template$_handle_keypress_0_3$1: [function($$event) {
-        this._files_comp_template$_appEl_0.componentView.markPathToRootAsCheckOnce$0();
-        this._files_comp_template$_MaterialButtonComponent_0_4.handleKeyPress$1($$event);
-        return true;
-      }, "call$1", "get$_files_comp_template$_handle_keypress_0_3", 2, 0, 1, 0, []],
-      _files_comp_template$_handle_focus_0_4$1: [function($$event) {
-        this._files_comp_template$_appEl_0.componentView.markPathToRootAsCheckOnce$0();
-        this._files_comp_template$_MaterialButtonComponent_0_4.onFocus$1(0, $$event);
-        return true;
-      }, "call$1", "get$_files_comp_template$_handle_focus_0_4", 2, 0, 1, 0, []],
-      _files_comp_template$_handle_mousedown_0_5$1: [function($$event) {
-        var t1;
-        this._files_comp_template$_appEl_0.componentView.markPathToRootAsCheckOnce$0();
-        t1 = this._files_comp_template$_MaterialButtonComponent_0_4;
-        t1._clickFocused = true;
-        t1._isMouseDown = true;
-        return true;
-      }, "call$1", "get$_files_comp_template$_handle_mousedown_0_5", 2, 0, 1, 0, []],
-      $asAppView: function() {
-        return [F.FilesComp];
-      }
-    },
-    ViewFilesComp14: {
-      "^": "AppView;_files_comp_template$_el_0,_files_comp_template$_appEl_0,_files_comp_template$_AcxDarkTheme_0_3,_files_comp_template$_MaterialButtonComponent_0_4,_files_comp_template$__ButtonDirective_0_5,_files_comp_template$_expr_7,_files_comp_template$_expr_8,_files_comp_template$_expr_9,_files_comp_template$_expr_10,_files_comp_template$_expr_11,clazz,componentType,type,locals,parentInjector,declarationViewContainer,_cdMode,_skipChangeDetection,ref,rootNodesOrViewContainers,allNodes,_onDestroyCallbacks,subscriptions,contentChildren,viewChildren,renderParent,viewContainerElement,_cdState,ctx,projectableNodes,destroyed,_hasExternalHostElement",
-      createInternal$1: function(rootSelector) {
-        var doc, t1, compView_0, t2, _text_1;
-        doc = document;
-        t1 = doc.createElement("material-button");
-        this._files_comp_template$_el_0 = t1;
-        t1.setAttribute(this.componentType._contentAttr, "");
-        this._files_comp_template$_el_0.setAttribute("animated", "true");
-        t1 = this._files_comp_template$_el_0;
-        t1.className = "menuItem";
-        t1.setAttribute("role", "button");
-        this._files_comp_template$_appEl_0 = new V.ViewContainer(0, null, this, this._files_comp_template$_el_0, null, null, null, null);
-        compView_0 = U.viewFactory_MaterialButtonComponent0(this.injector$1(0), this._files_comp_template$_appEl_0);
-        t1 = J.$get$2$x(this.parentInjector, C.OpaqueToken_acxDarkTheme, null);
-        t1 = new F.AcxDarkTheme(t1 == null ? false : t1);
-        this._files_comp_template$_AcxDarkTheme_0_3 = t1;
-        t2 = new Z.ElementRef(null);
-        t2.nativeElement = this._files_comp_template$_el_0;
-        t1 = B.MaterialButtonComponent$(t2, t1, compView_0.ref);
-        this._files_comp_template$_MaterialButtonComponent_0_4 = t1;
-        t2 = this._files_comp_template$_appEl_0;
-        t2.component = t1;
-        t2.componentView = compView_0;
-        _text_1 = doc.createTextNode("\n                                  Unlock\n                                ");
-        compView_0.createComp$2([[_text_1]], null);
-        this.listen$3(this._files_comp_template$_el_0, "click", this.get$_files_comp_template$_handle_click_0_0());
-        this.listen$3(this._files_comp_template$_el_0, "blur", this.get$_files_comp_template$_handle_blur_0_1());
-        this.listen$3(this._files_comp_template$_el_0, "mouseup", this.get$_files_comp_template$_handle_mouseup_0_2());
-        this.listen$3(this._files_comp_template$_el_0, "keypress", this.get$_files_comp_template$_handle_keypress_0_3());
-        this.listen$3(this._files_comp_template$_el_0, "focus", this.get$_files_comp_template$_handle_focus_0_4());
-        this.listen$3(this._files_comp_template$_el_0, "mousedown", this.get$_files_comp_template$_handle_mousedown_0_5());
-        t2 = this._files_comp_template$_el_0;
-        this.init$3([t2], [t2, _text_1], []);
-        return;
-      },
-      injectorGetInternal$3: function(token, requestNodeIndex, notFoundResult) {
-        var t1;
-        if (token === C.Type_AcxDarkTheme_Tng) {
-          if (typeof requestNodeIndex !== "number")
-            return H.iae(requestNodeIndex);
-          t1 = 0 <= requestNodeIndex && requestNodeIndex <= 1;
-        } else
-          t1 = false;
-        if (t1)
-          return this._files_comp_template$_AcxDarkTheme_0_3;
-        if (token === C.Type_MaterialButtonComponent_xw8) {
-          if (typeof requestNodeIndex !== "number")
-            return H.iae(requestNodeIndex);
-          t1 = 0 <= requestNodeIndex && requestNodeIndex <= 1;
-        } else
-          t1 = false;
-        if (t1)
-          return this._files_comp_template$_MaterialButtonComponent_0_4;
-        if (token === C.Type_ButtonDirective_hH0) {
-          if (typeof requestNodeIndex !== "number")
-            return H.iae(requestNodeIndex);
-          t1 = 0 <= requestNodeIndex && requestNodeIndex <= 1;
-        } else
-          t1 = false;
-        if (t1) {
-          t1 = this._files_comp_template$__ButtonDirective_0_5;
-          if (t1 == null) {
-            t1 = this._files_comp_template$_MaterialButtonComponent_0_4;
-            this._files_comp_template$__ButtonDirective_0_5 = t1;
-          }
-          return t1;
-        }
-        return notFoundResult;
-      },
-      detectChangesInternal$0: function() {
-        var currVal_7, currVal_8, t1, currVal_9, currVal_10, currVal_11;
-        this.detectContentChildrenChanges$0();
-        currVal_7 = this._files_comp_template$_MaterialButtonComponent_0_4._raised;
-        if (Q.checkBinding(this._files_comp_template$_expr_7, currVal_7)) {
-          this.updateElemClass$3(this._files_comp_template$_el_0, "is-raised", currVal_7);
-          this._files_comp_template$_expr_7 = currVal_7;
-        }
-        currVal_8 = "" + this._files_comp_template$_MaterialButtonComponent_0_4._button_decorator$_disabled;
-        if (Q.checkBinding(this._files_comp_template$_expr_8, currVal_8)) {
-          t1 = this._files_comp_template$_el_0;
-          this.setAttr$3(t1, "aria-disabled", currVal_8);
-          this._files_comp_template$_expr_8 = currVal_8;
-        }
-        t1 = this._files_comp_template$_MaterialButtonComponent_0_4;
-        currVal_9 = t1._computeTabIndex$0();
-        if (Q.checkBinding(this._files_comp_template$_expr_9, currVal_9)) {
-          t1 = this._files_comp_template$_el_0;
-          this.setAttr$3(t1, "tabindex", currVal_9 == null ? null : currVal_9);
-          this._files_comp_template$_expr_9 = currVal_9;
-        }
-        currVal_10 = this._files_comp_template$_MaterialButtonComponent_0_4._button_decorator$_disabled;
-        if (Q.checkBinding(this._files_comp_template$_expr_10, currVal_10)) {
-          this.updateElemClass$3(this._files_comp_template$_el_0, "is-disabled", currVal_10);
-          this._files_comp_template$_expr_10 = currVal_10;
-        }
-        t1 = this._files_comp_template$_MaterialButtonComponent_0_4;
-        currVal_11 = t1._isMouseDown || t1._focused ? 2 : 1;
-        if (Q.checkBinding(this._files_comp_template$_expr_11, currVal_11)) {
-          t1 = this._files_comp_template$_el_0;
-          this.setAttr$3(t1, "elevation", C.JSInt_methods.toString$0(currVal_11));
-          this._files_comp_template$_expr_11 = currVal_11;
-        }
-        this.detectViewChildrenChanges$0();
-      },
-      _files_comp_template$_handle_click_0_0$1: [function($$event) {
-        this._files_comp_template$_appEl_0.componentView.markPathToRootAsCheckOnce$0();
-        J.unlock$0$x(this.ctx);
-        this._files_comp_template$_MaterialButtonComponent_0_4.handleClick$1($$event);
-        return true;
-      }, "call$1", "get$_files_comp_template$_handle_click_0_0", 2, 0, 1, 0, []],
-      _files_comp_template$_handle_blur_0_1$1: [function($$event) {
-        var t1;
-        this._files_comp_template$_appEl_0.componentView.markPathToRootAsCheckOnce$0();
-        t1 = this._files_comp_template$_MaterialButtonComponent_0_4;
-        if (t1._clickFocused)
-          t1._clickFocused = false;
-        t1._setFocused$1(false);
-        return true;
-      }, "call$1", "get$_files_comp_template$_handle_blur_0_1", 2, 0, 1, 0, []],
-      _files_comp_template$_handle_mouseup_0_2$1: [function($$event) {
-        this._files_comp_template$_appEl_0.componentView.markPathToRootAsCheckOnce$0();
-        this._files_comp_template$_MaterialButtonComponent_0_4._isMouseDown = false;
-        return true;
-      }, "call$1", "get$_files_comp_template$_handle_mouseup_0_2", 2, 0, 1, 0, []],
-      _files_comp_template$_handle_keypress_0_3$1: [function($$event) {
-        this._files_comp_template$_appEl_0.componentView.markPathToRootAsCheckOnce$0();
-        this._files_comp_template$_MaterialButtonComponent_0_4.handleKeyPress$1($$event);
-        return true;
-      }, "call$1", "get$_files_comp_template$_handle_keypress_0_3", 2, 0, 1, 0, []],
-      _files_comp_template$_handle_focus_0_4$1: [function($$event) {
-        this._files_comp_template$_appEl_0.componentView.markPathToRootAsCheckOnce$0();
-        this._files_comp_template$_MaterialButtonComponent_0_4.onFocus$1(0, $$event);
-        return true;
-      }, "call$1", "get$_files_comp_template$_handle_focus_0_4", 2, 0, 1, 0, []],
-      _files_comp_template$_handle_mousedown_0_5$1: [function($$event) {
-        var t1;
-        this._files_comp_template$_appEl_0.componentView.markPathToRootAsCheckOnce$0();
-        t1 = this._files_comp_template$_MaterialButtonComponent_0_4;
-        t1._clickFocused = true;
-        t1._isMouseDown = true;
-        return true;
-      }, "call$1", "get$_files_comp_template$_handle_mousedown_0_5", 2, 0, 1, 0, []],
-      $asAppView: function() {
-        return [F.FilesComp];
-      }
-    },
-    ViewFilesComp15: {
       "^": "AppView;_files_comp_template$_el_0,_files_comp_template$_appEl_0,_files_comp_template$_ModalComponent_0_3,_files_comp_template$__DeferredContentAware_0_4,_files_comp_template$__Modal_0_5,_files_comp_template$_el_2,_files_comp_template$_appEl_2,_MaterialDialogComponent_2_3,_files_comp_template$_el_4,_files_comp_template$_el_6,_files_comp_template$_text_7,_files_comp_template$_el_9,_files_comp_template$_el_12,_files_comp_template$_el_14,_files_comp_template$_el_17,_files_comp_template$_el_19,_el_21,_files_comp_template$_el_22,_el_27,_files_comp_template$_el_29,_el_31,_files_comp_template$_expr_0,_files_comp_template$_expr_1,_files_comp_template$_expr_2,_files_comp_template$_expr_3,_files_comp_template$_expr_4,clazz,componentType,type,locals,parentInjector,declarationViewContainer,_cdMode,_skipChangeDetection,ref,rootNodesOrViewContainers,allNodes,_onDestroyCallbacks,subscriptions,contentChildren,viewChildren,renderParent,viewContainerElement,_cdState,ctx,projectableNodes,destroyed,_hasExternalHostElement",
       createInternal$1: function(rootSelector) {
         var doc, t1, compView_0, t2, t3, t4, _text_1, compView_2, _text_3, _text_5, _text_8, _text_10, _text_11, _text_13, _text_15, _text_16, _text_18, _text_20, _text_23, _text_24, _text_25, _text_26, _text_28, _text_30, _text_32, _text_33, _text_34, _text_35, _text_36, _text_37;
@@ -68337,7 +68168,7 @@
       },
       detectChangesInternal$0: function() {
         var currVal_0, t1, changed, currVal_1, currVal_4;
-        currVal_0 = this.ctx.get$openFile();
+        currVal_0 = !J.$eq$(this.ctx.get$openFileVersion(), -1);
         if (Q.checkBinding(this._files_comp_template$_expr_0, currVal_0)) {
           this._files_comp_template$_ModalComponent_0_3.set$visible(0, currVal_0);
           this._files_comp_template$_expr_0 = currVal_0;
@@ -68387,19 +68218,17 @@
         return true;
       }, "call$1", "get$_files_comp_template$_handle_click_9_0", 2, 0, 1, 0, []],
       _handle_click_21_0$1: [function($$event) {
-        var t1, t2;
+        var t1;
         this.markPathToRootAsCheckOnce$0();
         t1 = this.ctx;
-        t2 = this.declarationViewContainer;
-        t1.lockAndOpen$1((t2 == null ? t2 : t2.parentView).get$locals().$index(0, "$implicit").get$v());
+        t1.lockAndOpen$1(t1.get$openFileVersion());
         return true;
       }, "call$1", "get$_handle_click_21_0", 2, 0, 1, 0, []],
       _handle_click_29_0$1: [function($$event) {
-        var t1, t2;
+        var t1;
         this.markPathToRootAsCheckOnce$0();
         t1 = this.ctx;
-        t2 = this.declarationViewContainer;
-        t1.openFileLink$1((t2 == null ? t2 : t2.parentView).get$locals().$index(0, "$implicit").get$v());
+        t1.openFileLink$1(t1.get$openFileVersion());
         return true;
       }, "call$1", "get$_handle_click_29_0", 2, 0, 1, 0, []],
       $asAppView: function() {
@@ -74033,7 +73862,7 @@
       var t1, t2, t3;
       t1 = $.renderType_SubjectListComponent;
       if (t1 == null) {
-        t1 = $.appViewUtils.createRenderComponentType$4("", 0, C.ViewEncapsulation_0, C.List_UGJ);
+        t1 = $.appViewUtils.createRenderComponentType$4("", 0, C.ViewEncapsulation_0, C.List_IKG);
         $.renderType_SubjectListComponent = t1;
       }
       t2 = P.LinkedHashMap__makeEmpty();
@@ -76310,7 +76139,7 @@
       B.initReflector111();
     },
     ViewInviteUsersDialogComp0: {
-      "^": "AppView;_invite_dialog_comp_template$_el_1,_invite_dialog_comp_template$_el_3,_invite_dialog_comp_template$_el_5,_invite_dialog_comp_template$_text_7,_invite_dialog_comp_template$_el_10,_invite_dialog_comp_template$_el_12,_invite_dialog_comp_template$_el_14,_invite_dialog_comp_template$_el_16,_invite_dialog_comp_template$_el_19,_invite_dialog_comp_template$_el_21,_invite_dialog_comp_template$_el_22,_invite_dialog_comp_template$_el_24,_invite_dialog_comp_template$_el_26,_invite_dialog_comp_template$_el_27,_invite_dialog_comp_template$_el_30,_el_32,_el_35,_el_38,_el_40,_el_44,_appEl_49,_TemplateRef_49_4,_NgFor_49_5,_el_52,_invite_dialog_comp_template$_el_54,_el_59,_el_63,_el_66,_appEl_66,_DeferredValidator_66_3,_NG_VALIDATORS_66_4,_NgModel_66_5,_NgControl_66_6,_MaterialMultilineInputComponent_66_7,_BaseMaterialInput_66_8,_MaterialInputDefaultValueAccessor_66_9,__ReferenceDirective_66_10,__Focusable_66_11,_el_69,_el_71,_appEl_71,_AcxDarkTheme_71_3,_MaterialButtonComponent_71_4,__ButtonDirective_71_5,_invite_dialog_comp_template$_expr_0,_invite_dialog_comp_template$_expr_2,_invite_dialog_comp_template$_expr_6,_invite_dialog_comp_template$_expr_7,_invite_dialog_comp_template$_expr_15,_invite_dialog_comp_template$_expr_16,_invite_dialog_comp_template$_expr_17,_invite_dialog_comp_template$_expr_18,_invite_dialog_comp_template$_expr_19,_invite_dialog_comp_template$_expr_20,clazz,componentType,type,locals,parentInjector,declarationViewContainer,_cdMode,_skipChangeDetection,ref,rootNodesOrViewContainers,allNodes,_onDestroyCallbacks,subscriptions,contentChildren,viewChildren,renderParent,viewContainerElement,_cdState,ctx,projectableNodes,destroyed,_hasExternalHostElement",
+      "^": "AppView;_invite_dialog_comp_template$_el_1,_invite_dialog_comp_template$_el_3,_invite_dialog_comp_template$_el_5,_invite_dialog_comp_template$_text_7,_invite_dialog_comp_template$_el_10,_invite_dialog_comp_template$_el_12,_invite_dialog_comp_template$_el_14,_invite_dialog_comp_template$_el_16,_invite_dialog_comp_template$_el_19,_invite_dialog_comp_template$_el_21,_invite_dialog_comp_template$_el_22,_invite_dialog_comp_template$_el_24,_invite_dialog_comp_template$_el_26,_invite_dialog_comp_template$_el_27,_invite_dialog_comp_template$_el_30,_el_32,_invite_dialog_comp_template$_el_35,_el_38,_el_40,_el_44,_appEl_49,_TemplateRef_49_4,_NgFor_49_5,_el_52,_invite_dialog_comp_template$_el_54,_el_59,_el_63,_el_66,_appEl_66,_DeferredValidator_66_3,_NG_VALIDATORS_66_4,_NgModel_66_5,_NgControl_66_6,_MaterialMultilineInputComponent_66_7,_BaseMaterialInput_66_8,_MaterialInputDefaultValueAccessor_66_9,__ReferenceDirective_66_10,__Focusable_66_11,_el_69,_el_71,_appEl_71,_AcxDarkTheme_71_3,_MaterialButtonComponent_71_4,__ButtonDirective_71_5,_invite_dialog_comp_template$_expr_0,_invite_dialog_comp_template$_expr_2,_invite_dialog_comp_template$_expr_6,_invite_dialog_comp_template$_expr_7,_invite_dialog_comp_template$_expr_15,_invite_dialog_comp_template$_expr_16,_invite_dialog_comp_template$_expr_17,_invite_dialog_comp_template$_expr_18,_invite_dialog_comp_template$_expr_19,_invite_dialog_comp_template$_expr_20,clazz,componentType,type,locals,parentInjector,declarationViewContainer,_cdMode,_skipChangeDetection,ref,rootNodesOrViewContainers,allNodes,_onDestroyCallbacks,subscriptions,contentChildren,viewChildren,renderParent,viewContainerElement,_cdState,ctx,projectableNodes,destroyed,_hasExternalHostElement",
       createInternal$1: function(rootSelector) {
         var parentRenderNode, t1, _text_0, t2, t3, _text_2, _text_4, _text_6, _text_8, _text_9, _text_11, _text_13, _text_15, _text_17, _text_18, _text_20, _text_23, _text_25, _text_28, _text_29, _text_31, _text_33, _text_34, _text_36, _text_37, _text_39, _text_41, _text_42, _text_43, _text_45, _text_46, _text_47, _text_48, _anchor_49, t4, t5, _text_50, _text_51, _text_53, _text_55, _text_56, _text_57, _text_58, _text_60, _text_61, _text_62, _text_64, _text_65, compView_66, t6, t7, t8, _text_67, _text_68, _text_70, compView_71, _text_72, _text_73, _text_74, subscription_0, subscription_1;
         parentRenderNode = this.initViewRoot$1(this.declarationViewContainer.nativeElement);
@@ -76438,10 +76267,10 @@
         _text_34 = t1.createTextNode(", read, export, modify document and ");
         this._invite_dialog_comp_template$_el_30.appendChild(_text_34);
         t2 = t1.createElement("span");
-        this._el_35 = t2;
+        this._invite_dialog_comp_template$_el_35 = t2;
         t2.setAttribute(this.componentType._contentAttr, "");
-        this._invite_dialog_comp_template$_el_30.appendChild(this._el_35);
-        t2 = this._el_35;
+        this._invite_dialog_comp_template$_el_30.appendChild(this._invite_dialog_comp_template$_el_35);
+        t2 = this._invite_dialog_comp_template$_el_35;
         t2.className = "fStrong";
         _text_36 = t1.createTextNode("invite new people");
         t2.appendChild(_text_36);
@@ -76630,7 +76459,7 @@
         this.listen$3(this._el_71, "keypress", this.get$_handle_keypress_71_3());
         this.listen$3(this._el_71, "focus", this.get$_handle_focus_71_4());
         this.listen$3(this._el_71, "mousedown", this.get$_handle_mousedown_71_5());
-        this.init$3([], [_text_0, this._invite_dialog_comp_template$_el_1, _text_2, this._invite_dialog_comp_template$_el_3, _text_4, this._invite_dialog_comp_template$_el_5, _text_6, this._invite_dialog_comp_template$_text_7, _text_8, _text_9, this._invite_dialog_comp_template$_el_10, _text_11, this._invite_dialog_comp_template$_el_12, _text_13, this._invite_dialog_comp_template$_el_14, _text_15, this._invite_dialog_comp_template$_el_16, _text_17, _text_18, this._invite_dialog_comp_template$_el_19, _text_20, this._invite_dialog_comp_template$_el_21, this._invite_dialog_comp_template$_el_22, _text_23, this._invite_dialog_comp_template$_el_24, _text_25, this._invite_dialog_comp_template$_el_26, this._invite_dialog_comp_template$_el_27, _text_28, _text_29, this._invite_dialog_comp_template$_el_30, _text_31, this._el_32, _text_33, _text_34, this._el_35, _text_36, _text_37, this._el_38, _text_39, this._el_40, _text_41, _text_42, _text_43, this._el_44, _text_45, _text_46, _text_47, _text_48, _anchor_49, _text_50, _text_51, this._el_52, _text_53, this._invite_dialog_comp_template$_el_54, _text_55, _text_56, _text_57, _text_58, this._el_59, _text_60, _text_61, _text_62, this._el_63, _text_64, _text_65, this._el_66, _text_67, _text_68, this._el_69, _text_70, this._el_71, _text_72, _text_73, _text_74], [subscription_0, subscription_1]);
+        this.init$3([], [_text_0, this._invite_dialog_comp_template$_el_1, _text_2, this._invite_dialog_comp_template$_el_3, _text_4, this._invite_dialog_comp_template$_el_5, _text_6, this._invite_dialog_comp_template$_text_7, _text_8, _text_9, this._invite_dialog_comp_template$_el_10, _text_11, this._invite_dialog_comp_template$_el_12, _text_13, this._invite_dialog_comp_template$_el_14, _text_15, this._invite_dialog_comp_template$_el_16, _text_17, _text_18, this._invite_dialog_comp_template$_el_19, _text_20, this._invite_dialog_comp_template$_el_21, this._invite_dialog_comp_template$_el_22, _text_23, this._invite_dialog_comp_template$_el_24, _text_25, this._invite_dialog_comp_template$_el_26, this._invite_dialog_comp_template$_el_27, _text_28, _text_29, this._invite_dialog_comp_template$_el_30, _text_31, this._el_32, _text_33, _text_34, this._invite_dialog_comp_template$_el_35, _text_36, _text_37, this._el_38, _text_39, this._el_40, _text_41, _text_42, _text_43, this._el_44, _text_45, _text_46, _text_47, _text_48, _anchor_49, _text_50, _text_51, this._el_52, _text_53, this._invite_dialog_comp_template$_el_54, _text_55, _text_56, _text_57, _text_58, this._el_59, _text_60, _text_61, _text_62, this._el_63, _text_64, _text_65, this._el_66, _text_67, _text_68, this._el_69, _text_70, this._el_71, _text_72, _text_73, _text_74], [subscription_0, subscription_1]);
         return;
       },
       injectorGetInternal$3: function(token, requestNodeIndex, notFoundResult) {
@@ -77172,6 +77001,14 @@
       },
       get$messages: function() {
         return this._login_comp$_environment.get$messages();
+      },
+      get$loginFacebookUrl: function() {
+        var t1 = $._env === "web" ? "/auth/facebook/" : "http://ec2-54-154-38-51.eu-west-1.compute.amazonaws.com/auth/facebook/d/" + H.S($._port);
+        return this.urlSanitizer.bypassSecurityTrustUrl$1(t1);
+      },
+      get$loginGoogleUrl: function() {
+        var t1 = $._env === "web" ? "/auth/google/" : "http://ec2-54-154-38-51.eu-west-1.compute.amazonaws.com/auth/google/d/" + H.S($._port);
+        return this.urlSanitizer.bypassSecurityTrustUrl$1(t1);
       }
     },
     LoginComp_ngOnInit_closure: {
@@ -77191,7 +77028,7 @@
       }
       t2 = $.uninitialized;
       t3 = P.LinkedHashMap__makeEmpty();
-      t2 = new B.ViewLoginComp0(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, t2, t2, t2, t2, t2, t2, t2, t2, t2, t2, t2, t2, t2, t2, t2, t2, t2, t2, C.Type_ViewLoginComp0_aZM, t1, C.ViewType_1, t3, parentInjector, declarationEl, C.ChangeDetectionStrategy_2, false, null, null, null, H.setRuntimeTypeInfo([], [{func: 1, v: true}]), null, [], [], null, null, C.ChangeDetectorState_0, null, null, false, null);
+      t2 = new B.ViewLoginComp0(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, t2, t2, t2, t2, t2, t2, t2, t2, t2, t2, t2, t2, t2, t2, t2, t2, t2, t2, t2, t2, C.Type_ViewLoginComp0_aZM, t1, C.ViewType_1, t3, parentInjector, declarationEl, C.ChangeDetectionStrategy_2, false, null, null, null, H.setRuntimeTypeInfo([], [{func: 1, v: true}]), null, [], [], null, null, C.ChangeDetectorState_0, null, null, false, null);
       t2.AppView$7(C.Type_ViewLoginComp0_aZM, t1, C.ViewType_1, t3, parentInjector, declarationEl, C.ChangeDetectionStrategy_2, E.LoginComp);
       return t2;
     },
@@ -77233,7 +77070,7 @@
       M.initReflector10();
     },
     ViewLoginComp0: {
-      "^": "AppView;_login_comp_template$_el_0,_login_comp_template$_appEl_0,_login_comp_template$_ModalComponent_0_3,_login_comp_template$__DeferredContentAware_0_4,_login_comp_template$__Modal_0_5,_login_comp_template$_el_2,_login_comp_template$_appEl_2,_login_comp_template$_MaterialDialogComponent_2_3,_login_comp_template$_el_4,_login_comp_template$_appEl_4,_SignupComp_4_3,_login_comp_template$_el_8,_login_comp_template$_appEl_8,_ModalComponent_8_3,__DeferredContentAware_8_4,__Modal_8_5,_login_comp_template$_el_10,_login_comp_template$_appEl_10,_MaterialDialogComponent_10_3,_login_comp_template$_el_12,_login_comp_template$_appEl_12,_ForgotPassComp_12_3,_login_comp_template$_el_16,_login_comp_template$_el_18,_login_comp_template$_el_23,_login_comp_template$_el_25,_login_comp_template$_el_27,_login_comp_template$_el_28,_login_comp_template$_el_30,_login_comp_template$_el_36,_login_comp_template$_el_38,_text_39,_login_comp_template$_el_41,_appEl_43,_TemplateRef_43_4,_NgFor_43_5,_el_46,_el_48,_NgForm_48_2,__ControlContainer_48_3,_login_comp_template$_el_50,_login_comp_template$_el_52,_login_comp_template$_el_55,_login_comp_template$_el_59,_el_61,_login_comp_template$_el_64,_appEl_64,_DeferredValidator_64_3,_NG_VALIDATORS_64_4,_NgModel_64_5,_RequiredValidator_64_6,_NgControl_64_7,_MaterialInputComponent_64_8,_BaseMaterialInput_64_9,_MaterialInputDefaultValueAccessor_64_10,__ReferenceDirective_64_11,__Focusable_64_12,_login_comp_template$_el_67,_login_comp_template$_el_69,_el_72,_login_comp_template$_el_73,_el_76,_appEl_76,_DeferredValidator_76_3,_NG_VALIDATORS_76_4,_NgModel_76_5,_RequiredValidator_76_6,_NgControl_76_7,_MaterialInputComponent_76_8,_BaseMaterialInput_76_9,_MaterialInputDefaultValueAccessor_76_10,__ReferenceDirective_76_11,__Focusable_76_12,_el_79,_appEl_79,_AcxDarkTheme_79_3,_MaterialButtonComponent_79_4,__ButtonDirective_79_5,_el_85,_login_comp_template$_el_86,_login_comp_template$_el_90,_el_92,_el_94,_login_comp_template$_el_97,_el_99,_el_104,_el_106,_login_comp_template$_expr_0,_login_comp_template$_expr_1,_login_comp_template$_expr_2,_login_comp_template$_expr_3,_login_comp_template$_expr_4,_login_comp_template$_expr_5,_login_comp_template$_expr_8,_login_comp_template$_expr_11,_login_comp_template$_expr_12,_login_comp_template$_expr_13,_login_comp_template$_expr_17,_login_comp_template$_expr_18,_login_comp_template$_expr_27,_login_comp_template$_expr_28,_login_comp_template$_expr_29,_login_comp_template$_expr_30,_login_comp_template$_expr_31,_login_comp_template$_expr_32,clazz,componentType,type,locals,parentInjector,declarationViewContainer,_cdMode,_skipChangeDetection,ref,rootNodesOrViewContainers,allNodes,_onDestroyCallbacks,subscriptions,contentChildren,viewChildren,renderParent,viewContainerElement,_cdState,ctx,projectableNodes,destroyed,_hasExternalHostElement",
+      "^": "AppView;_login_comp_template$_el_0,_login_comp_template$_appEl_0,_login_comp_template$_ModalComponent_0_3,_login_comp_template$__DeferredContentAware_0_4,_login_comp_template$__Modal_0_5,_login_comp_template$_el_2,_login_comp_template$_appEl_2,_login_comp_template$_MaterialDialogComponent_2_3,_login_comp_template$_el_4,_login_comp_template$_appEl_4,_SignupComp_4_3,_login_comp_template$_el_8,_login_comp_template$_appEl_8,_ModalComponent_8_3,__DeferredContentAware_8_4,__Modal_8_5,_login_comp_template$_el_10,_login_comp_template$_appEl_10,_MaterialDialogComponent_10_3,_login_comp_template$_el_12,_login_comp_template$_appEl_12,_ForgotPassComp_12_3,_login_comp_template$_el_16,_login_comp_template$_el_18,_el_23,_login_comp_template$_el_25,_login_comp_template$_el_27,_login_comp_template$_el_28,_login_comp_template$_el_30,_login_comp_template$_el_36,_login_comp_template$_el_38,_text_39,_login_comp_template$_el_41,_appEl_43,_TemplateRef_43_4,_NgFor_43_5,_el_46,_el_48,_NgForm_48_2,__ControlContainer_48_3,_login_comp_template$_el_50,_login_comp_template$_el_52,_login_comp_template$_el_55,_login_comp_template$_el_59,_el_61,_login_comp_template$_el_64,_appEl_64,_DeferredValidator_64_3,_NG_VALIDATORS_64_4,_NgModel_64_5,_RequiredValidator_64_6,_NgControl_64_7,_MaterialInputComponent_64_8,_BaseMaterialInput_64_9,_MaterialInputDefaultValueAccessor_64_10,__ReferenceDirective_64_11,__Focusable_64_12,_login_comp_template$_el_67,_login_comp_template$_el_69,_el_72,_login_comp_template$_el_73,_el_76,_appEl_76,_DeferredValidator_76_3,_NG_VALIDATORS_76_4,_NgModel_76_5,_RequiredValidator_76_6,_NgControl_76_7,_MaterialInputComponent_76_8,_BaseMaterialInput_76_9,_MaterialInputDefaultValueAccessor_76_10,__ReferenceDirective_76_11,__Focusable_76_12,_el_79,_appEl_79,_AcxDarkTheme_79_3,_MaterialButtonComponent_79_4,__ButtonDirective_79_5,_el_85,_login_comp_template$_el_86,_login_comp_template$_el_90,_el_92,_el_94,_el_97,_login_comp_template$_el_99,_el_104,_login_comp_template$_el_106,_login_comp_template$_expr_0,_login_comp_template$_expr_1,_login_comp_template$_expr_2,_login_comp_template$_expr_3,_login_comp_template$_expr_4,_login_comp_template$_expr_5,_login_comp_template$_expr_8,_login_comp_template$_expr_11,_login_comp_template$_expr_12,_login_comp_template$_expr_13,_login_comp_template$_expr_17,_login_comp_template$_expr_18,_login_comp_template$_expr_27,_login_comp_template$_expr_28,_login_comp_template$_expr_29,_login_comp_template$_expr_30,_login_comp_template$_expr_31,_expr_32,_expr_33,_expr_34,clazz,componentType,type,locals,parentInjector,declarationViewContainer,_cdMode,_skipChangeDetection,ref,rootNodesOrViewContainers,allNodes,_onDestroyCallbacks,subscriptions,contentChildren,viewChildren,renderParent,viewContainerElement,_cdState,ctx,projectableNodes,destroyed,_hasExternalHostElement",
       createInternal$1: function(rootSelector) {
         var parentRenderNode, doc, t1, compView_0, t2, t3, t4, t5, t6, t7, _text_1, compView_2, _text_3, compView_4, t8, t9, t10, _text_5, _text_6, _text_7, compView_8, _text_9, compView_10, _text_11, compView_12, _text_13, _text_14, _text_15, _text_17, _text_19, _text_20, _text_21, _text_22, _text_24, _text_26, _text_29, _text_31, _text_32, _text_33, _text_34, _text_35, _text_37, _text_40, _text_42, _anchor_43, _text_44, _text_45, _text_47, _text_49, _text_51, _text_53, _text_54, _text_56, _text_57, _text_58, _text_60, _text_62, _text_63, compView_64, _text_65, _text_66, _text_68, _text_70, _text_71, _text_74, _text_75, compView_76, _text_77, _text_78, compView_79, _text_80, _text_81, _text_82, _text_83, _text_84, _text_87, _text_88, _text_89, _text_91, _text_93, _text_95, _text_96, _text_98, _text_100, _text_101, _text_102, _text_103, _text_105, _text_107, _text_108, _text_109, subscription_0, subscription_1, subscription_2, subscription_3;
         parentRenderNode = this.initViewRoot$1(this.declarationViewContainer.nativeElement);
@@ -77359,17 +77196,17 @@
         _text_22 = doc.createTextNode("\n    ");
         this._login_comp_template$_el_18.appendChild(_text_22);
         t1 = doc.createElement("div");
-        this._login_comp_template$_el_23 = t1;
+        this._el_23 = t1;
         t1.setAttribute(this.componentType._contentAttr, "");
-        this._login_comp_template$_el_18.appendChild(this._login_comp_template$_el_23);
-        t1 = this._login_comp_template$_el_23;
+        this._login_comp_template$_el_18.appendChild(this._el_23);
+        t1 = this._el_23;
         t1.className = "title";
         _text_24 = doc.createTextNode("\n      ");
         t1.appendChild(_text_24);
         t1 = doc.createElement("div");
         this._login_comp_template$_el_25 = t1;
         t1.setAttribute(this.componentType._contentAttr, "");
-        this._login_comp_template$_el_23.appendChild(this._login_comp_template$_el_25);
+        this._el_23.appendChild(this._login_comp_template$_el_25);
         t1 = this._login_comp_template$_el_25;
         t1.className = "welcome";
         _text_26 = doc.createTextNode("\n        ");
@@ -77393,9 +77230,9 @@
         _text_31 = doc.createTextNode("Welcome to Share.Place");
         this._login_comp_template$_el_30.appendChild(_text_31);
         _text_32 = doc.createTextNode("\n      ");
-        this._login_comp_template$_el_23.appendChild(_text_32);
+        this._el_23.appendChild(_text_32);
         _text_33 = doc.createTextNode("\n    ");
-        this._login_comp_template$_el_23.appendChild(_text_33);
+        this._el_23.appendChild(_text_33);
         _text_34 = doc.createTextNode("\n\n  ");
         this._login_comp_template$_el_18.appendChild(_text_34);
         _text_35 = doc.createTextNode("\n\n  ");
@@ -77666,9 +77503,8 @@
         this._login_comp_template$_el_90.appendChild(this._el_92);
         t1 = this._el_92;
         t1.className = "btn-social btn-facebook";
-        t1.setAttribute("href", "/auth/facebook/");
         _text_93 = doc.createTextNode("\n        ");
-        this._el_92.appendChild(_text_93);
+        t1.appendChild(_text_93);
         t1 = doc.createElement("span");
         this._el_94 = t1;
         t1.setAttribute(this.componentType._contentAttr, "");
@@ -77679,21 +77515,20 @@
         _text_96 = doc.createTextNode("\n\n      ");
         this._login_comp_template$_el_90.appendChild(_text_96);
         t1 = doc.createElement("a");
-        this._login_comp_template$_el_97 = t1;
+        this._el_97 = t1;
         t1.setAttribute(this.componentType._contentAttr, "");
-        this._login_comp_template$_el_90.appendChild(this._login_comp_template$_el_97);
-        t1 = this._login_comp_template$_el_97;
+        this._login_comp_template$_el_90.appendChild(this._el_97);
+        t1 = this._el_97;
         t1.className = "btn-social btn-google";
-        t1.setAttribute("href", "/auth/google");
         _text_98 = doc.createTextNode("\n        ");
-        this._login_comp_template$_el_97.appendChild(_text_98);
+        t1.appendChild(_text_98);
         t1 = doc.createElement("span");
-        this._el_99 = t1;
+        this._login_comp_template$_el_99 = t1;
         t1.setAttribute(this.componentType._contentAttr, "");
-        this._login_comp_template$_el_97.appendChild(this._el_99);
-        this._el_99.className = "fa fa-google-plus";
+        this._el_97.appendChild(this._login_comp_template$_el_99);
+        this._login_comp_template$_el_99.className = "fa fa-google-plus";
         _text_100 = doc.createTextNode(" Sign in with Google\n      ");
-        this._login_comp_template$_el_97.appendChild(_text_100);
+        this._el_97.appendChild(_text_100);
         _text_101 = doc.createTextNode("\n    ");
         this._login_comp_template$_el_90.appendChild(_text_101);
         _text_102 = doc.createTextNode("\n  ");
@@ -77707,10 +77542,10 @@
         _text_105 = doc.createTextNode("\n    ");
         this._el_104.appendChild(_text_105);
         t1 = doc.createElement("div");
-        this._el_106 = t1;
+        this._login_comp_template$_el_106 = t1;
         t1.setAttribute(this.componentType._contentAttr, "");
-        this._el_104.appendChild(this._el_106);
-        t1 = this._el_106;
+        this._el_104.appendChild(this._login_comp_template$_el_106);
+        t1 = this._login_comp_template$_el_106;
         t1.className = "copy";
         _text_107 = doc.createTextNode("Copyright (c) 2017 share.place. All rights reserved.");
         t1.appendChild(_text_107);
@@ -77742,7 +77577,7 @@
         this.listen$3(this._el_79, "keypress", this.get$_handle_keypress_79_4());
         this.listen$3(this._el_79, "focus", this.get$_handle_focus_79_5());
         this.listen$3(this._el_79, "mousedown", this.get$_handle_mousedown_79_6());
-        this.init$3([], [this._login_comp_template$_el_0, _text_1, this._login_comp_template$_el_2, _text_3, this._login_comp_template$_el_4, _text_5, _text_6, _text_7, this._login_comp_template$_el_8, _text_9, this._login_comp_template$_el_10, _text_11, this._login_comp_template$_el_12, _text_13, _text_14, _text_15, this._login_comp_template$_el_16, _text_17, this._login_comp_template$_el_18, _text_19, _text_20, _text_21, _text_22, this._login_comp_template$_el_23, _text_24, this._login_comp_template$_el_25, _text_26, this._login_comp_template$_el_27, this._login_comp_template$_el_28, _text_29, this._login_comp_template$_el_30, _text_31, _text_32, _text_33, _text_34, _text_35, this._login_comp_template$_el_36, _text_37, this._login_comp_template$_el_38, this._text_39, _text_40, this._login_comp_template$_el_41, _text_42, _anchor_43, _text_44, _text_45, this._el_46, _text_47, this._el_48, _text_49, this._login_comp_template$_el_50, _text_51, this._login_comp_template$_el_52, _text_53, _text_54, this._login_comp_template$_el_55, _text_56, _text_57, _text_58, this._login_comp_template$_el_59, _text_60, this._el_61, _text_62, _text_63, this._login_comp_template$_el_64, _text_65, _text_66, this._login_comp_template$_el_67, _text_68, this._login_comp_template$_el_69, _text_70, _text_71, this._el_72, this._login_comp_template$_el_73, _text_74, _text_75, this._el_76, _text_77, _text_78, this._el_79, _text_80, _text_81, _text_82, _text_83, _text_84, this._el_85, this._login_comp_template$_el_86, _text_87, _text_88, _text_89, this._login_comp_template$_el_90, _text_91, this._el_92, _text_93, this._el_94, _text_95, _text_96, this._login_comp_template$_el_97, _text_98, this._el_99, _text_100, _text_101, _text_102, _text_103, this._el_104, _text_105, this._el_106, _text_107, _text_108, _text_109], [subscription_0, subscription_1, subscription_2, subscription_3]);
+        this.init$3([], [this._login_comp_template$_el_0, _text_1, this._login_comp_template$_el_2, _text_3, this._login_comp_template$_el_4, _text_5, _text_6, _text_7, this._login_comp_template$_el_8, _text_9, this._login_comp_template$_el_10, _text_11, this._login_comp_template$_el_12, _text_13, _text_14, _text_15, this._login_comp_template$_el_16, _text_17, this._login_comp_template$_el_18, _text_19, _text_20, _text_21, _text_22, this._el_23, _text_24, this._login_comp_template$_el_25, _text_26, this._login_comp_template$_el_27, this._login_comp_template$_el_28, _text_29, this._login_comp_template$_el_30, _text_31, _text_32, _text_33, _text_34, _text_35, this._login_comp_template$_el_36, _text_37, this._login_comp_template$_el_38, this._text_39, _text_40, this._login_comp_template$_el_41, _text_42, _anchor_43, _text_44, _text_45, this._el_46, _text_47, this._el_48, _text_49, this._login_comp_template$_el_50, _text_51, this._login_comp_template$_el_52, _text_53, _text_54, this._login_comp_template$_el_55, _text_56, _text_57, _text_58, this._login_comp_template$_el_59, _text_60, this._el_61, _text_62, _text_63, this._login_comp_template$_el_64, _text_65, _text_66, this._login_comp_template$_el_67, _text_68, this._login_comp_template$_el_69, _text_70, _text_71, this._el_72, this._login_comp_template$_el_73, _text_74, _text_75, this._el_76, _text_77, _text_78, this._el_79, _text_80, _text_81, _text_82, _text_83, _text_84, this._el_85, this._login_comp_template$_el_86, _text_87, _text_88, _text_89, this._login_comp_template$_el_90, _text_91, this._el_92, _text_93, this._el_94, _text_95, _text_96, this._el_97, _text_98, this._login_comp_template$_el_99, _text_100, _text_101, _text_102, _text_103, this._el_104, _text_105, this._login_comp_template$_el_106, _text_107, _text_108, _text_109], [subscription_0, subscription_1, subscription_2, subscription_3]);
         return;
       },
       injectorGetInternal$3: function(token, requestNodeIndex, notFoundResult) {
@@ -77976,7 +77811,7 @@
         return notFoundResult;
       },
       detectChangesInternal$0: function() {
-        var currVal_0, currVal_2, currVal_5, currVal_11, changes, changed, currVal_17, t1, currVal_1, currVal_3, currVal_4, currVal_8, currVal_28, currVal_29, currVal_30, currVal_31, currVal_32;
+        var currVal_0, currVal_2, currVal_5, currVal_11, changes, changed, currVal_17, t1, currVal_1, currVal_3, currVal_4, currVal_8, currVal_28, currVal_29, currVal_30, currVal_31, currVal_32, currVal_33, currVal_34;
         currVal_0 = this.ctx.get$showSignupDialog();
         if (Q.checkBinding(this._login_comp_template$_expr_0, currVal_0)) {
           this._login_comp_template$_ModalComponent_0_3.set$visible(0, currVal_0);
@@ -78101,10 +77936,20 @@
         }
         t1 = this._MaterialButtonComponent_79_4;
         currVal_32 = t1._isMouseDown || t1._focused ? 2 : 1;
-        if (Q.checkBinding(this._login_comp_template$_expr_32, currVal_32)) {
+        if (Q.checkBinding(this._expr_32, currVal_32)) {
           t1 = this._el_79;
           this.setAttr$3(t1, "elevation", C.JSInt_methods.toString$0(currVal_32));
-          this._login_comp_template$_expr_32 = currVal_32;
+          this._expr_32 = currVal_32;
+        }
+        currVal_33 = Q.interpolate0(this.ctx.get$loginFacebookUrl());
+        if (Q.checkBinding(this._expr_33, currVal_33)) {
+          this._el_92.href = $.appViewUtils.get$sanitizer().sanitizeUrl$1(currVal_33);
+          this._expr_33 = currVal_33;
+        }
+        currVal_34 = Q.interpolate0(this.ctx.get$loginGoogleUrl());
+        if (Q.checkBinding(this._expr_34, currVal_34)) {
+          this._el_97.href = $.appViewUtils.get$sanitizer().sanitizeUrl$1(currVal_34);
+          this._expr_34 = currVal_34;
         }
         this.detectViewChildrenChanges$0();
         if (this._cdState === C.ChangeDetectorState_0)
@@ -78521,12 +78366,12 @@
       var t1, t2, t3;
       t1 = $.renderType_ProfileComp;
       if (t1 == null) {
-        t1 = $.appViewUtils.createRenderComponentType$4("", 0, C.ViewEncapsulation_0, C.List_Oye);
+        t1 = $.appViewUtils.createRenderComponentType$4("", 0, C.ViewEncapsulation_0, C.List_mT8);
         $.renderType_ProfileComp = t1;
       }
       t2 = $.uninitialized;
       t3 = P.LinkedHashMap__makeEmpty();
-      t2 = new L.ViewProfileComp0(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, t2, t2, t2, t2, t2, t2, t2, t2, t2, t2, t2, t2, t2, t2, t2, t2, t2, t2, t2, t2, t2, t2, t2, t2, t2, t2, t2, t2, t2, t2, t2, C.Type_ViewProfileComp0_mgB, t1, C.ViewType_1, t3, parentInjector, declarationEl, C.ChangeDetectionStrategy_2, false, null, null, null, H.setRuntimeTypeInfo([], [{func: 1, v: true}]), null, [], [], null, null, C.ChangeDetectorState_0, null, null, false, null);
+      t2 = new L.ViewProfileComp0(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, t2, t2, t2, t2, t2, t2, t2, t2, t2, t2, t2, t2, t2, t2, t2, t2, t2, t2, t2, t2, t2, t2, t2, t2, t2, t2, t2, t2, t2, t2, t2, C.Type_ViewProfileComp0_mgB, t1, C.ViewType_1, t3, parentInjector, declarationEl, C.ChangeDetectionStrategy_2, false, null, null, null, H.setRuntimeTypeInfo([], [{func: 1, v: true}]), null, [], [], null, null, C.ChangeDetectorState_0, null, null, false, null);
       t2.AppView$7(C.Type_ViewProfileComp0_mgB, t1, C.ViewType_1, t3, parentInjector, declarationEl, C.ChangeDetectionStrategy_2, O.ProfileComp);
       return t2;
     },
@@ -78566,9 +78411,9 @@
       M.initReflector10();
     },
     ViewProfileComp0: {
-      "^": "AppView;_profile_comp_template$_el_0,_profile_comp_template$_el_2,_profile_comp_template$_el_4,_profile_comp_template$_el_7,_profile_comp_template$_el_9,_NgForm_9_2,__ControlContainer_9_3,_profile_comp_template$_el_11,_profile_comp_template$_el_14,_profile_comp_template$_el_16,_profile_comp_template$_el_20,_profile_comp_template$_el_24,_profile_comp_template$_el_26,_text_27,_profile_comp_template$_el_29,_appEl_31,_TemplateRef_31_4,_NgFor_31_5,_el_34,_profile_comp_template$_el_36,_NgForm_36_2,__ControlContainer_36_3,_profile_comp_template$_el_38,_profile_comp_template$_el_40,_profile_comp_template$_el_43,_profile_comp_template$_appEl_43,_DeferredValidator_43_3,_NG_VALIDATORS_43_4,_NgModel_43_5,_RequiredValidator_43_6,_NgControl_43_7,_MaterialInputComponent_43_8,_BaseMaterialInput_43_9,_MaterialInputDefaultValueAccessor_43_10,__ReferenceDirective_43_11,__Focusable_43_12,_profile_comp_template$_el_45,_profile_comp_template$_el_48,_profile_comp_template$_el_50,_profile_comp_template$_el_53,_appEl_53,_DeferredValidator_53_3,_NG_VALIDATORS_53_4,_NgModel_53_5,_NgControl_53_6,_MaterialInputComponent_53_7,_BaseMaterialInput_53_8,_MaterialInputDefaultValueAccessor_53_9,__ReferenceDirective_53_10,__Focusable_53_11,_el_56,_profile_comp_template$_el_59,_profile_comp_template$_el_61,_profile_comp_template$_el_63,_profile_comp_template$_el_66,_el_68,_profile_comp_template$_el_71,_profile_comp_template$_appEl_71,_profile_comp_template$_DeferredValidator_71_3,_profile_comp_template$_NG_VALIDATORS_71_4,_profile_comp_template$_NgModel_71_5,_profile_comp_template$_NgControl_71_6,_profile_comp_template$_MaterialInputComponent_71_7,_profile_comp_template$_BaseMaterialInput_71_8,_profile_comp_template$_MaterialInputDefaultValueAccessor_71_9,_profile_comp_template$__ReferenceDirective_71_10,_profile_comp_template$__Focusable_71_11,_el_74,_profile_comp_template$_el_76,_profile_comp_template$_el_79,_profile_comp_template$_appEl_79,_DeferredValidator_79_3,_NG_VALIDATORS_79_4,_NgModel_79_5,_NgControl_79_6,_MaterialInputComponent_79_7,_BaseMaterialInput_79_8,_MaterialInputDefaultValueAccessor_79_9,__ReferenceDirective_79_10,__Focusable_79_11,_profile_comp_template$_el_84,_profile_comp_template$_el_86,_el_89,_appEl_89,_DeferredValidator_89_3,_NG_VALIDATORS_89_4,_NgModel_89_5,_RequiredValidator_89_6,_NgControl_89_7,_MaterialInputComponent_89_8,_BaseMaterialInput_89_9,_MaterialInputDefaultValueAccessor_89_10,__ReferenceDirective_89_11,__Focusable_89_12,_profile_comp_template$_el_94,_el_96,_el_98,_profile_comp_template$_el_99,_el_102,_text_103,_profile_comp_template$_el_106,_el_108,_el_113,_el_115,_el_116,_el_119,_text_120,_el_123,_el_125,_el_129,_el_131,_el_134,_appEl_134,_DeferredValidator_134_3,_NG_VALIDATORS_134_4,_NgModel_134_5,_NgControl_134_6,_MaterialInputComponent_134_7,_BaseMaterialInput_134_8,_MaterialInputDefaultValueAccessor_134_9,__ReferenceDirective_134_10,__Focusable_134_11,_el_138,_el_141,_el_143,_appEl_143,_AcxDarkTheme_143_3,_MaterialButtonComponent_143_4,__ButtonDirective_143_5,_profile_comp_template$_expr_5,_profile_comp_template$_expr_6,_profile_comp_template$_expr_8,_profile_comp_template$_expr_9,_profile_comp_template$_expr_14,_profile_comp_template$_expr_15,_profile_comp_template$_expr_16,_profile_comp_template$_expr_17,_profile_comp_template$_expr_19,_profile_comp_template$_expr_20,_profile_comp_template$_expr_23,_profile_comp_template$_expr_25,_profile_comp_template$_expr_26,_profile_comp_template$_expr_30,_profile_comp_template$_expr_31,_profile_comp_template$_expr_34,_expr_37,_profile_comp_template$_expr_38,_profile_comp_template$_expr_39,_profile_comp_template$_expr_40,_profile_comp_template$_expr_41,_profile_comp_template$_expr_42,_profile_comp_template$_expr_43,_profile_comp_template$_expr_44,_expr_47,_expr_55,_expr_56,_expr_57,_expr_58,_expr_59,_expr_60,clazz,componentType,type,locals,parentInjector,declarationViewContainer,_cdMode,_skipChangeDetection,ref,rootNodesOrViewContainers,allNodes,_onDestroyCallbacks,subscriptions,contentChildren,viewChildren,renderParent,viewContainerElement,_cdState,ctx,projectableNodes,destroyed,_hasExternalHostElement",
+      "^": "AppView;_profile_comp_template$_el_0,_profile_comp_template$_el_2,_profile_comp_template$_el_4,_profile_comp_template$_el_7,_profile_comp_template$_el_9,_NgForm_9_2,__ControlContainer_9_3,_profile_comp_template$_el_11,_profile_comp_template$_el_14,_profile_comp_template$_el_16,_profile_comp_template$_el_19,_profile_comp_template$_el_23,_profile_comp_template$_el_27,_profile_comp_template$_el_29,_text_30,_profile_comp_template$_el_32,_appEl_34,_TemplateRef_34_4,_NgFor_34_5,_profile_comp_template$_el_37,_profile_comp_template$_el_39,_NgForm_39_2,__ControlContainer_39_3,_profile_comp_template$_el_41,_profile_comp_template$_el_43,_profile_comp_template$_el_46,_appEl_46,_DeferredValidator_46_3,_NG_VALIDATORS_46_4,_NgModel_46_5,_RequiredValidator_46_6,_NgControl_46_7,_MaterialInputComponent_46_8,_BaseMaterialInput_46_9,_MaterialInputDefaultValueAccessor_46_10,__ReferenceDirective_46_11,__Focusable_46_12,_profile_comp_template$_el_48,_profile_comp_template$_el_51,_profile_comp_template$_el_53,_el_56,_appEl_56,_DeferredValidator_56_3,_NG_VALIDATORS_56_4,_NgModel_56_5,_NgControl_56_6,_MaterialInputComponent_56_7,_BaseMaterialInput_56_8,_MaterialInputDefaultValueAccessor_56_9,__ReferenceDirective_56_10,__Focusable_56_11,_profile_comp_template$_el_59,_profile_comp_template$_el_62,_profile_comp_template$_el_64,_profile_comp_template$_el_66,_profile_comp_template$_el_69,_profile_comp_template$_el_71,_el_74,_appEl_74,_DeferredValidator_74_3,_NG_VALIDATORS_74_4,_NgModel_74_5,_NgControl_74_6,_MaterialInputComponent_74_7,_BaseMaterialInput_74_8,_MaterialInputDefaultValueAccessor_74_9,__ReferenceDirective_74_10,__Focusable_74_11,_profile_comp_template$_el_77,_profile_comp_template$_el_79,_profile_comp_template$_el_82,_profile_comp_template$_appEl_82,_profile_comp_template$_DeferredValidator_82_3,_profile_comp_template$_NG_VALIDATORS_82_4,_profile_comp_template$_NgModel_82_5,_profile_comp_template$_NgControl_82_6,_profile_comp_template$_MaterialInputComponent_82_7,_profile_comp_template$_BaseMaterialInput_82_8,_profile_comp_template$_MaterialInputDefaultValueAccessor_82_9,_profile_comp_template$__ReferenceDirective_82_10,_profile_comp_template$__Focusable_82_11,_el_87,_el_89,_profile_comp_template$_el_92,_appEl_92,_DeferredValidator_92_3,_NG_VALIDATORS_92_4,_NgModel_92_5,_RequiredValidator_92_6,_NgControl_92_7,_MaterialInputComponent_92_8,_BaseMaterialInput_92_9,_MaterialInputDefaultValueAccessor_92_10,__ReferenceDirective_92_11,__Focusable_92_12,_profile_comp_template$_el_97,_profile_comp_template$_el_99,_profile_comp_template$_el_101,_profile_comp_template$_el_102,_el_105,_text_106,_profile_comp_template$_el_109,_el_111,_el_116,_el_118,_el_119,_el_122,_text_123,_el_126,_el_128,_el_132,_el_134,_el_137,_appEl_137,_DeferredValidator_137_3,_NG_VALIDATORS_137_4,_NgModel_137_5,_NgControl_137_6,_MaterialInputComponent_137_7,_BaseMaterialInput_137_8,_MaterialInputDefaultValueAccessor_137_9,__ReferenceDirective_137_10,__Focusable_137_11,_el_141,_el_144,_el_146,_appEl_146,_AcxDarkTheme_146_3,_MaterialButtonComponent_146_4,__ButtonDirective_146_5,_profile_comp_template$_expr_5,_profile_comp_template$_expr_6,_profile_comp_template$_expr_8,_profile_comp_template$_expr_9,_profile_comp_template$_expr_14,_profile_comp_template$_expr_15,_profile_comp_template$_expr_16,_profile_comp_template$_expr_17,_profile_comp_template$_expr_19,_profile_comp_template$_expr_20,_profile_comp_template$_expr_23,_profile_comp_template$_expr_25,_profile_comp_template$_expr_26,_profile_comp_template$_expr_30,_profile_comp_template$_expr_31,_profile_comp_template$_expr_34,_expr_37,_expr_38,_profile_comp_template$_expr_39,_profile_comp_template$_expr_40,_profile_comp_template$_expr_41,_profile_comp_template$_expr_42,_profile_comp_template$_expr_43,_profile_comp_template$_expr_44,_expr_47,_expr_55,_expr_56,_expr_57,_expr_58,_expr_59,_expr_60,clazz,componentType,type,locals,parentInjector,declarationViewContainer,_cdMode,_skipChangeDetection,ref,rootNodesOrViewContainers,allNodes,_onDestroyCallbacks,subscriptions,contentChildren,viewChildren,renderParent,viewContainerElement,_cdState,ctx,projectableNodes,destroyed,_hasExternalHostElement",
       createInternal$1: function(rootSelector) {
-        var parentRenderNode, doc, t1, _text_1, _text_3, _text_5, _text_6, _text_8, t2, _text_10, _text_12, _text_13, _text_15, _text_17, _text_18, _text_19, _text_21, _text_22, _text_23, _text_25, t3, _text_28, _text_30, _anchor_31, t4, t5, _text_32, _text_33, _text_35, _text_37, _text_39, _text_41, _text_42, compView_43, _text_44, _text_46, _text_47, _text_49, _text_51, _text_52, compView_53, _text_54, _text_55, _text_57, _text_58, _text_60, _text_62, _text_64, _text_65, _text_67, _text_69, _text_70, compView_71, _text_72, _text_73, _text_75, _text_77, _text_78, compView_79, _text_80, _text_81, _text_82, _text_83, _text_85, _text_87, _text_88, compView_89, _text_90, _text_91, _text_92, _text_93, _text_95, _text_97, _text_100, _text_101, _text_104, _text_105, _text_107, _text_109, _text_110, _text_111, _text_112, _text_114, _text_117, _text_118, _text_121, _text_122, _text_124, _text_126, _text_127, _text_128, _text_130, _text_132, _text_133, compView_134, _text_135, _text_136, _text_137, _text_139, _text_140, _text_142, compView_143, _text_144, _text_145, _text_146, subscription_0, subscription_1, subscription_2, subscription_3, subscription_4, subscription_5, subscription_6, subscription_7, subscription_8, subscription_9, subscription_10, subscription_11, subscription_12;
+        var parentRenderNode, doc, t1, _text_1, _text_3, _text_5, _text_6, _text_8, t2, _text_10, _text_12, _text_13, _text_15, _text_17, _text_18, _text_20, _text_21, _text_22, _text_24, _text_25, _text_26, _text_28, t3, _text_31, _text_33, _anchor_34, t4, t5, _text_35, _text_36, _text_38, _text_40, _text_42, _text_44, _text_45, compView_46, _text_47, _text_49, _text_50, _text_52, _text_54, _text_55, compView_56, _text_57, _text_58, _text_60, _text_61, _text_63, _text_65, _text_67, _text_68, _text_70, _text_72, _text_73, compView_74, _text_75, _text_76, _text_78, _text_80, _text_81, compView_82, _text_83, _text_84, _text_85, _text_86, _text_88, _text_90, _text_91, compView_92, _text_93, _text_94, _text_95, _text_96, _text_98, _text_100, _text_103, _text_104, _text_107, _text_108, _text_110, _text_112, _text_113, _text_114, _text_115, _text_117, _text_120, _text_121, _text_124, _text_125, _text_127, _text_129, _text_130, _text_131, _text_133, _text_135, _text_136, compView_137, _text_138, _text_139, _text_140, _text_142, _text_143, _text_145, compView_146, _text_147, _text_148, _text_149, subscription_0, subscription_1, subscription_2, subscription_3, subscription_4, subscription_5, subscription_6, subscription_7, subscription_8, subscription_9, subscription_10, subscription_11, subscription_12;
         parentRenderNode = this.initViewRoot$1(this.declarationViewContainer.nativeElement);
         doc = document;
         t1 = doc.createElement("div");
@@ -78586,7 +78431,7 @@
         this._profile_comp_template$_el_0.appendChild(this._profile_comp_template$_el_2);
         t1 = this._profile_comp_template$_el_2;
         t1.className = "header";
-        _text_3 = doc.createTextNode("\n\n    ");
+        _text_3 = doc.createTextNode("\n    ");
         t1.appendChild(_text_3);
         t1 = doc.createElement("div");
         this._profile_comp_template$_el_4 = t1;
@@ -78603,7 +78448,7 @@
         t1.setAttribute(this.componentType._contentAttr, "");
         this._profile_comp_template$_el_2.appendChild(this._profile_comp_template$_el_7);
         this._profile_comp_template$_el_7.className = "close";
-        _text_8 = doc.createTextNode("\n\n    ");
+        _text_8 = doc.createTextNode("\n\n\n    ");
         this._profile_comp_template$_el_2.appendChild(_text_8);
         t1 = doc.createElement("form");
         this._profile_comp_template$_el_9 = t1;
@@ -78628,672 +78473,682 @@
         this._profile_comp_template$_el_11.appendChild(_text_12);
         _text_13 = doc.createTextNode("\n        ");
         this._profile_comp_template$_el_11.appendChild(_text_13);
-        t2 = doc.createElement("img");
+        t2 = doc.createElement("div");
         this._profile_comp_template$_el_14 = t2;
         t2.setAttribute(this.componentType._contentAttr, "");
         this._profile_comp_template$_el_11.appendChild(this._profile_comp_template$_el_14);
-        this._profile_comp_template$_el_14.setAttribute("title", "");
-        _text_15 = doc.createTextNode("\n        ");
-        this._profile_comp_template$_el_11.appendChild(_text_15);
-        t2 = doc.createElement("span");
+        t2 = this._profile_comp_template$_el_14;
+        t2.className = "spinAnim";
+        _text_15 = doc.createTextNode("  ");
+        t2.appendChild(_text_15);
+        t2 = doc.createElement("img");
         this._profile_comp_template$_el_16 = t2;
         t2.setAttribute(this.componentType._contentAttr, "");
-        this._profile_comp_template$_el_11.appendChild(this._profile_comp_template$_el_16);
-        t2 = this._profile_comp_template$_el_16;
-        t2.className = "spprof";
-        _text_17 = doc.createTextNode("Change");
-        t2.appendChild(_text_17);
-        _text_18 = doc.createTextNode("\n      ");
+        this._profile_comp_template$_el_14.appendChild(this._profile_comp_template$_el_16);
+        this._profile_comp_template$_el_16.setAttribute("title", "");
+        _text_17 = doc.createTextNode("\n\n        ");
+        this._profile_comp_template$_el_11.appendChild(_text_17);
+        _text_18 = doc.createTextNode("\n\n        ");
         this._profile_comp_template$_el_11.appendChild(_text_18);
-        _text_19 = doc.createTextNode("\n      ");
-        this._profile_comp_template$_el_9.appendChild(_text_19);
-        t2 = doc.createElement("input");
-        this._profile_comp_template$_el_20 = t2;
+        t2 = doc.createElement("span");
+        this._profile_comp_template$_el_19 = t2;
         t2.setAttribute(this.componentType._contentAttr, "");
-        this._profile_comp_template$_el_9.appendChild(this._profile_comp_template$_el_20);
-        t2 = this._profile_comp_template$_el_20;
+        this._profile_comp_template$_el_11.appendChild(this._profile_comp_template$_el_19);
+        t2 = this._profile_comp_template$_el_19;
+        t2.className = "spprof";
+        _text_20 = doc.createTextNode("Change");
+        t2.appendChild(_text_20);
+        _text_21 = doc.createTextNode("\n      ");
+        this._profile_comp_template$_el_11.appendChild(_text_21);
+        _text_22 = doc.createTextNode("\n      ");
+        this._profile_comp_template$_el_9.appendChild(_text_22);
+        t2 = doc.createElement("input");
+        this._profile_comp_template$_el_23 = t2;
+        t2.setAttribute(this.componentType._contentAttr, "");
+        this._profile_comp_template$_el_9.appendChild(this._profile_comp_template$_el_23);
+        t2 = this._profile_comp_template$_el_23;
         t2.className = "uploadFile";
         t2.setAttribute("id", "filename");
-        this._profile_comp_template$_el_20.setAttribute("name", "avatar");
-        this._profile_comp_template$_el_20.setAttribute("style", "opacity: 0");
-        this._profile_comp_template$_el_20.setAttribute("type", "file");
-        _text_21 = doc.createTextNode("\n    ");
-        this._profile_comp_template$_el_9.appendChild(_text_21);
-        _text_22 = doc.createTextNode("\n\n  ");
-        this._profile_comp_template$_el_2.appendChild(_text_22);
-        _text_23 = doc.createTextNode("\n\n  ");
-        this._profile_comp_template$_el_0.appendChild(_text_23);
+        this._profile_comp_template$_el_23.setAttribute("name", "avatar");
+        this._profile_comp_template$_el_23.setAttribute("style", "opacity: 0");
+        this._profile_comp_template$_el_23.setAttribute("type", "file");
+        _text_24 = doc.createTextNode("\n    ");
+        this._profile_comp_template$_el_9.appendChild(_text_24);
+        _text_25 = doc.createTextNode("\n\n  ");
+        this._profile_comp_template$_el_2.appendChild(_text_25);
+        _text_26 = doc.createTextNode("\n\n  ");
+        this._profile_comp_template$_el_0.appendChild(_text_26);
         t2 = doc.createElement("div");
-        this._profile_comp_template$_el_24 = t2;
+        this._profile_comp_template$_el_27 = t2;
         t2.setAttribute(this.componentType._contentAttr, "");
-        this._profile_comp_template$_el_0.appendChild(this._profile_comp_template$_el_24);
-        t2 = this._profile_comp_template$_el_24;
+        this._profile_comp_template$_el_0.appendChild(this._profile_comp_template$_el_27);
+        t2 = this._profile_comp_template$_el_27;
         t2.className = "panels";
-        _text_25 = doc.createTextNode("\n    ");
-        t2.appendChild(_text_25);
-        t2 = doc.createElement("div");
-        this._profile_comp_template$_el_26 = t2;
-        t2.setAttribute(this.componentType._contentAttr, "");
-        this._profile_comp_template$_el_24.appendChild(this._profile_comp_template$_el_26);
-        t2 = this._profile_comp_template$_el_26;
-        t2.className = "error";
-        t3 = doc.createTextNode("");
-        this._text_27 = t3;
-        t2.appendChild(t3);
         _text_28 = doc.createTextNode("\n    ");
-        this._profile_comp_template$_el_24.appendChild(_text_28);
+        t2.appendChild(_text_28);
         t2 = doc.createElement("div");
         this._profile_comp_template$_el_29 = t2;
         t2.setAttribute(this.componentType._contentAttr, "");
-        this._profile_comp_template$_el_24.appendChild(this._profile_comp_template$_el_29);
+        this._profile_comp_template$_el_27.appendChild(this._profile_comp_template$_el_29);
         t2 = this._profile_comp_template$_el_29;
+        t2.className = "error";
+        t3 = doc.createTextNode("");
+        this._text_30 = t3;
+        t2.appendChild(t3);
+        _text_31 = doc.createTextNode("\n    ");
+        this._profile_comp_template$_el_27.appendChild(_text_31);
+        t2 = doc.createElement("div");
+        this._profile_comp_template$_el_32 = t2;
+        t2.setAttribute(this.componentType._contentAttr, "");
+        this._profile_comp_template$_el_27.appendChild(this._profile_comp_template$_el_32);
+        t2 = this._profile_comp_template$_el_32;
         t2.className = "messages";
-        _text_30 = doc.createTextNode("\n      ");
-        t2.appendChild(_text_30);
-        _anchor_31 = doc.createComment("template bindings={}");
-        t2 = this._profile_comp_template$_el_29;
+        _text_33 = doc.createTextNode("\n      ");
+        t2.appendChild(_text_33);
+        _anchor_34 = doc.createComment("template bindings={}");
+        t2 = this._profile_comp_template$_el_32;
         if (!(t2 == null))
-          t2.appendChild(_anchor_31);
-        t2 = new V.ViewContainer(31, 29, this, _anchor_31, null, null, null, null);
-        this._appEl_31 = t2;
+          t2.appendChild(_anchor_34);
+        t2 = new V.ViewContainer(34, 32, this, _anchor_34, null, null, null, null);
+        this._appEl_34 = t2;
         t3 = new D.TemplateRef(t2, L.profile_comp_template__viewFactory_ProfileComp1$closure());
-        this._TemplateRef_31_4 = t3;
+        this._TemplateRef_34_4 = t3;
         t4 = this.parentInjector;
         t5 = J.getInterceptor$x(t4);
-        this._NgFor_31_5 = new R.NgFor(t2, t3, t5.$get$1(t4, C.Type_IterableDiffers_gQA), this.ref, null, null, null);
-        _text_32 = doc.createTextNode("\n    ");
-        this._profile_comp_template$_el_29.appendChild(_text_32);
-        _text_33 = doc.createTextNode("\n\n    ");
-        this._profile_comp_template$_el_24.appendChild(_text_33);
+        this._NgFor_34_5 = new R.NgFor(t2, t3, t5.$get$1(t4, C.Type_IterableDiffers_gQA), this.ref, null, null, null);
+        _text_35 = doc.createTextNode("\n    ");
+        this._profile_comp_template$_el_32.appendChild(_text_35);
+        _text_36 = doc.createTextNode("\n\n    ");
+        this._profile_comp_template$_el_27.appendChild(_text_36);
         t2 = doc.createElement("div");
-        this._el_34 = t2;
+        this._profile_comp_template$_el_37 = t2;
         t2.setAttribute(this.componentType._contentAttr, "");
-        this._profile_comp_template$_el_24.appendChild(this._el_34);
-        t2 = this._el_34;
+        this._profile_comp_template$_el_27.appendChild(this._profile_comp_template$_el_37);
+        t2 = this._profile_comp_template$_el_37;
         t2.className = "local";
-        _text_35 = doc.createTextNode("\n      ");
-        t2.appendChild(_text_35);
+        _text_38 = doc.createTextNode("\n      ");
+        t2.appendChild(_text_38);
         t2 = doc.createElement("form");
-        this._profile_comp_template$_el_36 = t2;
+        this._profile_comp_template$_el_39 = t2;
         t2.setAttribute(this.componentType._contentAttr, "");
-        this._el_34.appendChild(this._profile_comp_template$_el_36);
-        this._profile_comp_template$_el_36.setAttribute("action", "#");
-        this._profile_comp_template$_el_36.setAttribute("method", "post");
+        this._profile_comp_template$_el_37.appendChild(this._profile_comp_template$_el_39);
+        this._profile_comp_template$_el_39.setAttribute("action", "#");
+        this._profile_comp_template$_el_39.setAttribute("method", "post");
         t1 = new L.NgForm(null, B.EventEmitter$(false, t1), B.EventEmitter$(false, t1), null);
         t1.form = Z.ControlGroup$(P.LinkedHashMap__makeEmpty(), null, X.composeValidators(null), X.composeAsyncValidators(null));
-        this._NgForm_36_2 = t1;
-        _text_37 = doc.createTextNode("\n\n        ");
-        this._profile_comp_template$_el_36.appendChild(_text_37);
+        this._NgForm_39_2 = t1;
+        _text_40 = doc.createTextNode("\n\n        ");
+        this._profile_comp_template$_el_39.appendChild(_text_40);
         t1 = doc.createElement("div");
-        this._profile_comp_template$_el_38 = t1;
+        this._profile_comp_template$_el_41 = t1;
         t1.setAttribute(this.componentType._contentAttr, "");
-        this._profile_comp_template$_el_36.appendChild(this._profile_comp_template$_el_38);
-        t1 = this._profile_comp_template$_el_38;
+        this._profile_comp_template$_el_39.appendChild(this._profile_comp_template$_el_41);
+        t1 = this._profile_comp_template$_el_41;
         t1.className = "email";
-        _text_39 = doc.createTextNode("\n          ");
-        t1.appendChild(_text_39);
-        t1 = doc.createElement("div");
-        this._profile_comp_template$_el_40 = t1;
-        t1.setAttribute(this.componentType._contentAttr, "");
-        this._profile_comp_template$_el_38.appendChild(this._profile_comp_template$_el_40);
-        t1 = this._profile_comp_template$_el_40;
-        t1.className = "label";
-        _text_41 = doc.createTextNode("Email");
-        t1.appendChild(_text_41);
         _text_42 = doc.createTextNode("\n          ");
-        this._profile_comp_template$_el_38.appendChild(_text_42);
-        t1 = doc.createElement("material-input");
+        t1.appendChild(_text_42);
+        t1 = doc.createElement("div");
         this._profile_comp_template$_el_43 = t1;
         t1.setAttribute(this.componentType._contentAttr, "");
-        this._profile_comp_template$_el_38.appendChild(this._profile_comp_template$_el_43);
+        this._profile_comp_template$_el_41.appendChild(this._profile_comp_template$_el_43);
         t1 = this._profile_comp_template$_el_43;
+        t1.className = "label";
+        _text_44 = doc.createTextNode("Email");
+        t1.appendChild(_text_44);
+        _text_45 = doc.createTextNode("\n          ");
+        this._profile_comp_template$_el_41.appendChild(_text_45);
+        t1 = doc.createElement("material-input");
+        this._profile_comp_template$_el_46 = t1;
+        t1.setAttribute(this.componentType._contentAttr, "");
+        this._profile_comp_template$_el_41.appendChild(this._profile_comp_template$_el_46);
+        t1 = this._profile_comp_template$_el_46;
         t1.className = "mail iconM themeable";
         t1.setAttribute("label", "example@domain.com");
-        this._profile_comp_template$_el_43.setAttribute("required", "");
-        this._profile_comp_template$_el_43.setAttribute("tabIndex", "-1");
-        this._profile_comp_template$_el_43.setAttribute("type", "email");
-        this._profile_comp_template$_appEl_43 = new V.ViewContainer(43, 38, this, this._profile_comp_template$_el_43, null, null, null, null);
-        compView_43 = Q.viewFactory_MaterialInputComponent0(this.injector$1(43), this._profile_comp_template$_appEl_43);
+        this._profile_comp_template$_el_46.setAttribute("required", "");
+        this._profile_comp_template$_el_46.setAttribute("tabIndex", "-1");
+        this._profile_comp_template$_el_46.setAttribute("type", "email");
+        this._appEl_46 = new V.ViewContainer(46, 41, this, this._profile_comp_template$_el_46, null, null, null, null);
+        compView_46 = Q.viewFactory_MaterialInputComponent0(this.injector$1(46), this._appEl_46);
         t1 = [null];
         t2 = new L.DeferredValidator(new P._LinkedIdentityHashSet(0, null, null, null, null, null, 0, t1), null);
-        this._DeferredValidator_43_3 = t2;
+        this._DeferredValidator_46_3 = t2;
         t2 = [t2, B.validators0_Validators_required$closure()];
-        this._NG_VALIDATORS_43_4 = t2;
+        this._NG_VALIDATORS_46_4 = t2;
         t2 = new U.NgModel(t2, null, Z.Control$(null, null, null), false, B.EventEmitter$(false, null), null, null, null, null);
         t2.valueAccessor = X.selectValueAccessor(t2, null);
-        this._NgModel_43_5 = t2;
-        this._RequiredValidator_43_6 = new B.RequiredValidator();
-        this._NgControl_43_7 = t2;
-        t2 = L.MaterialInputComponent$("email", t2, compView_43.ref, this._DeferredValidator_43_3);
-        this._MaterialInputComponent_43_8 = t2;
-        this._BaseMaterialInput_43_9 = t2;
-        this._MaterialInputDefaultValueAccessor_43_10 = Z.MaterialInputDefaultValueAccessor$(t2, this._NgControl_43_7);
-        t2 = this._profile_comp_template$_appEl_43;
-        t2.component = this._MaterialInputComponent_43_8;
-        t2.componentView = compView_43;
-        compView_43.createComp$2([[]], null);
-        _text_44 = doc.createTextNode("\n          ");
-        this._profile_comp_template$_el_38.appendChild(_text_44);
-        t2 = doc.createElement("div");
-        this._profile_comp_template$_el_45 = t2;
-        t2.setAttribute(this.componentType._contentAttr, "");
-        this._profile_comp_template$_el_38.appendChild(this._profile_comp_template$_el_45);
-        this._profile_comp_template$_el_45.className = "changeMail";
-        _text_46 = doc.createTextNode("\n        ");
-        this._profile_comp_template$_el_38.appendChild(_text_46);
-        _text_47 = doc.createTextNode("\n\n        ");
-        this._profile_comp_template$_el_36.appendChild(_text_47);
+        this._NgModel_46_5 = t2;
+        this._RequiredValidator_46_6 = new B.RequiredValidator();
+        this._NgControl_46_7 = t2;
+        t2 = L.MaterialInputComponent$("email", t2, compView_46.ref, this._DeferredValidator_46_3);
+        this._MaterialInputComponent_46_8 = t2;
+        this._BaseMaterialInput_46_9 = t2;
+        this._MaterialInputDefaultValueAccessor_46_10 = Z.MaterialInputDefaultValueAccessor$(t2, this._NgControl_46_7);
+        t2 = this._appEl_46;
+        t2.component = this._MaterialInputComponent_46_8;
+        t2.componentView = compView_46;
+        compView_46.createComp$2([[]], null);
+        _text_47 = doc.createTextNode("\n          ");
+        this._profile_comp_template$_el_41.appendChild(_text_47);
         t2 = doc.createElement("div");
         this._profile_comp_template$_el_48 = t2;
         t2.setAttribute(this.componentType._contentAttr, "");
-        this._profile_comp_template$_el_36.appendChild(this._profile_comp_template$_el_48);
-        t2 = this._profile_comp_template$_el_48;
-        t2.className = "pass";
-        _text_49 = doc.createTextNode("\n          ");
-        t2.appendChild(_text_49);
+        this._profile_comp_template$_el_41.appendChild(this._profile_comp_template$_el_48);
+        this._profile_comp_template$_el_48.className = "changeMail";
+        _text_49 = doc.createTextNode("\n        ");
+        this._profile_comp_template$_el_41.appendChild(_text_49);
+        _text_50 = doc.createTextNode("\n\n        ");
+        this._profile_comp_template$_el_39.appendChild(_text_50);
         t2 = doc.createElement("div");
-        this._profile_comp_template$_el_50 = t2;
+        this._profile_comp_template$_el_51 = t2;
         t2.setAttribute(this.componentType._contentAttr, "");
-        this._profile_comp_template$_el_48.appendChild(this._profile_comp_template$_el_50);
-        t2 = this._profile_comp_template$_el_50;
-        t2.className = "label";
-        _text_51 = doc.createTextNode("Password");
-        t2.appendChild(_text_51);
+        this._profile_comp_template$_el_39.appendChild(this._profile_comp_template$_el_51);
+        t2 = this._profile_comp_template$_el_51;
+        t2.className = "pass";
         _text_52 = doc.createTextNode("\n          ");
-        this._profile_comp_template$_el_48.appendChild(_text_52);
-        t2 = doc.createElement("material-input");
+        t2.appendChild(_text_52);
+        t2 = doc.createElement("div");
         this._profile_comp_template$_el_53 = t2;
         t2.setAttribute(this.componentType._contentAttr, "");
-        this._profile_comp_template$_el_48.appendChild(this._profile_comp_template$_el_53);
+        this._profile_comp_template$_el_51.appendChild(this._profile_comp_template$_el_53);
         t2 = this._profile_comp_template$_el_53;
-        t2.className = "password themeable";
-        t2.setAttribute("tabIndex", "-1");
-        this._profile_comp_template$_el_53.setAttribute("type", "password");
-        this._appEl_53 = new V.ViewContainer(53, 48, this, this._profile_comp_template$_el_53, null, null, null, null);
-        compView_53 = Q.viewFactory_MaterialInputComponent0(this.injector$1(53), this._appEl_53);
-        t2 = new L.DeferredValidator(new P._LinkedIdentityHashSet(0, null, null, null, null, null, 0, t1), null);
-        this._DeferredValidator_53_3 = t2;
-        t2 = [t2];
-        this._NG_VALIDATORS_53_4 = t2;
-        t2 = new U.NgModel(t2, null, Z.Control$(null, null, null), false, B.EventEmitter$(false, null), null, null, null, null);
-        t2.valueAccessor = X.selectValueAccessor(t2, null);
-        this._NgModel_53_5 = t2;
-        this._NgControl_53_6 = t2;
-        t2 = L.MaterialInputComponent$("password", t2, compView_53.ref, this._DeferredValidator_53_3);
-        this._MaterialInputComponent_53_7 = t2;
-        this._BaseMaterialInput_53_8 = t2;
-        this._MaterialInputDefaultValueAccessor_53_9 = Z.MaterialInputDefaultValueAccessor$(t2, this._NgControl_53_6);
-        t2 = this._appEl_53;
-        t2.component = this._MaterialInputComponent_53_7;
-        t2.componentView = compView_53;
-        compView_53.createComp$2([[]], null);
-        _text_54 = doc.createTextNode("\n        ");
-        this._profile_comp_template$_el_48.appendChild(_text_54);
-        _text_55 = doc.createTextNode("\n\n        ");
-        this._profile_comp_template$_el_36.appendChild(_text_55);
-        t2 = doc.createElement("div");
+        t2.className = "label";
+        _text_54 = doc.createTextNode("Password");
+        t2.appendChild(_text_54);
+        _text_55 = doc.createTextNode("\n          ");
+        this._profile_comp_template$_el_51.appendChild(_text_55);
+        t2 = doc.createElement("material-input");
         this._el_56 = t2;
         t2.setAttribute(this.componentType._contentAttr, "");
-        this._profile_comp_template$_el_36.appendChild(this._el_56);
+        this._profile_comp_template$_el_51.appendChild(this._el_56);
         t2 = this._el_56;
-        t2.className = "changePass";
-        _text_57 = doc.createTextNode("Change\n          password\n        ");
-        t2.appendChild(_text_57);
+        t2.className = "password themeable";
+        t2.setAttribute("tabIndex", "-1");
+        this._el_56.setAttribute("type", "password");
+        this._appEl_56 = new V.ViewContainer(56, 51, this, this._el_56, null, null, null, null);
+        compView_56 = Q.viewFactory_MaterialInputComponent0(this.injector$1(56), this._appEl_56);
+        t2 = new L.DeferredValidator(new P._LinkedIdentityHashSet(0, null, null, null, null, null, 0, t1), null);
+        this._DeferredValidator_56_3 = t2;
+        t2 = [t2];
+        this._NG_VALIDATORS_56_4 = t2;
+        t2 = new U.NgModel(t2, null, Z.Control$(null, null, null), false, B.EventEmitter$(false, null), null, null, null, null);
+        t2.valueAccessor = X.selectValueAccessor(t2, null);
+        this._NgModel_56_5 = t2;
+        this._NgControl_56_6 = t2;
+        t2 = L.MaterialInputComponent$("password", t2, compView_56.ref, this._DeferredValidator_56_3);
+        this._MaterialInputComponent_56_7 = t2;
+        this._BaseMaterialInput_56_8 = t2;
+        this._MaterialInputDefaultValueAccessor_56_9 = Z.MaterialInputDefaultValueAccessor$(t2, this._NgControl_56_6);
+        t2 = this._appEl_56;
+        t2.component = this._MaterialInputComponent_56_7;
+        t2.componentView = compView_56;
+        compView_56.createComp$2([[]], null);
+        _text_57 = doc.createTextNode("\n        ");
+        this._profile_comp_template$_el_51.appendChild(_text_57);
         _text_58 = doc.createTextNode("\n\n        ");
-        this._profile_comp_template$_el_36.appendChild(_text_58);
+        this._profile_comp_template$_el_39.appendChild(_text_58);
         t2 = doc.createElement("div");
         this._profile_comp_template$_el_59 = t2;
         t2.setAttribute(this.componentType._contentAttr, "");
-        this._profile_comp_template$_el_36.appendChild(this._profile_comp_template$_el_59);
+        this._profile_comp_template$_el_39.appendChild(this._profile_comp_template$_el_59);
         t2 = this._profile_comp_template$_el_59;
-        t2.className = "passwordZone";
-        _text_60 = doc.createTextNode("\n          ");
-        t2.appendChild(_text_60);
-        t2 = doc.createElement("fieldset");
-        this._profile_comp_template$_el_61 = t2;
-        t2.setAttribute(this.componentType._contentAttr, "");
-        this._profile_comp_template$_el_59.appendChild(this._profile_comp_template$_el_61);
-        _text_62 = doc.createTextNode("\n            ");
-        this._profile_comp_template$_el_61.appendChild(_text_62);
-        t2 = doc.createElement("legend");
-        this._profile_comp_template$_el_63 = t2;
-        t2.setAttribute(this.componentType._contentAttr, "");
-        this._profile_comp_template$_el_61.appendChild(this._profile_comp_template$_el_63);
-        t2 = this._profile_comp_template$_el_63;
         t2.className = "changePass";
-        _text_64 = doc.createTextNode("Change password");
-        t2.appendChild(_text_64);
-        _text_65 = doc.createTextNode("\n\n            ");
-        this._profile_comp_template$_el_61.appendChild(_text_65);
+        _text_60 = doc.createTextNode("Change\n          password\n        ");
+        t2.appendChild(_text_60);
+        _text_61 = doc.createTextNode("\n\n        ");
+        this._profile_comp_template$_el_39.appendChild(_text_61);
         t2 = doc.createElement("div");
+        this._profile_comp_template$_el_62 = t2;
+        t2.setAttribute(this.componentType._contentAttr, "");
+        this._profile_comp_template$_el_39.appendChild(this._profile_comp_template$_el_62);
+        t2 = this._profile_comp_template$_el_62;
+        t2.className = "passwordZone";
+        _text_63 = doc.createTextNode("\n          ");
+        t2.appendChild(_text_63);
+        t2 = doc.createElement("fieldset");
+        this._profile_comp_template$_el_64 = t2;
+        t2.setAttribute(this.componentType._contentAttr, "");
+        this._profile_comp_template$_el_62.appendChild(this._profile_comp_template$_el_64);
+        _text_65 = doc.createTextNode("\n            ");
+        this._profile_comp_template$_el_64.appendChild(_text_65);
+        t2 = doc.createElement("legend");
         this._profile_comp_template$_el_66 = t2;
         t2.setAttribute(this.componentType._contentAttr, "");
-        this._profile_comp_template$_el_61.appendChild(this._profile_comp_template$_el_66);
+        this._profile_comp_template$_el_64.appendChild(this._profile_comp_template$_el_66);
         t2 = this._profile_comp_template$_el_66;
-        t2.className = "pass";
-        _text_67 = doc.createTextNode("\n              ");
+        t2.className = "changePass";
+        _text_67 = doc.createTextNode("Change password");
         t2.appendChild(_text_67);
+        _text_68 = doc.createTextNode("\n\n            ");
+        this._profile_comp_template$_el_64.appendChild(_text_68);
         t2 = doc.createElement("div");
-        this._el_68 = t2;
+        this._profile_comp_template$_el_69 = t2;
         t2.setAttribute(this.componentType._contentAttr, "");
-        this._profile_comp_template$_el_66.appendChild(this._el_68);
-        t2 = this._el_68;
-        t2.className = "label";
-        _text_69 = doc.createTextNode("Old Password");
-        t2.appendChild(_text_69);
+        this._profile_comp_template$_el_64.appendChild(this._profile_comp_template$_el_69);
+        t2 = this._profile_comp_template$_el_69;
+        t2.className = "pass";
         _text_70 = doc.createTextNode("\n              ");
-        this._profile_comp_template$_el_66.appendChild(_text_70);
-        t2 = doc.createElement("material-input");
+        t2.appendChild(_text_70);
+        t2 = doc.createElement("div");
         this._profile_comp_template$_el_71 = t2;
         t2.setAttribute(this.componentType._contentAttr, "");
-        this._profile_comp_template$_el_66.appendChild(this._profile_comp_template$_el_71);
+        this._profile_comp_template$_el_69.appendChild(this._profile_comp_template$_el_71);
         t2 = this._profile_comp_template$_el_71;
-        t2.className = "password themeable";
-        t2.setAttribute("tabIndex", "-1");
-        this._profile_comp_template$_el_71.setAttribute("type", "password");
-        this._profile_comp_template$_appEl_71 = new V.ViewContainer(71, 66, this, this._profile_comp_template$_el_71, null, null, null, null);
-        compView_71 = Q.viewFactory_MaterialInputComponent0(this.injector$1(71), this._profile_comp_template$_appEl_71);
-        t2 = new L.DeferredValidator(new P._LinkedIdentityHashSet(0, null, null, null, null, null, 0, t1), null);
-        this._profile_comp_template$_DeferredValidator_71_3 = t2;
-        t2 = [t2];
-        this._profile_comp_template$_NG_VALIDATORS_71_4 = t2;
-        t2 = new U.NgModel(t2, null, Z.Control$(null, null, null), false, B.EventEmitter$(false, null), null, null, null, null);
-        t2.valueAccessor = X.selectValueAccessor(t2, null);
-        this._profile_comp_template$_NgModel_71_5 = t2;
-        this._profile_comp_template$_NgControl_71_6 = t2;
-        t2 = L.MaterialInputComponent$("password", t2, compView_71.ref, this._profile_comp_template$_DeferredValidator_71_3);
-        this._profile_comp_template$_MaterialInputComponent_71_7 = t2;
-        this._profile_comp_template$_BaseMaterialInput_71_8 = t2;
-        this._profile_comp_template$_MaterialInputDefaultValueAccessor_71_9 = Z.MaterialInputDefaultValueAccessor$(t2, this._profile_comp_template$_NgControl_71_6);
-        t2 = this._profile_comp_template$_appEl_71;
-        t2.component = this._profile_comp_template$_MaterialInputComponent_71_7;
-        t2.componentView = compView_71;
-        compView_71.createComp$2([[]], null);
-        _text_72 = doc.createTextNode("\n            ");
-        this._profile_comp_template$_el_66.appendChild(_text_72);
-        _text_73 = doc.createTextNode("\n\n            ");
-        this._profile_comp_template$_el_61.appendChild(_text_73);
-        t2 = doc.createElement("div");
+        t2.className = "label";
+        _text_72 = doc.createTextNode("Old Password");
+        t2.appendChild(_text_72);
+        _text_73 = doc.createTextNode("\n              ");
+        this._profile_comp_template$_el_69.appendChild(_text_73);
+        t2 = doc.createElement("material-input");
         this._el_74 = t2;
         t2.setAttribute(this.componentType._contentAttr, "");
-        this._profile_comp_template$_el_61.appendChild(this._el_74);
+        this._profile_comp_template$_el_69.appendChild(this._el_74);
         t2 = this._el_74;
-        t2.className = "pass new";
-        _text_75 = doc.createTextNode("\n              ");
-        t2.appendChild(_text_75);
-        t2 = doc.createElement("div");
-        this._profile_comp_template$_el_76 = t2;
-        t2.setAttribute(this.componentType._contentAttr, "");
-        this._el_74.appendChild(this._profile_comp_template$_el_76);
-        t2 = this._profile_comp_template$_el_76;
-        t2.className = "label";
-        _text_77 = doc.createTextNode("New Password");
-        t2.appendChild(_text_77);
-        _text_78 = doc.createTextNode("\n              ");
-        this._el_74.appendChild(_text_78);
-        t2 = doc.createElement("material-input");
-        this._profile_comp_template$_el_79 = t2;
-        t2.setAttribute(this.componentType._contentAttr, "");
-        this._el_74.appendChild(this._profile_comp_template$_el_79);
-        t2 = this._profile_comp_template$_el_79;
         t2.className = "password themeable";
         t2.setAttribute("tabIndex", "-1");
-        this._profile_comp_template$_el_79.setAttribute("type", "password");
-        this._profile_comp_template$_appEl_79 = new V.ViewContainer(79, 74, this, this._profile_comp_template$_el_79, null, null, null, null);
-        compView_79 = Q.viewFactory_MaterialInputComponent0(this.injector$1(79), this._profile_comp_template$_appEl_79);
+        this._el_74.setAttribute("type", "password");
+        this._appEl_74 = new V.ViewContainer(74, 69, this, this._el_74, null, null, null, null);
+        compView_74 = Q.viewFactory_MaterialInputComponent0(this.injector$1(74), this._appEl_74);
         t2 = new L.DeferredValidator(new P._LinkedIdentityHashSet(0, null, null, null, null, null, 0, t1), null);
-        this._DeferredValidator_79_3 = t2;
+        this._DeferredValidator_74_3 = t2;
         t2 = [t2];
-        this._NG_VALIDATORS_79_4 = t2;
+        this._NG_VALIDATORS_74_4 = t2;
         t2 = new U.NgModel(t2, null, Z.Control$(null, null, null), false, B.EventEmitter$(false, null), null, null, null, null);
         t2.valueAccessor = X.selectValueAccessor(t2, null);
-        this._NgModel_79_5 = t2;
-        this._NgControl_79_6 = t2;
-        t2 = L.MaterialInputComponent$("password", t2, compView_79.ref, this._DeferredValidator_79_3);
-        this._MaterialInputComponent_79_7 = t2;
-        this._BaseMaterialInput_79_8 = t2;
-        this._MaterialInputDefaultValueAccessor_79_9 = Z.MaterialInputDefaultValueAccessor$(t2, this._NgControl_79_6);
-        t2 = this._profile_comp_template$_appEl_79;
-        t2.component = this._MaterialInputComponent_79_7;
-        t2.componentView = compView_79;
-        compView_79.createComp$2([[]], null);
-        _text_80 = doc.createTextNode("\n            ");
-        this._el_74.appendChild(_text_80);
-        _text_81 = doc.createTextNode("\n          ");
-        this._profile_comp_template$_el_61.appendChild(_text_81);
-        _text_82 = doc.createTextNode("\n        ");
-        this._profile_comp_template$_el_59.appendChild(_text_82);
-        _text_83 = doc.createTextNode("\n\n        ");
-        this._profile_comp_template$_el_36.appendChild(_text_83);
+        this._NgModel_74_5 = t2;
+        this._NgControl_74_6 = t2;
+        t2 = L.MaterialInputComponent$("password", t2, compView_74.ref, this._DeferredValidator_74_3);
+        this._MaterialInputComponent_74_7 = t2;
+        this._BaseMaterialInput_74_8 = t2;
+        this._MaterialInputDefaultValueAccessor_74_9 = Z.MaterialInputDefaultValueAccessor$(t2, this._NgControl_74_6);
+        t2 = this._appEl_74;
+        t2.component = this._MaterialInputComponent_74_7;
+        t2.componentView = compView_74;
+        compView_74.createComp$2([[]], null);
+        _text_75 = doc.createTextNode("\n            ");
+        this._profile_comp_template$_el_69.appendChild(_text_75);
+        _text_76 = doc.createTextNode("\n\n            ");
+        this._profile_comp_template$_el_64.appendChild(_text_76);
         t2 = doc.createElement("div");
-        this._profile_comp_template$_el_84 = t2;
+        this._profile_comp_template$_el_77 = t2;
         t2.setAttribute(this.componentType._contentAttr, "");
-        this._profile_comp_template$_el_36.appendChild(this._profile_comp_template$_el_84);
-        t2 = this._profile_comp_template$_el_84;
-        t2.className = "userName bottom_input";
-        _text_85 = doc.createTextNode("\n          ");
-        t2.appendChild(_text_85);
+        this._profile_comp_template$_el_64.appendChild(this._profile_comp_template$_el_77);
+        t2 = this._profile_comp_template$_el_77;
+        t2.className = "pass new";
+        _text_78 = doc.createTextNode("\n              ");
+        t2.appendChild(_text_78);
         t2 = doc.createElement("div");
-        this._profile_comp_template$_el_86 = t2;
+        this._profile_comp_template$_el_79 = t2;
         t2.setAttribute(this.componentType._contentAttr, "");
-        this._profile_comp_template$_el_84.appendChild(this._profile_comp_template$_el_86);
-        t2 = this._profile_comp_template$_el_86;
+        this._profile_comp_template$_el_77.appendChild(this._profile_comp_template$_el_79);
+        t2 = this._profile_comp_template$_el_79;
         t2.className = "label";
-        _text_87 = doc.createTextNode("User name");
-        t2.appendChild(_text_87);
-        _text_88 = doc.createTextNode("\n          ");
-        this._profile_comp_template$_el_84.appendChild(_text_88);
+        _text_80 = doc.createTextNode("New Password");
+        t2.appendChild(_text_80);
+        _text_81 = doc.createTextNode("\n              ");
+        this._profile_comp_template$_el_77.appendChild(_text_81);
         t2 = doc.createElement("material-input");
+        this._profile_comp_template$_el_82 = t2;
+        t2.setAttribute(this.componentType._contentAttr, "");
+        this._profile_comp_template$_el_77.appendChild(this._profile_comp_template$_el_82);
+        t2 = this._profile_comp_template$_el_82;
+        t2.className = "password themeable";
+        t2.setAttribute("tabIndex", "-1");
+        this._profile_comp_template$_el_82.setAttribute("type", "password");
+        this._profile_comp_template$_appEl_82 = new V.ViewContainer(82, 77, this, this._profile_comp_template$_el_82, null, null, null, null);
+        compView_82 = Q.viewFactory_MaterialInputComponent0(this.injector$1(82), this._profile_comp_template$_appEl_82);
+        t2 = new L.DeferredValidator(new P._LinkedIdentityHashSet(0, null, null, null, null, null, 0, t1), null);
+        this._profile_comp_template$_DeferredValidator_82_3 = t2;
+        t2 = [t2];
+        this._profile_comp_template$_NG_VALIDATORS_82_4 = t2;
+        t2 = new U.NgModel(t2, null, Z.Control$(null, null, null), false, B.EventEmitter$(false, null), null, null, null, null);
+        t2.valueAccessor = X.selectValueAccessor(t2, null);
+        this._profile_comp_template$_NgModel_82_5 = t2;
+        this._profile_comp_template$_NgControl_82_6 = t2;
+        t2 = L.MaterialInputComponent$("password", t2, compView_82.ref, this._profile_comp_template$_DeferredValidator_82_3);
+        this._profile_comp_template$_MaterialInputComponent_82_7 = t2;
+        this._profile_comp_template$_BaseMaterialInput_82_8 = t2;
+        this._profile_comp_template$_MaterialInputDefaultValueAccessor_82_9 = Z.MaterialInputDefaultValueAccessor$(t2, this._profile_comp_template$_NgControl_82_6);
+        t2 = this._profile_comp_template$_appEl_82;
+        t2.component = this._profile_comp_template$_MaterialInputComponent_82_7;
+        t2.componentView = compView_82;
+        compView_82.createComp$2([[]], null);
+        _text_83 = doc.createTextNode("\n            ");
+        this._profile_comp_template$_el_77.appendChild(_text_83);
+        _text_84 = doc.createTextNode("\n          ");
+        this._profile_comp_template$_el_64.appendChild(_text_84);
+        _text_85 = doc.createTextNode("\n        ");
+        this._profile_comp_template$_el_62.appendChild(_text_85);
+        _text_86 = doc.createTextNode("\n\n        ");
+        this._profile_comp_template$_el_39.appendChild(_text_86);
+        t2 = doc.createElement("div");
+        this._el_87 = t2;
+        t2.setAttribute(this.componentType._contentAttr, "");
+        this._profile_comp_template$_el_39.appendChild(this._el_87);
+        t2 = this._el_87;
+        t2.className = "userName bottom_input";
+        _text_88 = doc.createTextNode("\n          ");
+        t2.appendChild(_text_88);
+        t2 = doc.createElement("div");
         this._el_89 = t2;
         t2.setAttribute(this.componentType._contentAttr, "");
-        this._profile_comp_template$_el_84.appendChild(this._el_89);
+        this._el_87.appendChild(this._el_89);
         t2 = this._el_89;
+        t2.className = "label";
+        _text_90 = doc.createTextNode("User name");
+        t2.appendChild(_text_90);
+        _text_91 = doc.createTextNode("\n          ");
+        this._el_87.appendChild(_text_91);
+        t2 = doc.createElement("material-input");
+        this._profile_comp_template$_el_92 = t2;
+        t2.setAttribute(this.componentType._contentAttr, "");
+        this._el_87.appendChild(this._profile_comp_template$_el_92);
+        t2 = this._profile_comp_template$_el_92;
         t2.className = "name themeable";
         t2.setAttribute("required", "");
-        this._el_89.setAttribute("tabIndex", "-1");
-        this._appEl_89 = new V.ViewContainer(89, 84, this, this._el_89, null, null, null, null);
-        compView_89 = Q.viewFactory_MaterialInputComponent0(this.injector$1(89), this._appEl_89);
+        this._profile_comp_template$_el_92.setAttribute("tabIndex", "-1");
+        this._appEl_92 = new V.ViewContainer(92, 87, this, this._profile_comp_template$_el_92, null, null, null, null);
+        compView_92 = Q.viewFactory_MaterialInputComponent0(this.injector$1(92), this._appEl_92);
         t2 = new L.DeferredValidator(new P._LinkedIdentityHashSet(0, null, null, null, null, null, 0, t1), null);
-        this._DeferredValidator_89_3 = t2;
+        this._DeferredValidator_92_3 = t2;
         t2 = [t2, B.validators0_Validators_required$closure()];
-        this._NG_VALIDATORS_89_4 = t2;
+        this._NG_VALIDATORS_92_4 = t2;
         t2 = new U.NgModel(t2, null, Z.Control$(null, null, null), false, B.EventEmitter$(false, null), null, null, null, null);
         t2.valueAccessor = X.selectValueAccessor(t2, null);
-        this._NgModel_89_5 = t2;
-        this._RequiredValidator_89_6 = new B.RequiredValidator();
-        this._NgControl_89_7 = t2;
-        t2 = L.MaterialInputComponent$(null, t2, compView_89.ref, this._DeferredValidator_89_3);
-        this._MaterialInputComponent_89_8 = t2;
-        this._BaseMaterialInput_89_9 = t2;
-        this._MaterialInputDefaultValueAccessor_89_10 = Z.MaterialInputDefaultValueAccessor$(t2, this._NgControl_89_7);
-        t2 = this._appEl_89;
-        t2.component = this._MaterialInputComponent_89_8;
-        t2.componentView = compView_89;
-        compView_89.createComp$2([[]], null);
-        _text_90 = doc.createTextNode("\n        ");
-        this._profile_comp_template$_el_84.appendChild(_text_90);
-        _text_91 = doc.createTextNode("\n\n      ");
-        this._profile_comp_template$_el_36.appendChild(_text_91);
-        _text_92 = doc.createTextNode("\n\n    ");
-        this._el_34.appendChild(_text_92);
-        _text_93 = doc.createTextNode("\n\n\n    ");
-        this._profile_comp_template$_el_24.appendChild(_text_93);
+        this._NgModel_92_5 = t2;
+        this._RequiredValidator_92_6 = new B.RequiredValidator();
+        this._NgControl_92_7 = t2;
+        t2 = L.MaterialInputComponent$(null, t2, compView_92.ref, this._DeferredValidator_92_3);
+        this._MaterialInputComponent_92_8 = t2;
+        this._BaseMaterialInput_92_9 = t2;
+        this._MaterialInputDefaultValueAccessor_92_10 = Z.MaterialInputDefaultValueAccessor$(t2, this._NgControl_92_7);
+        t2 = this._appEl_92;
+        t2.component = this._MaterialInputComponent_92_8;
+        t2.componentView = compView_92;
+        compView_92.createComp$2([[]], null);
+        _text_93 = doc.createTextNode("\n        ");
+        this._el_87.appendChild(_text_93);
+        _text_94 = doc.createTextNode("\n\n      ");
+        this._profile_comp_template$_el_39.appendChild(_text_94);
+        _text_95 = doc.createTextNode("\n\n    ");
+        this._profile_comp_template$_el_37.appendChild(_text_95);
+        _text_96 = doc.createTextNode("\n\n\n    ");
+        this._profile_comp_template$_el_27.appendChild(_text_96);
         t2 = doc.createElement("div");
-        this._profile_comp_template$_el_94 = t2;
+        this._profile_comp_template$_el_97 = t2;
         t2.setAttribute(this.componentType._contentAttr, "");
-        this._profile_comp_template$_el_24.appendChild(this._profile_comp_template$_el_94);
-        t2 = this._profile_comp_template$_el_94;
+        this._profile_comp_template$_el_27.appendChild(this._profile_comp_template$_el_97);
+        t2 = this._profile_comp_template$_el_97;
         t2.className = "social";
-        _text_95 = doc.createTextNode("\n      ");
-        t2.appendChild(_text_95);
+        _text_98 = doc.createTextNode("\n      ");
+        t2.appendChild(_text_98);
         t2 = doc.createElement("div");
-        this._el_96 = t2;
-        t2.setAttribute(this.componentType._contentAttr, "");
-        this._profile_comp_template$_el_94.appendChild(this._el_96);
-        t2 = this._el_96;
-        t2.className = "line";
-        _text_97 = doc.createTextNode("\n        ");
-        t2.appendChild(_text_97);
-        t2 = doc.createElement("div");
-        this._el_98 = t2;
-        t2.setAttribute(this.componentType._contentAttr, "");
-        this._el_96.appendChild(this._el_98);
-        this._el_98.className = "logLeft";
-        t2 = doc.createElement("span");
         this._profile_comp_template$_el_99 = t2;
         t2.setAttribute(this.componentType._contentAttr, "");
-        this._el_98.appendChild(this._profile_comp_template$_el_99);
+        this._profile_comp_template$_el_97.appendChild(this._profile_comp_template$_el_99);
         t2 = this._profile_comp_template$_el_99;
-        t2.className = "log";
-        _text_100 = doc.createTextNode("Logged in with");
+        t2.className = "line";
+        _text_100 = doc.createTextNode("\n        ");
         t2.appendChild(_text_100);
-        _text_101 = doc.createTextNode("\n        ");
-        this._el_98.appendChild(_text_101);
-        t2 = doc.createElement("span");
-        this._el_102 = t2;
+        t2 = doc.createElement("div");
+        this._profile_comp_template$_el_101 = t2;
         t2.setAttribute(this.componentType._contentAttr, "");
-        this._el_98.appendChild(this._el_102);
-        t2 = this._el_102;
+        this._profile_comp_template$_el_99.appendChild(this._profile_comp_template$_el_101);
+        this._profile_comp_template$_el_101.className = "logLeft";
+        t2 = doc.createElement("span");
+        this._profile_comp_template$_el_102 = t2;
+        t2.setAttribute(this.componentType._contentAttr, "");
+        this._profile_comp_template$_el_101.appendChild(this._profile_comp_template$_el_102);
+        t2 = this._profile_comp_template$_el_102;
+        t2.className = "log";
+        _text_103 = doc.createTextNode("Logged in with");
+        t2.appendChild(_text_103);
+        _text_104 = doc.createTextNode("\n        ");
+        this._profile_comp_template$_el_101.appendChild(_text_104);
+        t2 = doc.createElement("span");
+        this._el_105 = t2;
+        t2.setAttribute(this.componentType._contentAttr, "");
+        this._profile_comp_template$_el_101.appendChild(this._el_105);
+        t2 = this._el_105;
         t2.className = "nameConnected";
         t3 = doc.createTextNode("");
-        this._text_103 = t3;
+        this._text_106 = t3;
         t2.appendChild(t3);
-        _text_104 = doc.createTextNode("\n        ");
-        this._el_98.appendChild(_text_104);
-        _text_105 = doc.createTextNode("\n        ");
-        this._el_96.appendChild(_text_105);
+        _text_107 = doc.createTextNode("\n        ");
+        this._profile_comp_template$_el_101.appendChild(_text_107);
+        _text_108 = doc.createTextNode("\n        ");
+        this._profile_comp_template$_el_99.appendChild(_text_108);
         t2 = doc.createElement("a");
-        this._profile_comp_template$_el_106 = t2;
+        this._profile_comp_template$_el_109 = t2;
         t2.setAttribute(this.componentType._contentAttr, "");
-        this._el_96.appendChild(this._profile_comp_template$_el_106);
-        t2 = this._profile_comp_template$_el_106;
+        this._profile_comp_template$_el_99.appendChild(this._profile_comp_template$_el_109);
+        t2 = this._profile_comp_template$_el_109;
         t2.className = "socialBtn facebook";
-        _text_107 = doc.createTextNode("\n          ");
-        t2.appendChild(_text_107);
+        _text_110 = doc.createTextNode("\n          ");
+        t2.appendChild(_text_110);
         t2 = doc.createElement("span");
-        this._el_108 = t2;
+        this._el_111 = t2;
         t2.setAttribute(this.componentType._contentAttr, "");
-        this._profile_comp_template$_el_106.appendChild(this._el_108);
-        t2 = this._el_108;
+        this._profile_comp_template$_el_109.appendChild(this._el_111);
+        t2 = this._el_111;
         t2.className = "fa fa-facebook";
-        _text_109 = doc.createTextNode("  ");
-        t2.appendChild(_text_109);
-        _text_110 = doc.createTextNode("\n        ");
-        this._profile_comp_template$_el_106.appendChild(_text_110);
-        _text_111 = doc.createTextNode("\n      ");
-        this._el_96.appendChild(_text_111);
-        _text_112 = doc.createTextNode("\n\n\n\n      ");
-        this._profile_comp_template$_el_94.appendChild(_text_112);
+        _text_112 = doc.createTextNode("  ");
+        t2.appendChild(_text_112);
+        _text_113 = doc.createTextNode("\n        ");
+        this._profile_comp_template$_el_109.appendChild(_text_113);
+        _text_114 = doc.createTextNode("\n      ");
+        this._profile_comp_template$_el_99.appendChild(_text_114);
+        _text_115 = doc.createTextNode("\n\n\n\n      ");
+        this._profile_comp_template$_el_97.appendChild(_text_115);
         t2 = doc.createElement("div");
-        this._el_113 = t2;
-        t2.setAttribute(this.componentType._contentAttr, "");
-        this._profile_comp_template$_el_94.appendChild(this._el_113);
-        t2 = this._el_113;
-        t2.className = "line";
-        _text_114 = doc.createTextNode("\n        ");
-        t2.appendChild(_text_114);
-        t2 = doc.createElement("div");
-        this._el_115 = t2;
-        t2.setAttribute(this.componentType._contentAttr, "");
-        this._el_113.appendChild(this._el_115);
-        this._el_115.className = "logLeft";
-        t2 = doc.createElement("span");
         this._el_116 = t2;
         t2.setAttribute(this.componentType._contentAttr, "");
-        this._el_115.appendChild(this._el_116);
+        this._profile_comp_template$_el_97.appendChild(this._el_116);
         t2 = this._el_116;
-        t2.className = "log";
-        _text_117 = doc.createTextNode("Logged in with");
+        t2.className = "line";
+        _text_117 = doc.createTextNode("\n        ");
         t2.appendChild(_text_117);
-        _text_118 = doc.createTextNode("\n        ");
-        this._el_115.appendChild(_text_118);
+        t2 = doc.createElement("div");
+        this._el_118 = t2;
+        t2.setAttribute(this.componentType._contentAttr, "");
+        this._el_116.appendChild(this._el_118);
+        this._el_118.className = "logLeft";
         t2 = doc.createElement("span");
         this._el_119 = t2;
         t2.setAttribute(this.componentType._contentAttr, "");
-        this._el_115.appendChild(this._el_119);
+        this._el_118.appendChild(this._el_119);
         t2 = this._el_119;
+        t2.className = "log";
+        _text_120 = doc.createTextNode("Logged in with");
+        t2.appendChild(_text_120);
+        _text_121 = doc.createTextNode("\n        ");
+        this._el_118.appendChild(_text_121);
+        t2 = doc.createElement("span");
+        this._el_122 = t2;
+        t2.setAttribute(this.componentType._contentAttr, "");
+        this._el_118.appendChild(this._el_122);
+        t2 = this._el_122;
         t2.className = "nameConnected";
         t3 = doc.createTextNode("");
-        this._text_120 = t3;
+        this._text_123 = t3;
         t2.appendChild(t3);
-        _text_121 = doc.createTextNode("\n      ");
-        this._el_115.appendChild(_text_121);
-        _text_122 = doc.createTextNode("\n        ");
-        this._el_113.appendChild(_text_122);
+        _text_124 = doc.createTextNode("\n      ");
+        this._el_118.appendChild(_text_124);
+        _text_125 = doc.createTextNode("\n        ");
+        this._el_116.appendChild(_text_125);
         t2 = doc.createElement("a");
-        this._el_123 = t2;
+        this._el_126 = t2;
         t2.setAttribute(this.componentType._contentAttr, "");
-        this._el_113.appendChild(this._el_123);
-        t2 = this._el_123;
+        this._el_116.appendChild(this._el_126);
+        t2 = this._el_126;
         t2.className = "socialBtn google";
-        _text_124 = doc.createTextNode("\n          ");
-        t2.appendChild(_text_124);
+        _text_127 = doc.createTextNode("\n          ");
+        t2.appendChild(_text_127);
         t2 = doc.createElement("span");
-        this._el_125 = t2;
+        this._el_128 = t2;
         t2.setAttribute(this.componentType._contentAttr, "");
-        this._el_123.appendChild(this._el_125);
-        this._el_125.className = "fa fa-google";
-        _text_126 = doc.createTextNode("\n        ");
-        this._el_123.appendChild(_text_126);
-        _text_127 = doc.createTextNode("\n      ");
-        this._el_113.appendChild(_text_127);
-        _text_128 = doc.createTextNode("\n      ");
-        this._profile_comp_template$_el_94.appendChild(_text_128);
+        this._el_126.appendChild(this._el_128);
+        this._el_128.className = "fa fa-google";
+        _text_129 = doc.createTextNode("\n        ");
+        this._el_126.appendChild(_text_129);
+        _text_130 = doc.createTextNode("\n      ");
+        this._el_116.appendChild(_text_130);
+        _text_131 = doc.createTextNode("\n      ");
+        this._profile_comp_template$_el_97.appendChild(_text_131);
         t2 = doc.createElement("div");
-        this._el_129 = t2;
+        this._el_132 = t2;
         t2.setAttribute(this.componentType._contentAttr, "");
-        this._profile_comp_template$_el_94.appendChild(this._el_129);
-        t2 = this._el_129;
+        this._profile_comp_template$_el_97.appendChild(this._el_132);
+        t2 = this._el_132;
         t2.className = "skype bottom_input";
-        _text_130 = doc.createTextNode("\n        ");
-        t2.appendChild(_text_130);
-        t2 = doc.createElement("div");
-        this._el_131 = t2;
-        t2.setAttribute(this.componentType._contentAttr, "");
-        this._el_129.appendChild(this._el_131);
-        t2 = this._el_131;
-        t2.className = "label";
-        _text_132 = doc.createTextNode("Skype");
-        t2.appendChild(_text_132);
         _text_133 = doc.createTextNode("\n        ");
-        this._el_129.appendChild(_text_133);
-        t2 = doc.createElement("material-input");
+        t2.appendChild(_text_133);
+        t2 = doc.createElement("div");
         this._el_134 = t2;
         t2.setAttribute(this.componentType._contentAttr, "");
-        this._el_129.appendChild(this._el_134);
+        this._el_132.appendChild(this._el_134);
         t2 = this._el_134;
+        t2.className = "label";
+        _text_135 = doc.createTextNode("Skype");
+        t2.appendChild(_text_135);
+        _text_136 = doc.createTextNode("\n        ");
+        this._el_132.appendChild(_text_136);
+        t2 = doc.createElement("material-input");
+        this._el_137 = t2;
+        t2.setAttribute(this.componentType._contentAttr, "");
+        this._el_132.appendChild(this._el_137);
+        t2 = this._el_137;
         t2.className = "value themeable";
         t2.setAttribute("tabIndex", "-1");
-        this._appEl_134 = new V.ViewContainer(134, 129, this, this._el_134, null, null, null, null);
-        compView_134 = Q.viewFactory_MaterialInputComponent0(this.injector$1(134), this._appEl_134);
+        this._appEl_137 = new V.ViewContainer(137, 132, this, this._el_137, null, null, null, null);
+        compView_137 = Q.viewFactory_MaterialInputComponent0(this.injector$1(137), this._appEl_137);
         t1 = new L.DeferredValidator(new P._LinkedIdentityHashSet(0, null, null, null, null, null, 0, t1), null);
-        this._DeferredValidator_134_3 = t1;
+        this._DeferredValidator_137_3 = t1;
         t1 = [t1];
-        this._NG_VALIDATORS_134_4 = t1;
+        this._NG_VALIDATORS_137_4 = t1;
         t1 = new U.NgModel(t1, null, Z.Control$(null, null, null), false, B.EventEmitter$(false, null), null, null, null, null);
         t1.valueAccessor = X.selectValueAccessor(t1, null);
-        this._NgModel_134_5 = t1;
-        this._NgControl_134_6 = t1;
-        t1 = L.MaterialInputComponent$(null, t1, compView_134.ref, this._DeferredValidator_134_3);
-        this._MaterialInputComponent_134_7 = t1;
-        this._BaseMaterialInput_134_8 = t1;
-        this._MaterialInputDefaultValueAccessor_134_9 = Z.MaterialInputDefaultValueAccessor$(t1, this._NgControl_134_6);
-        t1 = this._appEl_134;
-        t1.component = this._MaterialInputComponent_134_7;
-        t1.componentView = compView_134;
-        compView_134.createComp$2([[]], null);
-        _text_135 = doc.createTextNode("\n      ");
-        this._el_129.appendChild(_text_135);
-        _text_136 = doc.createTextNode("\n\n\n    ");
-        this._profile_comp_template$_el_94.appendChild(_text_136);
-        _text_137 = doc.createTextNode("\n    ");
-        this._profile_comp_template$_el_24.appendChild(_text_137);
-        t1 = doc.createElement("div");
-        this._el_138 = t1;
-        t1.setAttribute(this.componentType._contentAttr, "");
-        this._profile_comp_template$_el_24.appendChild(this._el_138);
-        this._el_138.className = "clearfix";
-        _text_139 = doc.createTextNode("\n  ");
-        this._profile_comp_template$_el_24.appendChild(_text_139);
-        _text_140 = doc.createTextNode("\n  ");
-        this._profile_comp_template$_el_0.appendChild(_text_140);
+        this._NgModel_137_5 = t1;
+        this._NgControl_137_6 = t1;
+        t1 = L.MaterialInputComponent$(null, t1, compView_137.ref, this._DeferredValidator_137_3);
+        this._MaterialInputComponent_137_7 = t1;
+        this._BaseMaterialInput_137_8 = t1;
+        this._MaterialInputDefaultValueAccessor_137_9 = Z.MaterialInputDefaultValueAccessor$(t1, this._NgControl_137_6);
+        t1 = this._appEl_137;
+        t1.component = this._MaterialInputComponent_137_7;
+        t1.componentView = compView_137;
+        compView_137.createComp$2([[]], null);
+        _text_138 = doc.createTextNode("\n      ");
+        this._el_132.appendChild(_text_138);
+        _text_139 = doc.createTextNode("\n\n\n    ");
+        this._profile_comp_template$_el_97.appendChild(_text_139);
+        _text_140 = doc.createTextNode("\n    ");
+        this._profile_comp_template$_el_27.appendChild(_text_140);
         t1 = doc.createElement("div");
         this._el_141 = t1;
         t1.setAttribute(this.componentType._contentAttr, "");
-        this._profile_comp_template$_el_0.appendChild(this._el_141);
-        t1 = this._el_141;
-        t1.className = "btnvalidat";
-        _text_142 = doc.createTextNode("\n    ");
-        t1.appendChild(_text_142);
-        t1 = doc.createElement("material-button");
-        this._el_143 = t1;
+        this._profile_comp_template$_el_27.appendChild(this._el_141);
+        this._el_141.className = "clearfix";
+        _text_142 = doc.createTextNode("\n  ");
+        this._profile_comp_template$_el_27.appendChild(_text_142);
+        _text_143 = doc.createTextNode("\n  ");
+        this._profile_comp_template$_el_0.appendChild(_text_143);
+        t1 = doc.createElement("div");
+        this._el_144 = t1;
         t1.setAttribute(this.componentType._contentAttr, "");
-        this._el_141.appendChild(this._el_143);
-        this._el_143.setAttribute("animated", "true");
-        t1 = this._el_143;
+        this._profile_comp_template$_el_0.appendChild(this._el_144);
+        t1 = this._el_144;
+        t1.className = "btnvalidat";
+        _text_145 = doc.createTextNode("\n    ");
+        t1.appendChild(_text_145);
+        t1 = doc.createElement("material-button");
+        this._el_146 = t1;
+        t1.setAttribute(this.componentType._contentAttr, "");
+        this._el_144.appendChild(this._el_146);
+        this._el_146.setAttribute("animated", "true");
+        t1 = this._el_146;
         t1.className = "btn_login";
         t1.setAttribute("raised", "");
-        this._el_143.setAttribute("role", "button");
-        this._appEl_143 = new V.ViewContainer(143, 141, this, this._el_143, null, null, null, null);
-        compView_143 = U.viewFactory_MaterialButtonComponent0(this.injector$1(143), this._appEl_143);
+        this._el_146.setAttribute("role", "button");
+        this._appEl_146 = new V.ViewContainer(146, 144, this, this._el_146, null, null, null, null);
+        compView_146 = U.viewFactory_MaterialButtonComponent0(this.injector$1(146), this._appEl_146);
         t4 = t5.$get$2(t4, C.OpaqueToken_acxDarkTheme, null);
         t1 = new F.AcxDarkTheme(t4 == null ? false : t4);
-        this._AcxDarkTheme_143_3 = t1;
+        this._AcxDarkTheme_146_3 = t1;
         t2 = new Z.ElementRef(null);
-        t2.nativeElement = this._el_143;
-        t1 = B.MaterialButtonComponent$(t2, t1, compView_143.ref);
-        this._MaterialButtonComponent_143_4 = t1;
-        t2 = this._appEl_143;
+        t2.nativeElement = this._el_146;
+        t1 = B.MaterialButtonComponent$(t2, t1, compView_146.ref);
+        this._MaterialButtonComponent_146_4 = t1;
+        t2 = this._appEl_146;
         t2.component = t1;
-        t2.componentView = compView_143;
-        _text_144 = doc.createTextNode("Save");
-        compView_143.createComp$2([[_text_144]], null);
-        _text_145 = doc.createTextNode("\n  ");
-        this._el_141.appendChild(_text_145);
-        _text_146 = doc.createTextNode("\n");
-        this._profile_comp_template$_el_0.appendChild(_text_146);
+        t2.componentView = compView_146;
+        _text_147 = doc.createTextNode("Save");
+        compView_146.createComp$2([[_text_147]], null);
+        _text_148 = doc.createTextNode("\n  ");
+        this._el_144.appendChild(_text_148);
+        _text_149 = doc.createTextNode("\n");
+        this._profile_comp_template$_el_0.appendChild(_text_149);
         this.listen$3(this._profile_comp_template$_el_0, "keyup.esc", this.get$_handle_keyup_esc_0_0());
         this.listen$3(this._profile_comp_template$_el_7, "click", this.get$_profile_comp_template$_handle_click_7_0());
         this.listen$3(this._profile_comp_template$_el_9, "dragenter", this.get$_handle_dragenter_9_0());
         this.listen$3(this._profile_comp_template$_el_9, "drop", this.get$_handle_drop_9_1());
         this.listen$3(this._profile_comp_template$_el_9, "submit", this.get$_handle_submit_9_2());
-        this.listen$3(this._profile_comp_template$_el_20, "change", this.get$_handle_change_20_0());
-        this.listen$3(this._profile_comp_template$_el_36, "submit", this.get$_handle_submit_36_0());
-        t2 = this.get$_handle_change_43_0();
-        this.listen$3(this._profile_comp_template$_el_43, "change", t2);
-        t1 = this.get$_handle_ngModelChange_43_1();
-        this.listen$3(this._profile_comp_template$_el_43, "ngModelChange", t1);
-        t3 = this.get$_handle_focus_43_2();
-        this.listen$3(this._profile_comp_template$_el_43, "focus", t3);
-        t4 = this._NgModel_43_5.update._controller;
+        this.listen$3(this._profile_comp_template$_el_23, "change", this.get$_handle_change_23_0());
+        this.listen$3(this._profile_comp_template$_el_39, "submit", this.get$_handle_submit_39_0());
+        t2 = this.get$_handle_change_46_0();
+        this.listen$3(this._profile_comp_template$_el_46, "change", t2);
+        t1 = this.get$_handle_ngModelChange_46_1();
+        this.listen$3(this._profile_comp_template$_el_46, "ngModelChange", t1);
+        t3 = this.get$_handle_focus_46_2();
+        this.listen$3(this._profile_comp_template$_el_46, "focus", t3);
+        t4 = this._NgModel_46_5.update._controller;
         subscription_0 = new P._BroadcastStream(t4, [H.getTypeArgumentByIndex(t4, 0)]).listen$4$cancelOnError$onDone$onError(t1, null, null, null);
-        subscription_1 = J.get$stream$x(this._MaterialInputComponent_43_8._changeController._initializeLazy$0()).listen$1(t2);
-        subscription_2 = J.get$stream$x(this._MaterialInputComponent_43_8.onFocus.get$_lazy_event_emitter$_controller()).listen$4$cancelOnError$onDone$onError(t3, null, null, null);
-        this.listen$3(this._profile_comp_template$_el_45, "click", this.get$_handle_click_45_0());
-        t3 = this.get$_handle_ngModelChange_53_0();
-        this.listen$3(this._profile_comp_template$_el_53, "ngModelChange", t3);
-        t2 = this.get$_handle_focus_53_1();
-        this.listen$3(this._profile_comp_template$_el_53, "focus", t2);
-        t1 = this._NgModel_53_5.update._controller;
+        subscription_1 = J.get$stream$x(this._MaterialInputComponent_46_8._changeController._initializeLazy$0()).listen$1(t2);
+        subscription_2 = J.get$stream$x(this._MaterialInputComponent_46_8.onFocus.get$_lazy_event_emitter$_controller()).listen$4$cancelOnError$onDone$onError(t3, null, null, null);
+        this.listen$3(this._profile_comp_template$_el_48, "click", this.get$_handle_click_48_0());
+        t3 = this.get$_handle_ngModelChange_56_0();
+        this.listen$3(this._el_56, "ngModelChange", t3);
+        t2 = this.get$_handle_focus_56_1();
+        this.listen$3(this._el_56, "focus", t2);
+        t1 = this._NgModel_56_5.update._controller;
         subscription_3 = new P._BroadcastStream(t1, [H.getTypeArgumentByIndex(t1, 0)]).listen$4$cancelOnError$onDone$onError(t3, null, null, null);
-        subscription_4 = J.get$stream$x(this._MaterialInputComponent_53_7.onFocus.get$_lazy_event_emitter$_controller()).listen$4$cancelOnError$onDone$onError(t2, null, null, null);
-        this.listen$3(this._el_56, "click", this.get$_handle_click_56_0());
-        this.listen$3(this._profile_comp_template$_el_63, "click", this.get$_handle_click_63_0());
-        t2 = this.get$_profile_comp_template$_handle_ngModelChange_71_0();
-        this.listen$3(this._profile_comp_template$_el_71, "ngModelChange", t2);
-        t3 = this.get$_profile_comp_template$_handle_focus_71_1();
-        this.listen$3(this._profile_comp_template$_el_71, "focus", t3);
-        t1 = this._profile_comp_template$_NgModel_71_5.update._controller;
+        subscription_4 = J.get$stream$x(this._MaterialInputComponent_56_7.onFocus.get$_lazy_event_emitter$_controller()).listen$4$cancelOnError$onDone$onError(t2, null, null, null);
+        this.listen$3(this._profile_comp_template$_el_59, "click", this.get$_profile_comp_template$_handle_click_59_0());
+        this.listen$3(this._profile_comp_template$_el_66, "click", this.get$_handle_click_66_0());
+        t2 = this.get$_handle_ngModelChange_74_0();
+        this.listen$3(this._el_74, "ngModelChange", t2);
+        t3 = this.get$_handle_focus_74_1();
+        this.listen$3(this._el_74, "focus", t3);
+        t1 = this._NgModel_74_5.update._controller;
         subscription_5 = new P._BroadcastStream(t1, [H.getTypeArgumentByIndex(t1, 0)]).listen$4$cancelOnError$onDone$onError(t2, null, null, null);
-        subscription_6 = J.get$stream$x(this._profile_comp_template$_MaterialInputComponent_71_7.onFocus.get$_lazy_event_emitter$_controller()).listen$4$cancelOnError$onDone$onError(t3, null, null, null);
-        t3 = this.get$_handle_ngModelChange_79_0();
-        this.listen$3(this._profile_comp_template$_el_79, "ngModelChange", t3);
-        t2 = this.get$_handle_focus_79_1();
-        this.listen$3(this._profile_comp_template$_el_79, "focus", t2);
-        t1 = this._NgModel_79_5.update._controller;
+        subscription_6 = J.get$stream$x(this._MaterialInputComponent_74_7.onFocus.get$_lazy_event_emitter$_controller()).listen$4$cancelOnError$onDone$onError(t3, null, null, null);
+        t3 = this.get$_profile_comp_template$_handle_ngModelChange_82_0();
+        this.listen$3(this._profile_comp_template$_el_82, "ngModelChange", t3);
+        t2 = this.get$_profile_comp_template$_handle_focus_82_1();
+        this.listen$3(this._profile_comp_template$_el_82, "focus", t2);
+        t1 = this._profile_comp_template$_NgModel_82_5.update._controller;
         subscription_7 = new P._BroadcastStream(t1, [H.getTypeArgumentByIndex(t1, 0)]).listen$4$cancelOnError$onDone$onError(t3, null, null, null);
-        subscription_8 = J.get$stream$x(this._MaterialInputComponent_79_7.onFocus.get$_lazy_event_emitter$_controller()).listen$4$cancelOnError$onDone$onError(t2, null, null, null);
-        t2 = this.get$_handle_ngModelChange_89_0();
-        this.listen$3(this._el_89, "ngModelChange", t2);
-        t3 = this.get$_handle_focus_89_1();
-        this.listen$3(this._el_89, "focus", t3);
-        t1 = this._NgModel_89_5.update._controller;
+        subscription_8 = J.get$stream$x(this._profile_comp_template$_MaterialInputComponent_82_7.onFocus.get$_lazy_event_emitter$_controller()).listen$4$cancelOnError$onDone$onError(t2, null, null, null);
+        t2 = this.get$_handle_ngModelChange_92_0();
+        this.listen$3(this._profile_comp_template$_el_92, "ngModelChange", t2);
+        t3 = this.get$_handle_focus_92_1();
+        this.listen$3(this._profile_comp_template$_el_92, "focus", t3);
+        t1 = this._NgModel_92_5.update._controller;
         subscription_9 = new P._BroadcastStream(t1, [H.getTypeArgumentByIndex(t1, 0)]).listen$4$cancelOnError$onDone$onError(t2, null, null, null);
-        subscription_10 = J.get$stream$x(this._MaterialInputComponent_89_8.onFocus.get$_lazy_event_emitter$_controller()).listen$4$cancelOnError$onDone$onError(t3, null, null, null);
-        t3 = this.get$_handle_ngModelChange_134_0();
-        this.listen$3(this._el_134, "ngModelChange", t3);
-        t2 = this.get$_handle_focus_134_1();
-        this.listen$3(this._el_134, "focus", t2);
-        t1 = this._NgModel_134_5.update._controller;
+        subscription_10 = J.get$stream$x(this._MaterialInputComponent_92_8.onFocus.get$_lazy_event_emitter$_controller()).listen$4$cancelOnError$onDone$onError(t3, null, null, null);
+        t3 = this.get$_handle_ngModelChange_137_0();
+        this.listen$3(this._el_137, "ngModelChange", t3);
+        t2 = this.get$_handle_focus_137_1();
+        this.listen$3(this._el_137, "focus", t2);
+        t1 = this._NgModel_137_5.update._controller;
         subscription_11 = new P._BroadcastStream(t1, [H.getTypeArgumentByIndex(t1, 0)]).listen$4$cancelOnError$onDone$onError(t3, null, null, null);
-        subscription_12 = J.get$stream$x(this._MaterialInputComponent_134_7.onFocus.get$_lazy_event_emitter$_controller()).listen$4$cancelOnError$onDone$onError(t2, null, null, null);
-        this.listen$3(this._el_143, "click", this.get$_handle_click_143_0());
-        this.listen$3(this._el_143, "blur", this.get$_handle_blur_143_1());
-        this.listen$3(this._el_143, "mouseup", this.get$_handle_mouseup_143_2());
-        this.listen$3(this._el_143, "keypress", this.get$_handle_keypress_143_3());
-        this.listen$3(this._el_143, "focus", this.get$_handle_focus_143_4());
-        this.listen$3(this._el_143, "mousedown", this.get$_handle_mousedown_143_5());
-        this.init$3([], [this._profile_comp_template$_el_0, _text_1, this._profile_comp_template$_el_2, _text_3, this._profile_comp_template$_el_4, _text_5, _text_6, this._profile_comp_template$_el_7, _text_8, this._profile_comp_template$_el_9, _text_10, this._profile_comp_template$_el_11, _text_12, _text_13, this._profile_comp_template$_el_14, _text_15, this._profile_comp_template$_el_16, _text_17, _text_18, _text_19, this._profile_comp_template$_el_20, _text_21, _text_22, _text_23, this._profile_comp_template$_el_24, _text_25, this._profile_comp_template$_el_26, this._text_27, _text_28, this._profile_comp_template$_el_29, _text_30, _anchor_31, _text_32, _text_33, this._el_34, _text_35, this._profile_comp_template$_el_36, _text_37, this._profile_comp_template$_el_38, _text_39, this._profile_comp_template$_el_40, _text_41, _text_42, this._profile_comp_template$_el_43, _text_44, this._profile_comp_template$_el_45, _text_46, _text_47, this._profile_comp_template$_el_48, _text_49, this._profile_comp_template$_el_50, _text_51, _text_52, this._profile_comp_template$_el_53, _text_54, _text_55, this._el_56, _text_57, _text_58, this._profile_comp_template$_el_59, _text_60, this._profile_comp_template$_el_61, _text_62, this._profile_comp_template$_el_63, _text_64, _text_65, this._profile_comp_template$_el_66, _text_67, this._el_68, _text_69, _text_70, this._profile_comp_template$_el_71, _text_72, _text_73, this._el_74, _text_75, this._profile_comp_template$_el_76, _text_77, _text_78, this._profile_comp_template$_el_79, _text_80, _text_81, _text_82, _text_83, this._profile_comp_template$_el_84, _text_85, this._profile_comp_template$_el_86, _text_87, _text_88, this._el_89, _text_90, _text_91, _text_92, _text_93, this._profile_comp_template$_el_94, _text_95, this._el_96, _text_97, this._el_98, this._profile_comp_template$_el_99, _text_100, _text_101, this._el_102, this._text_103, _text_104, _text_105, this._profile_comp_template$_el_106, _text_107, this._el_108, _text_109, _text_110, _text_111, _text_112, this._el_113, _text_114, this._el_115, this._el_116, _text_117, _text_118, this._el_119, this._text_120, _text_121, _text_122, this._el_123, _text_124, this._el_125, _text_126, _text_127, _text_128, this._el_129, _text_130, this._el_131, _text_132, _text_133, this._el_134, _text_135, _text_136, _text_137, this._el_138, _text_139, _text_140, this._el_141, _text_142, this._el_143, _text_144, _text_145, _text_146], [subscription_0, subscription_1, subscription_2, subscription_3, subscription_4, subscription_5, subscription_6, subscription_7, subscription_8, subscription_9, subscription_10, subscription_11, subscription_12]);
+        subscription_12 = J.get$stream$x(this._MaterialInputComponent_137_7.onFocus.get$_lazy_event_emitter$_controller()).listen$4$cancelOnError$onDone$onError(t2, null, null, null);
+        this.listen$3(this._el_146, "click", this.get$_handle_click_146_0());
+        this.listen$3(this._el_146, "blur", this.get$_handle_blur_146_1());
+        this.listen$3(this._el_146, "mouseup", this.get$_handle_mouseup_146_2());
+        this.listen$3(this._el_146, "keypress", this.get$_handle_keypress_146_3());
+        this.listen$3(this._el_146, "focus", this.get$_handle_focus_146_4());
+        this.listen$3(this._el_146, "mousedown", this.get$_handle_mousedown_146_5());
+        this.init$3([], [this._profile_comp_template$_el_0, _text_1, this._profile_comp_template$_el_2, _text_3, this._profile_comp_template$_el_4, _text_5, _text_6, this._profile_comp_template$_el_7, _text_8, this._profile_comp_template$_el_9, _text_10, this._profile_comp_template$_el_11, _text_12, _text_13, this._profile_comp_template$_el_14, _text_15, this._profile_comp_template$_el_16, _text_17, _text_18, this._profile_comp_template$_el_19, _text_20, _text_21, _text_22, this._profile_comp_template$_el_23, _text_24, _text_25, _text_26, this._profile_comp_template$_el_27, _text_28, this._profile_comp_template$_el_29, this._text_30, _text_31, this._profile_comp_template$_el_32, _text_33, _anchor_34, _text_35, _text_36, this._profile_comp_template$_el_37, _text_38, this._profile_comp_template$_el_39, _text_40, this._profile_comp_template$_el_41, _text_42, this._profile_comp_template$_el_43, _text_44, _text_45, this._profile_comp_template$_el_46, _text_47, this._profile_comp_template$_el_48, _text_49, _text_50, this._profile_comp_template$_el_51, _text_52, this._profile_comp_template$_el_53, _text_54, _text_55, this._el_56, _text_57, _text_58, this._profile_comp_template$_el_59, _text_60, _text_61, this._profile_comp_template$_el_62, _text_63, this._profile_comp_template$_el_64, _text_65, this._profile_comp_template$_el_66, _text_67, _text_68, this._profile_comp_template$_el_69, _text_70, this._profile_comp_template$_el_71, _text_72, _text_73, this._el_74, _text_75, _text_76, this._profile_comp_template$_el_77, _text_78, this._profile_comp_template$_el_79, _text_80, _text_81, this._profile_comp_template$_el_82, _text_83, _text_84, _text_85, _text_86, this._el_87, _text_88, this._el_89, _text_90, _text_91, this._profile_comp_template$_el_92, _text_93, _text_94, _text_95, _text_96, this._profile_comp_template$_el_97, _text_98, this._profile_comp_template$_el_99, _text_100, this._profile_comp_template$_el_101, this._profile_comp_template$_el_102, _text_103, _text_104, this._el_105, this._text_106, _text_107, _text_108, this._profile_comp_template$_el_109, _text_110, this._el_111, _text_112, _text_113, _text_114, _text_115, this._el_116, _text_117, this._el_118, this._el_119, _text_120, _text_121, this._el_122, this._text_123, _text_124, _text_125, this._el_126, _text_127, this._el_128, _text_129, _text_130, _text_131, this._el_132, _text_133, this._el_134, _text_135, _text_136, this._el_137, _text_138, _text_139, _text_140, this._el_141, _text_142, _text_143, this._el_144, _text_145, this._el_146, _text_147, _text_148, _text_149], [subscription_0, subscription_1, subscription_2, subscription_3, subscription_4, subscription_5, subscription_6, subscription_7, subscription_8, subscription_9, subscription_10, subscription_11, subscription_12]);
         return;
       },
       injectorGetInternal$3: function(token, requestNodeIndex, notFoundResult) {
@@ -79302,7 +79157,7 @@
         if (t1) {
           if (typeof requestNodeIndex !== "number")
             return H.iae(requestNodeIndex);
-          t2 = 9 <= requestNodeIndex && requestNodeIndex <= 21;
+          t2 = 9 <= requestNodeIndex && requestNodeIndex <= 24;
         } else
           t2 = false;
         if (t2)
@@ -79311,7 +79166,7 @@
         if (t2) {
           if (typeof requestNodeIndex !== "number")
             return H.iae(requestNodeIndex);
-          t3 = 9 <= requestNodeIndex && requestNodeIndex <= 21;
+          t3 = 9 <= requestNodeIndex && requestNodeIndex <= 24;
         } else
           t3 = false;
         if (t3) {
@@ -79322,253 +79177,253 @@
           }
           return t1;
         }
-        if (token === C.Type_TemplateRef_SSn && 31 === requestNodeIndex)
-          return this._TemplateRef_31_4;
-        if (token === C.Type_NgFor_FUV && 31 === requestNodeIndex)
-          return this._NgFor_31_5;
+        if (token === C.Type_TemplateRef_SSn && 34 === requestNodeIndex)
+          return this._TemplateRef_34_4;
+        if (token === C.Type_NgFor_FUV && 34 === requestNodeIndex)
+          return this._NgFor_34_5;
         t3 = token === C.Type_DeferredValidator_k2a;
-        if (t3 && 43 === requestNodeIndex)
-          return this._DeferredValidator_43_3;
+        if (t3 && 46 === requestNodeIndex)
+          return this._DeferredValidator_46_3;
         t4 = token === C.OpaqueToken_NgValidators;
-        if (t4 && 43 === requestNodeIndex)
-          return this._NG_VALIDATORS_43_4;
+        if (t4 && 46 === requestNodeIndex)
+          return this._NG_VALIDATORS_46_4;
         t5 = token === C.Type_NgModel_qx4;
-        if (t5 && 43 === requestNodeIndex)
-          return this._NgModel_43_5;
+        if (t5 && 46 === requestNodeIndex)
+          return this._NgModel_46_5;
         t6 = token === C.Type_RequiredValidator_Lbh;
-        if (t6 && 43 === requestNodeIndex)
-          return this._RequiredValidator_43_6;
+        if (t6 && 46 === requestNodeIndex)
+          return this._RequiredValidator_46_6;
         t7 = token === C.Type_NgControl_GNi;
-        if (t7 && 43 === requestNodeIndex)
-          return this._NgControl_43_7;
+        if (t7 && 46 === requestNodeIndex)
+          return this._NgControl_46_7;
         t8 = token === C.Type_MaterialInputComponent_Arc;
-        if (t8 && 43 === requestNodeIndex)
-          return this._MaterialInputComponent_43_8;
+        if (t8 && 46 === requestNodeIndex)
+          return this._MaterialInputComponent_46_8;
         t9 = token === C.Type_BaseMaterialInput_ljM;
-        if (t9 && 43 === requestNodeIndex)
-          return this._BaseMaterialInput_43_9;
+        if (t9 && 46 === requestNodeIndex)
+          return this._BaseMaterialInput_46_9;
         t10 = token === C.Type_YIv;
-        if (t10 && 43 === requestNodeIndex)
-          return this._MaterialInputDefaultValueAccessor_43_10;
+        if (t10 && 46 === requestNodeIndex)
+          return this._MaterialInputDefaultValueAccessor_46_10;
         t11 = token === C.Type_ReferenceDirective_i58;
-        if (t11 && 43 === requestNodeIndex) {
-          t1 = this.__ReferenceDirective_43_11;
+        if (t11 && 46 === requestNodeIndex) {
+          t1 = this.__ReferenceDirective_46_11;
           if (t1 == null) {
-            t1 = this._MaterialInputComponent_43_8;
-            this.__ReferenceDirective_43_11 = t1;
+            t1 = this._MaterialInputComponent_46_8;
+            this.__ReferenceDirective_46_11 = t1;
           }
           return t1;
         }
         t12 = token === C.Type_Focusable_Aov;
-        if (t12 && 43 === requestNodeIndex) {
-          t1 = this.__Focusable_43_12;
+        if (t12 && 46 === requestNodeIndex) {
+          t1 = this.__Focusable_46_12;
           if (t1 == null) {
-            t1 = this._MaterialInputComponent_43_8;
-            this.__Focusable_43_12 = t1;
+            t1 = this._MaterialInputComponent_46_8;
+            this.__Focusable_46_12 = t1;
           }
           return t1;
         }
-        if (t3 && 53 === requestNodeIndex)
-          return this._DeferredValidator_53_3;
-        if (t4 && 53 === requestNodeIndex)
-          return this._NG_VALIDATORS_53_4;
-        if (t5 && 53 === requestNodeIndex)
-          return this._NgModel_53_5;
-        if (t7 && 53 === requestNodeIndex)
-          return this._NgControl_53_6;
-        if (t8 && 53 === requestNodeIndex)
-          return this._MaterialInputComponent_53_7;
-        if (t9 && 53 === requestNodeIndex)
-          return this._BaseMaterialInput_53_8;
-        if (t10 && 53 === requestNodeIndex)
-          return this._MaterialInputDefaultValueAccessor_53_9;
-        if (t11 && 53 === requestNodeIndex) {
-          t1 = this.__ReferenceDirective_53_10;
+        if (t3 && 56 === requestNodeIndex)
+          return this._DeferredValidator_56_3;
+        if (t4 && 56 === requestNodeIndex)
+          return this._NG_VALIDATORS_56_4;
+        if (t5 && 56 === requestNodeIndex)
+          return this._NgModel_56_5;
+        if (t7 && 56 === requestNodeIndex)
+          return this._NgControl_56_6;
+        if (t8 && 56 === requestNodeIndex)
+          return this._MaterialInputComponent_56_7;
+        if (t9 && 56 === requestNodeIndex)
+          return this._BaseMaterialInput_56_8;
+        if (t10 && 56 === requestNodeIndex)
+          return this._MaterialInputDefaultValueAccessor_56_9;
+        if (t11 && 56 === requestNodeIndex) {
+          t1 = this.__ReferenceDirective_56_10;
           if (t1 == null) {
-            t1 = this._MaterialInputComponent_53_7;
-            this.__ReferenceDirective_53_10 = t1;
+            t1 = this._MaterialInputComponent_56_7;
+            this.__ReferenceDirective_56_10 = t1;
           }
           return t1;
         }
-        if (t12 && 53 === requestNodeIndex) {
-          t1 = this.__Focusable_53_11;
+        if (t12 && 56 === requestNodeIndex) {
+          t1 = this.__Focusable_56_11;
           if (t1 == null) {
-            t1 = this._MaterialInputComponent_53_7;
-            this.__Focusable_53_11 = t1;
+            t1 = this._MaterialInputComponent_56_7;
+            this.__Focusable_56_11 = t1;
           }
           return t1;
         }
-        if (t3 && 71 === requestNodeIndex)
-          return this._profile_comp_template$_DeferredValidator_71_3;
-        if (t4 && 71 === requestNodeIndex)
-          return this._profile_comp_template$_NG_VALIDATORS_71_4;
-        if (t5 && 71 === requestNodeIndex)
-          return this._profile_comp_template$_NgModel_71_5;
-        if (t7 && 71 === requestNodeIndex)
-          return this._profile_comp_template$_NgControl_71_6;
-        if (t8 && 71 === requestNodeIndex)
-          return this._profile_comp_template$_MaterialInputComponent_71_7;
-        if (t9 && 71 === requestNodeIndex)
-          return this._profile_comp_template$_BaseMaterialInput_71_8;
-        if (t10 && 71 === requestNodeIndex)
-          return this._profile_comp_template$_MaterialInputDefaultValueAccessor_71_9;
-        if (t11 && 71 === requestNodeIndex) {
-          t1 = this._profile_comp_template$__ReferenceDirective_71_10;
+        if (t3 && 74 === requestNodeIndex)
+          return this._DeferredValidator_74_3;
+        if (t4 && 74 === requestNodeIndex)
+          return this._NG_VALIDATORS_74_4;
+        if (t5 && 74 === requestNodeIndex)
+          return this._NgModel_74_5;
+        if (t7 && 74 === requestNodeIndex)
+          return this._NgControl_74_6;
+        if (t8 && 74 === requestNodeIndex)
+          return this._MaterialInputComponent_74_7;
+        if (t9 && 74 === requestNodeIndex)
+          return this._BaseMaterialInput_74_8;
+        if (t10 && 74 === requestNodeIndex)
+          return this._MaterialInputDefaultValueAccessor_74_9;
+        if (t11 && 74 === requestNodeIndex) {
+          t1 = this.__ReferenceDirective_74_10;
           if (t1 == null) {
-            t1 = this._profile_comp_template$_MaterialInputComponent_71_7;
-            this._profile_comp_template$__ReferenceDirective_71_10 = t1;
+            t1 = this._MaterialInputComponent_74_7;
+            this.__ReferenceDirective_74_10 = t1;
           }
           return t1;
         }
-        if (t12 && 71 === requestNodeIndex) {
-          t1 = this._profile_comp_template$__Focusable_71_11;
+        if (t12 && 74 === requestNodeIndex) {
+          t1 = this.__Focusable_74_11;
           if (t1 == null) {
-            t1 = this._profile_comp_template$_MaterialInputComponent_71_7;
-            this._profile_comp_template$__Focusable_71_11 = t1;
+            t1 = this._MaterialInputComponent_74_7;
+            this.__Focusable_74_11 = t1;
           }
           return t1;
         }
-        if (t3 && 79 === requestNodeIndex)
-          return this._DeferredValidator_79_3;
-        if (t4 && 79 === requestNodeIndex)
-          return this._NG_VALIDATORS_79_4;
-        if (t5 && 79 === requestNodeIndex)
-          return this._NgModel_79_5;
-        if (t7 && 79 === requestNodeIndex)
-          return this._NgControl_79_6;
-        if (t8 && 79 === requestNodeIndex)
-          return this._MaterialInputComponent_79_7;
-        if (t9 && 79 === requestNodeIndex)
-          return this._BaseMaterialInput_79_8;
-        if (t10 && 79 === requestNodeIndex)
-          return this._MaterialInputDefaultValueAccessor_79_9;
-        if (t11 && 79 === requestNodeIndex) {
-          t1 = this.__ReferenceDirective_79_10;
+        if (t3 && 82 === requestNodeIndex)
+          return this._profile_comp_template$_DeferredValidator_82_3;
+        if (t4 && 82 === requestNodeIndex)
+          return this._profile_comp_template$_NG_VALIDATORS_82_4;
+        if (t5 && 82 === requestNodeIndex)
+          return this._profile_comp_template$_NgModel_82_5;
+        if (t7 && 82 === requestNodeIndex)
+          return this._profile_comp_template$_NgControl_82_6;
+        if (t8 && 82 === requestNodeIndex)
+          return this._profile_comp_template$_MaterialInputComponent_82_7;
+        if (t9 && 82 === requestNodeIndex)
+          return this._profile_comp_template$_BaseMaterialInput_82_8;
+        if (t10 && 82 === requestNodeIndex)
+          return this._profile_comp_template$_MaterialInputDefaultValueAccessor_82_9;
+        if (t11 && 82 === requestNodeIndex) {
+          t1 = this._profile_comp_template$__ReferenceDirective_82_10;
           if (t1 == null) {
-            t1 = this._MaterialInputComponent_79_7;
-            this.__ReferenceDirective_79_10 = t1;
+            t1 = this._profile_comp_template$_MaterialInputComponent_82_7;
+            this._profile_comp_template$__ReferenceDirective_82_10 = t1;
           }
           return t1;
         }
-        if (t12 && 79 === requestNodeIndex) {
-          t1 = this.__Focusable_79_11;
+        if (t12 && 82 === requestNodeIndex) {
+          t1 = this._profile_comp_template$__Focusable_82_11;
           if (t1 == null) {
-            t1 = this._MaterialInputComponent_79_7;
-            this.__Focusable_79_11 = t1;
+            t1 = this._profile_comp_template$_MaterialInputComponent_82_7;
+            this._profile_comp_template$__Focusable_82_11 = t1;
           }
           return t1;
         }
-        if (t3 && 89 === requestNodeIndex)
-          return this._DeferredValidator_89_3;
-        if (t4 && 89 === requestNodeIndex)
-          return this._NG_VALIDATORS_89_4;
-        if (t5 && 89 === requestNodeIndex)
-          return this._NgModel_89_5;
-        if (t6 && 89 === requestNodeIndex)
-          return this._RequiredValidator_89_6;
-        if (t7 && 89 === requestNodeIndex)
-          return this._NgControl_89_7;
-        if (t8 && 89 === requestNodeIndex)
-          return this._MaterialInputComponent_89_8;
-        if (t9 && 89 === requestNodeIndex)
-          return this._BaseMaterialInput_89_9;
-        if (t10 && 89 === requestNodeIndex)
-          return this._MaterialInputDefaultValueAccessor_89_10;
-        if (t11 && 89 === requestNodeIndex) {
-          t1 = this.__ReferenceDirective_89_11;
+        if (t3 && 92 === requestNodeIndex)
+          return this._DeferredValidator_92_3;
+        if (t4 && 92 === requestNodeIndex)
+          return this._NG_VALIDATORS_92_4;
+        if (t5 && 92 === requestNodeIndex)
+          return this._NgModel_92_5;
+        if (t6 && 92 === requestNodeIndex)
+          return this._RequiredValidator_92_6;
+        if (t7 && 92 === requestNodeIndex)
+          return this._NgControl_92_7;
+        if (t8 && 92 === requestNodeIndex)
+          return this._MaterialInputComponent_92_8;
+        if (t9 && 92 === requestNodeIndex)
+          return this._BaseMaterialInput_92_9;
+        if (t10 && 92 === requestNodeIndex)
+          return this._MaterialInputDefaultValueAccessor_92_10;
+        if (t11 && 92 === requestNodeIndex) {
+          t1 = this.__ReferenceDirective_92_11;
           if (t1 == null) {
-            t1 = this._MaterialInputComponent_89_8;
-            this.__ReferenceDirective_89_11 = t1;
+            t1 = this._MaterialInputComponent_92_8;
+            this.__ReferenceDirective_92_11 = t1;
           }
           return t1;
         }
-        if (t12 && 89 === requestNodeIndex) {
-          t1 = this.__Focusable_89_12;
+        if (t12 && 92 === requestNodeIndex) {
+          t1 = this.__Focusable_92_12;
           if (t1 == null) {
-            t1 = this._MaterialInputComponent_89_8;
-            this.__Focusable_89_12 = t1;
+            t1 = this._MaterialInputComponent_92_8;
+            this.__Focusable_92_12 = t1;
           }
           return t1;
         }
         if (t1) {
           if (typeof requestNodeIndex !== "number")
             return H.iae(requestNodeIndex);
-          t1 = 36 <= requestNodeIndex && requestNodeIndex <= 91;
+          t1 = 39 <= requestNodeIndex && requestNodeIndex <= 94;
         } else
           t1 = false;
         if (t1)
-          return this._NgForm_36_2;
+          return this._NgForm_39_2;
         if (t2) {
           if (typeof requestNodeIndex !== "number")
             return H.iae(requestNodeIndex);
-          t1 = 36 <= requestNodeIndex && requestNodeIndex <= 91;
+          t1 = 39 <= requestNodeIndex && requestNodeIndex <= 94;
         } else
           t1 = false;
         if (t1) {
-          t1 = this.__ControlContainer_36_3;
+          t1 = this.__ControlContainer_39_3;
           if (t1 == null) {
-            t1 = this._NgForm_36_2;
-            this.__ControlContainer_36_3 = t1;
+            t1 = this._NgForm_39_2;
+            this.__ControlContainer_39_3 = t1;
           }
           return t1;
         }
-        if (t3 && 134 === requestNodeIndex)
-          return this._DeferredValidator_134_3;
-        if (t4 && 134 === requestNodeIndex)
-          return this._NG_VALIDATORS_134_4;
-        if (t5 && 134 === requestNodeIndex)
-          return this._NgModel_134_5;
-        if (t7 && 134 === requestNodeIndex)
-          return this._NgControl_134_6;
-        if (t8 && 134 === requestNodeIndex)
-          return this._MaterialInputComponent_134_7;
-        if (t9 && 134 === requestNodeIndex)
-          return this._BaseMaterialInput_134_8;
-        if (t10 && 134 === requestNodeIndex)
-          return this._MaterialInputDefaultValueAccessor_134_9;
-        if (t11 && 134 === requestNodeIndex) {
-          t1 = this.__ReferenceDirective_134_10;
+        if (t3 && 137 === requestNodeIndex)
+          return this._DeferredValidator_137_3;
+        if (t4 && 137 === requestNodeIndex)
+          return this._NG_VALIDATORS_137_4;
+        if (t5 && 137 === requestNodeIndex)
+          return this._NgModel_137_5;
+        if (t7 && 137 === requestNodeIndex)
+          return this._NgControl_137_6;
+        if (t8 && 137 === requestNodeIndex)
+          return this._MaterialInputComponent_137_7;
+        if (t9 && 137 === requestNodeIndex)
+          return this._BaseMaterialInput_137_8;
+        if (t10 && 137 === requestNodeIndex)
+          return this._MaterialInputDefaultValueAccessor_137_9;
+        if (t11 && 137 === requestNodeIndex) {
+          t1 = this.__ReferenceDirective_137_10;
           if (t1 == null) {
-            t1 = this._MaterialInputComponent_134_7;
-            this.__ReferenceDirective_134_10 = t1;
+            t1 = this._MaterialInputComponent_137_7;
+            this.__ReferenceDirective_137_10 = t1;
           }
           return t1;
         }
-        if (t12 && 134 === requestNodeIndex) {
-          t1 = this.__Focusable_134_11;
+        if (t12 && 137 === requestNodeIndex) {
+          t1 = this.__Focusable_137_11;
           if (t1 == null) {
-            t1 = this._MaterialInputComponent_134_7;
-            this.__Focusable_134_11 = t1;
+            t1 = this._MaterialInputComponent_137_7;
+            this.__Focusable_137_11 = t1;
           }
           return t1;
         }
         if (token === C.Type_AcxDarkTheme_Tng) {
           if (typeof requestNodeIndex !== "number")
             return H.iae(requestNodeIndex);
-          t1 = 143 <= requestNodeIndex && requestNodeIndex <= 144;
+          t1 = 146 <= requestNodeIndex && requestNodeIndex <= 147;
         } else
           t1 = false;
         if (t1)
-          return this._AcxDarkTheme_143_3;
+          return this._AcxDarkTheme_146_3;
         if (token === C.Type_MaterialButtonComponent_xw8) {
           if (typeof requestNodeIndex !== "number")
             return H.iae(requestNodeIndex);
-          t1 = 143 <= requestNodeIndex && requestNodeIndex <= 144;
+          t1 = 146 <= requestNodeIndex && requestNodeIndex <= 147;
         } else
           t1 = false;
         if (t1)
-          return this._MaterialButtonComponent_143_4;
+          return this._MaterialButtonComponent_146_4;
         if (token === C.Type_ButtonDirective_hH0) {
           if (typeof requestNodeIndex !== "number")
             return H.iae(requestNodeIndex);
-          t1 = 143 <= requestNodeIndex && requestNodeIndex <= 144;
+          t1 = 146 <= requestNodeIndex && requestNodeIndex <= 147;
         } else
           t1 = false;
         if (t1) {
-          t1 = this.__ButtonDirective_143_5;
+          t1 = this.__ButtonDirective_146_5;
           if (t1 == null) {
-            t1 = this._MaterialButtonComponent_143_4;
-            this.__ButtonDirective_143_5 = t1;
+            t1 = this._MaterialButtonComponent_146_4;
+            this.__ButtonDirective_146_5 = t1;
           }
           return t1;
         }
@@ -79578,102 +79433,102 @@
         var currVal_9, currVal_14, changes, changed, currVal_17, t1, currVal_23, currVal_30, currVal_34, currVal_37, currVal_47, currVal_5, currVal_6, currVal_8, currVal_19, currVal_20, currVal_25, currVal_26, currVal_31, currVal_39, t2, currVal_40, currVal_41, currVal_42, currVal_43, currVal_44, currVal_56, currVal_57, currVal_58, currVal_59, currVal_60;
         currVal_9 = this.ctx.get$messages();
         if (Q.checkBinding(this._profile_comp_template$_expr_9, currVal_9)) {
-          this._NgFor_31_5.set$ngForOf(currVal_9);
+          this._NgFor_34_5.set$ngForOf(currVal_9);
           this._profile_comp_template$_expr_9 = currVal_9;
         }
         if (!$.AppViewUtils_throwOnChanges)
-          this._NgFor_31_5.ngDoCheck$0();
+          this._NgFor_34_5.ngDoCheck$0();
         currVal_14 = this.ctx.get$connectedUser().get$email();
         if (Q.checkBinding(this._profile_comp_template$_expr_14, currVal_14)) {
-          this._NgModel_43_5.model = currVal_14;
+          this._NgModel_46_5.model = currVal_14;
           changes = P.LinkedHashMap_LinkedHashMap$_empty(P.String, A.SimpleChange);
           changes.$indexSet(0, "model", new A.SimpleChange(this._profile_comp_template$_expr_14, currVal_14));
           this._profile_comp_template$_expr_14 = currVal_14;
         } else
           changes = null;
         if (changes != null)
-          this._NgModel_43_5.ngOnChanges$1(changes);
+          this._NgModel_46_5.ngOnChanges$1(changes);
         if (Q.checkBinding(this._profile_comp_template$_expr_15, "example@domain.com")) {
-          this._MaterialInputComponent_43_8.label = "example@domain.com";
+          this._MaterialInputComponent_46_8.label = "example@domain.com";
           this._profile_comp_template$_expr_15 = "example@domain.com";
           changed = true;
         } else
           changed = false;
         if (Q.checkBinding(this._profile_comp_template$_expr_16, "")) {
-          this._MaterialInputComponent_43_8.set$required(0, "");
+          this._MaterialInputComponent_46_8.set$required(0, "");
           this._profile_comp_template$_expr_16 = "";
           changed = true;
         }
         currVal_17 = !this.ctx.get$emailChanging();
         if (Q.checkBinding(this._profile_comp_template$_expr_17, currVal_17)) {
-          t1 = this._MaterialInputComponent_43_8;
+          t1 = this._MaterialInputComponent_46_8;
           t1.toString;
           t1._base_material_input$_disabled = Y.getBool(currVal_17);
           this._profile_comp_template$_expr_17 = currVal_17;
           changed = true;
         }
         if (changed)
-          this._profile_comp_template$_appEl_43.componentView.set$cdMode(C.ChangeDetectionStrategy_0);
+          this._appEl_46.componentView.set$cdMode(C.ChangeDetectionStrategy_0);
         currVal_23 = this.ctx.get$connectedUser().get$pass();
         if (Q.checkBinding(this._profile_comp_template$_expr_23, currVal_23)) {
-          this._NgModel_53_5.model = currVal_23;
+          this._NgModel_56_5.model = currVal_23;
           changes = P.LinkedHashMap_LinkedHashMap$_empty(P.String, A.SimpleChange);
           changes.$indexSet(0, "model", new A.SimpleChange(this._profile_comp_template$_expr_23, currVal_23));
           this._profile_comp_template$_expr_23 = currVal_23;
         } else
           changes = null;
         if (changes != null)
-          this._NgModel_53_5.ngOnChanges$1(changes);
+          this._NgModel_56_5.ngOnChanges$1(changes);
         currVal_30 = this.ctx.get$connectedUser().get$pass();
         if (Q.checkBinding(this._profile_comp_template$_expr_30, currVal_30)) {
-          this._profile_comp_template$_NgModel_71_5.model = currVal_30;
+          this._NgModel_74_5.model = currVal_30;
           changes = P.LinkedHashMap_LinkedHashMap$_empty(P.String, A.SimpleChange);
           changes.$indexSet(0, "model", new A.SimpleChange(this._profile_comp_template$_expr_30, currVal_30));
           this._profile_comp_template$_expr_30 = currVal_30;
         } else
           changes = null;
         if (changes != null)
-          this._profile_comp_template$_NgModel_71_5.ngOnChanges$1(changes);
+          this._NgModel_74_5.ngOnChanges$1(changes);
         currVal_34 = this.ctx.get$newPass();
         if (Q.checkBinding(this._profile_comp_template$_expr_34, currVal_34)) {
-          this._NgModel_79_5.model = currVal_34;
+          this._profile_comp_template$_NgModel_82_5.model = currVal_34;
           changes = P.LinkedHashMap_LinkedHashMap$_empty(P.String, A.SimpleChange);
           changes.$indexSet(0, "model", new A.SimpleChange(this._profile_comp_template$_expr_34, currVal_34));
           this._profile_comp_template$_expr_34 = currVal_34;
         } else
           changes = null;
         if (changes != null)
-          this._NgModel_79_5.ngOnChanges$1(changes);
+          this._profile_comp_template$_NgModel_82_5.ngOnChanges$1(changes);
         currVal_37 = J.get$name$x(this.ctx.get$connectedUser());
         if (Q.checkBinding(this._expr_37, currVal_37)) {
-          this._NgModel_89_5.model = currVal_37;
+          this._NgModel_92_5.model = currVal_37;
           changes = P.LinkedHashMap_LinkedHashMap$_empty(P.String, A.SimpleChange);
           changes.$indexSet(0, "model", new A.SimpleChange(this._expr_37, currVal_37));
           this._expr_37 = currVal_37;
         } else
           changes = null;
         if (changes != null)
-          this._NgModel_89_5.ngOnChanges$1(changes);
-        if (Q.checkBinding(this._profile_comp_template$_expr_38, "")) {
-          this._MaterialInputComponent_89_8.set$required(0, "");
-          this._profile_comp_template$_expr_38 = "";
+          this._NgModel_92_5.ngOnChanges$1(changes);
+        if (Q.checkBinding(this._expr_38, "")) {
+          this._MaterialInputComponent_92_8.set$required(0, "");
+          this._expr_38 = "";
           changed = true;
         } else
           changed = false;
         if (changed)
-          this._appEl_89.componentView.set$cdMode(C.ChangeDetectionStrategy_0);
+          this._appEl_92.componentView.set$cdMode(C.ChangeDetectionStrategy_0);
         currVal_47 = this.ctx.get$connectedUser().get$skype();
         if (Q.checkBinding(this._expr_47, currVal_47)) {
-          this._NgModel_134_5.model = currVal_47;
+          this._NgModel_137_5.model = currVal_47;
           changes = P.LinkedHashMap_LinkedHashMap$_empty(P.String, A.SimpleChange);
           changes.$indexSet(0, "model", new A.SimpleChange(this._expr_47, currVal_47));
           this._expr_47 = currVal_47;
         } else
           changes = null;
         if (changes != null)
-          this._NgModel_134_5.ngOnChanges$1(changes);
+          this._NgModel_137_5.ngOnChanges$1(changes);
         if (Q.checkBinding(this._expr_55, "")) {
-          t1 = this._MaterialButtonComponent_143_4;
+          t1 = this._MaterialButtonComponent_146_4;
           t1.toString;
           t1._raised = Y.getBool("");
           this._expr_55 = "";
@@ -79681,7 +79536,7 @@
         } else
           changed = false;
         if (changed)
-          this._appEl_143.componentView.set$cdMode(C.ChangeDetectionStrategy_0);
+          this._appEl_146.componentView.set$cdMode(C.ChangeDetectionStrategy_0);
         this.detectContentChildrenChanges$0();
         currVal_5 = this.ctx.get$uploading();
         if (Q.checkBinding(this._profile_comp_template$_expr_5, currVal_5)) {
@@ -79690,42 +79545,42 @@
         }
         currVal_6 = Q.interpolate1("/auth/gridfs/file/", this.ctx.get$photoId(), "");
         if (Q.checkBinding(this._profile_comp_template$_expr_6, currVal_6)) {
-          this._profile_comp_template$_el_14.src = $.appViewUtils.get$sanitizer().sanitizeUrl$1(currVal_6);
+          this._profile_comp_template$_el_16.src = $.appViewUtils.get$sanitizer().sanitizeUrl$1(currVal_6);
           this._profile_comp_template$_expr_6 = currVal_6;
         }
         currVal_8 = Q.interpolate0(J.get$error$x(this.ctx));
         if (Q.checkBinding(this._profile_comp_template$_expr_8, currVal_8)) {
-          this._text_27.textContent = currVal_8;
+          this._text_30.textContent = currVal_8;
           this._profile_comp_template$_expr_8 = currVal_8;
         }
         currVal_19 = this.ctx.get$emailChanging();
         if (Q.checkBinding(this._profile_comp_template$_expr_19, currVal_19)) {
-          this.updateClass$3(this._profile_comp_template$_el_45, "hidden", currVal_19);
+          this.updateClass$3(this._profile_comp_template$_el_48, "hidden", currVal_19);
           this._profile_comp_template$_expr_19 = currVal_19;
         }
         currVal_20 = !this.ctx.get$emailChanging();
         if (Q.checkBinding(this._profile_comp_template$_expr_20, currVal_20)) {
-          this.updateClass$3(this._profile_comp_template$_el_48, "hidden", currVal_20);
+          this.updateClass$3(this._profile_comp_template$_el_51, "hidden", currVal_20);
           this._profile_comp_template$_expr_20 = currVal_20;
         }
         currVal_25 = this.ctx.get$emailChanging() || this.ctx.get$passwordChanging();
         if (Q.checkBinding(this._profile_comp_template$_expr_25, currVal_25)) {
-          this.updateClass$3(this._el_56, "hidden", currVal_25);
+          this.updateClass$3(this._profile_comp_template$_el_59, "hidden", currVal_25);
           this._profile_comp_template$_expr_25 = currVal_25;
         }
         currVal_26 = this.ctx.get$emailChanging() || !this.ctx.get$passwordChanging();
         if (Q.checkBinding(this._profile_comp_template$_expr_26, currVal_26)) {
-          this.updateClass$3(this._profile_comp_template$_el_59, "hidden", currVal_26);
+          this.updateClass$3(this._profile_comp_template$_el_62, "hidden", currVal_26);
           this._profile_comp_template$_expr_26 = currVal_26;
         }
         currVal_31 = !this.ctx.get$passwordChanging();
         if (Q.checkBinding(this._profile_comp_template$_expr_31, currVal_31)) {
-          this.updateClass$3(this._el_74, "hidden", currVal_31);
+          this.updateClass$3(this._profile_comp_template$_el_77, "hidden", currVal_31);
           this._profile_comp_template$_expr_31 = currVal_31;
         }
         currVal_39 = this.ctx.get$linkedToFacebook();
         if (Q.checkBinding(this._profile_comp_template$_expr_39, currVal_39)) {
-          this.updateClass$3(this._el_96, "loggedIn", currVal_39);
+          this.updateClass$3(this._profile_comp_template$_el_99, "loggedIn", currVal_39);
           this._profile_comp_template$_expr_39 = currVal_39;
         }
         if ((this.ctx.get$connectedUser() == null ? null : this.ctx.get$connectedUser().get$facebookAccount()) == null)
@@ -79741,17 +79596,17 @@
         t2 = t2 == null ? t2 : J.toString$0$(t2);
         currVal_40 = C.JSString_methods.$add(t1, t2 == null ? "" : t2);
         if (Q.checkBinding(this._profile_comp_template$_expr_40, currVal_40)) {
-          this._text_103.textContent = currVal_40;
+          this._text_106.textContent = currVal_40;
           this._profile_comp_template$_expr_40 = currVal_40;
         }
         currVal_41 = Q.interpolate0(this.ctx.get$facebookUrl());
         if (Q.checkBinding(this._profile_comp_template$_expr_41, currVal_41)) {
-          this._profile_comp_template$_el_106.href = $.appViewUtils.get$sanitizer().sanitizeUrl$1(currVal_41);
+          this._profile_comp_template$_el_109.href = $.appViewUtils.get$sanitizer().sanitizeUrl$1(currVal_41);
           this._profile_comp_template$_expr_41 = currVal_41;
         }
         currVal_42 = this.ctx.get$linkedToFacebook();
         if (Q.checkBinding(this._profile_comp_template$_expr_42, currVal_42)) {
-          this.updateClass$3(this._el_113, "loggedIn", currVal_42);
+          this.updateClass$3(this._el_116, "loggedIn", currVal_42);
           this._profile_comp_template$_expr_42 = currVal_42;
         }
         if ((this.ctx.get$connectedUser() == null ? null : this.ctx.get$connectedUser().get$googleAccount()) == null)
@@ -79760,89 +79615,89 @@
           t1 = (this.ctx.get$connectedUser() == null ? null : this.ctx.get$connectedUser().get$googleAccount()).displayName;
         currVal_43 = Q.interpolate1(" ", t1, "");
         if (Q.checkBinding(this._profile_comp_template$_expr_43, currVal_43)) {
-          this._text_120.textContent = currVal_43;
+          this._text_123.textContent = currVal_43;
           this._profile_comp_template$_expr_43 = currVal_43;
         }
         currVal_44 = Q.interpolate0(this.ctx.get$googleUrl());
         if (Q.checkBinding(this._profile_comp_template$_expr_44, currVal_44)) {
-          this._el_123.href = $.appViewUtils.get$sanitizer().sanitizeUrl$1(currVal_44);
+          this._el_126.href = $.appViewUtils.get$sanitizer().sanitizeUrl$1(currVal_44);
           this._profile_comp_template$_expr_44 = currVal_44;
         }
-        currVal_56 = this._MaterialButtonComponent_143_4._raised;
+        currVal_56 = this._MaterialButtonComponent_146_4._raised;
         if (Q.checkBinding(this._expr_56, currVal_56)) {
-          this.updateElemClass$3(this._el_143, "is-raised", currVal_56);
+          this.updateElemClass$3(this._el_146, "is-raised", currVal_56);
           this._expr_56 = currVal_56;
         }
-        currVal_57 = "" + this._MaterialButtonComponent_143_4._button_decorator$_disabled;
+        currVal_57 = "" + this._MaterialButtonComponent_146_4._button_decorator$_disabled;
         if (Q.checkBinding(this._expr_57, currVal_57)) {
-          t1 = this._el_143;
+          t1 = this._el_146;
           this.setAttr$3(t1, "aria-disabled", currVal_57);
           this._expr_57 = currVal_57;
         }
-        t1 = this._MaterialButtonComponent_143_4;
+        t1 = this._MaterialButtonComponent_146_4;
         currVal_58 = t1._computeTabIndex$0();
         if (Q.checkBinding(this._expr_58, currVal_58)) {
-          t1 = this._el_143;
+          t1 = this._el_146;
           this.setAttr$3(t1, "tabindex", currVal_58 == null ? null : currVal_58);
           this._expr_58 = currVal_58;
         }
-        currVal_59 = this._MaterialButtonComponent_143_4._button_decorator$_disabled;
+        currVal_59 = this._MaterialButtonComponent_146_4._button_decorator$_disabled;
         if (Q.checkBinding(this._expr_59, currVal_59)) {
-          this.updateElemClass$3(this._el_143, "is-disabled", currVal_59);
+          this.updateElemClass$3(this._el_146, "is-disabled", currVal_59);
           this._expr_59 = currVal_59;
         }
-        t1 = this._MaterialButtonComponent_143_4;
+        t1 = this._MaterialButtonComponent_146_4;
         currVal_60 = t1._isMouseDown || t1._focused ? 2 : 1;
         if (Q.checkBinding(this._expr_60, currVal_60)) {
-          t1 = this._el_143;
+          t1 = this._el_146;
           this.setAttr$3(t1, "elevation", C.JSInt_methods.toString$0(currVal_60));
           this._expr_60 = currVal_60;
         }
         this.detectViewChildrenChanges$0();
         if (this._cdState === C.ChangeDetectorState_0)
-          this._MaterialInputComponent_43_8.ngAfterViewInit$0();
+          this._MaterialInputComponent_46_8.ngAfterViewInit$0();
         if (this._cdState === C.ChangeDetectorState_0)
-          this._MaterialInputComponent_53_7.ngAfterViewInit$0();
+          this._MaterialInputComponent_56_7.ngAfterViewInit$0();
         if (this._cdState === C.ChangeDetectorState_0)
-          this._profile_comp_template$_MaterialInputComponent_71_7.ngAfterViewInit$0();
+          this._MaterialInputComponent_74_7.ngAfterViewInit$0();
         if (this._cdState === C.ChangeDetectorState_0)
-          this._MaterialInputComponent_79_7.ngAfterViewInit$0();
+          this._profile_comp_template$_MaterialInputComponent_82_7.ngAfterViewInit$0();
         if (this._cdState === C.ChangeDetectorState_0)
-          this._MaterialInputComponent_89_8.ngAfterViewInit$0();
+          this._MaterialInputComponent_92_8.ngAfterViewInit$0();
         if (this._cdState === C.ChangeDetectorState_0)
-          this._MaterialInputComponent_134_7.ngAfterViewInit$0();
+          this._MaterialInputComponent_137_7.ngAfterViewInit$0();
       },
       destroyInternal$0: function() {
-        var t1 = this._MaterialInputComponent_43_8;
+        var t1 = this._MaterialInputComponent_46_8;
         t1.super$BaseMaterialInput$ngOnDestroy();
         t1.inputEl = null;
         t1.popupSourceEl = null;
-        this._MaterialInputDefaultValueAccessor_43_10._material_input_default_value_accessor$_disposer.dispose$0();
-        t1 = this._MaterialInputComponent_53_7;
+        this._MaterialInputDefaultValueAccessor_46_10._material_input_default_value_accessor$_disposer.dispose$0();
+        t1 = this._MaterialInputComponent_56_7;
         t1.super$BaseMaterialInput$ngOnDestroy();
         t1.inputEl = null;
         t1.popupSourceEl = null;
-        this._MaterialInputDefaultValueAccessor_53_9._material_input_default_value_accessor$_disposer.dispose$0();
-        t1 = this._profile_comp_template$_MaterialInputComponent_71_7;
+        this._MaterialInputDefaultValueAccessor_56_9._material_input_default_value_accessor$_disposer.dispose$0();
+        t1 = this._MaterialInputComponent_74_7;
         t1.super$BaseMaterialInput$ngOnDestroy();
         t1.inputEl = null;
         t1.popupSourceEl = null;
-        this._profile_comp_template$_MaterialInputDefaultValueAccessor_71_9._material_input_default_value_accessor$_disposer.dispose$0();
-        t1 = this._MaterialInputComponent_79_7;
+        this._MaterialInputDefaultValueAccessor_74_9._material_input_default_value_accessor$_disposer.dispose$0();
+        t1 = this._profile_comp_template$_MaterialInputComponent_82_7;
         t1.super$BaseMaterialInput$ngOnDestroy();
         t1.inputEl = null;
         t1.popupSourceEl = null;
-        this._MaterialInputDefaultValueAccessor_79_9._material_input_default_value_accessor$_disposer.dispose$0();
-        t1 = this._MaterialInputComponent_89_8;
+        this._profile_comp_template$_MaterialInputDefaultValueAccessor_82_9._material_input_default_value_accessor$_disposer.dispose$0();
+        t1 = this._MaterialInputComponent_92_8;
         t1.super$BaseMaterialInput$ngOnDestroy();
         t1.inputEl = null;
         t1.popupSourceEl = null;
-        this._MaterialInputDefaultValueAccessor_89_10._material_input_default_value_accessor$_disposer.dispose$0();
-        t1 = this._MaterialInputComponent_134_7;
+        this._MaterialInputDefaultValueAccessor_92_10._material_input_default_value_accessor$_disposer.dispose$0();
+        t1 = this._MaterialInputComponent_137_7;
         t1.super$BaseMaterialInput$ngOnDestroy();
         t1.inputEl = null;
         t1.popupSourceEl = null;
-        this._MaterialInputDefaultValueAccessor_134_9._material_input_default_value_accessor$_disposer.dispose$0();
+        this._MaterialInputDefaultValueAccessor_137_9._material_input_default_value_accessor$_disposer.dispose$0();
       },
       _handle_keyup_esc_0_0$1: [function($$event) {
         var t1;
@@ -79877,143 +79732,143 @@
         this._NgForm_9_2.onSubmit$0(0);
         return false;
       }, "call$1", "get$_handle_submit_9_2", 2, 0, 1, 0, []],
-      _handle_change_20_0$1: [function($$event) {
+      _handle_change_23_0$1: [function($$event) {
         this.markPathToRootAsCheckOnce$0();
         this.ctx.uploadFile$0();
         return true;
-      }, "call$1", "get$_handle_change_20_0", 2, 0, 1, 0, []],
-      _handle_submit_36_0$1: [function($$event) {
+      }, "call$1", "get$_handle_change_23_0", 2, 0, 1, 0, []],
+      _handle_submit_39_0$1: [function($$event) {
         this.markPathToRootAsCheckOnce$0();
-        this._NgForm_36_2.onSubmit$0(0);
+        this._NgForm_39_2.onSubmit$0(0);
         return false;
-      }, "call$1", "get$_handle_submit_36_0", 2, 0, 1, 0, []],
-      _handle_change_43_0$1: [function($$event) {
+      }, "call$1", "get$_handle_submit_39_0", 2, 0, 1, 0, []],
+      _handle_change_46_0$1: [function($$event) {
         var pd_0;
         this.markPathToRootAsCheckOnce$0();
         pd_0 = this.ctx.checkEmailChanged$0();
         return pd_0;
-      }, "call$1", "get$_handle_change_43_0", 2, 0, 1, 0, []],
-      _handle_ngModelChange_43_1$1: [function($$event) {
+      }, "call$1", "get$_handle_change_46_0", 2, 0, 1, 0, []],
+      _handle_ngModelChange_46_1$1: [function($$event) {
         this.markPathToRootAsCheckOnce$0();
         this.ctx.get$connectedUser().set$email($$event);
         return $$event !== false;
-      }, "call$1", "get$_handle_ngModelChange_43_1", 2, 0, 1, 0, []],
-      _handle_focus_43_2$1: [function($$event) {
-        this._profile_comp_template$_appEl_43.componentView.markPathToRootAsCheckOnce$0();
-        this._MaterialInputComponent_43_8.focus$0(0);
+      }, "call$1", "get$_handle_ngModelChange_46_1", 2, 0, 1, 0, []],
+      _handle_focus_46_2$1: [function($$event) {
+        this._appEl_46.componentView.markPathToRootAsCheckOnce$0();
+        this._MaterialInputComponent_46_8.focus$0(0);
         return true;
-      }, "call$1", "get$_handle_focus_43_2", 2, 0, 1, 0, []],
-      _handle_click_45_0$1: [function($$event) {
+      }, "call$1", "get$_handle_focus_46_2", 2, 0, 1, 0, []],
+      _handle_click_48_0$1: [function($$event) {
         this.markPathToRootAsCheckOnce$0();
         this.ctx.startEmailChange$0();
-        this._MaterialInputComponent_43_8.focus$0(0);
+        this._MaterialInputComponent_46_8.focus$0(0);
         return true;
-      }, "call$1", "get$_handle_click_45_0", 2, 0, 1, 0, []],
-      _handle_ngModelChange_53_0$1: [function($$event) {
+      }, "call$1", "get$_handle_click_48_0", 2, 0, 1, 0, []],
+      _handle_ngModelChange_56_0$1: [function($$event) {
         this.markPathToRootAsCheckOnce$0();
         this.ctx.get$connectedUser().set$pass($$event);
         return $$event !== false;
-      }, "call$1", "get$_handle_ngModelChange_53_0", 2, 0, 1, 0, []],
-      _handle_focus_53_1$1: [function($$event) {
-        this._appEl_53.componentView.markPathToRootAsCheckOnce$0();
-        this._MaterialInputComponent_53_7.focus$0(0);
+      }, "call$1", "get$_handle_ngModelChange_56_0", 2, 0, 1, 0, []],
+      _handle_focus_56_1$1: [function($$event) {
+        this._appEl_56.componentView.markPathToRootAsCheckOnce$0();
+        this._MaterialInputComponent_56_7.focus$0(0);
         return true;
-      }, "call$1", "get$_handle_focus_53_1", 2, 0, 1, 0, []],
-      _handle_click_56_0$1: [function($$event) {
+      }, "call$1", "get$_handle_focus_56_1", 2, 0, 1, 0, []],
+      _profile_comp_template$_handle_click_59_0$1: [function($$event) {
         var t1, t2;
         this.markPathToRootAsCheckOnce$0();
         t1 = this.ctx;
         t2 = !t1.get$passwordChanging();
         t1.set$passwordChanging(t2);
         return t2;
-      }, "call$1", "get$_handle_click_56_0", 2, 0, 1, 0, []],
-      _handle_click_63_0$1: [function($$event) {
+      }, "call$1", "get$_profile_comp_template$_handle_click_59_0", 2, 0, 1, 0, []],
+      _handle_click_66_0$1: [function($$event) {
         var t1, t2;
         this.markPathToRootAsCheckOnce$0();
         t1 = this.ctx;
         t2 = !t1.get$passwordChanging();
         t1.set$passwordChanging(t2);
         return t2;
-      }, "call$1", "get$_handle_click_63_0", 2, 0, 1, 0, []],
-      _profile_comp_template$_handle_ngModelChange_71_0$1: [function($$event) {
+      }, "call$1", "get$_handle_click_66_0", 2, 0, 1, 0, []],
+      _handle_ngModelChange_74_0$1: [function($$event) {
         this.markPathToRootAsCheckOnce$0();
         this.ctx.get$connectedUser().set$pass($$event);
         return $$event !== false;
-      }, "call$1", "get$_profile_comp_template$_handle_ngModelChange_71_0", 2, 0, 1, 0, []],
-      _profile_comp_template$_handle_focus_71_1$1: [function($$event) {
-        this._profile_comp_template$_appEl_71.componentView.markPathToRootAsCheckOnce$0();
-        this._profile_comp_template$_MaterialInputComponent_71_7.focus$0(0);
+      }, "call$1", "get$_handle_ngModelChange_74_0", 2, 0, 1, 0, []],
+      _handle_focus_74_1$1: [function($$event) {
+        this._appEl_74.componentView.markPathToRootAsCheckOnce$0();
+        this._MaterialInputComponent_74_7.focus$0(0);
         return true;
-      }, "call$1", "get$_profile_comp_template$_handle_focus_71_1", 2, 0, 1, 0, []],
-      _handle_ngModelChange_79_0$1: [function($$event) {
+      }, "call$1", "get$_handle_focus_74_1", 2, 0, 1, 0, []],
+      _profile_comp_template$_handle_ngModelChange_82_0$1: [function($$event) {
         this.markPathToRootAsCheckOnce$0();
         this.ctx.set$newPass($$event);
         return $$event !== false;
-      }, "call$1", "get$_handle_ngModelChange_79_0", 2, 0, 1, 0, []],
-      _handle_focus_79_1$1: [function($$event) {
-        this._profile_comp_template$_appEl_79.componentView.markPathToRootAsCheckOnce$0();
-        this._MaterialInputComponent_79_7.focus$0(0);
+      }, "call$1", "get$_profile_comp_template$_handle_ngModelChange_82_0", 2, 0, 1, 0, []],
+      _profile_comp_template$_handle_focus_82_1$1: [function($$event) {
+        this._profile_comp_template$_appEl_82.componentView.markPathToRootAsCheckOnce$0();
+        this._profile_comp_template$_MaterialInputComponent_82_7.focus$0(0);
         return true;
-      }, "call$1", "get$_handle_focus_79_1", 2, 0, 1, 0, []],
-      _handle_ngModelChange_89_0$1: [function($$event) {
+      }, "call$1", "get$_profile_comp_template$_handle_focus_82_1", 2, 0, 1, 0, []],
+      _handle_ngModelChange_92_0$1: [function($$event) {
         this.markPathToRootAsCheckOnce$0();
         J.set$name$x(this.ctx.get$connectedUser(), $$event);
         return $$event !== false;
-      }, "call$1", "get$_handle_ngModelChange_89_0", 2, 0, 1, 0, []],
-      _handle_focus_89_1$1: [function($$event) {
-        this._appEl_89.componentView.markPathToRootAsCheckOnce$0();
-        this._MaterialInputComponent_89_8.focus$0(0);
+      }, "call$1", "get$_handle_ngModelChange_92_0", 2, 0, 1, 0, []],
+      _handle_focus_92_1$1: [function($$event) {
+        this._appEl_92.componentView.markPathToRootAsCheckOnce$0();
+        this._MaterialInputComponent_92_8.focus$0(0);
         return true;
-      }, "call$1", "get$_handle_focus_89_1", 2, 0, 1, 0, []],
-      _handle_ngModelChange_134_0$1: [function($$event) {
+      }, "call$1", "get$_handle_focus_92_1", 2, 0, 1, 0, []],
+      _handle_ngModelChange_137_0$1: [function($$event) {
         this.markPathToRootAsCheckOnce$0();
         this.ctx.get$connectedUser().set$skype($$event);
         return $$event !== false;
-      }, "call$1", "get$_handle_ngModelChange_134_0", 2, 0, 1, 0, []],
-      _handle_focus_134_1$1: [function($$event) {
-        this._appEl_134.componentView.markPathToRootAsCheckOnce$0();
-        this._MaterialInputComponent_134_7.focus$0(0);
+      }, "call$1", "get$_handle_ngModelChange_137_0", 2, 0, 1, 0, []],
+      _handle_focus_137_1$1: [function($$event) {
+        this._appEl_137.componentView.markPathToRootAsCheckOnce$0();
+        this._MaterialInputComponent_137_7.focus$0(0);
         return true;
-      }, "call$1", "get$_handle_focus_134_1", 2, 0, 1, 0, []],
-      _handle_click_143_0$1: [function($$event) {
+      }, "call$1", "get$_handle_focus_137_1", 2, 0, 1, 0, []],
+      _handle_click_146_0$1: [function($$event) {
         var t1;
-        this._appEl_143.componentView.markPathToRootAsCheckOnce$0();
+        this._appEl_146.componentView.markPathToRootAsCheckOnce$0();
         t1 = J.save$0$x(this.ctx);
-        this._MaterialButtonComponent_143_4.handleClick$1($$event);
+        this._MaterialButtonComponent_146_4.handleClick$1($$event);
         return t1 !== false && true;
-      }, "call$1", "get$_handle_click_143_0", 2, 0, 1, 0, []],
-      _handle_blur_143_1$1: [function($$event) {
+      }, "call$1", "get$_handle_click_146_0", 2, 0, 1, 0, []],
+      _handle_blur_146_1$1: [function($$event) {
         var t1;
-        this._appEl_143.componentView.markPathToRootAsCheckOnce$0();
-        t1 = this._MaterialButtonComponent_143_4;
+        this._appEl_146.componentView.markPathToRootAsCheckOnce$0();
+        t1 = this._MaterialButtonComponent_146_4;
         if (t1._clickFocused)
           t1._clickFocused = false;
         t1._setFocused$1(false);
         return true;
-      }, "call$1", "get$_handle_blur_143_1", 2, 0, 1, 0, []],
-      _handle_mouseup_143_2$1: [function($$event) {
-        this._appEl_143.componentView.markPathToRootAsCheckOnce$0();
-        this._MaterialButtonComponent_143_4._isMouseDown = false;
+      }, "call$1", "get$_handle_blur_146_1", 2, 0, 1, 0, []],
+      _handle_mouseup_146_2$1: [function($$event) {
+        this._appEl_146.componentView.markPathToRootAsCheckOnce$0();
+        this._MaterialButtonComponent_146_4._isMouseDown = false;
         return true;
-      }, "call$1", "get$_handle_mouseup_143_2", 2, 0, 1, 0, []],
-      _handle_keypress_143_3$1: [function($$event) {
-        this._appEl_143.componentView.markPathToRootAsCheckOnce$0();
-        this._MaterialButtonComponent_143_4.handleKeyPress$1($$event);
+      }, "call$1", "get$_handle_mouseup_146_2", 2, 0, 1, 0, []],
+      _handle_keypress_146_3$1: [function($$event) {
+        this._appEl_146.componentView.markPathToRootAsCheckOnce$0();
+        this._MaterialButtonComponent_146_4.handleKeyPress$1($$event);
         return true;
-      }, "call$1", "get$_handle_keypress_143_3", 2, 0, 1, 0, []],
-      _handle_focus_143_4$1: [function($$event) {
-        this._appEl_143.componentView.markPathToRootAsCheckOnce$0();
-        this._MaterialButtonComponent_143_4.onFocus$1(0, $$event);
+      }, "call$1", "get$_handle_keypress_146_3", 2, 0, 1, 0, []],
+      _handle_focus_146_4$1: [function($$event) {
+        this._appEl_146.componentView.markPathToRootAsCheckOnce$0();
+        this._MaterialButtonComponent_146_4.onFocus$1(0, $$event);
         return true;
-      }, "call$1", "get$_handle_focus_143_4", 2, 0, 1, 0, []],
-      _handle_mousedown_143_5$1: [function($$event) {
+      }, "call$1", "get$_handle_focus_146_4", 2, 0, 1, 0, []],
+      _handle_mousedown_146_5$1: [function($$event) {
         var t1;
-        this._appEl_143.componentView.markPathToRootAsCheckOnce$0();
-        t1 = this._MaterialButtonComponent_143_4;
+        this._appEl_146.componentView.markPathToRootAsCheckOnce$0();
+        t1 = this._MaterialButtonComponent_146_4;
         t1._clickFocused = true;
         t1._isMouseDown = true;
         return true;
-      }, "call$1", "get$_handle_mousedown_143_5", 2, 0, 1, 0, []],
+      }, "call$1", "get$_handle_mousedown_146_5", 2, 0, 1, 0, []],
       $asAppView: function() {
         return [O.ProfileComp];
       }
@@ -80665,6 +80520,15 @@
         });
         return P._asyncHelper(null, $async$signup$0, $async$completer);
       },
+      imgChange$1: function($event) {
+        var Url, t1, t2;
+        Url = J.$index$asx($.$get$context0(), "URL");
+        t1 = document.querySelector("#imgPrev");
+        t2 = J.get$files$x(J.get$target$x($event));
+        if (0 >= t2.length)
+          return H.ioore(t2, 0);
+        t1.setAttribute("src", Url.callMethod$2("createObjectURL", [t2[0]]));
+      },
       close$0: [function(_) {
         this._loginComp.set$showSignupDialog(false);
       }, "call$0", "get$close", 0, 0, 3],
@@ -80744,7 +80608,7 @@
       M.initReflector10();
     },
     ViewSignupComp0: {
-      "^": "AppView;_signup_comp_template$_el_0,_signup_comp_template$_el_2,_signup_comp_template$_el_7,_signup_comp_template$_el_9,_signup_comp_template$_el_12,_signup_comp_template$_el_15,_NgForm_15_2,__ControlContainer_15_3,_signup_comp_template$_el_17,_signup_comp_template$_el_20,_signup_comp_template$_el_22,_signup_comp_template$_el_26,_signup_comp_template$_el_30,_signup_comp_template$_el_32,_text_33,_signup_comp_template$_el_35,_el_37,_signup_comp_template$_el_39,_signup_comp_template$_el_42,_appEl_42,_DeferredValidator_42_3,_NG_VALIDATORS_42_4,_NgModel_42_5,_RequiredValidator_42_6,_NgControl_42_7,_MaterialInputComponent_42_8,_BaseMaterialInput_42_9,_MaterialInputDefaultValueAccessor_42_10,__ReferenceDirective_42_11,__Focusable_42_12,_signup_comp_template$_el_45,_signup_comp_template$_el_47,_el_50,_appEl_50,_DeferredValidator_50_3,_NG_VALIDATORS_50_4,_NgModel_50_5,_RequiredValidator_50_6,_NgControl_50_7,_MaterialInputComponent_50_8,_BaseMaterialInput_50_9,_MaterialInputDefaultValueAccessor_50_10,__ReferenceDirective_50_11,__Focusable_50_12,_el_53,_el_55,_el_58,_appEl_58,_DeferredValidator_58_3,_NG_VALIDATORS_58_4,_NgModel_58_5,_RequiredValidator_58_6,_NgControl_58_7,_MaterialInputComponent_58_8,_BaseMaterialInput_58_9,_MaterialInputDefaultValueAccessor_58_10,__ReferenceDirective_58_11,__Focusable_58_12,_signup_comp_template$_el_62,_signup_comp_template$_el_64,_signup_comp_template$_el_66,_signup_comp_template$_el_69,_signup_comp_template$_el_71,_signup_comp_template$_appEl_71,_DeferredValidator_71_3,_NG_VALIDATORS_71_4,_NgModel_71_5,_NgControl_71_6,_MaterialInputComponent_71_7,_BaseMaterialInput_71_8,_MaterialInputDefaultValueAccessor_71_9,__ReferenceDirective_71_10,__Focusable_71_11,_signup_comp_template$_el_75,_signup_comp_template$_el_77,_signup_comp_template$_el_80,_el_82,_appEl_82,_DeferredValidator_82_3,_NG_VALIDATORS_82_4,_NgModel_82_5,_NgControl_82_6,_MaterialInputComponent_82_7,_BaseMaterialInput_82_8,_MaterialInputDefaultValueAccessor_82_9,__ReferenceDirective_82_10,__Focusable_82_11,_el_88,_el_90,_signup_comp_template$_appEl_90,_AcxDarkTheme_90_3,_MaterialButtonComponent_90_4,__ButtonDirective_90_5,_signup_comp_template$_expr_4,_signup_comp_template$_expr_5,_signup_comp_template$_expr_6,_signup_comp_template$_expr_9,_signup_comp_template$_expr_10,_signup_comp_template$_expr_11,_signup_comp_template$_expr_14,_signup_comp_template$_expr_15,_signup_comp_template$_expr_16,_signup_comp_template$_expr_20,_signup_comp_template$_expr_21,_signup_comp_template$_expr_24,_signup_comp_template$_expr_25,_signup_comp_template$_expr_28,_signup_comp_template$_expr_29,_expr_38,_expr_39,_expr_40,_expr_41,_expr_42,_expr_43,_expr_44,clazz,componentType,type,locals,parentInjector,declarationViewContainer,_cdMode,_skipChangeDetection,ref,rootNodesOrViewContainers,allNodes,_onDestroyCallbacks,subscriptions,contentChildren,viewChildren,renderParent,viewContainerElement,_cdState,ctx,projectableNodes,destroyed,_hasExternalHostElement",
+      "^": "AppView;_signup_comp_template$_el_0,_signup_comp_template$_el_2,_signup_comp_template$_el_7,_signup_comp_template$_el_9,_signup_comp_template$_el_12,_signup_comp_template$_el_15,_NgForm_15_2,__ControlContainer_15_3,_signup_comp_template$_el_17,_signup_comp_template$_el_20,_signup_comp_template$_el_22,_signup_comp_template$_el_26,_signup_comp_template$_el_30,_signup_comp_template$_el_32,_text_33,_signup_comp_template$_el_35,_el_37,_signup_comp_template$_el_39,_signup_comp_template$_el_42,_appEl_42,_DeferredValidator_42_3,_NG_VALIDATORS_42_4,_NgModel_42_5,_RequiredValidator_42_6,_NgControl_42_7,_MaterialInputComponent_42_8,_BaseMaterialInput_42_9,_MaterialInputDefaultValueAccessor_42_10,__ReferenceDirective_42_11,__Focusable_42_12,_signup_comp_template$_el_45,_signup_comp_template$_el_47,_el_50,_appEl_50,_DeferredValidator_50_3,_NG_VALIDATORS_50_4,_NgModel_50_5,_RequiredValidator_50_6,_NgControl_50_7,_MaterialInputComponent_50_8,_BaseMaterialInput_50_9,_MaterialInputDefaultValueAccessor_50_10,__ReferenceDirective_50_11,__Focusable_50_12,_el_53,_el_55,_el_58,_appEl_58,_DeferredValidator_58_3,_NG_VALIDATORS_58_4,_NgModel_58_5,_RequiredValidator_58_6,_NgControl_58_7,_MaterialInputComponent_58_8,_BaseMaterialInput_58_9,_MaterialInputDefaultValueAccessor_58_10,__ReferenceDirective_58_11,__Focusable_58_12,_signup_comp_template$_el_62,_signup_comp_template$_el_64,_signup_comp_template$_el_66,_signup_comp_template$_el_69,_signup_comp_template$_el_71,_signup_comp_template$_appEl_71,_DeferredValidator_71_3,_NG_VALIDATORS_71_4,_NgModel_71_5,_NgControl_71_6,_MaterialInputComponent_71_7,_BaseMaterialInput_71_8,_MaterialInputDefaultValueAccessor_71_9,__ReferenceDirective_71_10,__Focusable_71_11,_signup_comp_template$_el_75,_signup_comp_template$_el_77,_signup_comp_template$_el_80,_el_82,_appEl_82,_DeferredValidator_82_3,_NG_VALIDATORS_82_4,_NgModel_82_5,_NgControl_82_6,_MaterialInputComponent_82_7,_BaseMaterialInput_82_8,_MaterialInputDefaultValueAccessor_82_9,__ReferenceDirective_82_10,__Focusable_82_11,_el_88,_el_90,_signup_comp_template$_appEl_90,_AcxDarkTheme_90_3,_MaterialButtonComponent_90_4,__ButtonDirective_90_5,_signup_comp_template$_expr_4,_signup_comp_template$_expr_5,_signup_comp_template$_expr_7,_signup_comp_template$_expr_10,_signup_comp_template$_expr_11,_signup_comp_template$_expr_12,_signup_comp_template$_expr_15,_signup_comp_template$_expr_16,_signup_comp_template$_expr_17,_signup_comp_template$_expr_21,_signup_comp_template$_expr_22,_signup_comp_template$_expr_25,_signup_comp_template$_expr_26,_signup_comp_template$_expr_29,_signup_comp_template$_expr_30,_signup_comp_template$_expr_39,_signup_comp_template$_expr_40,_signup_comp_template$_expr_41,_signup_comp_template$_expr_42,_signup_comp_template$_expr_43,_expr_44,_expr_45,clazz,componentType,type,locals,parentInjector,declarationViewContainer,_cdMode,_skipChangeDetection,ref,rootNodesOrViewContainers,allNodes,_onDestroyCallbacks,subscriptions,contentChildren,viewChildren,renderParent,viewContainerElement,_cdState,ctx,projectableNodes,destroyed,_hasExternalHostElement",
       createInternal$1: function(rootSelector) {
         var parentRenderNode, doc, t1, _text_1, _text_3, _text_4, _text_5, _text_6, _text_8, _text_10, _text_11, _text_13, _text_14, _text_16, _text_18, _text_19, _text_21, _text_23, _text_24, _text_25, _text_27, _text_28, _text_29, _text_31, t2, _text_34, _text_36, _text_38, _text_40, _text_41, compView_42, _text_43, _text_44, _text_46, _text_48, _text_49, compView_50, _text_51, _text_52, _text_54, _text_56, _text_57, compView_58, _text_59, _text_60, _text_61, _text_63, _text_65, _text_67, _text_68, _text_70, compView_71, _text_72, _text_73, _text_74, _text_76, _text_78, _text_79, _text_81, compView_82, _text_83, _text_84, _text_85, _text_86, _text_87, _text_89, compView_90, _text_91, _text_92, _text_93, t3, subscription_0, subscription_1, subscription_2, subscription_3, subscription_4, subscription_5, subscription_6, subscription_7, subscription_8, subscription_9;
         parentRenderNode = this.initViewRoot$1(this.declarationViewContainer.nativeElement);
@@ -80797,7 +80661,7 @@
         this._signup_comp_template$_el_12.className = "close";
         _text_13 = doc.createTextNode("\n    ");
         this._signup_comp_template$_el_7.appendChild(_text_13);
-        _text_14 = doc.createTextNode("\n\n\n    ");
+        _text_14 = doc.createTextNode("\n\n\n\n\n    ");
         this._signup_comp_template$_el_2.appendChild(_text_14);
         t1 = doc.createElement("form");
         this._signup_comp_template$_el_15 = t1;
@@ -80824,6 +80688,7 @@
         this._signup_comp_template$_el_20 = t1;
         t1.setAttribute(this.componentType._contentAttr, "");
         this._signup_comp_template$_el_17.appendChild(this._signup_comp_template$_el_20);
+        this._signup_comp_template$_el_20.setAttribute("id", "imgPrev");
         this._signup_comp_template$_el_20.setAttribute("src", "../images/img_profile.png");
         this._signup_comp_template$_el_20.setAttribute("title", "");
         _text_21 = doc.createTextNode("\n        ");
@@ -80850,7 +80715,7 @@
         this._signup_comp_template$_el_26.setAttribute("name", "filename");
         this._signup_comp_template$_el_26.setAttribute("style", "opacity: 0");
         this._signup_comp_template$_el_26.setAttribute("type", "file");
-        _text_27 = doc.createTextNode("\n    ");
+        _text_27 = doc.createTextNode("\n\n    ");
         this._signup_comp_template$_el_15.appendChild(_text_27);
         _text_28 = doc.createTextNode("\n  ");
         this._signup_comp_template$_el_2.appendChild(_text_28);
@@ -81204,6 +81069,7 @@
         this.listen$3(this._signup_comp_template$_el_15, "dragenter", this.get$_handle_dragenter_15_0());
         this.listen$3(this._signup_comp_template$_el_15, "drop", this.get$_handle_drop_15_1());
         this.listen$3(this._signup_comp_template$_el_15, "submit", this.get$_handle_submit_15_2());
+        this.listen$3(this._signup_comp_template$_el_26, "change", this.get$_handle_change_26_0());
         t2 = this.get$_handle_ngModelChange_42_0();
         this.listen$3(this._signup_comp_template$_el_42, "ngModelChange", t2);
         t1 = this.get$_handle_focus_42_1();
@@ -81473,117 +81339,117 @@
         return notFoundResult;
       },
       detectChangesInternal$0: function() {
-        var currVal_9, changes, changed, currVal_14, currVal_20, t1, currVal_24, currVal_28, currVal_38, t2, currVal_4, currVal_5, currVal_6, currVal_16, currVal_40, currVal_41, currVal_42, currVal_43, currVal_44;
-        currVal_9 = this.ctx.get$user().get$email();
-        if (Q.checkBinding(this._signup_comp_template$_expr_9, currVal_9)) {
-          this._NgModel_42_5.model = currVal_9;
+        var currVal_10, changes, changed, currVal_15, currVal_21, t1, currVal_25, currVal_29, currVal_39, t2, currVal_4, currVal_5, currVal_7, currVal_17, currVal_41, currVal_42, currVal_43, currVal_44, currVal_45;
+        currVal_10 = this.ctx.get$user().get$email();
+        if (Q.checkBinding(this._signup_comp_template$_expr_10, currVal_10)) {
+          this._NgModel_42_5.model = currVal_10;
           changes = P.LinkedHashMap_LinkedHashMap$_empty(P.String, A.SimpleChange);
-          changes.$indexSet(0, "model", new A.SimpleChange(this._signup_comp_template$_expr_9, currVal_9));
-          this._signup_comp_template$_expr_9 = currVal_9;
+          changes.$indexSet(0, "model", new A.SimpleChange(this._signup_comp_template$_expr_10, currVal_10));
+          this._signup_comp_template$_expr_10 = currVal_10;
         } else
           changes = null;
         if (changes != null)
           this._NgModel_42_5.ngOnChanges$1(changes);
-        if (Q.checkBinding(this._signup_comp_template$_expr_10, "example@domain.com")) {
+        if (Q.checkBinding(this._signup_comp_template$_expr_11, "example@domain.com")) {
           this._MaterialInputComponent_42_8.label = "example@domain.com";
-          this._signup_comp_template$_expr_10 = "example@domain.com";
+          this._signup_comp_template$_expr_11 = "example@domain.com";
           changed = true;
         } else
           changed = false;
-        if (Q.checkBinding(this._signup_comp_template$_expr_11, "")) {
+        if (Q.checkBinding(this._signup_comp_template$_expr_12, "")) {
           this._MaterialInputComponent_42_8.set$required(0, "");
-          this._signup_comp_template$_expr_11 = "";
+          this._signup_comp_template$_expr_12 = "";
           changed = true;
         }
         if (changed)
           this._appEl_42.componentView.set$cdMode(C.ChangeDetectionStrategy_0);
-        currVal_14 = this.ctx.get$user().get$pass();
-        if (Q.checkBinding(this._signup_comp_template$_expr_14, currVal_14)) {
-          this._NgModel_50_5.model = currVal_14;
+        currVal_15 = this.ctx.get$user().get$pass();
+        if (Q.checkBinding(this._signup_comp_template$_expr_15, currVal_15)) {
+          this._NgModel_50_5.model = currVal_15;
           changes = P.LinkedHashMap_LinkedHashMap$_empty(P.String, A.SimpleChange);
-          changes.$indexSet(0, "model", new A.SimpleChange(this._signup_comp_template$_expr_14, currVal_14));
-          this._signup_comp_template$_expr_14 = currVal_14;
+          changes.$indexSet(0, "model", new A.SimpleChange(this._signup_comp_template$_expr_15, currVal_15));
+          this._signup_comp_template$_expr_15 = currVal_15;
         } else
           changes = null;
         if (changes != null)
           this._NgModel_50_5.ngOnChanges$1(changes);
-        if (Q.checkBinding(this._signup_comp_template$_expr_15, "")) {
+        if (Q.checkBinding(this._signup_comp_template$_expr_16, "")) {
           this._MaterialInputComponent_50_8.set$required(0, "");
-          this._signup_comp_template$_expr_15 = "";
+          this._signup_comp_template$_expr_16 = "";
           changed = true;
         } else
           changed = false;
         if (changed)
           this._appEl_50.componentView.set$cdMode(C.ChangeDetectionStrategy_0);
-        currVal_20 = this.ctx.get$passVerif();
-        if (Q.checkBinding(this._signup_comp_template$_expr_20, currVal_20)) {
-          this._NgModel_58_5.model = currVal_20;
+        currVal_21 = this.ctx.get$passVerif();
+        if (Q.checkBinding(this._signup_comp_template$_expr_21, currVal_21)) {
+          this._NgModel_58_5.model = currVal_21;
           changes = P.LinkedHashMap_LinkedHashMap$_empty(P.String, A.SimpleChange);
-          changes.$indexSet(0, "model", new A.SimpleChange(this._signup_comp_template$_expr_20, currVal_20));
-          this._signup_comp_template$_expr_20 = currVal_20;
+          changes.$indexSet(0, "model", new A.SimpleChange(this._signup_comp_template$_expr_21, currVal_21));
+          this._signup_comp_template$_expr_21 = currVal_21;
         } else
           changes = null;
         if (changes != null)
           this._NgModel_58_5.ngOnChanges$1(changes);
-        if (Q.checkBinding(this._signup_comp_template$_expr_21, "")) {
+        if (Q.checkBinding(this._signup_comp_template$_expr_22, "")) {
           this._MaterialInputComponent_58_8.set$required(0, "");
-          this._signup_comp_template$_expr_21 = "";
+          this._signup_comp_template$_expr_22 = "";
           changed = true;
         } else
           changed = false;
         if (changed)
           this._appEl_58.componentView.set$cdMode(C.ChangeDetectionStrategy_0);
         t1 = this.ctx.get$user();
-        currVal_24 = t1.get$name(t1);
-        if (Q.checkBinding(this._signup_comp_template$_expr_24, currVal_24)) {
-          this._NgModel_71_5.model = currVal_24;
+        currVal_25 = t1.get$name(t1);
+        if (Q.checkBinding(this._signup_comp_template$_expr_25, currVal_25)) {
+          this._NgModel_71_5.model = currVal_25;
           changes = P.LinkedHashMap_LinkedHashMap$_empty(P.String, A.SimpleChange);
-          changes.$indexSet(0, "model", new A.SimpleChange(this._signup_comp_template$_expr_24, currVal_24));
-          this._signup_comp_template$_expr_24 = currVal_24;
+          changes.$indexSet(0, "model", new A.SimpleChange(this._signup_comp_template$_expr_25, currVal_25));
+          this._signup_comp_template$_expr_25 = currVal_25;
         } else
           changes = null;
         if (changes != null)
           this._NgModel_71_5.ngOnChanges$1(changes);
-        if (Q.checkBinding(this._signup_comp_template$_expr_25, "")) {
+        if (Q.checkBinding(this._signup_comp_template$_expr_26, "")) {
           this._MaterialInputComponent_71_7.label = "";
-          this._signup_comp_template$_expr_25 = "";
+          this._signup_comp_template$_expr_26 = "";
           changed = true;
         } else
           changed = false;
         if (changed)
           this._signup_comp_template$_appEl_71.componentView.set$cdMode(C.ChangeDetectionStrategy_0);
-        currVal_28 = this.ctx.get$user().get$skype();
-        if (Q.checkBinding(this._signup_comp_template$_expr_28, currVal_28)) {
-          this._NgModel_82_5.model = currVal_28;
+        currVal_29 = this.ctx.get$user().get$skype();
+        if (Q.checkBinding(this._signup_comp_template$_expr_29, currVal_29)) {
+          this._NgModel_82_5.model = currVal_29;
           changes = P.LinkedHashMap_LinkedHashMap$_empty(P.String, A.SimpleChange);
-          changes.$indexSet(0, "model", new A.SimpleChange(this._signup_comp_template$_expr_28, currVal_28));
-          this._signup_comp_template$_expr_28 = currVal_28;
+          changes.$indexSet(0, "model", new A.SimpleChange(this._signup_comp_template$_expr_29, currVal_29));
+          this._signup_comp_template$_expr_29 = currVal_29;
         } else
           changes = null;
         if (changes != null)
           this._NgModel_82_5.ngOnChanges$1(changes);
-        if (Q.checkBinding(this._signup_comp_template$_expr_29, "")) {
+        if (Q.checkBinding(this._signup_comp_template$_expr_30, "")) {
           this._MaterialInputComponent_82_7.label = "";
-          this._signup_comp_template$_expr_29 = "";
+          this._signup_comp_template$_expr_30 = "";
           changed = true;
         } else
           changed = false;
         if (changed)
           this._appEl_82.componentView.set$cdMode(C.ChangeDetectionStrategy_0);
-        currVal_38 = this.ctx.get$submitEnabled() !== true;
-        if (Q.checkBinding(this._expr_38, currVal_38)) {
+        currVal_39 = this.ctx.get$submitEnabled() !== true;
+        if (Q.checkBinding(this._signup_comp_template$_expr_39, currVal_39)) {
           t1 = this._MaterialButtonComponent_90_4;
           t1.toString;
-          t1._button_decorator$_disabled = Y.getBool(currVal_38);
-          this._expr_38 = currVal_38;
+          t1._button_decorator$_disabled = Y.getBool(currVal_39);
+          this._signup_comp_template$_expr_39 = currVal_39;
           changed = true;
         } else
           changed = false;
-        if (Q.checkBinding(this._expr_39, "")) {
+        if (Q.checkBinding(this._signup_comp_template$_expr_40, "")) {
           t1 = this._MaterialButtonComponent_90_4;
           t1.toString;
           t1._raised = Y.getBool("");
-          this._expr_39 = "";
+          this._signup_comp_template$_expr_40 = "";
           changed = true;
         }
         if (changed)
@@ -81602,45 +81468,45 @@
           this.updateClass$3(this._signup_comp_template$_el_15, "uploading", currVal_5);
           this._signup_comp_template$_expr_5 = currVal_5;
         }
-        currVal_6 = Q.interpolate0(J.get$error$x(this.ctx));
-        if (Q.checkBinding(this._signup_comp_template$_expr_6, currVal_6)) {
-          this._text_33.textContent = currVal_6;
-          this._signup_comp_template$_expr_6 = currVal_6;
+        currVal_7 = Q.interpolate0(J.get$error$x(this.ctx));
+        if (Q.checkBinding(this._signup_comp_template$_expr_7, currVal_7)) {
+          this._text_33.textContent = currVal_7;
+          this._signup_comp_template$_expr_7 = currVal_7;
         }
-        currVal_16 = this.ctx.passwordsError$0();
-        if (Q.checkBinding(this._signup_comp_template$_expr_16, currVal_16)) {
-          this.updateClass$3(this._el_53, "passEqual", currVal_16);
-          this._signup_comp_template$_expr_16 = currVal_16;
+        currVal_17 = this.ctx.passwordsError$0();
+        if (Q.checkBinding(this._signup_comp_template$_expr_17, currVal_17)) {
+          this.updateClass$3(this._el_53, "passEqual", currVal_17);
+          this._signup_comp_template$_expr_17 = currVal_17;
         }
-        currVal_40 = this._MaterialButtonComponent_90_4._raised;
-        if (Q.checkBinding(this._expr_40, currVal_40)) {
-          this.updateElemClass$3(this._el_90, "is-raised", currVal_40);
-          this._expr_40 = currVal_40;
+        currVal_41 = this._MaterialButtonComponent_90_4._raised;
+        if (Q.checkBinding(this._signup_comp_template$_expr_41, currVal_41)) {
+          this.updateElemClass$3(this._el_90, "is-raised", currVal_41);
+          this._signup_comp_template$_expr_41 = currVal_41;
         }
-        currVal_41 = "" + this._MaterialButtonComponent_90_4._button_decorator$_disabled;
-        if (Q.checkBinding(this._expr_41, currVal_41)) {
+        currVal_42 = "" + this._MaterialButtonComponent_90_4._button_decorator$_disabled;
+        if (Q.checkBinding(this._signup_comp_template$_expr_42, currVal_42)) {
           t1 = this._el_90;
-          this.setAttr$3(t1, "aria-disabled", currVal_41);
-          this._expr_41 = currVal_41;
+          this.setAttr$3(t1, "aria-disabled", currVal_42);
+          this._signup_comp_template$_expr_42 = currVal_42;
         }
         t1 = this._MaterialButtonComponent_90_4;
-        currVal_42 = t1._computeTabIndex$0();
-        if (Q.checkBinding(this._expr_42, currVal_42)) {
+        currVal_43 = t1._computeTabIndex$0();
+        if (Q.checkBinding(this._signup_comp_template$_expr_43, currVal_43)) {
           t1 = this._el_90;
-          this.setAttr$3(t1, "tabindex", currVal_42 == null ? null : currVal_42);
-          this._expr_42 = currVal_42;
+          this.setAttr$3(t1, "tabindex", currVal_43 == null ? null : currVal_43);
+          this._signup_comp_template$_expr_43 = currVal_43;
         }
-        currVal_43 = this._MaterialButtonComponent_90_4._button_decorator$_disabled;
-        if (Q.checkBinding(this._expr_43, currVal_43)) {
-          this.updateElemClass$3(this._el_90, "is-disabled", currVal_43);
-          this._expr_43 = currVal_43;
-        }
-        t1 = this._MaterialButtonComponent_90_4;
-        currVal_44 = t1._isMouseDown || t1._focused ? 2 : 1;
+        currVal_44 = this._MaterialButtonComponent_90_4._button_decorator$_disabled;
         if (Q.checkBinding(this._expr_44, currVal_44)) {
-          t1 = this._el_90;
-          this.setAttr$3(t1, "elevation", C.JSInt_methods.toString$0(currVal_44));
+          this.updateElemClass$3(this._el_90, "is-disabled", currVal_44);
           this._expr_44 = currVal_44;
+        }
+        t1 = this._MaterialButtonComponent_90_4;
+        currVal_45 = t1._isMouseDown || t1._focused ? 2 : 1;
+        if (Q.checkBinding(this._expr_45, currVal_45)) {
+          t1 = this._el_90;
+          this.setAttr$3(t1, "elevation", C.JSInt_methods.toString$0(currVal_45));
+          this._expr_45 = currVal_45;
         }
         this.detectViewChildrenChanges$0();
         if (this._cdState === C.ChangeDetectorState_0)
@@ -81702,6 +81568,11 @@
         this._NgForm_15_2.onSubmit$0(0);
         return false;
       }, "call$1", "get$_handle_submit_15_2", 2, 0, 1, 0, []],
+      _handle_change_26_0$1: [function($$event) {
+        this.markPathToRootAsCheckOnce$0();
+        this.ctx.imgChange$1($$event);
+        return true;
+      }, "call$1", "get$_handle_change_26_0", 2, 0, 1, 0, []],
       _handle_ngModelChange_42_0$1: [function($$event) {
         this.markPathToRootAsCheckOnce$0();
         this.ctx.get$user().set$email($$event);
@@ -84462,6 +84333,9 @@
   J.get$error$x = function(receiver) {
     return J.getInterceptor$x(receiver).get$error(receiver);
   };
+  J.get$files$x = function(receiver) {
+    return J.getInterceptor$x(receiver).get$files(receiver);
+  };
   J.get$first$ax = function(receiver) {
     return J.getInterceptor$ax(receiver).get$first(receiver);
   };
@@ -84998,9 +84872,6 @@
   J.lastIndexOf$2$asx = function(receiver, a0, a1) {
     return J.getInterceptor$asx(receiver).lastIndexOf$2(receiver, a0, a1);
   };
-  J.lock$0$x = function(receiver) {
-    return J.getInterceptor$x(receiver).lock$0(receiver);
-  };
   J.map$1$ax = function(receiver, a0) {
     return J.getInterceptor$ax(receiver).map$1(receiver, a0);
   };
@@ -85404,8 +85275,6 @@
   C.List_UW6 = Isolate.makeConstantList([C.Type_ForgotPassComp_Ay6, C.List_empty]);
   C.ComponentFactory_43h = new D.ComponentFactory("forgot-pass-comp", D.forgot_pass_comp_template__viewFactory_ForgotPassCompHost0$closure(), C.Type_ForgotPassComp_Ay6, C.List_UW6);
   C.List_33r = Isolate.makeConstantList([C.ComponentFactory_43h]);
-  C.List_0uT = Isolate.makeConstantList([".files[_ngcontent-%COMP%] {\r\n  background-color: #edf2f8 !important;\r\n}\r\n\r\n.files[_ngcontent-%COMP%]   .title[_ngcontent-%COMP%] {\r\n  background-color: #4690D1 !important;\r\n  width: calc(100% - 20px);\r\n  font-size: 1em;\r\n  color: #fff;\r\n  font-weight: normal !important;\r\n  height: 38px;\r\n  line-height: 36px;\r\n  padding: 0 10px;\r\n}\r\n\r\n.title[_ngcontent-%COMP%] {\r\n  font-weight: normal !important;\r\n}\r\n\r\nul[_ngcontent-%COMP%] {\r\n  padding: 0;\r\n}\r\n\r\n.rightDetails[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n  vertical-align: middle;\r\n  position: relative;\r\n}\r\n\r\n.line[_ngcontent-%COMP%]   a[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n  text-decoration: none;\r\n}\r\n\r\n.file[_ngcontent-%COMP%] {\r\n  width: 100%;\r\n  clear: both;\r\n  border-radius: 3px;\r\n  -webkit-border-radius: 3px;\r\n  -moz-border-radius: 3px;\r\n  overflow: hidden;\r\n  padding: 0;\r\n}\r\n\r\n.file[_ngcontent-%COMP%]    > div[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n}\r\n\r\n.fileDesc[_ngcontent-%COMP%] {\r\n  position: relative;\r\n  \r\n  \r\n  width: 100%;\r\n}\r\n\r\n.thumb[_ngcontent-%COMP%] {\r\n  \r\n  \r\n  display: inline-block;\r\n}\r\n\r\n.fileProps[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n  vertical-align: top;\r\n  width: calc(100% - 47px);\r\n  word-break: break-all;\r\n}\r\n\r\n.date[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n  padding-right: 0.5em;\r\n}\r\n\r\n.profileImg[_ngcontent-%COMP%] {\r\n  width: 28px;\r\n  height: 28px;\r\n  display: inherit;\r\n  \r\n  background-color: white;\r\n}\r\n\r\n.fileName[_ngcontent-%COMP%] {\r\n  text-decoration: none;\r\n  line-height: 1.1;\r\n  word-break: break-all;\r\n}\r\n\r\n.fileLink[_ngcontent-%COMP%] {\r\n  cursor: pointer;\r\n  font-weight: bold;\r\n}\r\n\r\n.list[_ngcontent-%COMP%] {\r\n  list-style-type: none;\r\n  padding: 0;\r\n  margin-top: 0;\r\n}\r\n\r\n.version[_ngcontent-%COMP%] {\r\n  color: #727272;\r\n  font-size: 14px;\r\n  padding: 0 0.4em;\r\n}\r\n\r\n.moreActions[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n  vertical-align: middle;\r\n  cursor: pointer;\r\n  padding: 0 0.4em;\r\n  color: #191999;\r\n  font: normal normal normal 2em/1 'Material-Design-Iconic-Font';\r\n  z-index: 999;\r\n  position: relative;\r\n  opacity: 0;\r\n  transition: all 0.2s;\r\n}\r\n\r\n.moreActions[_ngcontent-%COMP%]:after {\r\n  font-size: 1.3em;\r\n  width: 100%;\r\n  content: '\\f19b';\r\n}\r\n\r\n.selected[_ngcontent-%COMP%] {\r\n  \r\n  font-weight: normal;\r\n  text-decoration: none;\r\n  color: inherit;\r\n}\r\n\r\n.newTopic[_ngcontent-%COMP%] {\r\n  padding: 1.3em;\r\n  background: #dde2e5;\r\n}\r\n\r\n.newComment[_ngcontent-%COMP%] {\r\n  width: calc(100% - 30px) !important;\r\n}\r\n\r\na[_ngcontent-%COMP%] {\r\n  color: #00AEF0;\r\n}\r\n\r\n.actionList[_ngcontent-%COMP%] {\r\n  list-style-type: none;\r\n}\r\n\r\n.actionBlock[_ngcontent-%COMP%] {\r\n  clear: both;\r\n  position: relative;\r\n  \r\n}\r\n\r\n\r\n\r\n\r\n\r\n.author[_ngcontent-%COMP%] {\r\n  display: block;\r\n}\r\n\r\n.author[_ngcontent-%COMP%]   .profileImg[_ngcontent-%COMP%] {\r\n  display: inline !important;\r\n}\r\n\r\n.comment[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n  padding: 0.2em;\r\n  width: calc(100% - 17em);\r\n  color: rgba(0, 0, 0, 0.85);\r\n  margin: 2px;\r\n  margin-left: 10px;\r\n}\r\n\r\n.comm-ts[_ngcontent-%COMP%], .action-ts[_ngcontent-%COMP%] {\r\n  margin-top: 2px;\r\n  font-size: 9px;\r\n  color: #B5B5B5;\r\n  display: block;\r\n  line-height: 9px;\r\n  letter-spacing: -0.3px;\r\n}\r\n\r\n.disabled[_ngcontent-%COMP%] {\r\n  opacity: 0.2;\r\n}\r\n\r\n.version_part_li[_ngcontent-%COMP%] {\r\n  border-bottom: 1px solid #e6e6e6;\r\n  background-color: #edf2f8;\r\n  overflow: hidden;\r\n  border-radius: 0 0 3px 3px;\r\n  -webkit-border-radius: 0 0 3px 3px;\r\n  -moz-border-radius: 0 0 3px 3px;\r\n  \r\n}\r\n\r\n.version[_ngcontent-%COMP%]   .header[_ngcontent-%COMP%]   a[_ngcontent-%COMP%] {\r\n  color: black;\r\n  text-decoration: underline;\r\n}\r\n\r\n.version[_ngcontent-%COMP%]   .header[_ngcontent-%COMP%] {\r\n  position: relative;\r\n  color: black;\r\n  height: 2em;\r\n}\r\n\r\n.versionTitle[_ngcontent-%COMP%] {\r\n  height: 1.5em;\r\n  line-height: 1.5em;\r\n  padding: 0 0.5em;\r\n  background: white;\r\n  color: #727272;\r\n  font-size: 1em;\r\n  -webkit-border-radius: 0 0 3px 3px;\r\n  -moz-border-radius: 0 0 3px 3px;\r\n  border-radius: 0 0 3px 3px;\r\n  \r\n  border-bottom: 1px solid #e6e6e6;\r\n}\r\n\r\n.versionTitle[_ngcontent-%COMP%]    > div[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n  vertical-align: middle;\r\n}\r\n\r\n.versionTitle[_ngcontent-%COMP%]   .toggleVersion[_ngcontent-%COMP%] {\r\n  font-family: FontAwesome;\r\n  height: 5px;\r\n}\r\n\r\n.version[_ngcontent-%COMP%]   .header[_ngcontent-%COMP%]   .left[_ngcontent-%COMP%] {\r\n  background-color: white;\r\n  z-index: 2;\r\n  position: absolute;\r\n  display: inline-block;\r\n  padding-right: 0.5em;\r\n}\r\n\r\n.version[_ngcontent-%COMP%]   .header[_ngcontent-%COMP%]   .right[_ngcontent-%COMP%] {\r\n  background-color: white;\r\n  z-index: 2;\r\n  position: absolute;\r\n  display: inline-block;\r\n  padding: 0 1.5em 0 0.5em;\r\n  right: 2em;\r\n}\r\n\r\n.toggleVersion[_ngcontent-%COMP%] {\r\n  float: right;\r\n  z-index: 2;\r\n  font-size: 2em;\r\n  color: #727272;\r\n  cursor: pointer;\r\n  position: relative;\r\n  top: -5px;\r\n}\r\n\r\n.versions[_ngcontent-%COMP%]   li[_ngcontent-%COMP%] {\r\n  list-style-type: none;\r\n  \r\n  overflow: hidden;\r\n}\r\n\r\n.addCommentBlock[_ngcontent-%COMP%] {\r\n  margin-left: 1em;\r\n  padding: 1em 0;\r\n  float: left;\r\n}\r\n\r\n.actionPropsBlock[_ngcontent-%COMP%]   .author[_ngcontent-%COMP%], .approveBlock[_ngcontent-%COMP%]   .author[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n}\r\n\r\n.versionComments[_ngcontent-%COMP%] {\r\n  visibility: hidden;\r\n  transition: all 1s;\r\n}\r\n\r\n\r\n  \r\n\r\n\r\n\r\n  \r\n\r\n\r\n.versionComments.activep[_ngcontent-%COMP%] {\r\n  transition: all 1s;\r\n  visibility: visible !important;\r\n}\r\n\r\n.versionComments[_ngcontent-%COMP%]   .addCommentBlock[_ngcontent-%COMP%] {\r\n  margin-bottom: 2em;\r\n}\r\n\r\n.uploadStatus[_ngcontent-%COMP%] {\r\n  position: absolute;\r\n  left: -13px;\r\n  top: -13px;\r\n  z-index: 9;\r\n  opacity: 0.7;\r\n}\r\n\r\n.isUploading[_ngcontent-%COMP%] {\r\n  height: 0.8em;\r\n  width: 30%;\r\n  padding: 0;\r\n  margin: auto;\r\n  border: 1px solid;\r\n  border-radius: 2px;\r\n}\r\n\r\n.progress[_ngcontent-%COMP%] {\r\n  height: 0.8em;\r\n  width: 10%;\r\n  border-radius: 2px;\r\n  margin: 0;\r\n  animation: nomAnim;\r\n  animation-iteration-count: 100;\r\n  animation-duration: 5s;\r\n  animation-timing-function: linear;\r\n}\r\n\r\n.bubble[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n  width: calc(100% - 4.6em);\r\n  float: right;\r\n  \r\n}\r\n\r\n.bubbleContent[_ngcontent-%COMP%] {\r\n  -webkit-border-radius: 3px;\r\n  -moz-border-radius: 3px;\r\n  border-radius: 3px;\r\n  background: #fff;\r\n  border: 1px solid #d3d3d3;\r\n  color: #000;\r\n\r\n  position: relative;\r\n  display: inline-block;\r\n  vertical-align: middle;\r\n  max-width: 70%;\r\n\r\n  min-height: calc(25px - 0.4em);\r\n  padding: 0.1em 0.5em !important;\r\n\r\n  \r\n  \r\n}\r\n\r\n.pLeft[_ngcontent-%COMP%], .fileMoreActions[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n}\r\n\r\n.fileMoreActions[_ngcontent-%COMP%] {\r\n  width: 5em;\r\n  position: absolute;\r\n  top: 0;\r\n  right: 0;\r\n}\r\n\r\n.pLeft[_ngcontent-%COMP%]:hover, .pLeft[_ngcontent-%COMP%]:focus {\r\n  cursor: pointer;\r\n}\r\n\r\n.actionBlock.draft[_ngcontent-%COMP%]:hover   .bubbleContent[_ngcontent-%COMP%]   .moreActions[_ngcontent-%COMP%], .actionBlock.draft[_ngcontent-%COMP%]:focus   .bubbleContent[_ngcontent-%COMP%]   .moreActions[_ngcontent-%COMP%] {\r\n  opacity: 1;\r\n}\r\n\r\n.bubbleContent[_ngcontent-%COMP%]:after, .bubbleContent[_ngcontent-%COMP%]:before {\r\n  right: 100%;\r\n  top: 13px;\r\n  border: solid transparent;\r\n  content: \" \";\r\n  height: 0;\r\n  width: 0;\r\n  position: absolute;\r\n  pointer-events: none;\r\n}\r\n\r\n.bubbleContent[_ngcontent-%COMP%]:after {\r\n  border-color: rgba(250, 250, 250, 0);\r\n  border-right-color: #fff;\r\n  border-width: 7px;\r\n  margin-top: -7px;\r\n}\r\n\r\n.bubbleContent[_ngcontent-%COMP%]:before {\r\n  border-color: rgba(230, 230, 230, 0);\r\n  border-right-color: #d3d3d3;\r\n  border-width: 8px;\r\n  margin-top: -8px;\r\n}\r\n\r\nli.more[_ngcontent-%COMP%]    > div[_ngcontent-%COMP%] {\r\n  border: 1px solid rgba(0, 0, 0, 0.2);\r\n  display: inline-block;\r\n  padding: 0em 0.5em;\r\n  border-radius: 0.2em;\r\n  margin: 0.5em 0;\r\n  cursor: pointer;\r\n}\r\n\r\nli.more[_ngcontent-%COMP%] {\r\n  text-align: center;\r\n}\r\n\r\n.menuItem[_ngcontent-%COMP%] {\r\n  display: block;\r\n  text-transform: initial;\r\n}\r\n\r\n.popupContent[_ngcontent-%COMP%] {\r\n  overflow: hidden;\r\n  padding: 0.2em;\r\n}\r\n\r\n.lockBlock[_ngcontent-%COMP%]   .bubbleContent[_ngcontent-%COMP%] {\r\n  color: #fff;\r\n  border: 1px solid #b2b6bb;\r\n  background-color: #909EAA;\r\n}\r\n\r\n.lockBlock[_ngcontent-%COMP%]   .bubbleContent[_ngcontent-%COMP%]:before {\r\n  border-right-color: #b2b6bb;\r\n}\r\n\r\n.lockBlock[_ngcontent-%COMP%]   .bubbleContent[_ngcontent-%COMP%]:after {\r\n  border-right-color: #909EAA;\r\n}\r\n\r\n.lockBlock[_ngcontent-%COMP%]   .lockIcon[_ngcontent-%COMP%] {\r\n  background-color: #FFF;\r\n  color: #909EAA;\r\n  font: normal normal normal 2em/1 'Material-Design-Iconic-Font';\r\n  text-align: center;\r\n  width: 1.2em;\r\n  height: 1.2em;\r\n  line-height: 1.2em;\r\n  border-radius: 50%;\r\n  vertical-align: middle;\r\n  display: inline-block;\r\n  margin-left: 0.5em;\r\n  \r\n}\r\n\r\n.lockBlock[_ngcontent-%COMP%]   .lockIcon[_ngcontent-%COMP%]:after {\r\n  font-size: 1em;\r\n  width: 100%;\r\n  content: '\\f158';\r\n}\r\n\r\n.approveBlock[_ngcontent-%COMP%]   .approveIcon[_ngcontent-%COMP%] {\r\n  font: normal normal normal 2em/1 'Material-Design-Iconic-Font';\r\n  vertical-align: middle;\r\n  display: inline-block;\r\n}\r\n\r\n.approveBlock[_ngcontent-%COMP%]   .approveIcon[_ngcontent-%COMP%]:after {\r\n  font-size: 1.2em;\r\n  width: 100%;\r\n  content: '\\f269';\r\n  color: #7ebb01;\r\n}\r\n\r\n.lockTime[_ngcontent-%COMP%] {\r\n  font-size: 12px;\r\n  font-family: Arial, Helvetica, sans-serif\r\n}\r\n\r\n.lockText[_ngcontent-%COMP%] {\r\n  color: #fff;\r\n  font-weight: bold;\r\n}\r\n\r\n.fileThumb[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n  vertical-align: middle;\r\n    margin-right: 0.5em;\r\n  width: auto;\r\n  height: auto;\r\n  \r\n  \r\n  border: 1px solid rgba(153, 153, 153, 0.41);\r\n  position: relative;\r\n}\r\n\r\n.fileThumb[_ngcontent-%COMP%]   img[_ngcontent-%COMP%] {\r\n  max-width: 100%;\r\n  height: auto;\r\n\r\n}\r\n\r\n.actionBlock.approved[_ngcontent-%COMP%]   .bubbleContent[_ngcontent-%COMP%] {\r\n  padding: 0.3em 0.5em !important;\r\n}\r\n\r\n.locked[_ngcontent-%COMP%]   .fileThumb[_ngcontent-%COMP%]   .fileThumb_bg[_ngcontent-%COMP%]:after {\r\n  content: \"\";\r\n  background: url(\"../images/pen_locked.png\") no-repeat center center;\r\n  top: calc(50% - 18px);\r\n  width: 36px;\r\n  height: 36px;\r\n  position: absolute;\r\n  display: inline-block;\r\n\r\n  text-align: center;\r\n  opacity: 1;\r\n  z-index: 99 !important;\r\n  left: 0;\r\n  right: auto;\r\n  margin-left: calc(50% - 18px);\r\n\r\n}\r\n\r\n.locked[_ngcontent-%COMP%]   .fileThumb[_ngcontent-%COMP%]   .fileThumb_bg[_ngcontent-%COMP%]:before {\r\n  content: '';\r\n  background: rgba(164, 163, 132, 0.7);\r\n  bottom: 0;\r\n  top: 0;\r\n  opacity: 0;\r\n}\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n.fileThumb[_ngcontent-%COMP%]   .fileThumb_bg[_ngcontent-%COMP%] {\r\n\r\n  cursor: pointer;\r\n  font: normal normal normal 2em/0 'Material-Design-Iconic-Font';\r\n}\r\n\r\n.fileThumb[_ngcontent-%COMP%]   .fileThumb_bg[_ngcontent-%COMP%]:after {\r\n  position: absolute;\r\n  top: -0.2em;\r\n  right: -0.4em;\r\n  font-size: 1.2em;\r\n  color: #7ebb01;\r\n  content: '\\f269';\r\n  opacity: 0;\r\n  z-index: 99 !important;\r\n}\r\n\r\n.thumbnail[_ngcontent-%COMP%] {\r\n  padding: 0 !important;\r\n  margin-bottom: 0 !important;\r\n  border-radius: 0 !important;\r\n}\r\n\r\n.locked[_ngcontent-%COMP%]   .fileThumb[_ngcontent-%COMP%]   .fileThumb_bg[_ngcontent-%COMP%]:before, .locked[_ngcontent-%COMP%]   .fileThumb[_ngcontent-%COMP%]   .fileThumb_bg[_ngcontent-%COMP%]:after, .approved[_ngcontent-%COMP%]   .fileThumb[_ngcontent-%COMP%]   .fileThumb_bg[_ngcontent-%COMP%]:after {\r\n  opacity: 1;\r\n\r\n  \r\n  \r\n  \r\n  \r\n  \r\n  \r\n  \r\n}\r\n\r\n.approved[_ngcontent-%COMP%]   .fileThumb[_ngcontent-%COMP%]   .fileThumb_bg[_ngcontent-%COMP%]   img[_ngcontent-%COMP%] {\r\n  opacity: 1 !important;\r\n}\r\n\r\n.icons[_ngcontent-%COMP%] {\r\n  float: right;\r\n  vertical-align: baseline;\r\n}\r\n\r\n.arrowbottom[_ngcontent-%COMP%] {\r\n  font-size: 30px;\r\n}\r\n\r\n.fileInfo[_ngcontent-%COMP%] {\r\n  font-size: 1em;\r\n}\r\n\r\n.menuItem[_ngcontent-%COMP%] {\r\n  border-bottom: 1px solid #cacaca !important;\r\n}\r\n\r\n.actionPropsBlock[_ngcontent-%COMP%] {\r\n  width: 3em;\r\n  display: inline-block;\r\n  vertical-align: top;\r\n  text-align: center;\r\n  padding: 0 0.5em;\r\n }\r\n\r\n.rightdesc[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n  \r\n  vertical-align: middle;\r\n  position: relative;\r\n}\r\n\r\n.fileSize[_ngcontent-%COMP%], .filetypedoc[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n  font-size: 0.8em;\r\n  color: rgba(0, 0, 0, 0.45);\r\n  line-height: 1;\r\n}\r\n\r\n.fileversion[_ngcontent-%COMP%] {\r\n  background-color: #1A1A99;\r\n  color: white;\r\n  border-radius: 50%;\r\n  -webkit-border-radius: 50%;\r\n  width: 2em;\r\n  height: 2em;\r\n  line-height: 2em;\r\n  text-align: center;\r\n  display: inline-block;\r\n  vertical-align: middle;\r\n  font-size: 1.1em;\r\n  letter-spacing: -0.5px;\r\n  margin: 0;\r\n}\r\n\r\n@keyframes nomAnim {\r\n  from {\r\n    background-color: #9D7E90;\r\n    margin-left: 0%;\r\n  }\r\n  50% {\r\n    background-color: #BFBB97;\r\n    margin-left: 90%;\r\n  }\r\n  to {\r\n    background-color: #9D7E90;\r\n    margin-left: 0%;\r\n  }\r\n}\r\n\r\n.ownAction[_ngcontent-%COMP%]   .commentBlock[_ngcontent-%COMP%]   .bubbleContent[_ngcontent-%COMP%] {\r\n  \r\n  background: #D5F0FF;\r\n  border: 1px solid rgba(0, 0, 0, 0.25);\r\n}\r\n\r\n.ownAction[_ngcontent-%COMP%]   .bubbleContent[_ngcontent-%COMP%]:after {\r\n  border-color: rgba(250, 250, 250, 0);\r\n  border-left-color: #D5F0FF;\r\n}\r\n\r\n.ownAction[_ngcontent-%COMP%]   .bubbleContent[_ngcontent-%COMP%]:before {\r\n  border-color: rgba(230, 230, 230, 0);\r\n  border-left-color: rgba(0, 0, 0, 0.25);\r\n  border-width: 8px;\r\n  margin-top: -8px;\r\n}\r\n\r\n.ownAction[_ngcontent-%COMP%]   .lockBlock[_ngcontent-%COMP%]   .bubbleContent[_ngcontent-%COMP%]:before {\r\n  border-left-color: #888770;\r\n}\r\n\r\n.ownAction[_ngcontent-%COMP%]   .lockBlock[_ngcontent-%COMP%]   .bubbleContent[_ngcontent-%COMP%]:after {\r\n  border-left-color: #909EAA;\r\n}\r\n\r\n.ownAction[_ngcontent-%COMP%]   .actionPropsBlock[_ngcontent-%COMP%] {\r\n  float: right;\r\n}\r\n\r\n.ownAction[_ngcontent-%COMP%]   .bubble[_ngcontent-%COMP%] {\r\n  float: left;\r\n  text-align: right;\r\n}\r\n\r\n.ownAction[_ngcontent-%COMP%]   .bubbleContent[_ngcontent-%COMP%]:after, .ownAction[_ngcontent-%COMP%]   .bubbleContent[_ngcontent-%COMP%]:before {\r\n  right: 0;\r\n  left: 100%;\r\n}\r\n\r\n.ownAction[_ngcontent-%COMP%]   .author[_ngcontent-%COMP%] {\r\n  display: none;\r\n}\r\n\r\n.ownAction[_ngcontent-%COMP%]   .comm-ts[_ngcontent-%COMP%], .ownAction[_ngcontent-%COMP%]   .action-ts[_ngcontent-%COMP%] {\r\n  margin-top: 6px;\r\n  display: inline-block;\r\n  vertical-align: middle;\r\n}\r\n\r\n.isActionOn[_ngcontent-%COMP%]   .lockBlock[_ngcontent-%COMP%]   .lockIcon[_ngcontent-%COMP%] {\r\n  background-color: #F2542F;\r\n  color: white;\r\n}\r\n\r\n.constructText[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n  vertical-align: middle;\r\n  font-size: 0.9em;\r\n}\r\n\r\n.ownAction.isActionOn[_ngcontent-%COMP%]   .lockBlock[_ngcontent-%COMP%]   .lockIcon[_ngcontent-%COMP%], .ownAction.isActionOn[_ngcontent-%COMP%]   .approveIcon[_ngcontent-%COMP%] {\r\n\r\n}\r\n\r\n.isActionOn[_ngcontent-%COMP%]   .lockBlock[_ngcontent-%COMP%]   .release[_ngcontent-%COMP%], .isActionOn[_ngcontent-%COMP%]   .lockBlock[_ngcontent-%COMP%]   .lockIcon[_ngcontent-%COMP%] {\r\n  background-color: #00ADEF;\r\n  color: white;\r\n}\r\n\r\n.isActionOn[_ngcontent-%COMP%]   .lockBlock[_ngcontent-%COMP%]   .release[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n  padding: 0.5em 1em;\r\n  margin-left: 0.5em;\r\n  font-family: roboto;\r\n  cursor: pointer;\r\n}\r\n\r\n.ownAction[_ngcontent-%COMP%]   .bubbleContent[_ngcontent-%COMP%] {\r\n  text-align: left;\r\n}\r\n\r\n.ownAction[_ngcontent-%COMP%]   .approved[_ngcontent-%COMP%]   .bubbleContent[_ngcontent-%COMP%], .ownAction[_ngcontent-%COMP%]   .draft[_ngcontent-%COMP%]   .bubbleContent[_ngcontent-%COMP%] {\r\n  background-color: #D5F0FF;\r\n}\r\n\r\n.ownAction[_ngcontent-%COMP%]   .lockBlock[_ngcontent-%COMP%]   .lockIcon[_ngcontent-%COMP%], .ownAction[_ngcontent-%COMP%]   .approveBlock[_ngcontent-%COMP%]   .approveIcon[_ngcontent-%COMP%] {\r\n  margin-left: 0;\r\n  float: left;\r\n  margin-right: 0.5em;\r\n}\r\n\r\n.ownAction[_ngcontent-%COMP%]   .constructText[_ngcontent-%COMP%] {\r\n  padding-top: 0.4em;\r\n}\r\n\r\n.ownAction[_ngcontent-%COMP%]   .fileSize[_ngcontent-%COMP%], .ownAction[_ngcontent-%COMP%]   .filetypedoc[_ngcontent-%COMP%] {\r\n  color: rgba(0, 0, 0, 0.25)\r\n}\r\n\r\n.bubbleContentInner[_ngcontent-%COMP%] {\r\n\r\n}\r\n\r\n.progress[_ngcontent-%COMP%] {\r\n  background-color: yellow !important;\r\n}"]);
-  C.List_39x = Isolate.makeConstantList([C.List_0uT]);
   C.Type_DomService_2jN = H.createRuntimeType("DomService");
   C.List_Type_DomService_2jN = Isolate.makeConstantList([C.Type_DomService_2jN]);
   C.Type_Focusable_Aov = H.createRuntimeType("Focusable");
@@ -85670,6 +85539,8 @@
   C.Attribute_name = new O.Attribute("name");
   C.List_uXz = Isolate.makeConstantList([C.Type_String_k8F, C.Attribute_name]);
   C.List_Hvh = Isolate.makeConstantList([C.List_Type_ViewContainerRef_4AN, C.List_Type_ComponentResolver_r9K, C.List_Type_Router_yx3, C.List_uXz]);
+  C.List_abN = Isolate.makeConstantList(['ul[_ngcontent-%COMP%] {\r\n  margin: 0;\r\n  padding: 0;\r\n}\r\n\r\n.subjects[_ngcontent-%COMP%] {\r\n  background-color: #c1cdd4;\r\n  border-radius: 3px;\r\n  -webkit-border-radius: 3px;\r\n  -moz-border-radius: 3px;\r\n  -o-border-radius: 3px;\r\n}\r\n\r\nli.user[_ngcontent-%COMP%] {\r\n  list-style-type: none;\r\n  display: inline-block;\r\n}\r\n\r\nli.subjectItem[_ngcontent-%COMP%] {\r\n  padding: 0.1em 0 0.1em 0.7em;\r\n  cursor: pointer;\r\n  background: white;\r\n  position: relative;\r\n  border-bottom: 1px solid #edf2f8;\r\n  border-left: 4px solid #edf2f8;\r\n  border-top: 1px solid #edf2f8;\r\n  border-right: 2px solid #edf2f8;\r\n}\r\n\r\nli.subjectItem.selected[_ngcontent-%COMP%], li.subjectItem[_ngcontent-%COMP%]:hover, li.subjectItem[_ngcontent-%COMP%]:focus {\r\n  background-color: #4690D1;\r\n  color: white;\r\n  text-decoration: none;\r\n}\r\n\r\nli.subjectItem.selected[_ngcontent-%COMP%]   .version[_ngcontent-%COMP%], li.subjectItem[_ngcontent-%COMP%]:hover   .version[_ngcontent-%COMP%], li.subjectItem[_ngcontent-%COMP%]:focus   .version[_ngcontent-%COMP%] {\r\n  background-color: rgba(255, 255, 255, 0.5);\r\n  color: #fff;\r\n}\r\n\r\nli.subjectItem.selected[_ngcontent-%COMP%]:after, li.subjectItem[_ngcontent-%COMP%]:hover:after, li.subjectItem[_ngcontent-%COMP%]:focus:after {\r\n  left: 100%;\r\n  top: 50%;\r\n  border: solid transparent;\r\n  content: " ";\r\n  height: 0;\r\n  width: 0;\r\n  position: absolute;\r\n  pointer-events: none;\r\n  border-color: rgba(85, 134, 164, 0);\r\n  border-left-color: #4590d1;\r\n  border-width: 10px;\r\n  margin-top: -10px;\r\n}\r\n\r\nli.subjectItem.selected[_ngcontent-%COMP%]   .name[_ngcontent-%COMP%], li.subjectItem[_ngcontent-%COMP%]:hover   .name[_ngcontent-%COMP%], li.subjectItem[_ngcontent-%COMP%]:focus   .name[_ngcontent-%COMP%], li.subjectItem.active[_ngcontent-%COMP%]   .name[_ngcontent-%COMP%]{\r\n  color: white;\r\n}\r\n\r\nli.subjectItem.selected[_ngcontent-%COMP%]   .name[_ngcontent-%COMP%], li.subjectItem.active[_ngcontent-%COMP%]   .name[_ngcontent-%COMP%] {\r\n  font-weight: bold;\r\n}\r\n\r\n.approved[_ngcontent-%COMP%]   .thumb[_ngcontent-%COMP%] {\r\n  position: relative\r\n}\r\n\r\n.approved[_ngcontent-%COMP%]   .thumb[_ngcontent-%COMP%]:before {\r\n  width: 1.4em;\r\n  height: 1.4em;\r\n  content: "";\r\n  position: absolute;\r\n  right: -0.7em;\r\n  top: 0;\r\n  z-index: 9;\r\n  background: url("../images/approved.png");\r\n  background-repeat: no-repeat;\r\n  display: block;\r\n}\r\n\r\n.locked[_ngcontent-%COMP%]   .thumb[_ngcontent-%COMP%]:after {\r\n  width: 1.4em;\r\n  height: 1.4em;\r\n  content: "";\r\n  position: absolute;\r\n  left: -9px;\r\n  top: 7px;\r\n  z-index: 9;\r\n  background: url("../images/locked_sm.png");\r\n  background-repeat: no-repeat;\r\n  display: block;\r\n}\r\n\r\n.subject[_ngcontent-%COMP%]    > div[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n  vertical-align: middle;\r\n}\r\n\r\n.thumb[_ngcontent-%COMP%] {\r\n  position: relative;\r\n  \r\n  background-color: #DDE2E5;\r\n  text-align: center;\r\n  \r\n  width: 3.3em;\r\n  height: 1.8em;\r\n}\r\n\r\n.thumb[_ngcontent-%COMP%]    > img[_ngcontent-%COMP%] {\r\n  height: auto;\r\n  max-width: 100%;\r\n  width: 40px;\r\n  height: 28px;\r\n}\r\n\r\n.name[_ngcontent-%COMP%] {\r\n  font-size: 0.8em;\r\n  color: #353535;\r\n  max-width: calc(100% - 11.7em);\r\n  text-transform: lowercase;\r\n  word-break: break-all;\r\n  line-height: 1;\r\n}\r\n\r\n.version[_ngcontent-%COMP%] {\r\n  background-color: #1A1A99;\r\n  color: white;\r\n  border-radius: 50%;\r\n  -webkit-border-radius: 50%;\r\n  font-size: 0.6em;\r\n  height: 2em;\r\n  line-height: 2em;\r\n  text-align: center;\r\n  width: 2em;\r\n  vertical-align: baseline !important;\r\n}\r\n\r\n.users[_ngcontent-%COMP%] {\r\n  float: right;\r\n  min-width: 2em;\r\n}\r\n\r\n.uploadDropZone[_ngcontent-%COMP%] {\r\n  border-radius: 0 0 3px 3px;\r\n  -webkit-border-radius: 0 0 3px 3px;\r\n  -moz-border-radius: 0 0 3px 3px;\r\n  background-color: #edf2f8;\r\n  text-align: center;\r\n  -webkit-transition: 0.3s;\r\n  -o-transition: 0.3s;\r\n  transition: 0.3s;\r\n  position: relative;\r\n  \r\n  width: 100%;\r\n}\r\n\r\n.uploadFile[_ngcontent-%COMP%] {\r\n  border-radius: 0 0 3px 3px;\r\n  -webkit-border-radius: 0 0 3px 3px;\r\n  -moz-border-radius: 0 0 3px 3px;\r\n  width: 100%;\r\n  min-height: 30em;\r\n  padding: 0 !important;\r\n  cursor: pointer;\r\n}\r\n\r\n.profileImg[_ngcontent-%COMP%]    > img[_ngcontent-%COMP%] {\r\n  width: 2em;\r\n  border-radius: 1em;\r\n  height: 2em;\r\n}\r\n\r\n.profileImg.validator[_ngcontent-%COMP%]    > img[_ngcontent-%COMP%] {\r\n  border: 2px solid green;\r\n}\r\n\r\n.title[_ngcontent-%COMP%] {\r\n  border-radius: 3px 3px 0 0;\r\n  -webkit-border-radius: 3px 3px 0 0;\r\n  -moz-border-radius: 3px 3px 0 0;\r\n  -o-border-radius: 3px 3px 0 0;\r\n  width: calc(100% - 20px);\r\n  font-size: 1em;\r\n  color: #fff;\r\n  background-color: #3471AA;\r\n  font-family: Arial, Helvetica, sans-serif;\r\n  font-weight: normal;\r\n  height: 38px;\r\n  line-height: 36px;\r\n  padding: 0 10px;\r\n}\r\n\r\n.newTopic[_ngcontent-%COMP%] {\r\n  margin: 20px 15px;\r\n}\r\n\r\n.addBtn.addpeople[_ngcontent-%COMP%], .users_list[_ngcontent-%COMP%] {\r\n  float: right\r\n}\r\n\r\n.users_list[_ngcontent-%COMP%] {\r\n  margin-right: 3px;\r\n  margin-top: 4px;\r\n  list-style: none;\r\n}\r\n\r\n.useractive[_ngcontent-%COMP%] {\r\n  -webkit-border-radius: 50%;\r\n  -moz-border-radius: 50%;\r\n  border-radius: 50%;\r\n  float: right;\r\n  margin-right: 3px;\r\n}\r\n\r\n.useractive[_ngcontent-%COMP%]   img[_ngcontent-%COMP%] {\r\n  width: 30px;\r\n  height: 30px;\r\n  -webkit-border-radius: 50%;\r\n  -moz-border-radius: 50%;\r\n  border-radius: 50%;\r\n}\r\n\r\n.useractive.approver[_ngcontent-%COMP%]   img[_ngcontent-%COMP%] {\r\n  box-shadow: 0 0 0 2px #7FBB01;\r\n  margin-top: -1px;\r\n}\r\n\r\n\r\n.userInfoPopup[_ngcontent-%COMP%]   .userInfo[_ngcontent-%COMP%] {\r\n  position: relative;\r\n  margin-bottom: 0.2em;\r\n}\r\n\r\n.userInfoPopup[_ngcontent-%COMP%]   .userInfo[_ngcontent-%COMP%]:before {\r\n  font-family: FontAwesome;\r\n  font-size: 22px;\r\n  margin-right: 0.6em;\r\n  width: 1em;\r\n  vertical-align: middle;\r\n  text-align: left;\r\n\r\n}\r\n\r\n.userInfoPopup[_ngcontent-%COMP%]   .userInfo.role[_ngcontent-%COMP%]:before {\r\n  display: inline-block;\r\n  content: \'\';\r\n  width: 17px;\r\n  height: 17px;\r\n  background: url("../images/approved.png") no-repeat;\r\n  position: absolute;\r\n  left: 0;\r\n}\r\n\r\n.userInfoPopup[_ngcontent-%COMP%]   .userInfo.role[_ngcontent-%COMP%] {\r\n  padding-left: 26px;\r\n}\r\n\r\n.userInfoPopup[_ngcontent-%COMP%]   .userInfo.email[_ngcontent-%COMP%]:before {\r\n  content: "\\f0e0";\r\n  color: #F05D00;\r\n  font-size: 17px;\r\n}\r\n\r\n.userInfoPopup[_ngcontent-%COMP%]   .userInfo.skype[_ngcontent-%COMP%]:before {\r\n  content: "\\f17e";\r\n  color: #00AFF0;\r\n  margin-right: 0.2em;\r\n}\r\n\r\n.userInfoPopup[_ngcontent-%COMP%]   .userInfo.timezone[_ngcontent-%COMP%]:before {\r\n  content: "\\f041";\r\n  color: #F2542F;\r\n  margin-left: 0.1em;\r\n  margin-right: 8px;\r\n}\r\n\r\n.userInfoPopup[_ngcontent-%COMP%]   .userInfo.timezone[_ngcontent-%COMP%] {\r\n  margin-bottom: 1em;\r\n}\r\n\r\n.userInfoPopup[_ngcontent-%COMP%]   .lastcnx[_ngcontent-%COMP%] {\r\n  color: rgba(0, 0, 0, 0.28);\r\n}\r\n\r\n.userInfoPopup[_ngcontent-%COMP%]   .name[_ngcontent-%COMP%] {\r\n  margin-bottom: 0.5em;\r\n  background: url("../images/tiret-black.png") repeat-x center center;\r\n  width: 100%;\r\n  max-width: 100%;\r\n}\r\n\r\n.userInfoPopup[_ngcontent-%COMP%]   .name[_ngcontent-%COMP%]   span[_ngcontent-%COMP%] {\r\n  background: white;\r\n  padding-right: 0.5em;\r\n  display: inline;\r\n  color: #273B54;\r\n  font-weight: bold;\r\n  font-size: 1.5em;\r\n}\r\n\r\nspan.txtskype[_ngcontent-%COMP%] {\r\n  color: #00AFF0;\r\n}\r\n\r\n.selected[_ngcontent-%COMP%] {\r\n  font-weight: normal;\r\n}']);
+  C.List_IKG = Isolate.makeConstantList([C.List_abN]);
   C.Type_PopupHierarchy_gkc = H.createRuntimeType("PopupHierarchy");
   C.List_EsG = Isolate.makeConstantList([C.Type_PopupHierarchy_gkc, C.C_Optional, C.C_SkipSelf]);
   C.List_07k = Isolate.makeConstantList([C.Type_PopupRef_AWk, C.C_Optional, C.C_SkipSelf]);
@@ -85758,8 +85629,6 @@
   C.List_2mB = Isolate.makeConstantList([C.Type_RoleItem_mUV, C.List_empty]);
   C.ComponentFactory_Jeh = new D.ComponentFactory("role-item", R.role_item_template__viewFactory_RoleItemHost0$closure(), C.Type_RoleItem_mUV, C.List_2mB);
   C.List_OuG = Isolate.makeConstantList([C.ComponentFactory_Jeh]);
-  C.List_Hp5 = Isolate.makeConstantList(["#login[_ngcontent-%COMP%] {\r\n  background: #EEEEF0;\r\n  width: 37em;\r\n  clear: both;\r\n}\r\n\r\n.panels[_ngcontent-%COMP%] {\r\n  padding: 2em 2em 0;\r\n  position: relative;\r\n  clear: both;\r\n  overflow: initial;\r\n}\r\n\r\n.changePass[_ngcontent-%COMP%] {\r\n  text-decoration: underline;\r\n  cursor: pointer;\r\n  margin: 0 0 1em 0;\r\n  color: #273B54;\r\n  z-index: 999;\r\n}\r\n\r\n.title[_ngcontent-%COMP%] {\r\n  color: #fff;\r\n  float: left;\r\n  width: 80%;\r\n  padding: 0;\r\n  font-size: 1.6em;\r\n}\r\n\r\n.close[_ngcontent-%COMP%] {\r\n  float: right;\r\n  cursor: pointer;\r\n}\r\n\r\n.header[_ngcontent-%COMP%] {\r\n  background-color: #262D40;\r\n  padding: 1em 1em 0;\r\n}\r\n\r\n\r\n.uploadFile[_ngcontent-%COMP%] {\r\n  padding: 1em 0 2em !important;\r\n}\r\n\r\n#labelfileuploadprf[_ngcontent-%COMP%] {\r\n  left: 55%;\r\n  color: #bebebe;\r\n  text-decoration: underline;\r\n}\r\n\r\n#labelfileuploadprf[_ngcontent-%COMP%]   img[_ngcontent-%COMP%] {\r\n  display: block;\r\n  -webkit-border-radius: 50%;\r\n  -moz-border-radius: 50%;\r\n  border-radius: 50%;\r\n  border: 3px solid rgba(255, 255, 255, 0.8);\r\n  width: 75px;\r\n  height: 75px;\r\n\r\n}\r\n\r\n.skype.bottom_input[_ngcontent-%COMP%] {\r\n  right: 27px;\r\n}\r\n\r\n.spprof[_ngcontent-%COMP%] {\r\n  position: absolute;\r\n  top: 0;\r\n  right: 0;\r\n  text-decoration: underline;\r\n}\r\n\r\n.dragdrop_profil[_ngcontent-%COMP%]:hover   #labelfileuploadprf[_ngcontent-%COMP%]:before, .dragdrop_profil[_ngcontent-%COMP%]:focus   #labelfileuploadprf[_ngcontent-%COMP%]:before, .dragdrop_profil[_ngcontent-%COMP%]:hover   #labelfileuploadprf[_ngcontent-%COMP%], .dragdrop_profil[_ngcontent-%COMP%]:focus   #labelfileuploadprf[_ngcontent-%COMP%] {\r\n  color: white;\r\n}\r\n\r\n.dragdrop_profil[_ngcontent-%COMP%]:hover   #labelfileuploadprf[_ngcontent-%COMP%]:before, .dragdrop_profil[_ngcontent-%COMP%]:focus   #labelfileuploadprf[_ngcontent-%COMP%]:before {\r\n  border: 3px solid rgba(255, 255, 255, 0.5);\r\n}\r\n\r\n#labelfileuploadprf[_ngcontent-%COMP%] {\r\n  cursor: pointer;\r\n  color: darkGray;\r\n  z-index: 1;\r\n  padding-right: 45px;\r\n  border-radius: 25px;\r\n  background-color: transparent;\r\n  font-size: 13px;\r\n  display: block;\r\n  position: absolute;\r\n  left: 43%;\r\n  top: 38%;\r\n  -webkit-transition: 0.3s;\r\n  -o-transition: 0.3s;\r\n  transition: 0.3s;\r\n}\r\n\r\n\r\n.local[_ngcontent-%COMP%] {\r\n  width: calc(51% - 21px);\r\n  display: inline-block;\r\n  padding-right: 21px;\r\n  overflow: hidden;\r\n}\r\n\r\n.social[_ngcontent-%COMP%] {\r\n  width: 44%;\r\n  display: inline-block;\r\n  vertical-align: top;\r\n  padding-top: 20px;\r\n  padding-left: 3%;\r\n  border-left: 1px solid rgba(86, 86, 86, 0.17);\r\n}\r\n\r\n\r\n.changeMail[_ngcontent-%COMP%] {\r\n  cursor: pointer;\r\n  position: relative;\r\n}\r\n\r\n.changeMail[_ngcontent-%COMP%]:after {\r\n  float: right;\r\n  content: '' !important;\r\n  background-image: url('../images/edit_blue.png') !important;\r\n  background-position: left top !important;\r\n  background-repeat: no-repeat !important;\r\n  display: block !important;\r\n  width: 16px !important;\r\n  height: 16px !important;\r\n  margin-right: 15px;\r\n}\r\n\r\n.socialBtn[_ngcontent-%COMP%] {\r\n  color: white;\r\n  display: inline-block;\r\n  font-size: 23px;\r\n  width: 32px;\r\n  height: 32px;\r\n  line-height: 32px;\r\n  -webkit-border-radius: 3px;\r\n  -moz-border-radius: 3px;\r\n  border-radius: 3px;\r\n  text-align: center;\r\n  vertical-align: middle;\r\n  margin-left: 0.2em;\r\n}\r\n\r\n.socialBtn[_ngcontent-%COMP%]:hover, .socialBtn[_ngcontent-%COMP%]:focus {\r\n  box-shadow: 2px 2px 3px 0 rgba(26, 74, 76, 0.2);\r\n  -webkit-transition: 0.3s;\r\n  -o-transition: 0.3s;\r\n  transition: 0.3s;\r\n}\r\n\r\n.facebook[_ngcontent-%COMP%] {\r\n  background-color: #3A579A;\r\n}\r\n\r\n.google[_ngcontent-%COMP%] {\r\n  background-color: #DF4A32;\r\n}\r\n\r\n.label[_ngcontent-%COMP%] {\r\n  font-weight: bold;\r\n  font-size: 0.9em;\r\n}\r\n\r\n.btnvalidat[_ngcontent-%COMP%] {\r\n  text-align: center;\r\n}\r\n\r\n.bottom_input[_ngcontent-%COMP%] {\r\n  position: absolute;\r\n  bottom: -4em;\r\n}\r\n\r\n.social[_ngcontent-%COMP%]   .line[_ngcontent-%COMP%] {\r\n  vertical-align: middle;\r\n  margin-bottom: 3.3em;\r\n  text-align: right;\r\n}\r\n\r\n.social[_ngcontent-%COMP%]   .line[_ngcontent-%COMP%]   span[_ngcontent-%COMP%] {\r\n  text-align: left;\r\n}\r\n\r\n.btn_login[_ngcontent-%COMP%] {\r\n  margin: 4em 0 2em 0 !important;\r\n}\r\n\r\n.passwordZone[_ngcontent-%COMP%] {\r\n  margin-bottom: 1.5em;\r\n}\r\n\r\nmain[_ngcontent-%COMP%], header[_ngcontent-%COMP%], footer[_ngcontent-%COMP%] {\r\n  background-color: #00adef !important;\r\n}\r\n\r\n.email[_ngcontent-%COMP%] {\r\n  position: relative;\r\n}\r\n\r\n.changeMail[_ngcontent-%COMP%] {\r\n  position: absolute;\r\n  top: 36%;\r\n  right: -20px;\r\n}\r\n\r\nfieldset[_ngcontent-%COMP%] {\r\n  border: 1px solid rgba(39, 59, 84, 0.18) !important;\r\n}\r\n\r\nmaterial-input[_ngcontent-%COMP%] {\r\n  padding: 1px 0 !important;\r\n}\r\n\r\n.uploading[_ngcontent-%COMP%] {\r\n  border: 2px solid greenyellow;\r\n}\r\n\r\n.nameConnected[_ngcontent-%COMP%] {\r\n  color: #333;\r\n  text-decoration: none;\r\n  text-align: left;\r\n  font-weight: bold;\r\n}\r\n\r\n.logLeft[_ngcontent-%COMP%], .socialBtn[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n  vertical-align: middle;\r\n}\r\n\r\n.socialBtn[_ngcontent-%COMP%] {\r\n  width: 1.5em;\r\n}\r\n\r\n.logLeft[_ngcontent-%COMP%] {\r\n  width: calc(100% - 4.8em);\r\n  line-height: 1.3;\r\n}\r\n\r\n.line[_ngcontent-%COMP%] {\r\n  width: 100%\r\n}\r\n\r\n.loggedIn[_ngcontent-%COMP%]   .log[_ngcontent-%COMP%] {\r\n  display: none;\r\n}"]);
-  C.List_Oye = Isolate.makeConstantList([C.List_Hp5]);
   C.Type_PlaceSearchService_qwo = H.createRuntimeType("PlaceSearchService");
   C.List_Type_PlaceSearchService_qwo = Isolate.makeConstantList([C.Type_PlaceSearchService_qwo]);
   C.List_PIX = Isolate.makeConstantList([C.List_Type_PlaceSearchService_qwo, C.List_Type_Router_yx3]);
@@ -85854,8 +85723,6 @@
   C.Type_Validator_u3w = H.createRuntimeType("Validator");
   C.List_Type_Validator_u3w = Isolate.makeConstantList([C.Type_Validator_u3w]);
   C.List_U7B = Isolate.makeConstantList([C.List_Type_ElementRef_kOG, C.List_Type_DomService_2jN]);
-  C.List_oCJ = Isolate.makeConstantList(['ul[_ngcontent-%COMP%] {\r\n  margin: 0;\r\n  padding: 0;\r\n}\r\n\r\n.subjects[_ngcontent-%COMP%] {\r\n  background-color: #c1cdd4;\r\n  border-radius: 3px;\r\n  -webkit-border-radius: 3px;\r\n  -moz-border-radius: 3px;\r\n  -o-border-radius: 3px;\r\n}\r\n\r\nli.user[_ngcontent-%COMP%] {\r\n  list-style-type: none;\r\n  display: inline-block;\r\n}\r\n\r\nli.subjectItem[_ngcontent-%COMP%] {\r\n  padding: 0.1em 0 0.1em 0.7em;\r\n  cursor: pointer;\r\n  background: white;\r\n  position: relative;\r\n  border-bottom: 1px solid #edf2f8;\r\n  border-left: 4px solid #edf2f8;\r\n  border-top: 1px solid #edf2f8;\r\n  border-right: 2px solid #edf2f8;\r\n}\r\n\r\nli.subjectItem.selected[_ngcontent-%COMP%], li.subjectItem[_ngcontent-%COMP%]:hover, li.subjectItem[_ngcontent-%COMP%]:focus {\r\n  background-color: #4690D1;\r\n  color: white;\r\n  text-decoration: none;\r\n}\r\n\r\nli.subjectItem.selected[_ngcontent-%COMP%]   .version[_ngcontent-%COMP%], li.subjectItem[_ngcontent-%COMP%]:hover   .version[_ngcontent-%COMP%], li.subjectItem[_ngcontent-%COMP%]:focus   .version[_ngcontent-%COMP%] {\r\n  background-color: rgba(255, 255, 255, 0.5);\r\n  color: #fff;\r\n}\r\n\r\nli.subjectItem.selected[_ngcontent-%COMP%]:after, li.subjectItem[_ngcontent-%COMP%]:hover:after, li.subjectItem[_ngcontent-%COMP%]:focus:after {\r\n  left: 100%;\r\n  top: 50%;\r\n  border: solid transparent;\r\n  content: " ";\r\n  height: 0;\r\n  width: 0;\r\n  position: absolute;\r\n  pointer-events: none;\r\n  border-color: rgba(85, 134, 164, 0);\r\n  border-left-color: #4590d1;\r\n  border-width: 10px;\r\n  margin-top: -10px;\r\n}\r\n\r\nli.subjectItem.selected[_ngcontent-%COMP%]   .name[_ngcontent-%COMP%], li.subjectItem[_ngcontent-%COMP%]:hover   .name[_ngcontent-%COMP%], li.subjectItem[_ngcontent-%COMP%]:focus   .name[_ngcontent-%COMP%], li.subjectItem.active[_ngcontent-%COMP%]   .name[_ngcontent-%COMP%]{\r\n  color: white;\r\n}\r\n\r\nli.subjectItem.selected[_ngcontent-%COMP%]   .name[_ngcontent-%COMP%], li.subjectItem.active[_ngcontent-%COMP%]   .name[_ngcontent-%COMP%] {\r\n  font-weight: bold;\r\n}\r\n\r\n.approved[_ngcontent-%COMP%]   .thumb[_ngcontent-%COMP%] {\r\n  position: relative\r\n}\r\n\r\n.approved[_ngcontent-%COMP%]   .thumb[_ngcontent-%COMP%]:before {\r\n  width: 1.4em;\r\n  height: 1.4em;\r\n  content: "";\r\n  position: absolute;\r\n  right: -0.7em;\r\n  top: 0;\r\n  z-index: 9;\r\n  background: url("../images/approved.png");\r\n  background-repeat: no-repeat;\r\n  display: block;\r\n}\r\n\r\n.locked[_ngcontent-%COMP%]   .thumb[_ngcontent-%COMP%]:after {\r\n  width: 1.4em;\r\n  height: 1.4em;\r\n  content: "";\r\n  position: absolute;\r\n  left: -9px;\r\n  top: 7px;\r\n  z-index: 9;\r\n  background: url("../images/locked_sm.png");\r\n  background-repeat: no-repeat;\r\n  display: block;\r\n}\r\n\r\n.subject[_ngcontent-%COMP%]    > div[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n  vertical-align: middle;\r\n}\r\n\r\n.thumb[_ngcontent-%COMP%] {\r\n  position: relative;\r\n  width: calc(2.9em - 2px);\r\n  background-color: #DDE2E5;\r\n  text-align: center;\r\n  \r\n}\r\n\r\n.thumb[_ngcontent-%COMP%]    > img[_ngcontent-%COMP%] {\r\n  height: 2em;\r\n}\r\n\r\n.name[_ngcontent-%COMP%] {\r\n  font-size: 0.8em;\r\n  color: #353535;\r\n  max-width: calc(100% - 11.7em);\r\n  text-transform: lowercase;\r\n  word-break: break-all;\r\n  line-height: 1;\r\n}\r\n\r\n.version[_ngcontent-%COMP%] {\r\n  background-color: #1A1A99;\r\n  color: white;\r\n  border-radius: 50%;\r\n  -webkit-border-radius: 50%;\r\n  font-size: 1em;\r\n  height: 2em;\r\n  line-height: 2em;\r\n  text-align: center;\r\n  width: 2em;\r\n}\r\n\r\n.users[_ngcontent-%COMP%] {\r\n  float: right;\r\n  min-width: 2em;\r\n}\r\n\r\n.uploadDropZone[_ngcontent-%COMP%] {\r\n  border-radius: 0 0 3px 3px;\r\n  -webkit-border-radius: 0 0 3px 3px;\r\n  -moz-border-radius: 0 0 3px 3px;\r\n  background-color: #edf2f8;\r\n  text-align: center;\r\n  -webkit-transition: 0.3s;\r\n  -o-transition: 0.3s;\r\n  transition: 0.3s;\r\n  position: relative;\r\n  \r\n  width: 100%;\r\n}\r\n\r\n.uploadFile[_ngcontent-%COMP%] {\r\n  border-radius: 0 0 3px 3px;\r\n  -webkit-border-radius: 0 0 3px 3px;\r\n  -moz-border-radius: 0 0 3px 3px;\r\n  width: 100%;\r\n  min-height: 30em;\r\n  padding: 0 !important;\r\n  cursor: pointer;\r\n}\r\n\r\n.profileImg[_ngcontent-%COMP%]    > img[_ngcontent-%COMP%] {\r\n  width: 2em;\r\n  border-radius: 1em;\r\n  height: 2em;\r\n}\r\n\r\n.profileImg.validator[_ngcontent-%COMP%]    > img[_ngcontent-%COMP%] {\r\n  border: 2px solid green;\r\n}\r\n\r\n.title[_ngcontent-%COMP%] {\r\n  border-radius: 3px 3px 0 0;\r\n  -webkit-border-radius: 3px 3px 0 0;\r\n  -moz-border-radius: 3px 3px 0 0;\r\n  -o-border-radius: 3px 3px 0 0;\r\n  width: calc(100% - 20px);\r\n  font-size: 1em;\r\n  color: #fff;\r\n  background-color: #3471AA;\r\n  font-family: Arial, Helvetica, sans-serif;\r\n  font-weight: normal;\r\n  height: 38px;\r\n  line-height: 36px;\r\n  padding: 0 10px;\r\n}\r\n\r\n.newTopic[_ngcontent-%COMP%] {\r\n  margin: 20px 15px;\r\n}\r\n\r\n.addBtn.addpeople[_ngcontent-%COMP%], .users_list[_ngcontent-%COMP%] {\r\n  float: right\r\n}\r\n\r\n.users_list[_ngcontent-%COMP%] {\r\n  margin-right: 3px;\r\n  margin-top: 4px;\r\n  list-style: none;\r\n}\r\n\r\n.useractive[_ngcontent-%COMP%] {\r\n  -webkit-border-radius: 50%;\r\n  -moz-border-radius: 50%;\r\n  border-radius: 50%;\r\n  float: right;\r\n  margin-right: 3px;\r\n}\r\n\r\n.useractive[_ngcontent-%COMP%]   img[_ngcontent-%COMP%] {\r\n  width: 30px;\r\n  height: 30px;\r\n  -webkit-border-radius: 50%;\r\n  -moz-border-radius: 50%;\r\n  border-radius: 50%;\r\n}\r\n\r\n.useractive.approver[_ngcontent-%COMP%]   img[_ngcontent-%COMP%] {\r\n  box-shadow: 0 0 0 2px #7FBB01;\r\n  margin-top: -1px;\r\n}\r\n\r\n\r\n.userInfoPopup[_ngcontent-%COMP%]   .userInfo[_ngcontent-%COMP%] {\r\n  position: relative;\r\n  margin-bottom: 0.2em;\r\n}\r\n\r\n.userInfoPopup[_ngcontent-%COMP%]   .userInfo[_ngcontent-%COMP%]:before {\r\n  font-family: FontAwesome;\r\n  font-size: 22px;\r\n  margin-right: 0.6em;\r\n  width: 1em;\r\n  vertical-align: middle;\r\n  text-align: left;\r\n\r\n}\r\n\r\n.userInfoPopup[_ngcontent-%COMP%]   .userInfo.role[_ngcontent-%COMP%]:before {\r\n  display: inline-block;\r\n  content: \'\';\r\n  width: 17px;\r\n  height: 17px;\r\n  background: url("../images/approved.png") no-repeat;\r\n  position: absolute;\r\n  left: 0;\r\n}\r\n\r\n.userInfoPopup[_ngcontent-%COMP%]   .userInfo.role[_ngcontent-%COMP%] {\r\n  padding-left: 26px;\r\n}\r\n\r\n.userInfoPopup[_ngcontent-%COMP%]   .userInfo.email[_ngcontent-%COMP%]:before {\r\n  content: "\\f0e0";\r\n  color: #F05D00;\r\n  font-size: 17px;\r\n}\r\n\r\n.userInfoPopup[_ngcontent-%COMP%]   .userInfo.skype[_ngcontent-%COMP%]:before {\r\n  content: "\\f17e";\r\n  color: #00AFF0;\r\n  margin-right: 0.2em;\r\n}\r\n\r\n.userInfoPopup[_ngcontent-%COMP%]   .userInfo.timezone[_ngcontent-%COMP%]:before {\r\n  content: "\\f041";\r\n  color: #F2542F;\r\n  margin-left: 0.1em;\r\n  margin-right: 8px;\r\n}\r\n\r\n.userInfoPopup[_ngcontent-%COMP%]   .userInfo.timezone[_ngcontent-%COMP%] {\r\n  margin-bottom: 1em;\r\n}\r\n\r\n.userInfoPopup[_ngcontent-%COMP%]   .lastcnx[_ngcontent-%COMP%] {\r\n  color: rgba(0, 0, 0, 0.28);\r\n}\r\n\r\n.userInfoPopup[_ngcontent-%COMP%]   .name[_ngcontent-%COMP%] {\r\n  margin-bottom: 0.5em;\r\n  background: url("../images/tiret-black.png") repeat-x center center;\r\n  width: 100%;\r\n}\r\n\r\n.userInfoPopup[_ngcontent-%COMP%]   .name[_ngcontent-%COMP%]   span[_ngcontent-%COMP%] {\r\n  background: white;\r\n  padding-right: 0.5em;\r\n  display: inline;\r\n  color: #273B54;\r\n  font-weight: bold;\r\n}\r\n\r\nspan.txtskype[_ngcontent-%COMP%] {\r\n  color: #00AFF0;\r\n}\r\n\r\n.selected[_ngcontent-%COMP%] {\r\n  font-weight: normal;\r\n}']);
-  C.List_UGJ = Isolate.makeConstantList([C.List_oCJ]);
   C.Type_ScorecardComponent_EYy = H.createRuntimeType("ScorecardComponent");
   C.List_8Gl = Isolate.makeConstantList([C.Type_ScorecardComponent_EYy, C.List_empty]);
   C.ComponentFactory_Gn1 = new D.ComponentFactory("acx-scorecard", N.scorecard_template__viewFactory_ScorecardComponentHost0$closure(), C.Type_ScorecardComponent_EYy, C.List_8Gl);
@@ -85880,6 +85747,8 @@
   C.List_WrZ = Isolate.makeConstantList([C.ComponentFactory_UsI]);
   C.List_Wrl = Isolate.makeConstantList([C.List_Type_PlaceService_fcN, C.List_Type_Router_yx3, C.List_Type_Environment_iuz, C.List_Type_DomSanitizationService_cKo]);
   C.List_X7k = Isolate.makeConstantList([C.Type_ControlValueAccessor_6pl, C.Type_FocusableItem_n3h, C.Type_OnDestroy_AWG]);
+  C.List_SC20 = Isolate.makeConstantList([".files[_ngcontent-%COMP%] {\r\n  background-color: #edf2f8 !important;\r\n}\r\n\r\n.files[_ngcontent-%COMP%]   .title[_ngcontent-%COMP%] {\r\n  background-color: #4690D1 !important;\r\n  width: calc(100% - 20px);\r\n  font-size: 1em;\r\n  color: #fff;\r\n  font-weight: normal !important;\r\n  height: 38px;\r\n  line-height: 36px;\r\n  padding: 0 10px;\r\n  border-radius: 3px 3px 0 0;\r\n  -webkit-border-radius: 3px 3px 0 0;\r\n  -moz-border-radius: 3px 3px 0 0;\r\n  -o-border-radius: 3px 3px 0 0;\r\n}\r\n\r\n.title[_ngcontent-%COMP%] {\r\n  font-weight: normal !important;\r\n}\r\n\r\nul[_ngcontent-%COMP%] {\r\n  padding: 0;\r\n}\r\n\r\n.rightDetails[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n  vertical-align: middle;\r\n  position: relative;\r\n}\r\n\r\n.line[_ngcontent-%COMP%]   a[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n  text-decoration: none;\r\n}\r\n\r\n.file[_ngcontent-%COMP%] {\r\n  width: 100%;\r\n  clear: both;\r\n  border-radius: 3px;\r\n  -webkit-border-radius: 3px;\r\n  -moz-border-radius: 3px;\r\n  overflow: hidden;\r\n  padding: 0;\r\n}\r\n\r\n.file[_ngcontent-%COMP%]    > div[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n}\r\n\r\n.fileDesc[_ngcontent-%COMP%] {\r\n  position: relative;\r\n  \r\n  \r\n  width: 100%;\r\n}\r\n\r\n.thumb[_ngcontent-%COMP%] {\r\n  \r\n  \r\n  display: inline-block;\r\n}\r\n\r\n.fileProps[_ngcontent-%COMP%] {\r\n  display: block;\r\n  vertical-align: top;\r\n  word-break: break-all;\r\n}\r\n\r\n.date[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n  padding-right: 0.5em;\r\n}\r\n\r\n.profileImg[_ngcontent-%COMP%] {\r\n  width: 28px;\r\n  height: 28px;\r\n  display: inherit;\r\n  \r\n  background-color: white;\r\n}\r\n\r\n.fileName[_ngcontent-%COMP%] {\r\n  text-decoration: none;\r\n  line-height: 1.1;\r\n  word-break: break-all;\r\n  font-size: 1.2em;\r\n}\r\n\r\n.fileLink[_ngcontent-%COMP%] {\r\n  cursor: pointer;\r\n  font-weight: bold;\r\n}\r\n\r\n.list[_ngcontent-%COMP%] {\r\n  list-style-type: none;\r\n  padding: 0;\r\n  margin-top: 0;\r\n}\r\n\r\n.version[_ngcontent-%COMP%] {\r\n  color: #727272;\r\n  font-size: 14px;\r\n  padding: 0.7em 0.4em;\r\n  \r\n  transition: transform 1s ease;\r\n\r\n}\r\n\r\n.moreActions[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n  vertical-align: middle;\r\n  cursor: pointer;\r\n  padding: 0 0.2em 0 0.1em;\r\n  color: #191999;\r\n  font: normal normal normal 2em/1 'Material-Design-Iconic-Font';\r\n  z-index: 999;\r\n  position: relative;\r\n  opacity: 0;\r\n  transition: all 0.2s;\r\n}\r\n\r\n.moreActions[_ngcontent-%COMP%]:after {\r\n  font-size: 1.3em;\r\n  width: 100%;\r\n  content: '\\f19b';\r\n}\r\n\r\n.selected[_ngcontent-%COMP%] {\r\n  \r\n  font-weight: normal;\r\n  text-decoration: none;\r\n  color: inherit;\r\n}\r\n\r\n.newTopic[_ngcontent-%COMP%] {\r\n  padding: 1.3em;\r\n  background: #dde2e5;\r\n}\r\n\r\n.newComment[_ngcontent-%COMP%] {\r\n  width: calc(100% - 30px) !important;\r\n}\r\n\r\na[_ngcontent-%COMP%] {\r\n  color: #00AEF0;\r\n}\r\n\r\n.actionList[_ngcontent-%COMP%] {\r\n  list-style-type: none;\r\n}\r\n\r\n.actionBlock[_ngcontent-%COMP%] {\r\n  clear: both;\r\n  position: relative;\r\n  padding: 0.1em 0;\r\n}\r\n\r\n.author[_ngcontent-%COMP%] {\r\n  display: block;\r\n}\r\n\r\n.author[_ngcontent-%COMP%]   .profileImg[_ngcontent-%COMP%] {\r\n  display: inline !important;\r\n}\r\n\r\n.comment[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n  padding: 0.2em;\r\n  width: calc(100% - 17em);\r\n  color: rgba(0, 0, 0, 0.85);\r\n  margin: 2px;\r\n  margin-left: 10px;\r\n}\r\n\r\n\r\n\r\n.comm-ts[_ngcontent-%COMP%], .action-ts[_ngcontent-%COMP%] {\r\n  margin-top: 2px;\r\n  font-size: 9px;\r\n  color: #B5B5B5;\r\n  display: block;\r\n  line-height: 9px;\r\n  letter-spacing: -0.3px;\r\n}\r\n\r\n.disabled[_ngcontent-%COMP%] {\r\n  opacity: 0.2;\r\n}\r\n\r\n.version[_ngcontent-%COMP%]   .header[_ngcontent-%COMP%]   a[_ngcontent-%COMP%] {\r\n  color: black;\r\n  text-decoration: underline;\r\n}\r\n\r\n.version[_ngcontent-%COMP%]   .header[_ngcontent-%COMP%] {\r\n  position: relative;\r\n  color: black;\r\n  height: 2em;\r\n}\r\n\r\n.versionTitle[_ngcontent-%COMP%] {\r\n  height: 1.5em;\r\n  line-height: 1.5em;\r\n  padding: 0 0.5em;\r\n  background: white;\r\n  color: #727272;\r\n  font-size: 1em;\r\n  -webkit-border-radius: 0 0 3px 3px;\r\n  -moz-border-radius: 0 0 3px 3px;\r\n  border-radius: 0 0 3px 3px;\r\n  \r\n  border-bottom: 1px solid #e6e6e6;\r\n}\r\n\r\n.versionTitle[_ngcontent-%COMP%]    > div[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n  vertical-align: middle;\r\n}\r\n\r\n.versionTitle[_ngcontent-%COMP%]   .toggleVersion[_ngcontent-%COMP%] {\r\n  font-family: FontAwesome;\r\n  height: 5px;\r\n}\r\n\r\n.version[_ngcontent-%COMP%]   .header[_ngcontent-%COMP%]   .left[_ngcontent-%COMP%] {\r\n  background-color: white;\r\n  z-index: 2;\r\n  position: absolute;\r\n  display: inline-block;\r\n  padding-right: 0.5em;\r\n}\r\n\r\n.version[_ngcontent-%COMP%]   .header[_ngcontent-%COMP%]   .right[_ngcontent-%COMP%] {\r\n  background-color: white;\r\n  z-index: 2;\r\n  position: absolute;\r\n  display: inline-block;\r\n  padding: 0 1.5em 0 0.5em;\r\n  right: 2em;\r\n}\r\n\r\n.toggleVersion[_ngcontent-%COMP%] {\r\n  float: right;\r\n  z-index: 2;\r\n  font-size: 2em;\r\n  color: #727272;\r\n  cursor: pointer;\r\n  position: relative;\r\n  top: -5px;\r\n}\r\n\r\n.versions[_ngcontent-%COMP%]   li[_ngcontent-%COMP%] {\r\n  list-style-type: none;\r\n  \r\n}\r\n\r\n.addCommentBlock[_ngcontent-%COMP%] {\r\n  margin-left: 1em;\r\n  padding: 1em 0;\r\n  float: left;\r\n}\r\n\r\n.versionComments[_ngcontent-%COMP%] {\r\n  transition: all 1s;\r\n}\r\n\r\n.versionComments[_ngcontent-%COMP%]   .addCommentBlock[_ngcontent-%COMP%] {\r\n  margin-bottom: 2em;\r\n}\r\n\r\n.uploadStatus[_ngcontent-%COMP%] {\r\n  position: absolute;\r\n  left: -13px;\r\n  top: -13px;\r\n  z-index: 9;\r\n  opacity: 0.7;\r\n}\r\n\r\n.isUploading[_ngcontent-%COMP%] {\r\n  height: 0.8em;\r\n  width: 30%;\r\n  padding: 0;\r\n  margin: auto;\r\n  border: 1px solid;\r\n  border-radius: 2px;\r\n}\r\n\r\n.progress[_ngcontent-%COMP%] {\r\n  height: 0.8em;\r\n  width: 10%;\r\n  border-radius: 2px;\r\n  margin: 0;\r\n  animation: nomAnim;\r\n  animation-iteration-count: 100;\r\n  animation-duration: 5s;\r\n  animation-timing-function: linear;\r\n}\r\n\r\n.bubble[_ngcontent-%COMP%] {\r\n  position: relative;\r\n  display: inline-block;\r\n  max-width: calc(100% - 5.7em);\r\n  -webkit-border-radius: 3px;\r\n  -moz-border-radius: 3px;\r\n  border-radius: 3px;\r\n  padding: 0.2em 0.5em;\r\n  border: 1px solid #d3d3d3;\r\n  background: #fff;\r\n  color: #000;\r\n  min-height: 1.8em;\r\n}\r\n\r\n.bubbleContent[_ngcontent-%COMP%] {\r\n  \r\n  display: inline;\r\n}\r\n\r\n.pLeft[_ngcontent-%COMP%], .fileMoreActions[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n}\r\n\r\n.pLeft[_ngcontent-%COMP%] {\r\n  \r\n}\r\n\r\n.fileMoreActions[_ngcontent-%COMP%] {\r\n  width: 4em;\r\n  vertical-align: top;\r\n  text-align: right;\r\n}\r\n\r\n.pLeft[_ngcontent-%COMP%]:hover, .pLeft[_ngcontent-%COMP%]:focus {\r\n  cursor: pointer;\r\n}\r\n\r\n.actionBlock[_ngcontent-%COMP%]:hover   .bubbleContent[_ngcontent-%COMP%]   .moreActions[_ngcontent-%COMP%], .actionBlock[_ngcontent-%COMP%]:focus   .bubbleContent[_ngcontent-%COMP%]   .moreActions[_ngcontent-%COMP%], .actionBlock.selected[_ngcontent-%COMP%]   .bubbleContent[_ngcontent-%COMP%]   .moreActions[_ngcontent-%COMP%], .moreActions[_ngcontent-%COMP%]:hover, .moreActions[_ngcontent-%COMP%]:focus, .moreActions.active[_ngcontent-%COMP%] {\r\n  opacity: 1;\r\n}\r\n\r\n.bubbleContent[_ngcontent-%COMP%]:after, .bubbleContent[_ngcontent-%COMP%]:before {\r\n  right: 100%;\r\n  top: 13px;\r\n  border: solid transparent;\r\n  content: \" \";\r\n  height: 0;\r\n  width: 0;\r\n  position: absolute;\r\n  pointer-events: none;\r\n}\r\n\r\n.bubbleContent[_ngcontent-%COMP%]:after {\r\n  border-color: rgba(250, 250, 250, 0);\r\n  border-right-color: #fff;\r\n  border-width: 7px;\r\n  margin-top: -7px;\r\n}\r\n\r\n.bubbleContent[_ngcontent-%COMP%]:before {\r\n  border-color: rgba(230, 230, 230, 0);\r\n  border-right-color: #d3d3d3;\r\n  border-width: 8px;\r\n  margin-top: -8px;\r\n}\r\n\r\nli.more[_ngcontent-%COMP%]    > div[_ngcontent-%COMP%] {\r\n  border: 1px solid rgba(0, 0, 0, 0.2);\r\n  display: inline-block;\r\n  padding: 0em 0.5em;\r\n  border-radius: 0.2em;\r\n  margin: 0.5em 0;\r\n  cursor: pointer;\r\n}\r\n\r\nli.more[_ngcontent-%COMP%] {\r\n  text-align: center;\r\n}\r\n\r\n.menuItem[_ngcontent-%COMP%] {\r\n  display: block;\r\n  text-transform: initial;\r\n}\r\n\r\n.popupContent[_ngcontent-%COMP%] {\r\n  overflow: hidden;\r\n  padding: 0.2em;\r\n}\r\n\r\n.lockBlock[_ngcontent-%COMP%]   .bubble[_ngcontent-%COMP%] {\r\n  color: #fff;\r\n  border: 1px solid #b2b6bb;\r\n  background-color: #909EAA;\r\n}\r\n\r\n.lockBlock[_ngcontent-%COMP%]   .bubbleContent[_ngcontent-%COMP%]:before {\r\n  border-right-color: #b2b6bb;\r\n}\r\n\r\n.lockBlock[_ngcontent-%COMP%]   .bubbleContent[_ngcontent-%COMP%]:after {\r\n  border-right-color: #909EAA;\r\n}\r\n\r\n.lockBlock[_ngcontent-%COMP%]   .lockIcon[_ngcontent-%COMP%] {\r\n  background-color: #FFF;\r\n  color: #909EAA;\r\n  font: normal normal normal 2em/1 'Material-Design-Iconic-Font';\r\n  text-align: center;\r\n  width: 1.1em;\r\n  height: 1.1em;\r\n  line-height: 0.9em;\r\n  border-radius: 50%;\r\n  vertical-align: middle;\r\n  display: inline-block;\r\n  margin-left: 0.5em;\r\n  \r\n}\r\n\r\n.lockBlock[_ngcontent-%COMP%]   .lockIcon[_ngcontent-%COMP%]:after {\r\n  font-size: 0.8em;\r\n  width: 100%;\r\n  content: '\\f158';\r\n}\r\n\r\n.approveBlock[_ngcontent-%COMP%]   .approveIcon[_ngcontent-%COMP%] {\r\n  font: normal normal normal 2em/1 'Material-Design-Iconic-Font';\r\n  vertical-align: middle;\r\n  display: inline-block;\r\n  margin-left: 0.5em;\r\n}\r\n\r\n.approveBlock[_ngcontent-%COMP%]   .approveIcon[_ngcontent-%COMP%]:after {\r\n  font-size: 1.2em;\r\n  width: 100%;\r\n  content: '\\f269';\r\n  color: #7ebb01;\r\n}\r\n\r\n.lockTime[_ngcontent-%COMP%] {\r\n  font-size: 12px;\r\n  font-family: Arial, Helvetica, sans-serif\r\n}\r\n\r\n.lockText[_ngcontent-%COMP%] {\r\n  color: #fff;\r\n  font-weight: bold;\r\n}\r\n\r\n.fileThumb[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n  vertical-align: middle;\r\n  margin-right: 1em;\r\n  width: auto;\r\n  height: auto;\r\n  border: 1px solid rgba(153, 153, 153, 0.41);\r\n  position: relative;\r\n}\r\n\r\n.fileThumb[_ngcontent-%COMP%]   img[_ngcontent-%COMP%] {\r\n  max-width: 100%;\r\n  height: auto;\r\n}\r\n\r\n.locked[_ngcontent-%COMP%]   .fileThumb[_ngcontent-%COMP%]   .fileThumb_bg[_ngcontent-%COMP%]:after {\r\n  content: \"\";\r\n  background: url(\"../images/pen_locked.png\") no-repeat center center;\r\n  top: calc(50% - 18px);\r\n  width: 36px;\r\n  height: 36px;\r\n  position: absolute;\r\n  display: inline-block;\r\n  text-align: center;\r\n  opacity: 1;\r\n  z-index: 99 !important;\r\n  left: 0;\r\n  right: auto;\r\n  margin-left: calc(50% - 18px);\r\n}\r\n\r\n.locked[_ngcontent-%COMP%]   .fileThumb[_ngcontent-%COMP%]   .fileThumb_bg[_ngcontent-%COMP%]:before {\r\n  content: '';\r\n  background: rgba(164, 163, 132, 0.7);\r\n  bottom: 0;\r\n  top: 0;\r\n  opacity: 0;\r\n}\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n.fileThumb[_ngcontent-%COMP%]   .fileThumb_bg[_ngcontent-%COMP%] {\r\n  width: 60px;\r\n  height: 55px;\r\n  cursor: pointer;\r\n  font: normal normal normal 2em/0 'Material-Design-Iconic-Font';\r\n}\r\n\r\n.fileThumb[_ngcontent-%COMP%]   .fileThumb_bg[_ngcontent-%COMP%]:after {\r\n  position: absolute;\r\n  top: 0.4em;\r\n  right: -0.4em;\r\n  font-size: 1.1em;\r\n  color: #7ebb01;\r\n  content: '\\f269';\r\n  opacity: 0;\r\n  z-index: 99 !important;\r\n}\r\n\r\n.thumbnail[_ngcontent-%COMP%] {\r\n  padding: 0 !important;\r\n  margin-bottom: 0 !important;\r\n  border-radius: 0 !important;\r\n}\r\n\r\n.locked[_ngcontent-%COMP%]   .fileThumb[_ngcontent-%COMP%]   .fileThumb_bg[_ngcontent-%COMP%]:before, .locked[_ngcontent-%COMP%]   .fileThumb[_ngcontent-%COMP%]   .fileThumb_bg[_ngcontent-%COMP%]:after, .approved[_ngcontent-%COMP%]   .fileThumb[_ngcontent-%COMP%]   .fileThumb_bg[_ngcontent-%COMP%]:after {\r\n  opacity: 1;\r\n  \r\n  \r\n  \r\n  \r\n  \r\n  \r\n  \r\n}\r\n\r\n.approved[_ngcontent-%COMP%]   .fileThumb[_ngcontent-%COMP%]   .fileThumb_bg[_ngcontent-%COMP%]   img[_ngcontent-%COMP%] {\r\n  opacity: 1 !important;\r\n}\r\n\r\n.icons[_ngcontent-%COMP%] {\r\n  float: right;\r\n  vertical-align: baseline;\r\n}\r\n\r\n.arrowbottom[_ngcontent-%COMP%] {\r\n  font-size: 30px;\r\n}\r\n\r\n.fileInfo[_ngcontent-%COMP%] {\r\n  font-size: 1em;\r\n}\r\n\r\n.menuItem[_ngcontent-%COMP%] {\r\n  border-bottom: 1px solid #cacaca !important;\r\n}\r\n\r\n.actionPropsBlock[_ngcontent-%COMP%] {\r\n  width: 3em;\r\n  display: inline-block;\r\n  vertical-align: top;\r\n  text-align: center;\r\n  padding: 0 0.5em;\r\n}\r\n\r\n.rightdesc[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n  \r\n  vertical-align: middle;\r\n  position: relative;\r\n}\r\n\r\n.fileSize[_ngcontent-%COMP%], .filetypedoc[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n  font-size: 1em;\r\n  color: rgba(0, 0, 0, 0.45);\r\n  line-height: 1;\r\n}\r\n\r\n.fileversion[_ngcontent-%COMP%] {\r\n  background-color: #1A1A99;\r\n  color: white;\r\n  border-radius: 50%;\r\n  -webkit-border-radius: 50%;\r\n  width: 2em;\r\n  height: 2em;\r\n  line-height: 2em;\r\n  text-align: center;\r\n  display: inline-block;\r\n  vertical-align: middle;\r\n  font-size: 1.1em;\r\n  letter-spacing: -0.5px;\r\n  margin: 0;\r\n}\r\n\r\n\r\n\r\n.isActionOn[_ngcontent-%COMP%]   .lockBlock[_ngcontent-%COMP%]   .lockIcon[_ngcontent-%COMP%] {\r\n  background-color: #F2542F;\r\n  color: white;\r\n}\r\n\r\n.constructText[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n  vertical-align: middle;\r\n  font-size: 0.9em;\r\n}\r\n\r\n.isActionOn[_ngcontent-%COMP%]   .lockBlock[_ngcontent-%COMP%]   .release[_ngcontent-%COMP%], .isActionOn[_ngcontent-%COMP%]   .lockBlock[_ngcontent-%COMP%]   .lockIcon[_ngcontent-%COMP%] {\r\n  background-color: #F2542F;\r\n  color: white;\r\n}\r\n\r\n.isActionOn[_ngcontent-%COMP%]   .lockBlock[_ngcontent-%COMP%]   .release[_ngcontent-%COMP%] {\r\n  color: white;\r\n  background-color: #00ADEF;\r\n  display: inline-block;\r\n  padding: 0.5em 1em;\r\n  margin-left: 0.5em;\r\n  font-family: roboto;\r\n  cursor: pointer;\r\n  float: right\r\n}\r\n\r\n.ownAction.isActionOn[_ngcontent-%COMP%]   .lockBlock[_ngcontent-%COMP%]   .lockIcon[_ngcontent-%COMP%] {\r\n  background-color: #00ADEF;\r\n}\r\n\r\n.progress[_ngcontent-%COMP%] {\r\n  background-color: yellow !important;\r\n}\r\n\r\n@keyframes nomAnim {\r\n  from {\r\n    background-color: #9D7E90;\r\n    margin-left: 0%;\r\n  }\r\n  50% {\r\n    background-color: #BFBB97;\r\n    margin-left: 90%;\r\n  }\r\n  to {\r\n    background-color: #9D7E90;\r\n    margin-left: 0%;\r\n  }\r\n}\r\n\r\n\r\n\r\n.ownAction[_ngcontent-%COMP%]   .bubbleContent[_ngcontent-%COMP%]:after {\r\n  border-color: rgba(250, 250, 250, 0);\r\n  border-left-color: #D5F0FF;\r\n}\r\n\r\n.ownAction[_ngcontent-%COMP%]   .bubbleContent[_ngcontent-%COMP%]:before {\r\n  border-color: rgba(230, 230, 230, 0);\r\n  border-left-color: rgba(0, 0, 0, 0.25);\r\n  border-width: 8px;\r\n  margin-top: -8px;\r\n}\r\n\r\n.ownAction[_ngcontent-%COMP%]   .bubbleContent[_ngcontent-%COMP%]:after, .ownAction[_ngcontent-%COMP%]   .bubbleContent[_ngcontent-%COMP%]:before {\r\n  right: 0;\r\n  left: 100%;\r\n}\r\n\r\n.ownAction[_ngcontent-%COMP%]   .author[_ngcontent-%COMP%] {\r\n  display: none;\r\n}\r\n\r\n.ownAction[_ngcontent-%COMP%]   .actionPropsBlock[_ngcontent-%COMP%] {\r\n  float: right;\r\n}\r\n\r\n.ownAction[_ngcontent-%COMP%]   .actionBlock[_ngcontent-%COMP%] {\r\n  text-align: right;\r\n}\r\n\r\n.ownAction[_ngcontent-%COMP%]   .actionBlock[_ngcontent-%COMP%]   .fileProps[_ngcontent-%COMP%] {\r\n  text-align: left;\r\n}\r\n\r\n.ownAction[_ngcontent-%COMP%]   .bubble[_ngcontent-%COMP%] {\r\n  background: #D5F0FF;\r\n}\r\n\r\n.ownAction[_ngcontent-%COMP%]   .lockBlock[_ngcontent-%COMP%]   .bubble[_ngcontent-%COMP%] {\r\n  background-color: #909EAA;\r\n}\r\n\r\n.ownAction[_ngcontent-%COMP%]   .lockBlock[_ngcontent-%COMP%]   .bubbleContent[_ngcontent-%COMP%]:before {\r\n  border-left-color: #b2b6bb;\r\n}\r\n\r\n.ownAction[_ngcontent-%COMP%]   .lockBlock[_ngcontent-%COMP%]   .bubbleContent[_ngcontent-%COMP%]:after {\r\n  border-left-color: #909EAA;\r\n}\r\n\r\n.ownAction[_ngcontent-%COMP%]   .fileSize[_ngcontent-%COMP%], .ownAction[_ngcontent-%COMP%]   .filetypedoc[_ngcontent-%COMP%] {\r\n  color: rgba(0, 0, 0, 0.25)\r\n}\r\n\r\n.ownAction[_ngcontent-%COMP%]   .actionBlock.lockBlock[_ngcontent-%COMP%]   .approveIcon[_ngcontent-%COMP%], .ownAction[_ngcontent-%COMP%]   .actionBlock.lockBlock[_ngcontent-%COMP%]   .lockIcon[_ngcontent-%COMP%] {\r\n  float: left;\r\n  margin-right: 0.5em;\r\n  margin-left: 0;\r\n  margin-top: 0.1em;\r\n}\r\n\r\n.ownAction[_ngcontent-%COMP%]   .actionBlock.lockBlock[_ngcontent-%COMP%]   .constructText[_ngcontent-%COMP%] {\r\n  float: right;\r\n  line-height: 2;\r\n  padding-top: 0.3em;\r\n}"]);
+  C.List_Xqx = Isolate.makeConstantList([C.List_SC20]);
   C.Type_FolderComponent_CmO = H.createRuntimeType("FolderComponent");
   C.List_ogP = Isolate.makeConstantList([C.Type_FolderComponent_CmO, C.List_Injectable]);
   C.ComponentFactory_OeV = new D.ComponentFactory("folders", F.folder_component_template__viewFactory_FolderComponentHost0$closure(), C.Type_FolderComponent_CmO, C.List_ogP);
@@ -86010,6 +85879,8 @@
   C.List_mBr = Isolate.makeConstantList([C.List_Type_PlaceService_fcN, C.List_Type_Router_yx3, C.List_Type_Environment_iuz, C.List_Type_DomSanitizationService_cKo, C.List_Type_UserListProvider_AsO]);
   C.List_Type_FolderComponent_CmO = Isolate.makeConstantList([C.Type_FolderComponent_CmO]);
   C.List_mJM = Isolate.makeConstantList([C.List_Type_PlaceService_fcN, C.List_Type_Environment_iuz, C.List_Type_FolderComponent_CmO]);
+  C.List_3FW = Isolate.makeConstantList(["#login[_ngcontent-%COMP%] {\r\n  background: #EEEEF0;\r\n  width: 37em;\r\n  clear: both;\r\n}\r\n\r\n.panels[_ngcontent-%COMP%] {\r\n  padding: 2em 2em 0;\r\n  position: relative;\r\n  clear: both;\r\n  overflow: initial;\r\n}\r\n\r\n.changePass[_ngcontent-%COMP%] {\r\n  text-decoration: underline;\r\n  cursor: pointer;\r\n  margin: 0 0 1em 0;\r\n  color: #273B54;\r\n  z-index: 999;\r\n}\r\n\r\n.title[_ngcontent-%COMP%] {\r\n  color: #fff;\r\n  float: left;\r\n  width: 80%;\r\n  padding: 0;\r\n  font-size: 1.6em;\r\n}\r\n\r\n.close[_ngcontent-%COMP%] {\r\n  float: right;\r\n  cursor: pointer;\r\n}\r\n\r\n.header[_ngcontent-%COMP%] {\r\n  background-color: #262D40;\r\n  padding: 1em 1em 0;\r\n}\r\n\r\n\r\n.uploadFile[_ngcontent-%COMP%] {\r\n  padding: 1em 0 2em !important;\r\n}\r\n\r\n#labelfileuploadprf[_ngcontent-%COMP%] {\r\n  left: 55%;\r\n  color: #bebebe;\r\n  text-decoration: underline;\r\n}\r\n\r\n#labelfileuploadprf[_ngcontent-%COMP%]   img[_ngcontent-%COMP%] {\r\n  display: block;\r\n  -webkit-border-radius: 50%;\r\n  -moz-border-radius: 50%;\r\n  border-radius: 50%;\r\n  border: 3px solid rgba(255, 255, 255, 0.8);\r\n  width: 6em;\r\n  height: 6em;\r\n  background-color: white;\r\n}\r\n\r\n.skype.bottom_input[_ngcontent-%COMP%] {\r\n  right: 27px;\r\n}\r\n\r\n.spprof[_ngcontent-%COMP%] {\r\n  position: absolute;\r\n  top: 0;\r\n  right: 0;\r\n  text-decoration: underline;\r\n}\r\n\r\n.dragdrop_profil[_ngcontent-%COMP%]:hover   #labelfileuploadprf[_ngcontent-%COMP%]:before, .dragdrop_profil[_ngcontent-%COMP%]:focus   #labelfileuploadprf[_ngcontent-%COMP%]:before, .dragdrop_profil[_ngcontent-%COMP%]:hover   #labelfileuploadprf[_ngcontent-%COMP%], .dragdrop_profil[_ngcontent-%COMP%]:focus   #labelfileuploadprf[_ngcontent-%COMP%] {\r\n  color: white;\r\n}\r\n\r\n.dragdrop_profil[_ngcontent-%COMP%]:hover   #labelfileuploadprf[_ngcontent-%COMP%]:before, .dragdrop_profil[_ngcontent-%COMP%]:focus   #labelfileuploadprf[_ngcontent-%COMP%]:before {\r\n  border: 3px solid rgba(255, 255, 255, 0.5);\r\n}\r\n\r\n#labelfileuploadprf[_ngcontent-%COMP%] {\r\n  cursor: pointer;\r\n  color: darkGray;\r\n  z-index: 1;\r\n  padding-right: 45px;\r\n  border-radius: 25px;\r\n  background-color: transparent;\r\n  font-size: 1em;\r\n  display: block;\r\n  position: absolute;\r\n  left: 43%;\r\n  top: 50%;\r\n  -webkit-transition: 0.3s;\r\n  -o-transition: 0.3s;\r\n  transition: 0.3s;\r\n}\r\n\r\n\r\n.local[_ngcontent-%COMP%] {\r\n  width: calc(51% - 21px);\r\n  display: inline-block;\r\n  padding-right: 21px;\r\n  overflow: hidden;\r\n}\r\n\r\n.social[_ngcontent-%COMP%] {\r\n  width: 44%;\r\n  display: inline-block;\r\n  vertical-align: top;\r\n  padding-top: 20px;\r\n  padding-left: 3%;\r\n  border-left: 1px solid rgba(86, 86, 86, 0.17);\r\n}\r\n\r\n\r\n.changeMail[_ngcontent-%COMP%] {\r\n  cursor: pointer;\r\n  position: relative;\r\n}\r\n\r\n.changeMail[_ngcontent-%COMP%]:after {\r\n  float: right;\r\n  content: '' !important;\r\n  background-image: url('../images/edit_blue.png') !important;\r\n  background-position: left top !important;\r\n  background-repeat: no-repeat !important;\r\n  display: block !important;\r\n  width: 16px !important;\r\n  height: 16px !important;\r\n  margin-right: 15px;\r\n}\r\n\r\n.socialBtn[_ngcontent-%COMP%] {\r\n  color: white;\r\n  display: inline-block;\r\n  font-size: 23px;\r\n  width: 32px;\r\n  height: 32px;\r\n  line-height: 32px;\r\n  -webkit-border-radius: 3px;\r\n  -moz-border-radius: 3px;\r\n  border-radius: 3px;\r\n  text-align: center;\r\n  vertical-align: middle;\r\n  margin-left: 0.2em;\r\n}\r\n\r\n.socialBtn[_ngcontent-%COMP%], .socialBtn[_ngcontent-%COMP%]:focus {\r\n  box-shadow: 2px 2px 3px 0 rgba(26, 74, 76, 0.2);\r\n  -webkit-transition: 0.3s;\r\n  -o-transition: 0.3s;\r\n  transition: 0.3s;\r\n}\r\n\r\n.facebook[_ngcontent-%COMP%] {\r\n  background-color: #3A579A;\r\n}\r\n\r\n.google[_ngcontent-%COMP%] {\r\n  background-color: #DF4A32;\r\n}\r\n\r\n.label[_ngcontent-%COMP%] {\r\n  font-weight: bold;\r\n  font-size: 0.9em;\r\n}\r\n\r\n.btnvalidat[_ngcontent-%COMP%] {\r\n  text-align: center;\r\n}\r\n\r\n.bottom_input[_ngcontent-%COMP%] {\r\n  position: absolute;\r\n  bottom: -4em;\r\n}\r\n\r\n.social[_ngcontent-%COMP%]   .line[_ngcontent-%COMP%] {\r\n  vertical-align: middle;\r\n  margin-bottom: 3.3em;\r\n  text-align: right;\r\n}\r\n\r\n.social[_ngcontent-%COMP%]   .line[_ngcontent-%COMP%]   span[_ngcontent-%COMP%] {\r\n  text-align: left;\r\n}\r\n\r\n.btn_login[_ngcontent-%COMP%] {\r\n  margin: 4em 0 2em 0 !important;\r\n}\r\n\r\n.passwordZone[_ngcontent-%COMP%] {\r\n  margin-bottom: 1.5em;\r\n}\r\n\r\nmain[_ngcontent-%COMP%], header[_ngcontent-%COMP%], footer[_ngcontent-%COMP%] {\r\n  background-color: #00adef !important;\r\n}\r\n\r\n.email[_ngcontent-%COMP%] {\r\n  position: relative;\r\n}\r\n\r\n.changeMail[_ngcontent-%COMP%] {\r\n  position: absolute;\r\n  top: 36%;\r\n  right: -20px;\r\n}\r\n\r\nfieldset[_ngcontent-%COMP%] {\r\n  border: 1px solid rgba(39, 59, 84, 0.18) !important;\r\n}\r\n\r\nmaterial-input[_ngcontent-%COMP%] {\r\n  padding: 1px 0 !important;\r\n}\r\n\r\n\r\n.nameConnected[_ngcontent-%COMP%] {\r\n  color: #333;\r\n  text-decoration: none;\r\n  text-align: left;\r\n  font-weight: bold;\r\n}\r\n\r\n.logLeft[_ngcontent-%COMP%], .socialBtn[_ngcontent-%COMP%] {\r\n  display: inline-block;\r\n  vertical-align: middle;\r\n}\r\n\r\n.socialBtn[_ngcontent-%COMP%] {\r\n  width: 1.5em;\r\n}\r\n\r\n.logLeft[_ngcontent-%COMP%] {\r\n  width: calc(100% - 4.8em);\r\n  line-height: 1.3;\r\n}\r\n\r\n.line[_ngcontent-%COMP%] {\r\n  width: 100%\r\n}\r\n\r\n.loggedIn[_ngcontent-%COMP%]   .log[_ngcontent-%COMP%] {\r\n  display: none;\r\n}\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n  \r\n\r\n\r\n#labelfileuploadprf[_ngcontent-%COMP%]   .spinAnim[_ngcontent-%COMP%] {\r\n  background: transparent;\r\n  border: 0;\r\n  box-sizing: border-box;\r\n  position: relative;\r\n  border-radius: 100%;\r\n  box-shadow: none;\r\n}\r\n.uploading[_ngcontent-%COMP%]   #labelfileuploadprf[_ngcontent-%COMP%]   .spinAnim[_ngcontent-%COMP%] {\r\n  color: #7FBB01;\r\n}\r\n #labelfileuploadprf[_ngcontent-%COMP%]   .spinAnim[_ngcontent-%COMP%]::before, #labelfileuploadprf[_ngcontent-%COMP%]   .spinAnim[_ngcontent-%COMP%]::after {\r\n  top: 0;\r\n  left: 0;\r\n  box-sizing: inherit;\r\n  content: '';\r\n  position: absolute;\r\n  width: 100%;\r\n  height: 100%;\r\n  border-radius: 100%;\r\n}\r\n.uploading[_ngcontent-%COMP%]   #labelfileuploadprf[_ngcontent-%COMP%]   .spinAnim[_ngcontent-%COMP%]::before {\r\n  border: 3px solid transparent;\r\n}\r\n.uploading[_ngcontent-%COMP%]   #labelfileuploadprf[_ngcontent-%COMP%]   .spinAnim[_ngcontent-%COMP%]::before {\r\n  border-top-color: #7FBB01;\r\n  border-right-color: #7FBB01;\r\n  border-bottom-color: #7FBB01;\r\n  -webkit-transition: border-top-color 0.15s linear, border-right-color 0.15s linear 0.1s, border-bottom-color 0.15s linear 0.2s;\r\n  transition: border-top-color 0.15s linear, border-right-color 0.15s linear 0.1s, border-bottom-color 0.15s linear 0.2s;\r\n}\r\n #labelfileuploadprf[_ngcontent-%COMP%]   .spinAnim[_ngcontent-%COMP%]::after {\r\n  border: 0 solid transparent;\r\n}\r\n.uploading[_ngcontent-%COMP%]   #labelfileuploadprf[_ngcontent-%COMP%]   .spinAnim[_ngcontent-%COMP%]::after {\r\n  border-top: 3px solid #7FBB01;\r\n  border-left-width: 3px;\r\n  border-right-width: 3px;\r\n  -webkit-transform: rotate(270deg);\r\n  transform: rotate(270deg);\r\n  -webkit-transition: border-left-width 0s linear 0.35s, -webkit-transform 0.4s linear 0s;\r\n  transition: border-left-width 0s linear 0.35s, -webkit-transform 0.4s linear 0s;\r\n  transition: transform 0.4s linear 0s, border-left-width 0s linear 0.35s;\r\n  transition: transform 0.4s linear 0s, border-left-width 0s linear 0.35s, -webkit-transform 0.4s linear 0s;\r\n}"]);
+  C.List_mT8 = Isolate.makeConstantList([C.List_3FW]);
   C.Type_TabButtonComponent_Wbj = H.createRuntimeType("TabButtonComponent");
   C.List_EYy = Isolate.makeConstantList([C.Type_TabButtonComponent_Wbj, C.List_empty]);
   C.ComponentFactory_44x = new D.ComponentFactory("tab-button", S.tab_button_template__viewFactory_TabButtonComponentHost0$closure(), C.Type_TabButtonComponent_Wbj, C.List_EYy);
@@ -86319,8 +86190,6 @@
   C.Type_ViewFilesComp11_wEo = H.createRuntimeType("ViewFilesComp11");
   C.Type_ViewFilesComp12_wEo = H.createRuntimeType("ViewFilesComp12");
   C.Type_ViewFilesComp13_wEo = H.createRuntimeType("ViewFilesComp13");
-  C.Type_ViewFilesComp14_wEo = H.createRuntimeType("ViewFilesComp14");
-  C.Type_ViewFilesComp15_wEo = H.createRuntimeType("ViewFilesComp15");
   C.Type_ViewFilesComp1_KlB = H.createRuntimeType("ViewFilesComp1");
   C.Type_ViewFilesComp2_KlB = H.createRuntimeType("ViewFilesComp2");
   C.Type_ViewFilesComp3_KlB = H.createRuntimeType("ViewFilesComp3");
@@ -86891,7 +86760,9 @@
   $.renderType_AppComponent = null;
   $.renderType_AppComponentHost = null;
   $._visited6 = false;
-  $._baseUrlValue = "https://share-place.herokuapp.com";
+  $._baseUrlValue = "http://localhost:3000";
+  $._port = 80;
+  $._env = "web";
   $._visited1 = false;
   $._visited106 = false;
   $._visited105 = false;

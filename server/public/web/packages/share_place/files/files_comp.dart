@@ -40,7 +40,7 @@ class FilesComp implements OnInit {
   int fileMenuVisible;
   int selectedVersion;
 
-  bool openFile;
+  int openFileVersion;
 
   FilesComp(this._placeService, this._router, this._environment);
 
@@ -260,16 +260,17 @@ class FilesComp implements OnInit {
     return "$mimeType Document";
   }
 
-  void openFileDialog() {
-    openFile = true;
+  void openFileDialog(int version) {
+    print("opening file version $version");
+    openFileVersion = version;
   }
 
   void cancelFileOpen() {
-    openFile = false;
+    openFileVersion = -1;
   }
 
   Future<Null> lockAndOpen(int version) async {
-    openFile = false;
+    openFileVersion = -1;
     await _placeService.lockFile(
         selectedPlace.id, selectedSubject.folderId, selectedFile.id, true);
     _environment.fireEvent(PlaceParam.lockStateChange, selectedFile.id);
@@ -277,7 +278,7 @@ class FilesComp implements OnInit {
   }
 
   void openFileLink(int version) {
-    openFile = false;
+    openFileVersion = -1;
     window.location.assign(
         "/sp/place/${selectedPlace?.id}/folder/${selectedFolder
             ?.id}/file/${selectedFile?.id}/version/${version}/download");
@@ -297,6 +298,7 @@ class FilesComp implements OnInit {
     if (actionItem.action.actionType == 'fileLock') {
       String userName = actionItem?.user?.userName;
       return (isAuthor ? "I" : (userName == null? "" : userName)) +
+
           (isOn ? " am editing " : " edited ") + ("version ${version?.v}");
     }
 

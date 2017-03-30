@@ -23,6 +23,7 @@ import 'package:share_place/common/ui/button_comp.dart';
 import 'package:share_place/common/ui/text_comp.dart';
 import 'package:share_place/users/signup/signup_comp.dart';
 import 'package:share_place/users/forgot_pass/forgot_pass_comp.dart';
+import 'package:share_place/app_config.dart' as conf;
 import 'package:angular2_components/angular2_components.dart';
 import 'package:angular2/core.template.dart' as i0;
 import 'package:angular2/router.template.dart' as i1;
@@ -35,7 +36,8 @@ import 'package:share_place/common/ui/button_comp.template.dart' as i7;
 import 'package:share_place/common/ui/text_comp.template.dart' as i8;
 import 'package:share_place/users/signup/signup_comp.template.dart' as i9;
 import 'package:share_place/users/forgot_pass/forgot_pass_comp.template.dart' as i10;
-import 'package:angular2_components/angular2_components.template.dart' as i11;
+import 'package:share_place/app_config.template.dart' as i11;
+import 'package:angular2_components/angular2_components.template.dart' as i12;
 export 'login_comp.dart';
 import 'login_comp.css.shim.dart' as import0;
 import 'package:angular2/src/core/render/api.dart';
@@ -194,6 +196,8 @@ class ViewLoginComp0 extends AppView<import3.LoginComp> {
   var _expr_30 = uninitialized;
   var _expr_31 = uninitialized;
   var _expr_32 = uninitialized;
+  var _expr_33 = uninitialized;
+  var _expr_34 = uninitialized;
   ViewLoginComp0(import20.Injector parentInjector,ViewContainer declarationEl): super(ViewLoginComp0,renderType_LoginComp,import21.ViewType.COMPONENT,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
   dynamic get _DeferredContentAware_0_4 {
     if ((this.__DeferredContentAware_0_4 == null)) { (__DeferredContentAware_0_4 = this._ModalComponent_0_3); }
@@ -572,7 +576,6 @@ class ViewLoginComp0 extends AppView<import3.LoginComp> {
     _el_92.setAttribute(shimCAttr,'');
     _el_90.append(_el_92);
     _el_92.className = 'btn-social btn-facebook';
-    createAttr(_el_92,'href','/auth/facebook/');
     Text _text_93 = new Text('\n        ');
     _el_92.append(_text_93);
     _el_94 = doc.createElement('span');
@@ -587,7 +590,6 @@ class ViewLoginComp0 extends AppView<import3.LoginComp> {
     _el_97.setAttribute(shimCAttr,'');
     _el_90.append(_el_97);
     _el_97.className = 'btn-social btn-google';
-    createAttr(_el_97,'href','/auth/google');
     Text _text_98 = new Text('\n        ');
     _el_97.append(_text_98);
     _el_99 = doc.createElement('span');
@@ -811,6 +813,16 @@ class ViewLoginComp0 extends AppView<import3.LoginComp> {
       setAttr(_el_79,'elevation',((currVal_32 == null)? null: currVal_32.toString()));
       _expr_32 = currVal_32;
     }
+    final currVal_33 = import46.interpolate0(ctx.loginFacebookUrl);
+    if (import46.checkBinding(_expr_33,currVal_33)) {
+      setProp(_el_92,'href',import46.appViewUtils.sanitizer.sanitizeUrl(currVal_33));
+      _expr_33 = currVal_33;
+    }
+    final currVal_34 = import46.interpolate0(ctx.loginGoogleUrl);
+    if (import46.checkBinding(_expr_34,currVal_34)) {
+      setProp(_el_97,'href',import46.appViewUtils.sanitizer.sanitizeUrl(currVal_34));
+      _expr_34 = currVal_34;
+    }
     this.detectViewChildrenChanges();
     if (identical(this.cdState, ChangeDetectorState.NeverChecked)) { _MaterialInputComponent_64_8.ngAfterViewInit(); }
     if (identical(this.cdState, ChangeDetectorState.NeverChecked)) { _MaterialInputComponent_76_8.ngAfterViewInit(); }
@@ -987,4 +999,5 @@ i8.initReflector();
 i9.initReflector();
 i10.initReflector();
 i11.initReflector();
+i12.initReflector();
 }

@@ -15,6 +15,13 @@
       "prefix": null,
       "value": null
     },
+    "isWebApp": {
+      "class": "Identifier",
+      "name": "isWebApp",
+      "moduleUrl": "asset:share_place/lib/app_config.dart",
+      "prefix": null,
+      "value": null
+    },
     "readConf": {
       "class": "Identifier",
       "name": "readConf",

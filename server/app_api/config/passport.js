@@ -203,9 +203,10 @@ module.exports = function (passport) {
   // refresh user to login
   passport.use('refresh-user', new CustomStrategy(
       (req, callback) => {
-        log.info("calling remote server ", req.headers.cookie);
+        //log.info("calling remote server ", global.cookieReceived);
         // Do your custom user finding logic here, or set to false based on req object
-        proxy.callRemoteServer(req.headers.cookie, "/user/connected", (err, dataReceived) => {
+       // global.cookieReceived = req.get('Cookie') ;
+        proxy.callRemoteServer(global.cookieReceived, "/user/connected", (err, dataReceived) => {
 
           if (err)
             return callback(err);
@@ -309,7 +310,7 @@ var signUpFromServer = function (req, email, password, name, skype, cb) {
 
 // Configure the request
   var url = req.url;
-
+  var pathToFile = null;
 
 // Start the request
   var r = request.post(constants.urlLoginProxy + url, function (error, response, body) {
@@ -331,13 +332,17 @@ var signUpFromServer = function (req, email, password, name, skype, cb) {
         log.trace("one cookie found in set-cookie", response.headers['set-cookie'][0]);
         cookie += response.headers['set-cookie'][0];
       }
+      log.info("user created:",user)
       global.cookieReceived = cookie;
-      fs.unlink(pathToFile, function (err) {
-        if (err)
-          log.error('err  delete from tmp', err);
+      if(pathToFile){
+        fs.unlink(pathToFile, function (err) {
+          if (err)
+            log.error('err  delete from tmp', err);
 
-        log.info("yess !! ");
-      });
+          log.info("yess !! ");
+        });
+      }
+
       return cb(null, user);
     }
   });

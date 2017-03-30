@@ -80,10 +80,17 @@
     console.log('information', data);
   });
 </script>-->
+
+<!-- Dart conf -->
 <input type="hidden" id="baseUrl" value="err"/>
+<input type="hidden" id="port" value="err"/>
+<input type="hidden" id="env" value="desktop"/>
 <script type="application/javascript">
-  document.getElementById('baseUrl').value = window.location.origin;
+	document.getElementById('baseUrl').value = window.location.origin;
+	document.getElementById('port').value = window.location.port;
 </script>
+<!-- Dart conf end-->
+
 <script>
   const {ipcRenderer} = require('electron')
   const updateOnlineStatus = () => {
