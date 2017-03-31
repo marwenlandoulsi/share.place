@@ -26,9 +26,11 @@
 #signup .label {
   font-size: 0.8em;
 }
+
 .center {
   text-align: center;
 }
+
 span, .logo_intro {
   vertical-align: middle;
   display: inline-block;
@@ -41,19 +43,6 @@ span, .logo_intro {
   font-family: Arial, Helvetica, sans-serif;
   padding: 0 !important;
 }
-
-/*.close {*/
-  /*position: absolute;*/
-  /*right: 0.5em;*/
-  /*top: 0.4em;*/
-  /*color: white;*/
-  /*opacity: 1;*/
-  /*cursor: pointer;*/
-/*}*/
-
-/*.close:hover {*/
-  /*opacity: 0.7;*/
-/*}*/
 
 a {
   color: #3A579A;
@@ -206,17 +195,6 @@ material-input.mail.themeable, material-input.password.themeable, material-input
   font-size: 11px;
 }
 
-@media (max-width: 1199px) {
-}
-
-@media (max-width: 991px) {
-}
-
-@media (max-width: 767px) {
-}
-
-@media (max-width: 479px) {
-}
 
 #login {
   background: #EEEEF0;
@@ -261,23 +239,6 @@ material-input.mail.themeable, material-input.password.themeable, material-input
   padding: 1em 0 2em !important;
 }
 
-#labelfileuploadprf {
-  left: 55%;
-  color: #bebebe;
-  text-decoration: underline;
-}
-
-#labelfileuploadprf img {
-  display: block;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  border-radius: 50%;
-  border: 3px solid rgba(255, 255, 255, 0.8);
-  width: 75px;
-  height: 75px;
-
-}
-
 .skype.bottom_input {
   right: 27px;
 }
@@ -298,24 +259,7 @@ material-input.mail.themeable, material-input.password.themeable, material-input
   border: 3px solid rgba(255, 255, 255, 0.5);
 }
 
-#labelfileuploadprf {
-  cursor: pointer;
-  color: darkGray;
-  z-index: 1;
-  padding-right: 45px;
-  border-radius: 25px;
-  background-color: transparent;
-  font-size: 13px;
-  display: block;
-  position: absolute;
-  left: 43%;
-  top: 38%;
-  -webkit-transition: 0.3s;
-  -o-transition: 0.3s;
-  transition: 0.3s;
-}
 
-/* */
 .local {
   border-right: 1px solid rgba(86, 86, 86, 0.17);
   width: calc(52% - 31px);
@@ -421,8 +365,4 @@ fieldset {
 
 material-input {
   padding: 1px 0 !important;
-}
-
-.uploading {
-  border: 2px solid greenyellow;
 }

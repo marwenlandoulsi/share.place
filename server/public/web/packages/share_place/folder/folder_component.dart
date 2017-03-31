@@ -126,6 +126,7 @@ class FolderComponent
 
   void add() {
     adding = !adding;
+    _environment.fireEvent(PlaceParam.addButtonPressed, "folders");
   }
 
   void rename() {

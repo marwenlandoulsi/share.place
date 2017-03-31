@@ -10,7 +10,7 @@ import 'files/cloud_file.dart';
 import 'file_info.dart';
 import 'package:share_place/common/net/socket.io.dart';
 import 'dart:async';
-
+import 'app_config.dart' as conf;
 @Injectable()
 class Environment {
 
@@ -99,7 +99,7 @@ class Environment {
   }
 
   Future<Null> connectSocket() async {
-    await socketIoClient.connect();
+    await socketIoClient.connect(conf.remoteUrl);
   }
 
   User get selectedUser => _user;
@@ -145,7 +145,23 @@ class Environment {
     });
   }
 
+  bool connectedUserHasGreaterRole(RoleEnum role, Folder folder) =>
+      userHasGreaterRole(role, folder.id, connectedUser);
+
 }
+
+/**
+ * checks if user has at least the given role
+ */
+bool userHasGreaterRole(RoleEnum role, String folderId, User user) {
+  var roleOnFolder = user.folders[folderId];
+  // CHECK this code is not needed
+  if( roleOnFolder == null ) {
+    print("ERROR : user must be refreshed before calling this method : folder not associated to user");
+  }
+  return roleOnFolder.index >= role.index;
+}
+
 
 enum PlaceParam {
   placeId,

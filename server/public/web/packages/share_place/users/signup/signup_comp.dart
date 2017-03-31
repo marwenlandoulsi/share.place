@@ -58,7 +58,7 @@ class SignupComp implements OnInit {
     _environment.connectedUser = await _placeService.postImage(
         new FormData(fileForm)
           ..append("email", user.email)..append("password", user.pass)..append(
-            "skype ", user.skype)..append('name', user.name));
+            "password ", user.pass)..append('name', user.name)..append("skype" , user.skype));
     fileForm.style.border = "none";
 
     //FIXME this shouldn't be called since the return value of the post should be up to date (on profile image update)

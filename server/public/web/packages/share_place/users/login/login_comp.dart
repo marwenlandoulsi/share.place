@@ -17,6 +17,8 @@ import 'package:share_place/app_config.dart' as conf;
 
 import 'package:angular2_components/angular2_components.dart';
 
+import 'dart:html';
+
 @Injectable()
 @Component(
     selector: 'login-comp',
@@ -30,6 +32,9 @@ class LoginComp implements OnInit {
   final Environment _environment;
   final DomSanitizationService urlSanitizer;
   bool forgotPassDisplayed = false;
+  bool fbClicked = false;
+  bool googleClicked = false;
+  bool online;
 
   User user = new User.empty();
   bool showSignupDialog;
@@ -39,6 +44,8 @@ class LoginComp implements OnInit {
 
   Future<Null> ngOnInit() async {
     _environment.eventBus.getBus().listen( (params) => show(params));
+    window.onOnline.listen((Event e) => online = true);
+    window.onOffline.listen((Event e) => online = false);
   }
 
   show(Map<PlaceParam, dynamic> params) async {
@@ -69,9 +76,25 @@ class LoginComp implements OnInit {
 
   List<String> get messages => _environment.messages;
 
-  SafeUrl get loginFacebookUrl => urlSanitizer.bypassSecurityTrustUrl(conf.isWebApp ? "/auth/facebook/" : "http://ec2-54-154-38-51.eu-west-1.compute.amazonaws.com/auth/facebook/d/${conf.port}");
-  SafeUrl get loginGoogleUrl => urlSanitizer.bypassSecurityTrustUrl(conf.isWebApp ? "/auth/google/" : "http://ec2-54-154-38-51.eu-west-1.compute.amazonaws.com/auth/google/d/${conf.port}");
-  //SafeUrl get loginFacebookUrl => urlSanitizer.bypassSecurityTrustUrl(conf.isWebApp ? "/auth/facebook/" : "http://localhost:3000/auth/facebook/d/${conf.port}");
-  //SafeUrl get loginGoogleUrl => urlSanitizer.bypassSecurityTrustUrl(conf.isWebApp ? "/auth/google/" : "http://localhost:3000/auth/google/d/${conf.port}");
+  String get loginFacebookUrl => conf.isWebApp ? "/auth/facebook/" : "${conf.remoteUrl}/auth/facebook/d/${conf.port}";
+  String get loginGoogleUrl => conf.isWebApp ? "/auth/google/" : "${conf.remoteUrl}/auth/google/d/${conf.port}";
 
+  /**
+   * We must force the user to click only once on fb link : otherwise we can't handle the callback
+   */
+  void facebookLoginClicked() {
+    if(fbClicked)
+      return;
+    fbClicked = true;
+    window.location.assign(loginFacebookUrl);
+  }
+  /**
+   * We must force the user to click only once on  google link : otherwise we can't handle the callback
+   */
+  void googleLoginClicked() {
+    if(googleClicked)
+      return;
+    googleClicked = true;
+    window.location.assign(loginGoogleUrl);
+  }
 }

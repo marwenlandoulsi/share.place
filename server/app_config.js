@@ -8,6 +8,7 @@ module.exports = Object.freeze({
   //port: 3000,
   port: 80,
   debugServer: false,
+  defaultPicture: path.join(__dirname, 'static', "images", "user1.png"),
   dataDir: path.join(__dirname, '..', "data"),
   usersFileData: path.join(__dirname, '..', "data", "users.json"),
   logDir: path.join(__dirname, "log"),
@@ -31,8 +32,8 @@ module.exports = Object.freeze({
     port: 80,
     path: '/auth',
     method: 'GET'
-  },
-  /*optionsGetFromAuth: {
+  }/*,
+  optionsGetFromAuth: {
    host: "127.0.0.1",
    port: 3000,
    path: '/auth',
@@ -53,7 +54,7 @@ module.exports = Object.freeze({
    port: 3000,
    path: '/sp',
    method: 'GET'
-   },*/
+   }*/,
   userRoles: ['viewer', 'writer', 'owner', 'admin'],
   wordIcon: './static/images/icon/docicon1.png',
   excelIcon: './static/images/icon/docicon2.png',
@@ -67,7 +68,7 @@ module.exports = Object.freeze({
   uploadDir: __dirname + "/tmp/upload/",
   downloadDir: __dirname + "/tmp/download/",
   storj: {
-    publicKey: 'dc7d73650911de5ece1923e5a699cec4fa340f8869041ce4af806b7e5fabe9ce',
+    privateKey: 'dc7d73650911de5ece1923e5a699cec4fa340f8869041ce4af806b7e5fabe9ce',
     concurrency: 6,
     cryptFilePath: './',
     keypass: 'keypass'

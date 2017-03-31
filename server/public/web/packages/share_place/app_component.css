@@ -80,8 +80,8 @@ nav a.router-link-active {
 }
 
 .rightP {
-  background-color: white;
-  border-left: 0.4em solid white;
+  background-color: red;
+  border-left: 0.4em solid darkblue;
 }
 
 .leftP {
@@ -104,9 +104,11 @@ nav a.router-link-active {
   font-size: 15px;
   font-family: Arial, Helvetica, sans-serif;
 }
+
 .popupHeader.connectusername {
   padding: 0;
 }
+
 .logout, .profile {
   width: 100% !important;
 }
@@ -122,7 +124,7 @@ nav a.router-link-active {
   content: "\f08b";
   font-size: 20px;
   font-weight: normal;
-  color: #FF0000;
+  color: #263a53;
   vertical-align: middle;
   margin-right: 5px;
 
@@ -133,10 +135,14 @@ nav a.router-link-active {
   content: "\f013";
   font-size: 20px;
   font-weight: normal;
-  color: #5587A2;
+  color: #263a53;
   vertical-align: middle;
   margin-right: 5px;
 
+}
+
+material-button .content {
+  padding: 0.4em 0.57em !important;
 }
 
 material-button.menuItem.profile, material-button.menuItem.logout {

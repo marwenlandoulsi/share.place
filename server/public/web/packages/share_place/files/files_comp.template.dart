@@ -72,25 +72,25 @@ import 'package:angular2/src/core/change_detection/differs/keyvalue_differs.dart
 import 'package:angular2/src/core/linker/element_ref.dart';
 import 'package:angular2_components/src/laminate/popup/src/popup_source_directive.dart' as import25;
 import 'package:angular2_components/src/components/material_popup/material_popup.dart' as import26;
-import 'package:angular2_components/src/components/theme/dark_theme.dart' as import27;
-import 'package:angular2_components/src/components/material_button/material_button.dart' as import28;
-import 'package:angular2_components/src/laminate/popup/src/dom_popup_source.dart' as import29;
-import 'package:angular2_components/src/utils/angular/reference/reference.dart' as import30;
-import 'package:angular2_components/src/components/material_popup/material_popup.template.dart' as import31;
-import 'package:angular2_components/src/utils/browser/dom_service/dom_service.dart' as import32;
-import 'package:angular2_components/src/laminate/components/popup/hierarchy.dart' as import33;
-import 'package:angular2_components/src/laminate/popup/src/popup_ref.dart' as import34;
-import 'package:angular2/src/core/zone/ng_zone.dart' as import35;
-import 'package:angular2_components/src/laminate/popup/src/popup_service.dart' as import36;
-import 'package:angular2_components/src/laminate/overlay/src/overlay_service.dart' as import37;
-import 'package:angular2_components/src/laminate/popup/src/popup_size_provider.dart' as import38;
-import 'package:angular2_components/src/components/annotations/rtl_annotation.dart' as import39;
-import 'package:angular2_components/src/components/material_button/material_button.template.dart' as import40;
-import 'package:angular2_components/src/components/theme/module.dart' as import41;
-import 'package:angular2_components/src/components/button_decorator/button_decorator.dart' as import42;
-import 'package:angular2_components/src/laminate/components/popup/popup.dart' as import43;
-import 'package:angular2_components/src/components/mixins/material_dropdown_base.dart' as import44;
-import 'package:angular2_components/src/components/content/deferred_content_aware.dart' as import45;
+import 'package:angular2_components/src/laminate/popup/src/dom_popup_source.dart' as import27;
+import 'package:angular2_components/src/utils/angular/reference/reference.dart' as import28;
+import 'package:angular2_components/src/components/material_popup/material_popup.template.dart' as import29;
+import 'package:angular2_components/src/utils/browser/dom_service/dom_service.dart' as import30;
+import 'package:angular2_components/src/laminate/components/popup/hierarchy.dart' as import31;
+import 'package:angular2_components/src/laminate/popup/src/popup_ref.dart' as import32;
+import 'package:angular2/src/core/zone/ng_zone.dart' as import33;
+import 'package:angular2_components/src/laminate/popup/src/popup_service.dart' as import34;
+import 'package:angular2_components/src/laminate/overlay/src/overlay_service.dart' as import35;
+import 'package:angular2_components/src/laminate/popup/src/popup_size_provider.dart' as import36;
+import 'package:angular2_components/src/components/annotations/rtl_annotation.dart' as import37;
+import 'package:angular2_components/src/laminate/components/popup/popup.dart' as import38;
+import 'package:angular2_components/src/components/mixins/material_dropdown_base.dart' as import39;
+import 'package:angular2_components/src/components/content/deferred_content_aware.dart' as import40;
+import 'package:angular2_components/src/components/theme/dark_theme.dart' as import41;
+import 'package:angular2_components/src/components/material_button/material_button.dart' as import42;
+import 'package:angular2_components/src/components/material_button/material_button.template.dart' as import43;
+import 'package:angular2_components/src/components/theme/module.dart' as import44;
+import 'package:angular2_components/src/components/button_decorator/button_decorator.dart' as import45;
 import 'package:angular2_components/src/laminate/components/modal/modal.dart' as import46;
 import 'package:angular2_components/src/components/material_dialog/material_dialog.dart' as import47;
 import 'package:angular2_components/src/laminate/components/modal/modal.template.dart' as import48;
@@ -170,8 +170,8 @@ class ViewFilesComp1 extends AppView<import3.FilesComp> {
   Element _el_11;
   Element _el_13;
   Element _el_15;
-  InputElement _el_17;
-  Element _el_19;
+  InputElement _el_16;
+  Element _el_18;
   Element _el_21;
   ViewContainer _appEl_21;
   import15.PostitComponent _PostitComponent_21_3;
@@ -239,18 +239,19 @@ class ViewFilesComp1 extends AppView<import3.FilesComp> {
     _el_15.setAttribute(shimCAttr,'');
     _el_11.append(_el_15);
     _el_15.className = 'arowmenow';
-    Text _text_16 = new Text('   ');
-    _el_15.append(_text_16);
-    _el_17 = doc.createElement('input');
-    _el_17.setAttribute(shimCAttr,'');
-    _el_15.append(_el_17);
-    _el_17.className = 'txt';
-    Text _text_18 = new Text('\n\n        ');
-    _el_15.append(_text_18);
-    _el_19 = doc.createElement('div');
-    _el_19.setAttribute(shimCAttr,'');
-    _el_15.append(_el_19);
-    _el_19.className = 'btn_valid';
+    _el_16 = doc.createElement('input');
+    _el_16.setAttribute(shimCAttr,'');
+    _el_15.append(_el_16);
+    _el_16.className = 'txt';
+    createAttr(_el_16,'placeholder','Write your comment here');
+    Text _text_17 = new Text('\n\n          ');
+    _el_15.append(_text_17);
+    _el_18 = doc.createElement('div');
+    _el_18.setAttribute(shimCAttr,'');
+    _el_15.append(_el_18);
+    _el_18.className = 'btn_valid';
+    Text _text_19 = new Text('\n        ');
+    _el_15.append(_text_19);
     Text _text_20 = new Text('\n\n        ');
     _el_11.append(_text_20);
     _el_21 = doc.createElement('postit-comp');
@@ -322,11 +323,11 @@ class ViewFilesComp1 extends AppView<import3.FilesComp> {
     _el_25.append(_text_43);
     Text _text_44 = new Text('\n  ');
     _el_0.append(_text_44);
-    listen(_el_17,'keyup.enter',evt(_handle_keyup_enter_17_0));
-    listen(_el_19,'click',evt(_handle_click_19_0));
+    listen(_el_16,'keyup.enter',evt(_handle_keyup_enter_16_0));
+    listen(_el_18,'click',evt(_handle_click_18_0));
     init([_el_0],[
       _el_0,_text_1,_el_2,_text_3,_el_4,_text_5,_text_6,_anchor_7,_text_8,_el_9,_text_10,
-      _el_11,_text_12,_el_13,_text_14,_el_15,_text_16,_el_17,_text_18,_el_19,_text_20,
+      _el_11,_text_12,_el_13,_text_14,_el_15,_el_16,_text_17,_el_18,_text_19,_text_20,
       _el_21,_text_22,_text_23,_text_24,_el_25,_text_26,_el_27,_text_28,_el_29,_text_30,
       _el_31,_text_32,_el_33,_text_34,_el_35,_text_36,_anchor_37,_text_38,_text_39,_text_40,
       _text_41,_text_42,_text_43,_text_44
@@ -369,16 +370,16 @@ class ViewFilesComp1 extends AppView<import3.FilesComp> {
     }
     this.detectViewChildrenChanges();
   }
-  bool _handle_keyup_enter_17_0($event) {
+  bool _handle_keyup_enter_16_0($event) {
     this.markPathToRootAsCheckOnce();
-    ctx.addComment(_el_17.value,ctx.selectedFile.versions.last.v);
-    final dynamic pd_0 = !identical(((_el_17.value = '') as dynamic), false);
+    ctx.addComment(_el_16.value,ctx.selectedFile.versions.last.v);
+    final dynamic pd_0 = !identical(((_el_16.value = '') as dynamic), false);
     return (true && pd_0);
   }
-  bool _handle_click_19_0($event) {
+  bool _handle_click_18_0($event) {
     this.markPathToRootAsCheckOnce();
-    ctx.addComment(_el_17.value,ctx.selectedFile.versions.last.v);
-    final dynamic pd_0 = !identical(((_el_17.value = '') as dynamic), false);
+    ctx.addComment(_el_16.value,ctx.selectedFile.versions.last.v);
+    final dynamic pd_0 = !identical(((_el_16.value = '') as dynamic), false);
     return (true && pd_0);
   }
 }
@@ -482,7 +483,7 @@ class ViewFilesComp3 extends AppView<import3.FilesComp> {
     var _anchor_15 = new Comment('template bindings={}');
     _el_0?.append(_anchor_15);
     _appEl_15 = new ViewContainer(15,0,this,_anchor_15);
-    _TemplateRef_15_4 = new TemplateRef(_appEl_15,viewFactory_FilesComp13);
+    _TemplateRef_15_4 = new TemplateRef(_appEl_15,viewFactory_FilesComp15);
     _NgIf_15_5 = new NgIf(_appEl_15,_TemplateRef_15_4);
     Text _text_16 = new Text('\n                ');
     _el_0.append(_text_16);
@@ -602,20 +603,12 @@ class ViewFilesComp4 extends AppView<import3.FilesComp> {
   ViewContainer _appEl_90;
   dynamic _TemplateRef_90_4;
   NgIf _NgIf_90_5;
-  Element _el_99;
   ViewContainer _appEl_99;
-  import27.AcxDarkTheme _AcxDarkTheme_99_3;
-  import28.MaterialButtonComponent _MaterialButtonComponent_99_4;
-  dynamic __ButtonDirective_99_5;
-  Element _el_101;
-  Element _el_102;
-  Element _el_106;
-  ViewContainer _appEl_106;
-  import27.AcxDarkTheme _AcxDarkTheme_106_3;
-  import28.MaterialButtonComponent _MaterialButtonComponent_106_4;
-  dynamic __ButtonDirective_106_5;
-  Element _el_108;
-  Element _el_109;
+  dynamic _TemplateRef_99_4;
+  NgIf _NgIf_99_5;
+  ViewContainer _appEl_101;
+  dynamic _TemplateRef_101_4;
+  NgIf _NgIf_101_5;
   var _expr_0 = uninitialized;
   var _expr_1 = uninitialized;
   var _expr_2 = uninitialized;
@@ -632,16 +625,6 @@ class ViewFilesComp4 extends AppView<import3.FilesComp> {
   var _expr_16 = uninitialized;
   var _expr_17 = uninitialized;
   var _expr_18 = uninitialized;
-  var _expr_27 = uninitialized;
-  var _expr_28 = uninitialized;
-  var _expr_29 = uninitialized;
-  var _expr_30 = uninitialized;
-  var _expr_31 = uninitialized;
-  var _expr_39 = uninitialized;
-  var _expr_40 = uninitialized;
-  var _expr_41 = uninitialized;
-  var _expr_42 = uninitialized;
-  var _expr_43 = uninitialized;
   var _pipe_agoDateFormat_0_3;
   var _pipe_agoDateFormat_0_4;
   var _pipe_fileSizeFormat_1_0;
@@ -665,14 +648,6 @@ class ViewFilesComp4 extends AppView<import3.FilesComp> {
   dynamic get _PopupRef_73_8 {
     if ((this.__PopupRef_73_8 == null)) { (__PopupRef_73_8 = import26.MaterialPopupComponent_getResolvedPopupRef(this._PopupComponent_73_4)); }
     return this.__PopupRef_73_8;
-  }
-  dynamic get _ButtonDirective_99_5 {
-    if ((this.__ButtonDirective_99_5 == null)) { (__ButtonDirective_99_5 = this._MaterialButtonComponent_99_4); }
-    return this.__ButtonDirective_99_5;
-  }
-  dynamic get _ButtonDirective_106_5 {
-    if ((this.__ButtonDirective_106_5 == null)) { (__ButtonDirective_106_5 = this._MaterialButtonComponent_106_4); }
-    return this.__ButtonDirective_106_5;
   }
   ViewContainer createInternal(dynamic rootSelector) {
     var doc = document;
@@ -867,7 +842,7 @@ class ViewFilesComp4 extends AppView<import3.FilesComp> {
     _el_62.append(_el_67);
     _el_67.className = 'moreActions';
     createAttr(_el_67,'popupSource','');
-    _PopupSourceDirective_67_2 = new import25.PopupSourceDirective(this.parentInjector.get(import29.DomPopupSourceFactory),new ElementRef(_el_67),this.parentInjector.get(import30.ReferenceDirective,null));
+    _PopupSourceDirective_67_2 = new import25.PopupSourceDirective(this.parentInjector.get(import27.DomPopupSourceFactory),new ElementRef(_el_67),this.parentInjector.get(import28.ReferenceDirective,null));
     Text _text_68 = new Text('\n                                ');
     _el_62.append(_text_68);
     Text _text_69 = new Text('\n\n                              ');
@@ -885,8 +860,8 @@ class ViewFilesComp4 extends AppView<import3.FilesComp> {
     createAttr(_el_73,'defaultPopupSizeProvider','');
     createAttr(_el_73,'enforceSpaceConstraints','');
     _appEl_73 = new ViewContainer(73,7,this,_el_73);
-    var compView_73 = import31.viewFactory_MaterialPopupComponent0(this.injector(73),_appEl_73);
-    _MaterialPopupComponent_73_3 = new import26.MaterialPopupComponent(this.parentInjector.get(import32.DomService),this.parentInjector.get(import33.PopupHierarchy,null),this.parentInjector.get(import34.PopupRef,null),this.parentInjector.get(import35.NgZone),this.parentInjector.get(import36.PopupService),this.parentInjector.get(import37.OverlayService),this.parentInjector.get(import38.PopupSizeProvider,null),this.parentInjector.get(import39.rtlToken,null),compView_73.ref);
+    var compView_73 = import29.viewFactory_MaterialPopupComponent0(this.injector(73),_appEl_73);
+    _MaterialPopupComponent_73_3 = new import26.MaterialPopupComponent(this.parentInjector.get(import30.DomService),this.parentInjector.get(import31.PopupHierarchy,null),this.parentInjector.get(import32.PopupRef,null),this.parentInjector.get(import33.NgZone),this.parentInjector.get(import34.PopupService),this.parentInjector.get(import35.OverlayService),this.parentInjector.get(import36.PopupSizeProvider,null),this.parentInjector.get(import37.rtlToken,null),compView_73.ref);
     _appEl_73.initComponent(_MaterialPopupComponent_73_3,compView_73);
     Text _text_74 = new Text('\n                            ');
     _el_75 = doc.createElement('div');
@@ -951,90 +926,36 @@ class ViewFilesComp4 extends AppView<import3.FilesComp> {
     _el_86.append(_text_97);
     Text _text_98 = new Text('\n                              ');
     _el_84.append(_text_98);
-    _el_99 = doc.createElement('material-button');
-    _el_99.setAttribute(shimCAttr,'');
-    _el_84.append(_el_99);
-    createAttr(_el_99,'animated','true');
-    _el_99.className = 'menuItemVers';
-    createAttr(_el_99,'role','button');
-    _appEl_99 = new ViewContainer(99,84,this,_el_99);
-    var compView_99 = import40.viewFactory_MaterialButtonComponent0(this.injector(99),_appEl_99);
-    _AcxDarkTheme_99_3 = new import27.AcxDarkTheme(this.parentInjector.get(import41.darkThemeToken,null));
-    _MaterialButtonComponent_99_4 = new import28.MaterialButtonComponent(new ElementRef(_el_99),_AcxDarkTheme_99_3,compView_99.ref);
-    _appEl_99.initComponent(_MaterialButtonComponent_99_4,compView_99);
-    Text _text_100 = new Text('\n                                ');
-    _el_101 = doc.createElement('span');
-    _el_101.setAttribute(shimCAttr,'');
-    _el_101.className = 'spanVers';
-    _el_102 = doc.createElement('i');
-    _el_102.setAttribute(shimCAttr,'');
-    _el_101.append(_el_102);
-    _el_102.className = 'zmdi zmdi-comment commentVers';
-    Text _text_103 = new Text(' ');
-    _el_101.append(_text_103);
-    Text _text_104 = new Text('Comment\n\n                              ');
-      compView_99.createComp([[
-        _text_100,_el_101,_text_104
-      ]
-    ],null);
-    Text _text_105 = new Text('\n                              ');
-    _el_84.append(_text_105);
-    _el_106 = doc.createElement('material-button');
-    _el_106.setAttribute(shimCAttr,'');
-    _el_84.append(_el_106);
-    createAttr(_el_106,'animated','true');
-    _el_106.className = 'menuItemVers';
-    createAttr(_el_106,'role','button');
-    _appEl_106 = new ViewContainer(106,84,this,_el_106);
-    var compView_106 = import40.viewFactory_MaterialButtonComponent0(this.injector(106),_appEl_106);
-    _AcxDarkTheme_106_3 = new import27.AcxDarkTheme(this.parentInjector.get(import41.darkThemeToken,null));
-    _MaterialButtonComponent_106_4 = new import28.MaterialButtonComponent(new ElementRef(_el_106),_AcxDarkTheme_106_3,compView_106.ref);
-    _appEl_106.initComponent(_MaterialButtonComponent_106_4,compView_106);
-    Text _text_107 = new Text('\n                                ');
-    _el_108 = doc.createElement('span');
-    _el_108.setAttribute(shimCAttr,'');
-    _el_108.className = 'spanVers';
-    _el_109 = doc.createElement('i');
-    _el_109.setAttribute(shimCAttr,'');
-    _el_108.append(_el_109);
-    _el_109.className = 'zmdi zmdi-delete delete';
-    Text _text_110 = new Text(' ');
-    _el_108.append(_text_110);
-    Text _text_111 = new Text(' Delete\n                              ');
-      compView_106.createComp([[
-        _text_107,_el_108,_text_111
-      ]
-    ],null);
-    Text _text_112 = new Text('\n                            ');
-    _el_84.append(_text_112);
-    Text _text_113 = new Text('\n                          ');
+    var _anchor_99 = new Comment('template bindings={}');
+    _el_84?.append(_anchor_99);
+    _appEl_99 = new ViewContainer(99,84,this,_anchor_99);
+    _TemplateRef_99_4 = new TemplateRef(_appEl_99,viewFactory_FilesComp13);
+    _NgIf_99_5 = new NgIf(_appEl_99,_TemplateRef_99_4);
+    Text _text_100 = new Text('\n                              ');
+    _el_84.append(_text_100);
+    var _anchor_101 = new Comment('template bindings={}');
+    _el_84?.append(_anchor_101);
+    _appEl_101 = new ViewContainer(101,84,this,_anchor_101);
+    _TemplateRef_101_4 = new TemplateRef(_appEl_101,viewFactory_FilesComp14);
+    _NgIf_101_5 = new NgIf(_appEl_101,_TemplateRef_101_4);
+    Text _text_102 = new Text('\n                            ');
+    _el_84.append(_text_102);
+    Text _text_103 = new Text('\n                          ');
     compView_73.createComp([
       [_el_75],[
-        _text_74,_text_83,_el_84,_text_113
+        _text_74,_text_83,_el_84,_text_103
       ]
       ,[]
     ]
     ,null);
-    Text _text_114 = new Text('\n                        ');
-    _el_7.append(_text_114);
-    Text _text_115 = new Text('\n                      ');
-    _el_2.append(_text_115);
-    Text _text_116 = new Text('\n                    ');
-    _el_0.append(_text_116);
+    Text _text_104 = new Text('\n                        ');
+    _el_7.append(_text_104);
+    Text _text_105 = new Text('\n                      ');
+    _el_2.append(_text_105);
+    Text _text_106 = new Text('\n                    ');
+    _el_0.append(_text_106);
     listen(_el_24,'click',evt(_handle_click_24_0));
     listen(_el_67,'click',evt(_handle_click_67_0));
-    listen(_el_99,'click',evt(_handle_click_99_0));
-    listen(_el_99,'blur',evt(_handle_blur_99_1));
-    listen(_el_99,'mouseup',evt(_handle_mouseup_99_2));
-    listen(_el_99,'keypress',evt(_handle_keypress_99_3));
-    listen(_el_99,'focus',evt(_handle_focus_99_4));
-    listen(_el_99,'mousedown',evt(_handle_mousedown_99_5));
-    listen(_el_106,'click',evt(_handle_click_106_0));
-    listen(_el_106,'blur',evt(_handle_blur_106_1));
-    listen(_el_106,'mouseup',evt(_handle_mouseup_106_2));
-    listen(_el_106,'keypress',evt(_handle_keypress_106_3));
-    listen(_el_106,'focus',evt(_handle_focus_106_4));
-    listen(_el_106,'mousedown',evt(_handle_mousedown_106_5));
     this._pipe_agoDateFormat_0_3 = import13.pureProxy1((parent.parent.parent as ViewFilesComp0)._pipe_agoDateFormat_0.transform);
     this._pipe_agoDateFormat_0_4 = import13.pureProxy1((parent.parent.parent as ViewFilesComp0)._pipe_agoDateFormat_0.transform);
     this._pipe_fileSizeFormat_1_0 = import13.pureProxy1((parent.parent.parent as ViewFilesComp0)._pipe_fileSizeFormat_1.transform);
@@ -1049,8 +970,7 @@ class ViewFilesComp4 extends AppView<import3.FilesComp> {
       _text_70,_text_71,_text_72,_el_73,_text_74,_el_75,_text_76,_el_77,_text_78,_text_79,
       _el_80,_text_81,_text_82,_text_83,_el_84,_text_85,_el_86,_text_87,_anchor_88,_text_89,
       _anchor_90,_text_91,_text_92,_text_93,_text_94,_text_95,_text_96,_text_97,_text_98,
-      _el_99,_text_100,_el_101,_el_102,_text_103,_text_104,_text_105,_el_106,_text_107,
-      _el_108,_el_109,_text_110,_text_111,_text_112,_text_113,_text_114,_text_115,_text_116
+      _anchor_99,_text_100,_anchor_101,_text_102,_text_103,_text_104,_text_105,_text_106
     ]
     ,[]);
     return null;
@@ -1065,18 +985,16 @@ class ViewFilesComp4 extends AppView<import3.FilesComp> {
     if ((identical(token, NgIf) && (88 == requestNodeIndex))) { return _NgIf_88_5; }
     if ((identical(token, TemplateRef) && (90 == requestNodeIndex))) { return _TemplateRef_90_4; }
     if ((identical(token, NgIf) && (90 == requestNodeIndex))) { return _NgIf_90_5; }
-    if ((identical(token, import27.AcxDarkTheme) && ((99 <= requestNodeIndex) && (requestNodeIndex <= 104)))) { return _AcxDarkTheme_99_3; }
-    if ((identical(token, import28.MaterialButtonComponent) && ((99 <= requestNodeIndex) && (requestNodeIndex <= 104)))) { return _MaterialButtonComponent_99_4; }
-    if ((identical(token, import42.ButtonDirective) && ((99 <= requestNodeIndex) && (requestNodeIndex <= 104)))) { return _ButtonDirective_99_5; }
-    if ((identical(token, import27.AcxDarkTheme) && ((106 <= requestNodeIndex) && (requestNodeIndex <= 111)))) { return _AcxDarkTheme_106_3; }
-    if ((identical(token, import28.MaterialButtonComponent) && ((106 <= requestNodeIndex) && (requestNodeIndex <= 111)))) { return _MaterialButtonComponent_106_4; }
-    if ((identical(token, import42.ButtonDirective) && ((106 <= requestNodeIndex) && (requestNodeIndex <= 111)))) { return _ButtonDirective_106_5; }
-    if ((identical(token, import26.MaterialPopupComponent) && ((73 <= requestNodeIndex) && (requestNodeIndex <= 113)))) { return _MaterialPopupComponent_73_3; }
-    if ((identical(token, import43.PopupComponent) && ((73 <= requestNodeIndex) && (requestNodeIndex <= 113)))) { return _PopupComponent_73_4; }
-    if ((identical(token, import44.DropdownHandle) && ((73 <= requestNodeIndex) && (requestNodeIndex <= 113)))) { return _DropdownHandle_73_5; }
-    if ((identical(token, import45.DeferredContentAware) && ((73 <= requestNodeIndex) && (requestNodeIndex <= 113)))) { return _DeferredContentAware_73_6; }
-    if ((identical(token, import33.PopupHierarchy) && ((73 <= requestNodeIndex) && (requestNodeIndex <= 113)))) { return _PopupHierarchy_73_7; }
-    if ((identical(token, import34.PopupRef) && ((73 <= requestNodeIndex) && (requestNodeIndex <= 113)))) { return _PopupRef_73_8; }
+    if ((identical(token, TemplateRef) && (99 == requestNodeIndex))) { return _TemplateRef_99_4; }
+    if ((identical(token, NgIf) && (99 == requestNodeIndex))) { return _NgIf_99_5; }
+    if ((identical(token, TemplateRef) && (101 == requestNodeIndex))) { return _TemplateRef_101_4; }
+    if ((identical(token, NgIf) && (101 == requestNodeIndex))) { return _NgIf_101_5; }
+    if ((identical(token, import26.MaterialPopupComponent) && ((73 <= requestNodeIndex) && (requestNodeIndex <= 103)))) { return _MaterialPopupComponent_73_3; }
+    if ((identical(token, import38.PopupComponent) && ((73 <= requestNodeIndex) && (requestNodeIndex <= 103)))) { return _PopupComponent_73_4; }
+    if ((identical(token, import39.DropdownHandle) && ((73 <= requestNodeIndex) && (requestNodeIndex <= 103)))) { return _DropdownHandle_73_5; }
+    if ((identical(token, import40.DeferredContentAware) && ((73 <= requestNodeIndex) && (requestNodeIndex <= 103)))) { return _DeferredContentAware_73_6; }
+    if ((identical(token, import31.PopupHierarchy) && ((73 <= requestNodeIndex) && (requestNodeIndex <= 103)))) { return _PopupHierarchy_73_7; }
+    if ((identical(token, import32.PopupRef) && ((73 <= requestNodeIndex) && (requestNodeIndex <= 103)))) { return _PopupRef_73_8; }
     return notFoundResult;
   }
   void detectChangesInternal() {
@@ -1103,8 +1021,10 @@ class ViewFilesComp4 extends AppView<import3.FilesComp> {
       _MaterialPopupComponent_73_3.visible = currVal_15;
       _expr_15 = currVal_15;
     }
-    _NgIf_88_5.ngIf = (parent.locals['\$implicit'].approved == null);
-    _NgIf_90_5.ngIf = (parent.locals['\$implicit'].approved != null);
+    _NgIf_88_5.ngIf = ((parent.locals['\$implicit'].approved == null) && ctx.isWriter);
+    _NgIf_90_5.ngIf = ((parent.locals['\$implicit'].approved != null) && ctx.isWriter);
+    _NgIf_99_5.ngIf = false;
+    _NgIf_101_5.ngIf = false;
     this.detectContentChildrenChanges();
     final currVal_1 = (ctx.connectedUser.id == parent.locals['\$implicit'].userId);
     if (import13.checkBinding(_expr_1,currVal_1)) {
@@ -1169,56 +1089,6 @@ class ViewFilesComp4 extends AppView<import3.FilesComp> {
       _text_81.text = currVal_18;
       _expr_18 = currVal_18;
     }
-    final currVal_27 = _MaterialButtonComponent_99_4.raised;
-    if (import13.checkBinding(_expr_27,currVal_27)) {
-      updateElemClass(_el_99,'is-raised',currVal_27);
-      _expr_27 = currVal_27;
-    }
-    final currVal_28 = _MaterialButtonComponent_99_4.disabledStr;
-    if (import13.checkBinding(_expr_28,currVal_28)) {
-      setAttr(_el_99,'aria-disabled',((currVal_28 == null)? null: currVal_28.toString()));
-      _expr_28 = currVal_28;
-    }
-    final currVal_29 = _MaterialButtonComponent_99_4.tabIndex;
-    if (import13.checkBinding(_expr_29,currVal_29)) {
-      setAttr(_el_99,'tabindex',((currVal_29 == null)? null: currVal_29.toString()));
-      _expr_29 = currVal_29;
-    }
-    final currVal_30 = _MaterialButtonComponent_99_4.disabled;
-    if (import13.checkBinding(_expr_30,currVal_30)) {
-      updateElemClass(_el_99,'is-disabled',currVal_30);
-      _expr_30 = currVal_30;
-    }
-    final currVal_31 = _MaterialButtonComponent_99_4.zElevation;
-    if (import13.checkBinding(_expr_31,currVal_31)) {
-      setAttr(_el_99,'elevation',((currVal_31 == null)? null: currVal_31.toString()));
-      _expr_31 = currVal_31;
-    }
-    final currVal_39 = _MaterialButtonComponent_106_4.raised;
-    if (import13.checkBinding(_expr_39,currVal_39)) {
-      updateElemClass(_el_106,'is-raised',currVal_39);
-      _expr_39 = currVal_39;
-    }
-    final currVal_40 = _MaterialButtonComponent_106_4.disabledStr;
-    if (import13.checkBinding(_expr_40,currVal_40)) {
-      setAttr(_el_106,'aria-disabled',((currVal_40 == null)? null: currVal_40.toString()));
-      _expr_40 = currVal_40;
-    }
-    final currVal_41 = _MaterialButtonComponent_106_4.tabIndex;
-    if (import13.checkBinding(_expr_41,currVal_41)) {
-      setAttr(_el_106,'tabindex',((currVal_41 == null)? null: currVal_41.toString()));
-      _expr_41 = currVal_41;
-    }
-    final currVal_42 = _MaterialButtonComponent_106_4.disabled;
-    if (import13.checkBinding(_expr_42,currVal_42)) {
-      updateElemClass(_el_106,'is-disabled',currVal_42);
-      _expr_42 = currVal_42;
-    }
-    final currVal_43 = _MaterialButtonComponent_106_4.zElevation;
-    if (import13.checkBinding(_expr_43,currVal_43)) {
-      setAttr(_el_106,'elevation',((currVal_43 == null)? null: currVal_43.toString()));
-      _expr_43 = currVal_43;
-    }
     this.detectViewChildrenChanges();
     if (identical(this.cdState, ChangeDetectorState.NeverChecked)) { _PopupSourceDirective_67_2.ngAfterViewInit(); }
   }
@@ -1234,67 +1104,6 @@ class ViewFilesComp4 extends AppView<import3.FilesComp> {
   bool _handle_click_67_0($event) {
     this.markPathToRootAsCheckOnce();
     final dynamic pd_0 = !identical((ctx.switchMenuState(parent.locals['\$implicit'].v) as dynamic), false);
-    return (true && pd_0);
-  }
-  bool _handle_click_99_0($event) {
-    _appEl_99.componentView.markPathToRootAsCheckOnce();
-    final dynamic pd_0 = !identical((_MaterialButtonComponent_99_4.handleClick($event) as dynamic), false);
-    return (true && pd_0);
-  }
-  bool _handle_blur_99_1($event) {
-    _appEl_99.componentView.markPathToRootAsCheckOnce();
-    final dynamic pd_0 = !identical((_MaterialButtonComponent_99_4.onBlur($event) as dynamic), false);
-    return (true && pd_0);
-  }
-  bool _handle_mouseup_99_2($event) {
-    _appEl_99.componentView.markPathToRootAsCheckOnce();
-    final dynamic pd_0 = !identical((_MaterialButtonComponent_99_4.onMouseUp($event) as dynamic), false);
-    return (true && pd_0);
-  }
-  bool _handle_keypress_99_3($event) {
-    _appEl_99.componentView.markPathToRootAsCheckOnce();
-    final dynamic pd_0 = !identical((_MaterialButtonComponent_99_4.handleKeyPress($event) as dynamic), false);
-    return (true && pd_0);
-  }
-  bool _handle_focus_99_4($event) {
-    _appEl_99.componentView.markPathToRootAsCheckOnce();
-    final dynamic pd_0 = !identical((_MaterialButtonComponent_99_4.onFocus($event) as dynamic), false);
-    return (true && pd_0);
-  }
-  bool _handle_mousedown_99_5($event) {
-    _appEl_99.componentView.markPathToRootAsCheckOnce();
-    final dynamic pd_0 = !identical((_MaterialButtonComponent_99_4.onMouseDown($event) as dynamic), false);
-    return (true && pd_0);
-  }
-  bool _handle_click_106_0($event) {
-    _appEl_106.componentView.markPathToRootAsCheckOnce();
-    final dynamic pd_0 = !identical((ctx.delete() as dynamic), false);
-    final dynamic pd_1 = !identical((_MaterialButtonComponent_106_4.handleClick($event) as dynamic), false);
-    return ((true && pd_0) && pd_1);
-  }
-  bool _handle_blur_106_1($event) {
-    _appEl_106.componentView.markPathToRootAsCheckOnce();
-    final dynamic pd_0 = !identical((_MaterialButtonComponent_106_4.onBlur($event) as dynamic), false);
-    return (true && pd_0);
-  }
-  bool _handle_mouseup_106_2($event) {
-    _appEl_106.componentView.markPathToRootAsCheckOnce();
-    final dynamic pd_0 = !identical((_MaterialButtonComponent_106_4.onMouseUp($event) as dynamic), false);
-    return (true && pd_0);
-  }
-  bool _handle_keypress_106_3($event) {
-    _appEl_106.componentView.markPathToRootAsCheckOnce();
-    final dynamic pd_0 = !identical((_MaterialButtonComponent_106_4.handleKeyPress($event) as dynamic), false);
-    return (true && pd_0);
-  }
-  bool _handle_focus_106_4($event) {
-    _appEl_106.componentView.markPathToRootAsCheckOnce();
-    final dynamic pd_0 = !identical((_MaterialButtonComponent_106_4.onFocus($event) as dynamic), false);
-    return (true && pd_0);
-  }
-  bool _handle_mousedown_106_5($event) {
-    _appEl_106.componentView.markPathToRootAsCheckOnce();
-    final dynamic pd_0 = !identical((_MaterialButtonComponent_106_4.onMouseDown($event) as dynamic), false);
     return (true && pd_0);
   }
 }
@@ -1314,7 +1123,11 @@ class ViewFilesComp5 extends AppView<import3.FilesComp> {
   NgIf _NgIf_9_5;
   var _expr_0 = uninitialized;
   var _expr_1 = uninitialized;
-  ViewFilesComp5(import9.Injector parentInjector,ViewContainer declarationEl): super(ViewFilesComp5,renderType_FilesComp,import10.ViewType.EMBEDDED,{'\$implicit': null},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
+  ViewFilesComp5(import9.Injector parentInjector,ViewContainer declarationEl): super(ViewFilesComp5,renderType_FilesComp,import10.ViewType.EMBEDDED,{
+    '\$implicit': null,
+    'index': null
+  }
+  ,parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
   ViewContainer createInternal(dynamic rootSelector) {
     var doc = document;
     _el_0 = doc.createElement('li');
@@ -1338,7 +1151,7 @@ class ViewFilesComp5 extends AppView<import3.FilesComp> {
     _appEl_6 = new ViewContainer(6,0,this,_anchor_6);
     _TemplateRef_6_4 = new TemplateRef(_appEl_6,viewFactory_FilesComp7);
     _NgIf_6_5 = new NgIf(_appEl_6,_TemplateRef_6_4);
-    Text _text_7 = new Text('\n                          ');
+    Text _text_7 = new Text('\n\n\n                          ');
     _el_0.append(_text_7);
     Text _text_8 = new Text('\n                          ');
     _el_0.append(_text_8);
@@ -1703,7 +1516,7 @@ class ViewFilesComp8 extends AppView<import3.FilesComp> {
   }
   void detectChangesInternal() {
     final valUnwrapper = new ValueUnwrapper();
-    _NgIf_15_5.ngIf = (((ctx.selectedFile.isLocked && ctx.isActionAuthor(parent.locals['\$implicit'])) && ctx.isActionOn(parent.locals['\$implicit'])) && (parent.parent.parent.locals['index'] == 0));
+    _NgIf_15_5.ngIf = ctx.showReleaseButton(parent.locals['\$implicit'],parent.locals['index'],parent.parent.parent.locals['index']);
     this.detectContentChildrenChanges();
     final currVal_0 = import13.interpolate1('/auth/user/photo/s/',parent.locals['\$implicit'].user.userId,'');
     if (import13.checkBinding(_expr_0,currVal_0)) {
@@ -1730,8 +1543,8 @@ AppView viewFactory_FilesComp8(import9.Injector parentInjector,ViewContainer dec
 class ViewFilesComp9 extends AppView<import3.FilesComp> {
   Element _el_0;
   ViewContainer _appEl_0;
-  import27.AcxDarkTheme _AcxDarkTheme_0_3;
-  import28.MaterialButtonComponent _MaterialButtonComponent_0_4;
+  import41.AcxDarkTheme _AcxDarkTheme_0_3;
+  import42.MaterialButtonComponent _MaterialButtonComponent_0_4;
   dynamic __ButtonDirective_0_5;
   var _expr_7 = uninitialized;
   var _expr_8 = uninitialized;
@@ -1751,9 +1564,9 @@ class ViewFilesComp9 extends AppView<import3.FilesComp> {
     _el_0.className = 'release';
     createAttr(_el_0,'role','button');
     _appEl_0 = new ViewContainer(0,null,this,_el_0);
-    var compView_0 = import40.viewFactory_MaterialButtonComponent0(this.injector(0),_appEl_0);
-    _AcxDarkTheme_0_3 = new import27.AcxDarkTheme(this.parentInjector.get(import41.darkThemeToken,null));
-    _MaterialButtonComponent_0_4 = new import28.MaterialButtonComponent(new ElementRef(_el_0),_AcxDarkTheme_0_3,compView_0.ref);
+    var compView_0 = import43.viewFactory_MaterialButtonComponent0(this.injector(0),_appEl_0);
+    _AcxDarkTheme_0_3 = new import41.AcxDarkTheme(this.parentInjector.get(import44.darkThemeToken,null));
+    _MaterialButtonComponent_0_4 = new import42.MaterialButtonComponent(new ElementRef(_el_0),_AcxDarkTheme_0_3,compView_0.ref);
     _appEl_0.initComponent(_MaterialButtonComponent_0_4,compView_0);
     Text _text_1 = new Text('\n                                  Release\n                                ');
     compView_0.createComp([[_text_1]],null);
@@ -1770,9 +1583,9 @@ class ViewFilesComp9 extends AppView<import3.FilesComp> {
     return null;
   }
   dynamic injectorGetInternal(dynamic token,int requestNodeIndex,dynamic notFoundResult) {
-    if ((identical(token, import27.AcxDarkTheme) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 1)))) { return _AcxDarkTheme_0_3; }
-    if ((identical(token, import28.MaterialButtonComponent) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 1)))) { return _MaterialButtonComponent_0_4; }
-    if ((identical(token, import42.ButtonDirective) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 1)))) { return _ButtonDirective_0_5; }
+    if ((identical(token, import41.AcxDarkTheme) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 1)))) { return _AcxDarkTheme_0_3; }
+    if ((identical(token, import42.MaterialButtonComponent) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 1)))) { return _MaterialButtonComponent_0_4; }
+    if ((identical(token, import45.ButtonDirective) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 1)))) { return _ButtonDirective_0_5; }
     return notFoundResult;
   }
   void detectChangesInternal() {
@@ -1841,19 +1654,21 @@ AppView viewFactory_FilesComp9(import9.Injector parentInjector,ViewContainer dec
 }
 class ViewFilesComp10 extends AppView<import3.FilesComp> {
   Element _el_0;
-  Element _el_1;
+  Element _el_2;
   ViewFilesComp10(import9.Injector parentInjector,ViewContainer declarationEl): super(ViewFilesComp10,renderType_FilesComp,import10.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
   ViewContainer createInternal(dynamic rootSelector) {
     var doc = document;
     _el_0 = doc.createElement('div');
     _el_0.setAttribute(shimCAttr,'');
     _el_0.className = 'uploadStatus';
-    _el_1 = doc.createElement('img');
-    _el_1.setAttribute(shimCAttr,'');
-    _el_0.append(_el_1);
-    createAttr(_el_1,'src','../images/uploading.png');
+    Text _text_1 = new Text('\n                                        ');
+    _el_0.append(_text_1);
+    _el_2 = doc.createElement('img');
+    _el_2.setAttribute(shimCAttr,'');
+    _el_0.append(_el_2);
+    createAttr(_el_2,'src','../images/uploading.png');
     init([_el_0],[
-      _el_0,_el_1
+      _el_0,_text_1,_el_2
     ]
     ,[]);
     return null;
@@ -1865,8 +1680,8 @@ AppView viewFactory_FilesComp10(import9.Injector parentInjector,ViewContainer de
 class ViewFilesComp11 extends AppView<import3.FilesComp> {
   Element _el_0;
   ViewContainer _appEl_0;
-  import27.AcxDarkTheme _AcxDarkTheme_0_3;
-  import28.MaterialButtonComponent _MaterialButtonComponent_0_4;
+  import41.AcxDarkTheme _AcxDarkTheme_0_3;
+  import42.MaterialButtonComponent _MaterialButtonComponent_0_4;
   dynamic __ButtonDirective_0_5;
   Element _el_2;
   Element _el_4;
@@ -1888,9 +1703,9 @@ class ViewFilesComp11 extends AppView<import3.FilesComp> {
     _el_0.className = 'menuItemVers';
     createAttr(_el_0,'role','button');
     _appEl_0 = new ViewContainer(0,null,this,_el_0);
-    var compView_0 = import40.viewFactory_MaterialButtonComponent0(this.injector(0),_appEl_0);
-    _AcxDarkTheme_0_3 = new import27.AcxDarkTheme(this.parentInjector.get(import41.darkThemeToken,null));
-    _MaterialButtonComponent_0_4 = new import28.MaterialButtonComponent(new ElementRef(_el_0),_AcxDarkTheme_0_3,compView_0.ref);
+    var compView_0 = import43.viewFactory_MaterialButtonComponent0(this.injector(0),_appEl_0);
+    _AcxDarkTheme_0_3 = new import41.AcxDarkTheme(this.parentInjector.get(import44.darkThemeToken,null));
+    _MaterialButtonComponent_0_4 = new import42.MaterialButtonComponent(new ElementRef(_el_0),_AcxDarkTheme_0_3,compView_0.ref);
     _appEl_0.initComponent(_MaterialButtonComponent_0_4,compView_0);
     Text _text_1 = new Text('\n                                  ');
     _el_2 = doc.createElement('span');
@@ -1922,9 +1737,9 @@ class ViewFilesComp11 extends AppView<import3.FilesComp> {
     return null;
   }
   dynamic injectorGetInternal(dynamic token,int requestNodeIndex,dynamic notFoundResult) {
-    if ((identical(token, import27.AcxDarkTheme) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 6)))) { return _AcxDarkTheme_0_3; }
-    if ((identical(token, import28.MaterialButtonComponent) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 6)))) { return _MaterialButtonComponent_0_4; }
-    if ((identical(token, import42.ButtonDirective) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 6)))) { return _ButtonDirective_0_5; }
+    if ((identical(token, import41.AcxDarkTheme) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 6)))) { return _AcxDarkTheme_0_3; }
+    if ((identical(token, import42.MaterialButtonComponent) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 6)))) { return _MaterialButtonComponent_0_4; }
+    if ((identical(token, import45.ButtonDirective) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 6)))) { return _ButtonDirective_0_5; }
     return notFoundResult;
   }
   void detectChangesInternal() {
@@ -1994,8 +1809,8 @@ AppView viewFactory_FilesComp11(import9.Injector parentInjector,ViewContainer de
 class ViewFilesComp12 extends AppView<import3.FilesComp> {
   Element _el_0;
   ViewContainer _appEl_0;
-  import27.AcxDarkTheme _AcxDarkTheme_0_3;
-  import28.MaterialButtonComponent _MaterialButtonComponent_0_4;
+  import41.AcxDarkTheme _AcxDarkTheme_0_3;
+  import42.MaterialButtonComponent _MaterialButtonComponent_0_4;
   dynamic __ButtonDirective_0_5;
   Element _el_2;
   Element _el_3;
@@ -2017,9 +1832,9 @@ class ViewFilesComp12 extends AppView<import3.FilesComp> {
     _el_0.className = 'menuItemVers';
     createAttr(_el_0,'role','button');
     _appEl_0 = new ViewContainer(0,null,this,_el_0);
-    var compView_0 = import40.viewFactory_MaterialButtonComponent0(this.injector(0),_appEl_0);
-    _AcxDarkTheme_0_3 = new import27.AcxDarkTheme(this.parentInjector.get(import41.darkThemeToken,null));
-    _MaterialButtonComponent_0_4 = new import28.MaterialButtonComponent(new ElementRef(_el_0),_AcxDarkTheme_0_3,compView_0.ref);
+    var compView_0 = import43.viewFactory_MaterialButtonComponent0(this.injector(0),_appEl_0);
+    _AcxDarkTheme_0_3 = new import41.AcxDarkTheme(this.parentInjector.get(import44.darkThemeToken,null));
+    _MaterialButtonComponent_0_4 = new import42.MaterialButtonComponent(new ElementRef(_el_0),_AcxDarkTheme_0_3,compView_0.ref);
     _appEl_0.initComponent(_MaterialButtonComponent_0_4,compView_0);
     Text _text_1 = new Text('\n                                  ');
     _el_2 = doc.createElement('span');
@@ -2049,9 +1864,9 @@ class ViewFilesComp12 extends AppView<import3.FilesComp> {
     return null;
   }
   dynamic injectorGetInternal(dynamic token,int requestNodeIndex,dynamic notFoundResult) {
-    if ((identical(token, import27.AcxDarkTheme) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 5)))) { return _AcxDarkTheme_0_3; }
-    if ((identical(token, import28.MaterialButtonComponent) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 5)))) { return _MaterialButtonComponent_0_4; }
-    if ((identical(token, import42.ButtonDirective) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 5)))) { return _ButtonDirective_0_5; }
+    if ((identical(token, import41.AcxDarkTheme) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 5)))) { return _AcxDarkTheme_0_3; }
+    if ((identical(token, import42.MaterialButtonComponent) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 5)))) { return _MaterialButtonComponent_0_4; }
+    if ((identical(token, import45.ButtonDirective) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 5)))) { return _ButtonDirective_0_5; }
     return notFoundResult;
   }
   void detectChangesInternal() {
@@ -2121,6 +1936,259 @@ AppView viewFactory_FilesComp12(import9.Injector parentInjector,ViewContainer de
 class ViewFilesComp13 extends AppView<import3.FilesComp> {
   Element _el_0;
   ViewContainer _appEl_0;
+  import41.AcxDarkTheme _AcxDarkTheme_0_3;
+  import42.MaterialButtonComponent _MaterialButtonComponent_0_4;
+  dynamic __ButtonDirective_0_5;
+  Element _el_2;
+  Element _el_3;
+  var _expr_6 = uninitialized;
+  var _expr_7 = uninitialized;
+  var _expr_8 = uninitialized;
+  var _expr_9 = uninitialized;
+  var _expr_10 = uninitialized;
+  ViewFilesComp13(import9.Injector parentInjector,ViewContainer declarationEl): super(ViewFilesComp13,renderType_FilesComp,import10.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
+  dynamic get _ButtonDirective_0_5 {
+    if ((this.__ButtonDirective_0_5 == null)) { (__ButtonDirective_0_5 = this._MaterialButtonComponent_0_4); }
+    return this.__ButtonDirective_0_5;
+  }
+  ViewContainer createInternal(dynamic rootSelector) {
+    var doc = document;
+    _el_0 = doc.createElement('material-button');
+    _el_0.setAttribute(shimCAttr,'');
+    createAttr(_el_0,'animated','true');
+    _el_0.className = 'menuItemVers';
+    createAttr(_el_0,'role','button');
+    _appEl_0 = new ViewContainer(0,null,this,_el_0);
+    var compView_0 = import43.viewFactory_MaterialButtonComponent0(this.injector(0),_appEl_0);
+    _AcxDarkTheme_0_3 = new import41.AcxDarkTheme(this.parentInjector.get(import44.darkThemeToken,null));
+    _MaterialButtonComponent_0_4 = new import42.MaterialButtonComponent(new ElementRef(_el_0),_AcxDarkTheme_0_3,compView_0.ref);
+    _appEl_0.initComponent(_MaterialButtonComponent_0_4,compView_0);
+    Text _text_1 = new Text('\n                                ');
+    _el_2 = doc.createElement('span');
+    _el_2.setAttribute(shimCAttr,'');
+    _el_2.className = 'spanVers';
+    _el_3 = doc.createElement('i');
+    _el_3.setAttribute(shimCAttr,'');
+    _el_2.append(_el_3);
+    _el_3.className = 'zmdi zmdi-comment commentVers';
+    Text _text_4 = new Text(' ');
+    _el_2.append(_text_4);
+    Text _text_5 = new Text('Comment\n\n                              ');
+      compView_0.createComp([[
+        _text_1,_el_2,_text_5
+      ]
+    ],null);
+    listen(_el_0,'click',evt(_handle_click_0_0));
+    listen(_el_0,'blur',evt(_handle_blur_0_1));
+    listen(_el_0,'mouseup',evt(_handle_mouseup_0_2));
+    listen(_el_0,'keypress',evt(_handle_keypress_0_3));
+    listen(_el_0,'focus',evt(_handle_focus_0_4));
+    listen(_el_0,'mousedown',evt(_handle_mousedown_0_5));
+    init([_el_0],[
+      _el_0,_text_1,_el_2,_el_3,_text_4,_text_5
+    ]
+    ,[]);
+    return null;
+  }
+  dynamic injectorGetInternal(dynamic token,int requestNodeIndex,dynamic notFoundResult) {
+    if ((identical(token, import41.AcxDarkTheme) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 5)))) { return _AcxDarkTheme_0_3; }
+    if ((identical(token, import42.MaterialButtonComponent) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 5)))) { return _MaterialButtonComponent_0_4; }
+    if ((identical(token, import45.ButtonDirective) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 5)))) { return _ButtonDirective_0_5; }
+    return notFoundResult;
+  }
+  void detectChangesInternal() {
+    this.detectContentChildrenChanges();
+    final currVal_6 = _MaterialButtonComponent_0_4.raised;
+    if (import13.checkBinding(_expr_6,currVal_6)) {
+      updateElemClass(_el_0,'is-raised',currVal_6);
+      _expr_6 = currVal_6;
+    }
+    final currVal_7 = _MaterialButtonComponent_0_4.disabledStr;
+    if (import13.checkBinding(_expr_7,currVal_7)) {
+      setAttr(_el_0,'aria-disabled',((currVal_7 == null)? null: currVal_7.toString()));
+      _expr_7 = currVal_7;
+    }
+    final currVal_8 = _MaterialButtonComponent_0_4.tabIndex;
+    if (import13.checkBinding(_expr_8,currVal_8)) {
+      setAttr(_el_0,'tabindex',((currVal_8 == null)? null: currVal_8.toString()));
+      _expr_8 = currVal_8;
+    }
+    final currVal_9 = _MaterialButtonComponent_0_4.disabled;
+    if (import13.checkBinding(_expr_9,currVal_9)) {
+      updateElemClass(_el_0,'is-disabled',currVal_9);
+      _expr_9 = currVal_9;
+    }
+    final currVal_10 = _MaterialButtonComponent_0_4.zElevation;
+    if (import13.checkBinding(_expr_10,currVal_10)) {
+      setAttr(_el_0,'elevation',((currVal_10 == null)? null: currVal_10.toString()));
+      _expr_10 = currVal_10;
+    }
+    this.detectViewChildrenChanges();
+  }
+  bool _handle_click_0_0($event) {
+    _appEl_0.componentView.markPathToRootAsCheckOnce();
+    final dynamic pd_0 = !identical((_MaterialButtonComponent_0_4.handleClick($event) as dynamic), false);
+    return (true && pd_0);
+  }
+  bool _handle_blur_0_1($event) {
+    _appEl_0.componentView.markPathToRootAsCheckOnce();
+    final dynamic pd_0 = !identical((_MaterialButtonComponent_0_4.onBlur($event) as dynamic), false);
+    return (true && pd_0);
+  }
+  bool _handle_mouseup_0_2($event) {
+    _appEl_0.componentView.markPathToRootAsCheckOnce();
+    final dynamic pd_0 = !identical((_MaterialButtonComponent_0_4.onMouseUp($event) as dynamic), false);
+    return (true && pd_0);
+  }
+  bool _handle_keypress_0_3($event) {
+    _appEl_0.componentView.markPathToRootAsCheckOnce();
+    final dynamic pd_0 = !identical((_MaterialButtonComponent_0_4.handleKeyPress($event) as dynamic), false);
+    return (true && pd_0);
+  }
+  bool _handle_focus_0_4($event) {
+    _appEl_0.componentView.markPathToRootAsCheckOnce();
+    final dynamic pd_0 = !identical((_MaterialButtonComponent_0_4.onFocus($event) as dynamic), false);
+    return (true && pd_0);
+  }
+  bool _handle_mousedown_0_5($event) {
+    _appEl_0.componentView.markPathToRootAsCheckOnce();
+    final dynamic pd_0 = !identical((_MaterialButtonComponent_0_4.onMouseDown($event) as dynamic), false);
+    return (true && pd_0);
+  }
+}
+AppView viewFactory_FilesComp13(import9.Injector parentInjector,ViewContainer declarationEl) {
+  return new ViewFilesComp13(parentInjector,declarationEl);
+}
+class ViewFilesComp14 extends AppView<import3.FilesComp> {
+  Element _el_0;
+  ViewContainer _appEl_0;
+  import41.AcxDarkTheme _AcxDarkTheme_0_3;
+  import42.MaterialButtonComponent _MaterialButtonComponent_0_4;
+  dynamic __ButtonDirective_0_5;
+  Element _el_2;
+  Element _el_3;
+  var _expr_7 = uninitialized;
+  var _expr_8 = uninitialized;
+  var _expr_9 = uninitialized;
+  var _expr_10 = uninitialized;
+  var _expr_11 = uninitialized;
+  ViewFilesComp14(import9.Injector parentInjector,ViewContainer declarationEl): super(ViewFilesComp14,renderType_FilesComp,import10.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
+  dynamic get _ButtonDirective_0_5 {
+    if ((this.__ButtonDirective_0_5 == null)) { (__ButtonDirective_0_5 = this._MaterialButtonComponent_0_4); }
+    return this.__ButtonDirective_0_5;
+  }
+  ViewContainer createInternal(dynamic rootSelector) {
+    var doc = document;
+    _el_0 = doc.createElement('material-button');
+    _el_0.setAttribute(shimCAttr,'');
+    createAttr(_el_0,'animated','true');
+    _el_0.className = 'menuItemVers';
+    createAttr(_el_0,'role','button');
+    _appEl_0 = new ViewContainer(0,null,this,_el_0);
+    var compView_0 = import43.viewFactory_MaterialButtonComponent0(this.injector(0),_appEl_0);
+    _AcxDarkTheme_0_3 = new import41.AcxDarkTheme(this.parentInjector.get(import44.darkThemeToken,null));
+    _MaterialButtonComponent_0_4 = new import42.MaterialButtonComponent(new ElementRef(_el_0),_AcxDarkTheme_0_3,compView_0.ref);
+    _appEl_0.initComponent(_MaterialButtonComponent_0_4,compView_0);
+    Text _text_1 = new Text('\n                                ');
+    _el_2 = doc.createElement('span');
+    _el_2.setAttribute(shimCAttr,'');
+    _el_2.className = 'spanVers';
+    _el_3 = doc.createElement('i');
+    _el_3.setAttribute(shimCAttr,'');
+    _el_2.append(_el_3);
+    _el_3.className = 'zmdi zmdi-delete delete';
+    Text _text_4 = new Text(' ');
+    _el_2.append(_text_4);
+    Text _text_5 = new Text(' Delete\n                              ');
+      compView_0.createComp([[
+        _text_1,_el_2,_text_5
+      ]
+    ],null);
+    listen(_el_0,'click',evt(_handle_click_0_0));
+    listen(_el_0,'blur',evt(_handle_blur_0_1));
+    listen(_el_0,'mouseup',evt(_handle_mouseup_0_2));
+    listen(_el_0,'keypress',evt(_handle_keypress_0_3));
+    listen(_el_0,'focus',evt(_handle_focus_0_4));
+    listen(_el_0,'mousedown',evt(_handle_mousedown_0_5));
+    init([_el_0],[
+      _el_0,_text_1,_el_2,_el_3,_text_4,_text_5
+    ]
+    ,[]);
+    return null;
+  }
+  dynamic injectorGetInternal(dynamic token,int requestNodeIndex,dynamic notFoundResult) {
+    if ((identical(token, import41.AcxDarkTheme) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 5)))) { return _AcxDarkTheme_0_3; }
+    if ((identical(token, import42.MaterialButtonComponent) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 5)))) { return _MaterialButtonComponent_0_4; }
+    if ((identical(token, import45.ButtonDirective) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 5)))) { return _ButtonDirective_0_5; }
+    return notFoundResult;
+  }
+  void detectChangesInternal() {
+    this.detectContentChildrenChanges();
+    final currVal_7 = _MaterialButtonComponent_0_4.raised;
+    if (import13.checkBinding(_expr_7,currVal_7)) {
+      updateElemClass(_el_0,'is-raised',currVal_7);
+      _expr_7 = currVal_7;
+    }
+    final currVal_8 = _MaterialButtonComponent_0_4.disabledStr;
+    if (import13.checkBinding(_expr_8,currVal_8)) {
+      setAttr(_el_0,'aria-disabled',((currVal_8 == null)? null: currVal_8.toString()));
+      _expr_8 = currVal_8;
+    }
+    final currVal_9 = _MaterialButtonComponent_0_4.tabIndex;
+    if (import13.checkBinding(_expr_9,currVal_9)) {
+      setAttr(_el_0,'tabindex',((currVal_9 == null)? null: currVal_9.toString()));
+      _expr_9 = currVal_9;
+    }
+    final currVal_10 = _MaterialButtonComponent_0_4.disabled;
+    if (import13.checkBinding(_expr_10,currVal_10)) {
+      updateElemClass(_el_0,'is-disabled',currVal_10);
+      _expr_10 = currVal_10;
+    }
+    final currVal_11 = _MaterialButtonComponent_0_4.zElevation;
+    if (import13.checkBinding(_expr_11,currVal_11)) {
+      setAttr(_el_0,'elevation',((currVal_11 == null)? null: currVal_11.toString()));
+      _expr_11 = currVal_11;
+    }
+    this.detectViewChildrenChanges();
+  }
+  bool _handle_click_0_0($event) {
+    _appEl_0.componentView.markPathToRootAsCheckOnce();
+    final dynamic pd_0 = !identical((ctx.delete() as dynamic), false);
+    final dynamic pd_1 = !identical((_MaterialButtonComponent_0_4.handleClick($event) as dynamic), false);
+    return ((true && pd_0) && pd_1);
+  }
+  bool _handle_blur_0_1($event) {
+    _appEl_0.componentView.markPathToRootAsCheckOnce();
+    final dynamic pd_0 = !identical((_MaterialButtonComponent_0_4.onBlur($event) as dynamic), false);
+    return (true && pd_0);
+  }
+  bool _handle_mouseup_0_2($event) {
+    _appEl_0.componentView.markPathToRootAsCheckOnce();
+    final dynamic pd_0 = !identical((_MaterialButtonComponent_0_4.onMouseUp($event) as dynamic), false);
+    return (true && pd_0);
+  }
+  bool _handle_keypress_0_3($event) {
+    _appEl_0.componentView.markPathToRootAsCheckOnce();
+    final dynamic pd_0 = !identical((_MaterialButtonComponent_0_4.handleKeyPress($event) as dynamic), false);
+    return (true && pd_0);
+  }
+  bool _handle_focus_0_4($event) {
+    _appEl_0.componentView.markPathToRootAsCheckOnce();
+    final dynamic pd_0 = !identical((_MaterialButtonComponent_0_4.onFocus($event) as dynamic), false);
+    return (true && pd_0);
+  }
+  bool _handle_mousedown_0_5($event) {
+    _appEl_0.componentView.markPathToRootAsCheckOnce();
+    final dynamic pd_0 = !identical((_MaterialButtonComponent_0_4.onMouseDown($event) as dynamic), false);
+    return (true && pd_0);
+  }
+}
+AppView viewFactory_FilesComp14(import9.Injector parentInjector,ViewContainer declarationEl) {
+  return new ViewFilesComp14(parentInjector,declarationEl);
+}
+class ViewFilesComp15 extends AppView<import3.FilesComp> {
+  Element _el_0;
+  ViewContainer _appEl_0;
   import46.ModalComponent _ModalComponent_0_3;
   dynamic __DeferredContentAware_0_4;
   dynamic __Modal_0_5;
@@ -2145,7 +2213,7 @@ class ViewFilesComp13 extends AppView<import3.FilesComp> {
   var _expr_2 = uninitialized;
   var _expr_3 = uninitialized;
   var _expr_4 = uninitialized;
-  ViewFilesComp13(import9.Injector parentInjector,ViewContainer declarationEl): super(ViewFilesComp13,renderType_FilesComp,import10.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
+  ViewFilesComp15(import9.Injector parentInjector,ViewContainer declarationEl): super(ViewFilesComp15,renderType_FilesComp,import10.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
   dynamic get _DeferredContentAware_0_4 {
     if ((this.__DeferredContentAware_0_4 == null)) { (__DeferredContentAware_0_4 = this._ModalComponent_0_3); }
     return this.__DeferredContentAware_0_4;
@@ -2160,7 +2228,7 @@ class ViewFilesComp13 extends AppView<import3.FilesComp> {
     _el_0.setAttribute(shimCAttr,'');
     _appEl_0 = new ViewContainer(0,null,this,_el_0);
     var compView_0 = import48.viewFactory_ModalComponent0(this.injector(0),_appEl_0);
-    _ModalComponent_0_3 = new import46.ModalComponent(this.parentInjector.get(import37.OverlayService),this.parentInjector.get(import46.Modal,null),this.parentInjector.get(import46.GlobalModalStack,null));
+    _ModalComponent_0_3 = new import46.ModalComponent(this.parentInjector.get(import35.OverlayService),this.parentInjector.get(import46.Modal,null),this.parentInjector.get(import46.GlobalModalStack,null));
     _appEl_0.initComponent(_ModalComponent_0_3,compView_0);
     Text _text_1 = new Text('\n                    ');
     _el_2 = doc.createElement('material-dialog');
@@ -2170,7 +2238,7 @@ class ViewFilesComp13 extends AppView<import3.FilesComp> {
     createAttr(_el_2,'hideHeader','true');
     _appEl_2 = new ViewContainer(2,0,this,_el_2);
     var compView_2 = import49.viewFactory_MaterialDialogComponent0(this.injector(2),_appEl_2);
-    _MaterialDialogComponent_2_3 = new import47.MaterialDialogComponent(this.parentInjector.get(import32.DomService),compView_2.ref,_ModalComponent_0_3);
+    _MaterialDialogComponent_2_3 = new import47.MaterialDialogComponent(this.parentInjector.get(import30.DomService),compView_2.ref,_ModalComponent_0_3);
     _appEl_2.initComponent(_MaterialDialogComponent_2_3,compView_2);
     Text _text_3 = new Text('\n                      ');
     _el_4 = doc.createElement('div');
@@ -2284,7 +2352,7 @@ class ViewFilesComp13 extends AppView<import3.FilesComp> {
   dynamic injectorGetInternal(dynamic token,int requestNodeIndex,dynamic notFoundResult) {
     if ((identical(token, import47.MaterialDialogComponent) && ((2 <= requestNodeIndex) && (requestNodeIndex <= 36)))) { return _MaterialDialogComponent_2_3; }
     if ((identical(token, import46.ModalComponent) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 37)))) { return _ModalComponent_0_3; }
-    if ((identical(token, import45.DeferredContentAware) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 37)))) { return _DeferredContentAware_0_4; }
+    if ((identical(token, import40.DeferredContentAware) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 37)))) { return _DeferredContentAware_0_4; }
     if ((identical(token, import46.Modal) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 37)))) { return _Modal_0_5; }
     return notFoundResult;
   }
@@ -2343,8 +2411,8 @@ class ViewFilesComp13 extends AppView<import3.FilesComp> {
     return (true && pd_0);
   }
 }
-AppView viewFactory_FilesComp13(import9.Injector parentInjector,ViewContainer declarationEl) {
-  return new ViewFilesComp13(parentInjector,declarationEl);
+AppView viewFactory_FilesComp15(import9.Injector parentInjector,ViewContainer declarationEl) {
+  return new ViewFilesComp15(parentInjector,declarationEl);
 }
 const List<dynamic> styles_FilesCompHost = const [];
 RenderComponentType renderType_FilesCompHost;
@@ -2367,15 +2435,15 @@ class ViewFilesCompHost0 extends AppView<dynamic> {
   import54.ZIndexer __ZIndexer_0_16;
   import55.OverlayDomRenderService __OverlayDomRenderService_0_17;
   import56.OverlayDomService __OverlayService_0_18;
-  import29.DomPopupSourceFactory __DomPopupSourceFactory_0_19;
-  import36.PopupService __PopupService_0_20;
+  import27.DomPopupSourceFactory __DomPopupSourceFactory_0_19;
+  import34.PopupService __PopupService_0_20;
   ViewFilesCompHost0(import9.Injector parentInjector,ViewContainer declarationEl): super(ViewFilesCompHost0,renderType_FilesCompHost,import10.ViewType.HOST,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
   dynamic get _defaultPopupPositions_0_4 {
     if ((this.__defaultPopupPositions_0_4 == null)) { (__defaultPopupPositions_0_4 = import57.inlinePositions); }
     return this.__defaultPopupPositions_0_4;
   }
   import50.Angular2ManagedZone get _ManagedZone_0_5 {
-    if ((this.__ManagedZone_0_5 == null)) { (__ManagedZone_0_5 = new import50.Angular2ManagedZone(this.parentInjector.get(import35.NgZone))); }
+    if ((this.__ManagedZone_0_5 == null)) { (__ManagedZone_0_5 = new import50.Angular2ManagedZone(this.parentInjector.get(import33.NgZone))); }
     return this.__ManagedZone_0_5;
   }
   dynamic get _Window_0_6 {
@@ -2383,7 +2451,7 @@ class ViewFilesCompHost0 extends AppView<dynamic> {
     return this.__Window_0_6;
   }
   dynamic get _DomService_0_7 {
-    if ((this.__DomService_0_7 == null)) { (__DomService_0_7 = import59.createDomService(this.parentInjector.get(import32.DomService,null),this.parentInjector.get(import60.Disposer,null),this._ManagedZone_0_5,this._Window_0_6)); }
+    if ((this.__DomService_0_7 == null)) { (__DomService_0_7 = import59.createDomService(this.parentInjector.get(import30.DomService,null),this.parentInjector.get(import60.Disposer,null),this._ManagedZone_0_5,this._Window_0_6)); }
     return this.__DomService_0_7;
   }
   import51.AcxImperativeViewUtils get _AcxImperativeViewUtils_0_8 {
@@ -2427,15 +2495,15 @@ class ViewFilesCompHost0 extends AppView<dynamic> {
     return this.__OverlayDomRenderService_0_17;
   }
   import56.OverlayDomService get _OverlayService_0_18 {
-    if ((this.__OverlayService_0_18 == null)) { (__OverlayService_0_18 = new import56.OverlayDomService(this.parentInjector.get(import35.NgZone),this._overlaySyncDom_0_14,this._OverlayDomRenderService_0_17,this.parentInjector.get(import37.OverlayService,null))); }
+    if ((this.__OverlayService_0_18 == null)) { (__OverlayService_0_18 = new import56.OverlayDomService(this.parentInjector.get(import33.NgZone),this._overlaySyncDom_0_14,this._OverlayDomRenderService_0_17,this.parentInjector.get(import35.OverlayService,null))); }
     return this.__OverlayService_0_18;
   }
-  import29.DomPopupSourceFactory get _DomPopupSourceFactory_0_19 {
-    if ((this.__DomPopupSourceFactory_0_19 == null)) { (__DomPopupSourceFactory_0_19 = new import29.DomPopupSourceFactory(this._Window_0_6,this._DomRuler_0_10)); }
+  import27.DomPopupSourceFactory get _DomPopupSourceFactory_0_19 {
+    if ((this.__DomPopupSourceFactory_0_19 == null)) { (__DomPopupSourceFactory_0_19 = new import27.DomPopupSourceFactory(this._Window_0_6,this._DomRuler_0_10)); }
     return this.__DomPopupSourceFactory_0_19;
   }
-  import36.PopupService get _PopupService_0_20 {
-    if ((this.__PopupService_0_20 == null)) { (__PopupService_0_20 = new import36.PopupService(this._defaultPopupPositions_0_4,this._OverlayService_0_18,this._ZIndexer_0_16)); }
+  import34.PopupService get _PopupService_0_20 {
+    if ((this.__PopupService_0_20 == null)) { (__PopupService_0_20 = new import34.PopupService(this._defaultPopupPositions_0_4,this._OverlayService_0_18,this._ZIndexer_0_16)); }
     return this.__PopupService_0_20;
   }
   ViewContainer createInternal(dynamic rootSelector) {
@@ -2450,10 +2518,10 @@ class ViewFilesCompHost0 extends AppView<dynamic> {
   }
   dynamic injectorGetInternal(dynamic token,int requestNodeIndex,dynamic notFoundResult) {
     if ((identical(token, import3.FilesComp) && (0 == requestNodeIndex))) { return _FilesComp_0_3; }
-    if ((identical(token, import36.defaultPopupPositions) && (0 == requestNodeIndex))) { return _defaultPopupPositions_0_4; }
+    if ((identical(token, import34.defaultPopupPositions) && (0 == requestNodeIndex))) { return _defaultPopupPositions_0_4; }
     if ((identical(token, import63.ManagedZone) && (0 == requestNodeIndex))) { return _ManagedZone_0_5; }
     if ((identical(token, Window) && (0 == requestNodeIndex))) { return _Window_0_6; }
-    if ((identical(token, import32.DomService) && (0 == requestNodeIndex))) { return _DomService_0_7; }
+    if ((identical(token, import30.DomService) && (0 == requestNodeIndex))) { return _DomService_0_7; }
     if ((identical(token, import51.AcxImperativeViewUtils) && (0 == requestNodeIndex))) { return _AcxImperativeViewUtils_0_8; }
     if ((identical(token, Document) && (0 == requestNodeIndex))) { return _Document_0_9; }
     if ((identical(token, import52.DomRuler) && (0 == requestNodeIndex))) { return _DomRuler_0_10; }
@@ -2464,9 +2532,9 @@ class ViewFilesCompHost0 extends AppView<dynamic> {
     if ((identical(token, import53.OverlayStyleConfig) && (0 == requestNodeIndex))) { return _OverlayStyleConfig_0_15; }
     if ((identical(token, import54.ZIndexer) && (0 == requestNodeIndex))) { return _ZIndexer_0_16; }
     if ((identical(token, import55.OverlayDomRenderService) && (0 == requestNodeIndex))) { return _OverlayDomRenderService_0_17; }
-    if ((identical(token, import37.OverlayService) && (0 == requestNodeIndex))) { return _OverlayService_0_18; }
-    if ((identical(token, import29.DomPopupSourceFactory) && (0 == requestNodeIndex))) { return _DomPopupSourceFactory_0_19; }
-    if ((identical(token, import36.PopupService) && (0 == requestNodeIndex))) { return _PopupService_0_20; }
+    if ((identical(token, import35.OverlayService) && (0 == requestNodeIndex))) { return _OverlayService_0_18; }
+    if ((identical(token, import27.DomPopupSourceFactory) && (0 == requestNodeIndex))) { return _DomPopupSourceFactory_0_19; }
+    if ((identical(token, import34.PopupService) && (0 == requestNodeIndex))) { return _PopupService_0_20; }
     return notFoundResult;
   }
   void detectChangesInternal() {

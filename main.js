@@ -30,12 +30,6 @@ var path = require('path');
 var portrange = 3001;
 
 
-app.on('window-all-closed', function () {
-
-  if (process.platform != 'darwin') {
-    app.quit();
-  }
-});
 ipcMain.on('online-status-changed', (event, status) => {
 
   global.onLine = status;
@@ -46,17 +40,25 @@ ipcMain.on('online-status-changed', (event, status) => {
   }
 })
 app.on('window-all-closed', () => {
-  app.quit()
+  mainWindow.webContents.session.clearStorageData([{
+
+    storages:["clear"]
+  }, ()=>{
+
+    console.log("done delete");
+
+  }])
+  app.quit();
 })
 app.on('ready', function () {
-  if (global.onLine) {
-    autoUpdater.checkForUpdates();
-  }
+
+  autoUpdater.checkForUpdates();
+
   setInterval(function () {
     if (global.onLine) {
       autoUpdater.checkForUpdates();
     }
-  }, 900000);
+  }, 3600000);
 
   global.homeDir = app.getPath('home');
   getPort(function (port) {
@@ -74,18 +76,25 @@ app.on('ready', function () {
       height: 600,
       icon: path.join(__dirname, 'server', 'static', 'images', 'iconElec.png')
     });
-    mainWindow.loadURL('http://127.0.0.1:' + global.serverPort + '/web/');
+
     mainWindow.maximize();
+    mainWindow.loadURL('http://127.0.0.1:' + global.serverPort + '/web/');
 
     global.homeUrlServer = 'http://127.0.0.1:' + global.serverPort + '/web';
     // mainWindow.loadURL('file://' + __dirname + '/server/public/web/index.html');
 
 
     mainWindow.on('closed', function () {
+      mainWindow.webContents.session.clearStorageData([{
 
+        storages:["clear"]
+      }, ()=>{
+
+        console.log("done delete");
+
+      }])
       mainWindow = null;
       server = null;
-
     });
 
     global.mainWindow = mainWindow;

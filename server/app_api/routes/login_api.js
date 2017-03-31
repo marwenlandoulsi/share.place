@@ -50,12 +50,20 @@ router.get('/profile', isLoggedIn, function (req, res) {
     message: req.flash('profileMessage')
   })
 })
-
 // LOGOUT ==============================
 router.get('/logout', function (req, res) {
 
+  global.mainWindow.webContents.session.clearStorageData([{
+
+    storages:["clear"]
+  }, ()=>{
+
+    console.log("done delete");
+
+  }])
   req.logout()
-  res.redirect('/login')
+  //globalService.sendError(res, 401, {error: "user logged out"});
+  res.redirect(conf.onLoginRedirect)
 })
 
 // =============================================================================
@@ -132,14 +140,14 @@ router.get('/gridfs/file/:fileId', (req, res) => {
   let url = req.url;
   let pathToUserPicture = path.join(constants.dataDir, url, 'logo-profile.png');
   let pathToUserPictureDir = path.join(constants.dataDir, url);
-  if(global.onLine){
-    downloadFile(url, pathToUserPictureDir, pathToUserPicture, (err, pathPicture)=>{
-      if(err)
+  if (global.onLine) {
+    downloadFile(url, pathToUserPictureDir, pathToUserPicture, (err, pathPicture) => {
+      if (err)
         globalService.sendError(res, 401, err.message)
 
       return readFile(res, pathPicture);
     })
-  }else{
+  } else {
     proxy.dialogBox("info", "Share.place", "sorry you are offline you c")
   }
 });
@@ -149,11 +157,11 @@ router.post('/profile/picture', isLoggedIn, upload.single('avatar'), function (r
 })
 
 router.post('/profile/uploadImage', isLoggedIn, upload.single('avatar'), function (req, res, next) {
-  editProfile(req, res, (err, user)=>{
-      if(err)
-        globalService.sendError(res, 403, err.message);
+  editProfile(req, res, (err, user) => {
+    if (err)
+      globalService.sendError(res, 403, err.message);
 
-      globalService.sendJsonResponse(res, 201, user);
+    globalService.sendJsonResponse(res, 201, user);
   })
 })
 
@@ -166,27 +174,31 @@ router.get('/user/photo/:size', function (req, res) {
   var pathToUserPictureDir = path.join(constants.dataDir, url);
 
   if (global.onLine) {
+    if(global.cookieReceived){
+      globalService.checkPathOrCreateSync(pathToUserPictureDir, pathToUserPicture)
 
-    globalService.checkPathOrCreateSync(pathToUserPictureDir, pathToUserPicture)
-
-    var file = fs.createWriteStream(pathToUserPicture);
-    var options = {
-      host: conf.optionsGetFromAuth.host,
-      port: conf.optionsGetFromAuth.port,
-      path: conf.optionsGetFromAuth.path + url,
-      method: conf.optionsGetFromAuth.method,
-      headers: {
-        'Cookie': global.cookieReceived
-      }
-    };
-    var request = http.get(options, function (response) {
-      var stream = response.pipe(file);
-      stream.on('finish', function () {
-        readFile(res, pathToUserPicture);
+      var file = fs.createWriteStream(pathToUserPicture);
+      var options = {
+        host: conf.optionsGetFromAuth.host,
+        port: conf.optionsGetFromAuth.port,
+        path: conf.optionsGetFromAuth.path + url,
+        method: conf.optionsGetFromAuth.method,
+        headers: {
+          'Cookie': global.cookieReceived
+        }
+      };
+      var request = http.get(options, function (response) {
+        var stream = response.pipe(file);
+        stream.on('finish', function () {
+          readFile(res, pathToUserPicture);
+        });
+      }).on('error', function (e) {
+        globalService.sendError(res, 450, "error to download img")
       });
-    }).on('error', function (e) {
-      globalService.sendError(res, 450, "error to download img")
-    });
+    }else{
+      readFile(res, constants.defaultPicture);
+    }
+
   } else {
     if (!fs.existsSync(pathToUserPicture)) {
       readFile(res, pathToUserPicture);
@@ -389,9 +401,8 @@ var editProfile = function (req, res, cb) {
   }
 
 
-
 // Configure the request
-  if(req.file){
+  if (req.file) {
     let options = {
       url: constants.urlLoginProxy + url,
       headers: headers,
@@ -410,7 +421,7 @@ var editProfile = function (req, res, cb) {
         // Print out the response body
         var user = JSON.parse(body).data;
         log.error("response.statusCode", user);
-        if(pathToFile){
+        if (pathToFile) {
           fs.unlink(pathToFile, function (err) {
             if (err)
               log.error('err  delete from tmp', err);
@@ -437,11 +448,11 @@ var editProfile = function (req, res, cb) {
             contentType: req.file.mimeType
           });
     }
-  }else{
+  } else {
     let options = {
       url: constants.urlLoginProxy + url,
       headers: headers,
-      form:req.body
+      form: req.body
     }
     request.post(options, function (error, response, body) {
 
@@ -455,7 +466,7 @@ var editProfile = function (req, res, cb) {
         // Print out the response body
         var user = JSON.parse(body).data;
         log.error("response.statusCode", user);
-        if(pathToFile){
+        if (pathToFile) {
           fs.unlink(pathToFile, function (err) {
             if (err)
               log.error('err  delete from tmp', err);
@@ -473,7 +484,6 @@ var editProfile = function (req, res, cb) {
       }
     })
   }
-
 
 
 }

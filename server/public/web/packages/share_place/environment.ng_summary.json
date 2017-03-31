@@ -41,6 +41,11 @@
       {
         "1": "dart:async",
         "5": false
+      },
+      {
+        "1": "app_config.dart",
+        "4": "conf",
+        "5": false
       }
     ],
     "5": [
@@ -99,6 +104,13 @@
           "isValue": false
         }
       ]
+    },
+    "userHasGreaterRole": {
+      "class": "Identifier",
+      "name": "userHasGreaterRole",
+      "moduleUrl": "asset:share_place/lib/environment.dart",
+      "prefix": null,
+      "value": null
     }
   },
   "alias": {}

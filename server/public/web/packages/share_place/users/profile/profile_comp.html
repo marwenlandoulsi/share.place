@@ -2,23 +2,19 @@
   <div class="header">
     <div class="title">Profile</div>
     <div class="close" (click)="close()"></div>
-
-
-    <form  id="profileImageForm" #upload class="dragdrop_profil" [class.uploading]="uploading"
+    <form id="profileImageForm" #upload class="dragdrop_profil" [class.uploading]="uploading"
           (dragenter)="upload.style.setProperty('border', '2px solid #9FC8FA')"
           (drop)="upload.style.setProperty('border', '2px dotted #273B54');">
       <label id="labelfileuploadprf" for="filename">
         <!--?refreshHack=... obliges the browser to refresh the image if it changes-->
-        <div class="spinAnim">  <img src="/auth/gridfs/file/{{photoId}}" title=""/></div>
-
-        <!--<div class="spinAnim">  <img title=""  src="https://farm9.staticflickr.com/8609/16683256545_9320714255_k.jpg" /></div>-->
-
+        <div class="spinAnim"><img src="/auth/gridfs/file/{{photoId}}" title=""/>
+          <div class="spinAnimCircle"></div>
+        </div>
         <span class="spprof">Change</span>
       </label>
       <input type="file" id="filename" (change)="uploadFile()" class="uploadFile" name="avatar"
              style="opacity: 0"/>
     </form>
-
   </div>
 
   <div class="panels">
@@ -29,7 +25,6 @@
 
     <div class="local">
       <form action="#" method="post">
-
         <div class="email">
           <div class="label">Email</div>
           <material-input #email required type="email" label="example@domain.com" [disabled]="!emailChanging"
@@ -68,28 +63,21 @@
           <div class="label">User name</div>
           <material-input required [(ngModel)]="connectedUser.name" class="name"></material-input>
         </div>
-
       </form>
-
     </div>
-
-
     <div class="social">
       <div class="line" [class.loggedIn]="linkedToFacebook">
         <div class="logLeft"><span class="log">Logged in with</span>
-        <span class="nameConnected"> {{connectedUser?.facebookAccount?.firstName }} {{connectedUser?.facebookAccount?.lastName }}</span>
+          <span class="nameConnected"> {{connectedUser?.facebookAccount?.firstName }} {{connectedUser?.facebookAccount?.lastName }}</span>
         </div>
         <a href="{{facebookUrl}}" class="socialBtn facebook">
           <span class="fa fa-facebook">  </span>
         </a>
       </div>
-
-
-
       <div class="line" [class.loggedIn]="linkedToFacebook">
-        <div  class="logLeft"><span class="log">Logged in with</span>
-        <span class="nameConnected"> {{connectedUser?.googleAccount?.displayName  }}</span>
-      </div>
+        <div class="logLeft"><span class="log">Logged in with</span>
+          <span class="nameConnected"> {{connectedUser?.googleAccount?.displayName  }}</span>
+        </div>
         <a href="{{googleUrl}}" class="socialBtn google">
           <span class="fa fa-google"></span>
         </a>
@@ -98,8 +86,6 @@
         <div class="label">Skype</div>
         <material-input [(ngModel)]="connectedUser.skype" class="value"></material-input>
       </div>
-
-
     </div>
     <div class="clearfix"></div>
   </div>

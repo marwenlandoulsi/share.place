@@ -46,7 +46,7 @@ class SubjectListComponent implements OnInit {
   bool infoPopupOpen;
 
   SubjectListComponent(this._placeService, this._router, this._environment,
-      this._userListProvider ,  this.urlSanitizer);
+      this._userListProvider, this.urlSanitizer);
 
   Future<Null> ngOnInit() async {
     _environment.eventBus.getBus().listen((params) => show(params));
@@ -66,7 +66,7 @@ class SubjectListComponent implements OnInit {
     } else if (fileId != null) { // file changed
       await reloadSubjects();
     } else if (params.containsKey(PlaceParam.ioSubjectCreated) ||
-        params.containsKey(PlaceParam.ioSubjectChanged) ) {
+        params.containsKey(PlaceParam.ioSubjectChanged)) {
       await reloadSubjects();
     }
 
@@ -96,11 +96,13 @@ class SubjectListComponent implements OnInit {
   }
 
   bool isApprover(User user) =>
-      user?.folders[selectedFolder.id] == RoleEnum.owner;
+      _environment.connectedUserHasGreaterRole(
+          RoleEnum.owner, selectedFolder);
 
 
   Future<Null> uploadFiles() async {
     _environment.uploading = true;
+    _environment.fireEvent(PlaceParam.addButtonPressed, "files");
     var fileForm = querySelector("#fileForm");
     FileInfo createdFileInfo = await _placeService.postFile(
         new FormData(fileForm));
@@ -150,6 +152,7 @@ class SubjectListComponent implements OnInit {
   void add() {
     if (_environment.selectedFolder != null)
       _environment.inviteUsersDialog = true;
+    _environment.fireEvent(PlaceParam.addButtonPressed, "invitePeople");
   }
 
   void rename() {
@@ -186,7 +189,7 @@ class SubjectListComponent implements OnInit {
 
   List<User> get users => _userListProvider.users;
 
-  SafeUrl skypeUrlFor(User user,call) {
+  SafeUrl skypeUrlFor(User user, call) {
     if (user.skype != null) {
       if (call)
         return urlSanitizer.bypassSecurityTrustUrl("skype:${user.skype}?call");

@@ -91,7 +91,7 @@ class AppComponent
   Future<Null> logout() async {
     profileMenuVisible = false;
     await _placeService.logout();
-    _environment.connectedUser= null;
+//    _environment.connectedUser= null;
   }
 
   void profile() {

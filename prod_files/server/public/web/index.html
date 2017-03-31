@@ -1,31 +1,19 @@
 <!DOCTYPE html>
 <html>
 
-
 <head>
   <base href="">
   <title>Share.Place</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!--<link rel="stylesheet" href="bootstrap.min.css">-->
-
-
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-  <link rel="stylesheet" type="text/css"
-        href="https://fonts.googleapis.com/icon?family=Material+Icons">
-
-
   <link rel="stylesheet" href="../font-awesome-4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../material-design-iconic-font/css/material-design-iconic-font.css">
   <link rel="icon" type="image/ico" href="favicon.ico">
-  <!---->
-  <!--<link rel="stylesheet" type="text/css"-->
-  <!--href="http://fontawesome.io/assets/font-awesome/css/font-awesome.css">-->
-  <!---->
-
   <link rel="stylesheet" href="styles.css">
-  <!--<link rel="stylesheet" href="respensive.css">-->
 
-  <link rel="stylesheet" href="http://zavoloklom.github.io/material-design-iconic-font/css/docs.md-iconic-font.min.css">
+  <!--<link rel="stylesheet" href="https://zavoloklom.github.io/material-design-iconic-font/css/docs.md-iconic-font.min.css">-->
+  <!--<link rel="stylesheet" href="bootstrap.min.css">-->
 
   <script defer src="main.dart" type="application/dart"></script>
   <script defer src="packages/browser/dart.js"></script>
@@ -61,13 +49,17 @@
       }
     },false);
   </script>
+
+
 </head>
 
 <body>
 <my-app>Loading...</my-app>
-<!--<script src="/socket.io/socket.io.js"></script>-->
-<!--<script>
 
+<!--
+<script src="../socketIo/socket.io.js"></script>
+
+<script>
   var socket = io.connect();
   socket.on('connect', () => {
     console.log('connected to server');
@@ -77,16 +69,22 @@
     console.log('disconnected from server');
   });
   socket.on('comment', (data) => {
+  	window.alert("socketio : "+ data);
     console.log('information', data);
   });
-</script>-->
+</script>
+-->
+
 
 <!-- Dart conf -->
 <input type="hidden" id="baseUrl" value="err"/>
+<input type="hidden" id="loginUrl" value="err"/>
 <input type="hidden" id="port" value="err"/>
 <input type="hidden" id="env" value="desktop"/>
 <script type="application/javascript">
 	document.getElementById('baseUrl').value = window.location.origin;
+  document.getElementById('loginUrl').value = "http://localhost:3000";
+//  document.getElementById('loginUrl').value = "http://ec2-54-154-38-51.eu-west-1.compute.amazonaws.com";
 	document.getElementById('port').value = window.location.port;
 </script>
 <!-- Dart conf end-->

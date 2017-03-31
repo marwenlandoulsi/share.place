@@ -172,9 +172,9 @@ class ViewLoginComp0 extends AppView<import3.LoginComp> {
   Element _el_85;
   Element _el_86;
   Element _el_90;
-  AnchorElement _el_92;
+  Element _el_92;
   Element _el_94;
-  AnchorElement _el_97;
+  Element _el_97;
   Element _el_99;
   Element _el_104;
   Element _el_106;
@@ -196,8 +196,6 @@ class ViewLoginComp0 extends AppView<import3.LoginComp> {
   var _expr_30 = uninitialized;
   var _expr_31 = uninitialized;
   var _expr_32 = uninitialized;
-  var _expr_33 = uninitialized;
-  var _expr_34 = uninitialized;
   ViewLoginComp0(import20.Injector parentInjector,ViewContainer declarationEl): super(ViewLoginComp0,renderType_LoginComp,import21.ViewType.COMPONENT,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
   dynamic get _DeferredContentAware_0_4 {
     if ((this.__DeferredContentAware_0_4 == null)) { (__DeferredContentAware_0_4 = this._ModalComponent_0_3); }
@@ -569,10 +567,10 @@ class ViewLoginComp0 extends AppView<import3.LoginComp> {
     _el_90 = doc.createElement('div');
     _el_90.setAttribute(shimCAttr,'');
     _el_36.append(_el_90);
-    _el_90.className = 'social';
+    _el_90.className = 'social \${online ? \'\' : \'hidden\'}';
     Text _text_91 = new Text('\n      ');
     _el_90.append(_text_91);
-    _el_92 = doc.createElement('a');
+    _el_92 = doc.createElement('div');
     _el_92.setAttribute(shimCAttr,'');
     _el_90.append(_el_92);
     _el_92.className = 'btn-social btn-facebook';
@@ -586,10 +584,10 @@ class ViewLoginComp0 extends AppView<import3.LoginComp> {
     _el_92.append(_text_95);
     Text _text_96 = new Text('\n\n      ');
     _el_90.append(_text_96);
-    _el_97 = doc.createElement('a');
+    _el_97 = doc.createElement('div');
     _el_97.setAttribute(shimCAttr,'');
     _el_90.append(_el_97);
-    _el_97.className = 'btn-social btn-google';
+    _el_97.className = 'btn-social btn-google \${online ? \'\' : \'hidden\'}';
     Text _text_98 = new Text('\n        ');
     _el_97.append(_text_98);
     _el_99 = doc.createElement('span');
@@ -637,6 +635,8 @@ class ViewLoginComp0 extends AppView<import3.LoginComp> {
     listen(_el_79,'keypress',evt(_handle_keypress_79_4));
     listen(_el_79,'focus',evt(_handle_focus_79_5));
     listen(_el_79,'mousedown',evt(_handle_mousedown_79_6));
+    listen(_el_92,'click',evt(_handle_click_92_0));
+    listen(_el_97,'click',evt(_handle_click_97_0));
     init([],[
       _el_0,_text_1,_el_2,_text_3,_el_4,_text_5,_text_6,_text_7,_el_8,_text_9,_el_10,
       _text_11,_el_12,_text_13,_text_14,_text_15,_el_16,_text_17,_el_18,_text_19,_text_20,
@@ -813,16 +813,6 @@ class ViewLoginComp0 extends AppView<import3.LoginComp> {
       setAttr(_el_79,'elevation',((currVal_32 == null)? null: currVal_32.toString()));
       _expr_32 = currVal_32;
     }
-    final currVal_33 = import46.interpolate0(ctx.loginFacebookUrl);
-    if (import46.checkBinding(_expr_33,currVal_33)) {
-      setProp(_el_92,'href',import46.appViewUtils.sanitizer.sanitizeUrl(currVal_33));
-      _expr_33 = currVal_33;
-    }
-    final currVal_34 = import46.interpolate0(ctx.loginGoogleUrl);
-    if (import46.checkBinding(_expr_34,currVal_34)) {
-      setProp(_el_97,'href',import46.appViewUtils.sanitizer.sanitizeUrl(currVal_34));
-      _expr_34 = currVal_34;
-    }
     this.detectViewChildrenChanges();
     if (identical(this.cdState, ChangeDetectorState.NeverChecked)) { _MaterialInputComponent_64_8.ngAfterViewInit(); }
     if (identical(this.cdState, ChangeDetectorState.NeverChecked)) { _MaterialInputComponent_76_8.ngAfterViewInit(); }
@@ -906,6 +896,16 @@ class ViewLoginComp0 extends AppView<import3.LoginComp> {
   bool _handle_mousedown_79_6($event) {
     _appEl_79.componentView.markPathToRootAsCheckOnce();
     final dynamic pd_0 = !identical((_MaterialButtonComponent_79_4.onMouseDown($event) as dynamic), false);
+    return (true && pd_0);
+  }
+  bool _handle_click_92_0($event) {
+    this.markPathToRootAsCheckOnce();
+    final dynamic pd_0 = !identical((ctx.facebookLoginClicked() as dynamic), false);
+    return (true && pd_0);
+  }
+  bool _handle_click_97_0($event) {
+    this.markPathToRootAsCheckOnce();
+    final dynamic pd_0 = !identical((ctx.googleLoginClicked() as dynamic), false);
     return (true && pd_0);
   }
 }

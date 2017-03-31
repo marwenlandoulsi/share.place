@@ -19,6 +19,7 @@ import 'package:share_place/common/format/file_size_pipe.dart';
 import 'cloud_file.dart';
 import 'package:angular2_components/angular2_components.dart';
 import 'package:share_place/postit/postit_component.dart';
+
 /**
  * Comments were generated thanks to : http://www.cssarrowplease.com/
  *
@@ -39,8 +40,9 @@ class FilesComp implements OnInit {
 
   int fileMenuVisible;
   int selectedVersion;
+  int activeLockActionIndex;
 
-  int openFileVersion;
+  int openFileVersion = -1;
 
   FilesComp(this._placeService, this._router, this._environment);
 
@@ -54,7 +56,7 @@ class FilesComp implements OnInit {
       selectedFile = null;
       return;
     }*/
-
+    hideMenu();
     var fileInfoId = params[PlaceParam.fileInfoId];
     if (fileInfoId != null) {
       print("getting file for: $fileInfoId");
@@ -63,7 +65,7 @@ class FilesComp implements OnInit {
           _environment.selectedSubject.fileId);
     } else if (params[PlaceParam.placeId] != null) {
       selectedFile = null;
-    } else if( params.containsKey(PlaceParam.ioFileActionCreated) ) {
+    } else if (params.containsKey(PlaceParam.ioFileActionCreated)) {
       //FIXME performance : should not relaod all files, but only update the selected one
       await reloadFile();
     }
@@ -73,6 +75,9 @@ class FilesComp implements OnInit {
       String fileId) async {
     selectedFile = await _placeService.getFile(placeId, folderId, fileId);
     versionAttributes.clear();
+
+    detectLastLockAction();
+
     return selectedFile;
   }
 
@@ -85,6 +90,7 @@ class FilesComp implements OnInit {
   }
 
   Future<Null> addComment(String comment, int fileVersionIndex) async {
+    _environment.fireEvent(PlaceParam.addButtonPressed, "comment");
     await _placeService.addComment(comment, fileVersionIndex);
     //FIXME performance : should not relaod all files, but only update the selected one
     await reloadFile();
@@ -94,6 +100,26 @@ class FilesComp implements OnInit {
     selectedFile = await getFile(
         _environment.selectedPlace.id, _environment.selectedFolder.id,
         _environment.selectedSubject.fileId);
+  }
+
+  void detectLastLockAction() {
+    activeLockActionIndex = -1;
+    List<FileAction> lastVersionActions = selectedFile.versions.last.actions
+        .reversed.toList();
+    for (int i = 0; i < lastVersionActions.length; i++) {
+      FileAction fileAction = lastVersionActions[i];
+      //print( "action ${i+1}/${lastVersionActions.length}: ${fileAction.action.actionType} : ${fileAction.action.value} ");
+      if (fileAction.action.actionType == "fileLock" && fileAction.action.value == "on") {
+        activeLockActionIndex = i;
+        return;
+      }
+    }
+  }
+
+  bool showReleaseButton(FileAction action, int actionIndex, int versionIndex) {
+    return selectedFile.isLocked && isActionAuthor(action) &&
+        isActionOn(action) && versionIndex == 0 &&
+        activeLockActionIndex == actionIndex;
   }
 
   String trackFileById(int index, CloudFile file) => file.id;
@@ -240,8 +266,7 @@ class FilesComp implements OnInit {
 
   String formatDesc(FileVersion version) {
 //TODO get info from server
-    //    String mimeType = selectedFile.fileType;
-    String mimeType = "Word";
+    String mimeType = version.mimeType;
     if (mimeType == null)
       return null;
 
@@ -260,10 +285,16 @@ class FilesComp implements OnInit {
     return "$mimeType Document";
   }
 
+  bool get isWriter => _environment.connectedUserHasGreaterRole(
+      RoleEnum.writer, _environment.selectedFolder);
+
   void openFileDialog(int version) {
-    print("opening file version $version");
-    openFileVersion = version;
+    if (isWriter)
+      openFileVersion = version;
+    else
+      openFileLink(version);
   }
+
 
   void cancelFileOpen() {
     openFileVersion = -1;
@@ -297,14 +328,22 @@ class FilesComp implements OnInit {
     bool isOn = isActionOn(actionItem);
     if (actionItem.action.actionType == 'fileLock') {
       String userName = actionItem?.user?.userName;
-      return (isAuthor ? "I" : (userName == null? "" : userName)) +
 
-          (isOn ? " am editing " : " edited ") + ("version ${version?.v}");
+      String subject = isAuthor ? "I" : (userName == null ? "" : userName);
+      String am = isAuthor && isOn ? "am" : "";
+      String action = isOn ? "editing" : "edited";
+      return "$subject $am $action version ${version?.v}";
+
     }
 
     if (actionItem.action.actionType == 'fileApprove') {
-      return (isAuthor ? "I" : actionItem.user.userName) +
-          (" approve the file.");
+      if (actionItem.action.value == 'on') {
+        return (isAuthor ? "I" : actionItem.user.userName) +
+            (" approved the file.");
+      } else {
+        return (isAuthor ? "I" : actionItem.user.userName) +
+            (" unapproved the file.");
+      }
     }
   }
 }

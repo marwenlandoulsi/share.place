@@ -12,9 +12,10 @@ class SocketIoClient {
 
   SocketIoClient(this.eventBus);
 
-  Future<Null> connect() async {
+  Future<Null> connect(String url) async {
     //await disconnect(); //disconnect from the old connection (if any) before reconnecting
-    _io = await context['io'];
+    //_io = await context.callMethod('io',[url]);
+    _io = await context.callMethod('io');
     this._socket = await _io.callMethod('connect', []);
     await _socket.callMethod('on', ['connect', () { //js callback
       connected = true;

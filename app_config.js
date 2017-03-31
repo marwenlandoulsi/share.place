@@ -11,7 +11,7 @@ module.exports = Object.freeze({
   appLogFile :__dirname + "/log/app.log",
   downloadDir: __dirname + "/tmp/download/",
   storj: {
-    publicKey: 'dc7d73650911de5ece1923e5a699cec4fa340f8869041ce4af806b7e5fabe9ce',
+    privateKey: 'dc7d73650911de5ece1923e5a699cec4fa340f8869041ce4af806b7e5fabe9ce',
     concurrency: 6,
     cryptFilePath: './',
     keypass: 'keypass'

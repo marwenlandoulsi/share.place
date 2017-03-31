@@ -9,18 +9,19 @@
     </div>
 
 
-
-
-    <form id="signupForm" #upload class="dragdrop_profil {{dragEnter ? 'drag' : ''}} {{drop ? 'drop' : ''}} " [class.uploading]="uploading"
+    <form id="signupForm" #upload class="dragdrop_profil {{dragEnter ? 'drag' : ''}} {{drop ? 'drop' : ''}} "
+          [class.uploading]="uploading"
           (dragenter)="dragEnter = true"
           (drop)="drop = true">
       <label id="labelfileuploadprf" for="filename">
         <!--?refreshHack=... obliges the browser to refresh the image if it changes-->
-        <img   id="imgPrev" src="../images/img_profile.png" title=""/>
-        <span class="spprof" >Change</span>
+        <div class="spinAnim"><img id="imgPrev" src="../images/img_profile.png" title=""/>
+          <div class="spinAnimCircle"></div>
+        </div>
+        <span class="spprof">Change</span>
       </label>
       <input type="file" id="filename" class="uploadFile" name="filename"
-             (change)="imgChange($event)"   style="opacity: 0"/>
+             (change)="imgChange($event)" style="opacity: 0"/>
 
     </form>
   </div>
@@ -33,7 +34,8 @@
 
       <div class="email">
         <div class="label emaillab">Email</div>
-        <material-input required type="email" label="example@domain.com" [(ngModel)]="user.email" class="mail"></material-input>
+        <material-input required type="email" label="example@domain.com" [(ngModel)]="user.email"
+                        class="mail"></material-input>
       </div>
       <div class="pass">
         <div class="label">Password</div>
@@ -62,7 +64,9 @@
     </div>
   </div>
   <div class="center">
-    <material-button raised class="btn_login pos2" [disabled]="!submitEnabled" (click)="signup()"  (keyup.enter)="signup()">OK</material-button>
+    <material-button raised class="btn_login pos2" [disabled]="!submitEnabled" (click)="signup()"
+                     (keyup.enter)="signup()">OK
+    </material-button>
   </div>
 
 </div>

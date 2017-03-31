@@ -11,15 +11,15 @@
       <div  *ngIf="infoPopupUser?.skype != null"  class="userInfo skype"> <span class="txtskype">Text:</span>  <a href="{{skypeUrlFor(infoPopupUser ,false)}}"> skype:{{infoPopupUser?.skype}}?chat  </a> </div>
 
 
-      <div class="userInfo timezone"> Timezone UTC-7  9:24 am </div>
+      <div class="userInfo timezone hidden"> Timezone UTC-7  9:24 am </div>
 
-      <div class="userInfo lastcnx">Last connection: 5 mn ago</div>
+      <div class="userInfo lastcnx hidden">Last connection: 5 mn ago</div>
     </div>
   </material-popup>
 
   <div class="title">{{selectedFolder.name}}
 
-    <postit-comp [name]="'subjects'" [header]="'Great!'"
+    <postit-comp [name]="'invitePeople'" [header]="'Great!'"
                  [body]="'Now invite some poople to join you clicking on the + icon'"
                  class="subjectsPostit"></postit-comp>
 
@@ -41,8 +41,6 @@
           (click)="userInfoRequested=userItem">
         <img src="/auth/user/photo/s/{{userItem.id}}">
       </li>
-
-
     </ul>
   </div>
 

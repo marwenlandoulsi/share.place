@@ -15,6 +15,9 @@ import 'package:share_place/files/cloud_file.dart';
 import 'package:share_place/files/file_action.dart';
 import 'package:share_place/news/news_event.dart';
 import 'package:share_place/users/user.dart';
+import 'package:share_place/common/util.dart';
+
+import 'dart:html';
 
 @Injectable()
 class PlaceService {
@@ -102,7 +105,7 @@ class PlaceService {
         _environment.selectedFolder.id +
         "/file";
     Map<String, dynamic> response = await postFileForm(form, postUrl);
-    return new FileInfo.fromJson(response);
+    return response == null ? null : new FileInfo.fromJson(response);
   }
 
   Future<User> postProfileImage(html.FormData form) async {
@@ -266,6 +269,7 @@ class PlaceService {
     try {
       final response = await post(_placesUrl,
           headers: _headers, body: JSON.encode({'name': name}));
+      await getConnectedUser();
       return new Place.fromJson(_extractData(response));
     } catch (e) {
       throw _handleError(e);
@@ -482,23 +486,19 @@ class PlaceService {
   }
 
   Future<User> logout() async {
-    final response = await get(
-        "/auth/logout");
+    window.location.assign("/auth/logout");
+    //final response = await get("/auth/logout");
   }
 
   Future<User> saveProfile(User user, {bool mailChanged,
     String newPass }) async {
     var userBody = {};
-    if(user.name != null)
-      userBody["name"] = user.name;
-    if(user.skype != null)
-      userBody["skype"] = user.skype;
+    setIfNotEmpty(userBody, "name", user.name);
+    setIfNotEmpty(userBody, "skype", user.skype);
     if (mailChanged || newPass != null) {
-      userBody["password"] = user.pass;
-      if (mailChanged)
-        userBody["email"] = user.email;
-      if (newPass != null && !newPass.isEmpty)
-        userBody["passwordNew"] = newPass;
+      setIfNotEmpty(userBody, "password", user.pass);
+      setIfNotEmpty(userBody, "email", user.email);
+      setIfNotEmpty(userBody, "passwordNew", newPass);
     }
     print( "############## ${userBody.toString()}" );
 

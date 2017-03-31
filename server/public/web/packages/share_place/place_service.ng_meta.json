@@ -59,6 +59,14 @@
       {
         "1": "package:share_place/users/user.dart",
         "5": false
+      },
+      {
+        "1": "package:share_place/common/util.dart",
+        "5": false
+      },
+      {
+        "1": "dart:html",
+        "5": false
       }
     ],
     "5": [
@@ -123,6 +131,10 @@
       {
         "1": "package:share_place/users/user.template.dart",
         "4": "i9"
+      },
+      {
+        "1": "package:share_place/common/util.template.dart",
+        "4": "i10"
       }
     ]
   },

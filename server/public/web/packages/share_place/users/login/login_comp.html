@@ -39,7 +39,7 @@
         </div>
         <div class="email">
           <div class="label">Email</div>
-          <material-input required label="example@domain.com" [(ngModel)]="user.email" class="mail"></material-input>
+          <material-input  required label="example@domain.com" [(ngModel)]="user.email" class="mail"></material-input>
         </div>
         <div class="pass">
           <div class="label">Password</div>
@@ -55,14 +55,14 @@
     <div class="or"><span>Or</span></div>
 
     <!--<div class="col-md-5 col-sm-5 col-xs-12">  </div>-->
-    <div class="social">
-      <a class="btn-social btn-facebook" href="{{loginFacebookUrl}}">
+    <div class="social ${online ? '' : 'hidden'}">
+      <div #fb class="btn-social btn-facebook" (click)="facebookLoginClicked()">
         <span class="fa fa-facebook"></span> Sign in with Facebook
-      </a>
+      </div>
 
-      <a class="btn-social btn-google" href="{{loginGoogleUrl}}">
+      <div  #gl class="btn-social btn-google ${online ? '' : 'hidden'}" (click)="googleLoginClicked()">
         <span class="fa fa-google-plus"></span> Sign in with Google
-      </a>
+      </div>
     </div>
   </div>
 

@@ -11,12 +11,13 @@
     <div class="newTopic">
       <div class="newComment newTopicBlock">
         <img src="/auth/user/photo/s/{{connectedUser.id}}" class="profileImg">
-        <div class="arowmenow">   <input #comment class="comment"
-               (keyup.enter)="addComment(comment.value, selectedFile.versions.last.v);comment.value='';"
-               class="txt"/>
+        <div class="arowmenow"><input #comment class="comment" placeholder="Write your comment here"
+                                      (keyup.enter)="addComment(comment.value, selectedFile.versions.last.v);comment.value='';"
+                                      class="txt"/>
 
-        <div (click)="addComment(comment.value, selectedFile.versions.last.v);comment.value='';"
-             class="btn_valid"></div></div>
+          <div (click)="addComment(comment.value, selectedFile.versions.last.v);comment.value='';"
+               class="btn_valid"></div>
+        </div>
 
         <postit-comp [name]="'comment'" [body]="'To talk to the team, type a comment here...'"
                      class="commentPostit"></postit-comp>
@@ -41,7 +42,7 @@
                   <div class="version">
                     <div *ngIf="isCommentsOpen(selectedFile.id, versionItem.v)" class="versionComments">
                       <ul class="actionList">
-                        <li *ngFor="let actionItem of getActionsForVersion(versionItem)" class="actionLiElem"
+                        <li *ngFor="let actionItem of getActionsForVersion(versionItem); let actionIndex = index" class="actionLiElem"
                             [class.ownAction]="isActionAuthor( actionItem )"
                             [class.isActionOn]="isActionOn( actionItem )">
 
@@ -76,6 +77,8 @@
                               </div>
                             </div>
                           </div>
+
+
                           <!--fileLock-->
                           <div *ngIf="actionItem.action.actionType == 'fileLock'" class="actionBlock lockBlock">
                             <div class="actionPropsBlock">
@@ -87,7 +90,7 @@
                             <div class="bubble">
                               <div class="bubbleContent">
                                 <material-button
-                                    *ngIf="selectedFile.isLocked && isActionAuthor( actionItem ) && isActionOn( actionItem ) && versionIndex == 0"
+                                    *ngIf="showReleaseButton(actionItem, actionIndex, versionIndex)"
                                     class="release" (click)="unlock()">
                                   Release
                                 </material-button>
@@ -118,8 +121,10 @@
                                       <img
                                           src="/sp/place/{{selectedPlace?.id}}/folder/{{selectedFolder?.id}}/file/{{selectedFile?.id}}/version/{{versionItem.v}}/thumb"
                                           class="thumbnail">
-                                      <div class="uploadStatus" *ngIf="versionItem.status!='uploaded' && versionItem?.mimeType != 'application/quickNote' "><img
-                                          src="../images/uploading.png"/></div>
+                                      <div class="uploadStatus"
+                                           *ngIf="versionItem.status!='uploaded' && versionItem?.mimeType != 'application/quickNote' ">
+                                        <img
+                                            src="../images/uploading.png"/></div>
                                     </div>
                                   </div>
                                   <div class="rightDetails">
@@ -164,11 +169,11 @@
                             </div>
                             <div class="popupContent popinVersion">
                               <div group>
-                                <material-button (click)="approve(versionItem)" *ngIf="versionItem.approved == null"
+                                <material-button (click)="approve(versionItem)" *ngIf="versionItem.approved == null && isWriter"
                                                  class="menuItemVers">
                                   <span class="spanVers"> <i class="zmdi zmdi-check-circle approve"></i> </span> Approve
                                 </material-button>
-                                <material-button (click)="unapprove(versionItem)" *ngIf="versionItem.approved != null"
+                                <material-button (click)="unapprove(versionItem)" *ngIf="versionItem.approved != null && isWriter"
                                                  class="menuItemVers">
                                   <span class="spanVers"><i class="zmdi zmdi-check-circle nnApprove"></i> </span>
                                   Unapprove
@@ -180,11 +185,11 @@
                                 <!--Unlock-->
                                 <!--</material-button>-->
                               </div>
-                              <material-button class="menuItemVers">
+                              <material-button class="menuItemVers" *ngIf="false">
                                 <span class="spanVers"><i class="zmdi zmdi-comment commentVers"></i> </span>Comment
 
                               </material-button>
-                              <material-button (click)="delete()" class="menuItemVers">
+                              <material-button (click)="delete()" class="menuItemVers" *ngIf="false">
                                 <span class="spanVers"><i class="zmdi zmdi-delete delete"></i> </span> Delete
                               </material-button>
                             </div>

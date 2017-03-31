@@ -299,7 +299,7 @@ class ViewSubjectListComponent1 extends AppView<import3.SubjectListComponent> {
     _appEl_21 = new ViewContainer(21,19,this,_anchor_21);
     _TemplateRef_21_4 = new TemplateRef(_appEl_21,viewFactory_SubjectListComponent5);
     _NgFor_21_5 = new import19.NgFor(_appEl_21,_TemplateRef_21_4,this.parentInjector.get(import35.IterableDiffers),ref);
-    Text _text_22 = new Text('\n\n\n    ');
+    Text _text_22 = new Text('\n    ');
     _el_19.append(_text_22);
     Text _text_23 = new Text('\n  ');
     _el_4.append(_text_23);
@@ -443,7 +443,7 @@ class ViewSubjectListComponent1 extends AppView<import3.SubjectListComponent> {
   }
   void detectChangesInternal() {
     _NgIf_2_5.ngIf = ctx.infoPopupOpen;
-    final currVal_2 = 'subjects';
+    final currVal_2 = 'invitePeople';
     if (import11.checkBinding(_expr_2,currVal_2)) {
       _PostitComponent_6_3.name = currVal_2;
       _expr_2 = currVal_2;
@@ -674,7 +674,7 @@ class ViewSubjectListComponent2 extends AppView<import3.SubjectListComponent> {
     _el_18 = doc.createElement('div');
     _el_18.setAttribute(shimCAttr,'');
     _el_2.append(_el_18);
-    _el_18.className = 'userInfo timezone';
+    _el_18.className = 'userInfo timezone hidden';
     Text _text_19 = new Text(' Timezone UTC-7  9:24 am ');
     _el_18.append(_text_19);
     Text _text_20 = new Text('\n\n      ');
@@ -682,7 +682,7 @@ class ViewSubjectListComponent2 extends AppView<import3.SubjectListComponent> {
     _el_21 = doc.createElement('div');
     _el_21.setAttribute(shimCAttr,'');
     _el_2.append(_el_21);
-    _el_21.className = 'userInfo lastcnx';
+    _el_21.className = 'userInfo lastcnx hidden';
     Text _text_22 = new Text('Last connection: 5 mn ago');
     _el_21.append(_text_22);
     Text _text_23 = new Text('\n    ');
