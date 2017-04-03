@@ -3,6 +3,9 @@ import 'dart:async';
 
 import 'package:share_place/event_bus.dart';
 import 'package:share_place/environment.dart';
+import 'package:angular2/core.dart';
+import 'package:angular2/angular2.dart';
+import 'package:share_place/app_config.dart' as conf;
 
 class SocketIoClient {
   JsObject _io;
@@ -14,10 +17,20 @@ class SocketIoClient {
 
   Future<Null> connect(String url) async {
     //await disconnect(); //disconnect from the old connection (if any) before reconnecting
-    //_io = await context.callMethod('io',[url]);
-    _io = await context.callMethod('io');
+
+      /*if(conf.cookieSessionId.length>0){
+        _io = await context.callMethod('io', [url, {
+          "extraHeaders": {
+            "cookie": conf.cookieSessionId
+          }}
+        ]);
+      }else{
+        _io = await context.callMethod('io', [url]);
+      }*/
+    _io = await context.callMethod('io', [url]);
     this._socket = await _io.callMethod('connect', []);
-    await _socket.callMethod('on', ['connect', () { //js callback
+    await _socket.callMethod('on', ['connect', () {
+      //js callback
       connected = true;
       print('Connected to socket.io');
       attachBroadcast({
@@ -55,7 +68,8 @@ class SocketIoClient {
       return;
     }
 
-    _socket.callMethod('on', [eventName, (data) {
+    _socket.callMethod('on', [eventName
+    , (data) {
       callback(data);
     }
     ]);
@@ -68,7 +82,8 @@ class SocketIoClient {
     });
   }
 
-  disconnect() async {
+  disconnect() async
+  {
     if (_socket == null)
       return;
 
@@ -80,7 +95,9 @@ class SocketIoClient {
     eventMap.forEach((String event, PlaceParam fireParam) =>
         on(event, (data) {
           print("event received $event");
-          eventBus.fire({fireParam: data});
+          eventBus.fire({
+            fireParam: data
+          });
         })
     );
   }
@@ -115,14 +132,21 @@ class SocketIoClient {
   }
 
 
-  emit(String eventName, [data]) {
+  emit
+      (String
+  eventName
+      ,
+      [
+        data
+      ]) {
     if (data != null) {
       if (data is Map || data is Iterable) {
         this._socket.callMethod('emit', [eventName, new JsObject.jsify(data)]);
       } else {
         this._socket.callMethod('emit', [eventName, data]);
       }
-    } else {
+    }
+    else {
       this._socket.callMethod('emit', [eventName]);
     }
   }

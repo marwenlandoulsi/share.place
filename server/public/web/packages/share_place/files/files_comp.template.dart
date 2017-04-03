@@ -28,6 +28,8 @@ import 'package:share_place/common/format/file_size_pipe.dart';
 import 'cloud_file.dart';
 import 'package:angular2_components/angular2_components.dart';
 import 'package:share_place/postit/postit_component.dart';
+import 'package:share_place/users/info_popup/info_popup.dart';
+import 'package:share_place/users/info_popup/popup_parent.dart';
 import 'package:angular2/core.template.dart' as i0;
 import 'package:angular2/angular2.template.dart' as i1;
 import 'package:angular2/router.template.dart' as i2;
@@ -44,6 +46,8 @@ import 'package:share_place/common/format/file_size_pipe.template.dart' as i12;
 import 'cloud_file.template.dart' as i13;
 import 'package:angular2_components/angular2_components.template.dart' as i14;
 import 'package:share_place/postit/postit_component.template.dart' as i15;
+import 'package:share_place/users/info_popup/info_popup.template.dart' as i16;
+import 'package:share_place/users/info_popup/popup_parent.template.dart' as i17;
 export 'files_comp.dart';
 import 'files_comp.css.shim.dart' as import0;
 import 'package:angular2/src/core/render/api.dart';
@@ -86,30 +90,33 @@ import 'package:angular2_components/src/components/annotations/rtl_annotation.da
 import 'package:angular2_components/src/laminate/components/popup/popup.dart' as import38;
 import 'package:angular2_components/src/components/mixins/material_dropdown_base.dart' as import39;
 import 'package:angular2_components/src/components/content/deferred_content_aware.dart' as import40;
-import 'package:angular2_components/src/components/theme/dark_theme.dart' as import41;
-import 'package:angular2_components/src/components/material_button/material_button.dart' as import42;
-import 'package:angular2_components/src/components/material_button/material_button.template.dart' as import43;
-import 'package:angular2_components/src/components/theme/module.dart' as import44;
-import 'package:angular2_components/src/components/button_decorator/button_decorator.dart' as import45;
-import 'package:angular2_components/src/laminate/components/modal/modal.dart' as import46;
-import 'package:angular2_components/src/components/material_dialog/material_dialog.dart' as import47;
-import 'package:angular2_components/src/laminate/components/modal/modal.template.dart' as import48;
-import 'package:angular2_components/src/components/material_dialog/material_dialog.template.dart' as import49;
-import 'package:angular2_components/src/utils/angular/managed_zone/angular_2.dart' as import50;
-import 'package:angular2_components/src/utils/angular/imperative_view/imperative_view.dart' as import51;
-import 'package:angular2_components/src/laminate/ruler/dom_ruler.dart' as import52;
-import 'package:angular2_components/src/laminate/overlay/src/render/overlay_style_config.dart' as import53;
-import 'package:angular2_components/src/css/acux/zindexer.dart' as import54;
-import 'package:angular2_components/src/laminate/overlay/src/render/overlay_dom_render_service.dart' as import55;
-import 'package:angular2_components/src/laminate/overlay/src/overlay_dom_service.dart' as import56;
-import 'package:angular2_components/src/laminate/popup/module.dart' as import57;
-import 'package:angular2_components/src/utils/browser/window/module.dart' as import58;
-import 'package:angular2_components/src/utils/browser/dom_service/angular_2.dart' as import59;
-import 'package:angular2_components/src/utils/disposer/disposer.dart' as import60;
-import 'package:angular2/src/core/linker/dynamic_component_loader.dart' as import61;
-import 'package:angular2_components/src/laminate/overlay/module.dart' as import62;
-import 'package:angular2_components/src/utils/angular/managed_zone/src/managed_zone.dart' as import63;
-import 'package:angular2/src/core/linker/component_factory.dart' as import64;
+import '../users/info_popup/info_popup.dart' as import41;
+import '../users/info_popup/info_popup.template.dart' as import42;
+import 'package:angular2/src/security/dom_sanitization_service.dart' as import43;
+import 'package:angular2_components/src/components/theme/dark_theme.dart' as import44;
+import 'package:angular2_components/src/components/material_button/material_button.dart' as import45;
+import 'package:angular2_components/src/components/material_button/material_button.template.dart' as import46;
+import 'package:angular2_components/src/components/theme/module.dart' as import47;
+import 'package:angular2_components/src/components/button_decorator/button_decorator.dart' as import48;
+import 'package:angular2_components/src/laminate/components/modal/modal.dart' as import49;
+import 'package:angular2_components/src/components/material_dialog/material_dialog.dart' as import50;
+import 'package:angular2_components/src/laminate/components/modal/modal.template.dart' as import51;
+import 'package:angular2_components/src/components/material_dialog/material_dialog.template.dart' as import52;
+import 'package:angular2_components/src/utils/angular/managed_zone/angular_2.dart' as import53;
+import 'package:angular2_components/src/utils/angular/imperative_view/imperative_view.dart' as import54;
+import 'package:angular2_components/src/laminate/ruler/dom_ruler.dart' as import55;
+import 'package:angular2_components/src/laminate/overlay/src/render/overlay_style_config.dart' as import56;
+import 'package:angular2_components/src/css/acux/zindexer.dart' as import57;
+import 'package:angular2_components/src/laminate/overlay/src/render/overlay_dom_render_service.dart' as import58;
+import 'package:angular2_components/src/laminate/overlay/src/overlay_dom_service.dart' as import59;
+import 'package:angular2_components/src/laminate/popup/module.dart' as import60;
+import 'package:angular2_components/src/utils/browser/window/module.dart' as import61;
+import 'package:angular2_components/src/utils/browser/dom_service/angular_2.dart' as import62;
+import 'package:angular2_components/src/utils/disposer/disposer.dart' as import63;
+import 'package:angular2/src/core/linker/dynamic_component_loader.dart' as import64;
+import 'package:angular2_components/src/laminate/overlay/module.dart' as import65;
+import 'package:angular2_components/src/utils/angular/managed_zone/src/managed_zone.dart' as import66;
+import 'package:angular2/src/core/linker/component_factory.dart' as import67;
 const List<dynamic> styles_FilesComp = const [import0.styles];
 RenderComponentType renderType_FilesComp;
 class ViewFilesComp0 extends AppView<import3.FilesComp> {
@@ -483,7 +490,7 @@ class ViewFilesComp3 extends AppView<import3.FilesComp> {
     var _anchor_15 = new Comment('template bindings={}');
     _el_0?.append(_anchor_15);
     _appEl_15 = new ViewContainer(15,0,this,_anchor_15);
-    _TemplateRef_15_4 = new TemplateRef(_appEl_15,viewFactory_FilesComp15);
+    _TemplateRef_15_4 = new TemplateRef(_appEl_15,viewFactory_FilesComp19);
     _NgIf_15_5 = new NgIf(_appEl_15,_TemplateRef_15_4);
     Text _text_16 = new Text('\n                ');
     _el_0.append(_text_16);
@@ -553,101 +560,107 @@ class ViewFilesComp4 extends AppView<import3.FilesComp> {
   Element _el_7;
   Element _el_9;
   Element _el_11;
+  import25.PopupSourceDirective _PopupSourceDirective_11_2;
   Element _el_13;
   Element _el_14;
   Element _el_16;
   Text _text_17;
-  Element _el_20;
+  ViewContainer _appEl_19;
+  dynamic _TemplateRef_19_4;
+  NgIf _NgIf_19_5;
   Element _el_22;
   Element _el_24;
   Element _el_26;
   Element _el_28;
   Element _el_30;
-  ViewContainer _appEl_32;
-  dynamic _TemplateRef_32_4;
-  NgIf _NgIf_32_5;
-  Element _el_36;
-  Element _el_39;
+  Element _el_32;
+  ViewContainer _appEl_34;
+  dynamic _TemplateRef_34_4;
+  NgIf _NgIf_34_5;
+  Element _el_38;
   Element _el_41;
   Element _el_43;
   Element _el_45;
-  Text _text_46;
-  Element _el_49;
+  Element _el_47;
+  Text _text_48;
   Element _el_51;
-  Text _text_52;
-  Element _el_54;
-  Text _text_55;
-  Element _el_62;
+  Element _el_53;
+  Text _text_54;
+  Element _el_56;
+  Text _text_57;
   Element _el_64;
-  Text _text_65;
-  Element _el_67;
-  import25.PopupSourceDirective _PopupSourceDirective_67_2;
-  Element _el_73;
-  ViewContainer _appEl_73;
-  import26.MaterialPopupComponent _MaterialPopupComponent_73_3;
-  dynamic __PopupComponent_73_4;
-  dynamic __DropdownHandle_73_5;
-  dynamic __DeferredContentAware_73_6;
-  dynamic __PopupHierarchy_73_7;
-  dynamic __PopupRef_73_8;
+  Element _el_66;
+  Text _text_67;
+  Element _el_69;
+  import25.PopupSourceDirective _PopupSourceDirective_69_2;
   Element _el_75;
+  ViewContainer _appEl_75;
+  import26.MaterialPopupComponent _MaterialPopupComponent_75_3;
+  dynamic __PopupComponent_75_4;
+  dynamic __DropdownHandle_75_5;
+  dynamic __DeferredContentAware_75_6;
+  dynamic __PopupHierarchy_75_7;
+  dynamic __PopupRef_75_8;
   Element _el_77;
-  Text _text_78;
-  Element _el_80;
-  Text _text_81;
-  Element _el_84;
+  Element _el_79;
+  Text _text_80;
+  Element _el_82;
+  Text _text_83;
   Element _el_86;
-  ViewContainer _appEl_88;
-  dynamic _TemplateRef_88_4;
-  NgIf _NgIf_88_5;
+  Element _el_88;
   ViewContainer _appEl_90;
   dynamic _TemplateRef_90_4;
   NgIf _NgIf_90_5;
-  ViewContainer _appEl_99;
-  dynamic _TemplateRef_99_4;
-  NgIf _NgIf_99_5;
+  ViewContainer _appEl_92;
+  dynamic _TemplateRef_92_4;
+  NgIf _NgIf_92_5;
   ViewContainer _appEl_101;
   dynamic _TemplateRef_101_4;
   NgIf _NgIf_101_5;
+  ViewContainer _appEl_103;
+  dynamic _TemplateRef_103_4;
+  NgIf _NgIf_103_5;
   var _expr_0 = uninitialized;
   var _expr_1 = uninitialized;
   var _expr_2 = uninitialized;
-  var _expr_3 = uninitialized;
   var _expr_4 = uninitialized;
+  var _expr_5 = uninitialized;
   var _expr_6 = uninitialized;
-  var _expr_8 = uninitialized;
-  var _expr_9 = uninitialized;
+  var _expr_7 = uninitialized;
   var _expr_10 = uninitialized;
-  var _expr_11 = uninitialized;
+  var _expr_12 = uninitialized;
   var _expr_13 = uninitialized;
   var _expr_14 = uninitialized;
   var _expr_15 = uninitialized;
-  var _expr_16 = uninitialized;
   var _expr_17 = uninitialized;
   var _expr_18 = uninitialized;
+  var _expr_19 = uninitialized;
+  var _expr_20 = uninitialized;
+  var _expr_21 = uninitialized;
+  var _expr_22 = uninitialized;
   var _pipe_agoDateFormat_0_3;
   var _pipe_agoDateFormat_0_4;
   var _pipe_fileSizeFormat_1_0;
   ViewFilesComp4(import9.Injector parentInjector,ViewContainer declarationEl): super(ViewFilesComp4,renderType_FilesComp,import10.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
-  dynamic get _PopupComponent_73_4 {
-    if ((this.__PopupComponent_73_4 == null)) { (__PopupComponent_73_4 = this._MaterialPopupComponent_73_3); }
-    return this.__PopupComponent_73_4;
+  dynamic get _PopupComponent_75_4 {
+    if ((this.__PopupComponent_75_4 == null)) { (__PopupComponent_75_4 = this._MaterialPopupComponent_75_3); }
+    return this.__PopupComponent_75_4;
   }
-  dynamic get _DropdownHandle_73_5 {
-    if ((this.__DropdownHandle_73_5 == null)) { (__DropdownHandle_73_5 = this._MaterialPopupComponent_73_3); }
-    return this.__DropdownHandle_73_5;
+  dynamic get _DropdownHandle_75_5 {
+    if ((this.__DropdownHandle_75_5 == null)) { (__DropdownHandle_75_5 = this._MaterialPopupComponent_75_3); }
+    return this.__DropdownHandle_75_5;
   }
-  dynamic get _DeferredContentAware_73_6 {
-    if ((this.__DeferredContentAware_73_6 == null)) { (__DeferredContentAware_73_6 = this._PopupComponent_73_4); }
-    return this.__DeferredContentAware_73_6;
+  dynamic get _DeferredContentAware_75_6 {
+    if ((this.__DeferredContentAware_75_6 == null)) { (__DeferredContentAware_75_6 = this._PopupComponent_75_4); }
+    return this.__DeferredContentAware_75_6;
   }
-  dynamic get _PopupHierarchy_73_7 {
-    if ((this.__PopupHierarchy_73_7 == null)) { (__PopupHierarchy_73_7 = import26.MaterialPopupComponent_getHierarchy(this._PopupComponent_73_4)); }
-    return this.__PopupHierarchy_73_7;
+  dynamic get _PopupHierarchy_75_7 {
+    if ((this.__PopupHierarchy_75_7 == null)) { (__PopupHierarchy_75_7 = import26.MaterialPopupComponent_getHierarchy(this._PopupComponent_75_4)); }
+    return this.__PopupHierarchy_75_7;
   }
-  dynamic get _PopupRef_73_8 {
-    if ((this.__PopupRef_73_8 == null)) { (__PopupRef_73_8 = import26.MaterialPopupComponent_getResolvedPopupRef(this._PopupComponent_73_4)); }
-    return this.__PopupRef_73_8;
+  dynamic get _PopupRef_75_8 {
+    if ((this.__PopupRef_75_8 == null)) { (__PopupRef_75_8 = import26.MaterialPopupComponent_getResolvedPopupRef(this._PopupComponent_75_4)); }
+    return this.__PopupRef_75_8;
   }
   ViewContainer createInternal(dynamic rootSelector) {
     var doc = document;
@@ -685,7 +698,11 @@ class ViewFilesComp4 extends AppView<import3.FilesComp> {
     _el_11 = doc.createElement('div');
     _el_11.setAttribute(shimCAttr,'');
     _el_9.append(_el_11);
+    createAttr(_el_11,'alignPositionX','before');
+    createAttr(_el_11,'alignPositionY','start');
     _el_11.className = 'actionPropsBlock';
+    createAttr(_el_11,'popupSource','');
+    _PopupSourceDirective_11_2 = new import25.PopupSourceDirective(this.parentInjector.get(import27.DomPopupSourceFactory),new ElementRef(_el_11),this.parentInjector.get(import28.ReferenceDirective,null));
     Text _text_12 = new Text('\n                              ');
     _el_11.append(_text_12);
     _el_13 = doc.createElement('span');
@@ -704,273 +721,282 @@ class ViewFilesComp4 extends AppView<import3.FilesComp> {
     _el_16.className = 'comm-ts';
     _text_17 = new Text('');
     _el_16.append(_text_17);
-    Text _text_18 = new Text('\n                            ');
+    Text _text_18 = new Text('\n                              ');
     _el_11.append(_text_18);
-    Text _text_19 = new Text('\n\n                            ');
-    _el_9.append(_text_19);
-    _el_20 = doc.createElement('div');
-    _el_20.setAttribute(shimCAttr,'');
-    _el_9.append(_el_20);
-    _el_20.className = 'bubble';
-    Text _text_21 = new Text('\n\n                              ');
-    _el_20.append(_text_21);
+    var _anchor_19 = new Comment('template bindings={}');
+    _el_11?.append(_anchor_19);
+    _appEl_19 = new ViewContainer(19,11,this,_anchor_19);
+    _TemplateRef_19_4 = new TemplateRef(_appEl_19,viewFactory_FilesComp13);
+    _NgIf_19_5 = new NgIf(_appEl_19,_TemplateRef_19_4);
+    Text _text_20 = new Text('\n                            ');
+    _el_11.append(_text_20);
+    Text _text_21 = new Text('\n\n                            ');
+    _el_9.append(_text_21);
     _el_22 = doc.createElement('div');
     _el_22.setAttribute(shimCAttr,'');
-    _el_20.append(_el_22);
-    _el_22.className = 'bubbleContent';
-    Text _text_23 = new Text('\n                                ');
+    _el_9.append(_el_22);
+    _el_22.className = 'bubble';
+    Text _text_23 = new Text('\n\n                              ');
     _el_22.append(_text_23);
     _el_24 = doc.createElement('div');
     _el_24.setAttribute(shimCAttr,'');
     _el_22.append(_el_24);
-    _el_24.className = 'pLeft';
-    Text _text_25 = new Text('\n                                  ');
+    _el_24.className = 'bubbleContent';
+    Text _text_25 = new Text('\n                                ');
     _el_24.append(_text_25);
     _el_26 = doc.createElement('div');
     _el_26.setAttribute(shimCAttr,'');
     _el_24.append(_el_26);
-    _el_26.className = 'fileThumb';
-    Text _text_27 = new Text('\n                                    ');
+    _el_26.className = 'pLeft';
+    Text _text_27 = new Text('\n                                  ');
     _el_26.append(_text_27);
     _el_28 = doc.createElement('div');
     _el_28.setAttribute(shimCAttr,'');
     _el_26.append(_el_28);
-    _el_28.className = 'fileThumb_bg';
-    Text _text_29 = new Text('\n                                      ');
+    _el_28.className = 'fileThumb';
+    Text _text_29 = new Text('\n                                    ');
     _el_28.append(_text_29);
-    _el_30 = doc.createElement('img');
+    _el_30 = doc.createElement('div');
     _el_30.setAttribute(shimCAttr,'');
     _el_28.append(_el_30);
-    _el_30.className = 'thumbnail';
+    _el_30.className = 'fileThumb_bg';
     Text _text_31 = new Text('\n                                      ');
-    _el_28.append(_text_31);
-    var _anchor_32 = new Comment('template bindings={}');
-    _el_28?.append(_anchor_32);
-    _appEl_32 = new ViewContainer(32,28,this,_anchor_32);
-    _TemplateRef_32_4 = new TemplateRef(_appEl_32,viewFactory_FilesComp10);
-    _NgIf_32_5 = new NgIf(_appEl_32,_TemplateRef_32_4);
-    Text _text_33 = new Text('\n                                    ');
-    _el_28.append(_text_33);
-    Text _text_34 = new Text('\n                                  ');
-    _el_26.append(_text_34);
-    Text _text_35 = new Text('\n                                  ');
-    _el_24.append(_text_35);
-    _el_36 = doc.createElement('div');
-    _el_36.setAttribute(shimCAttr,'');
-    _el_24.append(_el_36);
-    _el_36.className = 'rightDetails';
-    Text _text_37 = new Text('\n                                    ');
-    _el_36.append(_text_37);
-    Text _text_38 = new Text('\n                                    ');
-    _el_36.append(_text_38);
-    _el_39 = doc.createElement('div');
-    _el_39.setAttribute(shimCAttr,'');
-    _el_36.append(_el_39);
-    _el_39.className = 'fileProps';
-    Text _text_40 = new Text('\n                                      ');
-    _el_39.append(_text_40);
+    _el_30.append(_text_31);
+    _el_32 = doc.createElement('img');
+    _el_32.setAttribute(shimCAttr,'');
+    _el_30.append(_el_32);
+    _el_32.className = 'thumbnail';
+    Text _text_33 = new Text('\n                                      ');
+    _el_30.append(_text_33);
+    var _anchor_34 = new Comment('template bindings={}');
+    _el_30?.append(_anchor_34);
+    _appEl_34 = new ViewContainer(34,30,this,_anchor_34);
+    _TemplateRef_34_4 = new TemplateRef(_appEl_34,viewFactory_FilesComp14);
+    _NgIf_34_5 = new NgIf(_appEl_34,_TemplateRef_34_4);
+    Text _text_35 = new Text('\n                                    ');
+    _el_30.append(_text_35);
+    Text _text_36 = new Text('\n                                  ');
+    _el_28.append(_text_36);
+    Text _text_37 = new Text('\n                                  ');
+    _el_26.append(_text_37);
+    _el_38 = doc.createElement('div');
+    _el_38.setAttribute(shimCAttr,'');
+    _el_26.append(_el_38);
+    _el_38.className = 'rightDetails';
+    Text _text_39 = new Text('\n                                    ');
+    _el_38.append(_text_39);
+    Text _text_40 = new Text('\n                                    ');
+    _el_38.append(_text_40);
     _el_41 = doc.createElement('div');
     _el_41.setAttribute(shimCAttr,'');
-    _el_39.append(_el_41);
-    _el_41.className = 'line';
-    Text _text_42 = new Text('\n                                        ');
+    _el_38.append(_el_41);
+    _el_41.className = 'fileProps';
+    Text _text_42 = new Text('\n                                      ');
     _el_41.append(_text_42);
     _el_43 = doc.createElement('div');
     _el_43.setAttribute(shimCAttr,'');
     _el_41.append(_el_43);
-    _el_43.className = 'fileLink';
-    Text _text_44 = new Text('\n                                          ');
+    _el_43.className = 'line';
+    Text _text_44 = new Text('\n                                        ');
     _el_43.append(_text_44);
     _el_45 = doc.createElement('div');
     _el_45.setAttribute(shimCAttr,'');
     _el_43.append(_el_45);
-    _el_45.className = 'fileName';
-    _text_46 = new Text('');
+    _el_45.className = 'fileLink';
+    Text _text_46 = new Text('\n                                          ');
     _el_45.append(_text_46);
-    Text _text_47 = new Text('\n                                        ');
-    _el_43.append(_text_47);
-    Text _text_48 = new Text('\n                                        ');
-    _el_41.append(_text_48);
-    _el_49 = doc.createElement('div');
-    _el_49.setAttribute(shimCAttr,'');
-    _el_41.append(_el_49);
-    _el_49.className = 'linerow';
-    Text _text_50 = new Text('\n                                          ');
-    _el_49.append(_text_50);
-    _el_51 = doc.createElement('span');
+    _el_47 = doc.createElement('div');
+    _el_47.setAttribute(shimCAttr,'');
+    _el_45.append(_el_47);
+    _el_47.className = 'fileName';
+    _text_48 = new Text('');
+    _el_47.append(_text_48);
+    Text _text_49 = new Text('\n                                        ');
+    _el_45.append(_text_49);
+    Text _text_50 = new Text('\n                                        ');
+    _el_43.append(_text_50);
+    _el_51 = doc.createElement('div');
     _el_51.setAttribute(shimCAttr,'');
-    _el_49.append(_el_51);
-    _el_51.className = 'filetypedoc';
-    _text_52 = new Text('');
+    _el_43.append(_el_51);
+    _el_51.className = 'linerow';
+    Text _text_52 = new Text('\n                                          ');
     _el_51.append(_text_52);
-    Text _text_53 = new Text('\n                                          ');
-    _el_49.append(_text_53);
-    _el_54 = doc.createElement('span');
-    _el_54.setAttribute(shimCAttr,'');
-    _el_49.append(_el_54);
-    _el_54.className = 'fileSize';
-    _text_55 = new Text('');
-    _el_54.append(_text_55);
-    Text _text_56 = new Text('\n                                        ');
-    _el_49.append(_text_56);
-    Text _text_57 = new Text('\n                                      ');
-    _el_41.append(_text_57);
-    Text _text_58 = new Text('\n                                    ');
-    _el_39.append(_text_58);
-    Text _text_59 = new Text('\n                                  ');
-    _el_36.append(_text_59);
-    Text _text_60 = new Text('\n                                ');
-    _el_24.append(_text_60);
-    Text _text_61 = new Text('\n\n                                ');
-    _el_22.append(_text_61);
-    _el_62 = doc.createElement('div');
-    _el_62.setAttribute(shimCAttr,'');
-    _el_22.append(_el_62);
-    _el_62.className = 'fileMoreActions';
-    Text _text_63 = new Text('\n                                  ');
-    _el_62.append(_text_63);
-    _el_64 = doc.createElement('span');
+    _el_53 = doc.createElement('span');
+    _el_53.setAttribute(shimCAttr,'');
+    _el_51.append(_el_53);
+    _el_53.className = 'filetypedoc';
+    _text_54 = new Text('');
+    _el_53.append(_text_54);
+    Text _text_55 = new Text('\n                                          ');
+    _el_51.append(_text_55);
+    _el_56 = doc.createElement('span');
+    _el_56.setAttribute(shimCAttr,'');
+    _el_51.append(_el_56);
+    _el_56.className = 'fileSize';
+    _text_57 = new Text('');
+    _el_56.append(_text_57);
+    Text _text_58 = new Text('\n                                        ');
+    _el_51.append(_text_58);
+    Text _text_59 = new Text('\n                                      ');
+    _el_43.append(_text_59);
+    Text _text_60 = new Text('\n                                    ');
+    _el_41.append(_text_60);
+    Text _text_61 = new Text('\n                                  ');
+    _el_38.append(_text_61);
+    Text _text_62 = new Text('\n                                ');
+    _el_26.append(_text_62);
+    Text _text_63 = new Text('\n\n                                ');
+    _el_24.append(_text_63);
+    _el_64 = doc.createElement('div');
     _el_64.setAttribute(shimCAttr,'');
-    _el_62.append(_el_64);
-    _el_64.className = 'fileversion';
-    _text_65 = new Text('');
+    _el_24.append(_el_64);
+    _el_64.className = 'fileMoreActions';
+    Text _text_65 = new Text('\n                                  ');
     _el_64.append(_text_65);
-    Text _text_66 = new Text('\n                                  ');
-    _el_62.append(_text_66);
-    _el_67 = doc.createElement('span');
-    _el_67.setAttribute(shimCAttr,'');
-    _el_62.append(_el_67);
-    _el_67.className = 'moreActions';
-    createAttr(_el_67,'popupSource','');
-    _PopupSourceDirective_67_2 = new import25.PopupSourceDirective(this.parentInjector.get(import27.DomPopupSourceFactory),new ElementRef(_el_67),this.parentInjector.get(import28.ReferenceDirective,null));
-    Text _text_68 = new Text('\n                                ');
-    _el_62.append(_text_68);
-    Text _text_69 = new Text('\n\n                              ');
-    _el_22.append(_text_69);
-    Text _text_70 = new Text('\n\n                            ');
-    _el_20.append(_text_70);
-    Text _text_71 = new Text('\n                          ');
-    _el_9.append(_text_71);
-    Text _text_72 = new Text('\n\n                          ');
-    _el_7.append(_text_72);
-    _el_73 = doc.createElement('material-popup');
-    _el_73.setAttribute(shimCAttr,'');
-    _el_7.append(_el_73);
-    _el_73.className = 'popVersion ';
-    createAttr(_el_73,'defaultPopupSizeProvider','');
-    createAttr(_el_73,'enforceSpaceConstraints','');
-    _appEl_73 = new ViewContainer(73,7,this,_el_73);
-    var compView_73 = import29.viewFactory_MaterialPopupComponent0(this.injector(73),_appEl_73);
-    _MaterialPopupComponent_73_3 = new import26.MaterialPopupComponent(this.parentInjector.get(import30.DomService),this.parentInjector.get(import31.PopupHierarchy,null),this.parentInjector.get(import32.PopupRef,null),this.parentInjector.get(import33.NgZone),this.parentInjector.get(import34.PopupService),this.parentInjector.get(import35.OverlayService),this.parentInjector.get(import36.PopupSizeProvider,null),this.parentInjector.get(import37.rtlToken,null),compView_73.ref);
-    _appEl_73.initComponent(_MaterialPopupComponent_73_3,compView_73);
-    Text _text_74 = new Text('\n                            ');
-    _el_75 = doc.createElement('div');
+    _el_66 = doc.createElement('span');
+    _el_66.setAttribute(shimCAttr,'');
+    _el_64.append(_el_66);
+    _el_66.className = 'fileversion';
+    _text_67 = new Text('');
+    _el_66.append(_text_67);
+    Text _text_68 = new Text('\n                                  ');
+    _el_64.append(_text_68);
+    _el_69 = doc.createElement('span');
+    _el_69.setAttribute(shimCAttr,'');
+    _el_64.append(_el_69);
+    _el_69.className = 'moreActions';
+    createAttr(_el_69,'popupSource','');
+    _PopupSourceDirective_69_2 = new import25.PopupSourceDirective(this.parentInjector.get(import27.DomPopupSourceFactory),new ElementRef(_el_69),this.parentInjector.get(import28.ReferenceDirective,null));
+    Text _text_70 = new Text('\n                                ');
+    _el_64.append(_text_70);
+    Text _text_71 = new Text('\n\n                              ');
+    _el_24.append(_text_71);
+    Text _text_72 = new Text('\n\n                            ');
+    _el_22.append(_text_72);
+    Text _text_73 = new Text('\n                          ');
+    _el_9.append(_text_73);
+    Text _text_74 = new Text('\n\n                          ');
+    _el_7.append(_text_74);
+    _el_75 = doc.createElement('material-popup');
     _el_75.setAttribute(shimCAttr,'');
-    _el_75.className = 'headerPopVersion';
-    createAttr(_el_75,'header','');
-    Text _text_76 = new Text('\n                              ');
-    _el_75.append(_text_76);
+    _el_7.append(_el_75);
+    _el_75.className = 'popVersion ';
+    createAttr(_el_75,'defaultPopupSizeProvider','');
+    createAttr(_el_75,'enforceSpaceConstraints','');
+    _appEl_75 = new ViewContainer(75,7,this,_el_75);
+    var compView_75 = import29.viewFactory_MaterialPopupComponent0(this.injector(75),_appEl_75);
+    _MaterialPopupComponent_75_3 = new import26.MaterialPopupComponent(this.parentInjector.get(import30.DomService),this.parentInjector.get(import31.PopupHierarchy,null),this.parentInjector.get(import32.PopupRef,null),this.parentInjector.get(import33.NgZone),this.parentInjector.get(import34.PopupService),this.parentInjector.get(import35.OverlayService),this.parentInjector.get(import36.PopupSizeProvider,null),this.parentInjector.get(import37.rtlToken,null),compView_75.ref);
+    _appEl_75.initComponent(_MaterialPopupComponent_75_3,compView_75);
+    Text _text_76 = new Text('\n                            ');
     _el_77 = doc.createElement('div');
     _el_77.setAttribute(shimCAttr,'');
-    _el_75.append(_el_77);
-    _el_77.className = 'fileName';
-    _text_78 = new Text('');
+    _el_77.className = 'headerPopVersion';
+    createAttr(_el_77,'header','');
+    Text _text_78 = new Text('\n                              ');
     _el_77.append(_text_78);
-    Text _text_79 = new Text('\n                              ');
-    _el_75.append(_text_79);
-    _el_80 = doc.createElement('div');
-    _el_80.setAttribute(shimCAttr,'');
-    _el_75.append(_el_80);
-    _el_80.className = 'fileInfo';
-    _text_81 = new Text('');
-    _el_80.append(_text_81);
-    Text _text_82 = new Text('\n                            ');
-    _el_75.append(_text_82);
-    Text _text_83 = new Text('\n                            ');
-    _el_84 = doc.createElement('div');
-    _el_84.setAttribute(shimCAttr,'');
-    _el_84.className = 'popupContent popinVersion';
-    Text _text_85 = new Text('\n                              ');
-    _el_84.append(_text_85);
+    _el_79 = doc.createElement('div');
+    _el_79.setAttribute(shimCAttr,'');
+    _el_77.append(_el_79);
+    _el_79.className = 'fileName';
+    _text_80 = new Text('');
+    _el_79.append(_text_80);
+    Text _text_81 = new Text('\n                              ');
+    _el_77.append(_text_81);
+    _el_82 = doc.createElement('div');
+    _el_82.setAttribute(shimCAttr,'');
+    _el_77.append(_el_82);
+    _el_82.className = 'fileInfo';
+    _text_83 = new Text('');
+    _el_82.append(_text_83);
+    Text _text_84 = new Text('\n                            ');
+    _el_77.append(_text_84);
+    Text _text_85 = new Text('\n                            ');
     _el_86 = doc.createElement('div');
     _el_86.setAttribute(shimCAttr,'');
-    _el_84.append(_el_86);
-    createAttr(_el_86,'group','');
-    Text _text_87 = new Text('\n                                ');
+    _el_86.className = 'popupContent popinVersion';
+    Text _text_87 = new Text('\n                              ');
     _el_86.append(_text_87);
-    var _anchor_88 = new Comment('template bindings={}');
-    _el_86?.append(_anchor_88);
-    _appEl_88 = new ViewContainer(88,86,this,_anchor_88);
-    _TemplateRef_88_4 = new TemplateRef(_appEl_88,viewFactory_FilesComp11);
-    _NgIf_88_5 = new NgIf(_appEl_88,_TemplateRef_88_4);
+    _el_88 = doc.createElement('div');
+    _el_88.setAttribute(shimCAttr,'');
+    _el_86.append(_el_88);
+    createAttr(_el_88,'group','');
     Text _text_89 = new Text('\n                                ');
-    _el_86.append(_text_89);
+    _el_88.append(_text_89);
     var _anchor_90 = new Comment('template bindings={}');
-    _el_86?.append(_anchor_90);
-    _appEl_90 = new ViewContainer(90,86,this,_anchor_90);
-    _TemplateRef_90_4 = new TemplateRef(_appEl_90,viewFactory_FilesComp12);
+    _el_88?.append(_anchor_90);
+    _appEl_90 = new ViewContainer(90,88,this,_anchor_90);
+    _TemplateRef_90_4 = new TemplateRef(_appEl_90,viewFactory_FilesComp15);
     _NgIf_90_5 = new NgIf(_appEl_90,_TemplateRef_90_4);
     Text _text_91 = new Text('\n                                ');
-    _el_86.append(_text_91);
-    Text _text_92 = new Text('\n                                ');
-    _el_86.append(_text_92);
+    _el_88.append(_text_91);
+    var _anchor_92 = new Comment('template bindings={}');
+    _el_88?.append(_anchor_92);
+    _appEl_92 = new ViewContainer(92,88,this,_anchor_92);
+    _TemplateRef_92_4 = new TemplateRef(_appEl_92,viewFactory_FilesComp16);
+    _NgIf_92_5 = new NgIf(_appEl_92,_TemplateRef_92_4);
     Text _text_93 = new Text('\n                                ');
-    _el_86.append(_text_93);
+    _el_88.append(_text_93);
     Text _text_94 = new Text('\n                                ');
-    _el_86.append(_text_94);
+    _el_88.append(_text_94);
     Text _text_95 = new Text('\n                                ');
-    _el_86.append(_text_95);
+    _el_88.append(_text_95);
     Text _text_96 = new Text('\n                                ');
-    _el_86.append(_text_96);
-    Text _text_97 = new Text('\n                              ');
-    _el_86.append(_text_97);
-    Text _text_98 = new Text('\n                              ');
-    _el_84.append(_text_98);
-    var _anchor_99 = new Comment('template bindings={}');
-    _el_84?.append(_anchor_99);
-    _appEl_99 = new ViewContainer(99,84,this,_anchor_99);
-    _TemplateRef_99_4 = new TemplateRef(_appEl_99,viewFactory_FilesComp13);
-    _NgIf_99_5 = new NgIf(_appEl_99,_TemplateRef_99_4);
+    _el_88.append(_text_96);
+    Text _text_97 = new Text('\n                                ');
+    _el_88.append(_text_97);
+    Text _text_98 = new Text('\n                                ');
+    _el_88.append(_text_98);
+    Text _text_99 = new Text('\n                              ');
+    _el_88.append(_text_99);
     Text _text_100 = new Text('\n                              ');
-    _el_84.append(_text_100);
+    _el_86.append(_text_100);
     var _anchor_101 = new Comment('template bindings={}');
-    _el_84?.append(_anchor_101);
-    _appEl_101 = new ViewContainer(101,84,this,_anchor_101);
-    _TemplateRef_101_4 = new TemplateRef(_appEl_101,viewFactory_FilesComp14);
+    _el_86?.append(_anchor_101);
+    _appEl_101 = new ViewContainer(101,86,this,_anchor_101);
+    _TemplateRef_101_4 = new TemplateRef(_appEl_101,viewFactory_FilesComp17);
     _NgIf_101_5 = new NgIf(_appEl_101,_TemplateRef_101_4);
-    Text _text_102 = new Text('\n                            ');
-    _el_84.append(_text_102);
-    Text _text_103 = new Text('\n                          ');
-    compView_73.createComp([
-      [_el_75],[
-        _text_74,_text_83,_el_84,_text_103
+    Text _text_102 = new Text('\n                              ');
+    _el_86.append(_text_102);
+    var _anchor_103 = new Comment('template bindings={}');
+    _el_86?.append(_anchor_103);
+    _appEl_103 = new ViewContainer(103,86,this,_anchor_103);
+    _TemplateRef_103_4 = new TemplateRef(_appEl_103,viewFactory_FilesComp18);
+    _NgIf_103_5 = new NgIf(_appEl_103,_TemplateRef_103_4);
+    Text _text_104 = new Text('\n                            ');
+    _el_86.append(_text_104);
+    Text _text_105 = new Text('\n                          ');
+    compView_75.createComp([
+      [_el_77],[
+        _text_76,_text_85,_el_86,_text_105
       ]
       ,[]
     ]
     ,null);
-    Text _text_104 = new Text('\n                        ');
-    _el_7.append(_text_104);
-    Text _text_105 = new Text('\n                      ');
-    _el_2.append(_text_105);
-    Text _text_106 = new Text('\n                    ');
-    _el_0.append(_text_106);
-    listen(_el_24,'click',evt(_handle_click_24_0));
-    listen(_el_67,'click',evt(_handle_click_67_0));
+    Text _text_106 = new Text('\n                        ');
+    _el_7.append(_text_106);
+    Text _text_107 = new Text('\n                      ');
+    _el_2.append(_text_107);
+    Text _text_108 = new Text('\n                    ');
+    _el_0.append(_text_108);
+    listen(_el_11,'click',evt(_handle_click_11_0));
+    listen(_el_26,'click',evt(_handle_click_26_0));
+    listen(_el_69,'click',evt(_handle_click_69_0));
     this._pipe_agoDateFormat_0_3 = import13.pureProxy1((parent.parent.parent as ViewFilesComp0)._pipe_agoDateFormat_0.transform);
     this._pipe_agoDateFormat_0_4 = import13.pureProxy1((parent.parent.parent as ViewFilesComp0)._pipe_agoDateFormat_0.transform);
     this._pipe_fileSizeFormat_1_0 = import13.pureProxy1((parent.parent.parent as ViewFilesComp0)._pipe_fileSizeFormat_1.transform);
     init([_el_0],[
       _el_0,_text_1,_el_2,_text_3,_anchor_4,_text_5,_text_6,_el_7,_text_8,_el_9,_text_10,
-      _el_11,_text_12,_el_13,_el_14,_text_15,_el_16,_text_17,_text_18,_text_19,_el_20,
+      _el_11,_text_12,_el_13,_el_14,_text_15,_el_16,_text_17,_text_18,_anchor_19,_text_20,
       _text_21,_el_22,_text_23,_el_24,_text_25,_el_26,_text_27,_el_28,_text_29,_el_30,
-      _text_31,_anchor_32,_text_33,_text_34,_text_35,_el_36,_text_37,_text_38,_el_39,
-      _text_40,_el_41,_text_42,_el_43,_text_44,_el_45,_text_46,_text_47,_text_48,_el_49,
-      _text_50,_el_51,_text_52,_text_53,_el_54,_text_55,_text_56,_text_57,_text_58,_text_59,
-      _text_60,_text_61,_el_62,_text_63,_el_64,_text_65,_text_66,_el_67,_text_68,_text_69,
-      _text_70,_text_71,_text_72,_el_73,_text_74,_el_75,_text_76,_el_77,_text_78,_text_79,
-      _el_80,_text_81,_text_82,_text_83,_el_84,_text_85,_el_86,_text_87,_anchor_88,_text_89,
-      _anchor_90,_text_91,_text_92,_text_93,_text_94,_text_95,_text_96,_text_97,_text_98,
-      _anchor_99,_text_100,_anchor_101,_text_102,_text_103,_text_104,_text_105,_text_106
+      _text_31,_el_32,_text_33,_anchor_34,_text_35,_text_36,_text_37,_el_38,_text_39,
+      _text_40,_el_41,_text_42,_el_43,_text_44,_el_45,_text_46,_el_47,_text_48,_text_49,
+      _text_50,_el_51,_text_52,_el_53,_text_54,_text_55,_el_56,_text_57,_text_58,_text_59,
+      _text_60,_text_61,_text_62,_text_63,_el_64,_text_65,_el_66,_text_67,_text_68,_el_69,
+      _text_70,_text_71,_text_72,_text_73,_text_74,_el_75,_text_76,_el_77,_text_78,_el_79,
+      _text_80,_text_81,_el_82,_text_83,_text_84,_text_85,_el_86,_text_87,_el_88,_text_89,
+      _anchor_90,_text_91,_anchor_92,_text_93,_text_94,_text_95,_text_96,_text_97,_text_98,
+      _text_99,_text_100,_anchor_101,_text_102,_anchor_103,_text_104,_text_105,_text_106,
+      _text_107,_text_108
     ]
     ,[]);
     return null;
@@ -978,23 +1004,26 @@ class ViewFilesComp4 extends AppView<import3.FilesComp> {
   dynamic injectorGetInternal(dynamic token,int requestNodeIndex,dynamic notFoundResult) {
     if ((identical(token, TemplateRef) && (4 == requestNodeIndex))) { return _TemplateRef_4_4; }
     if ((identical(token, import16.NgFor) && (4 == requestNodeIndex))) { return _NgFor_4_5; }
-    if ((identical(token, TemplateRef) && (32 == requestNodeIndex))) { return _TemplateRef_32_4; }
-    if ((identical(token, NgIf) && (32 == requestNodeIndex))) { return _NgIf_32_5; }
-    if ((identical(token, import25.PopupSourceDirective) && (67 == requestNodeIndex))) { return _PopupSourceDirective_67_2; }
-    if ((identical(token, TemplateRef) && (88 == requestNodeIndex))) { return _TemplateRef_88_4; }
-    if ((identical(token, NgIf) && (88 == requestNodeIndex))) { return _NgIf_88_5; }
+    if ((identical(token, TemplateRef) && (19 == requestNodeIndex))) { return _TemplateRef_19_4; }
+    if ((identical(token, NgIf) && (19 == requestNodeIndex))) { return _NgIf_19_5; }
+    if ((identical(token, import25.PopupSourceDirective) && ((11 <= requestNodeIndex) && (requestNodeIndex <= 20)))) { return _PopupSourceDirective_11_2; }
+    if ((identical(token, TemplateRef) && (34 == requestNodeIndex))) { return _TemplateRef_34_4; }
+    if ((identical(token, NgIf) && (34 == requestNodeIndex))) { return _NgIf_34_5; }
+    if ((identical(token, import25.PopupSourceDirective) && (69 == requestNodeIndex))) { return _PopupSourceDirective_69_2; }
     if ((identical(token, TemplateRef) && (90 == requestNodeIndex))) { return _TemplateRef_90_4; }
     if ((identical(token, NgIf) && (90 == requestNodeIndex))) { return _NgIf_90_5; }
-    if ((identical(token, TemplateRef) && (99 == requestNodeIndex))) { return _TemplateRef_99_4; }
-    if ((identical(token, NgIf) && (99 == requestNodeIndex))) { return _NgIf_99_5; }
+    if ((identical(token, TemplateRef) && (92 == requestNodeIndex))) { return _TemplateRef_92_4; }
+    if ((identical(token, NgIf) && (92 == requestNodeIndex))) { return _NgIf_92_5; }
     if ((identical(token, TemplateRef) && (101 == requestNodeIndex))) { return _TemplateRef_101_4; }
     if ((identical(token, NgIf) && (101 == requestNodeIndex))) { return _NgIf_101_5; }
-    if ((identical(token, import26.MaterialPopupComponent) && ((73 <= requestNodeIndex) && (requestNodeIndex <= 103)))) { return _MaterialPopupComponent_73_3; }
-    if ((identical(token, import38.PopupComponent) && ((73 <= requestNodeIndex) && (requestNodeIndex <= 103)))) { return _PopupComponent_73_4; }
-    if ((identical(token, import39.DropdownHandle) && ((73 <= requestNodeIndex) && (requestNodeIndex <= 103)))) { return _DropdownHandle_73_5; }
-    if ((identical(token, import40.DeferredContentAware) && ((73 <= requestNodeIndex) && (requestNodeIndex <= 103)))) { return _DeferredContentAware_73_6; }
-    if ((identical(token, import31.PopupHierarchy) && ((73 <= requestNodeIndex) && (requestNodeIndex <= 103)))) { return _PopupHierarchy_73_7; }
-    if ((identical(token, import32.PopupRef) && ((73 <= requestNodeIndex) && (requestNodeIndex <= 103)))) { return _PopupRef_73_8; }
+    if ((identical(token, TemplateRef) && (103 == requestNodeIndex))) { return _TemplateRef_103_4; }
+    if ((identical(token, NgIf) && (103 == requestNodeIndex))) { return _NgIf_103_5; }
+    if ((identical(token, import26.MaterialPopupComponent) && ((75 <= requestNodeIndex) && (requestNodeIndex <= 105)))) { return _MaterialPopupComponent_75_3; }
+    if ((identical(token, import38.PopupComponent) && ((75 <= requestNodeIndex) && (requestNodeIndex <= 105)))) { return _PopupComponent_75_4; }
+    if ((identical(token, import39.DropdownHandle) && ((75 <= requestNodeIndex) && (requestNodeIndex <= 105)))) { return _DropdownHandle_75_5; }
+    if ((identical(token, import40.DeferredContentAware) && ((75 <= requestNodeIndex) && (requestNodeIndex <= 105)))) { return _DeferredContentAware_75_6; }
+    if ((identical(token, import31.PopupHierarchy) && ((75 <= requestNodeIndex) && (requestNodeIndex <= 105)))) { return _PopupHierarchy_75_7; }
+    if ((identical(token, import32.PopupRef) && ((75 <= requestNodeIndex) && (requestNodeIndex <= 105)))) { return _PopupRef_75_8; }
     return notFoundResult;
   }
   void detectChangesInternal() {
@@ -1005,26 +1034,37 @@ class ViewFilesComp4 extends AppView<import3.FilesComp> {
       _expr_0 = currVal_0;
     }
     if (!import13.AppViewUtils.throwOnChanges) { _NgFor_4_5.ngDoCheck(); }
-    _NgIf_32_5.ngIf = ((parent.locals['\$implicit'].status != 'uploaded') && (((parent.locals['\$implicit'] == null)? null: parent.locals['\$implicit'].mimeType) != 'application/quickNote'));
-    final currVal_13 = '';
-    if (import13.checkBinding(_expr_13,currVal_13)) {
-      _MaterialPopupComponent_73_3.enforceSpaceConstraints = currVal_13;
-      _expr_13 = currVal_13;
+    final currVal_4 = 'before';
+    if (import13.checkBinding(_expr_4,currVal_4)) {
+      _PopupSourceDirective_11_2.alignX = currVal_4;
+      _expr_4 = currVal_4;
     }
-    final currVal_14 = _PopupSourceDirective_67_2;
-    if (import13.checkBinding(_expr_14,currVal_14)) {
-      _MaterialPopupComponent_73_3.source = currVal_14;
-      _expr_14 = currVal_14;
+    final currVal_5 = 'start';
+    if (import13.checkBinding(_expr_5,currVal_5)) {
+      _PopupSourceDirective_11_2.alignY = currVal_5;
+      _expr_5 = currVal_5;
     }
-    final currVal_15 = (ctx.fileMenuVisible == parent.locals['\$implicit'].v);
-    if (import13.checkBinding(_expr_15,currVal_15)) {
-      _MaterialPopupComponent_73_3.visible = currVal_15;
-      _expr_15 = currVal_15;
+    _NgIf_19_5.ngIf = (ctx.popupUserInfoId == parent.locals['\$implicit'].userId);
+    _NgIf_34_5.ngIf = ((parent.locals['\$implicit'].status != 'uploaded') && (((parent.locals['\$implicit'] == null)? null: parent.locals['\$implicit'].mimeType) != 'application/quickNote'));
+    final currVal_17 = '';
+    if (import13.checkBinding(_expr_17,currVal_17)) {
+      _MaterialPopupComponent_75_3.enforceSpaceConstraints = currVal_17;
+      _expr_17 = currVal_17;
     }
-    _NgIf_88_5.ngIf = ((parent.locals['\$implicit'].approved == null) && ctx.isWriter);
-    _NgIf_90_5.ngIf = ((parent.locals['\$implicit'].approved != null) && ctx.isWriter);
-    _NgIf_99_5.ngIf = false;
+    final currVal_18 = _PopupSourceDirective_69_2;
+    if (import13.checkBinding(_expr_18,currVal_18)) {
+      _MaterialPopupComponent_75_3.source = currVal_18;
+      _expr_18 = currVal_18;
+    }
+    final currVal_19 = (ctx.fileMenuVisible == parent.locals['\$implicit'].v);
+    if (import13.checkBinding(_expr_19,currVal_19)) {
+      _MaterialPopupComponent_75_3.visible = currVal_19;
+      _expr_19 = currVal_19;
+    }
+    _NgIf_90_5.ngIf = ((parent.locals['\$implicit'].approved == null) && ctx.isWriter);
+    _NgIf_92_5.ngIf = ((parent.locals['\$implicit'].approved != null) && ctx.isWriter);
     _NgIf_101_5.ngIf = false;
+    _NgIf_103_5.ngIf = false;
     this.detectContentChildrenChanges();
     final currVal_1 = (ctx.connectedUser.id == parent.locals['\$implicit'].userId);
     if (import13.checkBinding(_expr_1,currVal_1)) {
@@ -1036,72 +1076,79 @@ class ViewFilesComp4 extends AppView<import3.FilesComp> {
       setProp(_el_9,'className',currVal_2);
       _expr_2 = currVal_2;
     }
-    final currVal_3 = import13.interpolate1('/auth/user/photo/s/',parent.locals['\$implicit'].userId,'');
-    if (import13.checkBinding(_expr_3,currVal_3)) {
-      setProp(_el_14,'src',import13.appViewUtils.sanitizer.sanitizeUrl(currVal_3));
-      _expr_3 = currVal_3;
-    }
-    valUnwrapper.reset();
-    final currVal_4 = import13.interpolate0(valUnwrapper.unwrap(import13.castByValue(_pipe_agoDateFormat_0_3,(parent.parent.parent as ViewFilesComp0)._pipe_agoDateFormat_0.transform)(((parent.locals['\$implicit'] == null)? null: parent.locals['\$implicit'].ts))));
-    if ((valUnwrapper.hasWrappedValue || import13.checkBinding(_expr_4,currVal_4))) {
-      _text_17.text = currVal_4;
-      _expr_4 = currVal_4;
-    }
-    final currVal_6 = import13.interpolate(4,'/sp/place/',((ctx.selectedPlace == null)? null: ctx.selectedPlace.id),'/folder/',((ctx.selectedFolder == null)? null: ctx.selectedFolder.id),'/file/',((ctx.selectedFile == null)? null: ctx.selectedFile.id),'/version/',parent.locals['\$implicit'].v,'/thumb');
+    final currVal_6 = import13.interpolate1('/auth/user/photo/s/',parent.locals['\$implicit'].userId,'');
     if (import13.checkBinding(_expr_6,currVal_6)) {
-      setProp(_el_30,'src',import13.appViewUtils.sanitizer.sanitizeUrl(currVal_6));
+      setProp(_el_14,'src',import13.appViewUtils.sanitizer.sanitizeUrl(currVal_6));
       _expr_6 = currVal_6;
     }
-    final currVal_8 = import13.interpolate0(((ctx.selectedFile == null)? null: ctx.selectedFile.name));
-    if (import13.checkBinding(_expr_8,currVal_8)) {
-      _text_46.text = currVal_8;
-      _expr_8 = currVal_8;
-    }
-    final currVal_9 = import13.interpolate0(ctx.formatDesc(parent.locals['\$implicit']));
-    if (import13.checkBinding(_expr_9,currVal_9)) {
-      _text_52.text = currVal_9;
-      _expr_9 = currVal_9;
-    }
     valUnwrapper.reset();
-    final currVal_10 = import13.interpolate1('\n                                            ',valUnwrapper.unwrap(import13.castByValue(_pipe_fileSizeFormat_1_0,(parent.parent.parent as ViewFilesComp0)._pipe_fileSizeFormat_1.transform)(ctx.selectedFile.orderedVersions[0].size)),'\n                                          ');
-    if ((valUnwrapper.hasWrappedValue || import13.checkBinding(_expr_10,currVal_10))) {
-      _text_55.text = currVal_10;
+    final currVal_7 = import13.interpolate0(valUnwrapper.unwrap(import13.castByValue(_pipe_agoDateFormat_0_3,(parent.parent.parent as ViewFilesComp0)._pipe_agoDateFormat_0.transform)(((parent.locals['\$implicit'] == null)? null: parent.locals['\$implicit'].ts))));
+    if ((valUnwrapper.hasWrappedValue || import13.checkBinding(_expr_7,currVal_7))) {
+      _text_17.text = currVal_7;
+      _expr_7 = currVal_7;
+    }
+    final currVal_10 = import13.interpolate(4,'/sp/place/',((ctx.selectedPlace == null)? null: ctx.selectedPlace.id),'/folder/',((ctx.selectedFolder == null)? null: ctx.selectedFolder.id),'/file/',((ctx.selectedFile == null)? null: ctx.selectedFile.id),'/version/',parent.locals['\$implicit'].v,'/thumb');
+    if (import13.checkBinding(_expr_10,currVal_10)) {
+      setProp(_el_32,'src',import13.appViewUtils.sanitizer.sanitizeUrl(currVal_10));
       _expr_10 = currVal_10;
     }
-    final currVal_11 = import13.interpolate1('v. ',parent.locals['\$implicit'].v,'');
-    if (import13.checkBinding(_expr_11,currVal_11)) {
-      _text_65.text = currVal_11;
-      _expr_11 = currVal_11;
+    final currVal_12 = import13.interpolate0(((ctx.selectedFile == null)? null: ctx.selectedFile.name));
+    if (import13.checkBinding(_expr_12,currVal_12)) {
+      _text_48.text = currVal_12;
+      _expr_12 = currVal_12;
     }
-    final currVal_16 = _MaterialPopupComponent_73_3.uniqueId;
-    if (import13.checkBinding(_expr_16,currVal_16)) {
-      setAttr(_el_73,'pane-id',((currVal_16 == null)? null: currVal_16.toString()));
-      _expr_16 = currVal_16;
-    }
-    final currVal_17 = import13.interpolate0(ctx.selectedFile.name);
-    if (import13.checkBinding(_expr_17,currVal_17)) {
-      _text_78.text = currVal_17;
-      _expr_17 = currVal_17;
+    final currVal_13 = import13.interpolate0(ctx.formatDesc(parent.locals['\$implicit']));
+    if (import13.checkBinding(_expr_13,currVal_13)) {
+      _text_54.text = currVal_13;
+      _expr_13 = currVal_13;
     }
     valUnwrapper.reset();
-    final currVal_18 = import13.interpolate2('\n                                Version ',parent.locals['\$implicit'].v,' ',valUnwrapper.unwrap(import13.castByValue(_pipe_agoDateFormat_0_4,(parent.parent.parent as ViewFilesComp0)._pipe_agoDateFormat_0.transform)(parent.locals['\$implicit'].ts)),'\n                              ');
-    if ((valUnwrapper.hasWrappedValue || import13.checkBinding(_expr_18,currVal_18))) {
-      _text_81.text = currVal_18;
-      _expr_18 = currVal_18;
+    final currVal_14 = import13.interpolate1('\n                                            ',valUnwrapper.unwrap(import13.castByValue(_pipe_fileSizeFormat_1_0,(parent.parent.parent as ViewFilesComp0)._pipe_fileSizeFormat_1.transform)(ctx.selectedFile.orderedVersions[0].size)),'\n                                          ');
+    if ((valUnwrapper.hasWrappedValue || import13.checkBinding(_expr_14,currVal_14))) {
+      _text_57.text = currVal_14;
+      _expr_14 = currVal_14;
+    }
+    final currVal_15 = import13.interpolate1('v. ',parent.locals['\$implicit'].v,'');
+    if (import13.checkBinding(_expr_15,currVal_15)) {
+      _text_67.text = currVal_15;
+      _expr_15 = currVal_15;
+    }
+    final currVal_20 = _MaterialPopupComponent_75_3.uniqueId;
+    if (import13.checkBinding(_expr_20,currVal_20)) {
+      setAttr(_el_75,'pane-id',((currVal_20 == null)? null: currVal_20.toString()));
+      _expr_20 = currVal_20;
+    }
+    final currVal_21 = import13.interpolate0(ctx.selectedFile.name);
+    if (import13.checkBinding(_expr_21,currVal_21)) {
+      _text_80.text = currVal_21;
+      _expr_21 = currVal_21;
+    }
+    valUnwrapper.reset();
+    final currVal_22 = import13.interpolate2('\n                                Version ',parent.locals['\$implicit'].v,', ',valUnwrapper.unwrap(import13.castByValue(_pipe_agoDateFormat_0_4,(parent.parent.parent as ViewFilesComp0)._pipe_agoDateFormat_0.transform)(parent.locals['\$implicit'].ts)),'\n                              ');
+    if ((valUnwrapper.hasWrappedValue || import13.checkBinding(_expr_22,currVal_22))) {
+      _text_83.text = currVal_22;
+      _expr_22 = currVal_22;
     }
     this.detectViewChildrenChanges();
-    if (identical(this.cdState, ChangeDetectorState.NeverChecked)) { _PopupSourceDirective_67_2.ngAfterViewInit(); }
+    if (identical(this.cdState, ChangeDetectorState.NeverChecked)) { _PopupSourceDirective_11_2.ngAfterViewInit(); }
+    if (identical(this.cdState, ChangeDetectorState.NeverChecked)) { _PopupSourceDirective_69_2.ngAfterViewInit(); }
   }
   void destroyInternal() {
-    _PopupSourceDirective_67_2.ngOnDestroy();
-    _MaterialPopupComponent_73_3.ngOnDestroy();
+    _PopupSourceDirective_11_2.ngOnDestroy();
+    _PopupSourceDirective_69_2.ngOnDestroy();
+    _MaterialPopupComponent_75_3.ngOnDestroy();
   }
-  bool _handle_click_24_0($event) {
+  bool _handle_click_11_0($event) {
+    this.markPathToRootAsCheckOnce();
+    final dynamic pd_0 = !identical((ctx.showUserInfoPopup(parent.locals['\$implicit'].userId,parent.locals['\$implicit'].v) as dynamic), false);
+    return (true && pd_0);
+  }
+  bool _handle_click_26_0($event) {
     this.markPathToRootAsCheckOnce();
     final dynamic pd_0 = !identical((ctx.openFileDialog(parent.locals['\$implicit'].v) as dynamic), false);
     return (true && pd_0);
   }
-  bool _handle_click_67_0($event) {
+  bool _handle_click_69_0($event) {
     this.markPathToRootAsCheckOnce();
     final dynamic pd_0 = !identical((ctx.switchMenuState(parent.locals['\$implicit'].v) as dynamic), false);
     return (true && pd_0);
@@ -1149,7 +1196,7 @@ class ViewFilesComp5 extends AppView<import3.FilesComp> {
     var _anchor_6 = new Comment('template bindings={}');
     _el_0?.append(_anchor_6);
     _appEl_6 = new ViewContainer(6,0,this,_anchor_6);
-    _TemplateRef_6_4 = new TemplateRef(_appEl_6,viewFactory_FilesComp7);
+    _TemplateRef_6_4 = new TemplateRef(_appEl_6,viewFactory_FilesComp8);
     _NgIf_6_5 = new NgIf(_appEl_6,_TemplateRef_6_4);
     Text _text_7 = new Text('\n\n\n                          ');
     _el_0.append(_text_7);
@@ -1158,7 +1205,7 @@ class ViewFilesComp5 extends AppView<import3.FilesComp> {
     var _anchor_9 = new Comment('template bindings={}');
     _el_0?.append(_anchor_9);
     _appEl_9 = new ViewContainer(9,0,this,_anchor_9);
-    _TemplateRef_9_4 = new TemplateRef(_appEl_9,viewFactory_FilesComp8);
+    _TemplateRef_9_4 = new TemplateRef(_appEl_9,viewFactory_FilesComp10);
     _NgIf_9_5 = new NgIf(_appEl_9,_TemplateRef_9_4);
     Text _text_10 = new Text('\n\n\n                        ');
     _el_0.append(_text_10);
@@ -1202,16 +1249,22 @@ AppView viewFactory_FilesComp5(import9.Injector parentInjector,ViewContainer dec
 class ViewFilesComp6 extends AppView<import3.FilesComp> {
   Element _el_0;
   Element _el_2;
+  import25.PopupSourceDirective _PopupSourceDirective_2_2;
   Element _el_4;
   Element _el_5;
   Element _el_7;
   Text _text_8;
-  Element _el_11;
+  ViewContainer _appEl_10;
+  dynamic _TemplateRef_10_4;
+  NgIf _NgIf_10_5;
   Element _el_13;
-  Text _text_14;
+  Element _el_15;
+  Text _text_16;
   var _expr_0 = uninitialized;
   var _expr_1 = uninitialized;
   var _expr_2 = uninitialized;
+  var _expr_3 = uninitialized;
+  var _expr_5 = uninitialized;
   var _pipe_agoDateFormat_0_0;
   ViewFilesComp6(import9.Injector parentInjector,ViewContainer declarationEl): super(ViewFilesComp6,renderType_FilesComp,import10.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
   ViewContainer createInternal(dynamic rootSelector) {
@@ -1224,7 +1277,11 @@ class ViewFilesComp6 extends AppView<import3.FilesComp> {
     _el_2 = doc.createElement('div');
     _el_2.setAttribute(shimCAttr,'');
     _el_0.append(_el_2);
+    createAttr(_el_2,'alignPositionX','before');
+    createAttr(_el_2,'alignPositionY','start');
     _el_2.className = 'actionPropsBlock';
+    createAttr(_el_2,'popupSource','');
+    _PopupSourceDirective_2_2 = new import25.PopupSourceDirective(this.parentInjector.get(import27.DomPopupSourceFactory),new ElementRef(_el_2),this.parentInjector.get(import28.ReferenceDirective,null));
     Text _text_3 = new Text('\n                              ');
     _el_2.append(_text_3);
     _el_4 = doc.createElement('span');
@@ -1243,54 +1300,82 @@ class ViewFilesComp6 extends AppView<import3.FilesComp> {
     _el_7.className = 'comm-ts';
     _text_8 = new Text('');
     _el_7.append(_text_8);
-    Text _text_9 = new Text('\n                            ');
+    Text _text_9 = new Text('\n                              ');
     _el_2.append(_text_9);
-    Text _text_10 = new Text('\n\n                            ');
-    _el_0.append(_text_10);
-    _el_11 = doc.createElement('div');
-    _el_11.setAttribute(shimCAttr,'');
-    _el_0.append(_el_11);
-    _el_11.className = 'bubble';
-    Text _text_12 = new Text('\n                              ');
-    _el_11.append(_text_12);
+    var _anchor_10 = new Comment('template bindings={}');
+    _el_2?.append(_anchor_10);
+    _appEl_10 = new ViewContainer(10,2,this,_anchor_10);
+    _TemplateRef_10_4 = new TemplateRef(_appEl_10,viewFactory_FilesComp7);
+    _NgIf_10_5 = new NgIf(_appEl_10,_TemplateRef_10_4);
+    Text _text_11 = new Text('\n\n                            ');
+    _el_2.append(_text_11);
+    Text _text_12 = new Text('\n\n                            ');
+    _el_0.append(_text_12);
     _el_13 = doc.createElement('div');
     _el_13.setAttribute(shimCAttr,'');
-    _el_11.append(_el_13);
-    _el_13.className = 'bubbleContent';
-    _text_14 = new Text('');
+    _el_0.append(_el_13);
+    _el_13.className = 'bubble';
+    Text _text_14 = new Text('\n                              ');
     _el_13.append(_text_14);
-    Text _text_15 = new Text('\n                            ');
-    _el_11.append(_text_15);
-    Text _text_16 = new Text('\n                          ');
-    _el_0.append(_text_16);
+    _el_15 = doc.createElement('div');
+    _el_15.setAttribute(shimCAttr,'');
+    _el_13.append(_el_15);
+    _el_15.className = 'bubbleContent';
+    _text_16 = new Text('');
+    _el_15.append(_text_16);
+    Text _text_17 = new Text('\n                            ');
+    _el_13.append(_text_17);
+    Text _text_18 = new Text('\n                          ');
+    _el_0.append(_text_18);
     this._pipe_agoDateFormat_0_0 = import13.pureProxy1((parent.parent.parent.parent.parent as ViewFilesComp0)._pipe_agoDateFormat_0.transform);
     init([_el_0],[
-      _el_0,_text_1,_el_2,_text_3,_el_4,_el_5,_text_6,_el_7,_text_8,_text_9,_text_10,
-      _el_11,_text_12,_el_13,_text_14,_text_15,_text_16
+      _el_0,_text_1,_el_2,_text_3,_el_4,_el_5,_text_6,_el_7,_text_8,_text_9,_anchor_10,
+      _text_11,_text_12,_el_13,_text_14,_el_15,_text_16,_text_17,_text_18
     ]
     ,[]);
     return null;
   }
+  dynamic injectorGetInternal(dynamic token,int requestNodeIndex,dynamic notFoundResult) {
+    if ((identical(token, TemplateRef) && (10 == requestNodeIndex))) { return _TemplateRef_10_4; }
+    if ((identical(token, NgIf) && (10 == requestNodeIndex))) { return _NgIf_10_5; }
+    if ((identical(token, import25.PopupSourceDirective) && ((2 <= requestNodeIndex) && (requestNodeIndex <= 11)))) { return _PopupSourceDirective_2_2; }
+    return notFoundResult;
+  }
   void detectChangesInternal() {
     final valUnwrapper = new ValueUnwrapper();
-    this.detectContentChildrenChanges();
-    final currVal_0 = import13.interpolate1('/auth/user/photo/s/',parent.locals['\$implicit'].user.userId,'');
+    final currVal_0 = 'before';
     if (import13.checkBinding(_expr_0,currVal_0)) {
-      setProp(_el_5,'src',import13.appViewUtils.sanitizer.sanitizeUrl(currVal_0));
+      _PopupSourceDirective_2_2.alignX = currVal_0;
       _expr_0 = currVal_0;
     }
-    valUnwrapper.reset();
-    final currVal_1 = import13.interpolate0(valUnwrapper.unwrap(import13.castByValue(_pipe_agoDateFormat_0_0,(parent.parent.parent.parent.parent as ViewFilesComp0)._pipe_agoDateFormat_0.transform)(((parent.locals['\$implicit'] == null)? null: parent.locals['\$implicit'].ts))));
-    if ((valUnwrapper.hasWrappedValue || import13.checkBinding(_expr_1,currVal_1))) {
-      _text_8.text = currVal_1;
+    final currVal_1 = 'start';
+    if (import13.checkBinding(_expr_1,currVal_1)) {
+      _PopupSourceDirective_2_2.alignY = currVal_1;
       _expr_1 = currVal_1;
     }
-    final currVal_2 = import13.interpolate1(' ',parent.locals['\$implicit'].text,'');
+    _NgIf_10_5.ngIf = ((ctx.actionInfoPopupIndex == parent.locals['index']) && (ctx.popupUserInfoId == parent.parent.parent.locals['\$implicit'].userId));
+    this.detectContentChildrenChanges();
+    final currVal_2 = import13.interpolate1('/auth/user/photo/s/',parent.locals['\$implicit'].user.userId,'');
     if (import13.checkBinding(_expr_2,currVal_2)) {
-      _text_14.text = currVal_2;
+      setProp(_el_5,'src',import13.appViewUtils.sanitizer.sanitizeUrl(currVal_2));
       _expr_2 = currVal_2;
     }
+    valUnwrapper.reset();
+    final currVal_3 = import13.interpolate0(valUnwrapper.unwrap(import13.castByValue(_pipe_agoDateFormat_0_0,(parent.parent.parent.parent.parent as ViewFilesComp0)._pipe_agoDateFormat_0.transform)(((parent.locals['\$implicit'] == null)? null: parent.locals['\$implicit'].ts))));
+    if ((valUnwrapper.hasWrappedValue || import13.checkBinding(_expr_3,currVal_3))) {
+      _text_8.text = currVal_3;
+      _expr_3 = currVal_3;
+    }
+    final currVal_5 = import13.interpolate1(' ',parent.locals['\$implicit'].text,'');
+    if (import13.checkBinding(_expr_5,currVal_5)) {
+      _text_16.text = currVal_5;
+      _expr_5 = currVal_5;
+    }
     this.detectViewChildrenChanges();
+    if (identical(this.cdState, ChangeDetectorState.NeverChecked)) { _PopupSourceDirective_2_2.ngAfterViewInit(); }
+  }
+  void destroyInternal() {
+    _PopupSourceDirective_2_2.ngOnDestroy();
   }
 }
 AppView viewFactory_FilesComp6(import9.Injector parentInjector,ViewContainer declarationEl) {
@@ -1298,21 +1383,81 @@ AppView viewFactory_FilesComp6(import9.Injector parentInjector,ViewContainer dec
 }
 class ViewFilesComp7 extends AppView<import3.FilesComp> {
   Element _el_0;
+  ViewContainer _appEl_0;
+  import41.InfoPopup _InfoPopup_0_3;
+  var _expr_0 = uninitialized;
+  var _expr_1 = uninitialized;
+  var _expr_2 = uninitialized;
+  var _expr_3 = uninitialized;
+  ViewFilesComp7(import9.Injector parentInjector,ViewContainer declarationEl): super(ViewFilesComp7,renderType_FilesComp,import10.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
+  ViewContainer createInternal(dynamic rootSelector) {
+    var doc = document;
+    _el_0 = doc.createElement('info-popup');
+    _el_0.setAttribute(shimCAttr,'');
+    _appEl_0 = new ViewContainer(0,null,this,_el_0);
+    var compView_0 = import42.viewFactory_InfoPopup0(this.injector(0),_appEl_0);
+    _InfoPopup_0_3 = new import41.InfoPopup(this.parentInjector.get(import20.Environment),this.parentInjector.get(import18.PlaceService),this.parentInjector.get(import43.DomSanitizationService));
+    _appEl_0.initComponent(_InfoPopup_0_3,compView_0);
+    compView_0.createComp([],null);
+    init([_el_0],[_el_0],[]);
+    return null;
+  }
+  dynamic injectorGetInternal(dynamic token,int requestNodeIndex,dynamic notFoundResult) {
+    if ((identical(token, import41.InfoPopup) && (0 == requestNodeIndex))) { return _InfoPopup_0_3; }
+    return notFoundResult;
+  }
+  void detectChangesInternal() {
+    final currVal_0 = ctx.popupUserInfoId;
+    if (import13.checkBinding(_expr_0,currVal_0)) {
+      _InfoPopup_0_3.userId = currVal_0;
+      _expr_0 = currVal_0;
+    }
+    final currVal_1 = (parent as ViewFilesComp6)._PopupSourceDirective_2_2;
+    if (import13.checkBinding(_expr_1,currVal_1)) {
+      _InfoPopup_0_3.source = currVal_1;
+      _expr_1 = currVal_1;
+    }
+    final currVal_2 = parent.parent.locals['index'];
+    if (import13.checkBinding(_expr_2,currVal_2)) {
+      _InfoPopup_0_3.index = currVal_2;
+      _expr_2 = currVal_2;
+    }
+    final currVal_3 = ctx.self;
+    if (import13.checkBinding(_expr_3,currVal_3)) {
+      _InfoPopup_0_3.parent = currVal_3;
+      _expr_3 = currVal_3;
+    }
+    if ((identical(this.cdState, ChangeDetectorState.NeverChecked) && !import13.AppViewUtils.throwOnChanges)) { _InfoPopup_0_3.ngOnInit(); }
+    this.detectContentChildrenChanges();
+    this.detectViewChildrenChanges();
+  }
+}
+AppView viewFactory_FilesComp7(import9.Injector parentInjector,ViewContainer declarationEl) {
+  return new ViewFilesComp7(parentInjector,declarationEl);
+}
+class ViewFilesComp8 extends AppView<import3.FilesComp> {
+  Element _el_0;
   Element _el_2;
+  import25.PopupSourceDirective _PopupSourceDirective_2_2;
   Element _el_4;
   Element _el_5;
   Element _el_7;
   Text _text_8;
-  Element _el_11;
+  ViewContainer _appEl_10;
+  dynamic _TemplateRef_10_4;
+  NgIf _NgIf_10_5;
   Element _el_13;
   Element _el_15;
-  Text _text_16;
-  Element _el_18;
+  Element _el_17;
+  Text _text_18;
+  Element _el_20;
   var _expr_0 = uninitialized;
   var _expr_1 = uninitialized;
   var _expr_2 = uninitialized;
+  var _expr_3 = uninitialized;
+  var _expr_5 = uninitialized;
   var _pipe_agoDateFormat_0_1;
-  ViewFilesComp7(import9.Injector parentInjector,ViewContainer declarationEl): super(ViewFilesComp7,renderType_FilesComp,import10.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
+  ViewFilesComp8(import9.Injector parentInjector,ViewContainer declarationEl): super(ViewFilesComp8,renderType_FilesComp,import10.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
   ViewContainer createInternal(dynamic rootSelector) {
     var doc = document;
     _el_0 = doc.createElement('div');
@@ -1323,7 +1468,11 @@ class ViewFilesComp7 extends AppView<import3.FilesComp> {
     _el_2 = doc.createElement('div');
     _el_2.setAttribute(shimCAttr,'');
     _el_0.append(_el_2);
+    createAttr(_el_2,'alignPositionX','before');
+    createAttr(_el_2,'alignPositionY','start');
     _el_2.className = 'actionPropsBlock';
+    createAttr(_el_2,'popupSource','');
+    _PopupSourceDirective_2_2 = new import25.PopupSourceDirective(this.parentInjector.get(import27.DomPopupSourceFactory),new ElementRef(_el_2),this.parentInjector.get(import28.ReferenceDirective,null));
     Text _text_3 = new Text('\n                              ');
     _el_2.append(_text_3);
     _el_4 = doc.createElement('span');
@@ -1342,94 +1491,176 @@ class ViewFilesComp7 extends AppView<import3.FilesComp> {
     _el_7.className = 'comm-ts';
     _text_8 = new Text('');
     _el_7.append(_text_8);
-    Text _text_9 = new Text('\n                            ');
+    Text _text_9 = new Text('\n                              ');
     _el_2.append(_text_9);
-    Text _text_10 = new Text('\n\n                            ');
-    _el_0.append(_text_10);
-    _el_11 = doc.createElement('div');
-    _el_11.setAttribute(shimCAttr,'');
-    _el_0.append(_el_11);
-    _el_11.className = 'bubble';
-    Text _text_12 = new Text('\n                              ');
-    _el_11.append(_text_12);
+    var _anchor_10 = new Comment('template bindings={}');
+    _el_2?.append(_anchor_10);
+    _appEl_10 = new ViewContainer(10,2,this,_anchor_10);
+    _TemplateRef_10_4 = new TemplateRef(_appEl_10,viewFactory_FilesComp9);
+    _NgIf_10_5 = new NgIf(_appEl_10,_TemplateRef_10_4);
+    Text _text_11 = new Text('\n\n                            ');
+    _el_2.append(_text_11);
+    Text _text_12 = new Text('\n\n                            ');
+    _el_0.append(_text_12);
     _el_13 = doc.createElement('div');
     _el_13.setAttribute(shimCAttr,'');
-    _el_11.append(_el_13);
-    _el_13.className = 'bubbleContent';
-    Text _text_14 = new Text('\n                                ');
+    _el_0.append(_el_13);
+    _el_13.className = 'bubble';
+    Text _text_14 = new Text('\n                              ');
     _el_13.append(_text_14);
-    _el_15 = doc.createElement('span');
+    _el_15 = doc.createElement('div');
     _el_15.setAttribute(shimCAttr,'');
     _el_13.append(_el_15);
-    _el_15.className = 'constructText';
-    _text_16 = new Text('');
+    _el_15.className = 'bubbleContent';
+    Text _text_16 = new Text('\n                                ');
     _el_15.append(_text_16);
-    Text _text_17 = new Text('\n                                ');
-    _el_13.append(_text_17);
-    _el_18 = doc.createElement('div');
-    _el_18.setAttribute(shimCAttr,'');
-    _el_13.append(_el_18);
-    _el_18.className = 'approveIcon bgWhite';
-    Text _text_19 = new Text('\n                              ');
-    _el_13.append(_text_19);
-    Text _text_20 = new Text('\n                            ');
-    _el_11.append(_text_20);
-    Text _text_21 = new Text('\n                          ');
-    _el_0.append(_text_21);
+    _el_17 = doc.createElement('span');
+    _el_17.setAttribute(shimCAttr,'');
+    _el_15.append(_el_17);
+    _el_17.className = 'constructText';
+    _text_18 = new Text('');
+    _el_17.append(_text_18);
+    Text _text_19 = new Text('\n                                ');
+    _el_15.append(_text_19);
+    _el_20 = doc.createElement('div');
+    _el_20.setAttribute(shimCAttr,'');
+    _el_15.append(_el_20);
+    _el_20.className = 'approveIcon bgWhite';
+    Text _text_21 = new Text('\n                              ');
+    _el_15.append(_text_21);
+    Text _text_22 = new Text('\n                            ');
+    _el_13.append(_text_22);
+    Text _text_23 = new Text('\n                          ');
+    _el_0.append(_text_23);
     this._pipe_agoDateFormat_0_1 = import13.pureProxy1((parent.parent.parent.parent.parent as ViewFilesComp0)._pipe_agoDateFormat_0.transform);
     init([_el_0],[
-      _el_0,_text_1,_el_2,_text_3,_el_4,_el_5,_text_6,_el_7,_text_8,_text_9,_text_10,
-      _el_11,_text_12,_el_13,_text_14,_el_15,_text_16,_text_17,_el_18,_text_19,_text_20,
-      _text_21
+      _el_0,_text_1,_el_2,_text_3,_el_4,_el_5,_text_6,_el_7,_text_8,_text_9,_anchor_10,
+      _text_11,_text_12,_el_13,_text_14,_el_15,_text_16,_el_17,_text_18,_text_19,_el_20,
+      _text_21,_text_22,_text_23
     ]
     ,[]);
     return null;
   }
+  dynamic injectorGetInternal(dynamic token,int requestNodeIndex,dynamic notFoundResult) {
+    if ((identical(token, TemplateRef) && (10 == requestNodeIndex))) { return _TemplateRef_10_4; }
+    if ((identical(token, NgIf) && (10 == requestNodeIndex))) { return _NgIf_10_5; }
+    if ((identical(token, import25.PopupSourceDirective) && ((2 <= requestNodeIndex) && (requestNodeIndex <= 11)))) { return _PopupSourceDirective_2_2; }
+    return notFoundResult;
+  }
   void detectChangesInternal() {
     final valUnwrapper = new ValueUnwrapper();
-    this.detectContentChildrenChanges();
-    final currVal_0 = import13.interpolate1('/auth/user/photo/s/',parent.locals['\$implicit'].user.userId,'');
+    final currVal_0 = 'before';
     if (import13.checkBinding(_expr_0,currVal_0)) {
-      setProp(_el_5,'src',import13.appViewUtils.sanitizer.sanitizeUrl(currVal_0));
+      _PopupSourceDirective_2_2.alignX = currVal_0;
       _expr_0 = currVal_0;
     }
-    valUnwrapper.reset();
-    final currVal_1 = import13.interpolate0(valUnwrapper.unwrap(import13.castByValue(_pipe_agoDateFormat_0_1,(parent.parent.parent.parent.parent as ViewFilesComp0)._pipe_agoDateFormat_0.transform)(((parent.locals['\$implicit'] == null)? null: parent.locals['\$implicit'].ts))));
-    if ((valUnwrapper.hasWrappedValue || import13.checkBinding(_expr_1,currVal_1))) {
-      _text_8.text = currVal_1;
+    final currVal_1 = 'start';
+    if (import13.checkBinding(_expr_1,currVal_1)) {
+      _PopupSourceDirective_2_2.alignY = currVal_1;
       _expr_1 = currVal_1;
     }
-    final currVal_2 = import13.interpolate1('',ctx.constructText(parent.parent.parent.locals['\$implicit'],parent.locals['\$implicit']),'\n                                ');
+    _NgIf_10_5.ngIf = (ctx.popupUserInfoId == parent.parent.parent.locals['\$implicit'].userId);
+    this.detectContentChildrenChanges();
+    final currVal_2 = import13.interpolate1('/auth/user/photo/s/',parent.locals['\$implicit'].user.userId,'');
     if (import13.checkBinding(_expr_2,currVal_2)) {
-      _text_16.text = currVal_2;
+      setProp(_el_5,'src',import13.appViewUtils.sanitizer.sanitizeUrl(currVal_2));
       _expr_2 = currVal_2;
     }
+    valUnwrapper.reset();
+    final currVal_3 = import13.interpolate0(valUnwrapper.unwrap(import13.castByValue(_pipe_agoDateFormat_0_1,(parent.parent.parent.parent.parent as ViewFilesComp0)._pipe_agoDateFormat_0.transform)(((parent.locals['\$implicit'] == null)? null: parent.locals['\$implicit'].ts))));
+    if ((valUnwrapper.hasWrappedValue || import13.checkBinding(_expr_3,currVal_3))) {
+      _text_8.text = currVal_3;
+      _expr_3 = currVal_3;
+    }
+    final currVal_5 = import13.interpolate1('',ctx.constructText(parent.parent.parent.locals['\$implicit'],parent.locals['\$implicit']),'\n                                ');
+    if (import13.checkBinding(_expr_5,currVal_5)) {
+      _text_18.text = currVal_5;
+      _expr_5 = currVal_5;
+    }
+    this.detectViewChildrenChanges();
+    if (identical(this.cdState, ChangeDetectorState.NeverChecked)) { _PopupSourceDirective_2_2.ngAfterViewInit(); }
+  }
+  void destroyInternal() {
+    _PopupSourceDirective_2_2.ngOnDestroy();
+  }
+}
+AppView viewFactory_FilesComp8(import9.Injector parentInjector,ViewContainer declarationEl) {
+  return new ViewFilesComp8(parentInjector,declarationEl);
+}
+class ViewFilesComp9 extends AppView<import3.FilesComp> {
+  Element _el_0;
+  ViewContainer _appEl_0;
+  import41.InfoPopup _InfoPopup_0_3;
+  var _expr_0 = uninitialized;
+  var _expr_1 = uninitialized;
+  var _expr_2 = uninitialized;
+  ViewFilesComp9(import9.Injector parentInjector,ViewContainer declarationEl): super(ViewFilesComp9,renderType_FilesComp,import10.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
+  ViewContainer createInternal(dynamic rootSelector) {
+    var doc = document;
+    _el_0 = doc.createElement('info-popup');
+    _el_0.setAttribute(shimCAttr,'');
+    _appEl_0 = new ViewContainer(0,null,this,_el_0);
+    var compView_0 = import42.viewFactory_InfoPopup0(this.injector(0),_appEl_0);
+    _InfoPopup_0_3 = new import41.InfoPopup(this.parentInjector.get(import20.Environment),this.parentInjector.get(import18.PlaceService),this.parentInjector.get(import43.DomSanitizationService));
+    _appEl_0.initComponent(_InfoPopup_0_3,compView_0);
+    compView_0.createComp([],null);
+    init([_el_0],[_el_0],[]);
+    return null;
+  }
+  dynamic injectorGetInternal(dynamic token,int requestNodeIndex,dynamic notFoundResult) {
+    if ((identical(token, import41.InfoPopup) && (0 == requestNodeIndex))) { return _InfoPopup_0_3; }
+    return notFoundResult;
+  }
+  void detectChangesInternal() {
+    final currVal_0 = ctx.popupUserInfoId;
+    if (import13.checkBinding(_expr_0,currVal_0)) {
+      _InfoPopup_0_3.userId = currVal_0;
+      _expr_0 = currVal_0;
+    }
+    final currVal_1 = (parent as ViewFilesComp8)._PopupSourceDirective_2_2;
+    if (import13.checkBinding(_expr_1,currVal_1)) {
+      _InfoPopup_0_3.source = currVal_1;
+      _expr_1 = currVal_1;
+    }
+    final currVal_2 = ctx.self;
+    if (import13.checkBinding(_expr_2,currVal_2)) {
+      _InfoPopup_0_3.parent = currVal_2;
+      _expr_2 = currVal_2;
+    }
+    if ((identical(this.cdState, ChangeDetectorState.NeverChecked) && !import13.AppViewUtils.throwOnChanges)) { _InfoPopup_0_3.ngOnInit(); }
+    this.detectContentChildrenChanges();
     this.detectViewChildrenChanges();
   }
 }
-AppView viewFactory_FilesComp7(import9.Injector parentInjector,ViewContainer declarationEl) {
-  return new ViewFilesComp7(parentInjector,declarationEl);
+AppView viewFactory_FilesComp9(import9.Injector parentInjector,ViewContainer declarationEl) {
+  return new ViewFilesComp9(parentInjector,declarationEl);
 }
-class ViewFilesComp8 extends AppView<import3.FilesComp> {
+class ViewFilesComp10 extends AppView<import3.FilesComp> {
   Element _el_0;
   Element _el_2;
+  import25.PopupSourceDirective _PopupSourceDirective_2_2;
   Element _el_4;
   Element _el_5;
   Element _el_7;
   Text _text_8;
-  Element _el_11;
+  ViewContainer _appEl_10;
+  dynamic _TemplateRef_10_4;
+  NgIf _NgIf_10_5;
   Element _el_13;
-  ViewContainer _appEl_15;
-  dynamic _TemplateRef_15_4;
-  NgIf _NgIf_15_5;
-  Element _el_17;
-  Text _text_18;
-  Element _el_20;
+  Element _el_15;
+  ViewContainer _appEl_17;
+  dynamic _TemplateRef_17_4;
+  NgIf _NgIf_17_5;
+  Element _el_19;
+  Text _text_20;
+  Element _el_22;
   var _expr_0 = uninitialized;
   var _expr_1 = uninitialized;
+  var _expr_2 = uninitialized;
   var _expr_3 = uninitialized;
+  var _expr_6 = uninitialized;
   var _pipe_agoDateFormat_0_2;
-  ViewFilesComp8(import9.Injector parentInjector,ViewContainer declarationEl): super(ViewFilesComp8,renderType_FilesComp,import10.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
+  ViewFilesComp10(import9.Injector parentInjector,ViewContainer declarationEl): super(ViewFilesComp10,renderType_FilesComp,import10.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
   ViewContainer createInternal(dynamic rootSelector) {
     var doc = document;
     _el_0 = doc.createElement('div');
@@ -1440,7 +1671,11 @@ class ViewFilesComp8 extends AppView<import3.FilesComp> {
     _el_2 = doc.createElement('div');
     _el_2.setAttribute(shimCAttr,'');
     _el_0.append(_el_2);
+    createAttr(_el_2,'alignPositionX','before');
+    createAttr(_el_2,'alignPositionY','start');
     _el_2.className = 'actionPropsBlock';
+    createAttr(_el_2,'popupSource','');
+    _PopupSourceDirective_2_2 = new import25.PopupSourceDirective(this.parentInjector.get(import27.DomPopupSourceFactory),new ElementRef(_el_2),this.parentInjector.get(import28.ReferenceDirective,null));
     Text _text_3 = new Text('\n                              ');
     _el_2.append(_text_3);
     _el_4 = doc.createElement('span');
@@ -1459,99 +1694,172 @@ class ViewFilesComp8 extends AppView<import3.FilesComp> {
     _el_7.className = 'comm-ts';
     _text_8 = new Text('');
     _el_7.append(_text_8);
-    Text _text_9 = new Text('\n                            ');
+    Text _text_9 = new Text('\n                              ');
     _el_2.append(_text_9);
-    Text _text_10 = new Text('\n\n                            ');
-    _el_0.append(_text_10);
-    _el_11 = doc.createElement('div');
-    _el_11.setAttribute(shimCAttr,'');
-    _el_0.append(_el_11);
-    _el_11.className = 'bubble';
-    Text _text_12 = new Text('\n                              ');
-    _el_11.append(_text_12);
+    var _anchor_10 = new Comment('template bindings={}');
+    _el_2?.append(_anchor_10);
+    _appEl_10 = new ViewContainer(10,2,this,_anchor_10);
+    _TemplateRef_10_4 = new TemplateRef(_appEl_10,viewFactory_FilesComp11);
+    _NgIf_10_5 = new NgIf(_appEl_10,_TemplateRef_10_4);
+    Text _text_11 = new Text('\n                            ');
+    _el_2.append(_text_11);
+    Text _text_12 = new Text('\n\n                            ');
+    _el_0.append(_text_12);
     _el_13 = doc.createElement('div');
     _el_13.setAttribute(shimCAttr,'');
-    _el_11.append(_el_13);
-    _el_13.className = 'bubbleContent';
-    Text _text_14 = new Text('\n                                ');
+    _el_0.append(_el_13);
+    _el_13.className = 'bubble';
+    Text _text_14 = new Text('\n                              ');
     _el_13.append(_text_14);
-    var _anchor_15 = new Comment('template bindings={}');
-    _el_13?.append(_anchor_15);
-    _appEl_15 = new ViewContainer(15,13,this,_anchor_15);
-    _TemplateRef_15_4 = new TemplateRef(_appEl_15,viewFactory_FilesComp9);
-    _NgIf_15_5 = new NgIf(_appEl_15,_TemplateRef_15_4);
+    _el_15 = doc.createElement('div');
+    _el_15.setAttribute(shimCAttr,'');
+    _el_13.append(_el_15);
+    _el_15.className = 'bubbleContent';
     Text _text_16 = new Text('\n                                ');
-    _el_13.append(_text_16);
-    _el_17 = doc.createElement('span');
-    _el_17.setAttribute(shimCAttr,'');
-    _el_13.append(_el_17);
-    _el_17.className = 'constructText';
-    _text_18 = new Text('');
-    _el_17.append(_text_18);
-    Text _text_19 = new Text('\n                                ');
-    _el_13.append(_text_19);
-    _el_20 = doc.createElement('div');
-    _el_20.setAttribute(shimCAttr,'');
-    _el_13.append(_el_20);
-    _el_20.className = 'lockIcon';
-    Text _text_21 = new Text('\n                              ');
-    _el_13.append(_text_21);
-    Text _text_22 = new Text('\n\n                            ');
-    _el_11.append(_text_22);
-    Text _text_23 = new Text('\n                          ');
-    _el_0.append(_text_23);
+    _el_15.append(_text_16);
+    var _anchor_17 = new Comment('template bindings={}');
+    _el_15?.append(_anchor_17);
+    _appEl_17 = new ViewContainer(17,15,this,_anchor_17);
+    _TemplateRef_17_4 = new TemplateRef(_appEl_17,viewFactory_FilesComp12);
+    _NgIf_17_5 = new NgIf(_appEl_17,_TemplateRef_17_4);
+    Text _text_18 = new Text('\n                                ');
+    _el_15.append(_text_18);
+    _el_19 = doc.createElement('span');
+    _el_19.setAttribute(shimCAttr,'');
+    _el_15.append(_el_19);
+    _el_19.className = 'constructText';
+    _text_20 = new Text('');
+    _el_19.append(_text_20);
+    Text _text_21 = new Text('\n                                ');
+    _el_15.append(_text_21);
+    _el_22 = doc.createElement('div');
+    _el_22.setAttribute(shimCAttr,'');
+    _el_15.append(_el_22);
+    _el_22.className = 'lockIcon';
+    Text _text_23 = new Text('\n                              ');
+    _el_15.append(_text_23);
+    Text _text_24 = new Text('\n\n                            ');
+    _el_13.append(_text_24);
+    Text _text_25 = new Text('\n\n                          ');
+    _el_0.append(_text_25);
     this._pipe_agoDateFormat_0_2 = import13.pureProxy1((parent.parent.parent.parent.parent as ViewFilesComp0)._pipe_agoDateFormat_0.transform);
     init([_el_0],[
-      _el_0,_text_1,_el_2,_text_3,_el_4,_el_5,_text_6,_el_7,_text_8,_text_9,_text_10,
-      _el_11,_text_12,_el_13,_text_14,_anchor_15,_text_16,_el_17,_text_18,_text_19,_el_20,
-      _text_21,_text_22,_text_23
+      _el_0,_text_1,_el_2,_text_3,_el_4,_el_5,_text_6,_el_7,_text_8,_text_9,_anchor_10,
+      _text_11,_text_12,_el_13,_text_14,_el_15,_text_16,_anchor_17,_text_18,_el_19,_text_20,
+      _text_21,_el_22,_text_23,_text_24,_text_25
     ]
     ,[]);
     return null;
   }
   dynamic injectorGetInternal(dynamic token,int requestNodeIndex,dynamic notFoundResult) {
-    if ((identical(token, TemplateRef) && (15 == requestNodeIndex))) { return _TemplateRef_15_4; }
-    if ((identical(token, NgIf) && (15 == requestNodeIndex))) { return _NgIf_15_5; }
+    if ((identical(token, TemplateRef) && (10 == requestNodeIndex))) { return _TemplateRef_10_4; }
+    if ((identical(token, NgIf) && (10 == requestNodeIndex))) { return _NgIf_10_5; }
+    if ((identical(token, import25.PopupSourceDirective) && ((2 <= requestNodeIndex) && (requestNodeIndex <= 11)))) { return _PopupSourceDirective_2_2; }
+    if ((identical(token, TemplateRef) && (17 == requestNodeIndex))) { return _TemplateRef_17_4; }
+    if ((identical(token, NgIf) && (17 == requestNodeIndex))) { return _NgIf_17_5; }
     return notFoundResult;
   }
   void detectChangesInternal() {
     final valUnwrapper = new ValueUnwrapper();
-    _NgIf_15_5.ngIf = ctx.showReleaseButton(parent.locals['\$implicit'],parent.locals['index'],parent.parent.parent.locals['index']);
-    this.detectContentChildrenChanges();
-    final currVal_0 = import13.interpolate1('/auth/user/photo/s/',parent.locals['\$implicit'].user.userId,'');
+    final currVal_0 = 'before';
     if (import13.checkBinding(_expr_0,currVal_0)) {
-      setProp(_el_5,'src',import13.appViewUtils.sanitizer.sanitizeUrl(currVal_0));
+      _PopupSourceDirective_2_2.alignX = currVal_0;
       _expr_0 = currVal_0;
     }
-    valUnwrapper.reset();
-    final currVal_1 = import13.interpolate0(valUnwrapper.unwrap(import13.castByValue(_pipe_agoDateFormat_0_2,(parent.parent.parent.parent.parent as ViewFilesComp0)._pipe_agoDateFormat_0.transform)(((parent.locals['\$implicit'] == null)? null: parent.locals['\$implicit'].ts))));
-    if ((valUnwrapper.hasWrappedValue || import13.checkBinding(_expr_1,currVal_1))) {
-      _text_8.text = currVal_1;
+    final currVal_1 = 'start';
+    if (import13.checkBinding(_expr_1,currVal_1)) {
+      _PopupSourceDirective_2_2.alignY = currVal_1;
       _expr_1 = currVal_1;
     }
-    final currVal_3 = import13.interpolate0(ctx.constructText(parent.parent.parent.locals['\$implicit'],parent.locals['\$implicit']));
-    if (import13.checkBinding(_expr_3,currVal_3)) {
-      _text_18.text = currVal_3;
+    _NgIf_10_5.ngIf = (ctx.popupUserInfoId == parent.parent.parent.locals['\$implicit'].userId);
+    _NgIf_17_5.ngIf = ctx.showReleaseButton(parent.locals['\$implicit'],parent.locals['index'],parent.parent.parent.locals['index']);
+    this.detectContentChildrenChanges();
+    final currVal_2 = import13.interpolate1('/auth/user/photo/s/',parent.locals['\$implicit'].user.userId,'');
+    if (import13.checkBinding(_expr_2,currVal_2)) {
+      setProp(_el_5,'src',import13.appViewUtils.sanitizer.sanitizeUrl(currVal_2));
+      _expr_2 = currVal_2;
+    }
+    valUnwrapper.reset();
+    final currVal_3 = import13.interpolate0(valUnwrapper.unwrap(import13.castByValue(_pipe_agoDateFormat_0_2,(parent.parent.parent.parent.parent as ViewFilesComp0)._pipe_agoDateFormat_0.transform)(((parent.locals['\$implicit'] == null)? null: parent.locals['\$implicit'].ts))));
+    if ((valUnwrapper.hasWrappedValue || import13.checkBinding(_expr_3,currVal_3))) {
+      _text_8.text = currVal_3;
       _expr_3 = currVal_3;
     }
+    final currVal_6 = import13.interpolate0(ctx.constructText(parent.parent.parent.locals['\$implicit'],parent.locals['\$implicit']));
+    if (import13.checkBinding(_expr_6,currVal_6)) {
+      _text_20.text = currVal_6;
+      _expr_6 = currVal_6;
+    }
+    this.detectViewChildrenChanges();
+    if (identical(this.cdState, ChangeDetectorState.NeverChecked)) { _PopupSourceDirective_2_2.ngAfterViewInit(); }
+  }
+  void destroyInternal() {
+    _PopupSourceDirective_2_2.ngOnDestroy();
+  }
+}
+AppView viewFactory_FilesComp10(import9.Injector parentInjector,ViewContainer declarationEl) {
+  return new ViewFilesComp10(parentInjector,declarationEl);
+}
+class ViewFilesComp11 extends AppView<import3.FilesComp> {
+  Element _el_0;
+  ViewContainer _appEl_0;
+  import41.InfoPopup _InfoPopup_0_3;
+  var _expr_0 = uninitialized;
+  var _expr_1 = uninitialized;
+  var _expr_2 = uninitialized;
+  ViewFilesComp11(import9.Injector parentInjector,ViewContainer declarationEl): super(ViewFilesComp11,renderType_FilesComp,import10.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
+  ViewContainer createInternal(dynamic rootSelector) {
+    var doc = document;
+    _el_0 = doc.createElement('info-popup');
+    _el_0.setAttribute(shimCAttr,'');
+    _appEl_0 = new ViewContainer(0,null,this,_el_0);
+    var compView_0 = import42.viewFactory_InfoPopup0(this.injector(0),_appEl_0);
+    _InfoPopup_0_3 = new import41.InfoPopup(this.parentInjector.get(import20.Environment),this.parentInjector.get(import18.PlaceService),this.parentInjector.get(import43.DomSanitizationService));
+    _appEl_0.initComponent(_InfoPopup_0_3,compView_0);
+    compView_0.createComp([],null);
+    init([_el_0],[_el_0],[]);
+    return null;
+  }
+  dynamic injectorGetInternal(dynamic token,int requestNodeIndex,dynamic notFoundResult) {
+    if ((identical(token, import41.InfoPopup) && (0 == requestNodeIndex))) { return _InfoPopup_0_3; }
+    return notFoundResult;
+  }
+  void detectChangesInternal() {
+    final currVal_0 = ctx.popupUserInfoId;
+    if (import13.checkBinding(_expr_0,currVal_0)) {
+      _InfoPopup_0_3.userId = currVal_0;
+      _expr_0 = currVal_0;
+    }
+    final currVal_1 = (parent as ViewFilesComp10)._PopupSourceDirective_2_2;
+    if (import13.checkBinding(_expr_1,currVal_1)) {
+      _InfoPopup_0_3.source = currVal_1;
+      _expr_1 = currVal_1;
+    }
+    final currVal_2 = ctx.self;
+    if (import13.checkBinding(_expr_2,currVal_2)) {
+      _InfoPopup_0_3.parent = currVal_2;
+      _expr_2 = currVal_2;
+    }
+    if ((identical(this.cdState, ChangeDetectorState.NeverChecked) && !import13.AppViewUtils.throwOnChanges)) { _InfoPopup_0_3.ngOnInit(); }
+    this.detectContentChildrenChanges();
     this.detectViewChildrenChanges();
   }
 }
-AppView viewFactory_FilesComp8(import9.Injector parentInjector,ViewContainer declarationEl) {
-  return new ViewFilesComp8(parentInjector,declarationEl);
+AppView viewFactory_FilesComp11(import9.Injector parentInjector,ViewContainer declarationEl) {
+  return new ViewFilesComp11(parentInjector,declarationEl);
 }
-class ViewFilesComp9 extends AppView<import3.FilesComp> {
+class ViewFilesComp12 extends AppView<import3.FilesComp> {
   Element _el_0;
   ViewContainer _appEl_0;
-  import41.AcxDarkTheme _AcxDarkTheme_0_3;
-  import42.MaterialButtonComponent _MaterialButtonComponent_0_4;
+  import44.AcxDarkTheme _AcxDarkTheme_0_3;
+  import45.MaterialButtonComponent _MaterialButtonComponent_0_4;
   dynamic __ButtonDirective_0_5;
   var _expr_7 = uninitialized;
   var _expr_8 = uninitialized;
   var _expr_9 = uninitialized;
   var _expr_10 = uninitialized;
   var _expr_11 = uninitialized;
-  ViewFilesComp9(import9.Injector parentInjector,ViewContainer declarationEl): super(ViewFilesComp9,renderType_FilesComp,import10.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
+  ViewFilesComp12(import9.Injector parentInjector,ViewContainer declarationEl): super(ViewFilesComp12,renderType_FilesComp,import10.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
   dynamic get _ButtonDirective_0_5 {
     if ((this.__ButtonDirective_0_5 == null)) { (__ButtonDirective_0_5 = this._MaterialButtonComponent_0_4); }
     return this.__ButtonDirective_0_5;
@@ -1564,9 +1872,9 @@ class ViewFilesComp9 extends AppView<import3.FilesComp> {
     _el_0.className = 'release';
     createAttr(_el_0,'role','button');
     _appEl_0 = new ViewContainer(0,null,this,_el_0);
-    var compView_0 = import43.viewFactory_MaterialButtonComponent0(this.injector(0),_appEl_0);
-    _AcxDarkTheme_0_3 = new import41.AcxDarkTheme(this.parentInjector.get(import44.darkThemeToken,null));
-    _MaterialButtonComponent_0_4 = new import42.MaterialButtonComponent(new ElementRef(_el_0),_AcxDarkTheme_0_3,compView_0.ref);
+    var compView_0 = import46.viewFactory_MaterialButtonComponent0(this.injector(0),_appEl_0);
+    _AcxDarkTheme_0_3 = new import44.AcxDarkTheme(this.parentInjector.get(import47.darkThemeToken,null));
+    _MaterialButtonComponent_0_4 = new import45.MaterialButtonComponent(new ElementRef(_el_0),_AcxDarkTheme_0_3,compView_0.ref);
     _appEl_0.initComponent(_MaterialButtonComponent_0_4,compView_0);
     Text _text_1 = new Text('\n                                  Release\n                                ');
     compView_0.createComp([[_text_1]],null);
@@ -1583,9 +1891,9 @@ class ViewFilesComp9 extends AppView<import3.FilesComp> {
     return null;
   }
   dynamic injectorGetInternal(dynamic token,int requestNodeIndex,dynamic notFoundResult) {
-    if ((identical(token, import41.AcxDarkTheme) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 1)))) { return _AcxDarkTheme_0_3; }
-    if ((identical(token, import42.MaterialButtonComponent) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 1)))) { return _MaterialButtonComponent_0_4; }
-    if ((identical(token, import45.ButtonDirective) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 1)))) { return _ButtonDirective_0_5; }
+    if ((identical(token, import44.AcxDarkTheme) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 1)))) { return _AcxDarkTheme_0_3; }
+    if ((identical(token, import45.MaterialButtonComponent) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 1)))) { return _MaterialButtonComponent_0_4; }
+    if ((identical(token, import48.ButtonDirective) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 1)))) { return _ButtonDirective_0_5; }
     return notFoundResult;
   }
   void detectChangesInternal() {
@@ -1649,13 +1957,67 @@ class ViewFilesComp9 extends AppView<import3.FilesComp> {
     return (true && pd_0);
   }
 }
-AppView viewFactory_FilesComp9(import9.Injector parentInjector,ViewContainer declarationEl) {
-  return new ViewFilesComp9(parentInjector,declarationEl);
+AppView viewFactory_FilesComp12(import9.Injector parentInjector,ViewContainer declarationEl) {
+  return new ViewFilesComp12(parentInjector,declarationEl);
 }
-class ViewFilesComp10 extends AppView<import3.FilesComp> {
+class ViewFilesComp13 extends AppView<import3.FilesComp> {
+  Element _el_0;
+  ViewContainer _appEl_0;
+  import41.InfoPopup _InfoPopup_0_3;
+  var _expr_0 = uninitialized;
+  var _expr_1 = uninitialized;
+  var _expr_2 = uninitialized;
+  var _expr_3 = uninitialized;
+  ViewFilesComp13(import9.Injector parentInjector,ViewContainer declarationEl): super(ViewFilesComp13,renderType_FilesComp,import10.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
+  ViewContainer createInternal(dynamic rootSelector) {
+    var doc = document;
+    _el_0 = doc.createElement('info-popup');
+    _el_0.setAttribute(shimCAttr,'');
+    _appEl_0 = new ViewContainer(0,null,this,_el_0);
+    var compView_0 = import42.viewFactory_InfoPopup0(this.injector(0),_appEl_0);
+    _InfoPopup_0_3 = new import41.InfoPopup(this.parentInjector.get(import20.Environment),this.parentInjector.get(import18.PlaceService),this.parentInjector.get(import43.DomSanitizationService));
+    _appEl_0.initComponent(_InfoPopup_0_3,compView_0);
+    compView_0.createComp([],null);
+    init([_el_0],[_el_0],[]);
+    return null;
+  }
+  dynamic injectorGetInternal(dynamic token,int requestNodeIndex,dynamic notFoundResult) {
+    if ((identical(token, import41.InfoPopup) && (0 == requestNodeIndex))) { return _InfoPopup_0_3; }
+    return notFoundResult;
+  }
+  void detectChangesInternal() {
+    final currVal_0 = ctx.popupUserInfoId;
+    if (import13.checkBinding(_expr_0,currVal_0)) {
+      _InfoPopup_0_3.userId = currVal_0;
+      _expr_0 = currVal_0;
+    }
+    final currVal_1 = (parent as ViewFilesComp4)._PopupSourceDirective_11_2;
+    if (import13.checkBinding(_expr_1,currVal_1)) {
+      _InfoPopup_0_3.source = currVal_1;
+      _expr_1 = currVal_1;
+    }
+    final currVal_2 = parent.parent.locals['\$implicit'].v;
+    if (import13.checkBinding(_expr_2,currVal_2)) {
+      _InfoPopup_0_3.index = currVal_2;
+      _expr_2 = currVal_2;
+    }
+    final currVal_3 = ctx.self;
+    if (import13.checkBinding(_expr_3,currVal_3)) {
+      _InfoPopup_0_3.parent = currVal_3;
+      _expr_3 = currVal_3;
+    }
+    if ((identical(this.cdState, ChangeDetectorState.NeverChecked) && !import13.AppViewUtils.throwOnChanges)) { _InfoPopup_0_3.ngOnInit(); }
+    this.detectContentChildrenChanges();
+    this.detectViewChildrenChanges();
+  }
+}
+AppView viewFactory_FilesComp13(import9.Injector parentInjector,ViewContainer declarationEl) {
+  return new ViewFilesComp13(parentInjector,declarationEl);
+}
+class ViewFilesComp14 extends AppView<import3.FilesComp> {
   Element _el_0;
   Element _el_2;
-  ViewFilesComp10(import9.Injector parentInjector,ViewContainer declarationEl): super(ViewFilesComp10,renderType_FilesComp,import10.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
+  ViewFilesComp14(import9.Injector parentInjector,ViewContainer declarationEl): super(ViewFilesComp14,renderType_FilesComp,import10.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
   ViewContainer createInternal(dynamic rootSelector) {
     var doc = document;
     _el_0 = doc.createElement('div');
@@ -1674,14 +2036,14 @@ class ViewFilesComp10 extends AppView<import3.FilesComp> {
     return null;
   }
 }
-AppView viewFactory_FilesComp10(import9.Injector parentInjector,ViewContainer declarationEl) {
-  return new ViewFilesComp10(parentInjector,declarationEl);
+AppView viewFactory_FilesComp14(import9.Injector parentInjector,ViewContainer declarationEl) {
+  return new ViewFilesComp14(parentInjector,declarationEl);
 }
-class ViewFilesComp11 extends AppView<import3.FilesComp> {
+class ViewFilesComp15 extends AppView<import3.FilesComp> {
   Element _el_0;
   ViewContainer _appEl_0;
-  import41.AcxDarkTheme _AcxDarkTheme_0_3;
-  import42.MaterialButtonComponent _MaterialButtonComponent_0_4;
+  import44.AcxDarkTheme _AcxDarkTheme_0_3;
+  import45.MaterialButtonComponent _MaterialButtonComponent_0_4;
   dynamic __ButtonDirective_0_5;
   Element _el_2;
   Element _el_4;
@@ -1690,7 +2052,7 @@ class ViewFilesComp11 extends AppView<import3.FilesComp> {
   var _expr_9 = uninitialized;
   var _expr_10 = uninitialized;
   var _expr_11 = uninitialized;
-  ViewFilesComp11(import9.Injector parentInjector,ViewContainer declarationEl): super(ViewFilesComp11,renderType_FilesComp,import10.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
+  ViewFilesComp15(import9.Injector parentInjector,ViewContainer declarationEl): super(ViewFilesComp15,renderType_FilesComp,import10.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
   dynamic get _ButtonDirective_0_5 {
     if ((this.__ButtonDirective_0_5 == null)) { (__ButtonDirective_0_5 = this._MaterialButtonComponent_0_4); }
     return this.__ButtonDirective_0_5;
@@ -1703,9 +2065,9 @@ class ViewFilesComp11 extends AppView<import3.FilesComp> {
     _el_0.className = 'menuItemVers';
     createAttr(_el_0,'role','button');
     _appEl_0 = new ViewContainer(0,null,this,_el_0);
-    var compView_0 = import43.viewFactory_MaterialButtonComponent0(this.injector(0),_appEl_0);
-    _AcxDarkTheme_0_3 = new import41.AcxDarkTheme(this.parentInjector.get(import44.darkThemeToken,null));
-    _MaterialButtonComponent_0_4 = new import42.MaterialButtonComponent(new ElementRef(_el_0),_AcxDarkTheme_0_3,compView_0.ref);
+    var compView_0 = import46.viewFactory_MaterialButtonComponent0(this.injector(0),_appEl_0);
+    _AcxDarkTheme_0_3 = new import44.AcxDarkTheme(this.parentInjector.get(import47.darkThemeToken,null));
+    _MaterialButtonComponent_0_4 = new import45.MaterialButtonComponent(new ElementRef(_el_0),_AcxDarkTheme_0_3,compView_0.ref);
     _appEl_0.initComponent(_MaterialButtonComponent_0_4,compView_0);
     Text _text_1 = new Text('\n                                  ');
     _el_2 = doc.createElement('span');
@@ -1737,9 +2099,9 @@ class ViewFilesComp11 extends AppView<import3.FilesComp> {
     return null;
   }
   dynamic injectorGetInternal(dynamic token,int requestNodeIndex,dynamic notFoundResult) {
-    if ((identical(token, import41.AcxDarkTheme) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 6)))) { return _AcxDarkTheme_0_3; }
-    if ((identical(token, import42.MaterialButtonComponent) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 6)))) { return _MaterialButtonComponent_0_4; }
-    if ((identical(token, import45.ButtonDirective) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 6)))) { return _ButtonDirective_0_5; }
+    if ((identical(token, import44.AcxDarkTheme) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 6)))) { return _AcxDarkTheme_0_3; }
+    if ((identical(token, import45.MaterialButtonComponent) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 6)))) { return _MaterialButtonComponent_0_4; }
+    if ((identical(token, import48.ButtonDirective) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 6)))) { return _ButtonDirective_0_5; }
     return notFoundResult;
   }
   void detectChangesInternal() {
@@ -1803,14 +2165,14 @@ class ViewFilesComp11 extends AppView<import3.FilesComp> {
     return (true && pd_0);
   }
 }
-AppView viewFactory_FilesComp11(import9.Injector parentInjector,ViewContainer declarationEl) {
-  return new ViewFilesComp11(parentInjector,declarationEl);
+AppView viewFactory_FilesComp15(import9.Injector parentInjector,ViewContainer declarationEl) {
+  return new ViewFilesComp15(parentInjector,declarationEl);
 }
-class ViewFilesComp12 extends AppView<import3.FilesComp> {
+class ViewFilesComp16 extends AppView<import3.FilesComp> {
   Element _el_0;
   ViewContainer _appEl_0;
-  import41.AcxDarkTheme _AcxDarkTheme_0_3;
-  import42.MaterialButtonComponent _MaterialButtonComponent_0_4;
+  import44.AcxDarkTheme _AcxDarkTheme_0_3;
+  import45.MaterialButtonComponent _MaterialButtonComponent_0_4;
   dynamic __ButtonDirective_0_5;
   Element _el_2;
   Element _el_3;
@@ -1819,7 +2181,7 @@ class ViewFilesComp12 extends AppView<import3.FilesComp> {
   var _expr_9 = uninitialized;
   var _expr_10 = uninitialized;
   var _expr_11 = uninitialized;
-  ViewFilesComp12(import9.Injector parentInjector,ViewContainer declarationEl): super(ViewFilesComp12,renderType_FilesComp,import10.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
+  ViewFilesComp16(import9.Injector parentInjector,ViewContainer declarationEl): super(ViewFilesComp16,renderType_FilesComp,import10.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
   dynamic get _ButtonDirective_0_5 {
     if ((this.__ButtonDirective_0_5 == null)) { (__ButtonDirective_0_5 = this._MaterialButtonComponent_0_4); }
     return this.__ButtonDirective_0_5;
@@ -1832,9 +2194,9 @@ class ViewFilesComp12 extends AppView<import3.FilesComp> {
     _el_0.className = 'menuItemVers';
     createAttr(_el_0,'role','button');
     _appEl_0 = new ViewContainer(0,null,this,_el_0);
-    var compView_0 = import43.viewFactory_MaterialButtonComponent0(this.injector(0),_appEl_0);
-    _AcxDarkTheme_0_3 = new import41.AcxDarkTheme(this.parentInjector.get(import44.darkThemeToken,null));
-    _MaterialButtonComponent_0_4 = new import42.MaterialButtonComponent(new ElementRef(_el_0),_AcxDarkTheme_0_3,compView_0.ref);
+    var compView_0 = import46.viewFactory_MaterialButtonComponent0(this.injector(0),_appEl_0);
+    _AcxDarkTheme_0_3 = new import44.AcxDarkTheme(this.parentInjector.get(import47.darkThemeToken,null));
+    _MaterialButtonComponent_0_4 = new import45.MaterialButtonComponent(new ElementRef(_el_0),_AcxDarkTheme_0_3,compView_0.ref);
     _appEl_0.initComponent(_MaterialButtonComponent_0_4,compView_0);
     Text _text_1 = new Text('\n                                  ');
     _el_2 = doc.createElement('span');
@@ -1864,9 +2226,9 @@ class ViewFilesComp12 extends AppView<import3.FilesComp> {
     return null;
   }
   dynamic injectorGetInternal(dynamic token,int requestNodeIndex,dynamic notFoundResult) {
-    if ((identical(token, import41.AcxDarkTheme) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 5)))) { return _AcxDarkTheme_0_3; }
-    if ((identical(token, import42.MaterialButtonComponent) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 5)))) { return _MaterialButtonComponent_0_4; }
-    if ((identical(token, import45.ButtonDirective) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 5)))) { return _ButtonDirective_0_5; }
+    if ((identical(token, import44.AcxDarkTheme) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 5)))) { return _AcxDarkTheme_0_3; }
+    if ((identical(token, import45.MaterialButtonComponent) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 5)))) { return _MaterialButtonComponent_0_4; }
+    if ((identical(token, import48.ButtonDirective) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 5)))) { return _ButtonDirective_0_5; }
     return notFoundResult;
   }
   void detectChangesInternal() {
@@ -1930,14 +2292,14 @@ class ViewFilesComp12 extends AppView<import3.FilesComp> {
     return (true && pd_0);
   }
 }
-AppView viewFactory_FilesComp12(import9.Injector parentInjector,ViewContainer declarationEl) {
-  return new ViewFilesComp12(parentInjector,declarationEl);
+AppView viewFactory_FilesComp16(import9.Injector parentInjector,ViewContainer declarationEl) {
+  return new ViewFilesComp16(parentInjector,declarationEl);
 }
-class ViewFilesComp13 extends AppView<import3.FilesComp> {
+class ViewFilesComp17 extends AppView<import3.FilesComp> {
   Element _el_0;
   ViewContainer _appEl_0;
-  import41.AcxDarkTheme _AcxDarkTheme_0_3;
-  import42.MaterialButtonComponent _MaterialButtonComponent_0_4;
+  import44.AcxDarkTheme _AcxDarkTheme_0_3;
+  import45.MaterialButtonComponent _MaterialButtonComponent_0_4;
   dynamic __ButtonDirective_0_5;
   Element _el_2;
   Element _el_3;
@@ -1946,7 +2308,7 @@ class ViewFilesComp13 extends AppView<import3.FilesComp> {
   var _expr_8 = uninitialized;
   var _expr_9 = uninitialized;
   var _expr_10 = uninitialized;
-  ViewFilesComp13(import9.Injector parentInjector,ViewContainer declarationEl): super(ViewFilesComp13,renderType_FilesComp,import10.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
+  ViewFilesComp17(import9.Injector parentInjector,ViewContainer declarationEl): super(ViewFilesComp17,renderType_FilesComp,import10.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
   dynamic get _ButtonDirective_0_5 {
     if ((this.__ButtonDirective_0_5 == null)) { (__ButtonDirective_0_5 = this._MaterialButtonComponent_0_4); }
     return this.__ButtonDirective_0_5;
@@ -1959,9 +2321,9 @@ class ViewFilesComp13 extends AppView<import3.FilesComp> {
     _el_0.className = 'menuItemVers';
     createAttr(_el_0,'role','button');
     _appEl_0 = new ViewContainer(0,null,this,_el_0);
-    var compView_0 = import43.viewFactory_MaterialButtonComponent0(this.injector(0),_appEl_0);
-    _AcxDarkTheme_0_3 = new import41.AcxDarkTheme(this.parentInjector.get(import44.darkThemeToken,null));
-    _MaterialButtonComponent_0_4 = new import42.MaterialButtonComponent(new ElementRef(_el_0),_AcxDarkTheme_0_3,compView_0.ref);
+    var compView_0 = import46.viewFactory_MaterialButtonComponent0(this.injector(0),_appEl_0);
+    _AcxDarkTheme_0_3 = new import44.AcxDarkTheme(this.parentInjector.get(import47.darkThemeToken,null));
+    _MaterialButtonComponent_0_4 = new import45.MaterialButtonComponent(new ElementRef(_el_0),_AcxDarkTheme_0_3,compView_0.ref);
     _appEl_0.initComponent(_MaterialButtonComponent_0_4,compView_0);
     Text _text_1 = new Text('\n                                ');
     _el_2 = doc.createElement('span');
@@ -1991,9 +2353,9 @@ class ViewFilesComp13 extends AppView<import3.FilesComp> {
     return null;
   }
   dynamic injectorGetInternal(dynamic token,int requestNodeIndex,dynamic notFoundResult) {
-    if ((identical(token, import41.AcxDarkTheme) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 5)))) { return _AcxDarkTheme_0_3; }
-    if ((identical(token, import42.MaterialButtonComponent) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 5)))) { return _MaterialButtonComponent_0_4; }
-    if ((identical(token, import45.ButtonDirective) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 5)))) { return _ButtonDirective_0_5; }
+    if ((identical(token, import44.AcxDarkTheme) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 5)))) { return _AcxDarkTheme_0_3; }
+    if ((identical(token, import45.MaterialButtonComponent) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 5)))) { return _MaterialButtonComponent_0_4; }
+    if ((identical(token, import48.ButtonDirective) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 5)))) { return _ButtonDirective_0_5; }
     return notFoundResult;
   }
   void detectChangesInternal() {
@@ -2056,14 +2418,14 @@ class ViewFilesComp13 extends AppView<import3.FilesComp> {
     return (true && pd_0);
   }
 }
-AppView viewFactory_FilesComp13(import9.Injector parentInjector,ViewContainer declarationEl) {
-  return new ViewFilesComp13(parentInjector,declarationEl);
+AppView viewFactory_FilesComp17(import9.Injector parentInjector,ViewContainer declarationEl) {
+  return new ViewFilesComp17(parentInjector,declarationEl);
 }
-class ViewFilesComp14 extends AppView<import3.FilesComp> {
+class ViewFilesComp18 extends AppView<import3.FilesComp> {
   Element _el_0;
   ViewContainer _appEl_0;
-  import41.AcxDarkTheme _AcxDarkTheme_0_3;
-  import42.MaterialButtonComponent _MaterialButtonComponent_0_4;
+  import44.AcxDarkTheme _AcxDarkTheme_0_3;
+  import45.MaterialButtonComponent _MaterialButtonComponent_0_4;
   dynamic __ButtonDirective_0_5;
   Element _el_2;
   Element _el_3;
@@ -2072,7 +2434,7 @@ class ViewFilesComp14 extends AppView<import3.FilesComp> {
   var _expr_9 = uninitialized;
   var _expr_10 = uninitialized;
   var _expr_11 = uninitialized;
-  ViewFilesComp14(import9.Injector parentInjector,ViewContainer declarationEl): super(ViewFilesComp14,renderType_FilesComp,import10.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
+  ViewFilesComp18(import9.Injector parentInjector,ViewContainer declarationEl): super(ViewFilesComp18,renderType_FilesComp,import10.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
   dynamic get _ButtonDirective_0_5 {
     if ((this.__ButtonDirective_0_5 == null)) { (__ButtonDirective_0_5 = this._MaterialButtonComponent_0_4); }
     return this.__ButtonDirective_0_5;
@@ -2085,9 +2447,9 @@ class ViewFilesComp14 extends AppView<import3.FilesComp> {
     _el_0.className = 'menuItemVers';
     createAttr(_el_0,'role','button');
     _appEl_0 = new ViewContainer(0,null,this,_el_0);
-    var compView_0 = import43.viewFactory_MaterialButtonComponent0(this.injector(0),_appEl_0);
-    _AcxDarkTheme_0_3 = new import41.AcxDarkTheme(this.parentInjector.get(import44.darkThemeToken,null));
-    _MaterialButtonComponent_0_4 = new import42.MaterialButtonComponent(new ElementRef(_el_0),_AcxDarkTheme_0_3,compView_0.ref);
+    var compView_0 = import46.viewFactory_MaterialButtonComponent0(this.injector(0),_appEl_0);
+    _AcxDarkTheme_0_3 = new import44.AcxDarkTheme(this.parentInjector.get(import47.darkThemeToken,null));
+    _MaterialButtonComponent_0_4 = new import45.MaterialButtonComponent(new ElementRef(_el_0),_AcxDarkTheme_0_3,compView_0.ref);
     _appEl_0.initComponent(_MaterialButtonComponent_0_4,compView_0);
     Text _text_1 = new Text('\n                                ');
     _el_2 = doc.createElement('span');
@@ -2117,9 +2479,9 @@ class ViewFilesComp14 extends AppView<import3.FilesComp> {
     return null;
   }
   dynamic injectorGetInternal(dynamic token,int requestNodeIndex,dynamic notFoundResult) {
-    if ((identical(token, import41.AcxDarkTheme) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 5)))) { return _AcxDarkTheme_0_3; }
-    if ((identical(token, import42.MaterialButtonComponent) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 5)))) { return _MaterialButtonComponent_0_4; }
-    if ((identical(token, import45.ButtonDirective) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 5)))) { return _ButtonDirective_0_5; }
+    if ((identical(token, import44.AcxDarkTheme) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 5)))) { return _AcxDarkTheme_0_3; }
+    if ((identical(token, import45.MaterialButtonComponent) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 5)))) { return _MaterialButtonComponent_0_4; }
+    if ((identical(token, import48.ButtonDirective) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 5)))) { return _ButtonDirective_0_5; }
     return notFoundResult;
   }
   void detectChangesInternal() {
@@ -2183,18 +2545,18 @@ class ViewFilesComp14 extends AppView<import3.FilesComp> {
     return (true && pd_0);
   }
 }
-AppView viewFactory_FilesComp14(import9.Injector parentInjector,ViewContainer declarationEl) {
-  return new ViewFilesComp14(parentInjector,declarationEl);
+AppView viewFactory_FilesComp18(import9.Injector parentInjector,ViewContainer declarationEl) {
+  return new ViewFilesComp18(parentInjector,declarationEl);
 }
-class ViewFilesComp15 extends AppView<import3.FilesComp> {
+class ViewFilesComp19 extends AppView<import3.FilesComp> {
   Element _el_0;
   ViewContainer _appEl_0;
-  import46.ModalComponent _ModalComponent_0_3;
+  import49.ModalComponent _ModalComponent_0_3;
   dynamic __DeferredContentAware_0_4;
   dynamic __Modal_0_5;
   Element _el_2;
   ViewContainer _appEl_2;
-  import47.MaterialDialogComponent _MaterialDialogComponent_2_3;
+  import50.MaterialDialogComponent _MaterialDialogComponent_2_3;
   Element _el_4;
   Element _el_6;
   Text _text_7;
@@ -2213,7 +2575,7 @@ class ViewFilesComp15 extends AppView<import3.FilesComp> {
   var _expr_2 = uninitialized;
   var _expr_3 = uninitialized;
   var _expr_4 = uninitialized;
-  ViewFilesComp15(import9.Injector parentInjector,ViewContainer declarationEl): super(ViewFilesComp15,renderType_FilesComp,import10.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
+  ViewFilesComp19(import9.Injector parentInjector,ViewContainer declarationEl): super(ViewFilesComp19,renderType_FilesComp,import10.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
   dynamic get _DeferredContentAware_0_4 {
     if ((this.__DeferredContentAware_0_4 == null)) { (__DeferredContentAware_0_4 = this._ModalComponent_0_3); }
     return this.__DeferredContentAware_0_4;
@@ -2227,8 +2589,8 @@ class ViewFilesComp15 extends AppView<import3.FilesComp> {
     _el_0 = doc.createElement('modal');
     _el_0.setAttribute(shimCAttr,'');
     _appEl_0 = new ViewContainer(0,null,this,_el_0);
-    var compView_0 = import48.viewFactory_ModalComponent0(this.injector(0),_appEl_0);
-    _ModalComponent_0_3 = new import46.ModalComponent(this.parentInjector.get(import35.OverlayService),this.parentInjector.get(import46.Modal,null),this.parentInjector.get(import46.GlobalModalStack,null));
+    var compView_0 = import51.viewFactory_ModalComponent0(this.injector(0),_appEl_0);
+    _ModalComponent_0_3 = new import49.ModalComponent(this.parentInjector.get(import35.OverlayService),this.parentInjector.get(import49.Modal,null),this.parentInjector.get(import49.GlobalModalStack,null));
     _appEl_0.initComponent(_ModalComponent_0_3,compView_0);
     Text _text_1 = new Text('\n                    ');
     _el_2 = doc.createElement('material-dialog');
@@ -2237,8 +2599,8 @@ class ViewFilesComp15 extends AppView<import3.FilesComp> {
     createAttr(_el_2,'hideFooter','true');
     createAttr(_el_2,'hideHeader','true');
     _appEl_2 = new ViewContainer(2,0,this,_el_2);
-    var compView_2 = import49.viewFactory_MaterialDialogComponent0(this.injector(2),_appEl_2);
-    _MaterialDialogComponent_2_3 = new import47.MaterialDialogComponent(this.parentInjector.get(import30.DomService),compView_2.ref,_ModalComponent_0_3);
+    var compView_2 = import52.viewFactory_MaterialDialogComponent0(this.injector(2),_appEl_2);
+    _MaterialDialogComponent_2_3 = new import50.MaterialDialogComponent(this.parentInjector.get(import30.DomService),compView_2.ref,_ModalComponent_0_3);
     _appEl_2.initComponent(_MaterialDialogComponent_2_3,compView_2);
     Text _text_3 = new Text('\n                      ');
     _el_4 = doc.createElement('div');
@@ -2350,10 +2712,10 @@ class ViewFilesComp15 extends AppView<import3.FilesComp> {
     return null;
   }
   dynamic injectorGetInternal(dynamic token,int requestNodeIndex,dynamic notFoundResult) {
-    if ((identical(token, import47.MaterialDialogComponent) && ((2 <= requestNodeIndex) && (requestNodeIndex <= 36)))) { return _MaterialDialogComponent_2_3; }
-    if ((identical(token, import46.ModalComponent) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 37)))) { return _ModalComponent_0_3; }
+    if ((identical(token, import50.MaterialDialogComponent) && ((2 <= requestNodeIndex) && (requestNodeIndex <= 36)))) { return _MaterialDialogComponent_2_3; }
+    if ((identical(token, import49.ModalComponent) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 37)))) { return _ModalComponent_0_3; }
     if ((identical(token, import40.DeferredContentAware) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 37)))) { return _DeferredContentAware_0_4; }
-    if ((identical(token, import46.Modal) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 37)))) { return _Modal_0_5; }
+    if ((identical(token, import49.Modal) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 37)))) { return _Modal_0_5; }
     return notFoundResult;
   }
   void detectChangesInternal() {
@@ -2411,8 +2773,8 @@ class ViewFilesComp15 extends AppView<import3.FilesComp> {
     return (true && pd_0);
   }
 }
-AppView viewFactory_FilesComp15(import9.Injector parentInjector,ViewContainer declarationEl) {
-  return new ViewFilesComp15(parentInjector,declarationEl);
+AppView viewFactory_FilesComp19(import9.Injector parentInjector,ViewContainer declarationEl) {
+  return new ViewFilesComp19(parentInjector,declarationEl);
 }
 const List<dynamic> styles_FilesCompHost = const [];
 RenderComponentType renderType_FilesCompHost;
@@ -2421,49 +2783,49 @@ class ViewFilesCompHost0 extends AppView<dynamic> {
   ViewContainer _appEl_0;
   import3.FilesComp _FilesComp_0_3;
   dynamic __defaultPopupPositions_0_4;
-  import50.Angular2ManagedZone __ManagedZone_0_5;
+  import53.Angular2ManagedZone __ManagedZone_0_5;
   dynamic __Window_0_6;
   dynamic __DomService_0_7;
-  import51.AcxImperativeViewUtils __AcxImperativeViewUtils_0_8;
+  import54.AcxImperativeViewUtils __AcxImperativeViewUtils_0_8;
   dynamic __Document_0_9;
-  import52.DomRuler __DomRuler_0_10;
+  import55.DomRuler __DomRuler_0_10;
   dynamic __overlayContainerName_0_11;
   dynamic __overlayContainerParent_0_12;
   dynamic __overlayContainerToken_0_13;
   dynamic __overlaySyncDom_0_14;
-  import53.OverlayStyleConfig __OverlayStyleConfig_0_15;
-  import54.ZIndexer __ZIndexer_0_16;
-  import55.OverlayDomRenderService __OverlayDomRenderService_0_17;
-  import56.OverlayDomService __OverlayService_0_18;
+  import56.OverlayStyleConfig __OverlayStyleConfig_0_15;
+  import57.ZIndexer __ZIndexer_0_16;
+  import58.OverlayDomRenderService __OverlayDomRenderService_0_17;
+  import59.OverlayDomService __OverlayService_0_18;
   import27.DomPopupSourceFactory __DomPopupSourceFactory_0_19;
   import34.PopupService __PopupService_0_20;
   ViewFilesCompHost0(import9.Injector parentInjector,ViewContainer declarationEl): super(ViewFilesCompHost0,renderType_FilesCompHost,import10.ViewType.HOST,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
   dynamic get _defaultPopupPositions_0_4 {
-    if ((this.__defaultPopupPositions_0_4 == null)) { (__defaultPopupPositions_0_4 = import57.inlinePositions); }
+    if ((this.__defaultPopupPositions_0_4 == null)) { (__defaultPopupPositions_0_4 = import60.inlinePositions); }
     return this.__defaultPopupPositions_0_4;
   }
-  import50.Angular2ManagedZone get _ManagedZone_0_5 {
-    if ((this.__ManagedZone_0_5 == null)) { (__ManagedZone_0_5 = new import50.Angular2ManagedZone(this.parentInjector.get(import33.NgZone))); }
+  import53.Angular2ManagedZone get _ManagedZone_0_5 {
+    if ((this.__ManagedZone_0_5 == null)) { (__ManagedZone_0_5 = new import53.Angular2ManagedZone(this.parentInjector.get(import33.NgZone))); }
     return this.__ManagedZone_0_5;
   }
   dynamic get _Window_0_6 {
-    if ((this.__Window_0_6 == null)) { (__Window_0_6 = import58.getWindow()); }
+    if ((this.__Window_0_6 == null)) { (__Window_0_6 = import61.getWindow()); }
     return this.__Window_0_6;
   }
   dynamic get _DomService_0_7 {
-    if ((this.__DomService_0_7 == null)) { (__DomService_0_7 = import59.createDomService(this.parentInjector.get(import30.DomService,null),this.parentInjector.get(import60.Disposer,null),this._ManagedZone_0_5,this._Window_0_6)); }
+    if ((this.__DomService_0_7 == null)) { (__DomService_0_7 = import62.createDomService(this.parentInjector.get(import30.DomService,null),this.parentInjector.get(import63.Disposer,null),this._ManagedZone_0_5,this._Window_0_6)); }
     return this.__DomService_0_7;
   }
-  import51.AcxImperativeViewUtils get _AcxImperativeViewUtils_0_8 {
-    if ((this.__AcxImperativeViewUtils_0_8 == null)) { (__AcxImperativeViewUtils_0_8 = new import51.AcxImperativeViewUtils(this.parentInjector.get(import61.DynamicComponentLoader),this._DomService_0_7)); }
+  import54.AcxImperativeViewUtils get _AcxImperativeViewUtils_0_8 {
+    if ((this.__AcxImperativeViewUtils_0_8 == null)) { (__AcxImperativeViewUtils_0_8 = new import54.AcxImperativeViewUtils(this.parentInjector.get(import64.DynamicComponentLoader),this._DomService_0_7)); }
     return this.__AcxImperativeViewUtils_0_8;
   }
   dynamic get _Document_0_9 {
-    if ((this.__Document_0_9 == null)) { (__Document_0_9 = import58.getDocument()); }
+    if ((this.__Document_0_9 == null)) { (__Document_0_9 = import61.getDocument()); }
     return this.__Document_0_9;
   }
-  import52.DomRuler get _DomRuler_0_10 {
-    if ((this.__DomRuler_0_10 == null)) { (__DomRuler_0_10 = new import52.DomRuler(this._Document_0_9,this._DomService_0_7)); }
+  import55.DomRuler get _DomRuler_0_10 {
+    if ((this.__DomRuler_0_10 == null)) { (__DomRuler_0_10 = new import55.DomRuler(this._Document_0_9,this._DomService_0_7)); }
     return this.__DomRuler_0_10;
   }
   dynamic get _overlayContainerName_0_11 {
@@ -2471,31 +2833,31 @@ class ViewFilesCompHost0 extends AppView<dynamic> {
     return this.__overlayContainerName_0_11;
   }
   dynamic get _overlayContainerParent_0_12 {
-    if ((this.__overlayContainerParent_0_12 == null)) { (__overlayContainerParent_0_12 = import62.getOverlayContainerParent(this._Document_0_9)); }
+    if ((this.__overlayContainerParent_0_12 == null)) { (__overlayContainerParent_0_12 = import65.getOverlayContainerParent(this._Document_0_9)); }
     return this.__overlayContainerParent_0_12;
   }
   dynamic get _overlayContainerToken_0_13 {
-    if ((this.__overlayContainerToken_0_13 == null)) { (__overlayContainerToken_0_13 = import62.getDefaultContainer(this._overlayContainerName_0_11,this._overlayContainerParent_0_12)); }
+    if ((this.__overlayContainerToken_0_13 == null)) { (__overlayContainerToken_0_13 = import65.getDefaultContainer(this._overlayContainerName_0_11,this._overlayContainerParent_0_12)); }
     return this.__overlayContainerToken_0_13;
   }
   dynamic get _overlaySyncDom_0_14 {
     if ((this.__overlaySyncDom_0_14 == null)) { (__overlaySyncDom_0_14 = true); }
     return this.__overlaySyncDom_0_14;
   }
-  import53.OverlayStyleConfig get _OverlayStyleConfig_0_15 {
-    if ((this.__OverlayStyleConfig_0_15 == null)) { (__OverlayStyleConfig_0_15 = new import53.OverlayStyleConfig(this._Document_0_9)); }
+  import56.OverlayStyleConfig get _OverlayStyleConfig_0_15 {
+    if ((this.__OverlayStyleConfig_0_15 == null)) { (__OverlayStyleConfig_0_15 = new import56.OverlayStyleConfig(this._Document_0_9)); }
     return this.__OverlayStyleConfig_0_15;
   }
-  import54.ZIndexer get _ZIndexer_0_16 {
-    if ((this.__ZIndexer_0_16 == null)) { (__ZIndexer_0_16 = new import54.ZIndexer()); }
+  import57.ZIndexer get _ZIndexer_0_16 {
+    if ((this.__ZIndexer_0_16 == null)) { (__ZIndexer_0_16 = new import57.ZIndexer()); }
     return this.__ZIndexer_0_16;
   }
-  import55.OverlayDomRenderService get _OverlayDomRenderService_0_17 {
-    if ((this.__OverlayDomRenderService_0_17 == null)) { (__OverlayDomRenderService_0_17 = new import55.OverlayDomRenderService(this._OverlayStyleConfig_0_15,this._overlayContainerToken_0_13,this._overlayContainerName_0_11,this._DomRuler_0_10,this._DomService_0_7,this._AcxImperativeViewUtils_0_8,this._overlaySyncDom_0_14,this._ZIndexer_0_16)); }
+  import58.OverlayDomRenderService get _OverlayDomRenderService_0_17 {
+    if ((this.__OverlayDomRenderService_0_17 == null)) { (__OverlayDomRenderService_0_17 = new import58.OverlayDomRenderService(this._OverlayStyleConfig_0_15,this._overlayContainerToken_0_13,this._overlayContainerName_0_11,this._DomRuler_0_10,this._DomService_0_7,this._AcxImperativeViewUtils_0_8,this._overlaySyncDom_0_14,this._ZIndexer_0_16)); }
     return this.__OverlayDomRenderService_0_17;
   }
-  import56.OverlayDomService get _OverlayService_0_18 {
-    if ((this.__OverlayService_0_18 == null)) { (__OverlayService_0_18 = new import56.OverlayDomService(this.parentInjector.get(import33.NgZone),this._overlaySyncDom_0_14,this._OverlayDomRenderService_0_17,this.parentInjector.get(import35.OverlayService,null))); }
+  import59.OverlayDomService get _OverlayService_0_18 {
+    if ((this.__OverlayService_0_18 == null)) { (__OverlayService_0_18 = new import59.OverlayDomService(this.parentInjector.get(import33.NgZone),this._overlaySyncDom_0_14,this._OverlayDomRenderService_0_17,this.parentInjector.get(import35.OverlayService,null))); }
     return this.__OverlayService_0_18;
   }
   import27.DomPopupSourceFactory get _DomPopupSourceFactory_0_19 {
@@ -2519,19 +2881,19 @@ class ViewFilesCompHost0 extends AppView<dynamic> {
   dynamic injectorGetInternal(dynamic token,int requestNodeIndex,dynamic notFoundResult) {
     if ((identical(token, import3.FilesComp) && (0 == requestNodeIndex))) { return _FilesComp_0_3; }
     if ((identical(token, import34.defaultPopupPositions) && (0 == requestNodeIndex))) { return _defaultPopupPositions_0_4; }
-    if ((identical(token, import63.ManagedZone) && (0 == requestNodeIndex))) { return _ManagedZone_0_5; }
+    if ((identical(token, import66.ManagedZone) && (0 == requestNodeIndex))) { return _ManagedZone_0_5; }
     if ((identical(token, Window) && (0 == requestNodeIndex))) { return _Window_0_6; }
     if ((identical(token, import30.DomService) && (0 == requestNodeIndex))) { return _DomService_0_7; }
-    if ((identical(token, import51.AcxImperativeViewUtils) && (0 == requestNodeIndex))) { return _AcxImperativeViewUtils_0_8; }
+    if ((identical(token, import54.AcxImperativeViewUtils) && (0 == requestNodeIndex))) { return _AcxImperativeViewUtils_0_8; }
     if ((identical(token, Document) && (0 == requestNodeIndex))) { return _Document_0_9; }
-    if ((identical(token, import52.DomRuler) && (0 == requestNodeIndex))) { return _DomRuler_0_10; }
-    if ((identical(token, import55.overlayContainerName) && (0 == requestNodeIndex))) { return _overlayContainerName_0_11; }
-    if ((identical(token, import55.overlayContainerParent) && (0 == requestNodeIndex))) { return _overlayContainerParent_0_12; }
-    if ((identical(token, import55.overlayContainerToken) && (0 == requestNodeIndex))) { return _overlayContainerToken_0_13; }
-    if ((identical(token, import55.overlaySyncDom) && (0 == requestNodeIndex))) { return _overlaySyncDom_0_14; }
-    if ((identical(token, import53.OverlayStyleConfig) && (0 == requestNodeIndex))) { return _OverlayStyleConfig_0_15; }
-    if ((identical(token, import54.ZIndexer) && (0 == requestNodeIndex))) { return _ZIndexer_0_16; }
-    if ((identical(token, import55.OverlayDomRenderService) && (0 == requestNodeIndex))) { return _OverlayDomRenderService_0_17; }
+    if ((identical(token, import55.DomRuler) && (0 == requestNodeIndex))) { return _DomRuler_0_10; }
+    if ((identical(token, import58.overlayContainerName) && (0 == requestNodeIndex))) { return _overlayContainerName_0_11; }
+    if ((identical(token, import58.overlayContainerParent) && (0 == requestNodeIndex))) { return _overlayContainerParent_0_12; }
+    if ((identical(token, import58.overlayContainerToken) && (0 == requestNodeIndex))) { return _overlayContainerToken_0_13; }
+    if ((identical(token, import58.overlaySyncDom) && (0 == requestNodeIndex))) { return _overlaySyncDom_0_14; }
+    if ((identical(token, import56.OverlayStyleConfig) && (0 == requestNodeIndex))) { return _OverlayStyleConfig_0_15; }
+    if ((identical(token, import57.ZIndexer) && (0 == requestNodeIndex))) { return _ZIndexer_0_16; }
+    if ((identical(token, import58.OverlayDomRenderService) && (0 == requestNodeIndex))) { return _OverlayDomRenderService_0_17; }
     if ((identical(token, import35.OverlayService) && (0 == requestNodeIndex))) { return _OverlayService_0_18; }
     if ((identical(token, import27.DomPopupSourceFactory) && (0 == requestNodeIndex))) { return _DomPopupSourceFactory_0_19; }
     if ((identical(token, import34.PopupService) && (0 == requestNodeIndex))) { return _PopupService_0_20; }
@@ -2547,7 +2909,7 @@ AppView viewFactory_FilesCompHost0(import9.Injector parentInjector,ViewContainer
   if (identical(renderType_FilesCompHost, null)) { (renderType_FilesCompHost = import13.appViewUtils.createRenderComponentType('',0,import14.ViewEncapsulation.Emulated,styles_FilesCompHost)); }
   return new ViewFilesCompHost0(parentInjector,declarationEl);
 }
-const import64.ComponentFactory FilesCompNgFactory = const import64.ComponentFactory('files-comp',viewFactory_FilesCompHost0,import3.FilesComp,_METADATA);
+const import67.ComponentFactory FilesCompNgFactory = const import67.ComponentFactory('files-comp',viewFactory_FilesCompHost0,import3.FilesComp,_METADATA);
 const _METADATA = const <dynamic>[FilesComp, const <dynamic>[]];
 var _visited = false;
 void initReflector() {
@@ -2557,7 +2919,7 @@ _ngRef.reflector
 const <dynamic>[FilesCompNgFactory],
 const [const <dynamic>[PlaceService], const <dynamic>[Router], const <dynamic>[Environment]],
 (PlaceService _placeService, Router _router, Environment _environment) => new FilesComp(_placeService, _router, _environment),
-const <dynamic>[OnInit])
+const <dynamic>[OnInit, PopupParent])
 )
 ;
 i0.initReflector();
@@ -2576,4 +2938,6 @@ i12.initReflector();
 i13.initReflector();
 i14.initReflector();
 i15.initReflector();
+i16.initReflector();
+i17.initReflector();
 }

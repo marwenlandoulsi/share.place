@@ -29,25 +29,24 @@
     });
 
     //prevent file drop to open in window body
-    window.addEventListener("dragover",function(e){
-      var drop  = document.getElementById('fileForm');
+    window.addEventListener("dragover", function (e) {
+      var drop = document.getElementById('fileForm');
       e = e || event;
-      console.log('e.target.id' ,e.target.id) ;
+      console.log('e.target.id', e.target.id);
       // check wich element is our target
       e.preventDefault();
 
-    },false);
+    }, false);
 
 
-
-    window.addEventListener("drop",function(e){
-      var drop  = document.getElementById('fileForm');
+    window.addEventListener("drop", function (e) {
+      var drop = document.getElementById('fileForm');
       e = e || event;
-      console.log('e.target' ,e.target.name) ;
+      console.log('e.target', e.target.name);
       if (e.target.type != "file") {  // check wich element is our target
         e.preventDefault();
       }
-    },false);
+    }, false);
   </script>
 
 
@@ -56,9 +55,9 @@
 <body>
 <my-app>Loading...</my-app>
 
-<!--
-<script src="../socketIo/socket.io.js"></script>
 
+<script src="../socketIo/socket.io.js"></script>
+<!--
 <script>
   var socket = io.connect();
   socket.on('connect', () => {
@@ -81,11 +80,13 @@
 <input type="hidden" id="loginUrl" value="err"/>
 <input type="hidden" id="port" value="err"/>
 <input type="hidden" id="env" value="desktop"/>
+<input type="hidden" id="cc" value=""/>
+
 <script type="application/javascript">
-	document.getElementById('baseUrl').value = window.location.origin;
-  document.getElementById('loginUrl').value = "http://localhost:3000";
-//  document.getElementById('loginUrl').value = "http://ec2-54-154-38-51.eu-west-1.compute.amazonaws.com";
-	document.getElementById('port').value = window.location.port;
+  document.getElementById('baseUrl').value = window.location.origin;
+  // document.getElementById('loginUrl').value = "http://localhost:3000";
+  document.getElementById('loginUrl').value = "http://ec2-54-154-38-51.eu-west-1.compute.amazonaws.com";
+  document.getElementById('port').value = window.location.port;
 </script>
 <!-- Dart conf end-->
 
@@ -95,8 +96,8 @@
     ipcRenderer.send('online-status-changed', navigator.onLine ? true : false)
   }
 
-  window.addEventListener('online',  updateOnlineStatus)
-  window.addEventListener('offline',  updateOnlineStatus)
+  window.addEventListener('online', updateOnlineStatus)
+  window.addEventListener('offline', updateOnlineStatus)
 
   updateOnlineStatus()
 </script>

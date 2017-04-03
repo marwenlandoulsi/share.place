@@ -34,7 +34,8 @@ class LoginComp implements OnInit {
   bool forgotPassDisplayed = false;
   bool fbClicked = false;
   bool googleClicked = false;
-  bool online;
+
+  bool get online  => window.navigator.onLine;
 
   User user = new User.empty();
   bool showSignupDialog;
@@ -44,8 +45,6 @@ class LoginComp implements OnInit {
 
   Future<Null> ngOnInit() async {
     _environment.eventBus.getBus().listen( (params) => show(params));
-    window.onOnline.listen((Event e) => online = true);
-    window.onOffline.listen((Event e) => online = false);
   }
 
   show(Map<PlaceParam, dynamic> params) async {

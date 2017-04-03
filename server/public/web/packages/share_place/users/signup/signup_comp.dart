@@ -62,7 +62,7 @@ class SignupComp implements OnInit {
     fileForm.style.border = "none";
 
     //FIXME this shouldn't be called since the return value of the post should be up to date (on profile image update)
-    _environment.connectedUser = await _placeService.getConnectedUser();
+    _environment.connectedUser = await _placeService.loadConnectedUser();
     uploading = false;
   }
 

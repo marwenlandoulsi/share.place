@@ -83,64 +83,66 @@ class ViewInviteUsersDialogComp0 extends AppView<import3.InviteUsersDialogComp> 
   Element _el_12;
   Element _el_14;
   Element _el_16;
-  TableElement _el_19;
-  Element _el_21;
-  Element _el_22;
+  Element _el_19;
+  TableElement _el_21;
+  Element _el_23;
   Element _el_24;
   Element _el_26;
-  Element _el_27;
-  Element _el_30;
+  Element _el_28;
+  Element _el_29;
   Element _el_32;
-  Element _el_35;
-  Element _el_38;
+  Element _el_34;
+  Element _el_37;
   Element _el_40;
-  Element _el_44;
-  ViewContainer _appEl_49;
-  dynamic _TemplateRef_49_4;
-  import6.NgFor _NgFor_49_5;
-  Element _el_52;
-  Element _el_54;
-  Element _el_59;
-  Element _el_63;
+  Element _el_42;
+  Element _el_46;
+  ViewContainer _appEl_51;
+  dynamic _TemplateRef_51_4;
+  import6.NgFor _NgFor_51_5;
+  Element _el_55;
+  Element _el_57;
+  Element _el_62;
   Element _el_66;
-  ViewContainer _appEl_66;
-  import7.DeferredValidator _DeferredValidator_66_3;
-  List<dynamic> _NG_VALIDATORS_66_4;
-  import8.NgModel _NgModel_66_5;
-  dynamic _NgControl_66_6;
-  import9.MaterialMultilineInputComponent _MaterialMultilineInputComponent_66_7;
-  dynamic _BaseMaterialInput_66_8;
-  import10.MaterialInputDefaultValueAccessor _MaterialInputDefaultValueAccessor_66_9;
-  dynamic __ReferenceDirective_66_10;
-  dynamic __Focusable_66_11;
   Element _el_69;
-  Element _el_71;
-  ViewContainer _appEl_71;
-  import11.AcxDarkTheme _AcxDarkTheme_71_3;
-  import12.MaterialButtonComponent _MaterialButtonComponent_71_4;
-  dynamic __ButtonDirective_71_5;
+  ViewContainer _appEl_69;
+  import7.DeferredValidator _DeferredValidator_69_3;
+  List<dynamic> _NG_VALIDATORS_69_4;
+  import8.NgModel _NgModel_69_5;
+  dynamic _NgControl_69_6;
+  import9.MaterialMultilineInputComponent _MaterialMultilineInputComponent_69_7;
+  dynamic _BaseMaterialInput_69_8;
+  import10.MaterialInputDefaultValueAccessor _MaterialInputDefaultValueAccessor_69_9;
+  dynamic __ReferenceDirective_69_10;
+  dynamic __Focusable_69_11;
+  Element _el_72;
+  Element _el_74;
+  ViewContainer _appEl_74;
+  import11.AcxDarkTheme _AcxDarkTheme_74_3;
+  import12.MaterialButtonComponent _MaterialButtonComponent_74_4;
+  dynamic __ButtonDirective_74_5;
   var _expr_0 = uninitialized;
   var _expr_2 = uninitialized;
   var _expr_6 = uninitialized;
   var _expr_7 = uninitialized;
-  var _expr_15 = uninitialized;
+  var _expr_8 = uninitialized;
   var _expr_16 = uninitialized;
   var _expr_17 = uninitialized;
   var _expr_18 = uninitialized;
   var _expr_19 = uninitialized;
   var _expr_20 = uninitialized;
+  var _expr_21 = uninitialized;
   ViewInviteUsersDialogComp0(import14.Injector parentInjector,ViewContainer declarationEl): super(ViewInviteUsersDialogComp0,renderType_InviteUsersDialogComp,import15.ViewType.COMPONENT,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
-  dynamic get _ReferenceDirective_66_10 {
-    if ((this.__ReferenceDirective_66_10 == null)) { (__ReferenceDirective_66_10 = this._MaterialMultilineInputComponent_66_7); }
-    return this.__ReferenceDirective_66_10;
+  dynamic get _ReferenceDirective_69_10 {
+    if ((this.__ReferenceDirective_69_10 == null)) { (__ReferenceDirective_69_10 = this._MaterialMultilineInputComponent_69_7); }
+    return this.__ReferenceDirective_69_10;
   }
-  dynamic get _Focusable_66_11 {
-    if ((this.__Focusable_66_11 == null)) { (__Focusable_66_11 = this._MaterialMultilineInputComponent_66_7); }
-    return this.__Focusable_66_11;
+  dynamic get _Focusable_69_11 {
+    if ((this.__Focusable_69_11 == null)) { (__Focusable_69_11 = this._MaterialMultilineInputComponent_69_7); }
+    return this.__Focusable_69_11;
   }
-  dynamic get _ButtonDirective_71_5 {
-    if ((this.__ButtonDirective_71_5 == null)) { (__ButtonDirective_71_5 = this._MaterialButtonComponent_71_4); }
-    return this.__ButtonDirective_71_5;
+  dynamic get _ButtonDirective_74_5 {
+    if ((this.__ButtonDirective_74_5 == null)) { (__ButtonDirective_74_5 = this._MaterialButtonComponent_74_4); }
+    return this.__ButtonDirective_74_5;
   }
   ViewContainer createInternal(dynamic rootSelector) {
     final Node parentRenderNode = initViewRoot(this.declarationViewContainer.nativeElement);
@@ -196,204 +198,213 @@ class ViewInviteUsersDialogComp0 extends AppView<import3.InviteUsersDialogComp> 
     _el_14.append(_text_17);
     Text _text_18 = new Text('\n    ');
     _el_12.append(_text_18);
-    _el_19 = doc.createElement('table');
+    _el_19 = doc.createElement('div');
     _el_19.setAttribute(shimCAttr,'');
     _el_12.append(_el_19);
-    _el_19.className = 'invites';
+    _el_19.className = 'containerInvites';
     Text _text_20 = new Text('\n      ');
     _el_19.append(_text_20);
-    _el_21 = doc.createElement('tbody');
+    _el_21 = doc.createElement('table');
     _el_21.setAttribute(shimCAttr,'');
     _el_19.append(_el_21);
-    _el_22 = doc.createElement('tr');
-    _el_22.setAttribute(shimCAttr,'');
-    _el_21.append(_el_22);
-    Text _text_23 = new Text('\n        ');
-    _el_22.append(_text_23);
-    _el_24 = doc.createElement('th');
+    _el_21.className = 'invites';
+    Text _text_22 = new Text('\n        ');
+    _el_21.append(_text_22);
+    _el_23 = doc.createElement('tbody');
+    _el_23.setAttribute(shimCAttr,'');
+    _el_21.append(_el_23);
+    _el_24 = doc.createElement('tr');
     _el_24.setAttribute(shimCAttr,'');
-    _el_22.append(_el_24);
-    createAttr(_el_24,'width','40%');
-    Text _text_25 = new Text('\n        ');
-    _el_22.append(_text_25);
+    _el_23.append(_el_24);
+    Text _text_25 = new Text('\n          ');
+    _el_24.append(_text_25);
     _el_26 = doc.createElement('th');
     _el_26.setAttribute(shimCAttr,'');
-    _el_22.append(_el_26);
-    createAttr(_el_26,'width','60%');
-    _el_27 = doc.createElement('span');
-    _el_27.setAttribute(shimCAttr,'');
-    _el_26.append(_el_27);
-    _el_27.className = 'labelinvit textCenter magBtm';
-    Text _text_28 = new Text('Authorization');
-    _el_27.append(_text_28);
-    Text _text_29 = new Text('\n\n          ');
-    _el_26.append(_text_29);
-    _el_30 = doc.createElement('p');
-    _el_30.setAttribute(shimCAttr,'');
-    _el_26.append(_el_30);
-    _el_30.className = 'p_invi';
-    Text _text_31 = new Text('User can ');
-    _el_30.append(_text_31);
-    _el_32 = doc.createElement('span');
+    _el_24.append(_el_26);
+    createAttr(_el_26,'width','40%');
+    Text _text_27 = new Text('\n          ');
+    _el_24.append(_text_27);
+    _el_28 = doc.createElement('th');
+    _el_28.setAttribute(shimCAttr,'');
+    _el_24.append(_el_28);
+    createAttr(_el_28,'width','60%');
+    _el_29 = doc.createElement('span');
+    _el_29.setAttribute(shimCAttr,'');
+    _el_28.append(_el_29);
+    _el_29.className = 'labelinvit textCenter magBtm';
+    Text _text_30 = new Text('Authorization');
+    _el_29.append(_text_30);
+    Text _text_31 = new Text('\n\n            ');
+    _el_28.append(_text_31);
+    _el_32 = doc.createElement('p');
     _el_32.setAttribute(shimCAttr,'');
-    _el_30.append(_el_32);
-    _el_32.className = 'fStrong';
-    Text _text_33 = new Text('approve');
+    _el_28.append(_el_32);
+    _el_32.className = 'p_invi';
+    Text _text_33 = new Text('User can ');
     _el_32.append(_text_33);
-    Text _text_34 = new Text(', read, export, modify document and ');
-    _el_30.append(_text_34);
-    _el_35 = doc.createElement('span');
-    _el_35.setAttribute(shimCAttr,'');
-    _el_30.append(_el_35);
-    _el_35.className = 'fStrong';
-    Text _text_36 = new Text('invite new people');
-    _el_35.append(_text_36);
-    Text _text_37 = new Text('\n          ');
-    _el_26.append(_text_37);
-    _el_38 = doc.createElement('p');
-    _el_38.setAttribute(shimCAttr,'');
-    _el_26.append(_el_38);
-    _el_38.className = 'p_invi';
-    Text _text_39 = new Text(' User can read, export and ');
-    _el_38.append(_text_39);
-    _el_40 = doc.createElement('span');
+    _el_34 = doc.createElement('span');
+    _el_34.setAttribute(shimCAttr,'');
+    _el_32.append(_el_34);
+    _el_34.className = 'fStrong';
+    Text _text_35 = new Text('approve');
+    _el_34.append(_text_35);
+    Text _text_36 = new Text(', read, export, modify document and ');
+    _el_32.append(_text_36);
+    _el_37 = doc.createElement('span');
+    _el_37.setAttribute(shimCAttr,'');
+    _el_32.append(_el_37);
+    _el_37.className = 'fStrong';
+    Text _text_38 = new Text('invite new people');
+    _el_37.append(_text_38);
+    Text _text_39 = new Text('\n            ');
+    _el_28.append(_text_39);
+    _el_40 = doc.createElement('p');
     _el_40.setAttribute(shimCAttr,'');
-    _el_38.append(_el_40);
-    _el_40.className = 'fStrong';
-    Text _text_41 = new Text('modify');
+    _el_28.append(_el_40);
+    _el_40.className = 'p_invi';
+    Text _text_41 = new Text(' User can read, export and ');
     _el_40.append(_text_41);
-    Text _text_42 = new Text(' document');
-    _el_38.append(_text_42);
-    Text _text_43 = new Text('\n          ');
-    _el_26.append(_text_43);
-    _el_44 = doc.createElement('p');
-    _el_44.setAttribute(shimCAttr,'');
-    _el_26.append(_el_44);
-    _el_44.className = 'p_invi';
-    Text _text_45 = new Text('User can read and export document');
-    _el_44.append(_text_45);
-    Text _text_46 = new Text('\n\n        ');
-    _el_26.append(_text_46);
-    Text _text_47 = new Text('\n      ');
-    _el_22.append(_text_47);
-    Text _text_48 = new Text('\n\n      ');
-    _el_21.append(_text_48);
-    var _anchor_49 = new Comment('template bindings={}');
-    _el_21?.append(_anchor_49);
-    _appEl_49 = new ViewContainer(49,21,this,_anchor_49);
-    _TemplateRef_49_4 = new TemplateRef(_appEl_49,viewFactory_InviteUsersDialogComp1);
-    _NgFor_49_5 = new import6.NgFor(_appEl_49,_TemplateRef_49_4,this.parentInjector.get(import17.IterableDiffers),ref);
-    Text _text_50 = new Text('\n    ');
-    _el_21.append(_text_50);
-    Text _text_51 = new Text('\n\n    ');
-    _el_12.append(_text_51);
-    _el_52 = doc.createElement('div');
-    _el_52.setAttribute(shimCAttr,'');
-    _el_12.append(_el_52);
-    _el_52.className = 'addUserDiv';
-    Text _text_53 = new Text('\n      ');
-    _el_52.append(_text_53);
-    _el_54 = doc.createElement('div');
-    _el_54.setAttribute(shimCAttr,'');
-    _el_52.append(_el_54);
-    _el_54.className = 'addUserDiv_inside';
-    Text _text_55 = new Text(' More lines\n        ');
-    _el_54.append(_text_55);
-    Text _text_56 = new Text('\n        ');
-    _el_54.append(_text_56);
-    Text _text_57 = new Text('\n        ');
-    _el_54.append(_text_57);
-    Text _text_58 = new Text('\n        ');
-    _el_54.append(_text_58);
-    _el_59 = doc.createElement('img');
-    _el_59.setAttribute(shimCAttr,'');
-    _el_54.append(_el_59);
-    createAttr(_el_59,'alt','');
-    _el_59.className = 'blueadd';
-    createAttr(_el_59,'src','../images/add_blue.png');
-    Text _text_60 = new Text('\n      ');
-    _el_54.append(_text_60);
-    Text _text_61 = new Text('\n    ');
-    _el_52.append(_text_61);
-    Text _text_62 = new Text('\n\n\n    ');
-    _el_12.append(_text_62);
-    _el_63 = doc.createElement('span');
-    _el_63.setAttribute(shimCAttr,'');
-    _el_12.append(_el_63);
-    _el_63.className = 'labelinvit';
-    Text _text_64 = new Text('Message');
-    _el_63.append(_text_64);
-    Text _text_65 = new Text('\n    ');
+    _el_42 = doc.createElement('span');
+    _el_42.setAttribute(shimCAttr,'');
+    _el_40.append(_el_42);
+    _el_42.className = 'fStrong';
+    Text _text_43 = new Text('modify');
+    _el_42.append(_text_43);
+    Text _text_44 = new Text(' document');
+    _el_40.append(_text_44);
+    Text _text_45 = new Text('\n            ');
+    _el_28.append(_text_45);
+    _el_46 = doc.createElement('p');
+    _el_46.setAttribute(shimCAttr,'');
+    _el_28.append(_el_46);
+    _el_46.className = 'p_invi';
+    Text _text_47 = new Text('User can read and export document');
+    _el_46.append(_text_47);
+    Text _text_48 = new Text('\n\n          ');
+    _el_28.append(_text_48);
+    Text _text_49 = new Text('\n        ');
+    _el_24.append(_text_49);
+    Text _text_50 = new Text('\n\n        ');
+    _el_23.append(_text_50);
+    var _anchor_51 = new Comment('template bindings={}');
+    _el_23?.append(_anchor_51);
+    _appEl_51 = new ViewContainer(51,23,this,_anchor_51);
+    _TemplateRef_51_4 = new TemplateRef(_appEl_51,viewFactory_InviteUsersDialogComp1);
+    _NgFor_51_5 = new import6.NgFor(_appEl_51,_TemplateRef_51_4,this.parentInjector.get(import17.IterableDiffers),ref);
+    Text _text_52 = new Text('\n      ');
+    _el_23.append(_text_52);
+    Text _text_53 = new Text('\n    ');
+    _el_19.append(_text_53);
+    Text _text_54 = new Text('\n    ');
+    _el_12.append(_text_54);
+    _el_55 = doc.createElement('div');
+    _el_55.setAttribute(shimCAttr,'');
+    _el_12.append(_el_55);
+    _el_55.className = 'addUserDiv';
+    Text _text_56 = new Text('\n      ');
+    _el_55.append(_text_56);
+    _el_57 = doc.createElement('div');
+    _el_57.setAttribute(shimCAttr,'');
+    _el_55.append(_el_57);
+    _el_57.className = 'addUserDiv_inside';
+    Text _text_58 = new Text(' More lines\n        ');
+    _el_57.append(_text_58);
+    Text _text_59 = new Text('\n        ');
+    _el_57.append(_text_59);
+    Text _text_60 = new Text('\n        ');
+    _el_57.append(_text_60);
+    Text _text_61 = new Text('\n        ');
+    _el_57.append(_text_61);
+    _el_62 = doc.createElement('img');
+    _el_62.setAttribute(shimCAttr,'');
+    _el_57.append(_el_62);
+    createAttr(_el_62,'alt','');
+    _el_62.className = 'blueadd';
+    createAttr(_el_62,'src','../images/add_blue.png');
+    Text _text_63 = new Text('\n      ');
+    _el_57.append(_text_63);
+    Text _text_64 = new Text('\n    ');
+    _el_55.append(_text_64);
+    Text _text_65 = new Text('\n\n    ');
     _el_12.append(_text_65);
-    _el_66 = doc.createElement('material-input');
+    _el_66 = doc.createElement('span');
     _el_66.setAttribute(shimCAttr,'');
     _el_12.append(_el_66);
-    _el_66.className = 'themeable';
-    createAttr(_el_66,'multiline','');
-    createAttr(_el_66,'placeholder','example@mydomain.com');
-    createAttr(_el_66,'rows','5');
-    createAttr(_el_66,'tabIndex','-1');
-    createAttr(_el_66,'type','text');
-    _appEl_66 = new ViewContainer(66,12,this,_el_66);
-    var compView_66 = import18.viewFactory_MaterialMultilineInputComponent0(this.injector(66),_appEl_66);
-    _DeferredValidator_66_3 = new import7.DeferredValidator();
-    _NG_VALIDATORS_66_4 = [_DeferredValidator_66_3];
-    _NgModel_66_5 = new import8.NgModel(_NG_VALIDATORS_66_4,null,null);
-    _NgControl_66_6 = _NgModel_66_5;
-    _MaterialMultilineInputComponent_66_7 = new import9.MaterialMultilineInputComponent(_NgControl_66_6,compView_66.ref,_DeferredValidator_66_3);
-    _BaseMaterialInput_66_8 = _MaterialMultilineInputComponent_66_7;
-    _MaterialInputDefaultValueAccessor_66_9 = new import10.MaterialInputDefaultValueAccessor(_BaseMaterialInput_66_8,_NgControl_66_6);
-    _appEl_66.initComponent(_MaterialMultilineInputComponent_66_7,compView_66);
-    compView_66.createComp([[]],null);
-    Text _text_67 = new Text('\n  ');
-    _el_12.append(_text_67);
-    Text _text_68 = new Text('\n\n\n  ');
-    _el_1.append(_text_68);
-    _el_69 = doc.createElement('div');
+    _el_66.className = 'labelinvit';
+    Text _text_67 = new Text('Message');
+    _el_66.append(_text_67);
+    Text _text_68 = new Text('\n    ');
+    _el_12.append(_text_68);
+    _el_69 = doc.createElement('material-input');
     _el_69.setAttribute(shimCAttr,'');
-    _el_1.append(_el_69);
-    _el_69.className = 'modal-footer';
-    Text _text_70 = new Text('\n    ');
-    _el_69.append(_text_70);
-    _el_71 = doc.createElement('material-button');
-    _el_71.setAttribute(shimCAttr,'');
-    _el_69.append(_el_71);
-    createAttr(_el_71,'animated','true');
-    _el_71.className = 'btn_login submitbottom';
-    createAttr(_el_71,'raised','');
-    createAttr(_el_71,'role','button');
-    _appEl_71 = new ViewContainer(71,69,this,_el_71);
-    var compView_71 = import19.viewFactory_MaterialButtonComponent0(this.injector(71),_appEl_71);
-    _AcxDarkTheme_71_3 = new import11.AcxDarkTheme(this.parentInjector.get(import20.darkThemeToken,null));
-    _MaterialButtonComponent_71_4 = new import12.MaterialButtonComponent(new ElementRef(_el_71),_AcxDarkTheme_71_3,compView_71.ref);
-    _appEl_71.initComponent(_MaterialButtonComponent_71_4,compView_71);
-    Text _text_72 = new Text('Send invites');
-    compView_71.createComp([[_text_72]],null);
-    Text _text_73 = new Text('\n\n  ');
-    _el_69.append(_text_73);
-    Text _text_74 = new Text('\n');
-    _el_1.append(_text_74);
+    _el_12.append(_el_69);
+    _el_69.className = 'themeable';
+    createAttr(_el_69,'id','inviteLablel');
+    createAttr(_el_69,'label','Hello! Join me on Share.Place, it\'s a super simple app to share and collaborate together!');
+    createAttr(_el_69,'multiline','');
+    createAttr(_el_69,'rows','5');
+    createAttr(_el_69,'tabIndex','-1');
+    createAttr(_el_69,'type','text');
+    _appEl_69 = new ViewContainer(69,12,this,_el_69);
+    var compView_69 = import18.viewFactory_MaterialMultilineInputComponent0(this.injector(69),_appEl_69);
+    _DeferredValidator_69_3 = new import7.DeferredValidator();
+    _NG_VALIDATORS_69_4 = [_DeferredValidator_69_3];
+    _NgModel_69_5 = new import8.NgModel(_NG_VALIDATORS_69_4,null,null);
+    _NgControl_69_6 = _NgModel_69_5;
+    _MaterialMultilineInputComponent_69_7 = new import9.MaterialMultilineInputComponent(_NgControl_69_6,compView_69.ref,_DeferredValidator_69_3);
+    _BaseMaterialInput_69_8 = _MaterialMultilineInputComponent_69_7;
+    _MaterialInputDefaultValueAccessor_69_9 = new import10.MaterialInputDefaultValueAccessor(_BaseMaterialInput_69_8,_NgControl_69_6);
+    _appEl_69.initComponent(_MaterialMultilineInputComponent_69_7,compView_69);
+    compView_69.createComp([[]],null);
+    Text _text_70 = new Text('\n  ');
+    _el_12.append(_text_70);
+    Text _text_71 = new Text('\n\n  ');
+    _el_1.append(_text_71);
+    _el_72 = doc.createElement('div');
+    _el_72.setAttribute(shimCAttr,'');
+    _el_1.append(_el_72);
+    _el_72.className = 'modal-footer';
+    Text _text_73 = new Text('\n    ');
+    _el_72.append(_text_73);
+    _el_74 = doc.createElement('material-button');
+    _el_74.setAttribute(shimCAttr,'');
+    _el_72.append(_el_74);
+    createAttr(_el_74,'animated','true');
+    _el_74.className = 'btn_login submitbottom';
+    createAttr(_el_74,'raised','');
+    createAttr(_el_74,'role','button');
+    _appEl_74 = new ViewContainer(74,72,this,_el_74);
+    var compView_74 = import19.viewFactory_MaterialButtonComponent0(this.injector(74),_appEl_74);
+    _AcxDarkTheme_74_3 = new import11.AcxDarkTheme(this.parentInjector.get(import20.darkThemeToken,null));
+    _MaterialButtonComponent_74_4 = new import12.MaterialButtonComponent(new ElementRef(_el_74),_AcxDarkTheme_74_3,compView_74.ref);
+    _appEl_74.initComponent(_MaterialButtonComponent_74_4,compView_74);
+    Text _text_75 = new Text('Send invites');
+    compView_74.createComp([[_text_75]],null);
+    Text _text_76 = new Text('\n  ');
+    _el_72.append(_text_76);
+    Text _text_77 = new Text('\n');
+    _el_1.append(_text_77);
     listen(_el_10,'click',evt(_handle_click_10_0));
-    listen(_el_59,'click',evt(_handle_click_59_0));
-    listen(_el_66,'ngModelChange',evt(_handle_ngModelChange_66_0));
-    listen(_el_66,'focus',evt(_handle_focus_66_1));
-    final subscription_0 = _NgModel_66_5.update.listen(evt(_handle_ngModelChange_66_0));
-    final subscription_1 = _MaterialMultilineInputComponent_66_7.onFocus.listen(evt(_handle_focus_66_1));
-    listen(_el_71,'click',evt(_handle_click_71_0));
-    listen(_el_71,'blur',evt(_handle_blur_71_1));
-    listen(_el_71,'mouseup',evt(_handle_mouseup_71_2));
-    listen(_el_71,'keypress',evt(_handle_keypress_71_3));
-    listen(_el_71,'focus',evt(_handle_focus_71_4));
-    listen(_el_71,'mousedown',evt(_handle_mousedown_71_5));
+    listen(_el_62,'click',evt(_handle_click_62_0));
+    listen(_el_69,'ngModelChange',evt(_handle_ngModelChange_69_0));
+    listen(_el_69,'focus',evt(_handle_focus_69_1));
+    final subscription_0 = _NgModel_69_5.update.listen(evt(_handle_ngModelChange_69_0));
+    final subscription_1 = _MaterialMultilineInputComponent_69_7.onFocus.listen(evt(_handle_focus_69_1));
+    listen(_el_74,'click',evt(_handle_click_74_0));
+    listen(_el_74,'blur',evt(_handle_blur_74_1));
+    listen(_el_74,'mouseup',evt(_handle_mouseup_74_2));
+    listen(_el_74,'keypress',evt(_handle_keypress_74_3));
+    listen(_el_74,'focus',evt(_handle_focus_74_4));
+    listen(_el_74,'mousedown',evt(_handle_mousedown_74_5));
     init([],[
       _text_0,_el_1,_text_2,_el_3,_text_4,_el_5,_text_6,_text_7,_text_8,_text_9,_el_10,
       _text_11,_el_12,_text_13,_el_14,_text_15,_el_16,_text_17,_text_18,_el_19,_text_20,
-      _el_21,_el_22,_text_23,_el_24,_text_25,_el_26,_el_27,_text_28,_text_29,_el_30,_text_31,
-      _el_32,_text_33,_text_34,_el_35,_text_36,_text_37,_el_38,_text_39,_el_40,_text_41,
-      _text_42,_text_43,_el_44,_text_45,_text_46,_text_47,_text_48,_anchor_49,_text_50,
-      _text_51,_el_52,_text_53,_el_54,_text_55,_text_56,_text_57,_text_58,_el_59,_text_60,
-      _text_61,_text_62,_el_63,_text_64,_text_65,_el_66,_text_67,_text_68,_el_69,_text_70,
-      _el_71,_text_72,_text_73,_text_74
+      _el_21,_text_22,_el_23,_el_24,_text_25,_el_26,_text_27,_el_28,_el_29,_text_30,_text_31,
+      _el_32,_text_33,_el_34,_text_35,_text_36,_el_37,_text_38,_text_39,_el_40,_text_41,
+      _el_42,_text_43,_text_44,_text_45,_el_46,_text_47,_text_48,_text_49,_text_50,_anchor_51,
+      _text_52,_text_53,_text_54,_el_55,_text_56,_el_57,_text_58,_text_59,_text_60,_text_61,
+      _el_62,_text_63,_text_64,_text_65,_el_66,_text_67,_text_68,_el_69,_text_70,_text_71,
+      _el_72,_text_73,_el_74,_text_75,_text_76,_text_77
     ]
     ,[
       subscription_0,subscription_1
@@ -402,20 +413,20 @@ class ViewInviteUsersDialogComp0 extends AppView<import3.InviteUsersDialogComp> 
     return null;
   }
   dynamic injectorGetInternal(dynamic token,int requestNodeIndex,dynamic notFoundResult) {
-    if ((identical(token, TemplateRef) && (49 == requestNodeIndex))) { return _TemplateRef_49_4; }
-    if ((identical(token, import6.NgFor) && (49 == requestNodeIndex))) { return _NgFor_49_5; }
-    if ((identical(token, import7.DeferredValidator) && (66 == requestNodeIndex))) { return _DeferredValidator_66_3; }
-    if ((identical(token, import22.NG_VALIDATORS) && (66 == requestNodeIndex))) { return _NG_VALIDATORS_66_4; }
-    if ((identical(token, import8.NgModel) && (66 == requestNodeIndex))) { return _NgModel_66_5; }
-    if ((identical(token, import23.NgControl) && (66 == requestNodeIndex))) { return _NgControl_66_6; }
-    if ((identical(token, import9.MaterialMultilineInputComponent) && (66 == requestNodeIndex))) { return _MaterialMultilineInputComponent_66_7; }
-    if ((identical(token, import24.BaseMaterialInput) && (66 == requestNodeIndex))) { return _BaseMaterialInput_66_8; }
-    if ((identical(token, import10.MaterialInputDefaultValueAccessor) && (66 == requestNodeIndex))) { return _MaterialInputDefaultValueAccessor_66_9; }
-    if ((identical(token, import25.ReferenceDirective) && (66 == requestNodeIndex))) { return _ReferenceDirective_66_10; }
-    if ((identical(token, import26.Focusable) && (66 == requestNodeIndex))) { return _Focusable_66_11; }
-    if ((identical(token, import11.AcxDarkTheme) && ((71 <= requestNodeIndex) && (requestNodeIndex <= 72)))) { return _AcxDarkTheme_71_3; }
-    if ((identical(token, import12.MaterialButtonComponent) && ((71 <= requestNodeIndex) && (requestNodeIndex <= 72)))) { return _MaterialButtonComponent_71_4; }
-    if ((identical(token, import27.ButtonDirective) && ((71 <= requestNodeIndex) && (requestNodeIndex <= 72)))) { return _ButtonDirective_71_5; }
+    if ((identical(token, TemplateRef) && (51 == requestNodeIndex))) { return _TemplateRef_51_4; }
+    if ((identical(token, import6.NgFor) && (51 == requestNodeIndex))) { return _NgFor_51_5; }
+    if ((identical(token, import7.DeferredValidator) && (69 == requestNodeIndex))) { return _DeferredValidator_69_3; }
+    if ((identical(token, import22.NG_VALIDATORS) && (69 == requestNodeIndex))) { return _NG_VALIDATORS_69_4; }
+    if ((identical(token, import8.NgModel) && (69 == requestNodeIndex))) { return _NgModel_69_5; }
+    if ((identical(token, import23.NgControl) && (69 == requestNodeIndex))) { return _NgControl_69_6; }
+    if ((identical(token, import9.MaterialMultilineInputComponent) && (69 == requestNodeIndex))) { return _MaterialMultilineInputComponent_69_7; }
+    if ((identical(token, import24.BaseMaterialInput) && (69 == requestNodeIndex))) { return _BaseMaterialInput_69_8; }
+    if ((identical(token, import10.MaterialInputDefaultValueAccessor) && (69 == requestNodeIndex))) { return _MaterialInputDefaultValueAccessor_69_9; }
+    if ((identical(token, import25.ReferenceDirective) && (69 == requestNodeIndex))) { return _ReferenceDirective_69_10; }
+    if ((identical(token, import26.Focusable) && (69 == requestNodeIndex))) { return _Focusable_69_11; }
+    if ((identical(token, import11.AcxDarkTheme) && ((74 <= requestNodeIndex) && (requestNodeIndex <= 75)))) { return _AcxDarkTheme_74_3; }
+    if ((identical(token, import12.MaterialButtonComponent) && ((74 <= requestNodeIndex) && (requestNodeIndex <= 75)))) { return _MaterialButtonComponent_74_4; }
+    if ((identical(token, import27.ButtonDirective) && ((74 <= requestNodeIndex) && (requestNodeIndex <= 75)))) { return _ButtonDirective_74_5; }
     return notFoundResult;
   }
   void detectChangesInternal() {
@@ -423,122 +434,128 @@ class ViewInviteUsersDialogComp0 extends AppView<import3.InviteUsersDialogComp> 
     Map<String, SimpleChange> changes;
     final currVal_2 = ctx.usersWithRoles;
     if (import28.checkBinding(_expr_2,currVal_2)) {
-      _NgFor_49_5.ngForOf = currVal_2;
+      _NgFor_51_5.ngForOf = currVal_2;
       _expr_2 = currVal_2;
     }
-    if (!import28.AppViewUtils.throwOnChanges) { _NgFor_49_5.ngDoCheck(); }
+    if (!import28.AppViewUtils.throwOnChanges) { _NgFor_51_5.ngDoCheck(); }
     changes = null;
     final currVal_6 = ctx.message;
     if (import28.checkBinding(_expr_6,currVal_6)) {
-      _NgModel_66_5.model = currVal_6;
+      _NgModel_69_5.model = currVal_6;
       if (identical(changes, null)) { (changes = <String, SimpleChange>{}); }
       changes['model'] = new SimpleChange(_expr_6,currVal_6);
       _expr_6 = currVal_6;
     }
-    if (!identical(changes, null)) { _NgModel_66_5.ngOnChanges(changes); }
+    if (!identical(changes, null)) { _NgModel_69_5.ngOnChanges(changes); }
     changed = false;
-    final currVal_7 = '5';
+    final currVal_7 = 'Hello! Join me on Share.Place, it\'s a super simple app to share and collaborate together!';
     if (import28.checkBinding(_expr_7,currVal_7)) {
-      _MaterialMultilineInputComponent_66_7.rows = currVal_7;
+      _MaterialMultilineInputComponent_69_7.label = currVal_7;
       changed = true;
       _expr_7 = currVal_7;
     }
-    if (changed) { _appEl_66.componentView.markAsCheckOnce(); }
-    changed = false;
-    final currVal_15 = '';
-    if (import28.checkBinding(_expr_15,currVal_15)) {
-      _MaterialButtonComponent_71_4.raised = currVal_15;
+    final currVal_8 = '5';
+    if (import28.checkBinding(_expr_8,currVal_8)) {
+      _MaterialMultilineInputComponent_69_7.rows = currVal_8;
       changed = true;
-      _expr_15 = currVal_15;
+      _expr_8 = currVal_8;
     }
-    if (changed) { _appEl_71.componentView.markAsCheckOnce(); }
+    if (changed) { _appEl_69.componentView.markAsCheckOnce(); }
+    changed = false;
+    final currVal_16 = '';
+    if (import28.checkBinding(_expr_16,currVal_16)) {
+      _MaterialButtonComponent_74_4.raised = currVal_16;
+      changed = true;
+      _expr_16 = currVal_16;
+    }
+    if (changed) { _appEl_74.componentView.markAsCheckOnce(); }
     this.detectContentChildrenChanges();
     final currVal_0 = import28.interpolate1('\n      Send invites ',ctx.selectedPlace.name,'\n    ');
     if (import28.checkBinding(_expr_0,currVal_0)) {
       _text_7.text = currVal_0;
       _expr_0 = currVal_0;
     }
-    final currVal_16 = _MaterialButtonComponent_71_4.raised;
-    if (import28.checkBinding(_expr_16,currVal_16)) {
-      updateElemClass(_el_71,'is-raised',currVal_16);
-      _expr_16 = currVal_16;
-    }
-    final currVal_17 = _MaterialButtonComponent_71_4.disabledStr;
+    final currVal_17 = _MaterialButtonComponent_74_4.raised;
     if (import28.checkBinding(_expr_17,currVal_17)) {
-      setAttr(_el_71,'aria-disabled',((currVal_17 == null)? null: currVal_17.toString()));
+      updateElemClass(_el_74,'is-raised',currVal_17);
       _expr_17 = currVal_17;
     }
-    final currVal_18 = _MaterialButtonComponent_71_4.tabIndex;
+    final currVal_18 = _MaterialButtonComponent_74_4.disabledStr;
     if (import28.checkBinding(_expr_18,currVal_18)) {
-      setAttr(_el_71,'tabindex',((currVal_18 == null)? null: currVal_18.toString()));
+      setAttr(_el_74,'aria-disabled',((currVal_18 == null)? null: currVal_18.toString()));
       _expr_18 = currVal_18;
     }
-    final currVal_19 = _MaterialButtonComponent_71_4.disabled;
+    final currVal_19 = _MaterialButtonComponent_74_4.tabIndex;
     if (import28.checkBinding(_expr_19,currVal_19)) {
-      updateElemClass(_el_71,'is-disabled',currVal_19);
+      setAttr(_el_74,'tabindex',((currVal_19 == null)? null: currVal_19.toString()));
       _expr_19 = currVal_19;
     }
-    final currVal_20 = _MaterialButtonComponent_71_4.zElevation;
+    final currVal_20 = _MaterialButtonComponent_74_4.disabled;
     if (import28.checkBinding(_expr_20,currVal_20)) {
-      setAttr(_el_71,'elevation',((currVal_20 == null)? null: currVal_20.toString()));
+      updateElemClass(_el_74,'is-disabled',currVal_20);
       _expr_20 = currVal_20;
     }
+    final currVal_21 = _MaterialButtonComponent_74_4.zElevation;
+    if (import28.checkBinding(_expr_21,currVal_21)) {
+      setAttr(_el_74,'elevation',((currVal_21 == null)? null: currVal_21.toString()));
+      _expr_21 = currVal_21;
+    }
     this.detectViewChildrenChanges();
-    if (identical(this.cdState, ChangeDetectorState.NeverChecked)) { _MaterialMultilineInputComponent_66_7.ngAfterViewInit(); }
+    if (identical(this.cdState, ChangeDetectorState.NeverChecked)) { _MaterialMultilineInputComponent_69_7.ngAfterViewInit(); }
   }
   void destroyInternal() {
-    _MaterialMultilineInputComponent_66_7.ngOnDestroy();
-    _MaterialInputDefaultValueAccessor_66_9.ngOnDestroy();
+    _MaterialMultilineInputComponent_69_7.ngOnDestroy();
+    _MaterialInputDefaultValueAccessor_69_9.ngOnDestroy();
   }
   bool _handle_click_10_0($event) {
     this.markPathToRootAsCheckOnce();
     final dynamic pd_0 = !identical((ctx.close() as dynamic), false);
     return (true && pd_0);
   }
-  bool _handle_click_59_0($event) {
+  bool _handle_click_62_0($event) {
     this.markPathToRootAsCheckOnce();
     final dynamic pd_0 = !identical((ctx.addUserLine() as dynamic), false);
     return (true && pd_0);
   }
-  bool _handle_ngModelChange_66_0($event) {
+  bool _handle_ngModelChange_69_0($event) {
     this.markPathToRootAsCheckOnce();
     final dynamic pd_0 = !identical(((ctx.message = $event) as dynamic), false);
     return (true && pd_0);
   }
-  bool _handle_focus_66_1($event) {
-    _appEl_66.componentView.markPathToRootAsCheckOnce();
-    final dynamic pd_0 = !identical((_MaterialMultilineInputComponent_66_7.focus() as dynamic), false);
+  bool _handle_focus_69_1($event) {
+    _appEl_69.componentView.markPathToRootAsCheckOnce();
+    final dynamic pd_0 = !identical((_MaterialMultilineInputComponent_69_7.focus() as dynamic), false);
     return (true && pd_0);
   }
-  bool _handle_click_71_0($event) {
-    _appEl_71.componentView.markPathToRootAsCheckOnce();
+  bool _handle_click_74_0($event) {
+    _appEl_74.componentView.markPathToRootAsCheckOnce();
     final dynamic pd_0 = !identical((ctx.save() as dynamic), false);
-    final dynamic pd_1 = !identical((_MaterialButtonComponent_71_4.handleClick($event) as dynamic), false);
+    final dynamic pd_1 = !identical((_MaterialButtonComponent_74_4.handleClick($event) as dynamic), false);
     return ((true && pd_0) && pd_1);
   }
-  bool _handle_blur_71_1($event) {
-    _appEl_71.componentView.markPathToRootAsCheckOnce();
-    final dynamic pd_0 = !identical((_MaterialButtonComponent_71_4.onBlur($event) as dynamic), false);
+  bool _handle_blur_74_1($event) {
+    _appEl_74.componentView.markPathToRootAsCheckOnce();
+    final dynamic pd_0 = !identical((_MaterialButtonComponent_74_4.onBlur($event) as dynamic), false);
     return (true && pd_0);
   }
-  bool _handle_mouseup_71_2($event) {
-    _appEl_71.componentView.markPathToRootAsCheckOnce();
-    final dynamic pd_0 = !identical((_MaterialButtonComponent_71_4.onMouseUp($event) as dynamic), false);
+  bool _handle_mouseup_74_2($event) {
+    _appEl_74.componentView.markPathToRootAsCheckOnce();
+    final dynamic pd_0 = !identical((_MaterialButtonComponent_74_4.onMouseUp($event) as dynamic), false);
     return (true && pd_0);
   }
-  bool _handle_keypress_71_3($event) {
-    _appEl_71.componentView.markPathToRootAsCheckOnce();
-    final dynamic pd_0 = !identical((_MaterialButtonComponent_71_4.handleKeyPress($event) as dynamic), false);
+  bool _handle_keypress_74_3($event) {
+    _appEl_74.componentView.markPathToRootAsCheckOnce();
+    final dynamic pd_0 = !identical((_MaterialButtonComponent_74_4.handleKeyPress($event) as dynamic), false);
     return (true && pd_0);
   }
-  bool _handle_focus_71_4($event) {
-    _appEl_71.componentView.markPathToRootAsCheckOnce();
-    final dynamic pd_0 = !identical((_MaterialButtonComponent_71_4.onFocus($event) as dynamic), false);
+  bool _handle_focus_74_4($event) {
+    _appEl_74.componentView.markPathToRootAsCheckOnce();
+    final dynamic pd_0 = !identical((_MaterialButtonComponent_74_4.onFocus($event) as dynamic), false);
     return (true && pd_0);
   }
-  bool _handle_mousedown_71_5($event) {
-    _appEl_71.componentView.markPathToRootAsCheckOnce();
-    final dynamic pd_0 = !identical((_MaterialButtonComponent_71_4.onMouseDown($event) as dynamic), false);
+  bool _handle_mousedown_74_5($event) {
+    _appEl_74.componentView.markPathToRootAsCheckOnce();
+    final dynamic pd_0 = !identical((_MaterialButtonComponent_74_4.onMouseDown($event) as dynamic), false);
     return (true && pd_0);
   }
 }
@@ -580,12 +597,12 @@ class ViewInviteUsersDialogComp1 extends AppView<import3.InviteUsersDialogComp> 
     var doc = document;
     _el_0 = doc.createElement('tr');
     _el_0.setAttribute(shimCAttr,'');
-    Text _text_1 = new Text('\n        ');
+    Text _text_1 = new Text('\n          ');
     _el_0.append(_text_1);
     _el_2 = doc.createElement('td');
     _el_2.setAttribute(shimCAttr,'');
     _el_0.append(_el_2);
-    Text _text_3 = new Text('\n          ');
+    Text _text_3 = new Text('\n            ');
     _el_2.append(_text_3);
     _el_4 = doc.createElement('span');
     _el_4.setAttribute(shimCAttr,'');
@@ -593,7 +610,7 @@ class ViewInviteUsersDialogComp1 extends AppView<import3.InviteUsersDialogComp> 
     _el_4.className = 'labelinvit';
     Text _text_5 = new Text('Email');
     _el_4.append(_text_5);
-    Text _text_6 = new Text('\n          ');
+    Text _text_6 = new Text('\n            ');
     _el_2.append(_text_6);
     _el_7 = doc.createElement('material-input');
     _el_7.setAttribute(shimCAttr,'');
@@ -613,15 +630,15 @@ class ViewInviteUsersDialogComp1 extends AppView<import3.InviteUsersDialogComp> 
     _MaterialInputDefaultValueAccessor_7_9 = new import10.MaterialInputDefaultValueAccessor(_BaseMaterialInput_7_8,_NgControl_7_6);
     _appEl_7.initComponent(_MaterialInputComponent_7_7,compView_7);
     compView_7.createComp([[]],null);
-    Text _text_8 = new Text('\n        ');
+    Text _text_8 = new Text('\n          ');
     _el_2.append(_text_8);
-    Text _text_9 = new Text('\n        ');
+    Text _text_9 = new Text('\n          ');
     _el_0.append(_text_9);
     _el_10 = doc.createElement('td');
     _el_10.setAttribute(shimCAttr,'');
     _el_0.append(_el_10);
     _el_10.className = 'rolesLine';
-    Text _text_11 = new Text('\n          ');
+    Text _text_11 = new Text('\n            ');
     _el_10.append(_text_11);
     _el_12 = doc.createElement('role-chooser-comp');
     _el_12.setAttribute(shimCAttr,'');
@@ -631,9 +648,9 @@ class ViewInviteUsersDialogComp1 extends AppView<import3.InviteUsersDialogComp> 
     _RoleChooser_12_3 = new import31.RoleChooser(this.parentInjector.get(import34.PlaceService),this.parentInjector.get(import35.Router),this.parentInjector.get(import36.Environment));
     _appEl_12.initComponent(_RoleChooser_12_3,compView_12);
     compView_12.createComp([],null);
-    Text _text_13 = new Text('\n        ');
+    Text _text_13 = new Text('\n          ');
     _el_10.append(_text_13);
-    Text _text_14 = new Text('\n      ');
+    Text _text_14 = new Text('\n        ');
     _el_0.append(_text_14);
     listen(_el_7,'keyup',evt(_handle_keyup_7_0));
     listen(_el_7,'ngModelChange',evt(_handle_ngModelChange_7_1));

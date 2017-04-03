@@ -49,10 +49,13 @@
                           <!--comment-->
                           <div *ngIf="actionItem.action.actionType == 'comment'" class="actionBlock commentBlock">
 
-                            <div class="actionPropsBlock">
+                            <div class="actionPropsBlock" popupSource alignPositionX="before"
+                                 alignPositionY="start" #commentAuthor="popupSource">
                               <span class="author"><img src="/auth/user/photo/s/{{actionItem.user.userId}}"
                                                         class="profileImg"></span>
                               <span class="comm-ts">{{actionItem?.ts | agoDateFormat}}</span>
+                              <info-popup *ngIf="actionInfoPopupIndex == actionIndex && popupUserInfoId == versionItem.userId" [userId]="popupUserInfoId" [source]="commentAuthor" [parent]="self" [index]="actionIndex"></info-popup>
+
                             </div>
 
                             <div class="bubble">
@@ -63,10 +66,13 @@
                           <div *ngIf="actionItem.action.actionType == 'fileApprove'"
                                class="actionBlock lockBlock approveBlock">
 
-                            <div class="actionPropsBlock">
+                            <div class="actionPropsBlock" popupSource alignPositionX="before"
+                                 alignPositionY="start" #approveAuthor="popupSource">
                               <span class="author"><img src="/auth/user/photo/s/{{actionItem.user.userId}}"
                                                         class="profileImg"></span>
                               <span class="comm-ts">{{actionItem?.ts | agoDateFormat}}</span>
+                              <info-popup *ngIf="popupUserInfoId == versionItem.userId" [userId]="popupUserInfoId" [source]="approveAuthor" [parent]="self"></info-popup>
+
                             </div>
 
                             <div class="bubble">
@@ -81,10 +87,12 @@
 
                           <!--fileLock-->
                           <div *ngIf="actionItem.action.actionType == 'fileLock'" class="actionBlock lockBlock">
-                            <div class="actionPropsBlock">
+                            <div class="actionPropsBlock" popupSource alignPositionX="before"
+                                 alignPositionY="start" #lockAuthor="popupSource">
                               <span class="author"><img src="/auth/user/photo/s/{{actionItem.user.userId}}"
                                                         class="profileImg"></span>
                               <span class="comm-ts">{{actionItem?.ts| agoDateFormat}}</span>
+                              <info-popup *ngIf="popupUserInfoId == versionItem.userId" [userId]="popupUserInfoId" [source]="lockAuthor" [parent]="self"></info-popup>
                             </div>
 
                             <div class="bubble">
@@ -99,6 +107,7 @@
                               </div>
 
                             </div>
+
                           </div>
 
 
@@ -106,10 +115,12 @@
                         <!--connectedUser-->
                         <li class="actionLiElem" [class.ownAction]="connectedUser.id == versionItem.userId">
                           <div class="actionBlock {{versionItem.approved == null ? 'draft' : 'approved'}}">
-                            <div class="actionPropsBlock">
+                            <div class="actionPropsBlock" (click)="showUserInfoPopup( versionItem.userId, versionItem.v )" popupSource alignPositionX="before"
+                            alignPositionY="start" #fileAuthor="popupSource">
                               <span class="author"><img src="/auth/user/photo/s/{{versionItem.userId}}"
                                                         class="profileImg"></span>
                               <span class="comm-ts">{{versionItem?.ts | agoDateFormat}}</span>
+                              <info-popup *ngIf="popupUserInfoId == versionItem.userId" [userId]="popupUserInfoId" [source]="fileAuthor" [parent]="self" [index]="versionItem.v"></info-popup>
                             </div>
 
                             <div class="bubble">
@@ -164,7 +175,7 @@
                             <div header class="headerPopVersion">
                               <div class="fileName">{{selectedFile.name}}</div>
                               <div class="fileInfo">
-                                Version {{versionItem.v}} {{versionItem.ts | agoDateFormat}}
+                                Version {{versionItem.v}}, {{versionItem.ts | agoDateFormat}}
                               </div>
                             </div>
                             <div class="popupContent popinVersion">

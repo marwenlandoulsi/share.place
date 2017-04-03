@@ -174,6 +174,7 @@ class ViewProfileComp0 extends AppView<import3.ProfileComp> {
   Element _el_100;
   Element _el_102;
   Element _el_103;
+  Text _text_104;
   Element _el_106;
   Text _text_107;
   AnchorElement _el_110;
@@ -181,6 +182,7 @@ class ViewProfileComp0 extends AppView<import3.ProfileComp> {
   Element _el_117;
   Element _el_119;
   Element _el_120;
+  Text _text_121;
   Element _el_123;
   Text _text_124;
   AnchorElement _el_127;
@@ -229,13 +231,15 @@ class ViewProfileComp0 extends AppView<import3.ProfileComp> {
   var _expr_42 = uninitialized;
   var _expr_43 = uninitialized;
   var _expr_44 = uninitialized;
-  var _expr_47 = uninitialized;
-  var _expr_55 = uninitialized;
-  var _expr_56 = uninitialized;
+  var _expr_45 = uninitialized;
+  var _expr_46 = uninitialized;
+  var _expr_49 = uninitialized;
   var _expr_57 = uninitialized;
   var _expr_58 = uninitialized;
   var _expr_59 = uninitialized;
   var _expr_60 = uninitialized;
+  var _expr_61 = uninitialized;
+  var _expr_62 = uninitialized;
   ViewProfileComp0(import16.Injector parentInjector,ViewContainer declarationEl): super(ViewProfileComp0,renderType_ProfileComp,import17.ViewType.COMPONENT,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
   dynamic get _ControlContainer_9_3 {
     if ((this.__ControlContainer_9_3 == null)) { (__ControlContainer_9_3 = this._NgForm_9_2); }
@@ -675,7 +679,7 @@ class ViewProfileComp0 extends AppView<import3.ProfileComp> {
     _el_103.setAttribute(shimCAttr,'');
     _el_102.append(_el_103);
     _el_103.className = 'log';
-    Text _text_104 = new Text('Logged in with');
+    _text_104 = new Text('');
     _el_103.append(_text_104);
     Text _text_105 = new Text('\n          ');
     _el_102.append(_text_105);
@@ -721,7 +725,7 @@ class ViewProfileComp0 extends AppView<import3.ProfileComp> {
     _el_120.setAttribute(shimCAttr,'');
     _el_119.append(_el_120);
     _el_120.className = 'log';
-    Text _text_121 = new Text('Logged in with');
+    _text_121 = new Text('');
     _el_120.append(_text_121);
     Text _text_122 = new Text('\n          ');
     _el_119.append(_text_122);
@@ -965,7 +969,7 @@ class ViewProfileComp0 extends AppView<import3.ProfileComp> {
     }
     if (!import31.AppViewUtils.throwOnChanges) { _NgFor_35_5.ngDoCheck(); }
     changes = null;
-    final currVal_14 = ctx.connectedUser.email;
+    final currVal_14 = ctx.userEmail;
     if (import31.checkBinding(_expr_14,currVal_14)) {
       _NgModel_47_5.model = currVal_14;
       if (identical(changes, null)) { (changes = <String, SimpleChange>{}); }
@@ -986,7 +990,7 @@ class ViewProfileComp0 extends AppView<import3.ProfileComp> {
       changed = true;
       _expr_16 = currVal_16;
     }
-    final bool currVal_17 = !ctx.emailChanging;
+    final bool currVal_17 = (!ctx.emailChanging || ctx.isSocialAccount);
     if (import31.checkBinding(_expr_17,currVal_17)) {
       _MaterialInputComponent_47_8.disabled = currVal_17;
       changed = true;
@@ -1038,20 +1042,20 @@ class ViewProfileComp0 extends AppView<import3.ProfileComp> {
     }
     if (changed) { _appEl_93.componentView.markAsCheckOnce(); }
     changes = null;
-    final currVal_47 = ctx.connectedUser.skype;
-    if (import31.checkBinding(_expr_47,currVal_47)) {
-      _NgModel_138_5.model = currVal_47;
+    final currVal_49 = ctx.connectedUser.skype;
+    if (import31.checkBinding(_expr_49,currVal_49)) {
+      _NgModel_138_5.model = currVal_49;
       if (identical(changes, null)) { (changes = <String, SimpleChange>{}); }
-      changes['model'] = new SimpleChange(_expr_47,currVal_47);
-      _expr_47 = currVal_47;
+      changes['model'] = new SimpleChange(_expr_49,currVal_49);
+      _expr_49 = currVal_49;
     }
     if (!identical(changes, null)) { _NgModel_138_5.ngOnChanges(changes); }
     changed = false;
-    final currVal_55 = '';
-    if (import31.checkBinding(_expr_55,currVal_55)) {
-      _MaterialButtonComponent_147_4.raised = currVal_55;
+    final currVal_57 = '';
+    if (import31.checkBinding(_expr_57,currVal_57)) {
+      _MaterialButtonComponent_147_4.raised = currVal_57;
       changed = true;
-      _expr_55 = currVal_55;
+      _expr_57 = currVal_57;
     }
     if (changed) { _appEl_147.componentView.markAsCheckOnce(); }
     this.detectContentChildrenChanges();
@@ -1070,7 +1074,7 @@ class ViewProfileComp0 extends AppView<import3.ProfileComp> {
       _text_31.text = currVal_8;
       _expr_8 = currVal_8;
     }
-    final currVal_19 = ctx.emailChanging;
+    final currVal_19 = (ctx.emailChanging || ctx.isSocialAccount);
     if (import31.checkBinding(_expr_19,currVal_19)) {
       updateClass(_el_49,'hidden',currVal_19);
       _expr_19 = currVal_19;
@@ -1080,7 +1084,7 @@ class ViewProfileComp0 extends AppView<import3.ProfileComp> {
       updateClass(_el_52,'hidden',currVal_20);
       _expr_20 = currVal_20;
     }
-    final currVal_25 = (ctx.emailChanging || ctx.passwordChanging);
+    final currVal_25 = ((ctx.emailChanging || ctx.passwordChanging) || ctx.isSocialAccount);
     if (import31.checkBinding(_expr_25,currVal_25)) {
       updateClass(_el_60,'hidden',currVal_25);
       _expr_25 = currVal_25;
@@ -1100,55 +1104,65 @@ class ViewProfileComp0 extends AppView<import3.ProfileComp> {
       updateClass(_el_100,'loggedIn',currVal_39);
       _expr_39 = currVal_39;
     }
-    final currVal_40 = import31.interpolate2(' ',((((ctx.connectedUser == null)? null: ctx.connectedUser.facebookAccount) == null)? null: ((ctx.connectedUser == null)? null: ctx.connectedUser.facebookAccount).firstName),' ',((((ctx.connectedUser == null)? null: ctx.connectedUser.facebookAccount) == null)? null: ((ctx.connectedUser == null)? null: ctx.connectedUser.facebookAccount).lastName),'');
+    final currVal_40 = import31.interpolate1('',(ctx.hasFacebookAccount? 'Logged in with': 'Sign in'),' ');
     if (import31.checkBinding(_expr_40,currVal_40)) {
-      _text_107.text = currVal_40;
+      _text_104.text = currVal_40;
       _expr_40 = currVal_40;
     }
-    final currVal_41 = import31.interpolate0(ctx.facebookUrl);
+    final currVal_41 = import31.interpolate2(' ',((((ctx.connectedUser == null)? null: ctx.connectedUser.facebookAccount) == null)? null: ((ctx.connectedUser == null)? null: ctx.connectedUser.facebookAccount).firstName),' ',((((ctx.connectedUser == null)? null: ctx.connectedUser.facebookAccount) == null)? null: ((ctx.connectedUser == null)? null: ctx.connectedUser.facebookAccount).lastName),'');
     if (import31.checkBinding(_expr_41,currVal_41)) {
-      setProp(_el_110,'href',import31.appViewUtils.sanitizer.sanitizeUrl(currVal_41));
+      _text_107.text = currVal_41;
       _expr_41 = currVal_41;
     }
-    final currVal_42 = ctx.linkedToFacebook;
+    final currVal_42 = import31.interpolate0(ctx.facebookUrl);
     if (import31.checkBinding(_expr_42,currVal_42)) {
-      updateClass(_el_117,'loggedIn',currVal_42);
+      setProp(_el_110,'href',import31.appViewUtils.sanitizer.sanitizeUrl(currVal_42));
       _expr_42 = currVal_42;
     }
-    final currVal_43 = import31.interpolate1(' ',((((ctx.connectedUser == null)? null: ctx.connectedUser.googleAccount) == null)? null: ((ctx.connectedUser == null)? null: ctx.connectedUser.googleAccount).displayName),'');
+    final currVal_43 = ctx.linkedToFacebook;
     if (import31.checkBinding(_expr_43,currVal_43)) {
-      _text_124.text = currVal_43;
+      updateClass(_el_117,'loggedIn',currVal_43);
       _expr_43 = currVal_43;
     }
-    final currVal_44 = import31.interpolate0(ctx.googleUrl);
+    final currVal_44 = import31.interpolate1('',(ctx.hasGoogleAccount? 'Logged in with': 'Sign in'),' ');
     if (import31.checkBinding(_expr_44,currVal_44)) {
-      setProp(_el_127,'href',import31.appViewUtils.sanitizer.sanitizeUrl(currVal_44));
+      _text_121.text = currVal_44;
       _expr_44 = currVal_44;
     }
-    final currVal_56 = _MaterialButtonComponent_147_4.raised;
-    if (import31.checkBinding(_expr_56,currVal_56)) {
-      updateElemClass(_el_147,'is-raised',currVal_56);
-      _expr_56 = currVal_56;
+    final currVal_45 = import31.interpolate1(' ',((((ctx.connectedUser == null)? null: ctx.connectedUser.googleAccount) == null)? null: ((ctx.connectedUser == null)? null: ctx.connectedUser.googleAccount).displayName),'');
+    if (import31.checkBinding(_expr_45,currVal_45)) {
+      _text_124.text = currVal_45;
+      _expr_45 = currVal_45;
     }
-    final currVal_57 = _MaterialButtonComponent_147_4.disabledStr;
-    if (import31.checkBinding(_expr_57,currVal_57)) {
-      setAttr(_el_147,'aria-disabled',((currVal_57 == null)? null: currVal_57.toString()));
-      _expr_57 = currVal_57;
+    final currVal_46 = import31.interpolate0(ctx.googleUrl);
+    if (import31.checkBinding(_expr_46,currVal_46)) {
+      setProp(_el_127,'href',import31.appViewUtils.sanitizer.sanitizeUrl(currVal_46));
+      _expr_46 = currVal_46;
     }
-    final currVal_58 = _MaterialButtonComponent_147_4.tabIndex;
+    final currVal_58 = _MaterialButtonComponent_147_4.raised;
     if (import31.checkBinding(_expr_58,currVal_58)) {
-      setAttr(_el_147,'tabindex',((currVal_58 == null)? null: currVal_58.toString()));
+      updateElemClass(_el_147,'is-raised',currVal_58);
       _expr_58 = currVal_58;
     }
-    final currVal_59 = _MaterialButtonComponent_147_4.disabled;
+    final currVal_59 = _MaterialButtonComponent_147_4.disabledStr;
     if (import31.checkBinding(_expr_59,currVal_59)) {
-      updateElemClass(_el_147,'is-disabled',currVal_59);
+      setAttr(_el_147,'aria-disabled',((currVal_59 == null)? null: currVal_59.toString()));
       _expr_59 = currVal_59;
     }
-    final currVal_60 = _MaterialButtonComponent_147_4.zElevation;
+    final currVal_60 = _MaterialButtonComponent_147_4.tabIndex;
     if (import31.checkBinding(_expr_60,currVal_60)) {
-      setAttr(_el_147,'elevation',((currVal_60 == null)? null: currVal_60.toString()));
+      setAttr(_el_147,'tabindex',((currVal_60 == null)? null: currVal_60.toString()));
       _expr_60 = currVal_60;
+    }
+    final currVal_61 = _MaterialButtonComponent_147_4.disabled;
+    if (import31.checkBinding(_expr_61,currVal_61)) {
+      updateElemClass(_el_147,'is-disabled',currVal_61);
+      _expr_61 = currVal_61;
+    }
+    final currVal_62 = _MaterialButtonComponent_147_4.zElevation;
+    if (import31.checkBinding(_expr_62,currVal_62)) {
+      setAttr(_el_147,'elevation',((currVal_62 == null)? null: currVal_62.toString()));
+      _expr_62 = currVal_62;
     }
     this.detectViewChildrenChanges();
     if (identical(this.cdState, ChangeDetectorState.NeverChecked)) { _MaterialInputComponent_47_8.ngAfterViewInit(); }
@@ -1214,7 +1228,7 @@ class ViewProfileComp0 extends AppView<import3.ProfileComp> {
   }
   bool _handle_ngModelChange_47_1($event) {
     this.markPathToRootAsCheckOnce();
-    final dynamic pd_0 = !identical(((ctx.connectedUser.email = $event) as dynamic), false);
+    final dynamic pd_0 = !identical(((ctx.userEmail = $event) as dynamic), false);
     return (true && pd_0);
   }
   bool _handle_focus_47_2($event) {

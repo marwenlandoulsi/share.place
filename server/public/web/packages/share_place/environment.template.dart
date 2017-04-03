@@ -22,6 +22,7 @@ import 'file_info.dart';
 import 'package:share_place/common/net/socket.io.dart';
 import 'dart:async';
 import 'app_config.dart' as conf;
+import 'dart:html';
 import 'package:angular2/core.template.dart' as i0;
 import 'event_bus.template.dart' as i1;
 import 'folder.template.dart' as i2;

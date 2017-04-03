@@ -107,9 +107,11 @@ role-chooser-comp {
   margin-bottom: 0;
   text-align: left;
 }
-.magBtm{
+
+.magBtm {
   margin-bottom: 1em;
 }
+
 .invites {
   width: 100%;
 }
@@ -161,7 +163,7 @@ material-input.themeable {
 .modal-footer {
   text-align: center;
   background-color: #eeeef0;
-  padding-bottom: 9%;
+  padding-bottom: 5%;
 }
 
 .submitbottom {
@@ -183,6 +185,14 @@ material-input.themeable {
 material-input.themeable {
   width: 100%;
 }
+
 .textCenter, .rolesLine {
   text-align: center;
+}
+
+.containerInvites {
+  max-height: 30em;
+  overflow-y: scroll;
+  min-height: 10em;
+  margin-bottom: 3em;
 }

@@ -22,6 +22,7 @@ li.subjectItem {
   background: white;
   position: relative;
   border-bottom: 1px solid #edf2f8;
+  overflow: hidden;
   /*border-left: 4px solid #edf2f8;*/
   /*border-top: 1px solid #edf2f8;*/
   /*border-right: 2px solid #edf2f8;*/
@@ -62,7 +63,7 @@ li.subjectItem:focus:after {
 li.subjectItem.selected .name,
 li.subjectItem:hover .name,
 li.subjectItem:focus .name,
-li.subjectItem.active .name{
+li.subjectItem.active .name {
   color: white;
 }
 
@@ -75,30 +76,33 @@ li.subjectItem.active .name {
   position: relative
 }
 
-.approved .thumb:before {
-  width: 1.4em;
-  height: 1.4em;
-  content: "";
-  position: absolute;
-  right: -0.7em;
-  top: 0;
-  z-index: 9;
-  background: url("../images/approved.png");
-  background-repeat: no-repeat;
-  display: block;
-}
-
-.locked .thumb:after {
-  width: 1.4em;
-  height: 1.4em;
-  content: "";
+.approved .thumb:before,
+.locked .thumb:after,
+.locked.ownAction .thumb:after {
   position: absolute;
   left: -10px;
   top: 5px;
   z-index: 9;
-  background: url("../images/locked_sm.png");
+  content: "";
   background-repeat: no-repeat;
   display: block;
+  width: 1.4em;
+  height:1.4em;
+}
+
+.approved .thumb:before {
+  background: url("../images/approved.png");
+  background-repeat: no-repeat;
+}
+
+.locked .thumb:after {
+  background: url("../images/locked_sm_Red.png");
+  background-repeat: no-repeat;
+}
+
+.locked.ownAction .thumb:after {
+  background: url("../images/locked_sm.png");
+  background-repeat: no-repeat;
 }
 
 .subject > div {
@@ -111,7 +115,7 @@ li.subjectItem.active .name {
   background-color: #DDE2E5;
   text-align: center;
   /*width: 3.3em;*/
-  width:2.8em;
+  width: 2.8em;
   height: 1.8em;
   margin-right: 0.2em;
 }
@@ -236,7 +240,7 @@ li.subjectItem.active .name {
 /* userInfoPopup */
 .userInfoPopup .userInfo {
   position: relative;
-  margin-bottom: 0.2em;
+  margin-bottom: 0.3em;
 }
 
 .userInfoPopup .userInfo:before {
@@ -314,3 +318,7 @@ span.txtskype {
   font-weight: normal;
 }
 
+.userInfoPopup .userInfo a {
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.68);
+}

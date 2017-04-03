@@ -26,7 +26,6 @@ import 'package:share_place/files/file_action.dart';
 import 'package:share_place/news/news_event.dart';
 import 'package:share_place/users/user.dart';
 import 'package:share_place/common/util.dart';
-import 'dart:html';
 import 'package:angular2/core.template.dart' as i0;
 import 'app_config.template.dart' as i1;
 import 'place.template.dart' as i2;

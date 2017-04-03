@@ -32,7 +32,7 @@ module.exports = Object.freeze({
     port: 80,
     path: '/auth',
     method: 'GET'
-  }/*,
+  },/*
   optionsGetFromAuth: {
    host: "127.0.0.1",
    port: 3000,
@@ -54,7 +54,7 @@ module.exports = Object.freeze({
    port: 3000,
    path: '/sp',
    method: 'GET'
-   }*/,
+   },*/
   userRoles: ['viewer', 'writer', 'owner', 'admin'],
   wordIcon: './static/images/icon/docicon1.png',
   excelIcon: './static/images/icon/docicon2.png',

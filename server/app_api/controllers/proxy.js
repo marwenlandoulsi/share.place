@@ -341,13 +341,16 @@ function downloadFileInDisc(url, mode, callBack) {
 let getDataFromServer = function (req, res, email, password, url, cb) {
 
   if (typeof (global.cookieReceived) == "undefined") {
+
     if(!email ){
       res.redirect('/web');
     }
     login.loginFromServer(req, email, password, function () {
+      global.mainWindow.webContents.executeJavaScript('document.getElementById("cc").value = "'+global.cookieReceived+'";');
       httpGetJson(global.cookieReceived, url, cb)
     })
   }
+  global.mainWindow.webContents.executeJavaScript('document.getElementById("cc").value = "'+global.cookieReceived+'";');
   httpGetJson(global.cookieReceived, url, cb);
 };
 let openFile = function (res, dataFile, pathFile) {

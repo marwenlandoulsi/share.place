@@ -11,31 +11,33 @@
     <p>It's time to invite some colleagues and start to collaborate! <br/>
       Type email (internal or external), set authorizations
       and send invites!</p>
-    <table class="invites">
-      <tr>
-        <th width="40%"></th>
-        <th width="60%"><span class="labelinvit textCenter magBtm">Authorization</span>
+    <div class="containerInvites">
+      <table class="invites">
+        <tr>
+          <th width="40%"></th>
+          <th width="60%"><span class="labelinvit textCenter magBtm">Authorization</span>
 
-          <p class="p_invi">User can <span class="fStrong">approve</span>, read, export, modify document and <span class="fStrong">invite new people</span></p>
-          <p class="p_invi"> User can read, export and <span class="fStrong">modify</span> document</p>
-          <p class="p_invi">User can read and export document</p>
+            <p class="p_invi">User can <span class="fStrong">approve</span>, read, export, modify document and <span
+                class="fStrong">invite new people</span></p>
+            <p class="p_invi"> User can read, export and <span class="fStrong">modify</span> document</p>
+            <p class="p_invi">User can read and export document</p>
 
-        </th>
-      </tr>
+          </th>
+        </tr>
 
-      <tr *ngFor="let userRole of usersWithRoles">
-        <td>
-          <span class="labelinvit">Email</span>
-          <material-input #search class="mailToAdd" type="email"
-                          (keyup)="onKeyUp(search.inputText)" class="emailinp"
-                          placeholder="example@mydomain.com" [(ngModel)]="userRole.email"></material-input>
-        </td>
-        <td class="rolesLine">
-          <role-chooser-comp #role [(selected)]="userRole.roleName"></role-chooser-comp>
-        </td>
-      </tr>
-    </table>
-
+        <tr *ngFor="let userRole of usersWithRoles">
+          <td>
+            <span class="labelinvit">Email</span>
+            <material-input #search class="mailToAdd" type="email"
+                            (keyup)="onKeyUp(search.inputText)" class="emailinp"
+                            placeholder="example@mydomain.com" [(ngModel)]="userRole.email"></material-input>
+          </td>
+          <td class="rolesLine">
+            <role-chooser-comp #role [(selected)]="userRole.roleName"></role-chooser-comp>
+          </td>
+        </tr>
+      </table>
+    </div>
     <div class="addUserDiv">
       <div class="addUserDiv_inside"> More lines
         <!--<material-fab raised (click)="addUserLine()" class="addUser addbtnbluesmall">-->
@@ -45,15 +47,12 @@
       </div>
     </div>
 
-
     <span class="labelinvit">Message</span>
-    <material-input [(ngModel)]="message" type="text" multiline rows="5"
-                    placeholder="example@mydomain.com"></material-input>
+    <material-input [(ngModel)]="message" type="text" multiline rows="5" id="inviteLablel"
+                    label="Hello! Join me on Share.Place, it's a super simple app to share and collaborate together!"></material-input>
   </div>
-
 
   <div class="modal-footer">
     <material-button raised (click)="save()" class="btn_login submitbottom">Send invites</material-button>
-
   </div>
 </div>

@@ -156,10 +156,11 @@ class FolderComponent
   }
 
 
-  Future<Folder> save(String folderName) async {
+  Future<Folder> saveNewFolder(String folderName) async {
     adding = false;
     Folder toSelect = await _placeService.createFolder(folderName);
     await getFolders(selectedPlace.id);
+    await _placeService.loadConnectedUser();
     openHierarchy(toSelect);
     onSelect(toSelect);
   }

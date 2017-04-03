@@ -75,7 +75,7 @@ class AppComponent
     });
 
     _environment.eventBus.getBus().listen( (params) => show(params));
-    _placeService.getConnectedUser();
+    _placeService.loadConnectedUser();
     conf.readConf();
   }
 

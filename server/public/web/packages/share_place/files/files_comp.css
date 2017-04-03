@@ -266,6 +266,9 @@ a {
 .versionComments {
   transition: all 1s;
   padding: 0.8em 0;
+  border-radius: 0 0 3px 3px;
+  -webkit-border-radius: 0 0 3px 3px;
+  -moz-border-radius: 0 0 3px 3px;
 }
 
 .versionComments .addCommentBlock {
@@ -303,7 +306,7 @@ a {
 .bubble {
   position: relative;
   display: inline-block;
-  max-width: calc(100% - 5.7em);
+  max-width: calc(79% - 5.7em);
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;

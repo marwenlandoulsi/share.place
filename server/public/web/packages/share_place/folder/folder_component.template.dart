@@ -282,7 +282,7 @@ class ViewFolderComponent1 extends AppView<import3.FolderComponent> {
       _expr_4 = currVal_4;
     }
     if ((identical(this.cdState, ChangeDetectorState.NeverChecked) && !import11.AppViewUtils.throwOnChanges)) { _PostitComponent_20_3.ngOnInit(); }
-    final currVal_6 = ctx.save;
+    final currVal_6 = ctx.saveNewFolder;
     if (import11.checkBinding(_expr_6,currVal_6)) {
       _TextComp_24_3.confirm = currVal_6;
       _expr_6 = currVal_6;

@@ -11,6 +11,8 @@ import 'file_info.dart';
 import 'package:share_place/common/net/socket.io.dart';
 import 'dart:async';
 import 'app_config.dart' as conf;
+import 'dart:html';
+
 @Injectable()
 class Environment {
 
@@ -31,9 +33,12 @@ class Environment {
   String serverError = null;
   List<String> _messages = [];
   SocketIoClient socketIoClient;
+  //bool online;
 
   Environment(this.eventBus) {
     socketIoClient = new SocketIoClient(eventBus);
+    //window.onOnline.listen((Event e) => online = true);
+    //window.onOffline.listen((Event e) => online = false);
   }
 
   Place get selectedPlace => _place;
@@ -147,6 +152,8 @@ class Environment {
 
   bool connectedUserHasGreaterRole(RoleEnum role, Folder folder) =>
       userHasGreaterRole(role, folder.id, connectedUser);
+
+
 
 }
 

@@ -17,7 +17,6 @@ import 'package:share_place/news/news_event.dart';
 import 'package:share_place/users/user.dart';
 import 'package:share_place/common/util.dart';
 
-import 'dart:html';
 
 @Injectable()
 class PlaceService {
@@ -244,6 +243,16 @@ class PlaceService {
     }
   }
 
+  Future<User> getUser(String userId) async {
+    try {
+      final response = await get(
+          '/sp/user/${userId}');
+      return new User.fromJson(_extractData(response));
+    } catch (e) {
+      throw _handleError(e);
+    }
+  }
+
   Future<List<CloudFile>> getFiles(String folderId) async {
     try {
       final response = await get('/sp/folder/${folderId}/file');
@@ -269,7 +278,7 @@ class PlaceService {
     try {
       final response = await post(_placesUrl,
           headers: _headers, body: JSON.encode({'name': name}));
-      await getConnectedUser();
+      await loadConnectedUser();
       return new Place.fromJson(_extractData(response));
     } catch (e) {
       throw _handleError(e);
@@ -414,7 +423,7 @@ class PlaceService {
   }
 
 
-  Future<User> getConnectedUser() async {
+  Future<User> loadConnectedUser() async {
     try {
       final response = await get(
           USER_PROFILE_URL,
@@ -486,7 +495,7 @@ class PlaceService {
   }
 
   Future<User> logout() async {
-    window.location.assign("/auth/logout");
+    html.window.location.assign("/auth/logout");
     //final response = await get("/auth/logout");
   }
 

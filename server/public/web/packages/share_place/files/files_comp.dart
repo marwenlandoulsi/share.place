@@ -19,7 +19,8 @@ import 'package:share_place/common/format/file_size_pipe.dart';
 import 'cloud_file.dart';
 import 'package:angular2_components/angular2_components.dart';
 import 'package:share_place/postit/postit_component.dart';
-
+import 'package:share_place/users/info_popup/info_popup.dart';
+import 'package:share_place/users/info_popup/popup_parent.dart';
 /**
  * Comments were generated thanks to : http://www.cssarrowplease.com/
  *
@@ -29,10 +30,11 @@ import 'package:share_place/postit/postit_component.dart';
     selector: 'files-comp',
     templateUrl: 'files_comp.html',
     styleUrls: const ['files_comp.css'],
-    directives: const [TextComp, NgClass, materialDirectives, PostitComponent],
+    directives: const [
+      TextComp, NgClass, materialDirectives, PostitComponent, InfoPopup],
     providers: const[materialProviders],
     pipes: const [AgoDateFormatPipe, FileSizePipe])
-class FilesComp implements OnInit {
+class FilesComp implements OnInit, PopupParent {
   final PlaceService _placeService;
   final Router _router;
   final Environment _environment;
@@ -43,6 +45,9 @@ class FilesComp implements OnInit {
   int activeLockActionIndex;
 
   int openFileVersion = -1;
+
+  String popupUserInfoId;
+  int actionInfoPopupIndex;
 
   FilesComp(this._placeService, this._router, this._environment);
 
@@ -109,7 +114,8 @@ class FilesComp implements OnInit {
     for (int i = 0; i < lastVersionActions.length; i++) {
       FileAction fileAction = lastVersionActions[i];
       //print( "action ${i+1}/${lastVersionActions.length}: ${fileAction.action.actionType} : ${fileAction.action.value} ");
-      if (fileAction.action.actionType == "fileLock" && fileAction.action.value == "on") {
+      if (fileAction.action.actionType == "fileLock" &&
+          fileAction.action.value == "on") {
         activeLockActionIndex = i;
         return;
       }
@@ -285,8 +291,9 @@ class FilesComp implements OnInit {
     return "$mimeType Document";
   }
 
-  bool get isWriter => _environment.connectedUserHasGreaterRole(
-      RoleEnum.writer, _environment.selectedFolder);
+  bool get isWriter =>
+      _environment.connectedUserHasGreaterRole(
+          RoleEnum.writer, _environment.selectedFolder);
 
   void openFileDialog(int version) {
     if (isWriter)
@@ -333,7 +340,6 @@ class FilesComp implements OnInit {
       String am = isAuthor && isOn ? "am" : "";
       String action = isOn ? "editing" : "edited";
       return "$subject $am $action version ${version?.v}";
-
     }
 
     if (actionItem.action.actionType == 'fileApprove') {
@@ -346,6 +352,21 @@ class FilesComp implements OnInit {
       }
     }
   }
+
+  void showUserInfoPopup(String userId, int index) {
+    actionInfoPopupIndex = index;
+    if (popupUserInfoId == userId)
+      popupUserInfoId = null;
+    else
+      popupUserInfoId = userId;
+  }
+
+  void popupClosed(User user) {
+    popupUserInfoId = null;
+  }
+
+  PopupParent get self => this;
+
 }
 
 class FileVersionAttributes {

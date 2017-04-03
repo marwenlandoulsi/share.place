@@ -46,6 +46,10 @@
         "1": "app_config.dart",
         "4": "conf",
         "5": false
+      },
+      {
+        "1": "dart:html",
+        "5": false
       }
     ],
     "5": [

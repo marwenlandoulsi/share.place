@@ -3,37 +3,37 @@ import 'dart:html';
 
 import 'package:angular2/core.dart';
 import 'package:angular2/router.dart';
-import 'package:share_place/files/cloud_file.dart';
 import 'package:angular2/security.dart';
+import 'package:angular2_components/angular2_components.dart';
 import 'package:share_place/environment.dart';
 import 'package:share_place/folder.dart';
 import 'package:share_place/place.dart';
-import 'package:share_place/file_info.dart';
 
+import 'package:share_place/file_info.dart';
 import 'package:share_place/place_service.dart';
 import 'package:share_place/common/ui/button_comp.dart';
-import 'package:share_place/common/ui/text_comp.dart';
 
+import 'package:share_place/users/info_popup/info_popup.dart';
+import 'package:share_place/users/info_popup/popup_parent.dart';
 import 'package:share_place/users/invite/invite_dialog_comp.dart';
-import 'package:share_place/users/users_comp.dart';
 import 'package:share_place/users/user.dart';
 import 'package:share_place/users/user_list_provider.dart';
-import 'package:angular2_components/angular2_components.dart';
 import 'package:share_place/postit/postit_component.dart';
 
+@Injectable()
 @Component(
     selector: 'subjects',
     templateUrl: 'subject_list_comp.html',
     styleUrls: const ['subject_list_comp.css'],
     directives: const [
       ButtonComp,
-      TextComp,
       materialDirectives,
       InviteUsersDialogComp,
-      PostitComponent
+      PostitComponent,
+      InfoPopup
     ],
     providers: const[UserListProvider])
-class SubjectListComponent implements OnInit {
+class SubjectListComponent implements OnInit, PopupParent {
   final PlaceService _placeService;
   final Router _router;
   final Environment _environment;
@@ -44,6 +44,9 @@ class SubjectListComponent implements OnInit {
   FileInfo renaming;
   User infoPopupUser;
   bool infoPopupOpen;
+
+  String popupUserInfoId;
+  int subjectInfoPopupIndex;
 
   SubjectListComponent(this._placeService, this._router, this._environment,
       this._userListProvider, this.urlSanitizer);
@@ -212,9 +215,23 @@ class SubjectListComponent implements OnInit {
         "RoleEnum.".length);
   }
 
-  String getEmail(User user) {
-    return user?.email;
+  void showSubjectUserInfoPopup(String userId, int subjectIndex, Event event) {
+    print("showing user info $userId");
+    subjectInfoPopupIndex = subjectIndex;
+    event.preventDefault();
+    event.stopPropagation();
+    if (popupUserInfoId == userId)
+      popupUserInfoId = null;
+    else
+      popupUserInfoId = userId;
   }
 
+  User get connectedUser => _environment.connectedUser;
 
+  void popupClosed(User user) {
+    popupUserInfoId = null;
+  }
+
+  PopupParent get self => this;
 }
+

@@ -15,6 +15,13 @@
       "prefix": null,
       "value": null
     },
+    "cookieSessionId": {
+      "class": "Identifier",
+      "name": "cookieSessionId",
+      "moduleUrl": "asset:share_place/lib/app_config.dart",
+      "prefix": null,
+      "value": null
+    },
     "port": {
       "class": "Identifier",
       "name": "port",

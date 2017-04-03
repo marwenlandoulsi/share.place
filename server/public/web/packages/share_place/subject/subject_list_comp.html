@@ -1,17 +1,19 @@
 <div *ngIf="selectedFolder != null" class="subjects">
 
-  <material-popup *ngIf="infoPopupOpen" [(visible)]="infoPopupOpen" [source]="userInfoPopup">
+  <material-popup *ngIf="infoPopupUser != null" [(visible)]="infoPopupOpen" [source]="userInfoPopup" [offsetX]="26">
     <div class="userInfoPopup">
       <div class="userInfo name"><span>{{infoPopupUser?.name}}</span></div>
       <div class="userInfo role">{{getRoleStr(infoPopupUser)}}</div>
-      <div class="userInfo email">{{getEmail(infoPopupUser)}}</div>
+      <div class="userInfo email">{{infoPopupUser?.email}}</div>
 
 
-      <div  *ngIf="infoPopupUser?.skype != null" class="userInfo skype"> <span class="txtskype">Call:</span>  <a href="{{skypeUrlFor(infoPopupUser ,true)}}"> skype:{{infoPopupUser?.skype}}?call  </a> </div>
-      <div  *ngIf="infoPopupUser?.skype != null"  class="userInfo skype"> <span class="txtskype">Text:</span>  <a href="{{skypeUrlFor(infoPopupUser ,false)}}"> skype:{{infoPopupUser?.skype}}?chat  </a> </div>
+      <div *ngIf="infoPopupUser?.skype != null" class="userInfo skype"><span class="txtskype">Call:</span> <a
+          href="{{skypeUrlFor(infoPopupUser ,true)}}"> {{infoPopupUser?.skype}} </a></div>
+      <div *ngIf="infoPopupUser?.skype != null" class="userInfo skype"><span class="txtskype">Text:</span> <a
+          href="{{skypeUrlFor(infoPopupUser ,false)}}"> {{infoPopupUser?.skype}} </a></div>
 
 
-      <div class="userInfo timezone hidden"> Timezone UTC-7  9:24 am </div>
+      <div class="userInfo timezone hidden"> Timezone UTC-7 9:24 am</div>
 
       <div class="userInfo lastcnx hidden">Last connection: 5 mn ago</div>
     </div>
@@ -36,7 +38,8 @@
     </modal>
     <!-- emplacement des users  -->
     <ul class="users_list" popupSource
-        #userInfoPopup="popupSource">
+        #userInfoPopup="popupSource" alignPositionX="end"
+        alignPositionY="after">
       <li *ngFor="let userItem of users" class="useractive" [class.approver]="isApprover(userItem)"
           (click)="userInfoRequested=userItem">
         <img src="/auth/user/photo/s/{{userItem.id}}">
@@ -54,12 +57,15 @@
           <div (click)="createQuickNote(text.value);text.value=''" class="btn_valid"></div>
         </div>
       </div>
-      <li *ngFor="let subject of subjects" (click)="gotoSubject(subject)" class="subjectItem"
+      <li *ngFor="let subject of subjects; let subjectIndex = index" (click)="gotoSubject(subject)" class="subjectItem"
           [class.qNote]="subject.dataType == 'quickNote'"
           [class.selected]="selectedSubject != null && subject.id == selectedSubject.id"
           [class.approved]="subject.approved != null"
-          [class.locked]="subject.lockOwner != null">
-        <div *ngIf="renaming == null || renaming?.id != subject?.id" class="subject">
+          [class.locked]="subject.lockOwner != null"
+          [class.ownAction]="subject.lockOwner?.userId == connectedUser.id"
+      >
+        <div *ngIf="renaming == null || renaming?.id != subject?.id" class="subject"
+        >
           <div class="thumb"><img
               src="/sp/place/{{selectedPlace.id}}/folder/{{selectedFolder?.id}}/file/{{subject.fileId}}/version/{{subject.v}}/thumb">
           </div>
@@ -68,18 +74,22 @@
           <div class="users">
             <ul>
               <li *ngFor="let activeUser of subject.users" class="user">
-                <div class="profileImg" [class.validator]="activeUser.role == 'admin'"><img
-                    src="/auth/user/photo/s/{{activeUser.userId}}"></div>
+                <div class="profileImg" [class.validator]="activeUser.role == 'admin'"
+                     (click)="showSubjectUserInfoPopup( activeUser.userId, subjectIndex, $event )"
+                     popupSource alignPositionX="end"
+                     alignPositionY="after" #subjectParticipant="popupSource">
+                  <img src="/auth/user/photo/s/{{activeUser.userId}}">
+                </div>
+                <input *ngIf="renaming != null && renaming.id == subject?.id" type="text" #folderRenamer
+                       value="{{subject.name}}"
+                       (keydown.enter)="doRename(folderRenamer.value)" class="editSubject"/>
+                <info-popup *ngIf="subjectIndex == subjectInfoPopupIndex && popupUserInfoId == activeUser.userId" [userId]="popupUserInfoId"
+                            [source]="subjectParticipant" [offsetX]="28" [offsetY]="10" [visible]="popupUserInfoId == activeUser.userId" [parent]="self" [index]="subjectIndex"></info-popup>
               </li>
             </ul>
+            <div class="clearfix"></div>
           </div>
-
-
-          <div class="clearfix"></div>
         </div>
-        <input *ngIf="renaming != null && renaming.id == subject?.id" type="text" #folderRenamer
-               value="{{subject.name}}"
-               (keydown.enter)="doRename(folderRenamer.value)" class="editSubject"/>
         <div class="clearfix"></div>
       </li>
     </ul>

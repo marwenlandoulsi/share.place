@@ -113,13 +113,14 @@ a {
 }
 
 button {
-  font-family: Arial;
   background-color: #bfbb97;
   border: none;
   padding: 5px 10px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -o-border-radius: 4px;
   border-radius: 4px;
   cursor: pointer;
-  cursor: hand;
 }
 
 button:hover {
@@ -325,7 +326,7 @@ TODO see what font to use
 .header-top {
   position: relative;
   width: 100%;
-  height: 34px;
+  height: 2.2em;
   background-color: #1F181F !important;
   padding: 0 !important;
 }
@@ -337,7 +338,7 @@ TODO see what font to use
 }
 
 .header.headerplaces {
-  padding: 9px 0 10px 5px;
+  padding: 0.7em 0 .7em 0.4em;
 }
 
 .panel.open > header {
@@ -348,7 +349,7 @@ TODO see what font to use
 
 .rightPanelinside_header {
   background: #8792A0;
-  height: 40px;
+  height: 2.5em;
 }
 
 header.closed:hover,
@@ -508,7 +509,8 @@ input {
 }
 
 textarea {
-  padding: 0.4em !important;
+  padding: 0.4em 0.8em !important;
+  width: calc(100% - 1em) !important;
 }
 
 .btn_login {
@@ -922,11 +924,6 @@ material-ripple {
   overflow: inherit !important;
 }
 
-#default-5 {
-  position: absolute;
-  top: 5em;
-  right: 2em;
-}
 
 material-popup#popVersion {
   position: absolute !important;
@@ -1193,4 +1190,8 @@ header.closed .primary-text:before {
 
 .files :-moz-placeholder { /* Firefox 18- */
   color: rgba(113, 111, 111, 0.25);
+}
+
+#inviteLablel .label {
+  padding: 0.4em 0.8em !important;
 }

@@ -77,13 +77,13 @@ class ProfileComp implements OnInit {
     else
       _environment.profilePopinVisible = false;
 
-    await _placeService.getConnectedUser();
+    await _placeService.loadConnectedUser();
   }
 
   Future<Null> close() async {
     _environment.profilePopinVisible = false;
 
-    await _placeService.getConnectedUser();
+    await _placeService.loadConnectedUser();
   }
 
   Future<Null> save() async {
@@ -101,7 +101,7 @@ class ProfileComp implements OnInit {
     fileForm.style.border = "none";
 
     //FIXME this shouldn't be called since the return value of the post should be up to date (on profile image update)
-    await _placeService.getConnectedUser();
+    await _placeService.loadConnectedUser();
     uploading = false;
   }
 
@@ -130,4 +130,24 @@ class ProfileComp implements OnInit {
   }
 
   String get photoId => connectedUser?.photoIdMap == null ? null : connectedUser.photoIdMap["photoIdM"];
+
+  String get userEmail {
+    String email = connectedUser.email;
+    if( email == null )
+      email = connectedUser.facebookAccount.email;
+    if( email == null )
+      email = connectedUser.googleAccount.email;
+    return email;
+  }
+
+  void set userEmail(String mail) {
+    connectedUser.email = mail;
+  }
+
+  bool get isSocialAccount => connectedUser.email == null;
+
+  bool get hasFacebookAccount => connectedUser.facebookAccount != null;
+  bool get hasGoogleAccount => connectedUser.googleAccount != null;
+
+
 }

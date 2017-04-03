@@ -27,10 +27,10 @@
       <form action="#" method="post">
         <div class="email">
           <div class="label">Email</div>
-          <material-input #email required type="email" label="example@domain.com" [disabled]="!emailChanging"
-                          (change)="checkEmailChanged()" [(ngModel)]="connectedUser.email"
+          <material-input #email required type="email" label="example@domain.com" [disabled]="!emailChanging || isSocialAccount"
+                          (change)="checkEmailChanged()" [(ngModel)]="userEmail"
                           class="mail iconM"></material-input>
-          <div (click)="startEmailChange();email.focus();" class="changeMail" [class.hidden]="emailChanging"></div>
+          <div (click)="startEmailChange();email.focus();" class="changeMail" [class.hidden]="emailChanging || isSocialAccount"></div>
         </div>
 
         <div class="pass" [class.hidden]="!emailChanging">
@@ -39,7 +39,7 @@
         </div>
 
         <div class="changePass" (click)="passwordChanging = !passwordChanging"
-             [class.hidden]="emailChanging || passwordChanging">Change
+             [class.hidden]="emailChanging || passwordChanging || isSocialAccount">Change
           password
         </div>
 
@@ -67,7 +67,7 @@
     </div>
     <div class="social">
       <div class="line" [class.loggedIn]="linkedToFacebook">
-        <div class="logLeft"><span class="log">Logged in with</span>
+        <div class="logLeft"><span class="log">{{hasFacebookAccount ? 'Logged in with' : 'Sign in'}} </span>
           <span class="nameConnected"> {{connectedUser?.facebookAccount?.firstName }} {{connectedUser?.facebookAccount?.lastName }}</span>
         </div>
         <a href="{{facebookUrl}}" class="socialBtn facebook">
@@ -75,7 +75,7 @@
         </a>
       </div>
       <div class="line" [class.loggedIn]="linkedToFacebook">
-        <div class="logLeft"><span class="log">Logged in with</span>
+        <div class="logLeft"><span class="log">{{hasGoogleAccount ? 'Logged in with' : 'Sign in'}} </span>
           <span class="nameConnected"> {{connectedUser?.googleAccount?.displayName  }}</span>
         </div>
         <a href="{{googleUrl}}" class="socialBtn google">
