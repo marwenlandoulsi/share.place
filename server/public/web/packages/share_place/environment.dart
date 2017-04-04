@@ -164,7 +164,8 @@ bool userHasGreaterRole(RoleEnum role, String folderId, User user) {
   var roleOnFolder = user.folders[folderId];
   // CHECK this code is not needed
   if( roleOnFolder == null ) {
-    print("ERROR : user must be refreshed before calling this method : folder not associated to user");
+    print("ERROR : user ${user.toJson()} must be refreshed before calling this method : \n\tfolder ${folderId} not associated to user");
+    return false;
   }
   return roleOnFolder.index >= role.index;
 }

@@ -42,8 +42,8 @@ ipcMain.on('online-status-changed', (event, status) => {
 app.on('window-all-closed', () => {
   mainWindow.webContents.session.clearStorageData([{
 
-    storages:["clear"]
-  }, ()=>{
+    storages: ["clear"]
+  }, () => {
 
     console.log("done delete");
 
@@ -74,6 +74,7 @@ app.on('ready', function () {
     mainWindow = new BrowserWindow({
       width: 900,
       height: 600,
+      webPreferences: {nodeIntegration: false, preload: __dirname + "/preload.js"},
       icon: path.join(__dirname, 'server', 'static', 'images', 'iconElec.png')
     });
 
@@ -87,8 +88,8 @@ app.on('ready', function () {
     mainWindow.on('closed', function () {
       mainWindow.webContents.session.clearStorageData([{
 
-        storages:["clear"]
-      }, ()=>{
+        storages: ["clear"]
+      }, () => {
 
         console.log("done delete");
 

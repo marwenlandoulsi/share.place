@@ -71,9 +71,9 @@ module.exports.get = function (req, res) {
   let url = req.url;
   let email = null;
   let password = null;
-  if(req.user.local){
-     email = req.user.local.email;
-     password = req.user.local.password;
+  if (req.user.local) {
+    email = req.user.local.email;
+    password = req.user.local.password;
   }
 
   let pathDirectory = path.join(constants.dataDir, userId, url);
@@ -342,15 +342,24 @@ let getDataFromServer = function (req, res, email, password, url, cb) {
 
   if (typeof (global.cookieReceived) == "undefined") {
 
-    if(!email ){
+    if (!email) {
       res.redirect('/web');
     }
-    login.loginFromServer(req, email, password, function () {
-      global.mainWindow.webContents.executeJavaScript('document.getElementById("cc").value = "'+global.cookieReceived+'";');
-      httpGetJson(global.cookieReceived, url, cb)
+    login.loginFromServer(req, email, password, function (err, user, info) {
+      if (err) {
+        globalService.sendError(res, err.statusCode, err.statusCode);
+      }
+
+      if (info) {
+        globalService.sendError(res, 401, "you are online again please log in")
+      }
+      if (user) {
+        global.mainWindow.webContents.executeJavaScript('document.getElementById("cc").value = "' + global.cookieReceived + '";');
+        httpGetJson(global.cookieReceived, url, cb)
+      }
     })
   }
-  global.mainWindow.webContents.executeJavaScript('document.getElementById("cc").value = "'+global.cookieReceived+'";');
+  global.mainWindow.webContents.executeJavaScript('document.getElementById("cc").value = "' + global.cookieReceived + '";');
   httpGetJson(global.cookieReceived, url, cb);
 };
 let openFile = function (res, dataFile, pathFile) {
@@ -420,8 +429,8 @@ let httpUploadNewVersion = function (url, pathOfFile, filename, contentType, cb)
 }
 
 let httpGetJson = function (cookie, url, cb) {
-  if(cookie)
-    global.cookieReceived=cookie;
+  if (cookie)
+    global.cookieReceived = cookie;
 
   console.log('url 11', url)
   let options = {
@@ -658,7 +667,7 @@ module.exports.put = function (req, res) {
         });
       } else {
         let fileId = req.params.fileId;
-        UnlockFile(url, fileId, jsonToPut, (err, pathToFile, toReturn) => {
+        unlockFile(url, fileId, jsonToPut, (err, pathToFile, toReturn) => {
           if (err)
             globalService.sendError(res, 403, "error to unlock lock file");
 
@@ -669,6 +678,22 @@ module.exports.put = function (req, res) {
 
         });
       }
+    } else if (url.indexOf("/close-postit") != -1) {
+      let pathUsersDbFile = path.join(constants.dataDir, 'users.json');
+      let usersFile = jsonfile.readFileSync(pathUsersDbFile);
+      let usersDb = taffy(usersFile);
+      httpPutJson(url, jsonToPut, (err, user) => {
+        if (err)
+          globalService.sendError(res, err.statusCode, err.message)
+
+
+
+          usersDb({_id: user._id}).update({visiblePostits: user.visiblePostits});
+
+          jsonfile.writeFileSync(pathUsersDbFile, usersDb().get());
+
+          globalService.sendJsonResponse(res, 200, user);
+      })
     } else {
       httpPutJson(url, jsonToPut, (err, toReturn) => {
         if (err)
@@ -698,16 +723,16 @@ module.exports.putFolder = function (req, res) {
   let pathToDbPlaces = path.join(constants.dataDir, userId, 'place', 'data.json');
   let dbFolders = taffy(jsonfile.readFileSync(pathToDbFolders));
   let dbPlaces = taffy(jsonfile.readFileSync(pathToDbPlaces));
-  let placeName=dbPlaces({_id: placeId}).select("name")[0];
+  let placeName = dbPlaces({_id: placeId}).select("name")[0];
   let dataFolder = dbFolders({_id: folderId}).get()[0];
   if (global.onLine) {
     getPathFolderInHomeDir(dataFolder, jsonfile.readFileSync(pathToDbFolders), newFolderName, (pathfolder, newPath) => {
-      let pathFolderInHomeDir = path.join(global.homeDir, 'share.place', userId,placeName,  pathfolder);
-      let newPathToFolderInHomeDir = path.join(global.homeDir, 'share.place', userId,placeName,  newPath);
-      fs.rename(pathFolderInHomeDir, newPathToFolderInHomeDir, (err)=>{
-        if(err){
-           showDialogBox("info", "rename folder", "please close opened files ");
-        }else{
+      let pathFolderInHomeDir = path.join(global.homeDir, 'share.place', userId, placeName, pathfolder);
+      let newPathToFolderInHomeDir = path.join(global.homeDir, 'share.place', userId, placeName, newPath);
+      fs.rename(pathFolderInHomeDir, newPathToFolderInHomeDir, (err) => {
+        if (err) {
+          showDialogBox("info", "rename folder", "please close opened files ");
+        } else {
           httpPutJson(url, jsonToPut, (err, toReturn) => {
             if (err)
               globalService.sendError(res, err.statusCode, err.message)
@@ -747,7 +772,7 @@ let lockFile = function (url, jsonToPut, callBack) {
   });
 };
 
-let UnlockFile = function (url, fileId, jsonToPut, callBack) {
+let unlockFile = function (url, fileId, jsonToPut, callBack) {
   let userId = global.userConnected._id;
   let placeId = globalService.getIdFromUrl("place", url);
   let folderId = globalService.getIdFromUrl("folder", url);

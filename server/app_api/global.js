@@ -12,7 +12,7 @@ module.exports = {
   sendJsonResponse: function (res, statusCode, content) {
     res.status(statusCode);
     res.json({data: content});
-    res.send();
+    //res.send();
   },
   sendError: function (res, statusCode, errorMessage) {
     var err = new Error();
