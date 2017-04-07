@@ -14,24 +14,23 @@ ul {
 li.user {
   list-style-type: none;
   display: inline-block;
+  margin-left: 0.1em;
 }
 
 li.subjectItem {
-  padding: 0.1em 0 0.1em 0.7em;
+  padding: 0.1em 0.05em 0.1em 0.1em;
   cursor: pointer;
   background: white;
   position: relative;
   border-bottom: 1px solid #edf2f8;
-  overflow: hidden;
-  /*border-left: 4px solid #edf2f8;*/
-  /*border-top: 1px solid #edf2f8;*/
-  /*border-right: 2px solid #edf2f8;*/
+  border-left: 4px solid #EDF2FB;
 }
 
 li.subjectItem.selected,
 li.subjectItem:hover,
 li.subjectItem:focus {
   background-color: #4690D1;
+  /*border-left :4px solid  #4690D1;*/
   color: white;
   text-decoration: none;
 }
@@ -93,6 +92,9 @@ li.subjectItem.active .name {
 .approved .thumb:before {
   background: url("../images/approved.png");
   background-repeat: no-repeat;
+  left: auto;
+  right: -10px;
+  top: 0;
 }
 
 .locked .thumb:after {
@@ -177,9 +179,9 @@ li.subjectItem.active .name {
 }
 
 .profileImg > img {
-  width: 2em;
-  border-radius: 1em;
-  height: 2em;
+  width: 1.8em;
+  border-radius: 50%;
+  height: 1.8em;
 }
 
 .profileImg.validator > img {
@@ -190,16 +192,15 @@ li.subjectItem.active .name {
   border-radius: 3px 3px 0 0;
   -webkit-border-radius: 3px 3px 0 0;
   -moz-border-radius: 3px 3px 0 0;
-  -o-border-radius: 3px 3px 0 0;
-  width: calc(100% - 20px);
+  width: calc(100% - 1.7em);
   font-size: 1em;
   color: #fff;
   background-color: #3471AA;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: normal;
-  height: 38px;
-  line-height: 36px;
-  padding: 0 10px;
+  height: 2.3em;
+  line-height: 2.2em;
+  padding: 0 0.7em 0 1em;
 }
 
 .newTopic {
@@ -211,8 +212,8 @@ li.subjectItem.active .name {
 }
 
 .users_list {
-  margin-right: 3px;
-  margin-top: 4px;
+  margin-right: 0.1em;
+  margin-top: 0.25em;
   list-style: none;
 }
 
@@ -322,3 +323,4 @@ span.txtskype {
   text-decoration: none;
   color: rgba(0, 0, 0, 0.68);
 }
+

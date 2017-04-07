@@ -969,7 +969,7 @@ class ViewProfileComp0 extends AppView<import3.ProfileComp> {
     }
     if (!import31.AppViewUtils.throwOnChanges) { _NgFor_35_5.ngDoCheck(); }
     changes = null;
-    final currVal_14 = ctx.userEmail;
+    final currVal_14 = ctx.connectedUser.mainMail;
     if (import31.checkBinding(_expr_14,currVal_14)) {
       _NgModel_47_5.model = currVal_14;
       if (identical(changes, null)) { (changes = <String, SimpleChange>{}); }
@@ -1228,7 +1228,7 @@ class ViewProfileComp0 extends AppView<import3.ProfileComp> {
   }
   bool _handle_ngModelChange_47_1($event) {
     this.markPathToRootAsCheckOnce();
-    final dynamic pd_0 = !identical(((ctx.userEmail = $event) as dynamic), false);
+    final dynamic pd_0 = !identical(((ctx.connectedUser.mainMail = $event) as dynamic), false);
     return (true && pd_0);
   }
   bool _handle_focus_47_2($event) {

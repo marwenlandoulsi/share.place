@@ -28,7 +28,7 @@
         <div class="email">
           <div class="label">Email</div>
           <material-input #email required type="email" label="example@domain.com" [disabled]="!emailChanging || isSocialAccount"
-                          (change)="checkEmailChanged()" [(ngModel)]="userEmail"
+                          (change)="checkEmailChanged()" [(ngModel)]="connectedUser.mainMail"
                           class="mail iconM"></material-input>
           <div (click)="startEmailChange();email.focus();" class="changeMail" [class.hidden]="emailChanging || isSocialAccount"></div>
         </div>

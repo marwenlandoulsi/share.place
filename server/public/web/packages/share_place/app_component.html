@@ -13,11 +13,14 @@
 
   <div class="header header-top">
     <img src="../images/logo0.png" class="logo">
-    <div class="er_bd error">{{error}}</div>
-    <div class="er_bd messages">
-      <div *ngFor="let message of messages">{{message}}</div>
+    <div class="alertInner">
+      <notification [msg]="error" class="notif error" [duration]="-1"></notification>
+      <div *ngIf="messages != null && messages.length > 0">
+        <div *ngFor="let messageItem of messages">
+          <notification [msg]="messageItem" class="notif message" [duration]="-1"></notification>
+        </div>
+      </div>
     </div>
-
     <div class="rightMenu">
       <img popupSource #profileMenu="popupSource" src="/auth/user/photo/s/{{connectedUser?.id}}" class="profileImg"
            (click)="profileMenuVisible = !profileMenuVisible">
@@ -26,8 +29,8 @@
                       enforceSpaceConstraints
                       [source]="profileMenu"
                       [(visible)]="profileMenuVisible" class="profilemenuvisible">
-        <div header class="popupHeader connectusername">
-          <span>{{connectedUser?.name}}</span>
+        <div header class="popupHeader connectUsername">
+          <span>{{connectedUser?.displayName}}</span>
         </div>
         <div class="popupContent">
           <material-button (click)="profile()" class="menuItem profile">

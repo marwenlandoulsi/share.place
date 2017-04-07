@@ -24,7 +24,7 @@ var sep = path.sep;
 var userfile = path.join(constants.usersFileData);
 var cron = require("../controllers/cron");
 var pro = require('express-http-proxy');
-
+var globalService = require('../global')
 
 module.exports = function (passport) {
   var users = jsonfile.readFileSync(userfile);
@@ -214,10 +214,15 @@ module.exports = function (passport) {
           users = jsonfile.readFileSync(userfile);
           localUsers = taffy(users);
           var user = dataReceived.data;
+          global.userConnected = user;
           console.log("users.length", users.length);
           saveUserInLocalDb(users, userfile, localUsers, user);
+          globalService.setSidInInput(global.cookieReceived);
+          callback(null, user);
+          cron.sync()
 
-          return callback(null, user);
+
+
         })
 
       }
@@ -334,6 +339,8 @@ var signUpFromServer = function (req, email, password, name, skype, cb) {
       }
       log.info("user created:",user)
       global.cookieReceived = cookie;
+      globalService.setSidInInput(cookie);
+
       if(pathToFile){
         fs.unlink(pathToFile, function (err) {
           if (err)

@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:angular2/core.dart';
 import 'package:angular2/router.dart';
 import 'package:angular2/security.dart';
+import 'package:angular2_components/angular2_components.dart';
 
 import 'package:share_place/place.dart';
 import 'package:share_place/environment.dart';
@@ -13,19 +14,26 @@ import 'package:share_place/users/user_list_provider.dart';
 import 'package:share_place/common/ui/button_comp.dart';
 import 'package:share_place/common/ui/text_comp.dart';
 
+import 'package:share_place/users/info_popup/info_popup.dart';
+import 'package:share_place/users/info_popup/popup_parent.dart';
+
+
 @Component(
     selector: 'users-comp',
     templateUrl: 'users_comp.html',
     styleUrls: const ['users_comp.css'],
-    directives: const[ButtonComp, TextComp],
+    directives: const[ButtonComp, TextComp, materialDirectives, InfoPopup
+    ],
     providers: const[UserListProvider]
 )
-class UsersComp implements OnInit {
+class UsersComp implements OnInit, PopupParent {
   final PlaceService _placeService;
   final Router _router;
   final Environment _environment;
   final UserListProvider _userListProvider;
   final DomSanitizationService urlSanitizer;
+
+  String clickedUserId;
 
   UsersComp(this._placeService, this._router, this._environment,
       this.urlSanitizer, this._userListProvider);
@@ -63,4 +71,10 @@ class UsersComp implements OnInit {
   }
 
   List<User> get users => _userListProvider.users;
+
+  void popupClosed(User user) {
+    clickedUserId = null;
+  }
+
+  PopupParent get self => this;
 }

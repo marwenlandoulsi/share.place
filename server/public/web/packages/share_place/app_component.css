@@ -45,17 +45,14 @@ nav a.router-link-active {
   margin: 1em 0;
 }
 
-.files {
-  background-color: #F0F0F0;
-}
-
+.files,
 .rightBp {
   background-color: #F0F0F0;
 }
 
 .logo {
-  height: 2em;
-  padding: 2px 0 0 3px;
+  height: 2.2em;
+  padding-left: 0.4em;
 }
 
 .title {
@@ -71,19 +68,6 @@ nav a.router-link-active {
   border-bottom: 2px solid cornflowerblue;
 }
 
-.topP .places {
-
-}
-
-.bottomP {
-
-}
-
-.rightP {
-  background-color: red;
-  border-left: 0.4em solid darkblue;
-}
-
 .leftP {
   background-color: #252c3f;
 }
@@ -97,7 +81,7 @@ nav a.router-link-active {
   padding: 0 !important;
 }
 
-.connectusername {
+.connectUsername {
   margin: 4px 6px 6px;
   font-weight: bold;
   color: #273B54;
@@ -105,7 +89,7 @@ nav a.router-link-active {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.popupHeader.connectusername {
+.popupHeader.connectUsername {
   padding: 0;
 }
 
@@ -158,11 +142,11 @@ material-button.menuItem.profile, material-button.menuItem.logout {
   padding: 0.2em 0.4em !important;
 }
 
-.connectusername {
+.connectUsername {
   background: url("../images/tiret-black.png") repeat-x center center;
 }
 
-.connectusername span {
+.connectUsername span {
   background: white;
   padding-right: 0.5em;
   display: inline;

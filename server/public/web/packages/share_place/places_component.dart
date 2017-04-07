@@ -1,12 +1,13 @@
 import 'dart:async';
 import 'dart:html';
+import 'dart:convert';
+
 import 'app_config.dart' as conf;
 
 import 'package:angular2_components/angular2_components.dart';
-
 import 'package:angular2/core.dart';
-import 'package:angular2/router.dart';
 
+import 'package:angular2/router.dart';
 import 'environment.dart';
 import 'place.dart';
 import 'place_service.dart';
@@ -49,9 +50,13 @@ class PlacesComponent implements OnInit {
 
   Future<Null> save(String placeName) async {
     adding = false;
-    Place toSelect = await _placeService.createPlace(placeName);
-    await loadPlaces();
-    onSelect(toSelect);
+    try {
+      Place toSelect = await _placeService.createPlace(placeName);
+      await loadPlaces();
+      onSelect(toSelect);
+    } catch(ex) {
+      print(ex);
+    }
   }
 
   Future<Null> delete(Place place) async {
@@ -71,6 +76,19 @@ class PlacesComponent implements OnInit {
     if (params[PlaceParam.login]) {
       loadPlaces();
     }
+    if (params.containsKey(PlaceParam.ioUserInvited)) {
+      print("user was invited to folder : ${params[PlaceParam
+          .ioUserInvited]['folderId']}");
+      dynamic folder = params[PlaceParam.ioUserInvited];
+      var newPlaceId = folder['placeId'];
+      if (!hasPlace(newPlaceId)) {
+        await loadPlaces();
+        Place added = places.firstWhere((Place place) =>
+        place.id == newPlaceId);
+        _environment.addMessage(
+            "Vous venez de rejoindre la place ${added.name}");
+      }
+    }
     if (adding) {
       KeyEvent keyup = params[PlaceParam.keyPressed];
       if (keyup != null && keyup.keyCode == 27) {
@@ -83,6 +101,10 @@ class PlacesComponent implements OnInit {
       }
     }
   }
+
+  bool hasPlace(String placeId) =>
+      places.any((Place place) => place.id == placeId);
+
 
   void onSelect(Place place) {
     _environment.selectedPlace = place;

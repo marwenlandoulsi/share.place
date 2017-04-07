@@ -225,7 +225,7 @@ get('/place/:placeId/folder', ctrlProxy.get);
 // user
 get('/user', ctrlProxy.get);
 get('/place/:placeId/user', ctrlProxy.get);
-
+get('/user/:userId', ctrlProxy.get);
 // news
 get('/news', ctrlProxy.get);
 

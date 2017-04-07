@@ -447,6 +447,7 @@ class ViewFilesComp3 extends AppView<import3.FilesComp> {
     var doc = document;
     _el_0 = doc.createElement('li');
     _el_0.setAttribute(shimCAttr,'');
+    _el_0.className = 'liVersion';
     Text _text_1 = new Text('\n\n                  ');
     _el_0.append(_text_1);
     _el_2 = doc.createElement('div');
@@ -490,7 +491,7 @@ class ViewFilesComp3 extends AppView<import3.FilesComp> {
     var _anchor_15 = new Comment('template bindings={}');
     _el_0?.append(_anchor_15);
     _appEl_15 = new ViewContainer(15,0,this,_anchor_15);
-    _TemplateRef_15_4 = new TemplateRef(_appEl_15,viewFactory_FilesComp19);
+    _TemplateRef_15_4 = new TemplateRef(_appEl_15,viewFactory_FilesComp20);
     _NgIf_15_5 = new NgIf(_appEl_15,_TemplateRef_15_4);
     Text _text_16 = new Text('\n                ');
     _el_0.append(_text_16);
@@ -583,43 +584,41 @@ class ViewFilesComp4 extends AppView<import3.FilesComp> {
   Element _el_45;
   Element _el_47;
   Text _text_48;
-  Element _el_51;
-  Element _el_53;
-  Text _text_54;
-  Element _el_56;
-  Text _text_57;
-  Element _el_64;
-  Element _el_66;
-  Text _text_67;
-  Element _el_69;
-  import25.PopupSourceDirective _PopupSourceDirective_69_2;
+  ViewContainer _appEl_51;
+  dynamic _TemplateRef_51_4;
+  NgIf _NgIf_51_5;
+  Element _el_57;
+  Element _el_59;
+  Text _text_60;
+  Element _el_62;
+  import25.PopupSourceDirective _PopupSourceDirective_62_2;
+  Element _el_68;
+  ViewContainer _appEl_68;
+  import26.MaterialPopupComponent _MaterialPopupComponent_68_3;
+  dynamic __PopupComponent_68_4;
+  dynamic __DropdownHandle_68_5;
+  dynamic __DeferredContentAware_68_6;
+  dynamic __PopupHierarchy_68_7;
+  dynamic __PopupRef_68_8;
+  Element _el_70;
+  Element _el_72;
+  Text _text_73;
   Element _el_75;
-  ViewContainer _appEl_75;
-  import26.MaterialPopupComponent _MaterialPopupComponent_75_3;
-  dynamic __PopupComponent_75_4;
-  dynamic __DropdownHandle_75_5;
-  dynamic __DeferredContentAware_75_6;
-  dynamic __PopupHierarchy_75_7;
-  dynamic __PopupRef_75_8;
-  Element _el_77;
+  Text _text_76;
   Element _el_79;
-  Text _text_80;
-  Element _el_82;
-  Text _text_83;
-  Element _el_86;
-  Element _el_88;
-  ViewContainer _appEl_90;
-  dynamic _TemplateRef_90_4;
-  NgIf _NgIf_90_5;
-  ViewContainer _appEl_92;
-  dynamic _TemplateRef_92_4;
-  NgIf _NgIf_92_5;
-  ViewContainer _appEl_101;
-  dynamic _TemplateRef_101_4;
-  NgIf _NgIf_101_5;
-  ViewContainer _appEl_103;
-  dynamic _TemplateRef_103_4;
-  NgIf _NgIf_103_5;
+  Element _el_81;
+  ViewContainer _appEl_83;
+  dynamic _TemplateRef_83_4;
+  NgIf _NgIf_83_5;
+  ViewContainer _appEl_85;
+  dynamic _TemplateRef_85_4;
+  NgIf _NgIf_85_5;
+  ViewContainer _appEl_94;
+  dynamic _TemplateRef_94_4;
+  NgIf _NgIf_94_5;
+  ViewContainer _appEl_96;
+  dynamic _TemplateRef_96_4;
+  NgIf _NgIf_96_5;
   var _expr_0 = uninitialized;
   var _expr_1 = uninitialized;
   var _expr_2 = uninitialized;
@@ -628,9 +627,8 @@ class ViewFilesComp4 extends AppView<import3.FilesComp> {
   var _expr_6 = uninitialized;
   var _expr_7 = uninitialized;
   var _expr_10 = uninitialized;
-  var _expr_12 = uninitialized;
+  var _expr_11 = uninitialized;
   var _expr_13 = uninitialized;
-  var _expr_14 = uninitialized;
   var _expr_15 = uninitialized;
   var _expr_17 = uninitialized;
   var _expr_18 = uninitialized;
@@ -640,27 +638,26 @@ class ViewFilesComp4 extends AppView<import3.FilesComp> {
   var _expr_22 = uninitialized;
   var _pipe_agoDateFormat_0_3;
   var _pipe_agoDateFormat_0_4;
-  var _pipe_fileSizeFormat_1_0;
   ViewFilesComp4(import9.Injector parentInjector,ViewContainer declarationEl): super(ViewFilesComp4,renderType_FilesComp,import10.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
-  dynamic get _PopupComponent_75_4 {
-    if ((this.__PopupComponent_75_4 == null)) { (__PopupComponent_75_4 = this._MaterialPopupComponent_75_3); }
-    return this.__PopupComponent_75_4;
+  dynamic get _PopupComponent_68_4 {
+    if ((this.__PopupComponent_68_4 == null)) { (__PopupComponent_68_4 = this._MaterialPopupComponent_68_3); }
+    return this.__PopupComponent_68_4;
   }
-  dynamic get _DropdownHandle_75_5 {
-    if ((this.__DropdownHandle_75_5 == null)) { (__DropdownHandle_75_5 = this._MaterialPopupComponent_75_3); }
-    return this.__DropdownHandle_75_5;
+  dynamic get _DropdownHandle_68_5 {
+    if ((this.__DropdownHandle_68_5 == null)) { (__DropdownHandle_68_5 = this._MaterialPopupComponent_68_3); }
+    return this.__DropdownHandle_68_5;
   }
-  dynamic get _DeferredContentAware_75_6 {
-    if ((this.__DeferredContentAware_75_6 == null)) { (__DeferredContentAware_75_6 = this._PopupComponent_75_4); }
-    return this.__DeferredContentAware_75_6;
+  dynamic get _DeferredContentAware_68_6 {
+    if ((this.__DeferredContentAware_68_6 == null)) { (__DeferredContentAware_68_6 = this._PopupComponent_68_4); }
+    return this.__DeferredContentAware_68_6;
   }
-  dynamic get _PopupHierarchy_75_7 {
-    if ((this.__PopupHierarchy_75_7 == null)) { (__PopupHierarchy_75_7 = import26.MaterialPopupComponent_getHierarchy(this._PopupComponent_75_4)); }
-    return this.__PopupHierarchy_75_7;
+  dynamic get _PopupHierarchy_68_7 {
+    if ((this.__PopupHierarchy_68_7 == null)) { (__PopupHierarchy_68_7 = import26.MaterialPopupComponent_getHierarchy(this._PopupComponent_68_4)); }
+    return this.__PopupHierarchy_68_7;
   }
-  dynamic get _PopupRef_75_8 {
-    if ((this.__PopupRef_75_8 == null)) { (__PopupRef_75_8 = import26.MaterialPopupComponent_getResolvedPopupRef(this._PopupComponent_75_4)); }
-    return this.__PopupRef_75_8;
+  dynamic get _PopupRef_68_8 {
+    if ((this.__PopupRef_68_8 == null)) { (__PopupRef_68_8 = import26.MaterialPopupComponent_getResolvedPopupRef(this._PopupComponent_68_4)); }
+    return this.__PopupRef_68_8;
   }
   ViewContainer createInternal(dynamic rootSelector) {
     var doc = document;
@@ -815,188 +812,169 @@ class ViewFilesComp4 extends AppView<import3.FilesComp> {
     _el_45.append(_text_49);
     Text _text_50 = new Text('\n                                        ');
     _el_43.append(_text_50);
-    _el_51 = doc.createElement('div');
-    _el_51.setAttribute(shimCAttr,'');
-    _el_43.append(_el_51);
-    _el_51.className = 'linerow';
-    Text _text_52 = new Text('\n                                          ');
-    _el_51.append(_text_52);
-    _el_53 = doc.createElement('span');
-    _el_53.setAttribute(shimCAttr,'');
-    _el_51.append(_el_53);
-    _el_53.className = 'filetypedoc';
-    _text_54 = new Text('');
-    _el_53.append(_text_54);
-    Text _text_55 = new Text('\n                                          ');
-    _el_51.append(_text_55);
-    _el_56 = doc.createElement('span');
-    _el_56.setAttribute(shimCAttr,'');
-    _el_51.append(_el_56);
-    _el_56.className = 'fileSize';
-    _text_57 = new Text('');
-    _el_56.append(_text_57);
-    Text _text_58 = new Text('\n                                        ');
-    _el_51.append(_text_58);
-    Text _text_59 = new Text('\n                                      ');
-    _el_43.append(_text_59);
-    Text _text_60 = new Text('\n                                    ');
-    _el_41.append(_text_60);
+    var _anchor_51 = new Comment('template bindings={}');
+    _el_43?.append(_anchor_51);
+    _appEl_51 = new ViewContainer(51,43,this,_anchor_51);
+    _TemplateRef_51_4 = new TemplateRef(_appEl_51,viewFactory_FilesComp15);
+    _NgIf_51_5 = new NgIf(_appEl_51,_TemplateRef_51_4);
+    Text _text_52 = new Text('\n                                      ');
+    _el_43.append(_text_52);
+    Text _text_53 = new Text('\n                                    ');
+    _el_41.append(_text_53);
+    Text _text_54 = new Text('\n                                  ');
+    _el_38.append(_text_54);
+    Text _text_55 = new Text('\n                                ');
+    _el_26.append(_text_55);
+    Text _text_56 = new Text('\n\n                                ');
+    _el_24.append(_text_56);
+    _el_57 = doc.createElement('div');
+    _el_57.setAttribute(shimCAttr,'');
+    _el_24.append(_el_57);
+    _el_57.className = 'fileMoreActions';
+    Text _text_58 = new Text('\n                                  ');
+    _el_57.append(_text_58);
+    _el_59 = doc.createElement('span');
+    _el_59.setAttribute(shimCAttr,'');
+    _el_57.append(_el_59);
+    _el_59.className = 'fileversion';
+    _text_60 = new Text('');
+    _el_59.append(_text_60);
     Text _text_61 = new Text('\n                                  ');
-    _el_38.append(_text_61);
-    Text _text_62 = new Text('\n                                ');
-    _el_26.append(_text_62);
-    Text _text_63 = new Text('\n\n                                ');
-    _el_24.append(_text_63);
-    _el_64 = doc.createElement('div');
-    _el_64.setAttribute(shimCAttr,'');
-    _el_24.append(_el_64);
-    _el_64.className = 'fileMoreActions';
-    Text _text_65 = new Text('\n                                  ');
-    _el_64.append(_text_65);
-    _el_66 = doc.createElement('span');
-    _el_66.setAttribute(shimCAttr,'');
-    _el_64.append(_el_66);
-    _el_66.className = 'fileversion';
-    _text_67 = new Text('');
-    _el_66.append(_text_67);
-    Text _text_68 = new Text('\n                                  ');
-    _el_64.append(_text_68);
-    _el_69 = doc.createElement('span');
-    _el_69.setAttribute(shimCAttr,'');
-    _el_64.append(_el_69);
-    _el_69.className = 'moreActions';
-    createAttr(_el_69,'popupSource','');
-    _PopupSourceDirective_69_2 = new import25.PopupSourceDirective(this.parentInjector.get(import27.DomPopupSourceFactory),new ElementRef(_el_69),this.parentInjector.get(import28.ReferenceDirective,null));
-    Text _text_70 = new Text('\n                                ');
-    _el_64.append(_text_70);
-    Text _text_71 = new Text('\n\n                              ');
-    _el_24.append(_text_71);
-    Text _text_72 = new Text('\n\n                            ');
-    _el_22.append(_text_72);
-    Text _text_73 = new Text('\n                          ');
-    _el_9.append(_text_73);
-    Text _text_74 = new Text('\n\n                          ');
-    _el_7.append(_text_74);
-    _el_75 = doc.createElement('material-popup');
+    _el_57.append(_text_61);
+    _el_62 = doc.createElement('span');
+    _el_62.setAttribute(shimCAttr,'');
+    _el_57.append(_el_62);
+    _el_62.className = 'moreActions';
+    createAttr(_el_62,'popupSource','');
+    _PopupSourceDirective_62_2 = new import25.PopupSourceDirective(this.parentInjector.get(import27.DomPopupSourceFactory),new ElementRef(_el_62),this.parentInjector.get(import28.ReferenceDirective,null));
+    Text _text_63 = new Text('\n                                ');
+    _el_57.append(_text_63);
+    Text _text_64 = new Text('\n\n                              ');
+    _el_24.append(_text_64);
+    Text _text_65 = new Text('\n\n                            ');
+    _el_22.append(_text_65);
+    Text _text_66 = new Text('\n                          ');
+    _el_9.append(_text_66);
+    Text _text_67 = new Text('\n\n                          ');
+    _el_7.append(_text_67);
+    _el_68 = doc.createElement('material-popup');
+    _el_68.setAttribute(shimCAttr,'');
+    _el_7.append(_el_68);
+    _el_68.className = 'popVersion ';
+    createAttr(_el_68,'defaultPopupSizeProvider','');
+    createAttr(_el_68,'enforceSpaceConstraints','');
+    _appEl_68 = new ViewContainer(68,7,this,_el_68);
+    var compView_68 = import29.viewFactory_MaterialPopupComponent0(this.injector(68),_appEl_68);
+    _MaterialPopupComponent_68_3 = new import26.MaterialPopupComponent(this.parentInjector.get(import30.DomService),this.parentInjector.get(import31.PopupHierarchy,null),this.parentInjector.get(import32.PopupRef,null),this.parentInjector.get(import33.NgZone),this.parentInjector.get(import34.PopupService),this.parentInjector.get(import35.OverlayService),this.parentInjector.get(import36.PopupSizeProvider,null),this.parentInjector.get(import37.rtlToken,null),compView_68.ref);
+    _appEl_68.initComponent(_MaterialPopupComponent_68_3,compView_68);
+    Text _text_69 = new Text('\n                            ');
+    _el_70 = doc.createElement('div');
+    _el_70.setAttribute(shimCAttr,'');
+    _el_70.className = 'headerPopVersion';
+    createAttr(_el_70,'header','');
+    Text _text_71 = new Text('\n                              ');
+    _el_70.append(_text_71);
+    _el_72 = doc.createElement('div');
+    _el_72.setAttribute(shimCAttr,'');
+    _el_70.append(_el_72);
+    _el_72.className = 'fileName';
+    _text_73 = new Text('');
+    _el_72.append(_text_73);
+    Text _text_74 = new Text('\n                              ');
+    _el_70.append(_text_74);
+    _el_75 = doc.createElement('div');
     _el_75.setAttribute(shimCAttr,'');
-    _el_7.append(_el_75);
-    _el_75.className = 'popVersion ';
-    createAttr(_el_75,'defaultPopupSizeProvider','');
-    createAttr(_el_75,'enforceSpaceConstraints','');
-    _appEl_75 = new ViewContainer(75,7,this,_el_75);
-    var compView_75 = import29.viewFactory_MaterialPopupComponent0(this.injector(75),_appEl_75);
-    _MaterialPopupComponent_75_3 = new import26.MaterialPopupComponent(this.parentInjector.get(import30.DomService),this.parentInjector.get(import31.PopupHierarchy,null),this.parentInjector.get(import32.PopupRef,null),this.parentInjector.get(import33.NgZone),this.parentInjector.get(import34.PopupService),this.parentInjector.get(import35.OverlayService),this.parentInjector.get(import36.PopupSizeProvider,null),this.parentInjector.get(import37.rtlToken,null),compView_75.ref);
-    _appEl_75.initComponent(_MaterialPopupComponent_75_3,compView_75);
-    Text _text_76 = new Text('\n                            ');
-    _el_77 = doc.createElement('div');
-    _el_77.setAttribute(shimCAttr,'');
-    _el_77.className = 'headerPopVersion';
-    createAttr(_el_77,'header','');
-    Text _text_78 = new Text('\n                              ');
-    _el_77.append(_text_78);
+    _el_70.append(_el_75);
+    _el_75.className = 'fileInfo';
+    _text_76 = new Text('');
+    _el_75.append(_text_76);
+    Text _text_77 = new Text('\n                            ');
+    _el_70.append(_text_77);
+    Text _text_78 = new Text('\n                            ');
     _el_79 = doc.createElement('div');
     _el_79.setAttribute(shimCAttr,'');
-    _el_77.append(_el_79);
-    _el_79.className = 'fileName';
-    _text_80 = new Text('');
+    _el_79.className = 'popupContent popinVersion';
+    Text _text_80 = new Text('\n                              ');
     _el_79.append(_text_80);
-    Text _text_81 = new Text('\n                              ');
-    _el_77.append(_text_81);
-    _el_82 = doc.createElement('div');
-    _el_82.setAttribute(shimCAttr,'');
-    _el_77.append(_el_82);
-    _el_82.className = 'fileInfo';
-    _text_83 = new Text('');
-    _el_82.append(_text_83);
-    Text _text_84 = new Text('\n                            ');
-    _el_77.append(_text_84);
-    Text _text_85 = new Text('\n                            ');
-    _el_86 = doc.createElement('div');
-    _el_86.setAttribute(shimCAttr,'');
-    _el_86.className = 'popupContent popinVersion';
-    Text _text_87 = new Text('\n                              ');
-    _el_86.append(_text_87);
-    _el_88 = doc.createElement('div');
-    _el_88.setAttribute(shimCAttr,'');
-    _el_86.append(_el_88);
-    createAttr(_el_88,'group','');
+    _el_81 = doc.createElement('div');
+    _el_81.setAttribute(shimCAttr,'');
+    _el_79.append(_el_81);
+    createAttr(_el_81,'group','');
+    Text _text_82 = new Text('\n                                ');
+    _el_81.append(_text_82);
+    var _anchor_83 = new Comment('template bindings={}');
+    _el_81?.append(_anchor_83);
+    _appEl_83 = new ViewContainer(83,81,this,_anchor_83);
+    _TemplateRef_83_4 = new TemplateRef(_appEl_83,viewFactory_FilesComp16);
+    _NgIf_83_5 = new NgIf(_appEl_83,_TemplateRef_83_4);
+    Text _text_84 = new Text('\n                                ');
+    _el_81.append(_text_84);
+    var _anchor_85 = new Comment('template bindings={}');
+    _el_81?.append(_anchor_85);
+    _appEl_85 = new ViewContainer(85,81,this,_anchor_85);
+    _TemplateRef_85_4 = new TemplateRef(_appEl_85,viewFactory_FilesComp17);
+    _NgIf_85_5 = new NgIf(_appEl_85,_TemplateRef_85_4);
+    Text _text_86 = new Text('\n                                ');
+    _el_81.append(_text_86);
+    Text _text_87 = new Text('\n                                ');
+    _el_81.append(_text_87);
+    Text _text_88 = new Text('\n                                ');
+    _el_81.append(_text_88);
     Text _text_89 = new Text('\n                                ');
-    _el_88.append(_text_89);
-    var _anchor_90 = new Comment('template bindings={}');
-    _el_88?.append(_anchor_90);
-    _appEl_90 = new ViewContainer(90,88,this,_anchor_90);
-    _TemplateRef_90_4 = new TemplateRef(_appEl_90,viewFactory_FilesComp15);
-    _NgIf_90_5 = new NgIf(_appEl_90,_TemplateRef_90_4);
+    _el_81.append(_text_89);
+    Text _text_90 = new Text('\n                                ');
+    _el_81.append(_text_90);
     Text _text_91 = new Text('\n                                ');
-    _el_88.append(_text_91);
-    var _anchor_92 = new Comment('template bindings={}');
-    _el_88?.append(_anchor_92);
-    _appEl_92 = new ViewContainer(92,88,this,_anchor_92);
-    _TemplateRef_92_4 = new TemplateRef(_appEl_92,viewFactory_FilesComp16);
-    _NgIf_92_5 = new NgIf(_appEl_92,_TemplateRef_92_4);
-    Text _text_93 = new Text('\n                                ');
-    _el_88.append(_text_93);
-    Text _text_94 = new Text('\n                                ');
-    _el_88.append(_text_94);
-    Text _text_95 = new Text('\n                                ');
-    _el_88.append(_text_95);
-    Text _text_96 = new Text('\n                                ');
-    _el_88.append(_text_96);
-    Text _text_97 = new Text('\n                                ');
-    _el_88.append(_text_97);
-    Text _text_98 = new Text('\n                                ');
-    _el_88.append(_text_98);
-    Text _text_99 = new Text('\n                              ');
-    _el_88.append(_text_99);
-    Text _text_100 = new Text('\n                              ');
-    _el_86.append(_text_100);
-    var _anchor_101 = new Comment('template bindings={}');
-    _el_86?.append(_anchor_101);
-    _appEl_101 = new ViewContainer(101,86,this,_anchor_101);
-    _TemplateRef_101_4 = new TemplateRef(_appEl_101,viewFactory_FilesComp17);
-    _NgIf_101_5 = new NgIf(_appEl_101,_TemplateRef_101_4);
-    Text _text_102 = new Text('\n                              ');
-    _el_86.append(_text_102);
-    var _anchor_103 = new Comment('template bindings={}');
-    _el_86?.append(_anchor_103);
-    _appEl_103 = new ViewContainer(103,86,this,_anchor_103);
-    _TemplateRef_103_4 = new TemplateRef(_appEl_103,viewFactory_FilesComp18);
-    _NgIf_103_5 = new NgIf(_appEl_103,_TemplateRef_103_4);
-    Text _text_104 = new Text('\n                            ');
-    _el_86.append(_text_104);
-    Text _text_105 = new Text('\n                          ');
-    compView_75.createComp([
-      [_el_77],[
-        _text_76,_text_85,_el_86,_text_105
+    _el_81.append(_text_91);
+    Text _text_92 = new Text('\n                              ');
+    _el_81.append(_text_92);
+    Text _text_93 = new Text('\n                              ');
+    _el_79.append(_text_93);
+    var _anchor_94 = new Comment('template bindings={}');
+    _el_79?.append(_anchor_94);
+    _appEl_94 = new ViewContainer(94,79,this,_anchor_94);
+    _TemplateRef_94_4 = new TemplateRef(_appEl_94,viewFactory_FilesComp18);
+    _NgIf_94_5 = new NgIf(_appEl_94,_TemplateRef_94_4);
+    Text _text_95 = new Text('\n                              ');
+    _el_79.append(_text_95);
+    var _anchor_96 = new Comment('template bindings={}');
+    _el_79?.append(_anchor_96);
+    _appEl_96 = new ViewContainer(96,79,this,_anchor_96);
+    _TemplateRef_96_4 = new TemplateRef(_appEl_96,viewFactory_FilesComp19);
+    _NgIf_96_5 = new NgIf(_appEl_96,_TemplateRef_96_4);
+    Text _text_97 = new Text('\n                            ');
+    _el_79.append(_text_97);
+    Text _text_98 = new Text('\n                          ');
+    compView_68.createComp([
+      [_el_70],[
+        _text_69,_text_78,_el_79,_text_98
       ]
       ,[]
     ]
     ,null);
-    Text _text_106 = new Text('\n                        ');
-    _el_7.append(_text_106);
-    Text _text_107 = new Text('\n                      ');
-    _el_2.append(_text_107);
-    Text _text_108 = new Text('\n                    ');
-    _el_0.append(_text_108);
+    Text _text_99 = new Text('\n                        ');
+    _el_7.append(_text_99);
+    Text _text_100 = new Text('\n                      ');
+    _el_2.append(_text_100);
+    Text _text_101 = new Text('\n                    ');
+    _el_0.append(_text_101);
     listen(_el_11,'click',evt(_handle_click_11_0));
     listen(_el_26,'click',evt(_handle_click_26_0));
-    listen(_el_69,'click',evt(_handle_click_69_0));
+    listen(_el_62,'click',evt(_handle_click_62_0));
     this._pipe_agoDateFormat_0_3 = import13.pureProxy1((parent.parent.parent as ViewFilesComp0)._pipe_agoDateFormat_0.transform);
     this._pipe_agoDateFormat_0_4 = import13.pureProxy1((parent.parent.parent as ViewFilesComp0)._pipe_agoDateFormat_0.transform);
-    this._pipe_fileSizeFormat_1_0 = import13.pureProxy1((parent.parent.parent as ViewFilesComp0)._pipe_fileSizeFormat_1.transform);
     init([_el_0],[
       _el_0,_text_1,_el_2,_text_3,_anchor_4,_text_5,_text_6,_el_7,_text_8,_el_9,_text_10,
       _el_11,_text_12,_el_13,_el_14,_text_15,_el_16,_text_17,_text_18,_anchor_19,_text_20,
       _text_21,_el_22,_text_23,_el_24,_text_25,_el_26,_text_27,_el_28,_text_29,_el_30,
       _text_31,_el_32,_text_33,_anchor_34,_text_35,_text_36,_text_37,_el_38,_text_39,
       _text_40,_el_41,_text_42,_el_43,_text_44,_el_45,_text_46,_el_47,_text_48,_text_49,
-      _text_50,_el_51,_text_52,_el_53,_text_54,_text_55,_el_56,_text_57,_text_58,_text_59,
-      _text_60,_text_61,_text_62,_text_63,_el_64,_text_65,_el_66,_text_67,_text_68,_el_69,
-      _text_70,_text_71,_text_72,_text_73,_text_74,_el_75,_text_76,_el_77,_text_78,_el_79,
-      _text_80,_text_81,_el_82,_text_83,_text_84,_text_85,_el_86,_text_87,_el_88,_text_89,
-      _anchor_90,_text_91,_anchor_92,_text_93,_text_94,_text_95,_text_96,_text_97,_text_98,
-      _text_99,_text_100,_anchor_101,_text_102,_anchor_103,_text_104,_text_105,_text_106,
-      _text_107,_text_108
+      _text_50,_anchor_51,_text_52,_text_53,_text_54,_text_55,_text_56,_el_57,_text_58,
+      _el_59,_text_60,_text_61,_el_62,_text_63,_text_64,_text_65,_text_66,_text_67,_el_68,
+      _text_69,_el_70,_text_71,_el_72,_text_73,_text_74,_el_75,_text_76,_text_77,_text_78,
+      _el_79,_text_80,_el_81,_text_82,_anchor_83,_text_84,_anchor_85,_text_86,_text_87,
+      _text_88,_text_89,_text_90,_text_91,_text_92,_text_93,_anchor_94,_text_95,_anchor_96,
+      _text_97,_text_98,_text_99,_text_100,_text_101
     ]
     ,[]);
     return null;
@@ -1009,21 +987,23 @@ class ViewFilesComp4 extends AppView<import3.FilesComp> {
     if ((identical(token, import25.PopupSourceDirective) && ((11 <= requestNodeIndex) && (requestNodeIndex <= 20)))) { return _PopupSourceDirective_11_2; }
     if ((identical(token, TemplateRef) && (34 == requestNodeIndex))) { return _TemplateRef_34_4; }
     if ((identical(token, NgIf) && (34 == requestNodeIndex))) { return _NgIf_34_5; }
-    if ((identical(token, import25.PopupSourceDirective) && (69 == requestNodeIndex))) { return _PopupSourceDirective_69_2; }
-    if ((identical(token, TemplateRef) && (90 == requestNodeIndex))) { return _TemplateRef_90_4; }
-    if ((identical(token, NgIf) && (90 == requestNodeIndex))) { return _NgIf_90_5; }
-    if ((identical(token, TemplateRef) && (92 == requestNodeIndex))) { return _TemplateRef_92_4; }
-    if ((identical(token, NgIf) && (92 == requestNodeIndex))) { return _NgIf_92_5; }
-    if ((identical(token, TemplateRef) && (101 == requestNodeIndex))) { return _TemplateRef_101_4; }
-    if ((identical(token, NgIf) && (101 == requestNodeIndex))) { return _NgIf_101_5; }
-    if ((identical(token, TemplateRef) && (103 == requestNodeIndex))) { return _TemplateRef_103_4; }
-    if ((identical(token, NgIf) && (103 == requestNodeIndex))) { return _NgIf_103_5; }
-    if ((identical(token, import26.MaterialPopupComponent) && ((75 <= requestNodeIndex) && (requestNodeIndex <= 105)))) { return _MaterialPopupComponent_75_3; }
-    if ((identical(token, import38.PopupComponent) && ((75 <= requestNodeIndex) && (requestNodeIndex <= 105)))) { return _PopupComponent_75_4; }
-    if ((identical(token, import39.DropdownHandle) && ((75 <= requestNodeIndex) && (requestNodeIndex <= 105)))) { return _DropdownHandle_75_5; }
-    if ((identical(token, import40.DeferredContentAware) && ((75 <= requestNodeIndex) && (requestNodeIndex <= 105)))) { return _DeferredContentAware_75_6; }
-    if ((identical(token, import31.PopupHierarchy) && ((75 <= requestNodeIndex) && (requestNodeIndex <= 105)))) { return _PopupHierarchy_75_7; }
-    if ((identical(token, import32.PopupRef) && ((75 <= requestNodeIndex) && (requestNodeIndex <= 105)))) { return _PopupRef_75_8; }
+    if ((identical(token, TemplateRef) && (51 == requestNodeIndex))) { return _TemplateRef_51_4; }
+    if ((identical(token, NgIf) && (51 == requestNodeIndex))) { return _NgIf_51_5; }
+    if ((identical(token, import25.PopupSourceDirective) && (62 == requestNodeIndex))) { return _PopupSourceDirective_62_2; }
+    if ((identical(token, TemplateRef) && (83 == requestNodeIndex))) { return _TemplateRef_83_4; }
+    if ((identical(token, NgIf) && (83 == requestNodeIndex))) { return _NgIf_83_5; }
+    if ((identical(token, TemplateRef) && (85 == requestNodeIndex))) { return _TemplateRef_85_4; }
+    if ((identical(token, NgIf) && (85 == requestNodeIndex))) { return _NgIf_85_5; }
+    if ((identical(token, TemplateRef) && (94 == requestNodeIndex))) { return _TemplateRef_94_4; }
+    if ((identical(token, NgIf) && (94 == requestNodeIndex))) { return _NgIf_94_5; }
+    if ((identical(token, TemplateRef) && (96 == requestNodeIndex))) { return _TemplateRef_96_4; }
+    if ((identical(token, NgIf) && (96 == requestNodeIndex))) { return _NgIf_96_5; }
+    if ((identical(token, import26.MaterialPopupComponent) && ((68 <= requestNodeIndex) && (requestNodeIndex <= 98)))) { return _MaterialPopupComponent_68_3; }
+    if ((identical(token, import38.PopupComponent) && ((68 <= requestNodeIndex) && (requestNodeIndex <= 98)))) { return _PopupComponent_68_4; }
+    if ((identical(token, import39.DropdownHandle) && ((68 <= requestNodeIndex) && (requestNodeIndex <= 98)))) { return _DropdownHandle_68_5; }
+    if ((identical(token, import40.DeferredContentAware) && ((68 <= requestNodeIndex) && (requestNodeIndex <= 98)))) { return _DeferredContentAware_68_6; }
+    if ((identical(token, import31.PopupHierarchy) && ((68 <= requestNodeIndex) && (requestNodeIndex <= 98)))) { return _PopupHierarchy_68_7; }
+    if ((identical(token, import32.PopupRef) && ((68 <= requestNodeIndex) && (requestNodeIndex <= 98)))) { return _PopupRef_68_8; }
     return notFoundResult;
   }
   void detectChangesInternal() {
@@ -1044,27 +1024,28 @@ class ViewFilesComp4 extends AppView<import3.FilesComp> {
       _PopupSourceDirective_11_2.alignY = currVal_5;
       _expr_5 = currVal_5;
     }
-    _NgIf_19_5.ngIf = (ctx.popupUserInfoId == parent.locals['\$implicit'].userId);
+    _NgIf_19_5.ngIf = ctx.isUserInfoPopup(parent.locals['\$implicit'],(0 - 1));
     _NgIf_34_5.ngIf = ((parent.locals['\$implicit'].status != 'uploaded') && (((parent.locals['\$implicit'] == null)? null: parent.locals['\$implicit'].mimeType) != 'application/quickNote'));
+    _NgIf_51_5.ngIf = (((parent.locals['\$implicit'] == null)? null: parent.locals['\$implicit'].mimeType) != 'application/quickNote');
     final currVal_17 = '';
     if (import13.checkBinding(_expr_17,currVal_17)) {
-      _MaterialPopupComponent_75_3.enforceSpaceConstraints = currVal_17;
+      _MaterialPopupComponent_68_3.enforceSpaceConstraints = currVal_17;
       _expr_17 = currVal_17;
     }
-    final currVal_18 = _PopupSourceDirective_69_2;
+    final currVal_18 = _PopupSourceDirective_62_2;
     if (import13.checkBinding(_expr_18,currVal_18)) {
-      _MaterialPopupComponent_75_3.source = currVal_18;
+      _MaterialPopupComponent_68_3.source = currVal_18;
       _expr_18 = currVal_18;
     }
     final currVal_19 = (ctx.fileMenuVisible == parent.locals['\$implicit'].v);
     if (import13.checkBinding(_expr_19,currVal_19)) {
-      _MaterialPopupComponent_75_3.visible = currVal_19;
+      _MaterialPopupComponent_68_3.visible = currVal_19;
       _expr_19 = currVal_19;
     }
-    _NgIf_90_5.ngIf = ((parent.locals['\$implicit'].approved == null) && ctx.isWriter);
-    _NgIf_92_5.ngIf = ((parent.locals['\$implicit'].approved != null) && ctx.isWriter);
-    _NgIf_101_5.ngIf = false;
-    _NgIf_103_5.ngIf = false;
+    _NgIf_83_5.ngIf = ((parent.locals['\$implicit'].approved == null) && ctx.isOwner);
+    _NgIf_85_5.ngIf = (((parent.locals['\$implicit'].approved != null) && ctx.isOwner) && (ctx.connectedUser.id == ((((parent.locals['\$implicit'] == null)? null: parent.locals['\$implicit'].approved) == null)? null: ((parent.locals['\$implicit'] == null)? null: parent.locals['\$implicit'].approved).userId)));
+    _NgIf_94_5.ngIf = false;
+    _NgIf_96_5.ngIf = false;
     this.detectContentChildrenChanges();
     final currVal_1 = (ctx.connectedUser.id == parent.locals['\$implicit'].userId);
     if (import13.checkBinding(_expr_1,currVal_1)) {
@@ -1087,60 +1068,54 @@ class ViewFilesComp4 extends AppView<import3.FilesComp> {
       _text_17.text = currVal_7;
       _expr_7 = currVal_7;
     }
-    final currVal_10 = import13.interpolate(4,'/sp/place/',((ctx.selectedPlace == null)? null: ctx.selectedPlace.id),'/folder/',((ctx.selectedFolder == null)? null: ctx.selectedFolder.id),'/file/',((ctx.selectedFile == null)? null: ctx.selectedFile.id),'/version/',parent.locals['\$implicit'].v,'/thumb');
+    final bool currVal_10 = !ctx.isFile;
     if (import13.checkBinding(_expr_10,currVal_10)) {
-      setProp(_el_32,'src',import13.appViewUtils.sanitizer.sanitizeUrl(currVal_10));
+      updateClass(_el_26,'noClick',currVal_10);
       _expr_10 = currVal_10;
     }
-    final currVal_12 = import13.interpolate0(((ctx.selectedFile == null)? null: ctx.selectedFile.name));
-    if (import13.checkBinding(_expr_12,currVal_12)) {
-      _text_48.text = currVal_12;
-      _expr_12 = currVal_12;
+    final currVal_11 = import13.interpolate(4,'/sp/place/',((ctx.selectedPlace == null)? null: ctx.selectedPlace.id),'/folder/',((ctx.selectedFolder == null)? null: ctx.selectedFolder.id),'/file/',((ctx.selectedFile == null)? null: ctx.selectedFile.id),'/version/',parent.locals['\$implicit'].v,'/thumb');
+    if (import13.checkBinding(_expr_11,currVal_11)) {
+      setProp(_el_32,'src',import13.appViewUtils.sanitizer.sanitizeUrl(currVal_11));
+      _expr_11 = currVal_11;
     }
-    final currVal_13 = import13.interpolate0(ctx.formatDesc(parent.locals['\$implicit']));
+    final currVal_13 = import13.interpolate0(((ctx.selectedFile == null)? null: ctx.selectedFile.name));
     if (import13.checkBinding(_expr_13,currVal_13)) {
-      _text_54.text = currVal_13;
+      _text_48.text = currVal_13;
       _expr_13 = currVal_13;
-    }
-    valUnwrapper.reset();
-    final currVal_14 = import13.interpolate1('\n                                            ',valUnwrapper.unwrap(import13.castByValue(_pipe_fileSizeFormat_1_0,(parent.parent.parent as ViewFilesComp0)._pipe_fileSizeFormat_1.transform)(ctx.selectedFile.orderedVersions[0].size)),'\n                                          ');
-    if ((valUnwrapper.hasWrappedValue || import13.checkBinding(_expr_14,currVal_14))) {
-      _text_57.text = currVal_14;
-      _expr_14 = currVal_14;
     }
     final currVal_15 = import13.interpolate1('v. ',parent.locals['\$implicit'].v,'');
     if (import13.checkBinding(_expr_15,currVal_15)) {
-      _text_67.text = currVal_15;
+      _text_60.text = currVal_15;
       _expr_15 = currVal_15;
     }
-    final currVal_20 = _MaterialPopupComponent_75_3.uniqueId;
+    final currVal_20 = _MaterialPopupComponent_68_3.uniqueId;
     if (import13.checkBinding(_expr_20,currVal_20)) {
-      setAttr(_el_75,'pane-id',((currVal_20 == null)? null: currVal_20.toString()));
+      setAttr(_el_68,'pane-id',((currVal_20 == null)? null: currVal_20.toString()));
       _expr_20 = currVal_20;
     }
     final currVal_21 = import13.interpolate0(ctx.selectedFile.name);
     if (import13.checkBinding(_expr_21,currVal_21)) {
-      _text_80.text = currVal_21;
+      _text_73.text = currVal_21;
       _expr_21 = currVal_21;
     }
     valUnwrapper.reset();
     final currVal_22 = import13.interpolate2('\n                                Version ',parent.locals['\$implicit'].v,', ',valUnwrapper.unwrap(import13.castByValue(_pipe_agoDateFormat_0_4,(parent.parent.parent as ViewFilesComp0)._pipe_agoDateFormat_0.transform)(parent.locals['\$implicit'].ts)),'\n                              ');
     if ((valUnwrapper.hasWrappedValue || import13.checkBinding(_expr_22,currVal_22))) {
-      _text_83.text = currVal_22;
+      _text_76.text = currVal_22;
       _expr_22 = currVal_22;
     }
     this.detectViewChildrenChanges();
     if (identical(this.cdState, ChangeDetectorState.NeverChecked)) { _PopupSourceDirective_11_2.ngAfterViewInit(); }
-    if (identical(this.cdState, ChangeDetectorState.NeverChecked)) { _PopupSourceDirective_69_2.ngAfterViewInit(); }
+    if (identical(this.cdState, ChangeDetectorState.NeverChecked)) { _PopupSourceDirective_62_2.ngAfterViewInit(); }
   }
   void destroyInternal() {
     _PopupSourceDirective_11_2.ngOnDestroy();
-    _PopupSourceDirective_69_2.ngOnDestroy();
-    _MaterialPopupComponent_75_3.ngOnDestroy();
+    _PopupSourceDirective_62_2.ngOnDestroy();
+    _MaterialPopupComponent_68_3.ngOnDestroy();
   }
   bool _handle_click_11_0($event) {
     this.markPathToRootAsCheckOnce();
-    final dynamic pd_0 = !identical((ctx.showUserInfoPopup(parent.locals['\$implicit'].userId,parent.locals['\$implicit'].v) as dynamic), false);
+    final dynamic pd_0 = !identical((ctx.showUserInfoPopup(parent.locals['\$implicit'],(0 - 1)) as dynamic), false);
     return (true && pd_0);
   }
   bool _handle_click_26_0($event) {
@@ -1148,7 +1123,7 @@ class ViewFilesComp4 extends AppView<import3.FilesComp> {
     final dynamic pd_0 = !identical((ctx.openFileDialog(parent.locals['\$implicit'].v) as dynamic), false);
     return (true && pd_0);
   }
-  bool _handle_click_69_0($event) {
+  bool _handle_click_62_0($event) {
     this.markPathToRootAsCheckOnce();
     final dynamic pd_0 = !identical((ctx.switchMenuState(parent.locals['\$implicit'].v) as dynamic), false);
     return (true && pd_0);
@@ -1260,11 +1235,11 @@ class ViewFilesComp6 extends AppView<import3.FilesComp> {
   Element _el_13;
   Element _el_15;
   Text _text_16;
-  var _expr_0 = uninitialized;
   var _expr_1 = uninitialized;
   var _expr_2 = uninitialized;
   var _expr_3 = uninitialized;
-  var _expr_5 = uninitialized;
+  var _expr_4 = uninitialized;
+  var _expr_6 = uninitialized;
   var _pipe_agoDateFormat_0_0;
   ViewFilesComp6(import9.Injector parentInjector,ViewContainer declarationEl): super(ViewFilesComp6,renderType_FilesComp,import10.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
   ViewContainer createInternal(dynamic rootSelector) {
@@ -1307,7 +1282,7 @@ class ViewFilesComp6 extends AppView<import3.FilesComp> {
     _appEl_10 = new ViewContainer(10,2,this,_anchor_10);
     _TemplateRef_10_4 = new TemplateRef(_appEl_10,viewFactory_FilesComp7);
     _NgIf_10_5 = new NgIf(_appEl_10,_TemplateRef_10_4);
-    Text _text_11 = new Text('\n\n                            ');
+    Text _text_11 = new Text('\n                            ');
     _el_2.append(_text_11);
     Text _text_12 = new Text('\n\n                            ');
     _el_0.append(_text_12);
@@ -1327,6 +1302,7 @@ class ViewFilesComp6 extends AppView<import3.FilesComp> {
     _el_13.append(_text_17);
     Text _text_18 = new Text('\n                          ');
     _el_0.append(_text_18);
+    listen(_el_2,'click',evt(_handle_click_2_0));
     this._pipe_agoDateFormat_0_0 = import13.pureProxy1((parent.parent.parent.parent.parent as ViewFilesComp0)._pipe_agoDateFormat_0.transform);
     init([_el_0],[
       _el_0,_text_1,_el_2,_text_3,_el_4,_el_5,_text_6,_el_7,_text_8,_text_9,_anchor_10,
@@ -1343,39 +1319,44 @@ class ViewFilesComp6 extends AppView<import3.FilesComp> {
   }
   void detectChangesInternal() {
     final valUnwrapper = new ValueUnwrapper();
-    final currVal_0 = 'before';
-    if (import13.checkBinding(_expr_0,currVal_0)) {
-      _PopupSourceDirective_2_2.alignX = currVal_0;
-      _expr_0 = currVal_0;
-    }
-    final currVal_1 = 'start';
+    final currVal_1 = 'before';
     if (import13.checkBinding(_expr_1,currVal_1)) {
-      _PopupSourceDirective_2_2.alignY = currVal_1;
+      _PopupSourceDirective_2_2.alignX = currVal_1;
       _expr_1 = currVal_1;
     }
-    _NgIf_10_5.ngIf = ((ctx.actionInfoPopupIndex == parent.locals['index']) && (ctx.popupUserInfoId == parent.parent.parent.locals['\$implicit'].userId));
-    this.detectContentChildrenChanges();
-    final currVal_2 = import13.interpolate1('/auth/user/photo/s/',parent.locals['\$implicit'].user.userId,'');
+    final currVal_2 = 'start';
     if (import13.checkBinding(_expr_2,currVal_2)) {
-      setProp(_el_5,'src',import13.appViewUtils.sanitizer.sanitizeUrl(currVal_2));
+      _PopupSourceDirective_2_2.alignY = currVal_2;
       _expr_2 = currVal_2;
     }
-    valUnwrapper.reset();
-    final currVal_3 = import13.interpolate0(valUnwrapper.unwrap(import13.castByValue(_pipe_agoDateFormat_0_0,(parent.parent.parent.parent.parent as ViewFilesComp0)._pipe_agoDateFormat_0.transform)(((parent.locals['\$implicit'] == null)? null: parent.locals['\$implicit'].ts))));
-    if ((valUnwrapper.hasWrappedValue || import13.checkBinding(_expr_3,currVal_3))) {
-      _text_8.text = currVal_3;
+    _NgIf_10_5.ngIf = ctx.isUserInfoPopup(parent.parent.parent.locals['\$implicit'],parent.locals['index']);
+    this.detectContentChildrenChanges();
+    final currVal_3 = import13.interpolate1('/auth/user/photo/s/',parent.locals['\$implicit'].user.userId,'');
+    if (import13.checkBinding(_expr_3,currVal_3)) {
+      setProp(_el_5,'src',import13.appViewUtils.sanitizer.sanitizeUrl(currVal_3));
       _expr_3 = currVal_3;
     }
-    final currVal_5 = import13.interpolate1(' ',parent.locals['\$implicit'].text,'');
-    if (import13.checkBinding(_expr_5,currVal_5)) {
-      _text_16.text = currVal_5;
-      _expr_5 = currVal_5;
+    valUnwrapper.reset();
+    final currVal_4 = import13.interpolate0(valUnwrapper.unwrap(import13.castByValue(_pipe_agoDateFormat_0_0,(parent.parent.parent.parent.parent as ViewFilesComp0)._pipe_agoDateFormat_0.transform)(((parent.locals['\$implicit'] == null)? null: parent.locals['\$implicit'].ts))));
+    if ((valUnwrapper.hasWrappedValue || import13.checkBinding(_expr_4,currVal_4))) {
+      _text_8.text = currVal_4;
+      _expr_4 = currVal_4;
+    }
+    final currVal_6 = import13.interpolate1(' ',parent.locals['\$implicit'].text,'');
+    if (import13.checkBinding(_expr_6,currVal_6)) {
+      _text_16.text = currVal_6;
+      _expr_6 = currVal_6;
     }
     this.detectViewChildrenChanges();
     if (identical(this.cdState, ChangeDetectorState.NeverChecked)) { _PopupSourceDirective_2_2.ngAfterViewInit(); }
   }
   void destroyInternal() {
     _PopupSourceDirective_2_2.ngOnDestroy();
+  }
+  bool _handle_click_2_0($event) {
+    this.markPathToRootAsCheckOnce();
+    final dynamic pd_0 = !identical((ctx.showUserInfoPopup(parent.parent.parent.locals['\$implicit'],parent.locals['index']) as dynamic), false);
+    return (true && pd_0);
   }
 }
 AppView viewFactory_FilesComp6(import9.Injector parentInjector,ViewContainer declarationEl) {
@@ -1389,6 +1370,7 @@ class ViewFilesComp7 extends AppView<import3.FilesComp> {
   var _expr_1 = uninitialized;
   var _expr_2 = uninitialized;
   var _expr_3 = uninitialized;
+  var _expr_4 = uninitialized;
   ViewFilesComp7(import9.Injector parentInjector,ViewContainer declarationEl): super(ViewFilesComp7,renderType_FilesComp,import10.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
   ViewContainer createInternal(dynamic rootSelector) {
     var doc = document;
@@ -1417,15 +1399,20 @@ class ViewFilesComp7 extends AppView<import3.FilesComp> {
       _InfoPopup_0_3.source = currVal_1;
       _expr_1 = currVal_1;
     }
-    final currVal_2 = parent.parent.locals['index'];
+    final currVal_2 = (0 - 10);
     if (import13.checkBinding(_expr_2,currVal_2)) {
-      _InfoPopup_0_3.index = currVal_2;
+      _InfoPopup_0_3.offsetY = currVal_2;
       _expr_2 = currVal_2;
     }
     final currVal_3 = ctx.self;
     if (import13.checkBinding(_expr_3,currVal_3)) {
       _InfoPopup_0_3.parent = currVal_3;
       _expr_3 = currVal_3;
+    }
+    final currVal_4 = 'arrowRight';
+    if (import13.checkBinding(_expr_4,currVal_4)) {
+      _InfoPopup_0_3.arrowCss = currVal_4;
+      _expr_4 = currVal_4;
     }
     if ((identical(this.cdState, ChangeDetectorState.NeverChecked) && !import13.AppViewUtils.throwOnChanges)) { _InfoPopup_0_3.ngOnInit(); }
     this.detectContentChildrenChanges();
@@ -1451,18 +1438,18 @@ class ViewFilesComp8 extends AppView<import3.FilesComp> {
   Element _el_17;
   Text _text_18;
   Element _el_20;
-  var _expr_0 = uninitialized;
   var _expr_1 = uninitialized;
   var _expr_2 = uninitialized;
   var _expr_3 = uninitialized;
-  var _expr_5 = uninitialized;
+  var _expr_4 = uninitialized;
+  var _expr_6 = uninitialized;
   var _pipe_agoDateFormat_0_1;
   ViewFilesComp8(import9.Injector parentInjector,ViewContainer declarationEl): super(ViewFilesComp8,renderType_FilesComp,import10.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
   ViewContainer createInternal(dynamic rootSelector) {
     var doc = document;
     _el_0 = doc.createElement('div');
     _el_0.setAttribute(shimCAttr,'');
-    _el_0.className = 'actionBlock lockBlock approveBlock';
+    _el_0.className = 'actionBlock etatBlock approveBlock';
     Text _text_1 = new Text('\n\n                            ');
     _el_0.append(_text_1);
     _el_2 = doc.createElement('div');
@@ -1498,7 +1485,7 @@ class ViewFilesComp8 extends AppView<import3.FilesComp> {
     _appEl_10 = new ViewContainer(10,2,this,_anchor_10);
     _TemplateRef_10_4 = new TemplateRef(_appEl_10,viewFactory_FilesComp9);
     _NgIf_10_5 = new NgIf(_appEl_10,_TemplateRef_10_4);
-    Text _text_11 = new Text('\n\n                            ');
+    Text _text_11 = new Text('\n                            ');
     _el_2.append(_text_11);
     Text _text_12 = new Text('\n\n                            ');
     _el_0.append(_text_12);
@@ -1532,6 +1519,7 @@ class ViewFilesComp8 extends AppView<import3.FilesComp> {
     _el_13.append(_text_22);
     Text _text_23 = new Text('\n                          ');
     _el_0.append(_text_23);
+    listen(_el_2,'click',evt(_handle_click_2_0));
     this._pipe_agoDateFormat_0_1 = import13.pureProxy1((parent.parent.parent.parent.parent as ViewFilesComp0)._pipe_agoDateFormat_0.transform);
     init([_el_0],[
       _el_0,_text_1,_el_2,_text_3,_el_4,_el_5,_text_6,_el_7,_text_8,_text_9,_anchor_10,
@@ -1549,39 +1537,44 @@ class ViewFilesComp8 extends AppView<import3.FilesComp> {
   }
   void detectChangesInternal() {
     final valUnwrapper = new ValueUnwrapper();
-    final currVal_0 = 'before';
-    if (import13.checkBinding(_expr_0,currVal_0)) {
-      _PopupSourceDirective_2_2.alignX = currVal_0;
-      _expr_0 = currVal_0;
-    }
-    final currVal_1 = 'start';
+    final currVal_1 = 'before';
     if (import13.checkBinding(_expr_1,currVal_1)) {
-      _PopupSourceDirective_2_2.alignY = currVal_1;
+      _PopupSourceDirective_2_2.alignX = currVal_1;
       _expr_1 = currVal_1;
     }
-    _NgIf_10_5.ngIf = (ctx.popupUserInfoId == parent.parent.parent.locals['\$implicit'].userId);
-    this.detectContentChildrenChanges();
-    final currVal_2 = import13.interpolate1('/auth/user/photo/s/',parent.locals['\$implicit'].user.userId,'');
+    final currVal_2 = 'start';
     if (import13.checkBinding(_expr_2,currVal_2)) {
-      setProp(_el_5,'src',import13.appViewUtils.sanitizer.sanitizeUrl(currVal_2));
+      _PopupSourceDirective_2_2.alignY = currVal_2;
       _expr_2 = currVal_2;
     }
-    valUnwrapper.reset();
-    final currVal_3 = import13.interpolate0(valUnwrapper.unwrap(import13.castByValue(_pipe_agoDateFormat_0_1,(parent.parent.parent.parent.parent as ViewFilesComp0)._pipe_agoDateFormat_0.transform)(((parent.locals['\$implicit'] == null)? null: parent.locals['\$implicit'].ts))));
-    if ((valUnwrapper.hasWrappedValue || import13.checkBinding(_expr_3,currVal_3))) {
-      _text_8.text = currVal_3;
+    _NgIf_10_5.ngIf = ctx.isUserInfoPopup(parent.parent.parent.locals['\$implicit'],parent.locals['index']);
+    this.detectContentChildrenChanges();
+    final currVal_3 = import13.interpolate1('/auth/user/photo/s/',parent.locals['\$implicit'].user.userId,'');
+    if (import13.checkBinding(_expr_3,currVal_3)) {
+      setProp(_el_5,'src',import13.appViewUtils.sanitizer.sanitizeUrl(currVal_3));
       _expr_3 = currVal_3;
     }
-    final currVal_5 = import13.interpolate1('',ctx.constructText(parent.parent.parent.locals['\$implicit'],parent.locals['\$implicit']),'\n                                ');
-    if (import13.checkBinding(_expr_5,currVal_5)) {
-      _text_18.text = currVal_5;
-      _expr_5 = currVal_5;
+    valUnwrapper.reset();
+    final currVal_4 = import13.interpolate0(valUnwrapper.unwrap(import13.castByValue(_pipe_agoDateFormat_0_1,(parent.parent.parent.parent.parent as ViewFilesComp0)._pipe_agoDateFormat_0.transform)(((parent.locals['\$implicit'] == null)? null: parent.locals['\$implicit'].ts))));
+    if ((valUnwrapper.hasWrappedValue || import13.checkBinding(_expr_4,currVal_4))) {
+      _text_8.text = currVal_4;
+      _expr_4 = currVal_4;
+    }
+    final currVal_6 = import13.interpolate1('',ctx.constructText(parent.parent.parent.locals['\$implicit'],parent.locals['\$implicit']),'\n                                ');
+    if (import13.checkBinding(_expr_6,currVal_6)) {
+      _text_18.text = currVal_6;
+      _expr_6 = currVal_6;
     }
     this.detectViewChildrenChanges();
     if (identical(this.cdState, ChangeDetectorState.NeverChecked)) { _PopupSourceDirective_2_2.ngAfterViewInit(); }
   }
   void destroyInternal() {
     _PopupSourceDirective_2_2.ngOnDestroy();
+  }
+  bool _handle_click_2_0($event) {
+    this.markPathToRootAsCheckOnce();
+    final dynamic pd_0 = !identical((ctx.showUserInfoPopup(parent.parent.parent.locals['\$implicit'],parent.locals['index']) as dynamic), false);
+    return (true && pd_0);
   }
 }
 AppView viewFactory_FilesComp8(import9.Injector parentInjector,ViewContainer declarationEl) {
@@ -1594,6 +1587,8 @@ class ViewFilesComp9 extends AppView<import3.FilesComp> {
   var _expr_0 = uninitialized;
   var _expr_1 = uninitialized;
   var _expr_2 = uninitialized;
+  var _expr_3 = uninitialized;
+  var _expr_4 = uninitialized;
   ViewFilesComp9(import9.Injector parentInjector,ViewContainer declarationEl): super(ViewFilesComp9,renderType_FilesComp,import10.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
   ViewContainer createInternal(dynamic rootSelector) {
     var doc = document;
@@ -1622,10 +1617,20 @@ class ViewFilesComp9 extends AppView<import3.FilesComp> {
       _InfoPopup_0_3.source = currVal_1;
       _expr_1 = currVal_1;
     }
-    final currVal_2 = ctx.self;
+    final currVal_2 = (0 - 10);
     if (import13.checkBinding(_expr_2,currVal_2)) {
-      _InfoPopup_0_3.parent = currVal_2;
+      _InfoPopup_0_3.offsetY = currVal_2;
       _expr_2 = currVal_2;
+    }
+    final currVal_3 = ctx.self;
+    if (import13.checkBinding(_expr_3,currVal_3)) {
+      _InfoPopup_0_3.parent = currVal_3;
+      _expr_3 = currVal_3;
+    }
+    final currVal_4 = 'arrowRight';
+    if (import13.checkBinding(_expr_4,currVal_4)) {
+      _InfoPopup_0_3.arrowCss = currVal_4;
+      _expr_4 = currVal_4;
     }
     if ((identical(this.cdState, ChangeDetectorState.NeverChecked) && !import13.AppViewUtils.throwOnChanges)) { _InfoPopup_0_3.ngOnInit(); }
     this.detectContentChildrenChanges();
@@ -1654,18 +1659,18 @@ class ViewFilesComp10 extends AppView<import3.FilesComp> {
   Element _el_19;
   Text _text_20;
   Element _el_22;
-  var _expr_0 = uninitialized;
   var _expr_1 = uninitialized;
   var _expr_2 = uninitialized;
   var _expr_3 = uninitialized;
-  var _expr_6 = uninitialized;
+  var _expr_4 = uninitialized;
+  var _expr_7 = uninitialized;
   var _pipe_agoDateFormat_0_2;
   ViewFilesComp10(import9.Injector parentInjector,ViewContainer declarationEl): super(ViewFilesComp10,renderType_FilesComp,import10.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
   ViewContainer createInternal(dynamic rootSelector) {
     var doc = document;
     _el_0 = doc.createElement('div');
     _el_0.setAttribute(shimCAttr,'');
-    _el_0.className = 'actionBlock lockBlock';
+    _el_0.className = 'actionBlock etatBlock lockBlock';
     Text _text_1 = new Text('\n                            ');
     _el_0.append(_text_1);
     _el_2 = doc.createElement('div');
@@ -1742,6 +1747,7 @@ class ViewFilesComp10 extends AppView<import3.FilesComp> {
     _el_13.append(_text_24);
     Text _text_25 = new Text('\n\n                          ');
     _el_0.append(_text_25);
+    listen(_el_2,'click',evt(_handle_click_2_0));
     this._pipe_agoDateFormat_0_2 = import13.pureProxy1((parent.parent.parent.parent.parent as ViewFilesComp0)._pipe_agoDateFormat_0.transform);
     init([_el_0],[
       _el_0,_text_1,_el_2,_text_3,_el_4,_el_5,_text_6,_el_7,_text_8,_text_9,_anchor_10,
@@ -1761,40 +1767,45 @@ class ViewFilesComp10 extends AppView<import3.FilesComp> {
   }
   void detectChangesInternal() {
     final valUnwrapper = new ValueUnwrapper();
-    final currVal_0 = 'before';
-    if (import13.checkBinding(_expr_0,currVal_0)) {
-      _PopupSourceDirective_2_2.alignX = currVal_0;
-      _expr_0 = currVal_0;
-    }
-    final currVal_1 = 'start';
+    final currVal_1 = 'before';
     if (import13.checkBinding(_expr_1,currVal_1)) {
-      _PopupSourceDirective_2_2.alignY = currVal_1;
+      _PopupSourceDirective_2_2.alignX = currVal_1;
       _expr_1 = currVal_1;
     }
-    _NgIf_10_5.ngIf = (ctx.popupUserInfoId == parent.parent.parent.locals['\$implicit'].userId);
-    _NgIf_17_5.ngIf = ctx.showReleaseButton(parent.locals['\$implicit'],parent.locals['index'],parent.parent.parent.locals['index']);
-    this.detectContentChildrenChanges();
-    final currVal_2 = import13.interpolate1('/auth/user/photo/s/',parent.locals['\$implicit'].user.userId,'');
+    final currVal_2 = 'start';
     if (import13.checkBinding(_expr_2,currVal_2)) {
-      setProp(_el_5,'src',import13.appViewUtils.sanitizer.sanitizeUrl(currVal_2));
+      _PopupSourceDirective_2_2.alignY = currVal_2;
       _expr_2 = currVal_2;
     }
-    valUnwrapper.reset();
-    final currVal_3 = import13.interpolate0(valUnwrapper.unwrap(import13.castByValue(_pipe_agoDateFormat_0_2,(parent.parent.parent.parent.parent as ViewFilesComp0)._pipe_agoDateFormat_0.transform)(((parent.locals['\$implicit'] == null)? null: parent.locals['\$implicit'].ts))));
-    if ((valUnwrapper.hasWrappedValue || import13.checkBinding(_expr_3,currVal_3))) {
-      _text_8.text = currVal_3;
+    _NgIf_10_5.ngIf = ctx.isUserInfoPopup(parent.parent.parent.locals['\$implicit'],parent.locals['index']);
+    _NgIf_17_5.ngIf = ctx.showReleaseButton(parent.locals['\$implicit'],parent.locals['index'],parent.parent.parent.locals['index']);
+    this.detectContentChildrenChanges();
+    final currVal_3 = import13.interpolate1('/auth/user/photo/s/',parent.locals['\$implicit'].user.userId,'');
+    if (import13.checkBinding(_expr_3,currVal_3)) {
+      setProp(_el_5,'src',import13.appViewUtils.sanitizer.sanitizeUrl(currVal_3));
       _expr_3 = currVal_3;
     }
-    final currVal_6 = import13.interpolate0(ctx.constructText(parent.parent.parent.locals['\$implicit'],parent.locals['\$implicit']));
-    if (import13.checkBinding(_expr_6,currVal_6)) {
-      _text_20.text = currVal_6;
-      _expr_6 = currVal_6;
+    valUnwrapper.reset();
+    final currVal_4 = import13.interpolate0(valUnwrapper.unwrap(import13.castByValue(_pipe_agoDateFormat_0_2,(parent.parent.parent.parent.parent as ViewFilesComp0)._pipe_agoDateFormat_0.transform)(((parent.locals['\$implicit'] == null)? null: parent.locals['\$implicit'].ts))));
+    if ((valUnwrapper.hasWrappedValue || import13.checkBinding(_expr_4,currVal_4))) {
+      _text_8.text = currVal_4;
+      _expr_4 = currVal_4;
+    }
+    final currVal_7 = import13.interpolate0(ctx.constructText(parent.parent.parent.locals['\$implicit'],parent.locals['\$implicit']));
+    if (import13.checkBinding(_expr_7,currVal_7)) {
+      _text_20.text = currVal_7;
+      _expr_7 = currVal_7;
     }
     this.detectViewChildrenChanges();
     if (identical(this.cdState, ChangeDetectorState.NeverChecked)) { _PopupSourceDirective_2_2.ngAfterViewInit(); }
   }
   void destroyInternal() {
     _PopupSourceDirective_2_2.ngOnDestroy();
+  }
+  bool _handle_click_2_0($event) {
+    this.markPathToRootAsCheckOnce();
+    final dynamic pd_0 = !identical((ctx.showUserInfoPopup(parent.parent.parent.locals['\$implicit'],parent.locals['index']) as dynamic), false);
+    return (true && pd_0);
   }
 }
 AppView viewFactory_FilesComp10(import9.Injector parentInjector,ViewContainer declarationEl) {
@@ -1807,6 +1818,8 @@ class ViewFilesComp11 extends AppView<import3.FilesComp> {
   var _expr_0 = uninitialized;
   var _expr_1 = uninitialized;
   var _expr_2 = uninitialized;
+  var _expr_3 = uninitialized;
+  var _expr_4 = uninitialized;
   ViewFilesComp11(import9.Injector parentInjector,ViewContainer declarationEl): super(ViewFilesComp11,renderType_FilesComp,import10.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
   ViewContainer createInternal(dynamic rootSelector) {
     var doc = document;
@@ -1835,10 +1848,20 @@ class ViewFilesComp11 extends AppView<import3.FilesComp> {
       _InfoPopup_0_3.source = currVal_1;
       _expr_1 = currVal_1;
     }
-    final currVal_2 = ctx.self;
+    final currVal_2 = (0 - 10);
     if (import13.checkBinding(_expr_2,currVal_2)) {
-      _InfoPopup_0_3.parent = currVal_2;
+      _InfoPopup_0_3.offsetY = currVal_2;
       _expr_2 = currVal_2;
+    }
+    final currVal_3 = ctx.self;
+    if (import13.checkBinding(_expr_3,currVal_3)) {
+      _InfoPopup_0_3.parent = currVal_3;
+      _expr_3 = currVal_3;
+    }
+    final currVal_4 = 'arrowRight';
+    if (import13.checkBinding(_expr_4,currVal_4)) {
+      _InfoPopup_0_3.arrowCss = currVal_4;
+      _expr_4 = currVal_4;
     }
     if ((identical(this.cdState, ChangeDetectorState.NeverChecked) && !import13.AppViewUtils.throwOnChanges)) { _InfoPopup_0_3.ngOnInit(); }
     this.detectContentChildrenChanges();
@@ -1968,6 +1991,7 @@ class ViewFilesComp13 extends AppView<import3.FilesComp> {
   var _expr_1 = uninitialized;
   var _expr_2 = uninitialized;
   var _expr_3 = uninitialized;
+  var _expr_4 = uninitialized;
   ViewFilesComp13(import9.Injector parentInjector,ViewContainer declarationEl): super(ViewFilesComp13,renderType_FilesComp,import10.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
   ViewContainer createInternal(dynamic rootSelector) {
     var doc = document;
@@ -1996,15 +2020,20 @@ class ViewFilesComp13 extends AppView<import3.FilesComp> {
       _InfoPopup_0_3.source = currVal_1;
       _expr_1 = currVal_1;
     }
-    final currVal_2 = parent.parent.locals['\$implicit'].v;
+    final currVal_2 = (0 - 10);
     if (import13.checkBinding(_expr_2,currVal_2)) {
-      _InfoPopup_0_3.index = currVal_2;
+      _InfoPopup_0_3.offsetY = currVal_2;
       _expr_2 = currVal_2;
     }
     final currVal_3 = ctx.self;
     if (import13.checkBinding(_expr_3,currVal_3)) {
       _InfoPopup_0_3.parent = currVal_3;
       _expr_3 = currVal_3;
+    }
+    final currVal_4 = 'arrowRight';
+    if (import13.checkBinding(_expr_4,currVal_4)) {
+      _InfoPopup_0_3.arrowCss = currVal_4;
+      _expr_4 = currVal_4;
     }
     if ((identical(this.cdState, ChangeDetectorState.NeverChecked) && !import13.AppViewUtils.throwOnChanges)) { _InfoPopup_0_3.ngOnInit(); }
     this.detectContentChildrenChanges();
@@ -2041,6 +2070,66 @@ AppView viewFactory_FilesComp14(import9.Injector parentInjector,ViewContainer de
 }
 class ViewFilesComp15 extends AppView<import3.FilesComp> {
   Element _el_0;
+  Element _el_2;
+  Text _text_3;
+  Element _el_5;
+  Text _text_6;
+  var _expr_0 = uninitialized;
+  var _expr_1 = uninitialized;
+  var _pipe_fileSizeFormat_1_0;
+  ViewFilesComp15(import9.Injector parentInjector,ViewContainer declarationEl): super(ViewFilesComp15,renderType_FilesComp,import10.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
+  ViewContainer createInternal(dynamic rootSelector) {
+    var doc = document;
+    _el_0 = doc.createElement('div');
+    _el_0.setAttribute(shimCAttr,'');
+    _el_0.className = 'linerow';
+    Text _text_1 = new Text('\n                                          ');
+    _el_0.append(_text_1);
+    _el_2 = doc.createElement('span');
+    _el_2.setAttribute(shimCAttr,'');
+    _el_0.append(_el_2);
+    _el_2.className = 'filetypedoc';
+    _text_3 = new Text('');
+    _el_2.append(_text_3);
+    Text _text_4 = new Text('\n                                          ');
+    _el_0.append(_text_4);
+    _el_5 = doc.createElement('span');
+    _el_5.setAttribute(shimCAttr,'');
+    _el_0.append(_el_5);
+    _el_5.className = 'fileSize';
+    _text_6 = new Text('');
+    _el_5.append(_text_6);
+    Text _text_7 = new Text('\n                                        ');
+    _el_0.append(_text_7);
+    this._pipe_fileSizeFormat_1_0 = import13.pureProxy1((parent.parent.parent.parent as ViewFilesComp0)._pipe_fileSizeFormat_1.transform);
+    init([_el_0],[
+      _el_0,_text_1,_el_2,_text_3,_text_4,_el_5,_text_6,_text_7
+    ]
+    ,[]);
+    return null;
+  }
+  void detectChangesInternal() {
+    final valUnwrapper = new ValueUnwrapper();
+    this.detectContentChildrenChanges();
+    final currVal_0 = import13.interpolate0(ctx.formatDesc(parent.parent.locals['\$implicit']));
+    if (import13.checkBinding(_expr_0,currVal_0)) {
+      _text_3.text = currVal_0;
+      _expr_0 = currVal_0;
+    }
+    valUnwrapper.reset();
+    final currVal_1 = import13.interpolate1('\n                                            ',valUnwrapper.unwrap(import13.castByValue(_pipe_fileSizeFormat_1_0,(parent.parent.parent.parent as ViewFilesComp0)._pipe_fileSizeFormat_1.transform)(ctx.selectedFile.orderedVersions[0].size)),'\n                                          ');
+    if ((valUnwrapper.hasWrappedValue || import13.checkBinding(_expr_1,currVal_1))) {
+      _text_6.text = currVal_1;
+      _expr_1 = currVal_1;
+    }
+    this.detectViewChildrenChanges();
+  }
+}
+AppView viewFactory_FilesComp15(import9.Injector parentInjector,ViewContainer declarationEl) {
+  return new ViewFilesComp15(parentInjector,declarationEl);
+}
+class ViewFilesComp16 extends AppView<import3.FilesComp> {
+  Element _el_0;
   ViewContainer _appEl_0;
   import44.AcxDarkTheme _AcxDarkTheme_0_3;
   import45.MaterialButtonComponent _MaterialButtonComponent_0_4;
@@ -2052,7 +2141,7 @@ class ViewFilesComp15 extends AppView<import3.FilesComp> {
   var _expr_9 = uninitialized;
   var _expr_10 = uninitialized;
   var _expr_11 = uninitialized;
-  ViewFilesComp15(import9.Injector parentInjector,ViewContainer declarationEl): super(ViewFilesComp15,renderType_FilesComp,import10.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
+  ViewFilesComp16(import9.Injector parentInjector,ViewContainer declarationEl): super(ViewFilesComp16,renderType_FilesComp,import10.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
   dynamic get _ButtonDirective_0_5 {
     if ((this.__ButtonDirective_0_5 == null)) { (__ButtonDirective_0_5 = this._MaterialButtonComponent_0_4); }
     return this.__ButtonDirective_0_5;
@@ -2165,10 +2254,10 @@ class ViewFilesComp15 extends AppView<import3.FilesComp> {
     return (true && pd_0);
   }
 }
-AppView viewFactory_FilesComp15(import9.Injector parentInjector,ViewContainer declarationEl) {
-  return new ViewFilesComp15(parentInjector,declarationEl);
+AppView viewFactory_FilesComp16(import9.Injector parentInjector,ViewContainer declarationEl) {
+  return new ViewFilesComp16(parentInjector,declarationEl);
 }
-class ViewFilesComp16 extends AppView<import3.FilesComp> {
+class ViewFilesComp17 extends AppView<import3.FilesComp> {
   Element _el_0;
   ViewContainer _appEl_0;
   import44.AcxDarkTheme _AcxDarkTheme_0_3;
@@ -2181,7 +2270,7 @@ class ViewFilesComp16 extends AppView<import3.FilesComp> {
   var _expr_9 = uninitialized;
   var _expr_10 = uninitialized;
   var _expr_11 = uninitialized;
-  ViewFilesComp16(import9.Injector parentInjector,ViewContainer declarationEl): super(ViewFilesComp16,renderType_FilesComp,import10.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
+  ViewFilesComp17(import9.Injector parentInjector,ViewContainer declarationEl): super(ViewFilesComp17,renderType_FilesComp,import10.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
   dynamic get _ButtonDirective_0_5 {
     if ((this.__ButtonDirective_0_5 == null)) { (__ButtonDirective_0_5 = this._MaterialButtonComponent_0_4); }
     return this.__ButtonDirective_0_5;
@@ -2292,10 +2381,10 @@ class ViewFilesComp16 extends AppView<import3.FilesComp> {
     return (true && pd_0);
   }
 }
-AppView viewFactory_FilesComp16(import9.Injector parentInjector,ViewContainer declarationEl) {
-  return new ViewFilesComp16(parentInjector,declarationEl);
+AppView viewFactory_FilesComp17(import9.Injector parentInjector,ViewContainer declarationEl) {
+  return new ViewFilesComp17(parentInjector,declarationEl);
 }
-class ViewFilesComp17 extends AppView<import3.FilesComp> {
+class ViewFilesComp18 extends AppView<import3.FilesComp> {
   Element _el_0;
   ViewContainer _appEl_0;
   import44.AcxDarkTheme _AcxDarkTheme_0_3;
@@ -2308,7 +2397,7 @@ class ViewFilesComp17 extends AppView<import3.FilesComp> {
   var _expr_8 = uninitialized;
   var _expr_9 = uninitialized;
   var _expr_10 = uninitialized;
-  ViewFilesComp17(import9.Injector parentInjector,ViewContainer declarationEl): super(ViewFilesComp17,renderType_FilesComp,import10.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
+  ViewFilesComp18(import9.Injector parentInjector,ViewContainer declarationEl): super(ViewFilesComp18,renderType_FilesComp,import10.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
   dynamic get _ButtonDirective_0_5 {
     if ((this.__ButtonDirective_0_5 == null)) { (__ButtonDirective_0_5 = this._MaterialButtonComponent_0_4); }
     return this.__ButtonDirective_0_5;
@@ -2418,10 +2507,10 @@ class ViewFilesComp17 extends AppView<import3.FilesComp> {
     return (true && pd_0);
   }
 }
-AppView viewFactory_FilesComp17(import9.Injector parentInjector,ViewContainer declarationEl) {
-  return new ViewFilesComp17(parentInjector,declarationEl);
+AppView viewFactory_FilesComp18(import9.Injector parentInjector,ViewContainer declarationEl) {
+  return new ViewFilesComp18(parentInjector,declarationEl);
 }
-class ViewFilesComp18 extends AppView<import3.FilesComp> {
+class ViewFilesComp19 extends AppView<import3.FilesComp> {
   Element _el_0;
   ViewContainer _appEl_0;
   import44.AcxDarkTheme _AcxDarkTheme_0_3;
@@ -2434,7 +2523,7 @@ class ViewFilesComp18 extends AppView<import3.FilesComp> {
   var _expr_9 = uninitialized;
   var _expr_10 = uninitialized;
   var _expr_11 = uninitialized;
-  ViewFilesComp18(import9.Injector parentInjector,ViewContainer declarationEl): super(ViewFilesComp18,renderType_FilesComp,import10.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
+  ViewFilesComp19(import9.Injector parentInjector,ViewContainer declarationEl): super(ViewFilesComp19,renderType_FilesComp,import10.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
   dynamic get _ButtonDirective_0_5 {
     if ((this.__ButtonDirective_0_5 == null)) { (__ButtonDirective_0_5 = this._MaterialButtonComponent_0_4); }
     return this.__ButtonDirective_0_5;
@@ -2545,10 +2634,10 @@ class ViewFilesComp18 extends AppView<import3.FilesComp> {
     return (true && pd_0);
   }
 }
-AppView viewFactory_FilesComp18(import9.Injector parentInjector,ViewContainer declarationEl) {
-  return new ViewFilesComp18(parentInjector,declarationEl);
+AppView viewFactory_FilesComp19(import9.Injector parentInjector,ViewContainer declarationEl) {
+  return new ViewFilesComp19(parentInjector,declarationEl);
 }
-class ViewFilesComp19 extends AppView<import3.FilesComp> {
+class ViewFilesComp20 extends AppView<import3.FilesComp> {
   Element _el_0;
   ViewContainer _appEl_0;
   import49.ModalComponent _ModalComponent_0_3;
@@ -2575,7 +2664,7 @@ class ViewFilesComp19 extends AppView<import3.FilesComp> {
   var _expr_2 = uninitialized;
   var _expr_3 = uninitialized;
   var _expr_4 = uninitialized;
-  ViewFilesComp19(import9.Injector parentInjector,ViewContainer declarationEl): super(ViewFilesComp19,renderType_FilesComp,import10.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
+  ViewFilesComp20(import9.Injector parentInjector,ViewContainer declarationEl): super(ViewFilesComp20,renderType_FilesComp,import10.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
   dynamic get _DeferredContentAware_0_4 {
     if ((this.__DeferredContentAware_0_4 == null)) { (__DeferredContentAware_0_4 = this._ModalComponent_0_3); }
     return this.__DeferredContentAware_0_4;
@@ -2773,8 +2862,8 @@ class ViewFilesComp19 extends AppView<import3.FilesComp> {
     return (true && pd_0);
   }
 }
-AppView viewFactory_FilesComp19(import9.Injector parentInjector,ViewContainer declarationEl) {
-  return new ViewFilesComp19(parentInjector,declarationEl);
+AppView viewFactory_FilesComp20(import9.Injector parentInjector,ViewContainer declarationEl) {
+  return new ViewFilesComp20(parentInjector,declarationEl);
 }
 const List<dynamic> styles_FilesCompHost = const [];
 RenderComponentType renderType_FilesCompHost;

@@ -33,7 +33,8 @@ import 'package:share_place/postit/postit_component.dart';
       InfoPopup
     ],
     providers: const[UserListProvider])
-class SubjectListComponent implements OnInit, PopupParent {
+class SubjectListComponent
+    implements OnInit, PopupParent {
   final PlaceService _placeService;
   final Router _router;
   final Environment _environment;
@@ -68,9 +69,13 @@ class SubjectListComponent implements OnInit, PopupParent {
       await getSubjects(_environment.selectedPlace.id, folderId);
     } else if (fileId != null) { // file changed
       await reloadSubjects();
-    } else if (params.containsKey(PlaceParam.ioSubjectCreated) ||
-        params.containsKey(PlaceParam.ioSubjectChanged)) {
+    } else if (
+        params.containsKey(PlaceParam.ioSubjectCreated) ||
+        params.containsKey(PlaceParam.ioSubjectChanged)
+    ) {
       await reloadSubjects();
+    } else if(params.containsKey(PlaceParam.ioUserInvited)) {
+      await _placeService.loadConnectedUser();
     }
 
     if (renaming != null || adding) {
@@ -88,6 +93,9 @@ class SubjectListComponent implements OnInit, PopupParent {
   }
 
   Future reloadSubjects() async {
+    if( _environment.selectedPlace == null || _environment.selectedFolder == null )
+      return;
+
     await getSubjects(
         _environment.selectedPlace.id, _environment.selectedFolder.id);
   }
@@ -98,9 +106,8 @@ class SubjectListComponent implements OnInit, PopupParent {
     _environment.inviteUsersDialog = show;
   }
 
-  bool isApprover(User user) =>
-      _environment.connectedUserHasGreaterRole(
-          RoleEnum.owner, selectedFolder);
+  bool isOwner(User user) =>
+      userHasGreaterRole(RoleEnum.owner, selectedFolder.id, user);
 
 
   Future<Null> uploadFiles() async {
@@ -133,6 +140,9 @@ class SubjectListComponent implements OnInit, PopupParent {
 
   Future<Null> getSubjects(String placeId, String folderId) async {
     subjects = await _placeService.getFolderSubjects(placeId, folderId);
+    subjects.forEach((FileInfo finfo) {
+      print("loaded ${finfo.toJson()}");
+    });
   }
 
   Future<Null> gotoSubject(FileInfo subject) {
@@ -230,6 +240,7 @@ class SubjectListComponent implements OnInit, PopupParent {
 
   void popupClosed(User user) {
     popupUserInfoId = null;
+    infoPopupUser = null;
   }
 
   PopupParent get self => this;

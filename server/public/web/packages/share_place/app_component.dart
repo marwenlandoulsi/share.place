@@ -20,7 +20,7 @@ import 'package:share_place/users/profile/profile_comp.dart';
 import 'package:share_place/users/user.dart';
 
 import 'package:share_place/postit/postit_component.dart';
-
+import 'package:share_place/common/ui/notification.dart' as notif;
 
 /**
  * file upload from http://stackoverflow.com/questions/13298140/how-to-upload-a-file-in-dart
@@ -41,7 +41,8 @@ import 'package:share_place/postit/postit_component.dart';
       SubjectListComponent,
       LoginComp,
       ProfileComp,
-      PostitComponent
+      PostitComponent,
+      notif.Notification
     ],
     providers: const [
       PlaceService,

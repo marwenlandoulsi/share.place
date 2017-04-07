@@ -12,6 +12,7 @@
 import 'places_component.dart';
 import 'package:angular2/src/core/reflection/reflection.dart' as _ngRef;
 import 'dart:async';
+import 'dart:convert';
 import 'app_config.dart' as conf;
 import 'package:angular2_components/angular2_components.dart';
 import 'package:angular2/core.dart';

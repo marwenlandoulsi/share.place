@@ -23,6 +23,7 @@ import 'package:share_place/common/ui/text_comp.dart';
 import 'package:angular2_components/angular2_components.dart';
 import 'package:share_place/postit/postit_component.dart';
 import 'package:share_place/folder/node/tree_node_component.dart';
+import 'package:share_place/users/user.dart';
 import 'package:angular2/core.template.dart' as i0;
 import 'package:angular2/router.template.dart' as i1;
 import 'package:share_place/environment.template.dart' as i2;
@@ -34,6 +35,7 @@ import 'package:share_place/common/ui/text_comp.template.dart' as i7;
 import 'package:angular2_components/angular2_components.template.dart' as i8;
 import 'package:share_place/postit/postit_component.template.dart' as i9;
 import 'package:share_place/folder/node/tree_node_component.template.dart' as i10;
+import 'package:share_place/users/user.template.dart' as i11;
 export 'folder_component.dart';
 import 'folder_component.css.shim.dart' as import0;
 import 'package:angular2/src/core/render/api.dart';
@@ -118,16 +120,17 @@ class ViewFolderComponent1 extends AppView<import3.FolderComponent> {
   Element _el_29;
   ViewContainer _appEl_29;
   import16.TreeNodeComponent _TreeNodeComponent_29_3;
+  var _expr_0 = uninitialized;
   var _arr_0;
-  var _expr_1 = uninitialized;
   var _expr_2 = uninitialized;
   var _expr_3 = uninitialized;
   var _expr_4 = uninitialized;
   var _expr_5 = uninitialized;
   var _expr_6 = uninitialized;
-  var _arr_1;
   var _expr_7 = uninitialized;
+  var _arr_1;
   var _expr_8 = uninitialized;
+  var _expr_9 = uninitialized;
   ViewFolderComponent1(import6.Injector parentInjector,ViewContainer declarationEl): super(ViewFolderComponent1,renderType_FolderComponent,import7.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
   ViewContainer createInternal(dynamic rootSelector) {
     var doc = document;
@@ -261,48 +264,53 @@ class ViewFolderComponent1 extends AppView<import3.FolderComponent> {
     return notFoundResult;
   }
   void detectChangesInternal() {
-    final currVal_1 = _arr_0('../images/add-new.png','../images/add-new.png','../images/addPerson.png');
-    if (import11.checkBinding(_expr_1,currVal_1)) {
-      _ButtonComp_12_3.sources = currVal_1;
-      _expr_1 = currVal_1;
-    }
-    final currVal_2 = 'folders';
+    final currVal_2 = _arr_0('../images/add-new.png','../images/add-new.png','../images/addPerson.png');
     if (import11.checkBinding(_expr_2,currVal_2)) {
-      _PostitComponent_20_3.name = currVal_2;
+      _ButtonComp_12_3.sources = currVal_2;
       _expr_2 = currVal_2;
     }
-    final currVal_3 = 'Create a folder';
+    final currVal_3 = 'folders';
     if (import11.checkBinding(_expr_3,currVal_3)) {
-      _PostitComponent_20_3.header = currVal_3;
+      _PostitComponent_20_3.name = currVal_3;
       _expr_3 = currVal_3;
     }
-    final currVal_4 = 'To start, create a folder clicking on the + icon';
+    final currVal_4 = 'Create a folder';
     if (import11.checkBinding(_expr_4,currVal_4)) {
-      _PostitComponent_20_3.body = currVal_4;
+      _PostitComponent_20_3.header = currVal_4;
       _expr_4 = currVal_4;
     }
-    if ((identical(this.cdState, ChangeDetectorState.NeverChecked) && !import11.AppViewUtils.throwOnChanges)) { _PostitComponent_20_3.ngOnInit(); }
-    final currVal_6 = ctx.saveNewFolder;
-    if (import11.checkBinding(_expr_6,currVal_6)) {
-      _TextComp_24_3.confirm = currVal_6;
-      _expr_6 = currVal_6;
+    final currVal_5 = 'To start, create a folder clicking on the + icon';
+    if (import11.checkBinding(_expr_5,currVal_5)) {
+      _PostitComponent_20_3.body = currVal_5;
+      _expr_5 = currVal_5;
     }
-    final currVal_7 = _arr_1('../images/ok.png','../images/ok.png','../images/ok-c.png');
+    if ((identical(this.cdState, ChangeDetectorState.NeverChecked) && !import11.AppViewUtils.throwOnChanges)) { _PostitComponent_20_3.ngOnInit(); }
+    final currVal_7 = ctx.saveNewFolder;
     if (import11.checkBinding(_expr_7,currVal_7)) {
-      _TextComp_24_3.sources = currVal_7;
+      _TextComp_24_3.confirm = currVal_7;
       _expr_7 = currVal_7;
     }
-    final currVal_8 = ctx.folders;
+    final currVal_8 = _arr_1('../images/ok.png','../images/ok.png','../images/ok-c.png');
     if (import11.checkBinding(_expr_8,currVal_8)) {
-      _TreeNodeComponent_29_3.nodes = currVal_8;
+      _TextComp_24_3.sources = currVal_8;
       _expr_8 = currVal_8;
+    }
+    final currVal_9 = ctx.folders;
+    if (import11.checkBinding(_expr_9,currVal_9)) {
+      _TreeNodeComponent_29_3.nodes = currVal_9;
+      _expr_9 = currVal_9;
     }
     if ((identical(this.cdState, ChangeDetectorState.NeverChecked) && !import11.AppViewUtils.throwOnChanges)) { _TreeNodeComponent_29_3.ngOnInit(); }
     this.detectContentChildrenChanges();
-    final currVal_5 = (ctx.adding? 'block': 'none');
-    if (import11.checkBinding(_expr_5,currVal_5)) {
-      _el_22.style.setProperty('display',currVal_5?.toString());
-      _expr_5 = currVal_5;
+    final bool currVal_0 = !ctx.canCreateSubfolder;
+    if (import11.checkBinding(_expr_0,currVal_0)) {
+      updateClass(_el_10,'hidden',currVal_0);
+      _expr_0 = currVal_0;
+    }
+    final currVal_6 = (ctx.adding? 'block': 'none');
+    if (import11.checkBinding(_expr_6,currVal_6)) {
+      _el_22.style.setProperty('display',currVal_6?.toString());
+      _expr_6 = currVal_6;
     }
     this.detectViewChildrenChanges();
   }
@@ -370,4 +378,5 @@ i7.initReflector();
 i8.initReflector();
 i9.initReflector();
 i10.initReflector();
+i11.initReflector();
 }

@@ -1,21 +1,23 @@
 .files {
-  background-color: #edf2f8;
-  /*min-height: 39em;*/
+  background-color: #EDF2F8;
+  /*border-radius: 7px;*/
+  /*-webkit-border-radius: 7px;*/
+  /*-moz-border-radius: 7px;*/
+  /*padding-bottom: 5em;*/
 }
 
 .files .title {
   background-color: #4690D1 !important;
   width: calc(100% - 20px);
+  padding: 0 10px;
   font-size: 1em;
   color: #fff;
   font-weight: normal !important;
-  height: 38px;
-  line-height: 36px;
-  padding: 0 10px;
+  height: 2.3em;
+  line-height: 2.2em;
   border-radius: 3px 3px 0 0;
   -webkit-border-radius: 3px 3px 0 0;
   -moz-border-radius: 3px 3px 0 0;
-  -o-border-radius: 3px 3px 0 0;
 }
 
 .title {
@@ -92,7 +94,6 @@ ul {
 }
 
 .fileLink {
-  cursor: pointer;
   font-weight: bold;
 }
 
@@ -105,10 +106,12 @@ ul {
 .version {
   color: #727272;
   font-size: 14px;
-  padding: 0.2em 0.4em;
-  /*transition: top 300ms cubic-bezier(0.17, 0.04, 0.03, 0.94);*/
+  padding: 0 0.4em;
   transition: transform 1s ease;
+}
 
+.liVersion {
+  border-bottom: 1px solid rgba(221, 226, 229, 0.17);
 }
 
 .moreActions {
@@ -142,9 +145,9 @@ ul {
   background: #dde2e5;
 }
 
-.newComment {
-  width: calc(100% - 2.6em) !important;
-}
+/*.newComment {*/
+  /*width: calc(100% - 2.6em) !important;*/
+/*}*/
 
 a {
   color: #00AEF0;
@@ -211,8 +214,6 @@ a {
   -webkit-border-radius: 0 0 3px 3px;
   -moz-border-radius: 0 0 3px 3px;
   border-radius: 0 0 3px 3px;
-  /*margin-bottom: 4px;*/
-  border-bottom: 1px solid #e6e6e6;
 }
 
 .versionTitle > div {
@@ -319,7 +320,7 @@ a {
 }
 
 .bubbleContent {
-  /*background: yellow;*/
+  word-break: break-word;
   display: inline;
 }
 
@@ -329,6 +330,11 @@ a {
 
 .pLeft {
   width: calc(100% - 4.4em);
+  cursor: pointer;
+}
+
+.pLeft.noClick{
+  cursor: default;
 }
 
 .fileMoreActions {
@@ -337,10 +343,6 @@ a {
   text-align: right;
 }
 
-.pLeft:hover,
-.pLeft:focus {
-  cursor: pointer;
-}
 
 .actionBlock:hover .bubbleContent .moreActions,
 .actionBlock:focus .bubbleContent .moreActions,
@@ -399,21 +401,21 @@ li.more {
   padding: 0.2em;
 }
 
-.lockBlock .bubble {
+.etatBlock .bubble {
   color: #fff;
   border: 1px solid #b2b6bb;
   background-color: #909EAA;
 }
 
-.lockBlock .bubbleContent:before {
+.etatBlock .bubbleContent:before {
   border-right-color: #b2b6bb;
 }
 
-.lockBlock .bubbleContent:after {
+.etatBlock .bubbleContent:after {
   border-right-color: #909EAA;
 }
 
-.lockBlock .lockIcon {
+.etatBlock .lockIcon {
   background-color: #FFF;
   color: #909EAA;
   font: normal normal normal 2em/1 'Material-Design-Iconic-Font';
@@ -445,12 +447,7 @@ li.more {
   font-size: 1.2em;
   width: 100%;
   content: '\f269';
-  color: #7ebb01;
-}
-
-.nnapproveBlock .approveIcon:after {
-
-  color: orangered;
+  color: #fff;
 }
 
 .lockTime {
@@ -502,26 +499,9 @@ li.more {
   opacity: 0;
 }
 
-/*.fileThumb .fileThumb_bg:after {*/
-/*content: "";*/
-/*background: url("../images/valid_big.png") no-repeat center center;*/
-/*top: 0;*/
-/*right: 0;*/
-/*width: 27px;*/
-/*height: 27px;*/
-/*position: absolute;*/
-/*display: inline-block;*/
-/*line-height: 0;*/
-/*text-align: center;*/
-/*opacity: 0;*/
-/*margin-left: calc(99% - 27px);*/
-/*z-index: 99 !important;*/
-/*}*/
 .fileThumb .fileThumb_bg {
   width: 60px;
   height: 55px;
-  cursor: pointer;
-  /*font: normal normal normal 2em/0 'Material-Design-Iconic-Font';*/
 }
 
 .fileThumb .fileThumb_bg:after {
@@ -628,8 +608,8 @@ li.more {
   font-size: 0.9em;
 }
 
-.isActionOn .lockBlock .release,
-.isActionOn .lockBlock .lockIcon {
+.isActionOn .etatBlock .release,
+.isActionOn .etatBlock .lockIcon {
   background-color: #F2542F;
   color: white;
 }
@@ -649,9 +629,6 @@ li.more {
   background-color: #00ADEF;
 }
 
-.progress {
-  background-color: yellow !important;
-}
 
 @keyframes nomAnim {
   from {
@@ -694,6 +671,7 @@ li.more {
 
 .ownAction .actionPropsBlock {
   float: right;
+  margin-top: 0.2em;
 }
 
 .ownAction .actionBlock {
@@ -708,15 +686,15 @@ li.more {
   background: #D5F0FF;
 }
 
-.ownAction .lockBlock .bubble {
+.ownAction .etatBlock .bubble {
   background-color: #909EAA;
 }
 
-.ownAction .lockBlock .bubbleContent:before {
+.ownAction .etatBlock .bubbleContent:before {
   border-left-color: #b2b6bb;
 }
 
-.ownAction .lockBlock .bubbleContent:after {
+.ownAction .etatBlock .bubbleContent:after {
   border-left-color: #909EAA;
 }
 
@@ -724,15 +702,26 @@ li.more {
   color: rgba(0, 0, 0, 0.25)
 }
 
-.ownAction .actionBlock.lockBlock .approveIcon,
-.ownAction .actionBlock.lockBlock .lockIcon {
+.ownAction .actionBlock.etatBlock .approveIcon,
+.ownAction .actionBlock.etatBlock .lockIcon {
   float: left;
-  margin : 0.1em 0.5em 0.1em 0;
+  margin: 0.1em 0.5em 0.1em 0;
 }
 
-.ownAction .actionBlock.lockBlock .constructText {
+.ownAction .actionBlock.etatBlock .constructText {
   float: right;
   line-height: 2;
   padding-top: 0.3em;
 }
 
+.ownAction.isActionOn .approveBlock .approveIcon:after {
+  color: #7ebb01;
+}
+
+.approveBlock .approveIcon.bgWhite {
+  background: transparent;
+}
+
+.ownAction.isActionOn .approveBlock .approveIcon.bgWhite {
+  background: url("../images/bgwhite.png") no-repeat 45% 45%;
+}

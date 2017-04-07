@@ -35,7 +35,7 @@ var NedbStore = require('nedb-session-store')(session);
 var passport = require('passport');
 var flash = require('connect-flash');
 var globalService = require('./app_api/global');
-var proxy = require('../server/app_api/controllers/proxy');
+
 var app = express();
 
 
@@ -111,7 +111,7 @@ var authenticate = (req, res, next, strategy) => {
 
     global.cookieReceived = req.query.cookie
   //res.cookie('connect.sid', value [, options]);
-    log.info( "global.cookieReceived",  global.cookieReceived )
+    log.info( "global.cookieReceived refresh",  global.cookieReceived )
 
     passport.authenticate(strategy, (err, user, info) => {
 

@@ -54,7 +54,7 @@ class PlaceService {
       return null;
     } else if (statusCode > 400 && statusCode < 500) {
       _environment.serverError = respBody['error'];
-      return null;
+      throw _environment.serverError;
     } else {
       dynamic errorMessage = respBody['error'];
       html.window.alert(errorMessage);
@@ -379,6 +379,7 @@ class PlaceService {
 
   Future<CloudFile> addComment(String comment, int fileVersionIndex) async {
     try {
+      print(" add comment called $comment");
       final response = await post(
           "/sp/place/${_environment.selectedPlace.id}/folder/${_environment
               .selectedFolder.id}/file/${_environment.selectedFile

@@ -30,7 +30,8 @@
           <div class="latestVersionComments">
             <div class="versions">
               <ul>
-                <li *ngFor="let versionItem of selectedFile.orderedVersions; let versionIndex = index">
+                <li *ngFor="let versionItem of selectedFile.orderedVersions; let versionIndex = index"
+                    class="liVersion">
 
                   <div class="versionTitle">
                     <div class="versionTitleNumber">Version {{versionItem?.v}}</div>
@@ -42,20 +43,23 @@
                   <div class="version">
                     <div *ngIf="isCommentsOpen(selectedFile.id, versionItem.v)" class="versionComments">
                       <ul class="actionList">
-                        <li *ngFor="let actionItem of getActionsForVersion(versionItem); let actionIndex = index" class="actionLiElem"
+                        <li *ngFor="let actionItem of getActionsForVersion(versionItem); let actionIndex = index"
+                            class="actionLiElem"
                             [class.ownAction]="isActionAuthor( actionItem )"
                             [class.isActionOn]="isActionOn( actionItem )">
 
                           <!--comment-->
                           <div *ngIf="actionItem.action.actionType == 'comment'" class="actionBlock commentBlock">
 
-                            <div class="actionPropsBlock" popupSource alignPositionX="before"
+                            <div (click)="showUserInfoPopup( versionItem, actionIndex )" class="actionPropsBlock"
+                                 popupSource alignPositionX="before"
                                  alignPositionY="start" #commentAuthor="popupSource">
                               <span class="author"><img src="/auth/user/photo/s/{{actionItem.user.userId}}"
                                                         class="profileImg"></span>
                               <span class="comm-ts">{{actionItem?.ts | agoDateFormat}}</span>
-                              <info-popup *ngIf="actionInfoPopupIndex == actionIndex && popupUserInfoId == versionItem.userId" [userId]="popupUserInfoId" [source]="commentAuthor" [parent]="self" [index]="actionIndex"></info-popup>
-
+                              <info-popup *ngIf="isUserInfoPopup(versionItem, actionIndex)" [userId]="popupUserInfoId"
+                                          [source]="commentAuthor" [parent]="self" [offsetY]="-10"
+                                          [arrowCss]="'arrowRight'"></info-popup>
                             </div>
 
                             <div class="bubble">
@@ -64,15 +68,17 @@
                           </div>
                           <!--fileApprove-->
                           <div *ngIf="actionItem.action.actionType == 'fileApprove'"
-                               class="actionBlock lockBlock approveBlock">
+                               class="actionBlock etatBlock approveBlock">
 
-                            <div class="actionPropsBlock" popupSource alignPositionX="before"
+                            <div (click)="showUserInfoPopup( versionItem, actionIndex )" class="actionPropsBlock"
+                                 popupSource alignPositionX="before"
                                  alignPositionY="start" #approveAuthor="popupSource">
                               <span class="author"><img src="/auth/user/photo/s/{{actionItem.user.userId}}"
                                                         class="profileImg"></span>
                               <span class="comm-ts">{{actionItem?.ts | agoDateFormat}}</span>
-                              <info-popup *ngIf="popupUserInfoId == versionItem.userId" [userId]="popupUserInfoId" [source]="approveAuthor" [parent]="self"></info-popup>
-
+                              <info-popup *ngIf="isUserInfoPopup(versionItem, actionIndex)" [userId]="popupUserInfoId"
+                                          [offsetY]="-10" [source]="approveAuthor" [parent]="self"
+                                          [arrowCss]="'arrowRight'"></info-popup>
                             </div>
 
                             <div class="bubble">
@@ -86,13 +92,17 @@
 
 
                           <!--fileLock-->
-                          <div *ngIf="actionItem.action.actionType == 'fileLock'" class="actionBlock lockBlock">
-                            <div class="actionPropsBlock" popupSource alignPositionX="before"
+                          <div *ngIf="actionItem.action.actionType == 'fileLock'"
+                               class="actionBlock etatBlock lockBlock">
+                            <div (click)="showUserInfoPopup( versionItem, actionIndex )" class="actionPropsBlock"
+                                 popupSource alignPositionX="before"
                                  alignPositionY="start" #lockAuthor="popupSource">
                               <span class="author"><img src="/auth/user/photo/s/{{actionItem.user.userId}}"
                                                         class="profileImg"></span>
                               <span class="comm-ts">{{actionItem?.ts| agoDateFormat}}</span>
-                              <info-popup *ngIf="popupUserInfoId == versionItem.userId" [userId]="popupUserInfoId" [source]="lockAuthor" [parent]="self"></info-popup>
+                              <info-popup *ngIf="isUserInfoPopup(versionItem, actionIndex)" [userId]="popupUserInfoId"
+                                          [offsetY]="-10" [source]="lockAuthor" [parent]="self"
+                                          [arrowCss]="'arrowRight'"></info-popup>
                             </div>
 
                             <div class="bubble">
@@ -115,25 +125,29 @@
                         <!--connectedUser-->
                         <li class="actionLiElem" [class.ownAction]="connectedUser.id == versionItem.userId">
                           <div class="actionBlock {{versionItem.approved == null ? 'draft' : 'approved'}}">
-                            <div class="actionPropsBlock" (click)="showUserInfoPopup( versionItem.userId, versionItem.v )" popupSource alignPositionX="before"
-                            alignPositionY="start" #fileAuthor="popupSource">
+                            <div class="actionPropsBlock" (click)="showUserInfoPopup( versionItem, -1 )" popupSource
+                                 alignPositionX="before"
+                                 alignPositionY="start" #fileAuthor="popupSource">
                               <span class="author"><img src="/auth/user/photo/s/{{versionItem.userId}}"
                                                         class="profileImg"></span>
                               <span class="comm-ts">{{versionItem?.ts | agoDateFormat}}</span>
-                              <info-popup *ngIf="popupUserInfoId == versionItem.userId" [userId]="popupUserInfoId" [source]="fileAuthor" [parent]="self" [index]="versionItem.v"></info-popup>
+                              <info-popup *ngIf="isUserInfoPopup(versionItem, -1)" [userId]="popupUserInfoId"
+                                          [offsetY]="-10" [source]="fileAuthor" [parent]="self"
+                                          [arrowCss]="'arrowRight'"></info-popup>
                             </div>
 
                             <div class="bubble">
 
                               <div class="bubbleContent">
-                                <div class="pLeft" (click)="openFileDialog(versionItem.v)">
+                                <div class="pLeft" [class.noClick]="!isFile" (click)="openFileDialog(versionItem.v)">
                                   <div class="fileThumb">
                                     <div class="fileThumb_bg">
                                       <img
                                           src="/sp/place/{{selectedPlace?.id}}/folder/{{selectedFolder?.id}}/file/{{selectedFile?.id}}/version/{{versionItem.v}}/thumb"
                                           class="thumbnail">
-                                      <div class="uploadStatus"
-                                           *ngIf="versionItem.status!='uploaded' && versionItem?.mimeType != 'application/quickNote' ">
+                                      <div
+                                          *ngIf="versionItem.status!='uploaded' && versionItem?.mimeType != 'application/quickNote'"
+                                          class="uploadStatus">
                                         <img
                                             src="../images/uploading.png"/></div>
                                     </div>
@@ -145,7 +159,7 @@
                                         <div class="fileLink">
                                           <div class="fileName">{{selectedFile?.name}}</div>
                                         </div>
-                                        <div class="linerow">
+                                        <div class="linerow" *ngIf="versionItem?.mimeType != 'application/quickNote'">
                                           <span class="filetypedoc">{{formatDesc( versionItem )}}</span>
                                           <span class="fileSize">
                                             {{selectedFile.orderedVersions[0].size | fileSizeFormat}}
@@ -180,11 +194,13 @@
                             </div>
                             <div class="popupContent popinVersion">
                               <div group>
-                                <material-button (click)="approve(versionItem)" *ngIf="versionItem.approved == null && isWriter"
+                                <material-button (click)="approve(versionItem)"
+                                                 *ngIf="versionItem.approved == null && isOwner"
                                                  class="menuItemVers">
                                   <span class="spanVers"> <i class="zmdi zmdi-check-circle approve"></i> </span> Approve
                                 </material-button>
-                                <material-button (click)="unapprove(versionItem)" *ngIf="versionItem.approved != null && isWriter"
+                                <material-button (click)="unapprove(versionItem)"
+                                                 *ngIf="versionItem.approved != null && isOwner && connectedUser.id == versionItem?.approved?.userId"
                                                  class="menuItemVers">
                                   <span class="spanVers"><i class="zmdi zmdi-check-circle nnApprove"></i> </span>
                                   Unapprove

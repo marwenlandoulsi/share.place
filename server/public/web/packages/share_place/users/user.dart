@@ -1,18 +1,19 @@
 class User {
   String _id;
-  Map<String,String> photoIdMap;
+  Map<String, String> photoIdMap;
   String name;
-  String email = "";
   List<String> emailList;
   String pass;
   String skype;
+  String email;
   List<String> visiblePostits;
   Map<String, RoleEnum> folders;
   LocalAccount localAccount;
   FacebookAccount facebookAccount;
   GoogleAccount googleAccount;
 
-  User(this._id, this.name, this.emailList, this.pass, this.photoIdMap, this.skype, this.visiblePostits,
+  User(this._id, this.name, this.emailList, this.pass, this.photoIdMap,
+      this.skype, this.visiblePostits,
       this.folders, this.localAccount, this.facebookAccount, this.googleAccount)
       : this.email = localAccount?.email;
 
@@ -50,20 +51,27 @@ class User {
           null);
 
 
-  Map toJson() =>
-      {
-        '_id': id,
-        'name': name ,
-        'emailList': emailList.toString(),
-        'pass': pass,
-        'photoIdMap': photoIdMap?.toString(),
-        'skype': skype,
-        'visiblePostits' : visiblePostits,
-        'folders': folders.toString(),
-        'local': localAccount?.toJson(),
-        'facebook': facebookAccount?.toJson(),
-        'google': googleAccount?.toJson()
-      };
+  Map toJson() {
+    StringBuffer foldersBuff = new StringBuffer("[");
+    folders.forEach((key, RoleEnum value) =>
+        foldersBuff.write(
+            "{$key:${value.toString().substring('RoleEnum.'.length)}}"));
+    foldersBuff.write("]");
+    return {
+      '_id': id,
+      'name': name,
+      'emailList': emailList.toString(),
+      'pass': pass,
+      'photoIdMap': photoIdMap?.toString(),
+      'skype': skype,
+      'visiblePostits': visiblePostits,
+      'folders': foldersBuff.toString(),
+      'local': localAccount?.toJson(),
+      'facebook': facebookAccount?.toJson(),
+      'google': googleAccount?.toJson()
+    };
+  }
+
 
   String get id => _id;
 
@@ -71,9 +79,38 @@ class User {
     _id = id;
   }
 
-  static Map<String, RoleEnum> fromRoleList(List<Role> roleList) =>
-      new Map.fromIterable(roleList, key: (Role item) => item.folderId,
-          value: (Role item) => item.role);
+  String get mainMail {
+    String toReturn = localAccount?.email;
+    if (toReturn == null)
+      toReturn = facebookAccount?.email;
+    if (toReturn == null)
+      toReturn = googleAccount?.email;
+    return toReturn;
+  }
+
+  void set mainMail(String email) {
+    localAccount = new LocalAccount(email, null);
+  }
+
+  String get displayName => name == null ? mainMail : name;
+
+  static Map<String, RoleEnum> fromRoleList
+      (List<Role> roleList) =>
+      new
+      Map.fromIterable
+        (
+          roleList
+          ,
+          key
+              :
+              (Role item) =>
+          item.folderId
+          ,
+          value
+              :
+              (Role item) =>
+          item.role
+      );
 
 }
 
@@ -93,36 +130,53 @@ class SocialAccount {
   String id;
   String email;
   String token;
-  String  firstName;
-  String lastName ;
-  String displayName ;
-  SocialAccount(this.id, this.email, this.token , this.firstName , this.lastName , this.displayName);
+  String firstName;
+  String lastName;
+
+  String displayName;
+
+  SocialAccount(this.id, this.email, this.token, this.firstName, this.lastName,
+      this.displayName);
 
   factory SocialAccount.fromJson(Map<String, dynamic> user) =>
       user == null ? null :
-      new SocialAccount(user['id'], user['email'], user['token'] , user['firstName'] ,user['lastName'] , user['displayName']);
+      new SocialAccount(
+          user['id'], user['email'], user['token'], user['firstName'],
+          user['lastName'], user['displayName']);
 
-  Map toJson() => {'id': id, 'email': email, 'token': token , 'firstName': firstName , 'lastName' : lastName ,'displayName' : displayName};
+  Map toJson() =>
+      {
+        'id': id,
+        'email': email,
+        'token': token,
+        'firstName': firstName,
+        'lastName': lastName,
+        'displayName': displayName
+      };
 }
 
 class FacebookAccount extends SocialAccount {
-  FacebookAccount(String email, String pass, String token , String  firstName ,
-  String lastName , String displayName )
-      : super(email, pass, token,firstName , lastName ,displayName );
+  FacebookAccount(String email, String pass, String token, String firstName,
+      String lastName, String displayName)
+      : super(email, pass, token, firstName, lastName, displayName);
 
   factory FacebookAccount.fromJson(Map<String, dynamic> user) =>
       user == null ? null :
-      new FacebookAccount(user['id'], user['email'], user['token'] ,  user['firstName'] ,user['lastName'] ,user['displayName']);
+      new FacebookAccount(
+          user['id'], user['email'], user['token'], user['firstName'],
+          user['lastName'], user['displayName']);
 }
 
 class GoogleAccount extends SocialAccount {
-  GoogleAccount(String email, String pass, String token, String  firstName ,
-      String lastName , String displayName )
-      : super(email, pass, token,firstName , lastName, displayName);
+  GoogleAccount(String email, String pass, String token, String firstName,
+      String lastName, String displayName)
+      : super(email, pass, token, firstName, lastName, displayName);
 
   factory GoogleAccount.fromJson(Map<String, dynamic> user) =>
       user == null ? null :
-      new GoogleAccount(user['id'], user['email'], user['token'] ,user['firstName'] ,user['lastName']  ,user['displayName']  );
+      new GoogleAccount(
+          user['id'], user['email'], user['token'], user['firstName'],
+          user['lastName'], user['displayName']);
 }
 
 class Role {

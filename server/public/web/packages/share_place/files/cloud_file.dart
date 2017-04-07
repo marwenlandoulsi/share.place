@@ -19,9 +19,10 @@ class CloudFile {
   List<FileVersion> versions;
   bool isLocked;
   LockOwner lockOwner;
+  String dataType;
 
   CloudFile(this._id, this.storageId, this.folderId, this.placeId, this.version,
-      this.name, this.versions, this.isLocked, this.lockOwner);
+      this.name, this.versions, this.isLocked, this.lockOwner, this.dataType);
 
   List<FileVersion> get orderedVersions =>
       new List<FileVersion>.from(versions.reversed);
@@ -34,10 +35,11 @@ class CloudFile {
           file['placeId'],
           -1,
           file['name'],
-          file['versions']?.map( (version) =>
+          file['versions']?.map((version) =>
           new FileVersion.fromJson(version)).toList(),
           file['isLocked'],
-          new LockOwner.fromJson(file['lockOwner'])
+          new LockOwner.fromJson(file['lockOwner']),
+          file['dataType']
       );
 
   Map toJson() =>
@@ -49,6 +51,7 @@ class CloudFile {
         'version': version,
         'name': name,
         'versions': versions.toString(),
+        'dataType':dataType
       };
 
   String get id => _id;
@@ -72,8 +75,9 @@ class FileVersion {
   List<FileAction> actions;
   Approved approved;
 
-  FileVersion(this._id, this.v,this.mimeType, this.status, this.size, this.ts, this.userId,
-      this.userName, this.actionCount, this.approved, this.actions );
+  FileVersion(this._id, this.v, this.mimeType, this.status, this.size, this.ts,
+      this.userId,
+      this.userName, this.actionCount, this.approved, this.actions);
 
   factory FileVersion.fromJson(Map<String, dynamic> file) {
     try {
@@ -100,7 +104,7 @@ class FileVersion {
       return new FileVersion(
           "nnn",
           0,
-          null ,
+          null,
           "failure",
           0,
           null,
@@ -116,7 +120,7 @@ class FileVersion {
       {
         '_id': _id,
         'v': v,
-        'mimeType' : mimeType,
+        'mimeType': mimeType,
         'status': status,
         'size': size,
         'ts': ts?.millisecondsSinceEpoch,
@@ -146,7 +150,7 @@ class LockOwner {
   LockOwner(this.userId, this.userName, this.userPhoto, this.ts);
 
   factory LockOwner.fromJson(Map<String, dynamic> lockOwner) {
-    if(lockOwner == null)
+    if (lockOwner == null)
       return null;
 
     LockOwner toReturn = new LockOwner(
@@ -166,7 +170,7 @@ class LockOwner {
         'userName': userName,
         'userPhoto': userPhoto,
         'ts': ts?.millisecondsSinceEpoch,
-        'lockAskedBy':lockAskedBy?.toJson()
+        'lockAskedBy': lockAskedBy?.toJson()
       };
 }
 
@@ -180,7 +184,8 @@ class Approved {
   factory Approved.fromJson(Map<String, dynamic> approved) {
     if (approved == null)
       return null;
-    return new Approved(approved['userId'], approved['userName'], approved['photoId']);
+    return new Approved(
+        approved['userId'], approved['userName'], approved['photoId']);
   }
 
   Map toJson() => {'userId': userId, 'userName': userName, 'photoId': photoId};

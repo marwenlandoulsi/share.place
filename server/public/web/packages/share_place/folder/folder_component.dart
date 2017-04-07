@@ -16,6 +16,7 @@ import 'package:angular2_components/angular2_components.dart';
 import 'package:share_place/postit/postit_component.dart';
 
 import 'package:share_place/folder/node/tree_node_component.dart';
+import 'package:share_place/users/user.dart';
 
 @Injectable()
 @Component(
@@ -180,5 +181,11 @@ class FolderComponent
 
   void cancelRename() {
     renaming = null;
+  }
+
+  bool get canCreateSubfolder {
+    if( _environment.selectedFolder == null)
+      return true;
+    _environment.connectedUserHasGreaterRole(RoleEnum.writer, _environment.selectedFolder);
   }
 }

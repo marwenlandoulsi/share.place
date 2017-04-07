@@ -1,24 +1,5 @@
 <div *ngIf="selectedFolder != null" class="subjects">
 
-  <material-popup *ngIf="infoPopupUser != null" [(visible)]="infoPopupOpen" [source]="userInfoPopup" [offsetX]="26">
-    <div class="userInfoPopup">
-      <div class="userInfo name"><span>{{infoPopupUser?.name}}</span></div>
-      <div class="userInfo role">{{getRoleStr(infoPopupUser)}}</div>
-      <div class="userInfo email">{{infoPopupUser?.email}}</div>
-
-
-      <div *ngIf="infoPopupUser?.skype != null" class="userInfo skype"><span class="txtskype">Call:</span> <a
-          href="{{skypeUrlFor(infoPopupUser ,true)}}"> {{infoPopupUser?.skype}} </a></div>
-      <div *ngIf="infoPopupUser?.skype != null" class="userInfo skype"><span class="txtskype">Text:</span> <a
-          href="{{skypeUrlFor(infoPopupUser ,false)}}"> {{infoPopupUser?.skype}} </a></div>
-
-
-      <div class="userInfo timezone hidden"> Timezone UTC-7 9:24 am</div>
-
-      <div class="userInfo lastcnx hidden">Last connection: 5 mn ago</div>
-    </div>
-  </material-popup>
-
   <div class="title">{{selectedFolder.name}}
 
     <postit-comp [name]="'invitePeople'" [header]="'Great!'"
@@ -37,12 +18,14 @@
       </material-dialog>
     </modal>
     <!-- emplacement des users  -->
-    <ul class="users_list" popupSource
-        #userInfoPopup="popupSource" alignPositionX="end"
-        alignPositionY="after">
-      <li *ngFor="let userItem of users" class="useractive" [class.approver]="isApprover(userItem)"
+    <ul class="users_list">
+      <li *ngFor="let userItem of users" popupSource #userInfoPopup="popupSource" alignPositionX="end"
+          alignPositionY="after" class="useractive" [class.approver]="isOwner(userItem)"
           (click)="userInfoRequested=userItem">
         <img src="/auth/user/photo/s/{{userItem.id}}">
+
+        <info-popup *ngIf="infoPopupUser?.id == userItem.id" [(visible)]="infoPopupOpen" [source]="userInfoPopup" [offsetX]="7" [offsetY]="0"
+                    [userId]="userItem.id" [parent]="self" [arrowCss]="'arrowTop'"></info-popup>
       </li>
     </ul>
   </div>
@@ -83,8 +66,10 @@
                 <input *ngIf="renaming != null && renaming.id == subject?.id" type="text" #folderRenamer
                        value="{{subject.name}}"
                        (keydown.enter)="doRename(folderRenamer.value)" class="editSubject"/>
-                <info-popup *ngIf="subjectIndex == subjectInfoPopupIndex && popupUserInfoId == activeUser.userId" [userId]="popupUserInfoId"
-                            [source]="subjectParticipant" [offsetX]="28" [offsetY]="10" [visible]="popupUserInfoId == activeUser.userId" [parent]="self" [index]="subjectIndex"></info-popup>
+                <info-popup *ngIf="subjectIndex == subjectInfoPopupIndex && popupUserInfoId == activeUser.userId"
+                            [userId]="popupUserInfoId"
+                            [source]="subjectParticipant" [offsetX]="11" [offsetY]="10"
+                            [visible]="popupUserInfoId == activeUser.userId" [parent]="self" [arrowCss]="'arrowTop'"></info-popup>
               </li>
             </ul>
             <div class="clearfix"></div>

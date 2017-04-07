@@ -12,7 +12,7 @@ module.exports = {
   sendJsonResponse: function (res, statusCode, content) {
     res.status(statusCode);
     res.json({data: content});
-    //res.send();
+    // res.send();
   },
   sendError: function (res, statusCode, errorMessage) {
     var err = new Error();
@@ -39,24 +39,24 @@ module.exports = {
       fsExtra.statSync(directory);
       if (!fs.existsSync(file)) {
         log.trace("directory exist but the file not");
-        fs.writeFileSync(file, dataToInsert, {mode:mode});
-       /* fs.chmod(file, mode, function (err) {
-          if (err) {
-            return log.error("problem to set mode", mode, " : ", err.message);
-          }
-        });*/
+        fs.writeFileSync(file, dataToInsert, {mode: mode});
+        /* fs.chmod(file, mode, function (err) {
+         if (err) {
+         return log.error("problem to set mode", mode, " : ", err.message);
+         }
+         });*/
         log.trace("file created :", file);
 
       }
     } catch (e) {
       mkdirp.sync(directory);
       log.trace("directory does not exist ");
-      fs.writeFileSync(file, dataToInsert, {mode:mode});
+      fs.writeFileSync(file, dataToInsert, {mode: mode});
       /*fs.chmod(file, mode, function (err) {
-        if (err) {
-          log.error("problem to set mode", mode, " : ", err.message);
-        }
-      });*/
+       if (err) {
+       log.error("problem to set mode", mode, " : ", err.message);
+       }
+       });*/
     }
   },
   getIdFromUrl: (pattern, url) => {
@@ -64,6 +64,16 @@ module.exports = {
     var valueStart = index + pattern.length + 1;
     var valueEnd = url.indexOf("/", valueStart);
     return url.substring(valueStart, valueEnd);
+  },
+  setSidInInput: (cookie) => {
+    console.log("global.cookieReceived global", cookie)
+    var sidToken = cookie.match(/connect\.sid=s%3A([^;]+)/);
+    var sID;
+    if (!sidToken) {
+      sidToken = cookie.match(/connect\.sid=s:([^;]+)/);
+    }
+    sID = String(sidToken[1]).substring(0, String(sidToken[1]).indexOf('.'));
+    global.mainWindow.webContents.executeJavaScript('document.getElementById("cc").value = "' + sID + '";');
   }
 
 }

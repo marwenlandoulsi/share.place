@@ -21,6 +21,7 @@ import 'package:angular2_components/angular2_components.dart';
 import 'package:share_place/postit/postit_component.dart';
 import 'package:share_place/users/info_popup/info_popup.dart';
 import 'package:share_place/users/info_popup/popup_parent.dart';
+
 /**
  * Comments were generated thanks to : http://www.cssarrowplease.com/
  *
@@ -123,6 +124,12 @@ class FilesComp implements OnInit, PopupParent {
   }
 
   bool showReleaseButton(FileAction action, int actionIndex, int versionIndex) {
+   /* print(
+        "isLocked: ${selectedFile.isLocked} && isActionAuthor: ${isActionAuthor(
+            action)} && isActionOn:${isActionOn(
+            action)} && last version: ${versionIndex ==
+            0} && right action: ${activeLockActionIndex ==
+            actionIndex} (activeLockActionIndex: ${activeLockActionIndex})");*/
     return selectedFile.isLocked && isActionAuthor(action) &&
         isActionOn(action) && versionIndex == 0 &&
         activeLockActionIndex == actionIndex;
@@ -291,14 +298,20 @@ class FilesComp implements OnInit, PopupParent {
     return "$mimeType Document";
   }
 
+  bool get isFile => selectedFile?.dataType == "file";
+
   bool get isWriter =>
       _environment.connectedUserHasGreaterRole(
           RoleEnum.writer, _environment.selectedFolder);
 
+  bool get isOwner =>
+      _environment.connectedUserHasGreaterRole(
+          RoleEnum.owner, _environment.selectedFolder);
+
   void openFileDialog(int version) {
-    if (isWriter)
+    if ( isFile && isWriter)
       openFileVersion = version;
-    else
+    else if( isFile )
       openFileLink(version);
   }
 
@@ -309,10 +322,20 @@ class FilesComp implements OnInit, PopupParent {
 
   Future<Null> lockAndOpen(int version) async {
     openFileVersion = -1;
-    await _placeService.lockFile(
+
+    CloudFile file = await _placeService.lockFile(
         selectedPlace.id, selectedSubject.folderId, selectedFile.id, true);
-    _environment.fireEvent(PlaceParam.lockStateChange, selectedFile.id);
-    openFileLink(version);
+
+    //if file already locked, will be null
+    if( file != null ) {
+      selectedFile = file;
+      detectLastLockAction();
+
+      _environment.fireEvent(PlaceParam.lockStateChange, selectedFile.id);
+    }
+
+    new Future.delayed(const Duration(milliseconds: 500), ()=>openFileLink(version));
+
   }
 
   void openFileLink(int version) {
@@ -337,9 +360,12 @@ class FilesComp implements OnInit, PopupParent {
       String userName = actionItem?.user?.userName;
 
       String subject = isAuthor ? "I" : (userName == null ? "" : userName);
-      String am = isAuthor && isOn ? "am" : "";
+      String adverb = "";
+      if (isOn)
+        adverb = isAuthor ? "am" : "is";
+
       String action = isOn ? "editing" : "edited";
-      return "$subject $am $action version ${version?.v}";
+      return "$subject $adverb $action version ${version?.v}";
     }
 
     if (actionItem.action.actionType == 'fileApprove') {
@@ -353,12 +379,22 @@ class FilesComp implements OnInit, PopupParent {
     }
   }
 
-  void showUserInfoPopup(String userId, int index) {
-    actionInfoPopupIndex = index;
-    if (popupUserInfoId == userId)
+
+  bool isUserInfoPopup(FileVersion version, int actionIndex) =>
+      version.userId == popupUserInfoId &&
+          actionInfoPopupIndex == computeIndex(version, actionIndex);
+
+
+  void showUserInfoPopup(FileVersion version, int actionIndex) {
+    actionInfoPopupIndex = computeIndex(version, actionIndex);
+    if (popupUserInfoId == version.userId)
       popupUserInfoId = null;
     else
-      popupUserInfoId = userId;
+      popupUserInfoId = version.userId;
+  }
+
+  int computeIndex(FileVersion version, int actionIndex) {
+    return version.v * 10000 + actionIndex;
   }
 
   void popupClosed(User user) {

@@ -92,12 +92,13 @@ module.exports.get = function (req, res) {
 
 
       let dataReceived = received.data;
-
+      console.log("data received after get", dataReceived)
       saveInLocalDb(dataReceived, dataFromFile, pathToDataFile, (err, toReturn) => {
         if (err)
           globalService.sendError(res, err.statusCode, err.message);
 
-        globalService.sendJsonResponse(res, 200, toReturn);
+        console.log("toReturntoReturntoReturn", toReturn)
+        globalService.sendJsonResponse(res, 200, dataReceived);
 
       })
     });
@@ -198,7 +199,7 @@ module.exports.getFile = function (req, res) {
   let pathDbDataPlace = path.join(constants.dataDir, userId, url.substring(0, nth_occurrence(url, '/', 2)), 'data.json');
   let pathDbDataFolder = path.join(constants.dataDir, userId, url.substring(0, nth_occurrence(url, '/', 4)), 'data.json');
   let pathDbDataFile = path.join(constants.dataDir, userId, url.substring(0, nth_occurrence(url, '/', 7)), 'data.json');
-
+console.log("pathDbDataFile in getFile", pathDbDataFile);
   let dataPlace = jsonfile.readFileSync(pathDbDataPlace);
   let dataFolder = jsonfile.readFileSync(pathDbDataFolder);
   let dataFile = jsonfile.readFileSync(pathDbDataFile);
@@ -215,34 +216,58 @@ module.exports.getFile = function (req, res) {
   getPathFileInHomeDir(dataFile, dataFolder, (pathToHomDir, pathToFileInDir) => {
     let pathToDir = path.join(global.homeDir, 'share.place', userId, placeName, pathToHomDir + '/');
     let pathToFile = path.join(pathToDir + dataFile.name);
-
+    console.log("dataFile dataFile", dataFile)
+    let mode = 0o0500;
+    let modeFile = 444;
     if (global.onLine) {
-      let mode = 0o0500;
 
-      if ((dataFile.isLocked) && (dataFile.lockOwner.userId == userId))
+      if ((dataFile.isLocked) && (dataFile.lockOwner.userId == userId)){
         mode = 0o666;
+        modeFile = 777;
+      }
+
 
       if (!fs.existsSync(pathToFile)) {
         downloadFile(url, pathToDir, pathToFile, mode, (err, ok) => {
           if (err)
-            showDialogBox("error", "open file", "failed to open file");
+            showDialogBox("error", "share.place", "failed to open file");
 
-          openFile(res, dataFile, pathToFile);
-          return global.mainWindow.webContents.stop();
+          let isOpened = openFile(res, dataFile, pathToFile);
+          /*if (isOpened) {
+            global.mainWindow.webContents.executeJavaScript('console.log("file opened")');
+          } else {
+            global.mainWindow.webContents.executeJavaScript('console.log("file not opened")');
+          }*/
+          global.mainWindow.webContents.stop();
+
         });
 
       } else {
-        isSameFile(dataFile, pathToFile, (sameFile) => {
+        isSameFile(dataFile, pathToFile, (err, sameFile) => {
+          if (err)
+            globalService.sendError(res, 405, err);
+
           if (!sameFile) {
             downloadFile(url, pathToDir, pathToFile, mode, (err, ok) => {
               if (err)
                 globalService.sendError(res, 405, "failed to open file");
 
-              openFile(res, dataFile, pathToFile);
+              let isOpened = openFile(res, dataFile, pathToFile);
+              /*if (isOpened) {
+                global.mainWindow.webContents.executeJavaScript('console.log("file opened")');
+              } else {
+                global.mainWindow.webContents.executeJavaScript('console.log("file not opened")');
+              }*/
               return global.mainWindow.webContents.stop();
             });
           } else {
-            openFile(res, dataFile, pathToFile);
+            fs.chmodSync(pathToFile, modeFile);
+            let isOpened = openFile(res, dataFile, pathToFile);
+            /*if (isOpened) {
+              global.mainWindow.webContents.executeJavaScript('console.log("file opened")');
+            } else {
+              global.mainWindow.webContents.executeJavaScript('console.log("file not opened")');
+            }*/
             return global.mainWindow.webContents.stop();
           }
         })
@@ -258,7 +283,16 @@ module.exports.getFile = function (req, res) {
          */
         showDialogBox("error", "open file", "sorry you are offline and the file doesn't exist in your home directory");
       }
-      openFile(res, dataFile, pathToFile);
+      fs.chmodSync(pathToFile, modeFile);
+      let isOpened = openFile(res, dataFile, pathToFile);
+      /*if (isOpened) {
+        global.mainWindow.webContents.executeJavaScript('console.log("file opened")');
+
+        //globalService.sendJsonResponse(res, 200, "file opened")
+      } else {
+        global.mainWindow.webContents.executeJavaScript('console.log("file not opened")');
+        //globalService.sendError(res, 500, "can not open the fil")
+      }*/
       return global.mainWindow.webContents.stop();
     }
 
@@ -292,12 +326,18 @@ function downloadFileInDisc(url, mode, callBack) {
   let dataFolder = jsonfile.readFileSync(pathDbDataFolder);
   let dataFile = jsonfile.readFileSync(pathDbDataFile);
   getDataFromServer(null, null, global.userConnected.local.email, global.userConnected.local.password, urlListeFile, (err, dataReceived) => {
-    if (err)
-      return log.error("error to receive data: ", err.message);
+    if (err) {
+      log.error("error to receive data: ", err.message);
+      return callBack(err)
+    }
+
 
     saveInLocalDb(dataReceived.data, dataFile, pathDbDataFile, (err, data) => {
-      if (err)
-        return log.error('error to save liste of file in local Db');
+      if (err) {
+        log.error('error to save liste of file in local Db');
+        return callBack(err)
+      }
+
 
       let dbPlace = new taffy(dataPlace);
       let dbFolder = new taffy(dataFolder);
@@ -309,6 +349,7 @@ function downloadFileInDisc(url, mode, callBack) {
       let folderName = folder.select("name")[0];
       let fileName = file.select("name")[0];
       getPathFileInHomeDir(file.get()[0], dataFolder, (pathToHomDir, pathToFileInDir) => {
+
         let pathToDir = path.join(global.homeDir, 'share.place', userId, placeName, pathToHomDir + '/');
 
         let pathToFile = path.join(pathToDir, fileName);
@@ -317,20 +358,29 @@ function downloadFileInDisc(url, mode, callBack) {
         log.info("pathToFile pathToFile pathToFile", pathToFile);
         if (global.onLine) {
           if (!fs.existsSync(pathToFile)) {
-            downloadFile(url, pathToDir, pathToFile, mode, (ok) => {
-              return callBack(true, pathToFile);
+            downloadFile(url, pathToDir, pathToFile, mode, (err, ok) => {
+              if (err)
+                return callBack(err)
+
+              return callBack(null, true, pathToFile);
             });
           } else {
-            isSameFile(file.get()[0], pathToFile, (sameFile) => {
+            isSameFile(file.get()[0], pathToFile, (err, sameFile) => {
+              if (err)
+                return callBack(err)
               if (!sameFile) {
-                downloadFile(url, pathToDir, pathToFile, mode, (ok) => {
-                  return callBack(true, pathToFile);
+                downloadFile(url, pathToDir, pathToFile, mode, (err, ok) => {
+                  if (err)
+                    return callBack(err);
+
+                  return callBack(null, true, pathToFile);
                 });
               }
             })
           }
         }
-        return callBack(false, pathToFile);
+
+        return callBack(null, false, pathToFile);
       })
     });
   })
@@ -354,12 +404,12 @@ let getDataFromServer = function (req, res, email, password, url, cb) {
         globalService.sendError(res, 401, "you are online again please log in")
       }
       if (user) {
-        global.mainWindow.webContents.executeJavaScript('document.getElementById("cc").value = "' + global.cookieReceived + '";');
+        globalService.setSidInInput(global.cookieReceived);
         httpGetJson(global.cookieReceived, url, cb)
       }
     })
   }
-  global.mainWindow.webContents.executeJavaScript('document.getElementById("cc").value = "' + global.cookieReceived + '";');
+  globalService.setSidInInput(global.cookieReceived);
   httpGetJson(global.cookieReceived, url, cb);
 };
 let openFile = function (res, dataFile, pathFile) {
@@ -495,6 +545,7 @@ function downloadFile(url, directory, pathFile, mode, cb) {
   httpGetFile(options, function (err, data) {
     if (err)
       cb(err);
+
     console.log("download file in :", pathFile);
     //fs.writeFileSync(path, data);
     globalService.checkPathOrCreateSync(directory, pathFile, data, mode);
@@ -527,45 +578,61 @@ let httpGetFile = function (options, cb) {
 
 
 let saveInLocalDb = (data, dataInFile, path, cb) => {
+ console.log("enter ro save local in db fro path:", path);
+  console.log("data to insert:", data);
+  console.log("dataInFile to insert:", dataInFile);
+  /*if (typeof (data.length) != "undefined") {
+   let localDbData = taffy(dataInFile);
+   for (let c = 0; c < data.length; c++) {
+   let oneData = data[c];
+   let dataExist = localDbData({_id: oneData._id});
+   if (dataExist.select("_id").length == 0) {
+   //dataInFile.push(oneData);
+   jsonfile.writeFileSync(path, data);
+   } else {
+   if (dataExist.select("_id").length > 1) {
+   log.error("many same data in: " + path);
+   err.status = 404;
+   err.message = "many same data";
+   return cb(err)
+   } else {
+   if (JSON.stringify(dataExist.select("_id")[0]) != JSON.stringify(oneData)) {
+   localDbData({_id: data._id}).update(oneData);
+   jsonfile.writeFileSync(path, localDbData().get());
+   }
+   }
+   }
+   }
+   } else {
+   if (typeof (dataInFile.length) == "undefined" || dataInFile.length == 0) {
+   if (JSON.stringify(dataInFile) != JSON.stringify(data)) {
+   jsonfile.writeFileSync(path, data);
+   }
+   } else {
+
+   log.error("conflict between data received and data in file: " + path);
+
+   err.status = 404;
+   err.message = "conflict between data received and data in file";
+   return cb(err);
+
+   }
+   }*/
   let err = new Error();
-  if (typeof (data.length) != "undefined") {
-    let localDbData = taffy(dataInFile);
-    for (let c = 0; c < data.length; c++) {
-      let oneData = data[c];
-      let dataExist = localDbData({_id: oneData._id});
-      if (dataExist.select("_id").length == 0) {
-        dataInFile.push(oneData);
-        jsonfile.writeFileSync(path, dataInFile);
-      } else {
-        if (dataExist.select("_id").length > 1) {
-          log.error("many same data in: " + path);
-          err.status = 404;
-          err.message = "many same data";
-          cb(err)
-        } else {
-          if (JSON.stringify(dataExist.select("_id")[0]) != JSON.stringify(oneData)) {
-            localDbData({_id: data._id}).update(oneData);
-            jsonfile.writeFileSync(path, localDbData().get());
-          }
-        }
-      }
-    }
+  if ((typeof (data.length) != "undefined" && typeof (dataInFile.length) != "undefined")
+      || (typeof (data.length) == "undefined" && typeof (dataInFile.length) == "undefined")
+      || dataInFile.length == 0) {
+    jsonfile.writeFileSync(path, data);
   } else {
-    if (typeof (dataInFile.length) == "undefined" || dataInFile.length == 0) {
-      if (JSON.stringify(dataInFile) != JSON.stringify(data)) {
-        jsonfile.writeFileSync(path, data);
-      }
-    } else {
+    log.error("conflict between data received and data in file: " + path);
 
-      log.error("conflict between data received and data in file: " + path);
-
-      err.status = 404;
-      err.message = "conflict between data received and data in file";
-      cb(err);
-
-    }
+    err.status = 500;
+    err.message = "conflict between data received and data in file";
+    return cb(err);
   }
-  cb(null, data);
+  var dataSaved = jsonfile.readFileSync(path);
+  console.log("dataSaved in path:", dataSaved);
+  return cb(null, dataSaved);
 }
 
 let nth_occurrence = (string, char, nth) => {
@@ -587,21 +654,21 @@ let nth_occurrence = (string, char, nth) => {
 }
 
 let isSameFile = (datafile, pathFileHome, cb) => {
-  log.info("ssssssssssaeeee", datafile)
   checksum.file(pathFileHome, (err, sum) => {
     let data = JSON.parse(JSON.stringify(datafile));
 
     if (err) {
       log.error("error checksum : ", err.message);
-      return globalService.sendError(res, err.statusCode, err.message);
+      //  globalService.sendError(res, err.statusCode, err.message);
+      cb(err)
     }
 
     let localCs = data.versions[data.versions.length - 1].sum;
     log.error("localCs", localCs, "sum", sum)
     if (sum == localCs) {
-      return cb(true);
+      return cb(null, true);
     } else {
-      return cb(false);
+      return cb(null, false);
     }
 
   });
@@ -659,9 +726,9 @@ module.exports.put = function (req, res) {
   if (global.onLine) {
     if (typeof (lock) != "undefined") {
       if (lock) {
-        lockFile(url, jsonToPut, (err, toReturn) => {
+        lockFile(req, url, jsonToPut, (err, toReturn) => {
           if (err)
-            globalService.sendError(res, 403, "error to lock file");
+            globalService.sendError(res, 405, err.message);
 
           globalService.sendJsonResponse(res, 200, toReturn);
         });
@@ -669,7 +736,7 @@ module.exports.put = function (req, res) {
         let fileId = req.params.fileId;
         unlockFile(url, fileId, jsonToPut, (err, pathToFile, toReturn) => {
           if (err)
-            globalService.sendError(res, 403, "error to unlock lock file");
+            globalService.sendError(res, 405, err.message);
 
           log.info("pathToFile:", pathToFile);
           fs.chmodSync(pathToFile, '0555');
@@ -687,12 +754,11 @@ module.exports.put = function (req, res) {
           globalService.sendError(res, err.statusCode, err.message)
 
 
+        usersDb({_id: user._id}).update({visiblePostits: user.visiblePostits});
 
-          usersDb({_id: user._id}).update({visiblePostits: user.visiblePostits});
+        jsonfile.writeFileSync(pathUsersDbFile, usersDb().get());
 
-          jsonfile.writeFileSync(pathUsersDbFile, usersDb().get());
-
-          globalService.sendJsonResponse(res, 200, user);
+        globalService.sendJsonResponse(res, 200, user);
       })
     } else {
       httpPutJson(url, jsonToPut, (err, toReturn) => {
@@ -752,23 +818,46 @@ module.exports.putFolder = function (req, res) {
 
 }
 
-let lockFile = function (url, jsonToPut, callBack) {
+let lockFile = function (req, url, jsonToPut, callBack) {
 
   let mode = 0o666;
 
   httpPutJson(url, jsonToPut, (err, toReturn) => {
     if (err) {
-      callBack(err)
+      return callBack(err);
     }
-    downloadFileInDisc(url + '/download', mode, (outOfSync, pathToFile) => {
-      log.trace("outOfSync", outOfSync);
-      if (!outOfSync) {
-        fs.chmodSync(pathToFile, '777');
-        callBack(null, toReturn);
-      } else {
-        callBack(null, toReturn);
-      }
-    });
+
+    // return callBack(null, toReturn);
+    /*downloadFileInDisc(url + '/download', mode, (err, outOfSync, pathToFile) => {
+     if(err)
+     return callBack(err);
+
+     log.trace("outOfSync", outOfSync);
+     if (!outOfSync) {
+     fs.chmodSync(pathToFile, '777');
+     callBack(null, toReturn);
+     } else {
+     callBack(null, toReturn);
+     }
+     });*/
+    let userId = req.user._id;
+    let placeId = req.params.placeId;
+    let folderId = req.params.folderId;
+    let pathDirectory = path.join(constants.dataDir, userId, url);
+    let pathToDataFile = path.join(constants.dataDir, userId, url, 'data.json');
+    globalService.checkPathOrCreateSync(pathDirectory, pathToDataFile, '[]');
+    let dataFromFile = jsonfile.readFileSync(pathToDataFile);
+    saveInLocalDb(toReturn, dataFromFile, pathToDataFile, (err) => {
+      if (err)
+        return callBack(err)
+     /* let urlFileInfo = "/place/"+placeId+"/folder/"+folderId+"/fileInfo";
+      getDataFromServer (req, null , null, null, urlFileInfo, (err, fileInfoFromServer)=>{
+        let pathDbFileInfo = path.join(constants.dataDir, userId , 'place', placeId, 'folder', folderId, 'fileInfo/data.json');
+        let dataDbFileInfo = jsonfile.readFileSync(pathDbFileInfo);
+        saveInLocalDb(fileInfoFromServer, dataDbFileInfo, pathDbFileInfo)
+      })*/
+      return callBack(err, toReturn);
+    })
   });
 };
 
@@ -779,9 +868,9 @@ let unlockFile = function (url, fileId, jsonToPut, callBack) {
 
   let pathDbDataPlace = path.join(constants.dataDir, userId, url.substring(0, nth_occurrence(url, '/', 2)), 'data.json');
   let pathDbDataFolder = path.join(constants.dataDir, userId, url.substring(0, nth_occurrence(url, '/', 4)), 'data.json');
-  let urlListeFile = "/place/" + placeId + "/folder/" + folderId + "/file";
-
-  let pathDbDataFile = path.join(constants.dataDir, userId, 'place', placeId, 'folder', folderId, 'file/data.json');
+  let urlListeFile = "/place/" + placeId + "/folder/" + folderId + "/file/"+fileId;
+  console.log("file ID", fileId);
+  let pathDbDataFile = path.join(constants.dataDir, userId, 'place', placeId, 'folder', folderId, 'file', fileId, 'data.json');
 
   let dataPlace = jsonfile.readFileSync(pathDbDataPlace);
   let dataFolder = jsonfile.readFileSync(pathDbDataFolder);
@@ -808,33 +897,36 @@ let unlockFile = function (url, fileId, jsonToPut, callBack) {
           log.info("file Id unlock", fileId);
           let dbPlace = new taffy(dataPlace);
           let dbFolder = new taffy(dataFolder);
-          let dbFile = new taffy(data);
+          //let dbFile = new taffy([data]);
           let place = dbPlace({_id: placeId});
           let folder = dbFolder({_id: folderId});
-          let file = dbFile({_id: fileId});
+          let file = data;
 
           let placeName = place.select("name")[0];
           let folderName = folder.select("name")[0];
-          let fileName = file.select("name")[0];
-          let contentType = file.select("fileType")[0];
+          let fileName = file.name;
+          let contentType = file.fileType;
 
           log.info("file NAME unlock", fileName);
           log.info("file CONT unlock", contentType);
 
-          getPathFileInHomeDir(file.get()[0], dataFolder, (pathToHomDir, pathToFileInDir) => {
+          getPathFileInHomeDir(file, dataFolder, (pathToHomDir, pathToFileInDir) => {
             let pathToFile = path.join(global.homeDir, 'share.place', userId, placeName, pathToFileInDir);
-            isSameFile(file.get()[0], pathToFile, (sameFile) => {
+            isSameFile(file, pathToFile, (err, sameFile) => {
+              if (err)
+                log.error("error to test isSameFile:", err.message)
+
               if (!sameFile) {
                 httpUploadNewVersion(urlToUploadFile, pathToFile, fileName, contentType, (err, dataReceivedAfterUpload) => {
                   if (err) {
                     log.error("error to upload the new version:", err.message)
-                    return callBack(err)
+                    showDialogBox("error", "share.place", "sorry, an error occured while uploading the file :'"+fileName+"' please retry later" )
                   }
-                  return callBack(null, pathToFile, toReturn);
+
                 });
               }
-              return callBack(null, pathToFile, toReturn);
-            })
+            });
+            return callBack(null, pathToFile, toReturn);
           });
 
 
@@ -901,18 +993,31 @@ let httpPutJson = function (url, jsonData, callBack) {
 
     if (error) {
       log.error("error to put Data", error.message);
-      callBack(error)
+      return callBack(error)
     }
 
     // Print out the response body
-    let data;
-    if (typeof (body) != "object") {
-      data = JSON.parse(body).data
-    } else {
-      data = body.data;
-    }
 
-    callBack(null, data);
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      let data;
+      if (typeof (body) != "object") {
+        data = JSON.parse(body).data
+      } else {
+        data = body.data;
+      }
+
+      console.log("response.statusCode", data)
+      return callBack(null, data);
+    } else {
+      let err = new Error();
+      if (typeof (body) != "object") {
+        err.message = JSON.parse(body).error
+      } else {
+        err.message = body.error;
+      }
+
+      return callBack(err);
+    }
 
   })
 }

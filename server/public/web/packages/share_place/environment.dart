@@ -85,26 +85,34 @@ class Environment {
   User get connectedUser => _connected;
 
   void set connectedUser(User user) {
-    bool sameUser = _connected != null && _connected?.id == user?.id;
+    bool wasLoggedIn = _connected != null;
+    bool sameUser = wasLoggedIn && _connected?.id == user?.id;
     this._connected = user;
-    print("connected user set $user");
     _loggedIn = _connected != null;
 
-    if (!_loggedIn) {
+    if (!wasLoggedIn) {
+      connectSocket();
+    }
+    if(!_loggedIn) {
       selectedFile = null;
       selectedFolder = null;
       selectedPlace = null;
       selectedSubject = null;
       selectedUser = null;
-    } else {
-      connectSocket();
     }
     if (!sameUser)
       eventBus.fire({PlaceParam.login: _loggedIn});
   }
 
   Future<Null> connectSocket() async {
-    await socketIoClient.connect(conf.remoteUrl);
+
+    String url = conf.remoteUrl;
+    InputElement cookieSessionIdInput = document.querySelector("#cc");
+    if (cookieSessionIdInput != null)
+      url += "?sId=${cookieSessionIdInput.value}";
+
+    print("sio connecting to $url");
+    await socketIoClient.connect(url);
   }
 
   User get selectedUser => _user;
@@ -152,7 +160,6 @@ class Environment {
 
   bool connectedUserHasGreaterRole(RoleEnum role, Folder folder) =>
       userHasGreaterRole(role, folder.id, connectedUser);
-
 
 
 }
