@@ -10,6 +10,8 @@
   <link rel="stylesheet" href="../font-awesome-4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="../material-design-iconic-font/css/material-design-iconic-font.css">
   <link rel="icon" type="image/ico" href="../images/faviconsp.ico">
+  <link rel="stylesheet" href="styles.css">
+
 
   <script defer src="main.dart" type="application/dart"></script>
   <script defer src="packages/browser/dart.js"></script>
@@ -25,24 +27,25 @@
     });
 
     //prevent file drop to open in window body
-    window.addEventListener("dragover", function (e) {
-      var drop = document.getElementById('fileForm');
+    window.addEventListener("dragover",function(e){
+      var drop  = document.getElementById('fileForm');
       e = e || event;
-      console.log('e.target.id', e.target.id);
+      console.log('e.target.id' ,e.target.id) ;
       // check wich element is our target
       e.preventDefault();
 
-    }, false);
+    },false);
 
 
-    window.addEventListener("drop", function (e) {
-      var drop = document.getElementById('fileForm');
+
+    window.addEventListener("drop",function(e){
+      var drop  = document.getElementById('fileForm');
       e = e || event;
-      console.log('e.target', e.target.name);
+      console.log('e.target' ,e.target.name) ;
       if (e.target.type != "file") {  // check wich element is our target
         e.preventDefault();
       }
-    }, false);
+    },false);
   </script>
 
 
@@ -50,7 +53,6 @@
 
 <body>
 <my-app>Loading...</my-app>
-
 
 <script src="../socketIo/socket.io.js"></script>
 <!--
@@ -70,8 +72,6 @@
 </script>
 -->
 
-
-<!-- Dart conf -->
 <input type="hidden" id="baseUrl" value="err"/>
 <input type="hidden" id="loginUrl" value="err"/>
 <input type="hidden" id="port" value="err"/>
@@ -84,19 +84,6 @@
   document.getElementById('loginUrl').value = "http://ec2-54-154-38-51.eu-west-1.compute.amazonaws.com";
   document.getElementById('port').value = window.location.port;
 </script>
-<!-- Dart conf end-->
-<!--
-<script>
-  const {ipcRenderer} = require('electron')
-  const updateOnlineStatus = () => {
-    ipcRenderer.send('online-status-changed', navigator.onLine ? true : false)
-  }
-
-  window.addEventListener('online', updateOnlineStatus)
-  window.addEventListener('offline', updateOnlineStatus)
-
-  updateOnlineStatus()
-</script>-->
 </body>
 
 </html>
