@@ -33,6 +33,7 @@ class Environment {
   String serverError = null;
   List<String> _messages = [];
   SocketIoClient socketIoClient;
+  Map<String, dynamic> notifications;
   //bool online;
 
   Environment(this.eventBus) {
@@ -72,7 +73,7 @@ class Environment {
     _file = null;
 
     eventBus.fire(
-        {PlaceParam.fileInfoId: fileInfo?.id?.toString()});
+        {PlaceParam.fileInfoId: fileInfo?.id});
   }
 
   CloudFile get selectedFile => _file;
@@ -106,10 +107,10 @@ class Environment {
 
   Future<Null> connectSocket() async {
 
-    String url = conf.remoteUrl;
+    String url = conf.remoteUrl + "?sId=";
     InputElement cookieSessionIdInput = document.querySelector("#cc");
     if (cookieSessionIdInput != null)
-      url += "?sId=${cookieSessionIdInput.value}";
+      url += "${cookieSessionIdInput.value}";
 
     print("sio connecting to $url");
     await socketIoClient.connect(url);
@@ -159,24 +160,21 @@ class Environment {
   }
 
   bool connectedUserHasGreaterRole(RoleEnum role, Folder folder) =>
-      userHasGreaterRole(role, folder.id, connectedUser);
+      connectedUser.hasGreaterRole(role, folder.id);
 
 
-}
-
-/**
- * checks if user has at least the given role
- */
-bool userHasGreaterRole(RoleEnum role, String folderId, User user) {
-  var roleOnFolder = user.folders[folderId];
-  // CHECK this code is not needed
-  if( roleOnFolder == null ) {
-    print("ERROR : user ${user.toJson()} must be refreshed before calling this method : \n\tfolder ${folderId} not associated to user");
-    return false;
+  int getNotificationCount(String folderId) {
+    var folderNotifs = notifications[folderId];
+    return folderNotifs != null ? folderNotifs['count'] : 0;
   }
-  return roleOnFolder.index >= role.index;
-}
 
+  List<String> getNotificationFileIdList(String folderId) {
+    var folderNotifs = notifications[folderId];
+    return folderNotifs != null ? folderNotifs['fileIdList'] : [];
+  }
+
+  bool hasNotification(String folderId, String fileId) => getNotificationFileIdList(folderId).contains(fileId);
+}
 
 enum PlaceParam {
   placeId,

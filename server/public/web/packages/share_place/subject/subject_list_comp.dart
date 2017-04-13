@@ -107,7 +107,7 @@ class SubjectListComponent
   }
 
   bool isOwner(User user) =>
-      userHasGreaterRole(RoleEnum.owner, selectedFolder.id, user);
+      user.hasGreaterRole(RoleEnum.owner, selectedFolder.id);
 
 
   Future<Null> uploadFiles() async {
@@ -244,5 +244,7 @@ class SubjectListComponent
   }
 
   PopupParent get self => this;
+
+  bool wasRead(FileInfo subject) => _environment.hasNotification(subject.folderId, subject.fileId);
 }
 

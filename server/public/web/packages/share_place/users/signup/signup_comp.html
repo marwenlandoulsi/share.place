@@ -1,14 +1,9 @@
 <div class="signup" id="signup">
   <div class="header">
-    <!--<btn (click)="add()"-->
-    <!--[sources]="['../images/addPerson.png', '../images/addPerson-h.png', '../images/addPerson-c.png']"-->
-    <!--class="addBtn" [disabled]="selectedPlace==null"></btn>-->
     <div class="top">
       <div class="signuptext">Signup</div>
       <div class="close" (click)="close()"></div>
     </div>
-
-
     <form id="signupForm" #upload class="dragdrop_profil {{dragEnter ? 'drag' : ''}} {{drop ? 'drop' : ''}} "
           [class.uploading]="uploading"
           (dragenter)="dragEnter = true"

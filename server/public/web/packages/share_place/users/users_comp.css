@@ -60,6 +60,8 @@ a {
   vertical-align: middle;
   color: #273B54;
   font-size: 13px;
+  word-break: break-all;
+  max-width: 80%;
 }
 
 .userName:hover {

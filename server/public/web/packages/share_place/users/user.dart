@@ -94,23 +94,26 @@ class User {
 
   String get displayName => name == null ? mainMail : name;
 
-  static Map<String, RoleEnum> fromRoleList
-      (List<Role> roleList) =>
-      new
-      Map.fromIterable
-        (
-          roleList
-          ,
-          key
-              :
-              (Role item) =>
-          item.folderId
-          ,
-          value
-              :
-              (Role item) =>
-          item.role
-      );
+  static Map<String, RoleEnum> fromRoleList(List<Role> roleList) {
+    return new
+    Map.fromIterable
+      (roleList, key: (Role item) => item.folderId,
+        value: (Role item) => item.role);
+  }
+
+  /**
+   * checks if user has at least the given role
+   */
+  bool hasGreaterRole(RoleEnum role, String folderId) {
+    var roleOnFolder = folders[folderId];
+    // CHECK this code is not needed
+    if (roleOnFolder == null) {
+      print(
+          "ERROR : user ${toJson()} must be refreshed before calling this method : \n\tfolder ${folderId} not associated to user");
+      return false;
+    }
+    return roleOnFolder.index >= role.index;
+  }
 
 }
 

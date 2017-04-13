@@ -26,6 +26,10 @@ li.subjectItem {
   border-left: 4px solid #EDF2FB;
 }
 
+li.unread {
+  font-weight: bold;
+}
+
 li.subjectItem.selected,
 li.subjectItem:hover,
 li.subjectItem:focus {

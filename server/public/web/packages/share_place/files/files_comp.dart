@@ -73,7 +73,9 @@ class FilesComp implements OnInit, PopupParent {
       selectedFile = null;
     } else if (params.containsKey(PlaceParam.ioFileActionCreated)) {
       //FIXME performance : should not relaod all files, but only update the selected one
-      await reloadFile();
+      if (selectedPlace != null && selectedFolder != null &&
+          selectedSubject != null)
+        await reloadFile();
     }
   }
 
@@ -104,8 +106,8 @@ class FilesComp implements OnInit, PopupParent {
 
   Future<CloudFile> reloadFile() async {
     selectedFile = await getFile(
-        _environment.selectedPlace.id, _environment.selectedFolder.id,
-        _environment.selectedSubject.fileId);
+        selectedPlace.id, selectedFolder.id,
+        selectedSubject.fileId);
   }
 
   void detectLastLockAction() {
@@ -124,7 +126,7 @@ class FilesComp implements OnInit, PopupParent {
   }
 
   bool showReleaseButton(FileAction action, int actionIndex, int versionIndex) {
-   /* print(
+    /* print(
         "isLocked: ${selectedFile.isLocked} && isActionAuthor: ${isActionAuthor(
             action)} && isActionOn:${isActionOn(
             action)} && last version: ${versionIndex ==
@@ -144,6 +146,7 @@ class FilesComp implements OnInit, PopupParent {
   FileInfo get selectedSubject => _environment.selectedSubject;
 
   CloudFile get selectedFile => _environment.selectedFile;
+
 
   User get connectedUser => _environment.connectedUser;
 
@@ -309,11 +312,26 @@ class FilesComp implements OnInit, PopupParent {
           RoleEnum.owner, _environment.selectedFolder);
 
   void openFileDialog(int version) {
-    if ( isFile && isWriter)
-      openFileVersion = version;
-    else if( isFile )
+    if( !isFile )
+      return;
+    if( !isWriter ) {
+      _environment.addMessage("You can open this file only in read mode");
       openFileLink(version);
+      return;
+    }
+    if (selectedFile.lockOwner == null) {
+      openFileVersion = version;
+      return;
+    }
+    if (isLockOwner) {
+      openFileVersion = version;
+      return;
+    }
+    _environment.addMessage("File is locked by ${selectedFile.lockOwner.userName}, you can open it only in read mode");
+    openFileLink(version);
   }
+
+  bool get isLockOwner => selectedFile.lockOwner?.userId == connectedUser.id;
 
 
   void cancelFileOpen() {
@@ -327,15 +345,15 @@ class FilesComp implements OnInit, PopupParent {
         selectedPlace.id, selectedSubject.folderId, selectedFile.id, true);
 
     //if file already locked, will be null
-    if( file != null ) {
+    if (file != null) {
       selectedFile = file;
       detectLastLockAction();
 
       _environment.fireEvent(PlaceParam.lockStateChange, selectedFile.id);
     }
 
-    new Future.delayed(const Duration(milliseconds: 500), ()=>openFileLink(version));
-
+    new Future.delayed(
+        const Duration(milliseconds: 500), () => openFileLink(version));
   }
 
   void openFileLink(int version) {
@@ -370,7 +388,11 @@ class FilesComp implements OnInit, PopupParent {
 
     if (actionItem.action.actionType == 'fileApprove') {
       if (actionItem.action.value == 'on') {
-        return (isAuthor ? "I" : actionItem.user.userName) +
+        var userName = actionItem.user.userName;
+        if (userName == null)
+          userName = "";
+
+        return (isAuthor ? "I" : userName) +
             (" approved the file.");
       } else {
         return (isAuthor ? "I" : actionItem.user.userName) +

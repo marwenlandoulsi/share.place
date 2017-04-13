@@ -86,7 +86,7 @@ class PlacesComponent implements OnInit {
         Place added = places.firstWhere((Place place) =>
         place.id == newPlaceId);
         _environment.addMessage(
-            "Vous venez de rejoindre la place ${added.name}");
+            "You've just been invited to the place ${added.name}");
       }
     }
     if (adding) {

@@ -377,9 +377,20 @@ class PlaceService {
     }
   }
 
+  Future<Map<String, dynamic>> getNotifications() async {
+    try {
+      final response = await get(
+          "/sp/place/${_environment.selectedPlace.id}/notify",
+          headers: _headers);
+      _environment.notifications = _extractData(response);
+      return  _environment.notifications;
+    } catch (e) {
+      throw _handleError(e);
+    }
+  }
+
   Future<CloudFile> addComment(String comment, int fileVersionIndex) async {
     try {
-      print(" add comment called $comment");
       final response = await post(
           "/sp/place/${_environment.selectedPlace.id}/folder/${_environment
               .selectedFolder.id}/file/${_environment.selectedFile

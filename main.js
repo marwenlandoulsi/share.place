@@ -35,6 +35,7 @@ ipcMain.on('online-status-changed', (event, status) => {
   global.onLine = status;
   if (status) {
     mainWindow.setOverlayIcon(path.join(__dirname, 'Online.ico'), 'you are onLine');
+
   } else {
     mainWindow.setOverlayIcon(path.join(__dirname, 'Offline-red.ico'), 'you are offLine');
   }
@@ -46,7 +47,7 @@ app.on('window-all-closed', () => {
   }, () => {
 
     console.log("done delete");
-
+    server = null;
   }])
   app.quit();
 })
@@ -90,12 +91,12 @@ app.on('ready', function () {
 
         storages: ["clear"]
       }, () => {
-
+        mainWindow = null;
+        server = null;
         console.log("done delete");
 
       }])
-      mainWindow = null;
-      server = null;
+
     });
 
     global.mainWindow = mainWindow;

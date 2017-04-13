@@ -34,3 +34,5 @@
   padding: 0.3em 0 0 0;
   margin: 0 0 0 7px;
 }
+
+.folderItem > div { vertical-align: middle !important; }

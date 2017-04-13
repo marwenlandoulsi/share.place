@@ -710,6 +710,7 @@ class ViewSubjectListComponent4 extends AppView<import3.SubjectListComponent> {
   var _expr_3 = uninitialized;
   var _expr_4 = uninitialized;
   var _expr_5 = uninitialized;
+  var _expr_6 = uninitialized;
   ViewSubjectListComponent4(import6.Injector parentInjector,ViewContainer declarationEl): super(ViewSubjectListComponent4,renderType_SubjectListComponent,import7.ViewType.EMBEDDED,{
     '\$implicit': null,
     'index': null
@@ -774,6 +775,11 @@ class ViewSubjectListComponent4 extends AppView<import3.SubjectListComponent> {
     if (import11.checkBinding(_expr_5,currVal_5)) {
       updateClass(_el_0,'ownAction',currVal_5);
       _expr_5 = currVal_5;
+    }
+    final currVal_6 = ctx.wasRead(locals['\$implicit']);
+    if (import11.checkBinding(_expr_6,currVal_6)) {
+      updateClass(_el_0,'unread',currVal_6);
+      _expr_6 = currVal_6;
     }
     this.detectViewChildrenChanges();
   }

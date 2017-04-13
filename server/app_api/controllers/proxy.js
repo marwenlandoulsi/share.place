@@ -178,8 +178,7 @@ module.exports.uploadFile = function (req, res) {
         if (err) {
           log.error('err  delete from tmp', err);
           return globalService.sendJsonResponse(res, 405, err.message);
-          // add to cron task  deleteFromTmp if  status = 'toDeleteFromTmp'
-          // ctrlFile.updateFile(id, 'toDeleteFromTmp');
+
         } else {
           globalService.sendJsonResponse(res, 200, dataReceived);
         }
@@ -199,7 +198,7 @@ module.exports.getFile = function (req, res) {
   let pathDbDataPlace = path.join(constants.dataDir, userId, url.substring(0, nth_occurrence(url, '/', 2)), 'data.json');
   let pathDbDataFolder = path.join(constants.dataDir, userId, url.substring(0, nth_occurrence(url, '/', 4)), 'data.json');
   let pathDbDataFile = path.join(constants.dataDir, userId, url.substring(0, nth_occurrence(url, '/', 7)), 'data.json');
-console.log("pathDbDataFile in getFile", pathDbDataFile);
+
   let dataPlace = jsonfile.readFileSync(pathDbDataPlace);
   let dataFolder = jsonfile.readFileSync(pathDbDataFolder);
   let dataFile = jsonfile.readFileSync(pathDbDataFile);
@@ -218,26 +217,27 @@ console.log("pathDbDataFile in getFile", pathDbDataFile);
     let pathToFile = path.join(pathToDir + dataFile.name);
     console.log("dataFile dataFile", dataFile)
     let mode = 0o0500;
-    let modeFile = 444;
+    let modeFile = '0555';
     if (global.onLine) {
 
-      if ((dataFile.isLocked) && (dataFile.lockOwner.userId == userId)){
+      if ((dataFile.isLocked) && (dataFile.lockOwner.userId == userId)) {
         mode = 0o666;
-        modeFile = 777;
+        modeFile = '0777';
       }
 
 
       if (!fs.existsSync(pathToFile)) {
+        showNotification("Download File", dataFile.name)
         downloadFile(url, pathToDir, pathToFile, mode, (err, ok) => {
           if (err)
-            showDialogBox("error", "share.place", "failed to open file");
+            showDialogBox("error", "share.place", "failed to download/open the file");
 
           let isOpened = openFile(res, dataFile, pathToFile);
-          /*if (isOpened) {
-            global.mainWindow.webContents.executeJavaScript('console.log("file opened")');
-          } else {
-            global.mainWindow.webContents.executeJavaScript('console.log("file not opened")');
-          }*/
+          if(isOpened)
+            showNotification("File opened", dataFile.name);
+          else
+            showNotification("File not opened", "sorry we can't open the file '"+dataFile.name+"'");
+
           global.mainWindow.webContents.stop();
 
         });
@@ -248,62 +248,50 @@ console.log("pathDbDataFile in getFile", pathDbDataFile);
             globalService.sendError(res, 405, err);
 
           if (!sameFile) {
+            showNotification("Downloading File", dataFile.name)
             downloadFile(url, pathToDir, pathToFile, mode, (err, ok) => {
               if (err)
-                globalService.sendError(res, 405, "failed to open file");
+                showDialogBox("error", "share.place", "failed to download/open the file");
 
               let isOpened = openFile(res, dataFile, pathToFile);
-              /*if (isOpened) {
-                global.mainWindow.webContents.executeJavaScript('console.log("file opened")');
-              } else {
-                global.mainWindow.webContents.executeJavaScript('console.log("file not opened")');
-              }*/
+              if(isOpened)
+                showNotification("File opened", dataFile.name);
+              else
+                showNotification("File not opened", "sorry we can't open the file '"+dataFile.name+"'");
+
               return global.mainWindow.webContents.stop();
             });
           } else {
             fs.chmodSync(pathToFile, modeFile);
             let isOpened = openFile(res, dataFile, pathToFile);
-            /*if (isOpened) {
-              global.mainWindow.webContents.executeJavaScript('console.log("file opened")');
-            } else {
-              global.mainWindow.webContents.executeJavaScript('console.log("file not opened")');
-            }*/
+
+            if(isOpened)
+              showNotification("File opened", dataFile.name)
+            else
+              showNotification("File not opened", "sorry we can't open the file '"+dataFile.name+"'")
+
             return global.mainWindow.webContents.stop();
           }
         })
       }
     } else {
       if (!fs.existsSync(pathToFile)) {
-        /* let err = new Error();
-         err.statusCode = 404;
-         err.message = "file not yet downloaded in home directory ";
 
-         log.error("error to open file: ", err.message)
-         globalService.sendError(res, 402, "sorry you are offline and the file doesn't exist in your home directory");
-         */
         showDialogBox("error", "open file", "sorry you are offline and the file doesn't exist in your home directory");
       }
       fs.chmodSync(pathToFile, modeFile);
       let isOpened = openFile(res, dataFile, pathToFile);
-      /*if (isOpened) {
-        global.mainWindow.webContents.executeJavaScript('console.log("file opened")');
 
-        //globalService.sendJsonResponse(res, 200, "file opened")
-      } else {
-        global.mainWindow.webContents.executeJavaScript('console.log("file not opened")');
-        //globalService.sendError(res, 500, "can not open the fil")
-      }*/
+      if(isOpened)
+        showNotification("File opened", dataFile.name)
+      else
+        showNotification("File not opened", "sorry we can't open the file '"+dataFile.name+"'")
+
       return global.mainWindow.webContents.stop();
     }
 
   });
 
-  /* if (typeof (v) != "undefined")
-   pathToDir = path.join(global.homeDir, 'share.place', userId, placeName, folderName , 'version '+v+'/');
-   */
-
-
-  //globalService.sendJsonResponse(res, 200 , "file opened");
 }
 
 module.exports.downloadFileToDisc = downloadFileInDisc;
@@ -558,19 +546,38 @@ let httpGetFile = function (options, cb) {
   return http.get(options, function (response) {
     // Continuously update stream with data
     let data = [];
-    response.on('data', function (chunk) {
-      data.push(chunk);
-    });
-    response.on('error', function (err) {
-      // Data reception is done, do whatever with it!
-      cb(err);
-    });
+    let total_bytes = parseInt(response.headers['content-length'], 10);
+    let received_bytes = 0
+    if (response.statusCode == 200 || response.statusCode == 201) {
 
-    response.on('end', function () {
-      // Data reception is done, do whatever with it!
-      let buffer = Buffer.concat(data);
-      cb(null, buffer);
-    });
+
+      response.on('data', function (chunk) {
+
+        received_bytes += chunk.length;
+        let progress = parseFloat(received_bytes / total_bytes);
+        showProgressBar(progress);
+        data.push(chunk);
+
+      });
+      response.on('error', function (err) {
+        // Data reception is done, do whatever with it!
+        return cb(err);
+      });
+
+      response.on('end', function () {
+        // Data reception is done, do whatever with it!
+
+        showProgressBar(-1);
+        let buffer = Buffer.concat(data);
+        return cb(null, buffer);
+      });
+    } else {
+      let error = new Error();
+      error.statusCode = response.statusCode;
+      error.message = response.error;
+      return cb(error);
+    }
+
   }).on('error', function (e) {
     cb(e)
   });
@@ -578,7 +585,7 @@ let httpGetFile = function (options, cb) {
 
 
 let saveInLocalDb = (data, dataInFile, path, cb) => {
- console.log("enter ro save local in db fro path:", path);
+  console.log("enter ro save local in db fro path:", path);
   console.log("data to insert:", data);
   console.log("dataInFile to insert:", dataInFile);
   /*if (typeof (data.length) != "undefined") {
@@ -681,12 +688,12 @@ module.exports.post = function (req, res) {
   if (global.onLine) {
     httpPostJson(url, jsonData, function (err, data) {
       if (err)
-        globalService.handleError(res, err);
+        globalService.sendError(res, err.statusCode, err.message);
 
       globalService.sendJsonResponse(res, 200, data);
     });
   } else {
-    log.error("you aree offline  you can't post");
+    log.error("you are offline  you can't post");
     showDialogBox("info", "Share.place", "sorry you are offline you can't do this");
   }
   /*
@@ -827,19 +834,6 @@ let lockFile = function (req, url, jsonToPut, callBack) {
       return callBack(err);
     }
 
-    // return callBack(null, toReturn);
-    /*downloadFileInDisc(url + '/download', mode, (err, outOfSync, pathToFile) => {
-     if(err)
-     return callBack(err);
-
-     log.trace("outOfSync", outOfSync);
-     if (!outOfSync) {
-     fs.chmodSync(pathToFile, '777');
-     callBack(null, toReturn);
-     } else {
-     callBack(null, toReturn);
-     }
-     });*/
     let userId = req.user._id;
     let placeId = req.params.placeId;
     let folderId = req.params.folderId;
@@ -850,12 +844,12 @@ let lockFile = function (req, url, jsonToPut, callBack) {
     saveInLocalDb(toReturn, dataFromFile, pathToDataFile, (err) => {
       if (err)
         return callBack(err)
-     /* let urlFileInfo = "/place/"+placeId+"/folder/"+folderId+"/fileInfo";
-      getDataFromServer (req, null , null, null, urlFileInfo, (err, fileInfoFromServer)=>{
-        let pathDbFileInfo = path.join(constants.dataDir, userId , 'place', placeId, 'folder', folderId, 'fileInfo/data.json');
-        let dataDbFileInfo = jsonfile.readFileSync(pathDbFileInfo);
-        saveInLocalDb(fileInfoFromServer, dataDbFileInfo, pathDbFileInfo)
-      })*/
+      /* let urlFileInfo = "/place/"+placeId+"/folder/"+folderId+"/fileInfo";
+       getDataFromServer (req, null , null, null, urlFileInfo, (err, fileInfoFromServer)=>{
+       let pathDbFileInfo = path.join(constants.dataDir, userId , 'place', placeId, 'folder', folderId, 'fileInfo/data.json');
+       let dataDbFileInfo = jsonfile.readFileSync(pathDbFileInfo);
+       saveInLocalDb(fileInfoFromServer, dataDbFileInfo, pathDbFileInfo)
+       })*/
       return callBack(err, toReturn);
     })
   });
@@ -868,7 +862,7 @@ let unlockFile = function (url, fileId, jsonToPut, callBack) {
 
   let pathDbDataPlace = path.join(constants.dataDir, userId, url.substring(0, nth_occurrence(url, '/', 2)), 'data.json');
   let pathDbDataFolder = path.join(constants.dataDir, userId, url.substring(0, nth_occurrence(url, '/', 4)), 'data.json');
-  let urlListeFile = "/place/" + placeId + "/folder/" + folderId + "/file/"+fileId;
+  let urlListeFile = "/place/" + placeId + "/folder/" + folderId + "/file/" + fileId;
   console.log("file ID", fileId);
   let pathDbDataFile = path.join(constants.dataDir, userId, 'place', placeId, 'folder', folderId, 'file', fileId, 'data.json');
 
@@ -920,7 +914,7 @@ let unlockFile = function (url, fileId, jsonToPut, callBack) {
                 httpUploadNewVersion(urlToUploadFile, pathToFile, fileName, contentType, (err, dataReceivedAfterUpload) => {
                   if (err) {
                     log.error("error to upload the new version:", err.message)
-                    showDialogBox("error", "share.place", "sorry, an error occured while uploading the file :'"+fileName+"' please retry later" )
+                    showDialogBox("error", "share.place", "sorry, an error occured while uploading the file :'" + fileName + "' please retry later")
                   }
 
                 });
@@ -961,14 +955,29 @@ let httpPostJson = function (url, jsonData, callBack) {
     }
 
     // Print out the response body
-    let data;
-    if (typeof (body) != "object") {
-      data = JSON.parse(body).data
+
+    console.log("response post", response.statusCode)
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      let data;
+      if (typeof (body) != "object") {
+        data = JSON.parse(body).data
+      } else {
+        data = body.data;
+      }
+      return callBack(null, data);
     } else {
-      data = body.data;
+
+      let err = new Error();
+      if (typeof (body) != "object") {
+        err.message = JSON.parse(body).error;
+      } else {
+        err.message = body.error;
+      }
+      err.statusCode = response.statusCode;
+      console.log("err post", err)
+      return callBack(err);
     }
 
-    callBack(null, data);
 
   })
 }
@@ -1005,15 +1014,15 @@ let httpPutJson = function (url, jsonData, callBack) {
       } else {
         data = body.data;
       }
-
-      console.log("response.statusCode", data)
       return callBack(null, data);
     } else {
       let err = new Error();
       if (typeof (body) != "object") {
-        err.message = JSON.parse(body).error
+        err.message = JSON.parse(body).error;
+        err.name = JSON.parse(body).errorDetail;
       } else {
         err.message = body.error;
+        err.name = body.errorDetail;
       }
 
       return callBack(err);
@@ -1098,4 +1107,34 @@ var showDialogBox = function (type, title, message) {
     return global.mainWindow.webContents.stop();
   })
 }
+var showProgressBar = function (progress) {
+
+  //Mode for the progress bar. Can be none, normal, indeterminate, error, or paused
+  global.mainWindow.setProgressBar(progress, {mode: "normal"}) // Progress bar works on all platforms
+}
+
+var showNotification = function (title, message) {
+  var eNotify = require('electron-notify');
+// Change config options
+  eNotify.setConfig({
+    width: 300,
+    height: 65,
+    defaultStyleContainer: {
+      backgroundColor: '#f0f0f0',
+      overflow: 'hidden',
+      padding: 8,
+      border: '1px solid #CCC',
+      fontFamily: 'Arial',
+      fontSize: 15,
+      position: 'relative',
+
+    },
+    appIcon: path.join(__dirname, '..', '..', 'static', 'images', 'iconElec.png'),
+    displayTime: 6000
+  });
+
+// Send simple notification
+  eNotify.notify({ title: title, text:message});
+}
+module.exports.proxyShowNotification = showNotification;
 module.exports.dialogBox = showDialogBox;

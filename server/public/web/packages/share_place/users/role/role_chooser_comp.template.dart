@@ -92,7 +92,6 @@ class ViewRoleChooser0 extends AppView<import3.RoleChooser> {
     _el_4 = doc.createElement('role-item');
     _el_4.setAttribute(shimCAttr,'');
     _el_0.append(_el_4);
-    _el_4.className = 'writer0';
     _appEl_4 = new ViewContainer(4,0,this,_el_4);
     var compView_4 = import11.viewFactory_RoleItem0(this.injector(4),_appEl_4);
     _RoleItem_4_3 = new import7.RoleItem(this.parentInjector.get(import12.PlaceService),this.parentInjector.get(import13.Router),this.parentInjector.get(import14.Environment));

@@ -243,5 +243,8 @@ put('/place/:placeId/folder/:folderId/file/:fileId/version/:version/approve', ct
 put('/place/:placeId/folder/:folderId/file/:fileId', ctrlProxy.put);
 put('/place/:placeId/folder/:folderId',ctrlProxy.putFolder);
 put('/user/close-postit', ctrlProxy.put);
+
+// notify
+get('/place/:placeId/notify', ctrlProxy.get);
 module.exports = router;
 

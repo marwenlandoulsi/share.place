@@ -37,7 +37,7 @@ class FolderComponent
   final Router _router;
   final Environment _environment;
   List<String> openTreeNodes = [];
-  Map<String, Folder> foldersbyId = {};
+  Map<String, Folder> foldersById = {};
 
   List<Folder> folders;
   bool adding;
@@ -49,7 +49,7 @@ class FolderComponent
   FolderComponent(this._placeService, this._router, this._environment);
 
   Future<Null> ngOnInit() async {
-    _environment.eventBus.getBus().listen((params) => handleEvent(params));
+    _environment.eventBus.getBus().listen((params) => show(params));
     if (_environment.selectedPlace != null)
       await getFolders(_environment.selectedPlace.id);
   }
@@ -60,12 +60,29 @@ class FolderComponent
 
   Stream<Map<PlaceParam, dynamic>> get treeEventBus => _treeEventBus.stream;
 
-  handleEvent(Map<PlaceParam, dynamic> params) async {
+  show(Map<PlaceParam, dynamic> params) async {
     var placeId = params[PlaceParam.placeId];
     if (placeId != null) {
       await getFolders(placeId);
-    } else if (params.containsKey(PlaceParam.ioFolderCreated) || params.containsKey(PlaceParam.ioFolderChanged)) {
+    } else if (params.containsKey(PlaceParam.fileId)) {
+      //update notification count on subject selection (the notification dies)
+      getFolders(_environment.selectedPlace.id);
+    } else if (params.containsKey(PlaceParam.ioFolderCreated) ||
+        params.containsKey(PlaceParam.ioFolderChanged)
+    ) {
+      placeId = _environment.selectedPlace.id;
       await getFolders(placeId);
+    } else     if (params.containsKey(PlaceParam.ioUserInvited)) {
+      print("user was invited to folder : ${params[PlaceParam
+          .ioUserInvited]['folderId']}");
+      dynamic folder = params[PlaceParam.ioUserInvited];
+      var placeId = folder['placeId'];
+      if( selectedFolder.placeId == placeId ) {
+        await getFolders(placeId);
+        _environment.addMessage(
+            "You were just invited to the folder ${foldersById[folder['folderId']]}");
+
+      }
     }
 
     if (renaming != null || adding) {
@@ -82,32 +99,68 @@ class FolderComponent
     }
   }
 
+  /**
+  void refreshNotificationsInTreeThread(Folder folder) {
+    folder.notifications =
+        _environment.getNotificationCount(folder.id);
+
+    if( folder.parentId == null)
+      return;
+    Folder parent = foldersById[folder.parentId];
+    if( parent == null )
+      return;
+    refreshNotificationsInTreeThread(parent);
+  }*/
+
   Future getFolders(String placeId) async {
     if (placeId != null) {
       List<Folder> folderList = await _placeService.getFolders(placeId);
-      folders = asTree(folderList);
+      Map<String, dynamic> notifications = await _placeService
+          .getNotifications();
+      folders = asTree(folderList, notifications);
     }
   }
 
-  List<Folder> asTree(List<Folder> folderList) {
-    foldersbyId.clear();
-    List<Folder> toReturn = [];
+  List<Folder> asTree(List<Folder> folderList,
+      Map<String, dynamic> notifications) {
+    print("notifs : ${notifications.toString()}");
+    foldersById.clear();
+    List<Folder> rootNodes = [];
     for (Folder folder in folderList) {
+      //print( "notifs : ${notifications[folder.id]}" );
+      folder.notifications = _environment.getNotificationCount(folder.id);
+
       if (folder.parentId == null) {
-        toReturn.add(folder);
-        print("found root: ${folder.name}");
+        rootNodes.add(folder);
+        //print("found root: ${folder.name}");
       }
-      foldersbyId[folder.id] = folder;
+      foldersById[folder.id] = folder;
     }
 
     for (Folder folder in folderList) {
       if (folder.parentId != null) {
-        foldersbyId[folder.parentId].addChild(folder);
-        print("found child of : ${foldersbyId[folder.parentId]} : ${folder
-            .name}");
+        var parent = foldersById[folder.parentId];
+
+        if (parent == null) {
+          // the user might be invited to a folder without seeing the parent folder
+          rootNodes.add(folder);
+        } else {
+          parent.hasChildrenNotifications = parent.hasChildrenNotifications || folder.notifications>0 || folder.hasChildrenNotifications;
+
+          parent.addChild(folder);
+        }
       }
     }
-    return toReturn;
+
+    for (Folder folder in folderList) {
+      for( Folder child in folder.children ) {
+        if( child.hasChildrenNotifications ) {
+          folder.hasChildrenNotifications = true;
+          break;
+        }
+      }
+    }
+    return rootNodes;
   }
 
   Future<Null> gotoFolder(Folder folder) {
@@ -120,6 +173,8 @@ class FolderComponent
   Place get selectedPlace => _environment.selectedPlace;
 
   Folder get selectedFolder => _environment.selectedFolder;
+
+  Map<String, dynamic> get notifications => _environment.notifications;
 
   void set selectedFolder(Folder folder) {
     _environment.selectedFolder = folder;
@@ -172,7 +227,7 @@ class FolderComponent
       return;
 
     openTreeNodes.add(parentId);
-    openHierarchy(foldersbyId[parentId]);
+    openHierarchy(foldersById[parentId]);
   }
 
   void onSelect(Folder folder) {
@@ -183,9 +238,13 @@ class FolderComponent
     renaming = null;
   }
 
+  User get connectedUser => _environment.connectedUser;
+
   bool get canCreateSubfolder {
-    if( _environment.selectedFolder == null)
-      return true;
-    _environment.connectedUserHasGreaterRole(RoleEnum.writer, _environment.selectedFolder);
+    if (_environment.selectedFolder == null)
+      return false;
+
+    return _environment.connectedUserHasGreaterRole(
+        RoleEnum.writer, _environment.selectedFolder);
   }
 }

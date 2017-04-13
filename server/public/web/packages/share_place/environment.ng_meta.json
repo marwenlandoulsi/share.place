@@ -146,13 +146,6 @@
           "isValue": false
         }
       ]
-    },
-    "userHasGreaterRole": {
-      "class": "Identifier",
-      "name": "userHasGreaterRole",
-      "moduleUrl": "asset:share_place/lib/environment.dart",
-      "prefix": null,
-      "value": null
     }
   },
   "alias": {}

@@ -141,14 +141,40 @@ router.get('/gridfs/file/:fileId', (req, res) => {
   let pathToUserPicture = path.join(constants.dataDir, url, 'logo-profile.png');
   let pathToUserPictureDir = path.join(constants.dataDir, url);
   if (global.onLine) {
-    downloadFile(url, pathToUserPictureDir, pathToUserPicture, (err, pathPicture) => {
-      if (err)
-        globalService.sendError(res, 401, err.message)
+      downloadFile(url, pathToUserPictureDir, pathToUserPicture, (err, pathPicture) => {
+        if (err)
+          globalService.sendError(res, 401, err.message)
 
-      return readFile(res, pathPicture);
-    })
+        return readFile(res, pathPicture);
+      })
   } else {
+    if(fs.existsSync(pathToUserPicture))
+      return readFile(res, pathToUserPicture);
+
     proxy.dialogBox("info", "Share.place", "sorry you are offline you c")
+  }
+});
+router.get('/gridfs/file/', (req, res) => {
+
+  let url = req.url;
+  let pathToUserPicture = path.join(constants.dataDir, url, 'logo-profile.png');
+  let pathToUserPictureDir = path.join(constants.dataDir, url);
+  if (global.onLine) {
+    if(!fs.existsSync(pathToUserPicture)){
+      downloadFile(url, pathToUserPictureDir, pathToUserPicture, (err, pathPicture) => {
+        if (err)
+          globalService.sendError(res, 401, err.message)
+
+        return readFile(res, pathPicture);
+      })
+    }
+    return readFile(res, pathToUserPicture);
+
+  } else {
+    if(!fs.existsSync(pathToUserPicture)){
+      proxy.dialogBox("info", "Share.place", "sorry you are offline you c")
+    }
+    return readFile(res, pathToUserPicture);
   }
 });
 // post picture servise not used yet

@@ -46,9 +46,9 @@
           [class.approved]="subject.approved != null"
           [class.locked]="subject.lockOwner != null"
           [class.ownAction]="subject.lockOwner?.userId == connectedUser.id"
+          [class.unread]="wasRead(subject)"
       >
-        <div *ngIf="renaming == null || renaming?.id != subject?.id" class="subject"
-        >
+        <div *ngIf="renaming == null || renaming?.id != subject?.id" class="subject">
           <div class="thumb"><img
               src="/sp/place/{{selectedPlace.id}}/folder/{{selectedFolder?.id}}/file/{{subject.fileId}}/version/{{subject.v}}/thumb">
           </div>

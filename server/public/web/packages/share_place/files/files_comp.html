@@ -4,9 +4,7 @@
     <div class="title">File
       <div class="icons"></div>
     </div>
-    <div *ngIf="isUploading" class="isUploading">
-      <div class="progress"></div>
-    </div>
+
 
     <div class="newTopic">
       <div class="newComment newTopicBlock">
@@ -256,5 +254,11 @@
         </div>
       </li>
     </ul>
+
+
+    <div *ngIf="isUploading" class="isUploading">
+      <div class="progress"></div>
+    </div>
+
   </div>
 </div>
