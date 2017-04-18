@@ -64,23 +64,19 @@ class FolderComponent
     var placeId = params[PlaceParam.placeId];
     if (placeId != null) {
       await getFolders(placeId);
-    } else if (params.containsKey(PlaceParam.fileId)) {
-      //update notification count on subject selection (the notification dies)
-      getFolders(_environment.selectedPlace.id);
-    } else if (params.containsKey(PlaceParam.ioFolderCreated) ||
-        params.containsKey(PlaceParam.ioFolderChanged)
+    } else if (params.containsKey(PlaceParam.treatFolderChanged) ||
+        params.containsKey(PlaceParam.treatFolderCreated)
     ) {
       placeId = _environment.selectedPlace.id;
       await getFolders(placeId);
-    } else     if (params.containsKey(PlaceParam.ioUserInvited)) {
-      print("user was invited to folder : ${params[PlaceParam
-          .ioUserInvited]['folderId']}");
-      dynamic folder = params[PlaceParam.ioUserInvited];
-      var placeId = folder['placeId'];
-      if( selectedFolder.placeId == placeId ) {
+    } else if (params.containsKey(PlaceParam.treatUserInvite)) {
+      print("User invite received : ${params[PlaceParam.treatUserInvite]}");
+      dynamic inviteDetails = params[PlaceParam.treatUserInvite];
+      var placeId = inviteDetails['placeId'];
+      var emitterId = inviteDetails['emitterId'];
+      if( connectedUser.id != emitterId && selectedFolder.placeId == placeId ) {
         await getFolders(placeId);
-        _environment.addMessage(
-            "You were just invited to the folder ${foldersById[folder['folderId']]}");
+        _environment.addMessage("You were just invited to the folder ${foldersById[inviteDetails['folderId']]}");
 
       }
     }
@@ -115,8 +111,6 @@ class FolderComponent
   Future getFolders(String placeId) async {
     if (placeId != null) {
       List<Folder> folderList = await _placeService.getFolders(placeId);
-      Map<String, dynamic> notifications = await _placeService
-          .getNotifications();
       folders = asTree(folderList, notifications);
     }
   }

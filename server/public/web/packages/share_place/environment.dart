@@ -1,7 +1,6 @@
 import 'package:angular2/core.dart';
 import 'dart:async';
 
-
 import 'event_bus.dart';
 import 'folder.dart';
 import 'place.dart';
@@ -16,8 +15,7 @@ import 'dart:html';
 @Injectable()
 class Environment {
 
-  EventBus eventBus;
-
+  final EventBus eventBus;
 
   Place _place;
   Folder _folder;
@@ -38,9 +36,14 @@ class Environment {
 
   Environment(this.eventBus) {
     socketIoClient = new SocketIoClient(eventBus);
+    window.on['sp'].listen((event) {
+      print('event: '+ event);
+      fireEvent(PlaceParam.fileId, selectedFile.id);
+    });
     //window.onOnline.listen((Event e) => online = true);
     //window.onOffline.listen((Event e) => online = false);
   }
+
 
   Place get selectedPlace => _place;
 
@@ -164,11 +167,17 @@ class Environment {
 
 
   int getNotificationCount(String folderId) {
+    if( notifications == null )
+      return -1;
+
     var folderNotifs = notifications[folderId];
     return folderNotifs != null ? folderNotifs['count'] : 0;
   }
 
   List<String> getNotificationFileIdList(String folderId) {
+    if( notifications == null )
+      return [];
+
     var folderNotifs = notifications[folderId];
     return folderNotifs != null ? folderNotifs['fileIdList'] : [];
   }
@@ -195,8 +204,11 @@ enum PlaceParam {
 
   ioFolderUserConnected,
   ioFolderCreated,
+  treatFolderCreated,
   ioFolderChanged,
+  treatFolderChanged,
   ioUserInvited,
+  treatUserInvite,
   ioSubjectCreated,
   ioSubjectChanged, //user invite, rename, new active user (need to refresh from db)
   ioFileActionCreated,

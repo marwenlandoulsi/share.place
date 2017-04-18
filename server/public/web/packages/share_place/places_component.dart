@@ -54,7 +54,7 @@ class PlacesComponent implements OnInit {
       Place toSelect = await _placeService.createPlace(placeName);
       await loadPlaces();
       onSelect(toSelect);
-    } catch(ex) {
+    } catch (ex) {
       print(ex);
     }
   }
@@ -76,17 +76,12 @@ class PlacesComponent implements OnInit {
     if (params[PlaceParam.login]) {
       loadPlaces();
     }
-    if (params.containsKey(PlaceParam.ioUserInvited)) {
-      print("user was invited to folder : ${params[PlaceParam
-          .ioUserInvited]['folderId']}");
-      dynamic folder = params[PlaceParam.ioUserInvited];
-      var newPlaceId = folder['placeId'];
-      if (!hasPlace(newPlaceId)) {
+    if (params.containsKey(PlaceParam.treatUserInvite)) {
+      dynamic inviteDetails = params[PlaceParam.treatUserInvite];
+
+      var invitedToPlaceId = inviteDetails['placeId'];
+      if (!hasPlace(invitedToPlaceId)) {
         await loadPlaces();
-        Place added = places.firstWhere((Place place) =>
-        place.id == newPlaceId);
-        _environment.addMessage(
-            "You've just been invited to the place ${added.name}");
       }
     }
     if (adding) {

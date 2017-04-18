@@ -16,6 +16,7 @@ import 'package:share_place/files/file_action.dart';
 import 'package:share_place/news/news_event.dart';
 import 'package:share_place/users/user.dart';
 import 'package:share_place/common/util.dart';
+import 'app_context_manager.dart';
 
 
 @Injectable()
@@ -29,8 +30,11 @@ class PlaceService {
 //  static const baseUrl = 'http://localhost:3000'; // URL to web API
   final Client _http;
   final Environment _environment;
+  AppContextManager _appContextManager;
 
-  PlaceService(this._http, this._environment);
+  PlaceService(this._http, this._environment) {
+    _appContextManager = new AppContextManager(_environment, this);
+  }
 
   dynamic _extractData(Response resp) {
     _environment.serverError = '';
@@ -57,7 +61,7 @@ class PlaceService {
       throw _environment.serverError;
     } else {
       dynamic errorMessage = respBody['error'];
-      html.window.alert(errorMessage);
+      _environment.serverError = errorMessage;
       return null;
     }
 
@@ -112,7 +116,8 @@ class PlaceService {
     Map<String, dynamic> response = await postFileForm(form, postUrl);
     return new User.fromJson(response);
   }
-  Future<User> postImage(html.FormData form ) async {
+
+  Future<User> postImage(html.FormData form) async {
     print("posting file form $form");
     Map<String, dynamic> response = await postFileForm(form, "/auth/signup");
     return new User.fromJson(response);
@@ -120,6 +125,8 @@ class PlaceService {
 
   Future<Map<String, dynamic>> postFileForm(html.FormData form,
       String postUrl) async {
+
+
     html.HttpRequest response = await html.HttpRequest
         .request(
         postUrl,
@@ -127,11 +134,12 @@ class PlaceService {
         sendData: form).catchError((dynamic ex) {
       html.HttpRequest errorResponse = ex.target;
       int status = errorResponse.status;
+      _environment.serverError = '';
       if (status == 401) {
         html.window.location.assign(conf.baseUrl);
       } else {
         dynamic errorMessage = JSON.decode(errorResponse.responseText)['error'];
-        html.window.alert(errorMessage);
+        _environment.serverError = errorMessage;
       }
       return null;
     });
@@ -377,13 +385,14 @@ class PlaceService {
     }
   }
 
-  Future<Map<String, dynamic>> getNotifications() async {
+  Future<Map<String, dynamic>> getNotifications({String placeId}) async {
     try {
       final response = await get(
-          "/sp/place/${_environment.selectedPlace.id}/notify",
+          "/sp/place/${placeId != null ? placeId : _environment.selectedPlace
+              .id}/notify",
           headers: _headers);
       _environment.notifications = _extractData(response);
-      return  _environment.notifications;
+      return _environment.notifications;
     } catch (e) {
       throw _handleError(e);
     }
@@ -512,7 +521,7 @@ class PlaceService {
   }
 
   Future<User> saveProfile(User user, {bool mailChanged,
-    String newPass }) async {
+  String newPass }) async {
     var userBody = {};
     setIfNotEmpty(userBody, "name", user.name);
     setIfNotEmpty(userBody, "skype", user.skype);
@@ -521,7 +530,7 @@ class PlaceService {
       setIfNotEmpty(userBody, "email", user.email);
       setIfNotEmpty(userBody, "passwordNew", newPass);
     }
-    print( "############## ${userBody.toString()}" );
+    print("############## ${userBody.toString()}");
 
     final response = await post(
         "/auth/profile/edit", body: userBody);

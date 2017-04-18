@@ -4,7 +4,9 @@
     <div class="title">File
       <div class="icons"></div>
     </div>
-
+    <div *ngIf="isUploading" class="isUploading">
+    <div class="progress" ></div>
+    </div>
 
     <div class="newTopic">
       <div class="newComment newTopicBlock">
@@ -28,23 +30,43 @@
           <div class="latestVersionComments">
             <div class="versions">
               <ul>
+
+
                 <li *ngFor="let versionItem of selectedFile.orderedVersions; let versionIndex = index"
                     class="liVersion">
 
+
+
                   <div class="versionTitle">
+
                     <div class="versionTitleNumber">Version {{versionItem?.v}}</div>
+
                     <div class="toggleVersion fa"
                          [ngClass]="{'fa-angle-down': isCommentsOpen(selectedFile.id, versionItem.v), 'fa-angle-up': !isCommentsOpen(selectedFile.id, versionItem.v)}"
-                         (click)="switchCommentOpen(selectedFile.id, versionItem.v)"></div>
+                         (click)="switchCommentOpen(selectedFile.id, versionItem.v)">
+                    </div>
                   </div>
 
                   <div class="version">
+
+
+                    <!--<div *ngIf="selectedFile.orderedVersions.length == versionItem.v ">-->
+                      <!--<div *ngIf="isUploading" class="isUploading">-->
+                        <!--<div class="progress"></div>-->
+                      <!--</div>-->
+                    <!--</div>-->
+
+
+
+
                     <div *ngIf="isCommentsOpen(selectedFile.id, versionItem.v)" class="versionComments">
                       <ul class="actionList">
+
                         <li *ngFor="let actionItem of getActionsForVersion(versionItem); let actionIndex = index"
                             class="actionLiElem"
                             [class.ownAction]="isActionAuthor( actionItem )"
                             [class.isActionOn]="isActionOn( actionItem )">
+
 
                           <!--comment-->
                           <div *ngIf="actionItem.action.actionType == 'comment'" class="actionBlock commentBlock">
@@ -195,7 +217,8 @@
                                 <material-button (click)="approve(versionItem)"
                                                  *ngIf="versionItem.approved == null && isOwner"
                                                  class="menuItemVers">
-                                  <span class="spanVers"> <i class="zmdi zmdi-check-circle approve"></i> </span> Approve
+                                  <span class="spanVers"> <i class="zmdi zmdi-check-circle approve"></i> </span>
+                                  Approve
                                 </material-button>
                                 <material-button (click)="unapprove(versionItem)"
                                                  *ngIf="versionItem.approved != null && isOwner && connectedUser.id == versionItem?.approved?.userId"
@@ -255,10 +278,6 @@
       </li>
     </ul>
 
-
-    <div *ngIf="isUploading" class="isUploading">
-      <div class="progress"></div>
-    </div>
 
   </div>
 </div>

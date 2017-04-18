@@ -55,8 +55,8 @@ router.get('/logout', function (req, res) {
 
   global.mainWindow.webContents.session.clearStorageData([{
 
-    storages:["clear"]
-  }, ()=>{
+    storages: ["clear"]
+  }, () => {
 
     console.log("done delete");
 
@@ -141,14 +141,14 @@ router.get('/gridfs/file/:fileId', (req, res) => {
   let pathToUserPicture = path.join(constants.dataDir, url, 'logo-profile.png');
   let pathToUserPictureDir = path.join(constants.dataDir, url);
   if (global.onLine) {
-      downloadFile(url, pathToUserPictureDir, pathToUserPicture, (err, pathPicture) => {
-        if (err)
-          globalService.sendError(res, 401, err.message)
+    downloadFile(url, pathToUserPictureDir, pathToUserPicture, (err, pathPicture) => {
+      if (err)
+        globalService.sendError(res, 401, err.message)
 
-        return readFile(res, pathPicture);
-      })
+      return readFile(res, pathPicture);
+    })
   } else {
-    if(fs.existsSync(pathToUserPicture))
+    if (fs.existsSync(pathToUserPicture))
       return readFile(res, pathToUserPicture);
 
     proxy.dialogBox("info", "Share.place", "sorry you are offline you c")
@@ -160,7 +160,7 @@ router.get('/gridfs/file/', (req, res) => {
   let pathToUserPicture = path.join(constants.dataDir, url, 'logo-profile.png');
   let pathToUserPictureDir = path.join(constants.dataDir, url);
   if (global.onLine) {
-    if(!fs.existsSync(pathToUserPicture)){
+    if (!fs.existsSync(pathToUserPicture)) {
       downloadFile(url, pathToUserPictureDir, pathToUserPicture, (err, pathPicture) => {
         if (err)
           globalService.sendError(res, 401, err.message)
@@ -171,7 +171,7 @@ router.get('/gridfs/file/', (req, res) => {
     return readFile(res, pathToUserPicture);
 
   } else {
-    if(!fs.existsSync(pathToUserPicture)){
+    if (!fs.existsSync(pathToUserPicture)) {
       proxy.dialogBox("info", "Share.place", "sorry you are offline you c")
     }
     return readFile(res, pathToUserPicture);
@@ -200,7 +200,7 @@ router.get('/user/photo/:size', function (req, res) {
   var pathToUserPictureDir = path.join(constants.dataDir, url);
 
   if (global.onLine) {
-    if(global.cookieReceived){
+    if (global.cookieReceived) {
       globalService.checkPathOrCreateSync(pathToUserPictureDir, pathToUserPicture)
 
       var file = fs.createWriteStream(pathToUserPicture);
@@ -221,7 +221,7 @@ router.get('/user/photo/:size', function (req, res) {
       }).on('error', function (e) {
         globalService.sendError(res, 450, "error to download img")
       });
-    }else{
+    } else {
       readFile(res, constants.defaultPicture);
     }
 
@@ -295,7 +295,22 @@ router.post('/forgot', function (req, res, next) {
 
 })
 
+router.post('/forgot_pass',  (req, res, next) => {
 
+  if (global.onLine) {
+    forgotPassword(req, res, (err, data) => {
+      if (err) {
+        log.error("ezrzerzer",  err.message)
+        globalService.sendError(res, 405, err.message);
+      }
+      log.error("sqsss", data)
+      globalService.sendJsonResponse(res, 201, "", data);
+
+    })
+  } else {
+    proxy.dialogBox("info", "Share.place", "sorry you are offline you can't reset your password")
+  }
+})
 // to read user data
 var readUserData = function (req, user) {
   user.local.email = req.body.email
@@ -513,4 +528,41 @@ var editProfile = function (req, res, cb) {
 
 
 }
+var forgotPassword = function (req, res, cb) {
+
+  // Configure the request
+  let url = req.url;
+
+// Configure the request
+
+  let options = {
+    url: constants.urlLoginProxy + url,
+    form: req.body
+  }
+  request.post(options, function (error, response, body) {
+
+    if (error) {
+      log.error("error to reset password")
+      return cb(error)
+    }
+
+
+    if (!error && (response.statusCode == 200 || response.statusCode == 201)) {
+      // Print out the response body
+      console.log('ddddddd', body)
+      let data = JSON.parse(body).msg;
+      return cb(null, data);
+    } else {
+
+      var err = new Error();
+      err.status = response.statusCode;
+      err.message = JSON.parse(body).error;
+      log.error("error to reset password", err.message);
+      return cb(err);
+    }
+  })
+
+
+}
+
 module.exports = router

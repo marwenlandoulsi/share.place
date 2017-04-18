@@ -9,16 +9,20 @@ var fsExtra = require('fs-extra');
 var fs = require("fs");
 var mkdirp = require('mkdirp');
 module.exports = {
-  sendJsonResponse: function (res, statusCode, content) {
-    res.status(statusCode);
-    res.json({data: content});
-    // res.send();
+  sendJsonResponse: function (res, status, content, message) {
+    res.status(status);
+    var responseJson = {data: content};
+    if (message)
+      responseJson.msg = message;
+
+    res.json(responseJson);
   },
-  sendError: function (res, statusCode, errorMessage) {
+  sendError: function (res, statusCode, errorMessage, errorDetail) {
     var err = new Error();
-    err.status = statusCode;
-    err.message = errorMessage;
-    this.handleError(res, err);
+    res.status(statusCode);
+    let jsonRes = {error: errorMessage, errorDetail:errorDetail}
+    res.json(jsonRes);
+    log.error(jsonRes);
   },
   handleError: function (res, err) {
     res.status(err.status);

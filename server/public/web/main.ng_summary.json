@@ -29,10 +29,6 @@
       {
         "1": "package:http/http.dart",
         "5": false
-      },
-      {
-        "1": "package:share_place/common/net/socket.io.dart",
-        "5": false
       }
     ],
     "6": "main.dart"

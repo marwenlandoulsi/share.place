@@ -233,10 +233,10 @@ module.exports.getFile = function (req, res) {
             showDialogBox("error", "share.place", "failed to download/open the file");
 
           let isOpened = openFile(res, dataFile, pathToFile);
-          if(isOpened)
+          if (isOpened)
             showNotification("File opened", dataFile.name);
           else
-            showNotification("File not opened", "sorry we can't open the file '"+dataFile.name+"'");
+            showNotification("File not opened", "sorry we can't open the file '" + dataFile.name + "'");
 
           global.mainWindow.webContents.stop();
 
@@ -254,10 +254,10 @@ module.exports.getFile = function (req, res) {
                 showDialogBox("error", "share.place", "failed to download/open the file");
 
               let isOpened = openFile(res, dataFile, pathToFile);
-              if(isOpened)
+              if (isOpened)
                 showNotification("File opened", dataFile.name);
               else
-                showNotification("File not opened", "sorry we can't open the file '"+dataFile.name+"'");
+                showNotification("File not opened", "sorry we can't open the file '" + dataFile.name + "'");
 
               return global.mainWindow.webContents.stop();
             });
@@ -265,10 +265,10 @@ module.exports.getFile = function (req, res) {
             fs.chmodSync(pathToFile, modeFile);
             let isOpened = openFile(res, dataFile, pathToFile);
 
-            if(isOpened)
+            if (isOpened)
               showNotification("File opened", dataFile.name)
             else
-              showNotification("File not opened", "sorry we can't open the file '"+dataFile.name+"'")
+              showNotification("File not opened", "sorry we can't open the file '" + dataFile.name + "'")
 
             return global.mainWindow.webContents.stop();
           }
@@ -282,10 +282,10 @@ module.exports.getFile = function (req, res) {
       fs.chmodSync(pathToFile, modeFile);
       let isOpened = openFile(res, dataFile, pathToFile);
 
-      if(isOpened)
+      if (isOpened)
         showNotification("File opened", dataFile.name)
       else
-        showNotification("File not opened", "sorry we can't open the file '"+dataFile.name+"'")
+        showNotification("File not opened", "sorry we can't open the file '" + dataFile.name + "'")
 
       return global.mainWindow.webContents.stop();
     }
@@ -747,7 +747,17 @@ module.exports.put = function (req, res) {
 
           log.info("pathToFile:", pathToFile);
           fs.chmodSync(pathToFile, '0555');
+          let event = {
+            refresh: {
+              fileId: fileId,
+              type: "file"
+            }
+          }
+          event = JSON.stringify(event);
+          global.mainWindow.webContents.executeJavaScript(
 
+              `dispatchWindowEvent(`+event+`);`
+          );
           globalService.sendJsonResponse(res, 200, toReturn);
 
         });
@@ -1134,7 +1144,7 @@ var showNotification = function (title, message) {
   });
 
 // Send simple notification
-  eNotify.notify({ title: title, text:message});
+  eNotify.notify({title: title, text: message});
 }
 module.exports.proxyShowNotification = showNotification;
 module.exports.dialogBox = showDialogBox;

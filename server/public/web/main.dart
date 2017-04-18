@@ -5,8 +5,6 @@ import 'package:share_place/event_bus.dart';
 import 'package:share_place/environment.dart';
 import 'package:share_place/browser_data_service.dart';
 import 'package:http/http.dart';
-
-import 'package:share_place/common/net/socket.io.dart';
 /**
  * See those subjects :
  *  - https://angular.io/docs/ts/latest/guide/router.html#!#base-href

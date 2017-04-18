@@ -17,14 +17,12 @@ import 'package:share_place/event_bus.dart';
 import 'package:share_place/environment.dart';
 import 'package:share_place/browser_data_service.dart';
 import 'package:http/http.dart';
-import 'package:share_place/common/net/socket.io.dart';
 import 'package:angular2/core.template.dart' as i0;
 import 'package:angular2/platform/browser_static.template.dart' as i1;
 import 'package:share_place/app_component.template.dart' as i2;
 import 'package:share_place/event_bus.template.dart' as i3;
 import 'package:share_place/environment.template.dart' as i4;
 import 'package:share_place/browser_data_service.template.dart' as i5;
-import 'package:share_place/common/net/socket.io.template.dart' as i6;
 export 'main.dart';
 
 var _visited = false;
@@ -36,5 +34,4 @@ i2.initReflector();
 i3.initReflector();
 i4.initReflector();
 i5.initReflector();
-i6.initReflector();
 }

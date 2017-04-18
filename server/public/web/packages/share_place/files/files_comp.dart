@@ -72,9 +72,6 @@ class FilesComp implements OnInit, PopupParent {
     } else if (params[PlaceParam.placeId] != null) {
       selectedFile = null;
     } else if (params.containsKey(PlaceParam.ioFileActionCreated)) {
-      //FIXME performance : should not relaod all files, but only update the selected one
-      if (selectedPlace != null && selectedFolder != null &&
-          selectedSubject != null)
         await reloadFile();
     }
   }
@@ -105,9 +102,12 @@ class FilesComp implements OnInit, PopupParent {
   }
 
   Future<CloudFile> reloadFile() async {
-    selectedFile = await getFile(
-        selectedPlace.id, selectedFolder.id,
-        selectedSubject.fileId);
+    if (selectedPlace != null && selectedFolder != null &&
+        selectedSubject != null) {
+      selectedFile = await getFile(
+          selectedPlace.id, selectedFolder.id,
+          selectedSubject.fileId);
+    }
   }
 
   void detectLastLockAction() {
@@ -312,9 +312,9 @@ class FilesComp implements OnInit, PopupParent {
           RoleEnum.owner, _environment.selectedFolder);
 
   void openFileDialog(int version) {
-    if( !isFile )
+    if (!isFile)
       return;
-    if( !isWriter ) {
+    if (!isWriter) {
       _environment.addMessage("You can open this file only in read mode");
       openFileLink(version);
       return;
@@ -327,7 +327,8 @@ class FilesComp implements OnInit, PopupParent {
       openFileVersion = version;
       return;
     }
-    _environment.addMessage("File is locked by ${selectedFile.lockOwner.userName}, you can open it only in read mode");
+    _environment.addMessage("File is locked by ${selectedFile.lockOwner
+        .userName}, you can open it only in read mode");
     openFileLink(version);
   }
 

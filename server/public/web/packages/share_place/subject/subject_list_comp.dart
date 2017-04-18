@@ -70,11 +70,11 @@ class SubjectListComponent
     } else if (fileId != null) { // file changed
       await reloadSubjects();
     } else if (
-        params.containsKey(PlaceParam.ioSubjectCreated) ||
+    params.containsKey(PlaceParam.ioSubjectCreated) ||
         params.containsKey(PlaceParam.ioSubjectChanged)
     ) {
       await reloadSubjects();
-    } else if(params.containsKey(PlaceParam.ioUserInvited)) {
+    } else if (params.containsKey(PlaceParam.treatUserInvite)) {
       await _placeService.loadConnectedUser();
     }
 
@@ -93,7 +93,8 @@ class SubjectListComponent
   }
 
   Future reloadSubjects() async {
-    if( _environment.selectedPlace == null || _environment.selectedFolder == null )
+    if (_environment.selectedPlace == null ||
+        _environment.selectedFolder == null)
       return;
 
     await getSubjects(
@@ -162,7 +163,16 @@ class SubjectListComponent
     _environment.selectedSubject = subject;
   }
 
+  bool get iSOwner =>
+      _environment.connectedUserHasGreaterRole(
+          RoleEnum.owner, _environment.selectedFolder);
+
   void add() {
+    if (!iSOwner) {
+       String errorMessage = " Viewer Can't invite new users";
+      _environment.serverError = errorMessage;
+      return;
+    }
     if (_environment.selectedFolder != null)
       _environment.inviteUsersDialog = true;
     _environment.fireEvent(PlaceParam.addButtonPressed, "invitePeople");
@@ -245,6 +255,7 @@ class SubjectListComponent
 
   PopupParent get self => this;
 
-  bool wasRead(FileInfo subject) => _environment.hasNotification(subject.folderId, subject.fileId);
+  bool wasRead(FileInfo subject) =>
+      _environment.hasNotification(subject.folderId, subject.fileId);
 }
 

@@ -52,8 +52,7 @@
 </head>
 
 <body>
-<my-app>Loading...</my-app>
-
+<my-app><div style="text-align:center; line-height: 81;"><img style="margin: 0 auto" src="../images/loading.gif"></div> </my-app>
 <script src="../socketIo/socket.io.js"></script>
 <!--
 <script>
@@ -81,8 +80,40 @@
 <script type="application/javascript">
   document.getElementById('baseUrl').value = window.location.origin;
   //document.getElementById('loginUrl').value = "http://localhost:3000";
-  document.getElementById('loginUrl').value = "http://ec2-54-246-136-64.eu-west-1.compute.amazonaws.com";
+  document.getElementById('loginUrl').value = "http://app.share.place";
   document.getElementById('port').value = window.location.port;
+</script>
+<script type="application/javascript">
+  function dispatchWindowEvent(detail) {
+    console.log("dispatchWindowEvent", detail)
+    var event = document.createEvent('CustomEvent');
+    event.initCustomEvent('sp', false, false, detail);
+    window.dispatchEvent(event);
+  }
+  window.addEventListener('spB', function (e) {
+    console.log(e.detail);
+  });
+
+  //prevent file drop to open in window body
+  window.addEventListener("dragover",function(e){
+    var drop  = document.getElementById('fileForm');
+    e = e || event;
+    console.log('e.target.id' ,e.target.id) ;
+    // check wich element is our target
+    e.preventDefault();
+
+  },false);
+
+
+
+  window.addEventListener("drop",function(e){
+    var drop  = document.getElementById('fileForm');
+    e = e || event;
+    console.log('e.target' ,e.target.name) ;
+    if (e.target.type != "file") {  // check wich element is our target
+      e.preventDefault();
+    }
+  },false);
 </script>
 </body>
 

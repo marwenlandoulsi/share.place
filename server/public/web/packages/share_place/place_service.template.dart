@@ -26,6 +26,7 @@ import 'package:share_place/files/file_action.dart';
 import 'package:share_place/news/news_event.dart';
 import 'package:share_place/users/user.dart';
 import 'package:share_place/common/util.dart';
+import 'app_context_manager.dart';
 import 'package:angular2/core.template.dart' as i0;
 import 'app_config.template.dart' as i1;
 import 'place.template.dart' as i2;
@@ -37,6 +38,7 @@ import 'package:share_place/files/file_action.template.dart' as i7;
 import 'package:share_place/news/news_event.template.dart' as i8;
 import 'package:share_place/users/user.template.dart' as i9;
 import 'package:share_place/common/util.template.dart' as i10;
+import 'app_context_manager.template.dart' as i11;
 export 'place_service.dart';
 
 var _visited = false;
@@ -60,4 +62,5 @@ i7.initReflector();
 i8.initReflector();
 i9.initReflector();
 i10.initReflector();
+i11.initReflector();
 }

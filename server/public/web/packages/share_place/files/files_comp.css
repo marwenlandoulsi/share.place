@@ -109,6 +109,7 @@ ul {
   font-size: 14px;
   padding: 0 0.4em;
   transition: transform 1s ease;
+  position: relative;
 }
 
 .liVersion {
@@ -622,7 +623,6 @@ li.more {
   display: inline-block;
   padding: 0.5em 1em;
   margin-left: 0.5em;
-  font-family: roboto;
   cursor: pointer;
   float: right
 }

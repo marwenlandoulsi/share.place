@@ -31,24 +31,19 @@ li.unread {
 }
 
 li.subjectItem.selected,
-li.subjectItem:hover,
-li.subjectItem:focus {
+li.subjectItem:hover {
   background-color: #4690D1;
-  /*border-left :4px solid  #4690D1;*/
   color: white;
   text-decoration: none;
 }
 
-li.subjectItem.selected .version,
-li.subjectItem:hover .version,
-li.subjectItem:focus .version {
-  background-color: rgba(255, 255, 255, 0.5);
+li.subjectItem.selected .version {
+  background-color: #1A1A99;
   color: #fff;
 }
 
 li.subjectItem.selected:after,
-li.subjectItem:hover:after,
-li.subjectItem:focus:after {
+li.subjectItem:hover:after {
   left: 100%;
   top: 50%;
   border: solid transparent;
@@ -90,7 +85,7 @@ li.subjectItem.active .name {
   background-repeat: no-repeat;
   display: block;
   width: 1.4em;
-  height:1.4em;
+  height: 1.4em;
 }
 
 .approved .thumb:before {
@@ -141,7 +136,8 @@ li.subjectItem.active .name {
 }
 
 .version {
-  background-color: #1A1A99;
+  /*background-color: rgba(255, 255, 255, 0.5);*/
+  background: #A8D1F5;
   color: white;
   border-radius: 50%;
   -webkit-border-radius: 50%;
@@ -328,3 +324,14 @@ span.txtskype {
   color: rgba(0, 0, 0, 0.68);
 }
 
+li.subjectItem:hover {
+  background-color: rgba(195, 195, 195, 0.49);
+}
+
+li.subjectItem:hover .name {
+  color: #888;
+}
+
+li.subjectItem:hover:after {
+  border-left-color: #d0d3d4;
+}

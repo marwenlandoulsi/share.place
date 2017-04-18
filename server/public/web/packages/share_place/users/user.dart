@@ -26,8 +26,8 @@ class User {
         user['photoIdMap'],
         user['skype'],
         user['visiblePostits'],
-        fromRoleList(user['folders']?.map((role) =>
-        new Role.fromJson(role)).toList()),
+        fromRoleList(
+            user['folders']?.map((role) => new Role.fromJson(role)).toList()),
         new LocalAccount.fromJson(user["local"]),
         new FacebookAccount.fromJson(user["facebook"]),
         new GoogleAccount.fromJson(user["google"])
@@ -43,7 +43,7 @@ class User {
           [""],
           "",
           null,
-          null,
+          "",
           null,
           null,
           null,
