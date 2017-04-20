@@ -6,7 +6,7 @@ module.exports = Object.freeze({
   //hostURLPort: "http://share-place.herokuapp.com:80",
   //hostURLPort: "http://localhost:3000",
   //port: 3000,
-  port: 80,
+  port: 3000,
   debugServer: false,
   defaultPicture: path.join(__dirname, 'static', "images", "user1.png"),
   dataDir: path.join(__dirname, '..', "data"),
@@ -22,14 +22,14 @@ module.exports = Object.freeze({
     method: 'PUT',
   },
   optionsGet: {
-    host: "ec2-54-246-136-64.eu-west-1.compute.amazonaws.com:3000",
-    port: 80,
+    host: "ec2-54-246-136-64.eu-west-1.compute.amazonaws.com",
+    port: 3000,
     path: '/sp',
     method: 'GET'
   },
   optionsGetFromAuth: {
-    host: "ec2-54-246-136-64.eu-west-1.compute.amazonaws.com:3000",
-    port: 80,
+    host: "ec2-54-246-136-64.eu-west-1.compute.amazonaws.com",
+    port: 3000,
     path: '/auth',
     method: 'GET'
   },/*
