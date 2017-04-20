@@ -12,23 +12,23 @@ module.exports = Object.freeze({
   dataDir: path.join(__dirname, '..', "data"),
   usersFileData: path.join(__dirname, '..', "data", "users.json"),
   logDir: path.join(__dirname, "log"),
-  urlLoginProxy: 'http://app.share.place/auth',
+  urlLoginProxy: 'http://ec2-54-246-136-64.eu-west-1.compute.amazonaws.com:3000/auth',
   optionsPost: {
-    url: 'http://app.share.place/sp',
+    url: 'http://ec2-54-246-136-64.eu-west-1.compute.amazonaws.com:3000/sp',
     method: 'POST',
   },
   optionsPut: {
-    url: 'http://app.share.place/sp',
+    url: 'http://ec2-54-246-136-64.eu-west-1.compute.amazonaws.com:3000/sp',
     method: 'PUT',
   },
   optionsGet: {
-    host: "app.share.place",
+    host: "ec2-54-246-136-64.eu-west-1.compute.amazonaws.com:3000",
     port: 80,
     path: '/sp',
     method: 'GET'
   },
   optionsGetFromAuth: {
-    host: "app.share.place",
+    host: "ec2-54-246-136-64.eu-west-1.compute.amazonaws.com:3000",
     port: 80,
     path: '/auth',
     method: 'GET'
