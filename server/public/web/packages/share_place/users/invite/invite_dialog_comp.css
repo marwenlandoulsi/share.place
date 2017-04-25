@@ -146,16 +146,15 @@ role-chooser-comp {
   padding-left: 0.5em;
   display: inline;
   font-size: 12px;
-  vertical-align: top;
+  vertical-align: middle;
+  cursor: pointer;
 }
 
-/*.addbtnbluesmall {*/
-/*width: 17px  !important;*/
-/*height: 17px !important;*/
-/*}*/
+.addUserDiv_inside:hover {
+  opacity: 0.7;
+}
 
 material-input.themeable {
-  /*width: 377px !important;*/
   margin: 0 !important;
   padding: 0 !important;
 }
@@ -166,13 +165,14 @@ material-input.themeable {
   padding-bottom: 5%;
 }
 
-.submitbottom {
-  margin: 0 auto !important;
-  width: auto ! important;
+material-button.submitbottom.btn_login.is-raised  {
+  margin: 0 auto;
+  width: auto!important;
   padding-left: 20px;
   padding-right: 40px;
-  background: #00adef url("../images/arrow-white.png") no-repeat 84% 62% !important;
+  background: #00adef url("../images/arrow-white.png") no-repeat 84% 49%;
 }
+
 
 .blueadd {
   width: 18px;

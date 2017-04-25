@@ -5,7 +5,7 @@
       <div class="icons"></div>
     </div>
     <div *ngIf="isUploading" class="isUploading">
-    <div class="progress" ></div>
+      <div class="progress"></div>
     </div>
 
     <div class="newTopic">
@@ -30,35 +30,21 @@
           <div class="latestVersionComments">
             <div class="versions">
               <ul>
-
-
                 <li *ngFor="let versionItem of selectedFile.orderedVersions; let versionIndex = index"
                     class="liVersion">
-
-
-
                   <div class="versionTitle">
-
                     <div class="versionTitleNumber">Version {{versionItem?.v}}</div>
-
                     <div class="toggleVersion fa"
                          [ngClass]="{'fa-angle-down': isCommentsOpen(selectedFile.id, versionItem.v), 'fa-angle-up': !isCommentsOpen(selectedFile.id, versionItem.v)}"
                          (click)="switchCommentOpen(selectedFile.id, versionItem.v)">
                     </div>
                   </div>
-
                   <div class="version">
-
-
-                    <!--<div *ngIf="selectedFile.orderedVersions.length == versionItem.v ">-->
-                      <!--<div *ngIf="isUploading" class="isUploading">-->
-                        <!--<div class="progress"></div>-->
-                      <!--</div>-->
+                   <!--<div *ngIf="selectedFile.orderedVersions.length == versionItem.v ">-->
+                    <!--<div *ngIf="isUploading" class="isUploading">-->
+                    <!--<div class="progress"></div>-->
                     <!--</div>-->
-
-
-
-
+                   <!--</div>-->
                     <div *ngIf="isCommentsOpen(selectedFile.id, versionItem.v)" class="versionComments">
                       <ul class="actionList">
 
@@ -137,10 +123,7 @@
                               </div>
 
                             </div>
-
                           </div>
-
-
                         </li>
                         <!--connectedUser-->
                         <li class="actionLiElem" [class.ownAction]="connectedUser.id == versionItem.userId">

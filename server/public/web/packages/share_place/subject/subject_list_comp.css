@@ -335,3 +335,13 @@ li.subjectItem:hover .name {
 li.subjectItem:hover:after {
   border-left-color: #d0d3d4;
 }
+
+@media only screen and (max-width: 480px) {
+  .newTopic {
+    margin: 0;
+  }
+
+  .folderItem:hover:after, .folderItem.active:after, .folderItem.selected:after {
+     display: none;
+  }
+}

@@ -309,7 +309,7 @@ class ViewFilesComp1 extends AppView<import3.FilesComp> {
     _el_35 = doc.createElement('ul');
     _el_35.setAttribute(shimCAttr,'');
     _el_33.append(_el_35);
-    Text _text_36 = new Text('\n\n\n                ');
+    Text _text_36 = new Text('\n                ');
     _el_35.append(_text_36);
     var _anchor_37 = new Comment('template bindings={}');
     _el_35?.append(_anchor_37);
@@ -402,7 +402,7 @@ class ViewFilesComp2 extends AppView<import3.FilesComp> {
     _el_0 = doc.createElement('div');
     _el_0.setAttribute(shimCAttr,'');
     _el_0.className = 'isUploading';
-    Text _text_1 = new Text('\n    ');
+    Text _text_1 = new Text('\n      ');
     _el_0.append(_text_1);
     _el_2 = doc.createElement('div');
     _el_2.setAttribute(shimCAttr,'');
@@ -448,13 +448,13 @@ class ViewFilesComp3 extends AppView<import3.FilesComp> {
     _el_0 = doc.createElement('li');
     _el_0.setAttribute(shimCAttr,'');
     _el_0.className = 'liVersion';
-    Text _text_1 = new Text('\n\n\n\n                  ');
+    Text _text_1 = new Text('\n                  ');
     _el_0.append(_text_1);
     _el_2 = doc.createElement('div');
     _el_2.setAttribute(shimCAttr,'');
     _el_0.append(_el_2);
     _el_2.className = 'versionTitle';
-    Text _text_3 = new Text('\n\n                    ');
+    Text _text_3 = new Text('\n                    ');
     _el_2.append(_text_3);
     _el_4 = doc.createElement('div');
     _el_4.setAttribute(shimCAttr,'');
@@ -462,7 +462,7 @@ class ViewFilesComp3 extends AppView<import3.FilesComp> {
     _el_4.className = 'versionTitleNumber';
     _text_5 = new Text('');
     _el_4.append(_text_5);
-    Text _text_6 = new Text('\n\n                    ');
+    Text _text_6 = new Text('\n                    ');
     _el_2.append(_text_6);
     _el_7 = doc.createElement('div');
     _el_7.setAttribute(shimCAttr,'');
@@ -473,23 +473,23 @@ class ViewFilesComp3 extends AppView<import3.FilesComp> {
     _el_7.append(_text_8);
     Text _text_9 = new Text('\n                  ');
     _el_2.append(_text_9);
-    Text _text_10 = new Text('\n\n                  ');
+    Text _text_10 = new Text('\n                  ');
     _el_0.append(_text_10);
     _el_11 = doc.createElement('div');
     _el_11.setAttribute(shimCAttr,'');
     _el_0.append(_el_11);
     _el_11.className = 'version';
-    Text _text_12 = new Text('\n\n\n                    ');
+    Text _text_12 = new Text('\n                   ');
     _el_11.append(_text_12);
-    Text _text_13 = new Text('\n                      ');
+    Text _text_13 = new Text('\n                    ');
     _el_11.append(_text_13);
-    Text _text_14 = new Text('\n                        ');
+    Text _text_14 = new Text('\n                    ');
     _el_11.append(_text_14);
-    Text _text_15 = new Text('\n                      ');
+    Text _text_15 = new Text('\n                    ');
     _el_11.append(_text_15);
-    Text _text_16 = new Text('\n                    ');
+    Text _text_16 = new Text('\n                   ');
     _el_11.append(_text_16);
-    Text _text_17 = new Text('\n\n\n\n\n                    ');
+    Text _text_17 = new Text('\n                    ');
     _el_11.append(_text_17);
     var _anchor_18 = new Comment('template bindings={}');
     _el_11?.append(_anchor_18);
@@ -1195,7 +1195,7 @@ class ViewFilesComp5 extends AppView<import3.FilesComp> {
     _appEl_9 = new ViewContainer(9,0,this,_anchor_9);
     _TemplateRef_9_4 = new TemplateRef(_appEl_9,viewFactory_FilesComp10);
     _NgIf_9_5 = new NgIf(_appEl_9,_TemplateRef_9_4);
-    Text _text_10 = new Text('\n\n\n                        ');
+    Text _text_10 = new Text('\n                        ');
     _el_0.append(_text_10);
     init([_el_0],[
       _el_0,_text_1,_text_2,_anchor_3,_text_4,_text_5,_anchor_6,_text_7,_text_8,_anchor_9,
@@ -1758,7 +1758,7 @@ class ViewFilesComp10 extends AppView<import3.FilesComp> {
     _el_15.append(_text_23);
     Text _text_24 = new Text('\n\n                            ');
     _el_13.append(_text_24);
-    Text _text_25 = new Text('\n\n                          ');
+    Text _text_25 = new Text('\n                          ');
     _el_0.append(_text_25);
     listen(_el_2,'click',evt(_handle_click_2_0));
     this._pipe_agoDateFormat_0_2 = import13.pureProxy1((parent.parent.parent.parent.parent as ViewFilesComp0)._pipe_agoDateFormat_0.transform);

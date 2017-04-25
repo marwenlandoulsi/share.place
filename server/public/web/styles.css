@@ -274,7 +274,7 @@ TODO see what font to use
   font-weight: bold;
   font-size: 1.2em;
   position: relative;
-  line-height: 21px;
+  line-height: 1em;
   padding: 3px 0 0 1.8em !important;
   word-break: break-all;
 }
@@ -410,9 +410,8 @@ header:focus {
   -webkit-flex-direction: column;
   flex-direction: column;
   width: 100% !important;
-
   background-color: white !important;
-  color: #030303 !important;
+  color: #000 !important;
 }
 
 .top-section {
@@ -514,7 +513,7 @@ textarea {
 }
 
 .btn_login.is-raised {
-  background: #00adef !important;
+  background: #00adef;
 }
 
 .roleChooser .imgBtn {
@@ -557,7 +556,7 @@ textarea {
   position: absolute;
   font-size: 26px;
   color: #9E9E9E;
-  top: -28px;
+  top: -34px;
 }
 
 .uploadDropZone:hover #labelfileupload:before, .uploadDropZone:focus #labelfileupload:before, .uploadDropZone:hover #labelfileupload, .uploadDropZone:focus #labelfileupload {
@@ -586,9 +585,9 @@ textarea {
   -moz-border-radius: 3px 0 0 3px;
   -webkit-border-radius: 3px 0 0 3px;
   height: 34px;
-  width: calc(100% - 56px);
+  width: calc(100% - 33px);
   font-size: 0.9em;
-  color: #989292;
+  color: #000;
   font-family: Arial, Helvetica, sans-serif;
   padding-left: 10px !important;
   padding-right: 10px !important;
@@ -623,7 +622,7 @@ textarea {
 
 .arowmenow:before {
   border-color: rgba(146, 146, 146, 0);
-  border-right-color: #929292;
+  border-right-color: #989292;
   border-width: 7px;
   margin-top: -7px;
 }
@@ -936,30 +935,29 @@ header.closed .primary-text:before {
   background-color: rgba(213, 240, 255, 0.5) !important;
 }
 
-
 /*.isUploading {*/
-  /*width:48px;*/
-  /*height: 48px;*/
-  /*padding: 0;*/
-  /*margin: auto;*/
-  /*border-radius:50%;*/
-  /*overflow: hidden;*/
-  /*background: lightblue;*/
-  /*position: absolute;*/
-  /*left: 1em;*/
-  /*right: auto;*/
-  /*top: 1em;*/
+/*width:48px;*/
+/*height: 48px;*/
+/*padding: 0;*/
+/*margin: auto;*/
+/*border-radius:50%;*/
+/*overflow: hidden;*/
+/*background: lightblue;*/
+/*position: absolute;*/
+/*left: 1em;*/
+/*right: auto;*/
+/*top: 1em;*/
 /*}*/
 
 /*.progress {*/
-  /*height: 48px;*/
-  /*width: 48px;*/
-  /*position: relative;*/
-  /*background-image: url(../images/ring-alt.gif);*/
+/*height: 48px;*/
+/*width: 48px;*/
+/*position: relative;*/
+/*background-image: url(../images/ring-alt.gif);*/
 /*}*/
 
 .ownAction .isUploading {
-  left:auto;
+  left: auto;
   right: 1em;
 }
 
@@ -1359,4 +1357,58 @@ header.closed .primary-text:before {
 .login_pop {
   background-color: red !important;
   color: blue !important;
+}
+
+material-button.btn_login.submitbottom.is-raised .content {
+  padding: 0.6em 0.57em;
+}
+
+material-button.menuItem.profile .content, material-button.menuItem.logout .content {
+  padding: 3px 0 3px 6px;
+}
+
+@media only screen and (max-width: 992px) {
+  .leftP, .rightPanelinside {
+    width: 100%;
+  }
+
+  .leftP {
+    height: auto;
+  }
+
+  .rightMenu {
+    margin-right: 0.2em;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .centerP, .rightP {
+    width: 100%;
+  }
+
+}
+
+@media only screen and (max-width: 480px) {
+  .alertInner {
+    right: 0;
+    top: 2.8em;
+  }
+
+  body {
+    font-size: 1em;
+  }
+
+  .rightPinside {
+    margin-left: 0;
+  }
+
+  li.subjectItem {
+    border-left: 0px solid #EDF2FB;
+  }
+
+  .newTopic {
+    padding: 1em 0.6em;
+    margin: 0;
+  }
+
 }

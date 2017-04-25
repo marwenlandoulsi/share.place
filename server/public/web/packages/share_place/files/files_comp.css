@@ -70,7 +70,7 @@ ul {
 .fileProps {
   display: block;
   vertical-align: top;
-  word-break: break-all;
+  word-break: break-word;
 }
 
 .date {
@@ -89,7 +89,7 @@ ul {
 .fileName {
   text-decoration: none;
   line-height: 1.1;
-  word-break: break-all;
+  word-break: break-word;
   font-size: 1.1em;
   min-width: 40px;
 }
@@ -148,7 +148,7 @@ ul {
 }
 
 /*.newComment {*/
-  /*width: calc(100% - 2.6em) !important;*/
+/*width: calc(100% - 2.6em) !important;*/
 /*}*/
 
 a {
@@ -336,7 +336,7 @@ a {
   cursor: pointer;
 }
 
-.pLeft.noClick{
+.pLeft.noClick {
   cursor: default;
 }
 
@@ -345,7 +345,6 @@ a {
   vertical-align: top;
   text-align: right;
 }
-
 
 .actionBlock:hover .bubbleContent .moreActions,
 .actionBlock:focus .bubbleContent .moreActions,
@@ -631,7 +630,6 @@ li.more {
   background-color: #00ADEF;
 }
 
-
 @keyframes nomAnim {
   from {
     background-color: #9D7E90;
@@ -656,7 +654,7 @@ li.more {
 
 .ownAction .bubbleContent:before {
   border-color: rgba(230, 230, 230, 0);
-  border-left-color: rgba(0, 0, 0, 0.25);
+  border-left-color: #d3d3d3;
   border-width: 8px;
   margin-top: -8px;
 }
@@ -726,4 +724,11 @@ li.more {
 
 .ownAction.isActionOn .approveBlock .approveIcon.bgWhite {
   background: url("../images/bgwhite.png") no-repeat 45% 45%;
+}
+
+@media only screen and (max-width: 480px) {
+  .bubble {
+    max-width: calc(100% -  4.7em);
+    padding: 0.2em 0;
+  }
 }

@@ -219,7 +219,11 @@ router.get('/user/photo/:size', function (req, res) {
           readFile(res, pathToUserPicture);
         });
       }).on('error', function (e) {
-        globalService.sendError(res, 450, "error to download img")
+        log.error("error to download img");
+        if(fs.existsSync(pathToUserPicture))
+          readFile(res, pathToUserPicture);
+
+        readFile(res, constants.defaultPicture);
       });
     } else {
       readFile(res, constants.defaultPicture);
@@ -263,10 +267,15 @@ router.get('/user/photo/:size/:userId', function (req, res) {
         readFile(res, pathToUserPicture);
       });
     }).on('error', function (e) {
-      globalService.sendError(res, 450, "error to download img")
+      log.error("error to download img", e)
+      if (fs.existsSync(pathToUserPicture)) {
+        readFile(res, pathToUserPicture);
+      } else {
+        readFile(res, constants.defaultPicture);
+      }
     });
   } else {
-    if (!fs.existsSync(pathToUserPicture)) {
+    if (fs.existsSync(pathToUserPicture)) {
       readFile(res, pathToUserPicture);
     } else {
       readFile(res, constants.defaultPicture);

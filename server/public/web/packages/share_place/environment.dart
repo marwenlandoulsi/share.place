@@ -37,7 +37,7 @@ class Environment {
   Environment(this.eventBus) {
     socketIoClient = new SocketIoClient(eventBus);
     window.on['sp'].listen((event) {
-      print('event: '+ event);
+      print('event: $event');
       fireEvent(PlaceParam.fileId, selectedFile.id);
     });
     //window.onOnline.listen((Event e) => online = true);

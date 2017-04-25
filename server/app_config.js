@@ -6,30 +6,30 @@ module.exports = Object.freeze({
   //hostURLPort: "http://share-place.herokuapp.com:80",
   //hostURLPort: "http://localhost:3000",
   //port: 3000,
-  port: 3000,
+  port: 443,
   debugServer: false,
   defaultPicture: path.join(__dirname, 'static', "images", "user1.png"),
   dataDir: path.join(__dirname, '..', "data"),
   usersFileData: path.join(__dirname, '..', "data", "users.json"),
   logDir: path.join(__dirname, "log"),
-  urlLoginProxy: 'http://ec2-54-246-136-64.eu-west-1.compute.amazonaws.com:3000/auth',
+  urlLoginProxy: 'http://app.share.place/auth',
   optionsPost: {
-    url: 'http://ec2-54-246-136-64.eu-west-1.compute.amazonaws.com:3000/sp',
+    url: 'http://app.share.place/sp',
     method: 'POST',
   },
   optionsPut: {
-    url: 'http://ec2-54-246-136-64.eu-west-1.compute.amazonaws.com:3000/sp',
+    url: 'http://app.share.place/sp',
     method: 'PUT',
   },
   optionsGet: {
-    host: "ec2-54-246-136-64.eu-west-1.compute.amazonaws.com",
-    port: 3000,
+    host: "app.share.place",
+    port: 80,
     path: '/sp',
     method: 'GET'
   },
   optionsGetFromAuth: {
-    host: "ec2-54-246-136-64.eu-west-1.compute.amazonaws.com",
-    port: 3000,
+    host: "app.share.place",
+    port: 80,
     path: '/auth',
     method: 'GET'
   },/*
