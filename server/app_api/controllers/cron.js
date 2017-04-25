@@ -4,17 +4,18 @@
 'use strict';
 var synchronizer = require("./synchronizer")
 var constants = require('../../app_config');
-
+let log = require('electron-log');
 module.exports.sync = () => {
   if (!constants.debugServer) {
     if (global.onLine) {
+      log.info("sync executed");
       synchronizer.synchronizeRemoteData();
     }
     setInterval(function () {
       if (global.onLine) {
-        console.error("sync executing");
+        log.info("sync executed");
         synchronizer.synchronizeRemoteData();
-        console.error("sync executed");
+       
       }
     }, 9000000);
   }

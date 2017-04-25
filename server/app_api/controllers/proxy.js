@@ -5,7 +5,7 @@
 
 
 // console --> log4js
-let log = require('log4js').getLogger("app");
+let log = require('electron-log');
 let path = require('path');
 let fsExtra = require('fs-extra');
 let fs = require("fs");
@@ -14,7 +14,7 @@ let globalService = require("../global")
 var dialog = require('electron').dialog;
 //let request = require('request-promise').defaults({ simple: false });
 let request = require('request');
-let http = require("http");
+let http = require("https");
 let jsonfile = require('jsonfile');
 let taffy = require('taffy');
 let login = require("../config/passport");
@@ -92,26 +92,22 @@ module.exports.get = function (req, res) {
 
 
       let dataReceived = received.data;
-      console.log("data received after get", dataReceived)
       saveInLocalDb(dataReceived, dataFromFile, pathToDataFile, (err, toReturn) => {
         if (err)
           globalService.sendError(res, err.statusCode, err.message);
 
-        console.log("toReturntoReturntoReturn", toReturn)
         globalService.sendJsonResponse(res, 200, dataReceived);
 
       })
     });
 
   } else {
-    log.trace("send data from local db ", dataFromFile);
     globalService.sendJsonResponse(res, 200, dataFromFile);
   }
 
 }
 
 module.exports.proxyGet = function (url, callBack) {
-  console.log("user connected ", global.userConnected)
   let userId = global.userConnected._id;
 
   let email = global.userConnected.local.email;
@@ -135,7 +131,7 @@ module.exports.proxyGet = function (url, callBack) {
       saveInLocalDb(dataReceived, dataFromFile, pathToDataFile, (err, toReturn) => {
         if (err)
           return log.error("error to save in localDb", err.message);
-        log.error("dataRec", dataReceived);
+
         callBack(null, dataReceived)
       })
     });
@@ -164,7 +160,6 @@ module.exports.uploadFile = function (req, res) {
   let placeName = place.select("name")[0];
   let folderName = folder.select("name")[0];
   let pathToDir = path.join(global.homeDir, '/share.place/' + userId + '/' + placeName + '/' + folderName + '/');
-  console.log("place Name ", fileToUpload.originalname);
   let pathFileInTmp = path.join(__dirname, '..', '..', 'tmp', 'upload', fileToUpload.filename);
   if (global.onLine) {
     httpPostFileToUpload(url, fileToUpload, (err, received) => {
@@ -215,7 +210,6 @@ module.exports.getFile = function (req, res) {
   getPathFileInHomeDir(dataFile, dataFolder, (pathToHomDir, pathToFileInDir) => {
     let pathToDir = path.join(global.homeDir, 'share.place', userId, placeName, pathToHomDir + '/');
     let pathToFile = path.join(pathToDir + dataFile.name);
-    console.log("dataFile dataFile", dataFile)
     let mode = 0o0500;
     let modeFile = '0555';
     if (global.onLine) {
@@ -342,8 +336,6 @@ function downloadFileInDisc(url, mode, callBack) {
 
         let pathToFile = path.join(pathToDir, fileName);
 
-        log.info("pathToDir pathToDir pathToDir", pathToDir);
-        log.info("pathToFile pathToFile pathToFile", pathToFile);
         if (global.onLine) {
           if (!fs.existsSync(pathToFile)) {
             downloadFile(url, pathToDir, pathToFile, mode, (err, ok) => {
@@ -470,7 +462,6 @@ let httpGetJson = function (cookie, url, cb) {
   if (cookie)
     global.cookieReceived = cookie;
 
-  console.log('url 11', url)
   let options = {
     host: constants.optionsGet.host,
     method: constants.optionsGet.method,
@@ -480,7 +471,6 @@ let httpGetJson = function (cookie, url, cb) {
       'Cookie': global.cookieReceived,
     }
   };
-  console.log("options httpGetJson", options)
   return http.get(options, function (response) {
 
     // Continuously update stream with data
@@ -497,7 +487,7 @@ let httpGetJson = function (cookie, url, cb) {
       // Data reception is done, do whatever with it!
 
       let parsed = JSON.parse(body);
-      log.info("data in body ", parsed)
+
       cb(null, parsed);
 
 
@@ -518,8 +508,7 @@ function downloadFile(url, directory, pathFile, mode, cb) {
    }
    };*/
 
-  console.log(" global.cookieReceived", global.cookieReceived)
-  console.log('url 22', url)
+
   let headers = {
     'Cookie': global.cookieReceived
   }
@@ -534,7 +523,7 @@ function downloadFile(url, directory, pathFile, mode, cb) {
     if (err)
       cb(err);
 
-    console.log("download file in :", pathFile);
+    log.info("download file in :", pathFile);
     //fs.writeFileSync(path, data);
     globalService.checkPathOrCreateSync(directory, pathFile, data, mode);
     cb(null, pathFile)
@@ -585,9 +574,7 @@ let httpGetFile = function (options, cb) {
 
 
 let saveInLocalDb = (data, dataInFile, path, cb) => {
-  console.log("enter ro save local in db fro path:", path);
-  console.log("data to insert:", data);
-  console.log("dataInFile to insert:", dataInFile);
+
   /*if (typeof (data.length) != "undefined") {
    let localDbData = taffy(dataInFile);
    for (let c = 0; c < data.length; c++) {
@@ -638,7 +625,7 @@ let saveInLocalDb = (data, dataInFile, path, cb) => {
     return cb(err);
   }
   var dataSaved = jsonfile.readFileSync(path);
-  console.log("dataSaved in path:", dataSaved);
+
   return cb(null, dataSaved);
 }
 
@@ -671,7 +658,7 @@ let isSameFile = (datafile, pathFileHome, cb) => {
     }
 
     let localCs = data.versions[data.versions.length - 1].sum;
-    log.error("localCs", localCs, "sum", sum)
+    log.info("localCs", localCs, "sum", sum)
     if (sum == localCs) {
       return cb(null, true);
     } else {
@@ -745,7 +732,7 @@ module.exports.put = function (req, res) {
           if (err)
             globalService.sendError(res, 405, err.message);
 
-          log.info("pathToFile:", pathToFile);
+
           fs.chmodSync(pathToFile, '0555');
           let event = {
             refresh: {
@@ -873,7 +860,6 @@ let unlockFile = function (url, fileId, jsonToPut, callBack) {
   let pathDbDataPlace = path.join(constants.dataDir, userId, url.substring(0, nth_occurrence(url, '/', 2)), 'data.json');
   let pathDbDataFolder = path.join(constants.dataDir, userId, url.substring(0, nth_occurrence(url, '/', 4)), 'data.json');
   let urlListeFile = "/place/" + placeId + "/folder/" + folderId + "/file/" + fileId;
-  console.log("file ID", fileId);
   let pathDbDataFile = path.join(constants.dataDir, userId, 'place', placeId, 'folder', folderId, 'file', fileId, 'data.json');
 
   let dataPlace = jsonfile.readFileSync(pathDbDataPlace);
@@ -898,7 +884,6 @@ let unlockFile = function (url, fileId, jsonToPut, callBack) {
             log.error('error to save liste of file in local Db');
             return callBack(err)
           }
-          log.info("file Id unlock", fileId);
           let dbPlace = new taffy(dataPlace);
           let dbFolder = new taffy(dataFolder);
           //let dbFile = new taffy([data]);
@@ -911,8 +896,6 @@ let unlockFile = function (url, fileId, jsonToPut, callBack) {
           let fileName = file.name;
           let contentType = file.fileType;
 
-          log.info("file NAME unlock", fileName);
-          log.info("file CONT unlock", contentType);
 
           getPathFileInHomeDir(file, dataFolder, (pathToHomDir, pathToFileInDir) => {
             let pathToFile = path.join(global.homeDir, 'share.place', userId, placeName, pathToFileInDir);
@@ -942,12 +925,10 @@ let unlockFile = function (url, fileId, jsonToPut, callBack) {
 
 
 let httpPostJson = function (url, jsonData, callBack) {
-  console.log("url", url);
   let headers = {
     'Content-Type': 'application/json; charset=utf-8',
     'Cookie': global.cookieReceived
   }
-  console.log("jsonData", jsonData);
 // Configure the request
   let options = {
     url: constants.optionsPost.url + url,
@@ -966,7 +947,6 @@ let httpPostJson = function (url, jsonData, callBack) {
 
     // Print out the response body
 
-    console.log("response post", response.statusCode)
     if (response.statusCode == 200 || response.statusCode == 201) {
       let data;
       if (typeof (body) != "object") {
@@ -984,7 +964,6 @@ let httpPostJson = function (url, jsonData, callBack) {
         err.message = body.error;
       }
       err.statusCode = response.statusCode;
-      console.log("err post", err)
       return callBack(err);
     }
 
@@ -998,7 +977,6 @@ let httpPutJson = function (url, jsonData, callBack) {
     'Content-Type': 'application/json; charset=utf-8',
     'Cookie': global.cookieReceived
   }
-  console.log("jsonData", jsonData);
 // Configure the request
   let options = {
     url: constants.optionsPut.url + url,

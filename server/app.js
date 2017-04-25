@@ -11,7 +11,7 @@ if (constants.debugServer) {
 }
 
 process.env.UV_THREADPOOL_SIZE = 128;
-var log = require('log4js').getLogger("app");
+let log = require('electron-log');
 var express = require('express');
 var path = require('path');
 
@@ -52,7 +52,7 @@ app.use(function errorHandler(err, req, res, next) {
   if (err.domain) {
     //you should think about gracefully stopping & respawning your server
     //since an unhandled error might put your application into an unknown state
-    console.log('err.domain', err.domain);
+    log.error('err.domain', err.domain);
   }
 });
 
@@ -111,7 +111,6 @@ var authenticate = (req, res, next, strategy) => {
 
     global.cookieReceived = req.query.cookie
   //res.cookie('connect.sid', value [, options]);
-    log.info( "global.cookieReceived refresh",  global.cookieReceived )
 
     passport.authenticate(strategy, (err, user, info) => {
 

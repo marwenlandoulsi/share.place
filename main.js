@@ -45,8 +45,6 @@ app.on('window-all-closed', () => {
 
     storages: ["clear"]
   }, () => {
-
-    console.log("done delete");
     server = null;
   }])
   app.quit();
@@ -83,7 +81,6 @@ app.on('ready', function () {
     mainWindow.loadURL('http://127.0.0.1:' + global.serverPort + '/web/');
 
     global.homeUrlServer = 'http://127.0.0.1:' + global.serverPort + '/web';
-    // mainWindow.loadURL('file://' + __dirname + '/server/public/web/index.html');
 
 
     mainWindow.on('closed', function () {
@@ -93,10 +90,7 @@ app.on('ready', function () {
       }, () => {
         mainWindow = null;
         server = null;
-        console.log("done delete");
-
-      }])
-
+         }])
     });
 
     global.mainWindow = mainWindow;
@@ -129,7 +123,6 @@ function _send(type, detail) {
 }
 
 function createFile(filename) {
-
 
   fs.open(filename, 'r', function (err, fd) {
     if (err) {

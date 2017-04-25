@@ -1,5 +1,5 @@
 'use strict';
-var log = require('log4js').getLogger("app");
+let log = require('electron-log');
 var auth = require('../auth/auth.service');
 //npm module
 var express = require('express');

@@ -5,7 +5,7 @@
  * Created by Marwen on 24/02/2017.
  */
 
-var log = require("log4js").getLogger("batch");
+let log = require('electron-log');
 
 const URL_PATTERNS = {
   '': ['folder', 'user'],
@@ -31,14 +31,14 @@ function generateUrlTree(url, level, getData, returnList, counter) {
   getData(url, function resultCb(entityList) {
     returnList.push(url);
     var urlSuffixList = URL_PATTERNS[level];
-    log.trace("calling get ", url, " suffix list:", urlSuffixList, " result : ", entityList, " size: ", entityList.length);
+    log.info("calling get ", url, " suffix list:", urlSuffixList, " result : ", entityList, " size: ", entityList.length);
     if (urlSuffixList != null && entityList != null) {
       for (var entityIndex = 0; entityIndex < entityList.length; entityIndex++) {
-        log.trace("entering id ", entityList[entityIndex]);
+        log.info("entering id ", entityList[entityIndex]);
         var currentEntity = entityList[entityIndex];
         for (var suffixIndex = 0; suffixIndex < urlSuffixList.length; suffixIndex++) {
           var urlSuffix = urlSuffixList[suffixIndex];
-          log.trace("entering suffix ", urlSuffix);
+          log.info("entering suffix ", urlSuffix);
           var nextUrl = url + '/' + currentEntity._id + '/' + urlSuffix;
           generateUrlTree(nextUrl, urlSuffix, getData, returnList, counter);
         }

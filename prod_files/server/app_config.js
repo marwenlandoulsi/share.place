@@ -12,24 +12,24 @@ module.exports = Object.freeze({
   dataDir: path.join(__dirname, '..', "data"),
   usersFileData: path.join(__dirname, '..', "data", "users.json"),
   logDir: path.join(__dirname, "log"),
-  urlLoginProxy: 'http://app.share.place/auth',
+  urlLoginProxy: 'https://app.share.place/auth',
   optionsPost: {
-    url: 'http://app.share.place/sp',
+    url: 'https://app.share.place/sp',
     method: 'POST',
   },
   optionsPut: {
-    url: 'http://app.share.place/sp',
+    url: 'https://app.share.place/sp',
     method: 'PUT',
   },
   optionsGet: {
     host: "app.share.place",
-    port: 80,
+    port: 443,
     path: '/sp',
     method: 'GET'
   },
   optionsGetFromAuth: {
     host: "app.share.place",
-    port: 80,
+    port: 443,
     path: '/auth',
     method: 'GET'
   },/*

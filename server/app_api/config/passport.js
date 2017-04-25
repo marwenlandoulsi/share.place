@@ -3,7 +3,7 @@ var LocalStrategy = require('passport-local').Strategy;
 var fs = require("fs");
 var CustomStrategy = require('passport-custom');
 var FacebookStrategy = require('passport-facebook').Strategy;
-var log = require('log4js').getLogger("app");
+let log = require('electron-log');
 var proxy = require('../controllers/proxy');
 //var localUser = require('../localModels/user')
 var constants = require('../../app_config');
@@ -70,7 +70,6 @@ module.exports = function (passport) {
         process.nextTick(function () {
 
 
-          log.trace("online", global.onLine);
           if (global.onLine) {
             loginFromServer(req, email, password, function (err, user) {
               if (err) {
@@ -81,7 +80,7 @@ module.exports = function (passport) {
               }
               var userLocal = localUsers({local: {email: email}});
 
-              log.trace("userLocal", userLocal.select("local"));
+
               if (userLocal.select("local").length == 0) {
 
 
@@ -104,7 +103,6 @@ module.exports = function (passport) {
                         password: user.local.password
                       }
                     });
-                    log.trace("local user updated", localUsers().get());
                     jsonfile.writeFileSync(userfile, localUsers().get());
                     global.userConnected = user;
                     cron.sync();
@@ -123,10 +121,10 @@ module.exports = function (passport) {
             var userLocal = localUsers({local: {email: email}});
 
             if (userLocal.get().length == 0) {
-              log.trace("no user found");
+              log.info("no user found");
               return done(null, false, req.flash('loginMessage', 'No user found.'));
             } else {
-              log.trace("user found id local DB", userLocal.get()[0]);
+              log.info("user found id local DB", userLocal.get()[0]);
               if (validPassword(password, userLocal.select("local")[0].password)) {
                 return done(null, userLocal.get()[0]);
               } else {
@@ -175,9 +173,7 @@ module.exports = function (passport) {
               users = jsonfile.readFileSync(userfile);
               localUsers = taffy(users);
               saveUserInLocalDb(users, userfile, localUsers, user);
-              console.log("users.length", users.length);
               global.userConnected = user
-              console.log("users.user", user);
               return done(null, user);
             });
           }
@@ -186,7 +182,6 @@ module.exports = function (passport) {
       }));
 
   var saveUserInLocalDb = (listOfUserInLocalDb, pathUserDb, dbUsers, user) => {
-    console.log("listOfUserInLocalDb.length", listOfUserInLocalDb.length);
 
     var idUserInDb = dbUsers({_id: user._id}).get()[0];
 
@@ -215,7 +210,6 @@ module.exports = function (passport) {
           localUsers = taffy(users);
           var user = dataReceived.data;
           global.userConnected = user;
-          console.log("users.length", users.length);
           saveUserInLocalDb(users, userfile, localUsers, user);
           globalService.setSidInInput(global.cookieReceived);
           callback(null, user);
@@ -238,7 +232,6 @@ module.exports = function (passport) {
         // asynchronous
         process.nextTick(function () {
           var email = profile.emails[0].value.toLowerCase();
-          console.log("emmmmmmmmmmmmmmmmm fff", email);
         })
       })
   )
@@ -288,7 +281,6 @@ var loginFromServer = function (req, email, password, cb) {
     }
 
     if (response.statusCode == 401) {
-      console.log(response.body);
       return cb(null, null, 'Oops! Wrong email or password.');
     }
     if (!error && response.statusCode == 200) {
@@ -299,11 +291,9 @@ var loginFromServer = function (req, email, password, cb) {
         return log.error("many cookie in set-cookie", response.headers['set-cookie'].length);
 
       } else {
-        log.trace("one cookie found in set-cookie", response.headers['set-cookie'][0]);
         cookie += response.headers['set-cookie'][0];
       }
       global.cookieReceived = cookie;
-      log.trace("user found", user);
       return cb(null, user);
     }
   })
@@ -334,7 +324,6 @@ var signUpFromServer = function (req, email, password, name, skype, cb) {
         return log.error("many cookie in set-cookie", response.headers['set-cookie'].length);
 
       } else {
-        log.trace("one cookie found in set-cookie", response.headers['set-cookie'][0]);
         cookie += response.headers['set-cookie'][0];
       }
       log.info("user created:",user)
@@ -346,7 +335,6 @@ var signUpFromServer = function (req, email, password, name, skype, cb) {
           if (err)
             log.error('err  delete from tmp', err);
 
-          log.info("yess !! ");
         });
       }
 

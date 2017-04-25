@@ -4,7 +4,7 @@ var globalService = require('../global');
 var passport = require('passport');
 
 var constants = require('../../app_config');
-var log = require('log4js').getLogger("app");
+let log = require('electron-log');
 var compose = require('composable-middleware');
 
 
@@ -19,15 +19,15 @@ function checkRoleInFolder (roleRequired) {
 
           var index = user.folders.findIndex(folder => folder.folderId === folderId);
           if (index == -1) {
-            log.trace('user doesnt have a place');
+            log.info('user doesnt have a place');
             return globalService.sendError(res, 403, 'access denied');
           }
 
           if (constants.userRoles.indexOf(user.folders[index].role) >= constants.userRoles.indexOf(roleRequired)) {
-            log.trace('you have the role required');
+            log.info('you have the role required');
             next();
           } else {
-            log.trace('access denied');
+            log.info('access denied');
             return globalService.sendError(res, 403, 'access denied');
           }
         }

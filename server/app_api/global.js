@@ -3,7 +3,8 @@
  * Created by Marwen on 20/01/2017.
  */
 
-var log = require('log4js').getLogger("app");
+let log = require('electron-log');
+
 
 var fsExtra = require('fs-extra');
 var fs = require("fs");
@@ -42,19 +43,18 @@ module.exports = {
     try {
       fsExtra.statSync(directory);
       if (!fs.existsSync(file)) {
-        log.trace("directory exist but the file not");
+
         fs.writeFileSync(file, dataToInsert, {mode: mode});
         /* fs.chmod(file, mode, function (err) {
          if (err) {
          return log.error("problem to set mode", mode, " : ", err.message);
          }
          });*/
-        log.trace("file created :", file);
+        log.info("file created :", file);
 
       }
     } catch (e) {
       mkdirp.sync(directory);
-      log.trace("directory does not exist ");
       fs.writeFileSync(file, dataToInsert, {mode: mode});
       /*fs.chmod(file, mode, function (err) {
        if (err) {
@@ -70,7 +70,6 @@ module.exports = {
     return url.substring(valueStart, valueEnd);
   },
   setSidInInput: (cookie) => {
-    console.log("global.cookieReceived global", cookie)
     var sidToken = cookie.match(/connect\.sid=s%3A([^;]+)/);
     var sID;
     if (!sidToken) {

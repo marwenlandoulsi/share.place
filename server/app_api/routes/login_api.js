@@ -15,13 +15,13 @@ var fs = require('fs')
 var conf = require('../../app_config')
 var loginImpl = require('../config/passport')
 
-var log = require('log4js').getLogger("login_api");
+let log = require('electron-log');
 var stream = require('stream')
 var constants = require('../../app_config')
 
 
 var multer = require('multer');
-var http = require("http");
+var http = require("https");
 var path = require('path');
 var globalService = require('../global')
 
@@ -58,7 +58,7 @@ router.get('/logout', function (req, res) {
     storages: ["clear"]
   }, () => {
 
-    console.log("done delete");
+
 
   }])
   req.logout()
