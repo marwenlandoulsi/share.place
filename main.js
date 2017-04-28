@@ -1,6 +1,8 @@
 var app = require('electron').app;  // Module to control application life.
 var BrowserWindow = require('electron').BrowserWindow;  // Module to create native browser window.
 var dialog = require('electron').dialog;
+var pjson = require('./package.json');
+
 const log = require('electron-log');
 const {autoUpdater} = require('electron-updater');
 autoUpdater.autoDownload = true;
@@ -73,6 +75,7 @@ app.on('ready', function () {
     mainWindow = new BrowserWindow({
       width: 900,
       height: 600,
+      title: "Share.Place V"+pjson.version,
       webPreferences: {nodeIntegration: false, preload: __dirname + "/preload.js"},
       icon: path.join(__dirname, 'server', 'static', 'images', 'iconElec.png')
     });

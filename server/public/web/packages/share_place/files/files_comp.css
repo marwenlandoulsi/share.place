@@ -1,9 +1,5 @@
 .files {
   background-color: #EDF2F8;
-  /*border-radius: 7px;*/
-  /*-webkit-border-radius: 7px;*/
-  /*-moz-border-radius: 7px;*/
-  /*padding-bottom: 5em;*/
 }
 
 .files .title {
@@ -11,7 +7,7 @@
   width: calc(100% - 20px);
   padding: 0 10px;
   font-size: 1em;
-  color: #fff;
+  color: #000;
   font-weight: normal !important;
   height: 2.3em;
   line-height: 2.2em;
@@ -56,14 +52,10 @@ ul {
 
 .fileDesc {
   position: relative;
-  /*padding-top: 0.7em;*/
-  /*padding-bottom: 0.5em;*/
   width: 100%;
 }
 
 .thumb {
-  /*width: 100px;*/
-  /*height: 70px;*/
   display: inline-block;
 }
 
@@ -82,7 +74,6 @@ ul {
   width: 2em;
   height: 2em;
   display: inherit;
-  /*vertical-align: bottom;*/
   background-color: white;
 }
 
@@ -136,7 +127,6 @@ ul {
 }
 
 .selected {
-  /*background-color: #E5F2FA;*/
   font-weight: normal;
   text-decoration: none;
   color: inherit;
@@ -146,10 +136,6 @@ ul {
   padding: 1.3em;
   background: #dde2e5;
 }
-
-/*.newComment {*/
-/*width: calc(100% - 2.6em) !important;*/
-/*}*/
 
 a {
   color: #00AEF0;
@@ -257,7 +243,6 @@ a {
 
 .versions li {
   list-style-type: none;
-  /*margin-bottom: 0.4em;*/
 }
 
 .addCommentBlock {
@@ -367,14 +352,12 @@ a {
 }
 
 .bubbleContent:after {
-  border-color: rgba(250, 250, 250, 0);
   border-right-color: #fff;
   border-width: 7px;
   margin-top: -7px;
 }
 
 .bubbleContent:before {
-  border-color: rgba(230, 230, 230, 0);
   border-right-color: #d3d3d3;
   border-width: 8px;
   margin-top: -8px;
@@ -429,7 +412,6 @@ li.more {
   vertical-align: middle;
   display: inline-block;
   margin-left: 0.5em;
-  /*float: right;*/
 }
 
 .lockBlock .lockIcon:after {
@@ -529,13 +511,6 @@ li.more {
 
 .locked .fileThumb .fileThumb_bg:before, .locked .fileThumb .fileThumb_bg:after, .approved .fileThumb .fileThumb_bg:after {
   opacity: 1;
-  /*position: absolute;*/
-  /*left: 0;*/
-  /*right: 0;*/
-  /*z-index: 1;*/
-  /*-webkit-transition: 0.3s;*/
-  /*-o-transition: 0.3s;*/
-  /*transition: 0.3s;*/
 }
 
 .approved .fileThumb .fileThumb_bg img {
@@ -569,7 +544,6 @@ li.more {
 
 .rightdesc {
   display: inline-block;
-  /*width: calc(100% - 4em);*/
   vertical-align: middle;
   position: relative;
 }
@@ -599,9 +573,26 @@ li.more {
 
 /*____________________isActionOn _____________*/
 
-.isActionOn .lockBlock .lockIcon {
+.isActionOn .lockBlock .bubble {
+  border: 1px solid #F2542F;
   background-color: #F2542F;
-  color: white;
+}
+
+.isActionOn .etatBlock .release,
+.isActionOn .etatBlock .lockIcon {
+  background-color: #fff;
+  color: #F2542F;
+}
+
+.isActionOn .lockBlock .bubbleContent:before {
+  border-right-color: #F2542F;
+}
+.isActionOn.ownAction .lockBlock .bubbleContent:before {
+  border-right-color: transparent;
+}
+
+.isActionOn .lockBlock .bubbleContent:after {
+  border-right-color: #F2542F;
 }
 
 .constructText {
@@ -610,24 +601,14 @@ li.more {
   font-size: 0.9em;
 }
 
-.isActionOn .etatBlock .release,
-.isActionOn .etatBlock .lockIcon {
-  background-color: #F2542F;
-  color: white;
-}
-
 .isActionOn .lockBlock .release {
-  color: white;
-  background-color: #00ADEF;
+  color: #000;
+  background-color: #fff;
   display: inline-block;
   padding: 0.5em 1em;
   margin-left: 0.5em;
   cursor: pointer;
   float: right
-}
-
-.ownAction.isActionOn .lockBlock .lockIcon {
-  background-color: #00ADEF;
 }
 
 @keyframes nomAnim {
@@ -714,21 +695,63 @@ li.more {
   padding-top: 0.3em;
 }
 
-.ownAction.isActionOn .approveBlock .approveIcon:after {
-  color: #7ebb01;
+/* plus */
+.ownAction.isActionOn .lockBlock .lockIcon {
+  background-color: #fff;
+  color: #00ADEF;
 }
 
-.approveBlock .approveIcon.bgWhite {
-  background: transparent;
+.ownAction.isActionOn .lockBlock .bubble {
+  background-color: #00ADEF;
+  border: 1px solid #00ADEF;
 }
 
-.ownAction.isActionOn .approveBlock .approveIcon.bgWhite {
-  background: url("../images/bgwhite.png") no-repeat 45% 45%;
+.ownAction.isActionOn  .lockBlock .bubbleContent:after {
+  border-right-color: transparent;
 }
+
+.ownAction.isActionOn .lockBlock .bubbleContent:after {
+  border-left-color: #00ADEF;
+}
+
+.ownAction.isActionOn  .lockBlock .bubbleContent:before {
+  border-left-color: #00ADEF;
+}
+
+
+/* _____________________ approveBlock ________________________  */
+
+/* bg */
+.ownAction .approveBlock .bubble, .approveBlock .bubble {
+  background-color: #7FBB01;
+  border-color: rgba(0, 0, 0, 0.25);
+}
+
+/* arrows right */
+.approveBlock .bubble .bubbleContent:before {
+  border-right-color: rgba(0, 0, 0, 0.5);
+  border-left-color: transparent;
+}
+
+.approveBlock .bubbleContent:after {
+  border-right-color: #7FBB01;
+}
+
+/* arrows right */
+.ownAction .approveBlock .bubbleContent:after {
+  border-right-color: transparent;
+  border-left-color: #7FBB01;
+}
+
+.ownAction .approveBlock .bubble .bubbleContent:before {
+  border-left-color: #608D01;
+  border-right-color: transparent;
+}
+
 
 @media only screen and (max-width: 480px) {
   .bubble {
-    max-width: calc(100% -  4.7em);
+    max-width: calc(100% - 4.7em);
     padding: 0.2em 0;
   }
 }

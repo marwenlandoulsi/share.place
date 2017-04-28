@@ -20,7 +20,7 @@ import 'package:share_place/place.dart';
 import 'package:share_place/environment.dart';
 import 'package:share_place/place_service.dart';
 import 'package:share_place/users/user.dart';
-import 'package:share_place/users/user_list_provider.dart';
+import 'package:share_place/users/place_user_list_provider.dart';
 import 'package:share_place/common/ui/button_comp.dart';
 import 'package:share_place/common/ui/text_comp.dart';
 import 'package:share_place/users/info_popup/info_popup.dart';
@@ -33,7 +33,7 @@ import 'package:share_place/place.template.dart' as i4;
 import 'package:share_place/environment.template.dart' as i5;
 import 'package:share_place/place_service.template.dart' as i6;
 import 'package:share_place/users/user.template.dart' as i7;
-import 'package:share_place/users/user_list_provider.template.dart' as i8;
+import 'package:share_place/users/place_user_list_provider.template.dart' as i8;
 import 'package:share_place/common/ui/button_comp.template.dart' as i9;
 import 'package:share_place/common/ui/text_comp.template.dart' as i10;
 import 'package:share_place/users/info_popup/info_popup.template.dart' as i11;
@@ -63,7 +63,7 @@ import 'info_popup/info_popup.template.dart' as import20;
 import '../environment.dart' as import21;
 import '../place_service.dart' as import22;
 import 'package:angular2/src/security/dom_sanitization_service.dart' as import23;
-import 'user_list_provider.dart' as import24;
+import 'place_user_list_provider.dart' as import24;
 import 'package:angular2/src/router/router.dart' as import25;
 import 'package:angular2/src/core/linker/component_factory.dart' as import26;
 const List<dynamic> styles_UsersComp = const [import0.styles];
@@ -371,22 +371,22 @@ RenderComponentType renderType_UsersCompHost;
 class ViewUsersCompHost0 extends AppView<dynamic> {
   Element _el_0;
   ViewContainer _appEl_0;
-  import24.UserListProvider _UserListProvider_0_3;
+  import24.PlaceUserListProvider _PlaceUserListProvider_0_3;
   import3.UsersComp _UsersComp_0_4;
   ViewUsersCompHost0(import8.Injector parentInjector,ViewContainer declarationEl): super(ViewUsersCompHost0,renderType_UsersCompHost,import9.ViewType.HOST,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
   ViewContainer createInternal(dynamic rootSelector) {
     _el_0 = selectOrCreateHostElement('users-comp',rootSelector,null);
     _appEl_0 = new ViewContainer(0,null,this,_el_0);
     var compView_0 = viewFactory_UsersComp0(this.injector(0),_appEl_0);
-    _UserListProvider_0_3 = new import24.UserListProvider(this.parentInjector.get(import21.Environment),this.parentInjector.get(import22.PlaceService));
-    _UsersComp_0_4 = new import3.UsersComp(this.parentInjector.get(import22.PlaceService),this.parentInjector.get(import25.Router),this.parentInjector.get(import21.Environment),this.parentInjector.get(import23.DomSanitizationService),_UserListProvider_0_3);
+    _PlaceUserListProvider_0_3 = new import24.PlaceUserListProvider(this.parentInjector.get(import21.Environment),this.parentInjector.get(import22.PlaceService));
+    _UsersComp_0_4 = new import3.UsersComp(this.parentInjector.get(import22.PlaceService),this.parentInjector.get(import25.Router),this.parentInjector.get(import21.Environment),this.parentInjector.get(import23.DomSanitizationService),_PlaceUserListProvider_0_3);
     _appEl_0.initComponent(_UsersComp_0_4,compView_0);
     compView_0.createComp(projectableNodes,null);
     init([_el_0],[_el_0],[]);
     return _appEl_0;
   }
   dynamic injectorGetInternal(dynamic token,int requestNodeIndex,dynamic notFoundResult) {
-    if ((identical(token, import24.UserListProvider) && (0 == requestNodeIndex))) { return _UserListProvider_0_3; }
+    if ((identical(token, import24.PlaceUserListProvider) && (0 == requestNodeIndex))) { return _PlaceUserListProvider_0_3; }
     if ((identical(token, import3.UsersComp) && (0 == requestNodeIndex))) { return _UsersComp_0_4; }
     return notFoundResult;
   }
@@ -408,8 +408,8 @@ if (_visited) return; _visited = true;
 _ngRef.reflector
 ..registerType(UsersComp, new _ngRef.ReflectionInfo(
 const <dynamic>[UsersCompNgFactory],
-const [const <dynamic>[PlaceService], const <dynamic>[Router], const <dynamic>[Environment], const <dynamic>[DomSanitizationService], const <dynamic>[UserListProvider]],
-(PlaceService _placeService, Router _router, Environment _environment, DomSanitizationService urlSanitizer, UserListProvider _userListProvider) => new UsersComp(_placeService, _router, _environment, urlSanitizer, _userListProvider),
+const [const <dynamic>[PlaceService], const <dynamic>[Router], const <dynamic>[Environment], const <dynamic>[DomSanitizationService], const <dynamic>[PlaceUserListProvider]],
+(PlaceService _placeService, Router _router, Environment _environment, DomSanitizationService urlSanitizer, PlaceUserListProvider _userListProvider) => new UsersComp(_placeService, _router, _environment, urlSanitizer, _userListProvider),
 const <dynamic>[OnInit, PopupParent])
 )
 ;

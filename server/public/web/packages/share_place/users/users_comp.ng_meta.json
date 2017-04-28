@@ -39,7 +39,7 @@
         "5": false
       },
       {
-        "1": "package:share_place/users/user_list_provider.dart",
+        "1": "package:share_place/users/place_user_list_provider.dart",
         "5": false
       },
       {
@@ -80,7 +80,7 @@
             "4": "urlSanitizer"
           },
           {
-            "1": "UserListProvider",
+            "1": "PlaceUserListProvider",
             "4": "_userListProvider"
           }
         ],
@@ -139,7 +139,7 @@
         "4": "i7"
       },
       {
-        "1": "package:share_place/users/user_list_provider.template.dart",
+        "1": "package:share_place/users/place_user_list_provider.template.dart",
         "4": "i8"
       },
       {
@@ -259,8 +259,8 @@
               "value": null,
               "identifier": {
                 "class": "Identifier",
-                "name": "UserListProvider",
-                "moduleUrl": "asset:share_place/lib/users/user_list_provider.dart",
+                "name": "PlaceUserListProvider",
+                "moduleUrl": "asset:share_place/lib/users/place_user_list_provider.dart",
                 "prefix": null,
                 "value": null
               },
@@ -303,8 +303,8 @@
             "value": null,
             "identifier": {
               "class": "Type",
-              "name": "UserListProvider",
-              "moduleUrl": "asset:share_place/lib/users/user_list_provider.dart",
+              "name": "PlaceUserListProvider",
+              "moduleUrl": "asset:share_place/lib/users/place_user_list_provider.dart",
               "prefix": null,
               "isHost": false,
               "value": null,
@@ -355,8 +355,8 @@
           },
           "useClass": {
             "class": "Type",
-            "name": "UserListProvider",
-            "moduleUrl": "asset:share_place/lib/users/user_list_provider.dart",
+            "name": "PlaceUserListProvider",
+            "moduleUrl": "asset:share_place/lib/users/place_user_list_provider.dart",
             "prefix": null,
             "isHost": false,
             "value": null,

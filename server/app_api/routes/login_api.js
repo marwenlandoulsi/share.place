@@ -21,7 +21,11 @@ var constants = require('../../app_config')
 
 
 var multer = require('multer');
-var http = require("https");
+let http = require("https");
+
+console.log("process.env.dev", process.env.DEV)
+if(process.env.DEV)
+  http = require("http");
 var path = require('path');
 var globalService = require('../global')
 
@@ -160,19 +164,15 @@ router.get('/gridfs/file/', (req, res) => {
   let pathToUserPicture = path.join(constants.dataDir, url, 'logo-profile.png');
   let pathToUserPictureDir = path.join(constants.dataDir, url);
   if (global.onLine) {
-    if (!fs.existsSync(pathToUserPicture)) {
       downloadFile(url, pathToUserPictureDir, pathToUserPicture, (err, pathPicture) => {
         if (err)
           globalService.sendError(res, 401, err.message)
 
         return readFile(res, pathPicture);
       })
-    }
-    return readFile(res, pathToUserPicture);
-
   } else {
     if (!fs.existsSync(pathToUserPicture)) {
-      proxy.dialogBox("info", "Share.place", "sorry you are offline you c")
+      proxy.dialogBox("info", "Share.place", "sorry you are offline we can't show the profile picture")
     }
     return readFile(res, pathToUserPicture);
   }

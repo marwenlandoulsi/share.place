@@ -29,7 +29,7 @@ _ngRef.reflector
 ..registerType(UserListProvider, new _ngRef.ReflectionInfo(
 const <dynamic>[const Injectable()],
 const [const <dynamic>[Environment], const <dynamic>[PlaceService]],
-(Environment _environment, PlaceService _placeService) => new UserListProvider(_environment, _placeService))
+(Environment environment, PlaceService placeService) => new UserListProvider(environment, placeService))
 )
 ;
 i0.initReflector();

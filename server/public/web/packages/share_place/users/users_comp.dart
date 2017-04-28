@@ -10,7 +10,7 @@ import 'package:share_place/environment.dart';
 import 'package:share_place/place_service.dart';
 
 import 'package:share_place/users/user.dart';
-import 'package:share_place/users/user_list_provider.dart';
+import 'package:share_place/users/place_user_list_provider.dart';
 import 'package:share_place/common/ui/button_comp.dart';
 import 'package:share_place/common/ui/text_comp.dart';
 
@@ -24,13 +24,13 @@ import 'package:share_place/users/info_popup/popup_parent.dart';
     styleUrls: const ['users_comp.css'],
     directives: const[ButtonComp, TextComp, materialDirectives, InfoPopup
     ],
-    providers: const[UserListProvider]
+    providers: const[PlaceUserListProvider]
 )
 class UsersComp implements OnInit, PopupParent {
   final PlaceService _placeService;
   final Router _router;
   final Environment _environment;
-  final UserListProvider _userListProvider;
+  final PlaceUserListProvider _userListProvider;
   final DomSanitizationService urlSanitizer;
 
   String clickedUserId;

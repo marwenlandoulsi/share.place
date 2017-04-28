@@ -18,12 +18,12 @@ li.user {
 }
 
 li.subjectItem {
-  padding: 0.1em 0.05em 0.1em 0.1em;
+  padding: 0.1em 0.05em 0.1em 0.8em;
   cursor: pointer;
   background: white;
   position: relative;
   border-bottom: 1px solid #edf2f8;
-  border-left: 4px solid #EDF2FB;
+  list-style: none;
 }
 
 li.unread {
@@ -62,12 +62,12 @@ li.subjectItem.selected .name,
 li.subjectItem:hover .name,
 li.subjectItem:focus .name,
 li.subjectItem.active .name {
-  color: white;
+  color: #000;
 }
 
 li.subjectItem.selected .name,
 li.subjectItem.active .name {
-  font-weight: bold;
+  font-weight: normal;
 }
 
 .approved .thumb {
@@ -173,7 +173,7 @@ li.subjectItem.active .name {
   -webkit-border-radius: 0 0 3px 3px;
   -moz-border-radius: 0 0 3px 3px;
   width: 100%;
-  min-height: 30em;
+  min-height: 100vh;
   padding: 0 !important;
   cursor: pointer;
 }

@@ -582,4 +582,16 @@ class PlaceService {
         body: JSON.encode({"name": name}));
     _environment.connectedUser = new User.fromJson(_extractData(resp));
   }
+
+
+
+  Future<List<User>> removeUserFromFolder(User user) async {
+    try {
+      await del(
+          '/sp/place/${_environment.selectedPlace.id}/folder/${_environment.selectedFolder.id}/user/${user.id}');
+
+    } catch (e) {
+      throw _handleError(e);
+    }
+  }
 }

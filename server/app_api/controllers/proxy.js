@@ -12,9 +12,14 @@ let fs = require("fs");
 let constants = require('../../app_config');
 let globalService = require("../global")
 var dialog = require('electron').dialog;
+var eNotify = require('electron-notify');
 //let request = require('request-promise').defaults({ simple: false });
 let request = require('request');
 let http = require("https");
+
+if(process.env.DEV)
+  http = require("http");
+
 let jsonfile = require('jsonfile');
 let taffy = require('taffy');
 let login = require("../config/passport");
@@ -667,6 +672,7 @@ let isSameFile = (datafile, pathFileHome, cb) => {
 
   });
 }
+
 module.exports.post = function (req, res) {
   let url = req.url;
   let jsonData = req.body;
@@ -1102,7 +1108,7 @@ var showProgressBar = function (progress) {
 }
 
 var showNotification = function (title, message) {
-  var eNotify = require('electron-notify');
+
 // Change config options
   eNotify.setConfig({
     width: 300,
@@ -1115,10 +1121,10 @@ var showNotification = function (title, message) {
       fontFamily: 'Arial',
       fontSize: 15,
       position: 'relative',
-
     },
+
     appIcon: path.join(__dirname, '..', '..', 'static', 'images', 'iconElec.png'),
-    displayTime: 6000
+    displayTime: 4000
   });
 
 // Send simple notification

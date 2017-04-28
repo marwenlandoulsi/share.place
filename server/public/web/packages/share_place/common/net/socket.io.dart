@@ -41,6 +41,9 @@ class SocketIoClient {
         "subject": PlaceParam.ioSubjectCreated,
         "subjectChange": PlaceParam.ioSubjectChanged,
         "fileAction": PlaceParam.ioFileActionCreated,
+        "folderUserRemoved": PlaceParam.ioFolderUserRemoved,
+        "placeUserRemoved": PlaceParam.ioPlaceUserRemoved,
+
       });
 /*
       onFolderUserConnect((data) =>

@@ -39,7 +39,7 @@
         "5": false
       },
       {
-        "1": "package:share_place/users/user_list_provider.dart",
+        "1": "package:share_place/users/place_user_list_provider.dart",
         "5": false
       },
       {
@@ -80,7 +80,7 @@
             "4": "urlSanitizer"
           },
           {
-            "1": "UserListProvider",
+            "1": "PlaceUserListProvider",
             "4": "_userListProvider"
           }
         ],
@@ -205,7 +205,7 @@
               "value": null,
               "identifier": {
                 "class": "Identifier",
-                "name": "UserListProvider",
+                "name": "PlaceUserListProvider",
                 "moduleUrl": null,
                 "prefix": null,
                 "value": null
@@ -245,7 +245,7 @@
       "providers": [
         {
           "class": "Identifier",
-          "name": "UserListProvider",
+          "name": "PlaceUserListProvider",
           "moduleUrl": null,
           "prefix": null,
           "value": null

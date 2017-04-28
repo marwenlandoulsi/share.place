@@ -7,43 +7,49 @@ import 'package:angular2/core.dart';
 
 import 'package:share_place/users/user.dart';
 
-
+/**
+ * holds the list of users depending on the context (folder selected, place selected, user changed)
+ */
 @Injectable()
 class UserListProvider {
-  final PlaceService _placeService;
-  final Environment _environment;
+  final PlaceService placeService;
+  final Environment environment;
   List<User> users;
 
-  UserListProvider(this._environment, this._placeService) {
-    _environment.eventBus.getBus().listen( (params) => handle(params));
+  /* if true, always returns place users */
+  bool placeUsersOnly;
+
+  UserListProvider(this.environment, this.placeService) {
+    environment.eventBus.getBus().listen((params) => handle(params));
     loadUsers();
   }
 
 
   handle(Map<PlaceParam, String> params) async {
-    if (_environment.connectedUser == null) {
+    if (environment.connectedUser == null) {
       users = [];
       return;
     }
 
-    if (params.containsKey(PlaceParam.userId) ||
-        params.containsKey(PlaceParam.placeId) ||
-        params.containsKey(PlaceParam.invitedUsers) ||
-        params.containsKey(PlaceParam.treatUserInvite) ||
-        params.containsKey(PlaceParam.folderId)) {
-
-      if (_environment.selectedFolder != null)
-        users = await _placeService.getFolderUsers();
-      else
-        users = await _placeService.getPlaceUsers();
+    if (shouldReload(params)) {
+      await loadUsers();
     }
   }
 
+  bool shouldReload(Map<PlaceParam, String> params) {
+    return params.containsKey(PlaceParam.userId) ||
+        params.containsKey(PlaceParam.placeId) ||
+        params.containsKey(PlaceParam.invitedUsers) ||
+        params.containsKey(PlaceParam.treatUserInvite) ||
+        params.containsKey(PlaceParam.treatFolderUserRemoved) ||
+        params.containsKey(PlaceParam.folderId);
+  }
+
   Future<List<User>> loadUsers() async {
-    if (_environment.selectedFolder != null) {
-      users = await _placeService.getFolderUsers();
-    } else if (_environment.selectedPlace != null) {
-      users = await _placeService.getPlaceUsers();
+    if (environment.selectedFolder != null) {
+      users = await placeService.getFolderUsers();
+    } else if (environment.selectedPlace != null) {
+      users = await placeService.getPlaceUsers();
     }
     return users;
   }

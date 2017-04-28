@@ -62,7 +62,7 @@ import 'package:angular2_components/src/components/material_expansionpanel/mater
 import 'package:angular2_components/src/utils/angular/managed_zone/src/managed_zone.dart' as import23;
 import 'package:angular2_components/src/components/content/deferred_content_aware.dart' as import24;
 import 'folder/folder_component.dart' as import25;
-import 'users/user_list_provider.dart' as import26;
+import 'users/place_user_list_provider.dart' as import26;
 import 'users/users_comp.dart' as import27;
 import 'folder/folder_component.template.dart' as import28;
 import 'place_service.dart' as import29;
@@ -360,7 +360,7 @@ class ViewPlacesComponent2 extends AppView<import3.PlacesComponent> {
   import25.FolderComponent _FolderComponent_2_3;
   Element _el_4;
   ViewContainer _appEl_4;
-  import26.UserListProvider _UserListProvider_4_3;
+  import26.PlaceUserListProvider _PlaceUserListProvider_4_3;
   import27.UsersComp _UsersComp_4_4;
   ViewPlacesComponent2(import12.Injector parentInjector,ViewContainer declarationEl): super(ViewPlacesComponent2,renderType_PlacesComponent,import13.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
   ViewContainer createInternal(dynamic rootSelector) {
@@ -384,8 +384,8 @@ class ViewPlacesComponent2 extends AppView<import3.PlacesComponent> {
     _el_0.append(_el_4);
     _appEl_4 = new ViewContainer(4,0,this,_el_4);
     var compView_4 = import32.viewFactory_UsersComp0(this.injector(4),_appEl_4);
-    _UserListProvider_4_3 = new import26.UserListProvider(this.parentInjector.get(import31.Environment),this.parentInjector.get(import29.PlaceService));
-    _UsersComp_4_4 = new import27.UsersComp(this.parentInjector.get(import29.PlaceService),this.parentInjector.get(import30.Router),this.parentInjector.get(import31.Environment),this.parentInjector.get(import33.DomSanitizationService),_UserListProvider_4_3);
+    _PlaceUserListProvider_4_3 = new import26.PlaceUserListProvider(this.parentInjector.get(import31.Environment),this.parentInjector.get(import29.PlaceService));
+    _UsersComp_4_4 = new import27.UsersComp(this.parentInjector.get(import29.PlaceService),this.parentInjector.get(import30.Router),this.parentInjector.get(import31.Environment),this.parentInjector.get(import33.DomSanitizationService),_PlaceUserListProvider_4_3);
     _appEl_4.initComponent(_UsersComp_4_4,compView_4);
     compView_4.createComp([],null);
     Text _text_5 = new Text('\n        ');
@@ -398,7 +398,7 @@ class ViewPlacesComponent2 extends AppView<import3.PlacesComponent> {
   }
   dynamic injectorGetInternal(dynamic token,int requestNodeIndex,dynamic notFoundResult) {
     if ((identical(token, import25.FolderComponent) && (2 == requestNodeIndex))) { return _FolderComponent_2_3; }
-    if ((identical(token, import26.UserListProvider) && (4 == requestNodeIndex))) { return _UserListProvider_4_3; }
+    if ((identical(token, import26.PlaceUserListProvider) && (4 == requestNodeIndex))) { return _PlaceUserListProvider_4_3; }
     if ((identical(token, import27.UsersComp) && (4 == requestNodeIndex))) { return _UsersComp_4_4; }
     return notFoundResult;
   }

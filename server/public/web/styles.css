@@ -13,8 +13,12 @@ ul, menu, dir, .version {
 }
 
 html, body, my-app, my-app > div, .leftP, my-place, .folders {
-  height: 100%;
-  font-size: 100%;
+  /*height: 100%;*/
+  /*font-size: 100%;*/
+}
+
+.leftP {
+  height: calc(100vh - 2.2em);
 }
 
 input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
@@ -90,7 +94,6 @@ body, input[text], button {
 
 a {
   cursor: pointer;
-  cursor: hand;
 }
 
 button {
@@ -297,10 +300,6 @@ TODO see what font to use
   margin: 0 0 16px 5px !important;
 }
 
-.rightPanelinside {
-  overflow: hidden;
-}
-
 .rightPinside {
   margin-left: 10px;
   background-color: #EDF2F8;
@@ -464,6 +463,7 @@ input {
   box-shadow: none;
   font-size: 12px;
   color: #505050;
+  width: calc(100% - 17px);
 }
 
 #signup .passEqual .top-section {
@@ -552,19 +552,20 @@ textarea {
   font-family: FontAwesome;
   content: "\f055";
   display: inline-block;
-  left: 50%;
+  left: 48%;
   position: absolute;
   font-size: 26px;
   color: #9E9E9E;
   top: -34px;
 }
 
-.uploadDropZone:hover #labelfileupload:before, .uploadDropZone:focus #labelfileupload:before, .uploadDropZone:hover #labelfileupload, .uploadDropZone:focus #labelfileupload {
-  color: #273B54;
+.uploadDropZone:hover #labelfileupload:before, .uploadDropZone:focus #labelfileupload:before,
+.uploadDropZone:hover #labelfileupload, .uploadDropZone:focus #labelfileupload {
+  color: #fff;
 }
 
 .uploadDropZone:hover, .uploadDropZone:focus {
-  background: #D0DAE0 !important;
+  background: #4690D1 !important;
   -webkit-transition: 0.3s;
   -o-transition: 0.3s;
   transition: 0.3s;
@@ -713,15 +714,14 @@ form#fileForm {
 }
 
 .filesPostit .postit {
-  left: 80% !important;
-  top: 28.5% !important;
-  transform: rotate(7deg);
+  right: 0% !important;
+  top: 20.5% !important;
+  transform: rotate(0deg);
 }
 
 .commentPostit .postit {
-  right: 2% !important;
-  top: 17px !important;
-  transform: rotate(8deg);
+  right: -23px !important;
+  top: -4px !important;
 }
 
 material-ripple {
@@ -1367,7 +1367,29 @@ material-button.menuItem.profile .content, material-button.menuItem.logout .cont
   padding: 3px 0 3px 6px;
 }
 
-@media only screen and (max-width: 992px) {
+/*@media only screen and (max-width: 992px) {*/
+/*.leftP, .rightPanelinside {*/
+/*width: 100%;*/
+/*}*/
+
+/*.leftP {*/
+/*height: auto;*/
+/*}*/
+
+/*.rightMenu {*/
+/*margin-right: 0.2em;*/
+/*}*/
+/*}*/
+
+/*@media only screen and (max-width: 500px) {*/
+/*.centerP, .rightP {*/
+/*width: 100%;*/
+/*}*/
+
+/*}*/
+
+@media only screen and (max-width: 480px) {
+
   .leftP, .rightPanelinside {
     width: 100%;
   }
@@ -1379,16 +1401,11 @@ material-button.menuItem.profile .content, material-button.menuItem.logout .cont
   .rightMenu {
     margin-right: 0.2em;
   }
-}
 
-@media only screen and (max-width: 500px) {
   .centerP, .rightP {
     width: 100%;
   }
 
-}
-
-@media only screen and (max-width: 480px) {
   .alertInner {
     right: 0;
     top: 2.8em;
@@ -1403,7 +1420,7 @@ material-button.menuItem.profile .content, material-button.menuItem.logout .cont
   }
 
   li.subjectItem {
-    border-left: 0px solid #EDF2FB;
+    border-left: 0 solid #EDF2FB;
   }
 
   .newTopic {

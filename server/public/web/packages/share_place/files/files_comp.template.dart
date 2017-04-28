@@ -626,12 +626,12 @@ class ViewFilesComp4 extends AppView<import3.FilesComp> {
   ViewContainer _appEl_85;
   dynamic _TemplateRef_85_4;
   NgIf _NgIf_85_5;
-  ViewContainer _appEl_94;
-  dynamic _TemplateRef_94_4;
-  NgIf _NgIf_94_5;
-  ViewContainer _appEl_96;
-  dynamic _TemplateRef_96_4;
-  NgIf _NgIf_96_5;
+  ViewContainer _appEl_88;
+  dynamic _TemplateRef_88_4;
+  NgIf _NgIf_88_5;
+  ViewContainer _appEl_90;
+  dynamic _TemplateRef_90_4;
+  NgIf _NgIf_90_5;
   var _expr_0 = uninitialized;
   var _expr_1 = uninitialized;
   var _expr_2 = uninitialized;
@@ -927,50 +927,38 @@ class ViewFilesComp4 extends AppView<import3.FilesComp> {
     _appEl_85 = new ViewContainer(85,81,this,_anchor_85);
     _TemplateRef_85_4 = new TemplateRef(_appEl_85,viewFactory_FilesComp17);
     _NgIf_85_5 = new NgIf(_appEl_85,_TemplateRef_85_4);
-    Text _text_86 = new Text('\n                                ');
+    Text _text_86 = new Text('\n                              ');
     _el_81.append(_text_86);
-    Text _text_87 = new Text('\n                                ');
-    _el_81.append(_text_87);
-    Text _text_88 = new Text('\n                                ');
-    _el_81.append(_text_88);
-    Text _text_89 = new Text('\n                                ');
-    _el_81.append(_text_89);
-    Text _text_90 = new Text('\n                                ');
-    _el_81.append(_text_90);
-    Text _text_91 = new Text('\n                                ');
-    _el_81.append(_text_91);
-    Text _text_92 = new Text('\n                              ');
-    _el_81.append(_text_92);
-    Text _text_93 = new Text('\n                              ');
-    _el_79.append(_text_93);
-    var _anchor_94 = new Comment('template bindings={}');
-    _el_79?.append(_anchor_94);
-    _appEl_94 = new ViewContainer(94,79,this,_anchor_94);
-    _TemplateRef_94_4 = new TemplateRef(_appEl_94,viewFactory_FilesComp18);
-    _NgIf_94_5 = new NgIf(_appEl_94,_TemplateRef_94_4);
-    Text _text_95 = new Text('\n                              ');
-    _el_79.append(_text_95);
-    var _anchor_96 = new Comment('template bindings={}');
-    _el_79?.append(_anchor_96);
-    _appEl_96 = new ViewContainer(96,79,this,_anchor_96);
-    _TemplateRef_96_4 = new TemplateRef(_appEl_96,viewFactory_FilesComp19);
-    _NgIf_96_5 = new NgIf(_appEl_96,_TemplateRef_96_4);
-    Text _text_97 = new Text('\n                            ');
-    _el_79.append(_text_97);
-    Text _text_98 = new Text('\n                          ');
+    Text _text_87 = new Text('\n                              ');
+    _el_79.append(_text_87);
+    var _anchor_88 = new Comment('template bindings={}');
+    _el_79?.append(_anchor_88);
+    _appEl_88 = new ViewContainer(88,79,this,_anchor_88);
+    _TemplateRef_88_4 = new TemplateRef(_appEl_88,viewFactory_FilesComp18);
+    _NgIf_88_5 = new NgIf(_appEl_88,_TemplateRef_88_4);
+    Text _text_89 = new Text('\n                              ');
+    _el_79.append(_text_89);
+    var _anchor_90 = new Comment('template bindings={}');
+    _el_79?.append(_anchor_90);
+    _appEl_90 = new ViewContainer(90,79,this,_anchor_90);
+    _TemplateRef_90_4 = new TemplateRef(_appEl_90,viewFactory_FilesComp19);
+    _NgIf_90_5 = new NgIf(_appEl_90,_TemplateRef_90_4);
+    Text _text_91 = new Text('\n                            ');
+    _el_79.append(_text_91);
+    Text _text_92 = new Text('\n                          ');
     compView_68.createComp([
       [_el_70],[
-        _text_69,_text_78,_el_79,_text_98
+        _text_69,_text_78,_el_79,_text_92
       ]
       ,[]
     ]
     ,null);
-    Text _text_99 = new Text('\n                        ');
-    _el_7.append(_text_99);
-    Text _text_100 = new Text('\n                      ');
-    _el_2.append(_text_100);
-    Text _text_101 = new Text('\n                    ');
-    _el_0.append(_text_101);
+    Text _text_93 = new Text('\n                        ');
+    _el_7.append(_text_93);
+    Text _text_94 = new Text('\n                      ');
+    _el_2.append(_text_94);
+    Text _text_95 = new Text('\n                    ');
+    _el_0.append(_text_95);
     listen(_el_11,'click',evt(_handle_click_11_0));
     listen(_el_26,'click',evt(_handle_click_26_0));
     listen(_el_62,'click',evt(_handle_click_62_0));
@@ -986,8 +974,7 @@ class ViewFilesComp4 extends AppView<import3.FilesComp> {
       _el_59,_text_60,_text_61,_el_62,_text_63,_text_64,_text_65,_text_66,_text_67,_el_68,
       _text_69,_el_70,_text_71,_el_72,_text_73,_text_74,_el_75,_text_76,_text_77,_text_78,
       _el_79,_text_80,_el_81,_text_82,_anchor_83,_text_84,_anchor_85,_text_86,_text_87,
-      _text_88,_text_89,_text_90,_text_91,_text_92,_text_93,_anchor_94,_text_95,_anchor_96,
-      _text_97,_text_98,_text_99,_text_100,_text_101
+      _anchor_88,_text_89,_anchor_90,_text_91,_text_92,_text_93,_text_94,_text_95
     ]
     ,[]);
     return null;
@@ -1007,16 +994,16 @@ class ViewFilesComp4 extends AppView<import3.FilesComp> {
     if ((identical(token, NgIf) && (83 == requestNodeIndex))) { return _NgIf_83_5; }
     if ((identical(token, TemplateRef) && (85 == requestNodeIndex))) { return _TemplateRef_85_4; }
     if ((identical(token, NgIf) && (85 == requestNodeIndex))) { return _NgIf_85_5; }
-    if ((identical(token, TemplateRef) && (94 == requestNodeIndex))) { return _TemplateRef_94_4; }
-    if ((identical(token, NgIf) && (94 == requestNodeIndex))) { return _NgIf_94_5; }
-    if ((identical(token, TemplateRef) && (96 == requestNodeIndex))) { return _TemplateRef_96_4; }
-    if ((identical(token, NgIf) && (96 == requestNodeIndex))) { return _NgIf_96_5; }
-    if ((identical(token, import26.MaterialPopupComponent) && ((68 <= requestNodeIndex) && (requestNodeIndex <= 98)))) { return _MaterialPopupComponent_68_3; }
-    if ((identical(token, import38.PopupComponent) && ((68 <= requestNodeIndex) && (requestNodeIndex <= 98)))) { return _PopupComponent_68_4; }
-    if ((identical(token, import39.DropdownHandle) && ((68 <= requestNodeIndex) && (requestNodeIndex <= 98)))) { return _DropdownHandle_68_5; }
-    if ((identical(token, import40.DeferredContentAware) && ((68 <= requestNodeIndex) && (requestNodeIndex <= 98)))) { return _DeferredContentAware_68_6; }
-    if ((identical(token, import31.PopupHierarchy) && ((68 <= requestNodeIndex) && (requestNodeIndex <= 98)))) { return _PopupHierarchy_68_7; }
-    if ((identical(token, import32.PopupRef) && ((68 <= requestNodeIndex) && (requestNodeIndex <= 98)))) { return _PopupRef_68_8; }
+    if ((identical(token, TemplateRef) && (88 == requestNodeIndex))) { return _TemplateRef_88_4; }
+    if ((identical(token, NgIf) && (88 == requestNodeIndex))) { return _NgIf_88_5; }
+    if ((identical(token, TemplateRef) && (90 == requestNodeIndex))) { return _TemplateRef_90_4; }
+    if ((identical(token, NgIf) && (90 == requestNodeIndex))) { return _NgIf_90_5; }
+    if ((identical(token, import26.MaterialPopupComponent) && ((68 <= requestNodeIndex) && (requestNodeIndex <= 92)))) { return _MaterialPopupComponent_68_3; }
+    if ((identical(token, import38.PopupComponent) && ((68 <= requestNodeIndex) && (requestNodeIndex <= 92)))) { return _PopupComponent_68_4; }
+    if ((identical(token, import39.DropdownHandle) && ((68 <= requestNodeIndex) && (requestNodeIndex <= 92)))) { return _DropdownHandle_68_5; }
+    if ((identical(token, import40.DeferredContentAware) && ((68 <= requestNodeIndex) && (requestNodeIndex <= 92)))) { return _DeferredContentAware_68_6; }
+    if ((identical(token, import31.PopupHierarchy) && ((68 <= requestNodeIndex) && (requestNodeIndex <= 92)))) { return _PopupHierarchy_68_7; }
+    if ((identical(token, import32.PopupRef) && ((68 <= requestNodeIndex) && (requestNodeIndex <= 92)))) { return _PopupRef_68_8; }
     return notFoundResult;
   }
   void detectChangesInternal() {
@@ -1057,8 +1044,8 @@ class ViewFilesComp4 extends AppView<import3.FilesComp> {
     }
     _NgIf_83_5.ngIf = ((parent.locals['\$implicit'].approved == null) && ctx.isOwner);
     _NgIf_85_5.ngIf = (((parent.locals['\$implicit'].approved != null) && ctx.isOwner) && (ctx.connectedUser.id == ((((parent.locals['\$implicit'] == null)? null: parent.locals['\$implicit'].approved) == null)? null: ((parent.locals['\$implicit'] == null)? null: parent.locals['\$implicit'].approved).userId)));
-    _NgIf_94_5.ngIf = false;
-    _NgIf_96_5.ngIf = false;
+    _NgIf_88_5.ngIf = false;
+    _NgIf_90_5.ngIf = false;
     this.detectContentChildrenChanges();
     final currVal_1 = (ctx.connectedUser.id == parent.locals['\$implicit'].userId);
     if (import13.checkBinding(_expr_1,currVal_1)) {
@@ -1525,7 +1512,7 @@ class ViewFilesComp8 extends AppView<import3.FilesComp> {
     _el_20 = doc.createElement('div');
     _el_20.setAttribute(shimCAttr,'');
     _el_15.append(_el_20);
-    _el_20.className = 'approveIcon bgWhite';
+    _el_20.className = 'approveIcon bgWhiteIcon';
     Text _text_21 = new Text('\n                              ');
     _el_15.append(_text_21);
     Text _text_22 = new Text('\n                            ');
