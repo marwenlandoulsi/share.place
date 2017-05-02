@@ -1,5 +1,6 @@
 //version à prendre
 import 'dart:html';
+import 'package:logging/logging.dart';
 
 String _baseUrlValue = '';
 String _loginUrlValue = '';
@@ -13,8 +14,10 @@ String get cookieSessionId => _cookieSessionIdValue;
 int get port => _port;
 bool get isWebApp => _env == "web";
 
+Logger log = new Logger("app_config");
+
 void readConf() {
-  print("reading base url");
+  log.finest("reading base url");
   InputElement urlInput = document.querySelector("#baseUrl");
   if (urlInput != null)
     _baseUrlValue = urlInput.value;
@@ -34,5 +37,5 @@ void readConf() {
   InputElement env = document.querySelector("#env");
   _env = env.value;
 
-  print("base url: $_baseUrlValue, port: $_port, environement: $_env");
+  log.fine("base url: $_baseUrlValue, port: $_port, environement: $_env");
 }

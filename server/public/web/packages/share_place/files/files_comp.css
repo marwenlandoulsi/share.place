@@ -271,26 +271,26 @@ a {
   opacity: 0.7;
 }
 
-.isUploading {
-  height: 0.8em;
-  width: 30%;
-  padding: 0;
-  margin: auto;
-  border: 1px solid;
-  border-radius: 2px;
-  background-color: turquoise;
-}
+/*.isUploading {*/
+  /*height: 0.8em;*/
+  /*width: 30%;*/
+  /*padding: 0;*/
+  /*margin: auto;*/
+  /*border: 1px solid;*/
+  /*border-radius: 2px;*/
+  /*background-color: turquoise;*/
+/*}*/
 
-.progress {
-  height: 0.8em;
-  width: 10%;
-  border-radius: 2px;
-  margin: 0;
-  animation: nomAnim;
-  animation-iteration-count: 100;
-  animation-duration: 5s;
-  animation-timing-function: linear;
-}
+/*.progress {*/
+  /*height: 0.8em;*/
+  /*width: 10%;*/
+  /*border-radius: 2px;*/
+  /*margin: 0;*/
+  /*animation: nomAnim;*/
+  /*animation-iteration-count: 100;*/
+  /*animation-duration: 5s;*/
+  /*animation-timing-function: linear;*/
+/*}*/
 
 .bubble {
   position: relative;
@@ -303,7 +303,7 @@ a {
   border: 1px solid #d3d3d3;
   background: #fff;
   color: #000;
-  min-height: 1.8em;
+  min-height: 1.3em;
   min-width: 1em;
 }
 
@@ -342,7 +342,7 @@ a {
 
 .bubbleContent:after, .bubbleContent:before {
   right: 100%;
-  top: 13px;
+  top: 12px;
   border: solid transparent;
   content: " ";
   height: 0;
@@ -605,7 +605,7 @@ li.more {
   color: #000;
   background-color: #fff;
   display: inline-block;
-  padding: 0.5em 1em;
+  padding: 0.3em 1em;
   margin-left: 0.5em;
   cursor: pointer;
   float: right
@@ -686,7 +686,7 @@ li.more {
 .ownAction .actionBlock.etatBlock .approveIcon,
 .ownAction .actionBlock.etatBlock .lockIcon {
   float: left;
-  margin: 0.1em 0.5em 0.1em 0;
+  margin: 0 0.5em 0 0;
 }
 
 .ownAction .actionBlock.etatBlock .constructText {

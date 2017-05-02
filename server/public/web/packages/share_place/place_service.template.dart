@@ -16,6 +16,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:angular2/core.dart';
 import 'package:http/http.dart';
+import 'package:logging/logging.dart';
 import 'app_config.dart' as conf;
 import 'place.dart';
 import 'folder.dart';

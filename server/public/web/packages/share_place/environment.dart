@@ -11,10 +11,10 @@ import 'package:share_place/common/net/socket.io.dart';
 import 'dart:async';
 import 'app_config.dart' as conf;
 import 'dart:html';
-
+import 'package:logging/logging.dart';
 @Injectable()
 class Environment {
-
+final Logger log = new Logger("Environment");
   final EventBus eventBus;
 
   Place _place;
@@ -37,7 +37,7 @@ class Environment {
   Environment(this.eventBus) {
     socketIoClient = new SocketIoClient(eventBus);
     window.on['sp'].listen((event) {
-      print('event: $event');
+      log.finer('window event: $event');
       fireEvent(PlaceParam.fileId, selectedFile.id);
     });
     //window.onOnline.listen((Event e) => online = true);
@@ -115,7 +115,7 @@ class Environment {
     if (cookieSessionIdInput != null)
       url += "${cookieSessionIdInput.value}";
 
-    print("sio connecting to $url");
+    log.fine("sio connecting to $url");
     await socketIoClient.connect(url);
   }
 
@@ -206,6 +206,8 @@ enum PlaceParam {
   ioFolderCreated,
   treatFolderCreated,
   ioFolderChanged,
+  ioFolderDeleted,
+  treatFolderDeleted,
   ioFolderUserRemoved,
   treatFolderUserRemoved,
   ioPlaceUserRemoved,

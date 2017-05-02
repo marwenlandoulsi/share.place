@@ -37,6 +37,7 @@ class SocketIoClient {
         "userConnect": PlaceParam.ioFolderUserConnected,
         "folder": PlaceParam.ioFolderCreated,
         "folderChange": PlaceParam.ioFolderChanged,
+        "folderDeleted":  PlaceParam.ioFolderDeleted,
         "userInvite": PlaceParam.ioUserInvited,
         "subject": PlaceParam.ioSubjectCreated,
         "subjectChange": PlaceParam.ioSubjectChanged,

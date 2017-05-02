@@ -62,43 +62,47 @@ app.on('ready', function () {
   }, 3600000);
 
   global.homeDir = app.getPath('home');
-  getPort(function (port) {
-
-    var app = require('./server/app');
-    // require('./server/app_api/config/socketio')(app, server);
-    app.set('port', global.serverPort);
-    var server = http.createServer(app);
-    server.listen(global.serverPort);
-    process.on('uncaughtException', (err) => {
-      server = null;
-    });
-    mainWindow = new BrowserWindow({
-      width: 900,
-      height: 600,
-      title: "Share.Place V"+pjson.version,
-      webPreferences: {nodeIntegration: false, preload: __dirname + "/preload.js"},
-      icon: path.join(__dirname, 'server', 'static', 'images', 'iconElec.png')
-    });
-
-    mainWindow.maximize();
-    mainWindow.loadURL('http://127.0.0.1:' + global.serverPort + '/web/');
-
-    global.homeUrlServer = 'http://127.0.0.1:' + global.serverPort + '/web';
+ /* getPort(function (port) {
 
 
-    mainWindow.on('closed', function () {
-      mainWindow.webContents.session.clearStorageData([{
+  });*/
+  var expressApp = require('./server/app');
+  // require('./server/app_api/config/socketio')(app, server);
 
-        storages: ["clear"]
-      }, () => {
-        mainWindow = null;
-        server = null;
-         }])
-    });
+  var server = http.createServer(expressApp);
 
-    global.mainWindow = mainWindow;
+  server.listen(0);
+  global.serverPort = server.address().port
+  expressApp.set('port', global.serverPort);
+  process.on('uncaughtException', (err) => {
+    server = null;
+  });
+  mainWindow = new BrowserWindow({
+    width: 900,
+    height: 600,
+    title: "Share.Place V"+pjson.version,
+    webPreferences: {nodeIntegration: false, preload: __dirname + "/preload.js"},
+    icon: path.join(__dirname, 'server', 'static', 'images', 'iconElec.png')
   });
 
+  mainWindow.maximize();
+  mainWindow.loadURL('http://127.0.0.1:' + global.serverPort + '/web/');
+
+  global.homeUrlServer = 'http://127.0.0.1:' + global.serverPort + '/web';
+
+
+  mainWindow.on('closed', function () {
+    mainWindow.webContents.session.clearStorageData([{
+
+      storages: ["clear"]
+    }, () => {
+      app.quit();
+      mainWindow = null;
+      server = null;
+    }])
+  });
+
+  global.mainWindow = mainWindow;
 });
 
 

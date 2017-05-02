@@ -17,6 +17,7 @@ import 'package:share_place/event_bus.dart';
 import 'package:share_place/environment.dart';
 import 'package:share_place/browser_data_service.dart';
 import 'package:http/http.dart';
+import 'package:logging/logging.dart';
 import 'package:angular2/core.template.dart' as i0;
 import 'package:angular2/platform/browser_static.template.dart' as i1;
 import 'package:share_place/app_component.template.dart' as i2;

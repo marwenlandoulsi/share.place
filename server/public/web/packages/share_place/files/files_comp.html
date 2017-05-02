@@ -1,12 +1,12 @@
 <div class="files">
   <div *ngIf="selectedFile != null" class="content">
 
-    <div class="title">File
+    <div class="title">{{selectedFile.name}}
       <div class="icons"></div>
     </div>
-    <div *ngIf="isUploading" class="isUploading">
-      <div class="progress"></div>
-    </div>
+    <!--<div *ngIf="isUploading" class="isUploading">-->
+      <!--<div class="progress"></div>-->
+    <!--</div>-->
 
     <div class="newTopic">
       <div class="newComment newTopicBlock">
@@ -40,11 +40,13 @@
                     </div>
                   </div>
                   <div class="version">
-                   <!--<div *ngIf="selectedFile.orderedVersions.length == versionItem.v ">-->
-                    <!--<div *ngIf="isUploading" class="isUploading">-->
-                    <!--<div class="progress"></div>-->
-                    <!--</div>-->
-                   <!--</div>-->
+                 <!-- new uplo -->
+                   <div *ngIf="selectedFile.orderedVersions.length == versionItem.v ">
+                    <div *ngIf="isUploading" class="isUploading">
+                    <div class="progress"></div>
+                    </div>
+                   </div>
+                    <!-- end new uplo -->
                     <div *ngIf="isCommentsOpen(selectedFile.id, versionItem.v)" class="versionComments">
                       <ul class="actionList">
 
@@ -176,49 +178,50 @@
                                 <div class="fileMoreActions">
                                   <span class="fileversion">v. {{versionItem.v}}</span>
                                   <span class="moreActions" popupSource
-                                        #fileMenu="popupSource"
+                                        #fileMenu="popupSource" alignPositionY="after" alignPositionX="end"
                                         (click)="switchMenuState(versionItem.v)"></span>
                                 </div>
 
+                                <material-popup *ngIf="fileMenuVisible == versionItem.v" class="popVersion" defaultPopupSizeProvider
+                                                enforceSpaceConstraints
+                                                [source]="fileMenu"
+                                                [visible]="fileMenuVisible == versionItem.v" (close)="fileMenuVisible = -1">
+                                  <div header class="headerPopVersion">
+                                    <div class="fileName">{{selectedFile.name}}</div>
+                                    <div class="fileInfo">
+                                      Version {{versionItem.v}}, {{versionItem.ts | agoDateFormat}}
+                                    </div>
+                                  </div>
+                                  <div class="popupContent popinVersion">
+                                    <div group>
+                                      <material-button (click)="approve(versionItem)"
+                                                       *ngIf="versionItem.approved == null && isOwner"
+                                                       class="menuItemVers">
+                                        <span class="spanVers"> <i class="zmdi zmdi-check-circle approve"></i> </span>
+                                        Approve
+                                      </material-button>
+                                      <material-button (click)="unapprove(versionItem)"
+                                                       *ngIf="versionItem.approved != null && isOwner && connectedUser.id == versionItem?.approved?.userId"
+                                                       class="menuItemVers">
+                                        <span class="spanVers"><i class="zmdi zmdi-check-circle nnApprove"></i> </span>
+                                        Unapprove
+                                      </material-button>
+                                    </div>
+                                    <material-button class="menuItemVers" *ngIf="false">
+                                      <span class="spanVers"><i class="zmdi zmdi-comment commentVers"></i> </span>Comment
+
+                                    </material-button>
+                                    <material-button (click)="delete()" class="menuItemVers" *ngIf="false">
+                                      <span class="spanVers"><i class="zmdi zmdi-delete delete"></i> </span> Delete
+                                    </material-button>
+                                  </div>
+                                </material-popup>
                               </div>
 
                             </div>
                           </div>
 
-                          <material-popup class="popVersion " defaultPopupSizeProvider
-                                          enforceSpaceConstraints
-                                          [source]="fileMenu"
-                                          [visible]="fileMenuVisible == versionItem.v">
-                            <div header class="headerPopVersion">
-                              <div class="fileName">{{selectedFile.name}}</div>
-                              <div class="fileInfo">
-                                Version {{versionItem.v}}, {{versionItem.ts | agoDateFormat}}
-                              </div>
-                            </div>
-                            <div class="popupContent popinVersion">
-                              <div group>
-                                <material-button (click)="approve(versionItem)"
-                                                 *ngIf="versionItem.approved == null && isOwner"
-                                                 class="menuItemVers">
-                                  <span class="spanVers"> <i class="zmdi zmdi-check-circle approve"></i> </span>
-                                  Approve
-                                </material-button>
-                                <material-button (click)="unapprove(versionItem)"
-                                                 *ngIf="versionItem.approved != null && isOwner && connectedUser.id == versionItem?.approved?.userId"
-                                                 class="menuItemVers">
-                                  <span class="spanVers"><i class="zmdi zmdi-check-circle nnApprove"></i> </span>
-                                  Unapprove
-                                </material-button>
-                              </div>
-                              <material-button class="menuItemVers" *ngIf="false">
-                                <span class="spanVers"><i class="zmdi zmdi-comment commentVers"></i> </span>Comment
 
-                              </material-button>
-                              <material-button (click)="delete()" class="menuItemVers" *ngIf="false">
-                                <span class="spanVers"><i class="zmdi zmdi-delete delete"></i> </span> Delete
-                              </material-button>
-                            </div>
-                          </material-popup>
                         </li>
                       </ul>
                     </div>

@@ -29,31 +29,30 @@
       </li>
     </ul>
   </div>
-
+  <div class="newTopic">
+    <div class="newTopicBlock">
+      <input type="text" #text (keyup.enter)="createQuickNote(text.value);text.value='';"
+             placeholder="Start a topic..."
+             class="txt"/>
+      <div (click)="createQuickNote(text.value);text.value=''" class="btn_valid"></div>
+    </div>
+  </div>
   <div>
     <ul class="subjectList">
-      <div class="newTopic">
-        <div class="newTopicBlock">
-          <input type="text" #text (keyup.enter)="createQuickNote(text.value);text.value='';"
-                 placeholder="Start a topic..."
-                 class="txt"/>
-          <div (click)="createQuickNote(text.value);text.value=''" class="btn_valid"></div>
-        </div>
-      </div>
+      <div class="subjectListInner">
       <li *ngFor="let subject of subjects; let subjectIndex = index" (click)="gotoSubject(subject)" class="subjectItem"
           [class.qNote]="subject.dataType == 'quickNote'"
           [class.selected]="selectedSubject != null && subject.id == selectedSubject.id"
           [class.approved]="subject.approved != null"
           [class.locked]="subject.lockOwner != null"
           [class.ownAction]="subject.lockOwner?.userId == connectedUser.id"
-          [class.unread]="wasRead(subject)"
-      >
+          [class.unread]="wasRead(subject)">
         <div *ngIf="renaming == null || renaming?.id != subject?.id" class="subject">
           <div class="thumb"><img
               src="/sp/place/{{selectedPlace.id}}/folder/{{selectedFolder?.id}}/file/{{subject.fileId}}/version/{{subject.v}}/thumb">
           </div>
-          <div class="name">{{subject.name}}</div>
           <div *ngIf="subject.dataType == 'file'" class="version"> V.{{subject.v}}</div>
+          <div class="name">{{subject.name}}</div>
           <div class="users">
             <ul>
               <li *ngFor="let activeUser of subject.users" class="user">
@@ -77,6 +76,7 @@
         </div>
         <div class="clearfix"></div>
       </li>
+      </div>
     </ul>
 
     <form id="fileForm" #upload class="uploadDropZone"

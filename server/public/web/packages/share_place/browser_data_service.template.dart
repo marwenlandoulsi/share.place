@@ -15,6 +15,7 @@ import 'dart:async';
 import 'package:angular2/core.dart';
 import 'package:http/http.dart';
 import 'package:http/browser_client.dart';
+import 'package:logging/logging.dart';
 import 'package:angular2/core.template.dart' as i0;
 export 'browser_data_service.dart';
 

@@ -50,6 +50,10 @@
       {
         "1": "dart:html",
         "5": false
+      },
+      {
+        "1": "package:logging/logging.dart",
+        "5": false
       }
     ],
     "5": [

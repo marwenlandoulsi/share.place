@@ -62,17 +62,20 @@ class FilesComp implements OnInit, PopupParent {
       selectedFile = null;
       return;
     }*/
-    hideMenu();
+
     var fileInfoId = params[PlaceParam.fileInfoId];
     if (fileInfoId != null) {
-      print("getting file for: $fileInfoId");
-      await getFile(
+      hideMenu();
+      popupUserInfoId = null;
+      await getFile
+        (
           _environment.selectedPlace.id, _environment.selectedFolder.id,
           _environment.selectedSubject.fileId);
     } else if (params[PlaceParam.placeId] != null) {
       selectedFile = null;
     } else if (params.containsKey(PlaceParam.ioFileActionCreated)) {
-        await reloadFile();
+      await reloadFile
+        ();
     }
   }
 
@@ -239,10 +242,15 @@ class FilesComp implements OnInit, PopupParent {
       hideMenu();
     else
       fileMenuVisible = versionPointed;
+
+    print(
+        "switched fileMenuVisible to $versionPointed");
+
     selectedVersion = versionPointed;
   }
 
   void hideMenu() {
+    print("hiding menu : ${StackTrace.current}");
     fileMenuVisible = -1;
   }
 
@@ -404,16 +412,16 @@ class FilesComp implements OnInit, PopupParent {
 
 
   bool isUserInfoPopup(FileVersion version, int actionIndex) =>
-      version.userId == popupUserInfoId &&
-          actionInfoPopupIndex == computeIndex(version, actionIndex);
+      actionInfoPopupIndex == computeIndex(version, actionIndex);
 
 
   void showUserInfoPopup(FileVersion version, int actionIndex) {
     actionInfoPopupIndex = computeIndex(version, actionIndex);
-    if (popupUserInfoId == version.userId)
-      popupUserInfoId = null;
-    else
+    if (actionIndex == -1)
       popupUserInfoId = version.userId;
+    else
+      popupUserInfoId =
+          getActionsForVersion(version).toList()[actionIndex].user.userId;
   }
 
   int computeIndex(FileVersion version, int actionIndex) {

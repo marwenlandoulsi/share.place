@@ -29,6 +29,10 @@
       {
         "1": "package:http/http.dart",
         "5": false
+      },
+      {
+        "1": "package:logging/logging.dart",
+        "5": false
       }
     ],
     "6": "main.dart"

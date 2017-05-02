@@ -5,6 +5,7 @@ import 'dart:convert';
 
 import 'package:angular2/core.dart';
 import 'package:http/http.dart';
+import 'package:logging/logging.dart';
 
 import 'app_config.dart' as conf;
 import 'place.dart';
@@ -21,6 +22,7 @@ import 'app_context_manager.dart';
 
 @Injectable()
 class PlaceService {
+  final Logger log = new Logger("PlaceService");
   static const USER_PROFILE_URL = "/sp/user/connected";
   static final _headers = {'Content-Type': 'application/json'};
   static const _placesUrl = '/sp/place'; // URL to web API
@@ -49,7 +51,7 @@ class PlaceService {
       _environment.addMessage(msg);
 
     if (statusCode >= 200 && statusCode < 300) {
-      print("response : ${resp.body}");
+      log.finest("response : ${resp.body}");
       dynamic toReturn = respBody['data'];
       return toReturn;
     } else if (statusCode == 401) {
@@ -118,7 +120,7 @@ class PlaceService {
   }
 
   Future<User> postImage(html.FormData form) async {
-    print("posting file form $form");
+    log.finest("posting file form $form");
     Map<String, dynamic> response = await postFileForm(form, "/auth/signup");
     return new User.fromJson(response);
   }
@@ -275,7 +277,7 @@ class PlaceService {
   }
 
   Exception _handleError(dynamic e) {
-    print(e); // for demo purposes only
+    log.severe(e); // for demo purposes only
     return new Exception('Server error; cause: $e');
   }
 
@@ -530,7 +532,6 @@ class PlaceService {
       setIfNotEmpty(userBody, "email", user.email);
       setIfNotEmpty(userBody, "passwordNew", newPass);
     }
-    print("############## ${userBody.toString()}");
 
     final response = await post(
         "/auth/profile/edit", body: userBody);
@@ -545,7 +546,7 @@ class PlaceService {
 
   Future<User> signup(User user) async {
     var userBody = {"email": user.email, "password": user.pass};
-    print("calling signup ");
+    log.finest("calling signup ");
     if (user.name != null)
       userBody["name"] = user.name;
     if (user.skype != null)
@@ -593,5 +594,11 @@ class PlaceService {
     } catch (e) {
       throw _handleError(e);
     }
+  }
+
+  Future<Null> deleteFolder(Folder folder) async {
+    await del(
+        '/sp/place/${_environment.selectedPlace.id}/folder/${folder.id}');
+    _environment.selectedFolder = null;
   }
 }

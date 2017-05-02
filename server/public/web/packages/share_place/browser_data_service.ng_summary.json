@@ -17,6 +17,10 @@
       {
         "1": "package:http/browser_client.dart",
         "5": false
+      },
+      {
+        "1": "package:logging/logging.dart",
+        "5": false
       }
     ],
     "5": [

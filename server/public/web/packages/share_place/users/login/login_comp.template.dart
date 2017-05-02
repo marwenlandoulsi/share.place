@@ -185,14 +185,14 @@ class ViewLoginComp0 extends AppView<import3.LoginComp> {
   var _expr_10 = uninitialized;
   var _expr_11 = uninitialized;
   var _expr_12 = uninitialized;
-  var _expr_16 = uninitialized;
   var _expr_17 = uninitialized;
-  var _expr_26 = uninitialized;
+  var _expr_18 = uninitialized;
   var _expr_27 = uninitialized;
   var _expr_28 = uninitialized;
   var _expr_29 = uninitialized;
   var _expr_30 = uninitialized;
   var _expr_31 = uninitialized;
+  var _expr_32 = uninitialized;
   ViewLoginComp0(import20.Injector parentInjector,ViewContainer declarationEl): super(ViewLoginComp0,renderType_LoginComp,import21.ViewType.COMPONENT,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
   dynamic get _DeferredContentAware_0_4 {
     if ((this.__DeferredContentAware_0_4 == null)) { (__DeferredContentAware_0_4 = this._ModalComponent_0_3); }
@@ -317,6 +317,7 @@ class ViewLoginComp0 extends AppView<import3.LoginComp> {
     _el_16.setAttribute(shimCAttr,'');
     parentRenderNode.append(_el_16);
     _el_16.className = 'login';
+    createAttr(_el_16,'id','login');
     Text _text_17 = new Text('\n  ');
     _el_16.append(_text_17);
     _el_18 = doc.createElement('div');
@@ -495,7 +496,7 @@ class ViewLoginComp0 extends AppView<import3.LoginComp> {
     _el_73 = doc.createElement('material-input');
     _el_73.setAttribute(shimCAttr,'');
     _el_64.append(_el_73);
-    _el_73.className = 'password themeable';
+    _el_73.className = 'password labelPassw themeable';
     createAttr(_el_73,'required','');
     createAttr(_el_73,'tabIndex','-1');
     createAttr(_el_73,'type','password');
@@ -600,7 +601,7 @@ class ViewLoginComp0 extends AppView<import3.LoginComp> {
     _el_103.setAttribute(shimCAttr,'');
     _el_101.append(_el_103);
     _el_103.className = 'copy';
-    Text _text_104 = new Text('Copyright (c) 2017 share.place. All rights reserved.');
+    Text _text_104 = new Text('Copyright © 2017 share.place. All rights reserved.');
     _el_103.append(_text_104);
     Text _text_105 = new Text('\n  ');
     _el_101.append(_text_105);
@@ -614,9 +615,10 @@ class ViewLoginComp0 extends AppView<import3.LoginComp> {
     final subscription_1 = _MaterialInputComponent_61_8.onFocus.listen(evt(_handle_focus_61_1));
     listen(_el_70,'click',evt(_handle_click_70_0));
     listen(_el_73,'ngModelChange',evt(_handle_ngModelChange_73_0));
-    listen(_el_73,'focus',evt(_handle_focus_73_1));
+    listen(_el_73,'keyup.enter',evt(_handle_keyup_enter_73_1));
+    listen(_el_73,'focus',evt(_handle_focus_73_2));
     final subscription_2 = _NgModel_73_5.update.listen(evt(_handle_ngModelChange_73_0));
-    final subscription_3 = _MaterialInputComponent_73_8.onFocus.listen(evt(_handle_focus_73_1));
+    final subscription_3 = _MaterialInputComponent_73_8.onFocus.listen(evt(_handle_focus_73_2));
     listen(_el_76,'click',evt(_handle_click_76_0));
     listen(_el_76,'keyup.enter',evt(_handle_keyup_enter_76_1));
     listen(_el_76,'blur',evt(_handle_blur_76_2));
@@ -730,28 +732,28 @@ class ViewLoginComp0 extends AppView<import3.LoginComp> {
     }
     if (changed) { _appEl_61.componentView.markAsCheckOnce(); }
     changes = null;
-    final currVal_16 = ctx.user.pass;
-    if (import46.checkBinding(_expr_16,currVal_16)) {
-      _NgModel_73_5.model = currVal_16;
+    final currVal_17 = ctx.user.pass;
+    if (import46.checkBinding(_expr_17,currVal_17)) {
+      _NgModel_73_5.model = currVal_17;
       if (identical(changes, null)) { (changes = <String, SimpleChange>{}); }
-      changes['model'] = new SimpleChange(_expr_16,currVal_16);
-      _expr_16 = currVal_16;
+      changes['model'] = new SimpleChange(_expr_17,currVal_17);
+      _expr_17 = currVal_17;
     }
     if (!identical(changes, null)) { _NgModel_73_5.ngOnChanges(changes); }
     changed = false;
-    final currVal_17 = '';
-    if (import46.checkBinding(_expr_17,currVal_17)) {
-      _MaterialInputComponent_73_8.required = currVal_17;
+    final currVal_18 = '';
+    if (import46.checkBinding(_expr_18,currVal_18)) {
+      _MaterialInputComponent_73_8.required = currVal_18;
       changed = true;
-      _expr_17 = currVal_17;
+      _expr_18 = currVal_18;
     }
     if (changed) { _appEl_73.componentView.markAsCheckOnce(); }
     changed = false;
-    final currVal_26 = '';
-    if (import46.checkBinding(_expr_26,currVal_26)) {
-      _MaterialButtonComponent_76_4.raised = currVal_26;
+    final currVal_27 = '';
+    if (import46.checkBinding(_expr_27,currVal_27)) {
+      _MaterialButtonComponent_76_4.raised = currVal_27;
       changed = true;
-      _expr_26 = currVal_26;
+      _expr_27 = currVal_27;
     }
     if (changed) { _appEl_76.componentView.markAsCheckOnce(); }
     this.detectContentChildrenChanges();
@@ -772,30 +774,30 @@ class ViewLoginComp0 extends AppView<import3.LoginComp> {
       updateClass(_el_52,'disabled',currVal_7);
       _expr_7 = currVal_7;
     }
-    final currVal_27 = _MaterialButtonComponent_76_4.raised;
-    if (import46.checkBinding(_expr_27,currVal_27)) {
-      updateElemClass(_el_76,'is-raised',currVal_27);
-      _expr_27 = currVal_27;
-    }
-    final currVal_28 = _MaterialButtonComponent_76_4.disabledStr;
+    final currVal_28 = _MaterialButtonComponent_76_4.raised;
     if (import46.checkBinding(_expr_28,currVal_28)) {
-      setAttr(_el_76,'aria-disabled',((currVal_28 == null)? null: currVal_28.toString()));
+      updateElemClass(_el_76,'is-raised',currVal_28);
       _expr_28 = currVal_28;
     }
-    final currVal_29 = _MaterialButtonComponent_76_4.tabIndex;
+    final currVal_29 = _MaterialButtonComponent_76_4.disabledStr;
     if (import46.checkBinding(_expr_29,currVal_29)) {
-      setAttr(_el_76,'tabindex',((currVal_29 == null)? null: currVal_29.toString()));
+      setAttr(_el_76,'aria-disabled',((currVal_29 == null)? null: currVal_29.toString()));
       _expr_29 = currVal_29;
     }
-    final currVal_30 = _MaterialButtonComponent_76_4.disabled;
+    final currVal_30 = _MaterialButtonComponent_76_4.tabIndex;
     if (import46.checkBinding(_expr_30,currVal_30)) {
-      updateElemClass(_el_76,'is-disabled',currVal_30);
+      setAttr(_el_76,'tabindex',((currVal_30 == null)? null: currVal_30.toString()));
       _expr_30 = currVal_30;
     }
-    final currVal_31 = _MaterialButtonComponent_76_4.zElevation;
+    final currVal_31 = _MaterialButtonComponent_76_4.disabled;
     if (import46.checkBinding(_expr_31,currVal_31)) {
-      setAttr(_el_76,'elevation',((currVal_31 == null)? null: currVal_31.toString()));
+      updateElemClass(_el_76,'is-disabled',currVal_31);
       _expr_31 = currVal_31;
+    }
+    final currVal_32 = _MaterialButtonComponent_76_4.zElevation;
+    if (import46.checkBinding(_expr_32,currVal_32)) {
+      setAttr(_el_76,'elevation',((currVal_32 == null)? null: currVal_32.toString()));
+      _expr_32 = currVal_32;
     }
     this.detectViewChildrenChanges();
     if (identical(this.cdState, ChangeDetectorState.NeverChecked)) { _MaterialInputComponent_61_8.ngAfterViewInit(); }
@@ -841,7 +843,12 @@ class ViewLoginComp0 extends AppView<import3.LoginComp> {
     final dynamic pd_0 = !identical(((ctx.user.pass = $event) as dynamic), false);
     return (true && pd_0);
   }
-  bool _handle_focus_73_1($event) {
+  bool _handle_keyup_enter_73_1($event) {
+    this.markPathToRootAsCheckOnce();
+    final dynamic pd_0 = !identical((ctx.login() as dynamic), false);
+    return (true && pd_0);
+  }
+  bool _handle_focus_73_2($event) {
     _appEl_73.componentView.markPathToRootAsCheckOnce();
     final dynamic pd_0 = !identical((_MaterialInputComponent_73_8.focus() as dynamic), false);
     return (true && pd_0);

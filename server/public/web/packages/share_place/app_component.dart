@@ -86,7 +86,6 @@ class AppComponent
   User get connectedUser => _environment.connectedUser;
 
   void keyUp(String key) {
-    print("keyup: $key");
   }
 
   Future<Null> logout() async {

@@ -18,6 +18,7 @@ html, body, my-app, my-app > div, .leftP, my-place, .folders {
 }
 
 .leftP {
+  width: 17%;
   height: calc(100vh - 2.2em);
 }
 
@@ -60,10 +61,6 @@ body, input[text], button {
 
 .leftP, .rightPanelinside, .centerP, .rightP {
   float: left
-}
-
-.leftP {
-  width: 17%;
 }
 
 .rightPanelinside {
@@ -361,6 +358,11 @@ header:focus {
   margin-right: 7px;
 }
 
+.addplace input, .liAdd input {
+  padding: 0 !important;
+  width: calc(100% - 46px) !important
+}
+
 .text_comp input {
   background: transparent !important;
   -webkit-appearance: normal !important;
@@ -431,10 +433,6 @@ main, header, footer {
 
 .label-text {
   font-size: 13px;
-}
-
-input {
-  padding: 0 0 0 9px !important;
 }
 
 .profileImg {
@@ -586,14 +584,13 @@ textarea {
   -moz-border-radius: 3px 0 0 3px;
   -webkit-border-radius: 3px 0 0 3px;
   height: 34px;
-  width: calc(100% - 33px);
   font-size: 0.9em;
   color: #000;
   font-family: Arial, Helvetica, sans-serif;
-  padding-left: 10px !important;
-  padding-right: 10px !important;
   background: #fff;
-  border: 1px solid #929292;
+  border: 1px solid rgba(146, 146, 146, 0.63);
+  width: calc(100% - 58px) !important;
+  padding: 0 20px 0 10px !important;
 }
 
 .arowmenow {
@@ -638,31 +635,44 @@ textarea {
   position: absolute;
   right: 0;
   top: 0;
-  background: white url("../images/arrow.png") no-repeat center center;
+  background: white;
   width: 34px;
   height: 34px;
-  color: #c3c3c3;
-  border-top: 1px solid #929292;
-  border-bottom: 1px solid #929292;
-  border-left: 1px solid #929292;
-  border-right: 1px solid #929292;
+  line-height: 28px;
   text-align: center;
+  color: #c3c3c3;
+  border-top: 1px solid rgba(146, 146, 146, 0.63);
+  border-bottom: 1px solid rgba(146, 146, 146, 0.63);
+  border-left: 1px solid rgba(146, 146, 146, 0.63);
+  border-right: 1px solid rgba(146, 146, 146, 0.63);
   cursor: pointer;
   padding: 0;
   border-radius: 0 3px 3px 0;
   -moz-border-radius: 0 3px 3px 0;
   -o-border-radius: 0 3px 3px 0;
   -webkit-border-radius: 0 3px 3px 0;
-
-  /*font-family: FontAwesome;*/
-  /*content: "\f124";*/
-
+  font: normal normal normal 1.3em/1 'Material-Design-Iconic-Font';
 }
 
-.btn_valid i {
-  font-size: 30px;
-  margin: 2px auto 0 0;
+.btn_valid:after {
+  font-size: 1.2em;
+  color: #DADFE2;
+  content: '\f194';
   vertical-align: middle;
+  -ms-transform: rotate(-31deg);
+  -webkit-transform: rotate(-31deg);
+  transform: rotate(-31deg);
+  display: block;
+  margin-left: 3px;
+  -webkit-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+}
+
+
+
+.files .btn_valid:hover:after {
+  color: #4690D1;
 }
 
 .profile_pop {
@@ -929,36 +939,29 @@ header.closed .primary-text:before {
   color: #9ca2ab !important;
 }
 
+/*.isUploading {*/
+/*margin: 0.6em auto !important;*/
+/*border: 1px solid #D5F0FF !important;*/
+/*background-color: rgba(213, 240, 255, 0.5) !important;*/
+/*}*/
+
 .isUploading {
-  margin: 0.6em auto !important;
-  border: 1px solid #D5F0FF !important;
-  background-color: rgba(213, 240, 255, 0.5) !important;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  margin: auto;
+  position: absolute;
+  left: 8px;
+  right: auto;
+  top: 5px;
+  bottom: auto;
 }
 
-/*.isUploading {*/
-/*width:48px;*/
-/*height: 48px;*/
-/*padding: 0;*/
-/*margin: auto;*/
-/*border-radius:50%;*/
-/*overflow: hidden;*/
-/*background: lightblue;*/
-/*position: absolute;*/
-/*left: 1em;*/
-/*right: auto;*/
-/*top: 1em;*/
-/*}*/
-
-/*.progress {*/
-/*height: 48px;*/
-/*width: 48px;*/
-/*position: relative;*/
-/*background-image: url(../images/ring-alt.gif);*/
-/*}*/
-
-.ownAction .isUploading {
-  left: auto;
-  right: 1em;
+.progress {
+  width: 44px;
+  height: 44px;
+  position: relative;
+  background-image: url(../images/ring-alt.gif) no-repeat center center;
 }
 
 .headerPopVersion {
@@ -1354,17 +1357,19 @@ header.closed .primary-text:before {
   background-color: #51A351;
 }
 
-.login_pop {
-  background-color: red !important;
-  color: blue !important;
-}
-
 material-button.btn_login.submitbottom.is-raised .content {
   padding: 0.6em 0.57em;
 }
 
 material-button.menuItem.profile .content, material-button.menuItem.logout .content {
   padding: 3px 0 3px 6px;
+}
+
+#login input {
+  width: calc(100% - 14px);
+  padding-left: 7px;
+  padding-right: 7px;
+  padding-top: 2px;
 }
 
 /*@media only screen and (max-width: 992px) {*/
@@ -1387,6 +1392,15 @@ material-button.menuItem.profile .content, material-button.menuItem.logout .cont
 /*}*/
 
 /*}*/
+
+input {
+  width: calc(100% - 20px) !important;
+  padding: 1px 5px 0 9px !important;
+}
+
+.renameDiv input {
+  width: calc(100% - 28px) !important;
+}
 
 @media only screen and (max-width: 480px) {
 
@@ -1429,3 +1443,4 @@ material-button.menuItem.profile .content, material-button.menuItem.logout .cont
   }
 
 }
+

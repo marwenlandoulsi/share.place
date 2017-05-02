@@ -74,7 +74,7 @@ class FolderComponent
       dynamic inviteDetails = params[PlaceParam.treatUserInvite];
       var placeId = inviteDetails['placeId'];
       var emitterId = inviteDetails['emitterId'];
-      if( connectedUser.id != emitterId && selectedFolder.placeId == placeId ) {
+      if( connectedUser.id != emitterId && selectedFolder?.placeId == placeId ) {
         await getFolders(placeId);
         _environment.addMessage("You were just invited to the folder ${foldersById[inviteDetails['folderId']]}");
 

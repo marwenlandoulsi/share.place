@@ -10,7 +10,7 @@
   </material-dialog>
 </modal>
 
-<div class="login">
+<div class="login" id="login">
   <div class="header">
     <!--<btn (click)="add()"-->
     <!--[sources]="['../images/addPerson.png', '../images/addPerson-h.png', '../images/addPerson-c.png']"-->
@@ -44,7 +44,7 @@
         <div class="pass">
           <div class="label">Password</div>
           <div class="forgot"><a href="#" tabindex="-1" (click)="forgotPassDisplayed = true">forgot?</a></div>
-          <material-input required [(ngModel)]="user.pass" type="password" class="password"></material-input>
+          <material-input required [(ngModel)]="user.pass" type="password" class="password labelPassw" (keyup.enter)="login()"></material-input>
         </div>
         <material-button raised class="btn_login" (click)="login()" (keyup.enter)="login()">Login</material-button>
       </form>
@@ -67,6 +67,6 @@
   </div>
 
   <footer>
-    <div class="copy">Copyright (c) 2017 share.place. All rights reserved.</div>
+    <div class="copy">Copyright © 2017 share.place. All rights reserved.</div>
   </footer>
 </div>

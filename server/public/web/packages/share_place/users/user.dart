@@ -1,3 +1,5 @@
+import 'package:share_place/common/util.dart' as util;
+
 class User {
   String _id;
   Map<String, String> photoIdMap;
@@ -81,10 +83,11 @@ class User {
 
   String get mainMail {
     String toReturn = localAccount?.email;
-    if (toReturn == null)
+    if ( util.isEmpty( toReturn ) )
       toReturn = facebookAccount?.email;
-    if (toReturn == null)
+    if (util.isEmpty( toReturn ) )
       toReturn = googleAccount?.email;
+
     return toReturn;
   }
 
@@ -92,7 +95,7 @@ class User {
     localAccount = new LocalAccount(email, null);
   }
 
-  String get displayName => name == null ? mainMail : name;
+  String get displayName => util.isEmpty( name ) ? mainMail : name;
 
   static Map<String, RoleEnum> fromRoleList(List<Role> roleList) {
     return new

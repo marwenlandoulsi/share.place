@@ -5,6 +5,8 @@ import 'package:share_place/event_bus.dart';
 import 'package:share_place/environment.dart';
 import 'package:share_place/browser_data_service.dart';
 import 'package:http/http.dart';
+
+import 'package:logging/logging.dart';
 /**
  * See those subjects :
  *  - https://angular.io/docs/ts/latest/guide/router.html#!#base-href
@@ -12,6 +14,11 @@ import 'package:http/http.dart';
  */
 
 void main() {
+  Logger.root.level = Level.ALL;
+  Logger.root.onRecord.listen((LogRecord rec) {
+    print('${rec.level.name}: ${rec.message}');
+  });
+
   bootstrapStatic(AppComponent, [provide(Client, useClass: BrowserDataService), Environment, EventBus], () { ngStaticInit.initReflector(); });
 
 }

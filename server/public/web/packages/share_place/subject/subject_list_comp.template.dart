@@ -145,22 +145,23 @@ class ViewSubjectListComponent1 extends AppView<import3.SubjectListComponent> {
   dynamic _TemplateRef_19_4;
   import18.NgFor _NgFor_19_5;
   Element _el_23;
-  UListElement _el_25;
-  Element _el_27;
+  Element _el_25;
+  InputElement _el_27;
   Element _el_29;
-  InputElement _el_31;
   Element _el_33;
-  ViewContainer _appEl_37;
-  dynamic _TemplateRef_37_4;
-  import18.NgFor _NgFor_37_5;
-  FormElement _el_40;
-  import19.NgForm _NgForm_40_2;
-  dynamic __ControlContainer_40_3;
-  Element _el_42;
-  InputElement _el_45;
-  Element _el_47;
-  ViewContainer _appEl_47;
-  import13.PostitComponent _PostitComponent_47_3;
+  UListElement _el_35;
+  Element _el_37;
+  ViewContainer _appEl_39;
+  dynamic _TemplateRef_39_4;
+  import18.NgFor _NgFor_39_5;
+  FormElement _el_43;
+  import19.NgForm _NgForm_43_2;
+  dynamic __ControlContainer_43_3;
+  Element _el_45;
+  InputElement _el_48;
+  Element _el_50;
+  ViewContainer _appEl_50;
+  import13.PostitComponent _PostitComponent_50_3;
   var _expr_0 = uninitialized;
   var _expr_1 = uninitialized;
   var _expr_2 = uninitialized;
@@ -184,9 +185,9 @@ class ViewSubjectListComponent1 extends AppView<import3.SubjectListComponent> {
     if ((this.__Modal_8_5 == null)) { (__Modal_8_5 = this._ModalComponent_8_3); }
     return this.__Modal_8_5;
   }
-  dynamic get _ControlContainer_40_3 {
-    if ((this.__ControlContainer_40_3 == null)) { (__ControlContainer_40_3 = this._NgForm_40_2); }
-    return this.__ControlContainer_40_3;
+  dynamic get _ControlContainer_43_3 {
+    if ((this.__ControlContainer_43_3 == null)) { (__ControlContainer_43_3 = this._NgForm_43_2); }
+    return this.__ControlContainer_43_3;
   }
   ViewContainer createInternal(dynamic rootSelector) {
     var doc = document;
@@ -280,100 +281,108 @@ class ViewSubjectListComponent1 extends AppView<import3.SubjectListComponent> {
     _el_17.append(_text_20);
     Text _text_21 = new Text('\n  ');
     _el_2.append(_text_21);
-    Text _text_22 = new Text('\n\n  ');
+    Text _text_22 = new Text('\n  ');
     _el_0.append(_text_22);
     _el_23 = doc.createElement('div');
     _el_23.setAttribute(shimCAttr,'');
     _el_0.append(_el_23);
+    _el_23.className = 'newTopic';
     Text _text_24 = new Text('\n    ');
     _el_23.append(_text_24);
-    _el_25 = doc.createElement('ul');
+    _el_25 = doc.createElement('div');
     _el_25.setAttribute(shimCAttr,'');
     _el_23.append(_el_25);
-    _el_25.className = 'subjectList';
+    _el_25.className = 'newTopicBlock';
     Text _text_26 = new Text('\n      ');
     _el_25.append(_text_26);
-    _el_27 = doc.createElement('div');
+    _el_27 = doc.createElement('input');
     _el_27.setAttribute(shimCAttr,'');
     _el_25.append(_el_27);
-    _el_27.className = 'newTopic';
-    Text _text_28 = new Text('\n        ');
-    _el_27.append(_text_28);
+    _el_27.className = 'txt';
+    createAttr(_el_27,'placeholder','Start a topic...');
+    createAttr(_el_27,'type','text');
+    Text _text_28 = new Text('\n      ');
+    _el_25.append(_text_28);
     _el_29 = doc.createElement('div');
     _el_29.setAttribute(shimCAttr,'');
-    _el_27.append(_el_29);
-    _el_29.className = 'newTopicBlock';
-    Text _text_30 = new Text('\n          ');
-    _el_29.append(_text_30);
-    _el_31 = doc.createElement('input');
-    _el_31.setAttribute(shimCAttr,'');
-    _el_29.append(_el_31);
-    _el_31.className = 'txt';
-    createAttr(_el_31,'placeholder','Start a topic...');
-    createAttr(_el_31,'type','text');
-    Text _text_32 = new Text('\n          ');
-    _el_29.append(_text_32);
+    _el_25.append(_el_29);
+    _el_29.className = 'btn_valid';
+    Text _text_30 = new Text('\n    ');
+    _el_25.append(_text_30);
+    Text _text_31 = new Text('\n  ');
+    _el_23.append(_text_31);
+    Text _text_32 = new Text('\n  ');
+    _el_0.append(_text_32);
     _el_33 = doc.createElement('div');
     _el_33.setAttribute(shimCAttr,'');
-    _el_29.append(_el_33);
-    _el_33.className = 'btn_valid';
-    Text _text_34 = new Text('\n        ');
-    _el_29.append(_text_34);
-    Text _text_35 = new Text('\n      ');
-    _el_27.append(_text_35);
+    _el_0.append(_el_33);
+    Text _text_34 = new Text('\n    ');
+    _el_33.append(_text_34);
+    _el_35 = doc.createElement('ul');
+    _el_35.setAttribute(shimCAttr,'');
+    _el_33.append(_el_35);
+    _el_35.className = 'subjectList';
     Text _text_36 = new Text('\n      ');
-    _el_25.append(_text_36);
-    var _anchor_37 = new Comment('template bindings={}');
-    _el_25?.append(_anchor_37);
-    _appEl_37 = new ViewContainer(37,25,this,_anchor_37);
-    _TemplateRef_37_4 = new TemplateRef(_appEl_37,viewFactory_SubjectListComponent4);
-    _NgFor_37_5 = new import18.NgFor(_appEl_37,_TemplateRef_37_4,this.parentInjector.get(import31.IterableDiffers),ref);
-    Text _text_38 = new Text('\n    ');
-    _el_25.append(_text_38);
-    Text _text_39 = new Text('\n\n    ');
-    _el_23.append(_text_39);
-    _el_40 = doc.createElement('form');
-    _el_40.setAttribute(shimCAttr,'');
-    _el_23.append(_el_40);
-    _el_40.className = 'uploadDropZone';
-    createAttr(_el_40,'id','fileForm');
-    _NgForm_40_2 = new import19.NgForm(null,null);
-    Text _text_41 = new Text('\n      ');
-    _el_40.append(_text_41);
-    _el_42 = doc.createElement('label');
-    _el_42.setAttribute(shimCAttr,'');
-    _el_40.append(_el_42);
-    createAttr(_el_42,'for','fileupload');
-    createAttr(_el_42,'id','labelfileupload');
-    Text _text_43 = new Text(' Drag\'n drop or browse file ');
-    _el_42.append(_text_43);
+    _el_35.append(_text_36);
+    _el_37 = doc.createElement('div');
+    _el_37.setAttribute(shimCAttr,'');
+    _el_35.append(_el_37);
+    _el_37.className = 'subjectListInner';
+    Text _text_38 = new Text('\n      ');
+    _el_37.append(_text_38);
+    var _anchor_39 = new Comment('template bindings={}');
+    _el_37?.append(_anchor_39);
+    _appEl_39 = new ViewContainer(39,37,this,_anchor_39);
+    _TemplateRef_39_4 = new TemplateRef(_appEl_39,viewFactory_SubjectListComponent4);
+    _NgFor_39_5 = new import18.NgFor(_appEl_39,_TemplateRef_39_4,this.parentInjector.get(import31.IterableDiffers),ref);
+    Text _text_40 = new Text('\n      ');
+    _el_37.append(_text_40);
+    Text _text_41 = new Text('\n    ');
+    _el_35.append(_text_41);
+    Text _text_42 = new Text('\n\n    ');
+    _el_33.append(_text_42);
+    _el_43 = doc.createElement('form');
+    _el_43.setAttribute(shimCAttr,'');
+    _el_33.append(_el_43);
+    _el_43.className = 'uploadDropZone';
+    createAttr(_el_43,'id','fileForm');
+    _NgForm_43_2 = new import19.NgForm(null,null);
     Text _text_44 = new Text('\n      ');
-    _el_40.append(_text_44);
-    _el_45 = doc.createElement('input');
+    _el_43.append(_text_44);
+    _el_45 = doc.createElement('label');
     _el_45.setAttribute(shimCAttr,'');
-    _el_40.append(_el_45);
-    _el_45.className = 'uploadFile';
-    createAttr(_el_45,'id','fileupload');
-    createAttr(_el_45,'name','toUpload');
-    createAttr(_el_45,'style','opacity: 0');
-    createAttr(_el_45,'type','file');
-    Text _text_46 = new Text('\n\n      ');
-    _el_40.append(_text_46);
-    _el_47 = doc.createElement('postit-comp');
-    _el_47.setAttribute(shimCAttr,'');
-    _el_40.append(_el_47);
-    _el_47.className = 'filesPostit';
-    _appEl_47 = new ViewContainer(47,40,this,_el_47);
-    var compView_47 = import20.viewFactory_PostitComponent0(this.injector(47),_appEl_47);
-    _PostitComponent_47_3 = new import13.PostitComponent(this.parentInjector.get(import21.PlaceService),this.parentInjector.get(import22.Router),this.parentInjector.get(import23.Environment));
-    _appEl_47.initComponent(_PostitComponent_47_3,compView_47);
-    compView_47.createComp([],null);
-    Text _text_48 = new Text('\n    ');
-    _el_40.append(_text_48);
-    Text _text_49 = new Text('\n  ');
-    _el_23.append(_text_49);
-    Text _text_50 = new Text('\n');
-    _el_0.append(_text_50);
+    _el_43.append(_el_45);
+    createAttr(_el_45,'for','fileupload');
+    createAttr(_el_45,'id','labelfileupload');
+    Text _text_46 = new Text(' Drag\'n drop or browse file ');
+    _el_45.append(_text_46);
+    Text _text_47 = new Text('\n      ');
+    _el_43.append(_text_47);
+    _el_48 = doc.createElement('input');
+    _el_48.setAttribute(shimCAttr,'');
+    _el_43.append(_el_48);
+    _el_48.className = 'uploadFile';
+    createAttr(_el_48,'id','fileupload');
+    createAttr(_el_48,'name','toUpload');
+    createAttr(_el_48,'style','opacity: 0');
+    createAttr(_el_48,'type','file');
+    Text _text_49 = new Text('\n\n      ');
+    _el_43.append(_text_49);
+    _el_50 = doc.createElement('postit-comp');
+    _el_50.setAttribute(shimCAttr,'');
+    _el_43.append(_el_50);
+    _el_50.className = 'filesPostit';
+    _appEl_50 = new ViewContainer(50,43,this,_el_50);
+    var compView_50 = import20.viewFactory_PostitComponent0(this.injector(50),_appEl_50);
+    _PostitComponent_50_3 = new import13.PostitComponent(this.parentInjector.get(import21.PlaceService),this.parentInjector.get(import22.Router),this.parentInjector.get(import23.Environment));
+    _appEl_50.initComponent(_PostitComponent_50_3,compView_50);
+    compView_50.createComp([],null);
+    Text _text_51 = new Text('\n    ');
+    _el_43.append(_text_51);
+    Text _text_52 = new Text('\n  ');
+    _el_33.append(_text_52);
+    Text _text_53 = new Text('\n');
+    _el_0.append(_text_53);
     listen(_el_6,'click',evt(_handle_click_6_0));
     this._arr_0 = import11.pureProxy3((p0,p1,p2) {
       return [
@@ -381,19 +390,19 @@ class ViewSubjectListComponent1 extends AppView<import3.SubjectListComponent> {
       ]
       ;
     });
-    listen(_el_31,'keyup.enter',evt(_handle_keyup_enter_31_0));
-    listen(_el_33,'click',evt(_handle_click_33_0));
-    listen(_el_40,'dragenter',evt(_handle_dragenter_40_0));
-    listen(_el_40,'drop',evt(_handle_drop_40_1));
-    listen(_el_40,'submit',evt(_handle_submit_40_2));
-    listen(_el_45,'change',evt(_handle_change_45_0));
+    listen(_el_27,'keyup.enter',evt(_handle_keyup_enter_27_0));
+    listen(_el_29,'click',evt(_handle_click_29_0));
+    listen(_el_43,'dragenter',evt(_handle_dragenter_43_0));
+    listen(_el_43,'drop',evt(_handle_drop_43_1));
+    listen(_el_43,'submit',evt(_handle_submit_43_2));
+    listen(_el_48,'change',evt(_handle_change_48_0));
     init([_el_0],[
       _el_0,_text_1,_el_2,_text_3,_el_4,_text_5,_el_6,_text_7,_el_8,_text_9,_el_10,_text_11,
       _el_12,_text_13,_text_14,_text_15,_text_16,_el_17,_text_18,_anchor_19,_text_20,
       _text_21,_text_22,_el_23,_text_24,_el_25,_text_26,_el_27,_text_28,_el_29,_text_30,
-      _el_31,_text_32,_el_33,_text_34,_text_35,_text_36,_anchor_37,_text_38,_text_39,
-      _el_40,_text_41,_el_42,_text_43,_text_44,_el_45,_text_46,_el_47,_text_48,_text_49,
-      _text_50
+      _text_31,_text_32,_el_33,_text_34,_el_35,_text_36,_el_37,_text_38,_anchor_39,_text_40,
+      _text_41,_text_42,_el_43,_text_44,_el_45,_text_46,_text_47,_el_48,_text_49,_el_50,
+      _text_51,_text_52,_text_53
     ]
     ,[]);
     return null;
@@ -408,11 +417,11 @@ class ViewSubjectListComponent1 extends AppView<import3.SubjectListComponent> {
     if ((identical(token, import15.Modal) && ((8 <= requestNodeIndex) && (requestNodeIndex <= 14)))) { return _Modal_8_5; }
     if ((identical(token, TemplateRef) && (19 == requestNodeIndex))) { return _TemplateRef_19_4; }
     if ((identical(token, import18.NgFor) && (19 == requestNodeIndex))) { return _NgFor_19_5; }
-    if ((identical(token, TemplateRef) && (37 == requestNodeIndex))) { return _TemplateRef_37_4; }
-    if ((identical(token, import18.NgFor) && (37 == requestNodeIndex))) { return _NgFor_37_5; }
-    if ((identical(token, import13.PostitComponent) && (47 == requestNodeIndex))) { return _PostitComponent_47_3; }
-    if ((identical(token, import19.NgForm) && ((40 <= requestNodeIndex) && (requestNodeIndex <= 48)))) { return _NgForm_40_2; }
-    if ((identical(token, import33.ControlContainer) && ((40 <= requestNodeIndex) && (requestNodeIndex <= 48)))) { return _ControlContainer_40_3; }
+    if ((identical(token, TemplateRef) && (39 == requestNodeIndex))) { return _TemplateRef_39_4; }
+    if ((identical(token, import18.NgFor) && (39 == requestNodeIndex))) { return _NgFor_39_5; }
+    if ((identical(token, import13.PostitComponent) && (50 == requestNodeIndex))) { return _PostitComponent_50_3; }
+    if ((identical(token, import19.NgForm) && ((43 <= requestNodeIndex) && (requestNodeIndex <= 51)))) { return _NgForm_43_2; }
+    if ((identical(token, import33.ControlContainer) && ((43 <= requestNodeIndex) && (requestNodeIndex <= 51)))) { return _ControlContainer_43_3; }
     return notFoundResult;
   }
   void detectChangesInternal() {
@@ -456,26 +465,26 @@ class ViewSubjectListComponent1 extends AppView<import3.SubjectListComponent> {
     if (!import11.AppViewUtils.throwOnChanges) { _NgFor_19_5.ngDoCheck(); }
     final currVal_12 = ctx.subjects;
     if (import11.checkBinding(_expr_12,currVal_12)) {
-      _NgFor_37_5.ngForOf = currVal_12;
+      _NgFor_39_5.ngForOf = currVal_12;
       _expr_12 = currVal_12;
     }
-    if (!import11.AppViewUtils.throwOnChanges) { _NgFor_37_5.ngDoCheck(); }
+    if (!import11.AppViewUtils.throwOnChanges) { _NgFor_39_5.ngDoCheck(); }
     final currVal_17 = 'files';
     if (import11.checkBinding(_expr_17,currVal_17)) {
-      _PostitComponent_47_3.name = currVal_17;
+      _PostitComponent_50_3.name = currVal_17;
       _expr_17 = currVal_17;
     }
     final currVal_18 = 'Cool !';
     if (import11.checkBinding(_expr_18,currVal_18)) {
-      _PostitComponent_47_3.header = currVal_18;
+      _PostitComponent_50_3.header = currVal_18;
       _expr_18 = currVal_18;
     }
     final currVal_19 = 'Now you can Drag\'n drop a file here and start collaborate with your team ';
     if (import11.checkBinding(_expr_19,currVal_19)) {
-      _PostitComponent_47_3.body = currVal_19;
+      _PostitComponent_50_3.body = currVal_19;
       _expr_19 = currVal_19;
     }
-    if ((identical(this.cdState, ChangeDetectorState.NeverChecked) && !import11.AppViewUtils.throwOnChanges)) { _PostitComponent_47_3.ngOnInit(); }
+    if ((identical(this.cdState, ChangeDetectorState.NeverChecked) && !import11.AppViewUtils.throwOnChanges)) { _PostitComponent_50_3.ngOnInit(); }
     this.detectContentChildrenChanges();
     _MaterialDialogComponent_10_3.ngAfterContentChecked();
     final currVal_0 = import11.interpolate1('',ctx.selectedFolder.name,'\n\n    ');
@@ -499,34 +508,34 @@ class ViewSubjectListComponent1 extends AppView<import3.SubjectListComponent> {
     final dynamic pd_0 = !identical((ctx.add() as dynamic), false);
     return (true && pd_0);
   }
-  bool _handle_keyup_enter_31_0($event) {
+  bool _handle_keyup_enter_27_0($event) {
     this.markPathToRootAsCheckOnce();
-    ctx.createQuickNote(_el_31.value);
-    final dynamic pd_0 = !identical(((_el_31.value = '') as dynamic), false);
+    ctx.createQuickNote(_el_27.value);
+    final dynamic pd_0 = !identical(((_el_27.value = '') as dynamic), false);
     return (true && pd_0);
   }
-  bool _handle_click_33_0($event) {
+  bool _handle_click_29_0($event) {
     this.markPathToRootAsCheckOnce();
-    ctx.createQuickNote(_el_31.value);
-    final dynamic pd_0 = !identical(((_el_31.value = '') as dynamic), false);
+    ctx.createQuickNote(_el_27.value);
+    final dynamic pd_0 = !identical(((_el_27.value = '') as dynamic), false);
     return (true && pd_0);
   }
-  bool _handle_dragenter_40_0($event) {
+  bool _handle_dragenter_43_0($event) {
     this.markPathToRootAsCheckOnce();
-    final dynamic pd_0 = !identical((_el_40.style.setProperty('border','2px solid #9FC8FA') as dynamic), false);
+    final dynamic pd_0 = !identical((_el_43.style.setProperty('border','2px solid #9FC8FA') as dynamic), false);
     return (true && pd_0);
   }
-  bool _handle_drop_40_1($event) {
+  bool _handle_drop_43_1($event) {
     this.markPathToRootAsCheckOnce();
-    final dynamic pd_0 = !identical((_el_40.style.setProperty('border','2px dotted #273B54') as dynamic), false);
+    final dynamic pd_0 = !identical((_el_43.style.setProperty('border','2px dotted #273B54') as dynamic), false);
     return (true && pd_0);
   }
-  bool _handle_submit_40_2($event) {
+  bool _handle_submit_43_2($event) {
     this.markPathToRootAsCheckOnce();
-    final dynamic pd_0 = !identical((_NgForm_40_2.onSubmit() as dynamic), false);
+    final dynamic pd_0 = !identical((_NgForm_43_2.onSubmit() as dynamic), false);
     return (true && pd_0);
   }
-  bool _handle_change_45_0($event) {
+  bool _handle_change_48_0($event) {
     this.markPathToRootAsCheckOnce();
     final dynamic pd_0 = !identical((ctx.uploadFiles() as dynamic), false);
     return (true && pd_0);
@@ -796,11 +805,11 @@ class ViewSubjectListComponent5 extends AppView<import3.SubjectListComponent> {
   Element _el_0;
   Element _el_2;
   Element _el_3;
-  Element _el_6;
-  Text _text_7;
-  ViewContainer _appEl_9;
-  dynamic _TemplateRef_9_4;
-  NgIf _NgIf_9_5;
+  ViewContainer _appEl_6;
+  dynamic _TemplateRef_6_4;
+  NgIf _NgIf_6_5;
+  Element _el_8;
+  Text _text_9;
   Element _el_11;
   UListElement _el_13;
   ViewContainer _appEl_15;
@@ -808,7 +817,7 @@ class ViewSubjectListComponent5 extends AppView<import3.SubjectListComponent> {
   import18.NgFor _NgFor_15_5;
   Element _el_18;
   var _expr_0 = uninitialized;
-  var _expr_1 = uninitialized;
+  var _expr_2 = uninitialized;
   var _expr_3 = uninitialized;
   ViewSubjectListComponent5(import6.Injector parentInjector,ViewContainer declarationEl): super(ViewSubjectListComponent5,renderType_SubjectListComponent,import7.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
   ViewContainer createInternal(dynamic rootSelector) {
@@ -829,19 +838,19 @@ class ViewSubjectListComponent5 extends AppView<import3.SubjectListComponent> {
     _el_2.append(_text_4);
     Text _text_5 = new Text('\n          ');
     _el_0.append(_text_5);
-    _el_6 = doc.createElement('div');
-    _el_6.setAttribute(shimCAttr,'');
-    _el_0.append(_el_6);
-    _el_6.className = 'name';
-    _text_7 = new Text('');
-    _el_6.append(_text_7);
-    Text _text_8 = new Text('\n          ');
-    _el_0.append(_text_8);
-    var _anchor_9 = new Comment('template bindings={}');
-    _el_0?.append(_anchor_9);
-    _appEl_9 = new ViewContainer(9,0,this,_anchor_9);
-    _TemplateRef_9_4 = new TemplateRef(_appEl_9,viewFactory_SubjectListComponent6);
-    _NgIf_9_5 = new NgIf(_appEl_9,_TemplateRef_9_4);
+    var _anchor_6 = new Comment('template bindings={}');
+    _el_0?.append(_anchor_6);
+    _appEl_6 = new ViewContainer(6,0,this,_anchor_6);
+    _TemplateRef_6_4 = new TemplateRef(_appEl_6,viewFactory_SubjectListComponent6);
+    _NgIf_6_5 = new NgIf(_appEl_6,_TemplateRef_6_4);
+    Text _text_7 = new Text('\n          ');
+    _el_0.append(_text_7);
+    _el_8 = doc.createElement('div');
+    _el_8.setAttribute(shimCAttr,'');
+    _el_0.append(_el_8);
+    _el_8.className = 'name';
+    _text_9 = new Text('');
+    _el_8.append(_text_9);
     Text _text_10 = new Text('\n          ');
     _el_0.append(_text_10);
     _el_11 = doc.createElement('div');
@@ -873,21 +882,21 @@ class ViewSubjectListComponent5 extends AppView<import3.SubjectListComponent> {
     Text _text_20 = new Text('\n        ');
     _el_0.append(_text_20);
     init([_el_0],[
-      _el_0,_text_1,_el_2,_el_3,_text_4,_text_5,_el_6,_text_7,_text_8,_anchor_9,_text_10,
+      _el_0,_text_1,_el_2,_el_3,_text_4,_text_5,_anchor_6,_text_7,_el_8,_text_9,_text_10,
       _el_11,_text_12,_el_13,_text_14,_anchor_15,_text_16,_text_17,_el_18,_text_19,_text_20
     ]
     ,[]);
     return null;
   }
   dynamic injectorGetInternal(dynamic token,int requestNodeIndex,dynamic notFoundResult) {
-    if ((identical(token, TemplateRef) && (9 == requestNodeIndex))) { return _TemplateRef_9_4; }
-    if ((identical(token, NgIf) && (9 == requestNodeIndex))) { return _NgIf_9_5; }
+    if ((identical(token, TemplateRef) && (6 == requestNodeIndex))) { return _TemplateRef_6_4; }
+    if ((identical(token, NgIf) && (6 == requestNodeIndex))) { return _NgIf_6_5; }
     if ((identical(token, TemplateRef) && (15 == requestNodeIndex))) { return _TemplateRef_15_4; }
     if ((identical(token, import18.NgFor) && (15 == requestNodeIndex))) { return _NgFor_15_5; }
     return notFoundResult;
   }
   void detectChangesInternal() {
-    _NgIf_9_5.ngIf = (parent.locals['\$implicit'].dataType == 'file');
+    _NgIf_6_5.ngIf = (parent.locals['\$implicit'].dataType == 'file');
     final currVal_3 = parent.locals['\$implicit'].users;
     if (import11.checkBinding(_expr_3,currVal_3)) {
       _NgFor_15_5.ngForOf = currVal_3;
@@ -900,10 +909,10 @@ class ViewSubjectListComponent5 extends AppView<import3.SubjectListComponent> {
       setProp(_el_3,'src',import11.appViewUtils.sanitizer.sanitizeUrl(currVal_0));
       _expr_0 = currVal_0;
     }
-    final currVal_1 = import11.interpolate0(parent.locals['\$implicit'].name);
-    if (import11.checkBinding(_expr_1,currVal_1)) {
-      _text_7.text = currVal_1;
-      _expr_1 = currVal_1;
+    final currVal_2 = import11.interpolate0(parent.locals['\$implicit'].name);
+    if (import11.checkBinding(_expr_2,currVal_2)) {
+      _text_9.text = currVal_2;
+      _expr_2 = currVal_2;
     }
     this.detectViewChildrenChanges();
   }
