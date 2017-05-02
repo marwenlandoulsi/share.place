@@ -247,19 +247,26 @@ module.exports.getFile = function (req, res) {
             globalService.sendError(res, 405, err);
 
           if (!sameFile) {
-            showNotification("Downloading File", dataFile.name)
-            downloadFile(url, pathToDir, pathToFile, mode, (err, ok) => {
-              if (err)
-                showDialogBox("error", "share.place", "failed to download/open the file");
+            fs.unlink(pathToFile, function (err) {
+              if (err) {
+                log.error('err to delete from '+pathToFile+' :', err);
+                showNotification("Error occured try again or delete the file in :"+pathToFile);
+              }
+              showNotification("Downloading File", dataFile.name);
+              downloadFile(url, pathToDir, pathToFile, mode, (err, ok) => {
+                if (err)
+                  showDialogBox("error", "share.place", "failed to download/open the file");
 
-              let isOpened = openFile(res, dataFile, pathToFile);
-              if (isOpened)
-                showNotification("File opened", dataFile.name);
-              else
-                showNotification("File not opened", "sorry we can't open the file '" + dataFile.name + "'");
+                let isOpened = openFile(res, dataFile, pathToFile);
+                if (isOpened)
+                  showNotification("File opened", dataFile.name);
+                else
+                  showNotification("File not opened", "sorry we can't open the file '" + dataFile.name + "'");
 
-              return global.mainWindow.webContents.stop();
+                return global.mainWindow.webContents.stop();
+              });
             });
+
           } else {
             fs.chmodSync(pathToFile, modeFile);
             let isOpened = openFile(res, dataFile, pathToFile);
