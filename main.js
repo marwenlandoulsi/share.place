@@ -68,12 +68,14 @@ app.on('ready', function () {
   });*/
   var expressApp = require('./server/app');
   // require('./server/app_api/config/socketio')(app, server);
-
+/*
   var server = http.createServer(expressApp);
 
-  server.listen(0);
-  global.serverPort = server.address().port
-  expressApp.set('port', global.serverPort);
+  server.listen(0);*/
+  var listener = expressApp.listen(0);
+  global.serverPort = listener.address().port;
+  //expressApp.set('port', global.serverPort);
+  //expressApp.listen(3005)
   process.on('uncaughtException', (err) => {
     server = null;
   });
