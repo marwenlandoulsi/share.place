@@ -315,9 +315,9 @@ class ViewInviteUsersDialogComp0 extends AppView<import3.InviteUsersDialogComp> 
     _el_56.append(_text_58);
     Text _text_59 = new Text('\n    ');
     _el_52.append(_text_59);
-    Text _text_60 = new Text('\n\n    ');
+    Text _text_60 = new Text('\n    ');
     _el_50.append(_text_60);
-    Text _text_61 = new Text('\n    ');
+    Text _text_61 = new Text('\n\n    ');
     _el_11.append(_text_61);
     _el_62 = doc.createElement('div');
     _el_62.setAttribute(shimCAttr,'');
@@ -347,12 +347,13 @@ class ViewInviteUsersDialogComp0 extends AppView<import3.InviteUsersDialogComp> 
     _el_70.className = 'labelinvit';
     Text _text_71 = new Text('Message');
     _el_70.append(_text_71);
-    Text _text_72 = new Text('\n    ');
+    Text _text_72 = new Text('\n\n    ');
     _el_11.append(_text_72);
     _el_73 = doc.createElement('material-input');
     _el_73.setAttribute(shimCAttr,'');
     _el_11.append(_el_73);
     _el_73.className = 'themeable';
+    createAttr(_el_73,'contenteditable','true');
     createAttr(_el_73,'id','inviteLablel');
     createAttr(_el_73,'label','Hello! Join me on Share.Place, it\'s a super simple app to share and collaborate together!');
     createAttr(_el_73,'multiline','');
@@ -631,7 +632,6 @@ class ViewInviteUsersDialogComp1 extends AppView<import3.InviteUsersDialogComp> 
     _el_7 = doc.createElement('material-input');
     _el_7.setAttribute(shimCAttr,'');
     _el_2.append(_el_7);
-    createAttr(_el_7,'autofocus','');
     _el_7.className = 'emailinp themeable';
     createAttr(_el_7,'md-autofocus','');
     createAttr(_el_7,'placeholder','example@mydomain.com');

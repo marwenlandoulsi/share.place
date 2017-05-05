@@ -607,21 +607,10 @@ class PlaceService {
   }
 
   Future<Null> changeRoles(List<User> userRoles) async {
-    StringBuffer buffer = new StringBuffer("[");
-    for (int i = 0; i < userRoles.length; i++) {
-      User user = userRoles[i];
-      buffer.write(JSON.encode( user.toJson() ));
-      if (i + 1 < userRoles.length)
-        buffer.write(",");
-    }
-    buffer.write("]");
-
-    print("saving roles : $buffer");
-
     await put
     ('/sp/place/${_environment.selectedPlace.id}/folder/${_environment
         .selectedFolder.id}/user/role/list', headers: _headers,
-    body: JSON.encode(buffer.toString())
+    body: JSON.encode({'userList':userRoles})
     );
   }
 }

@@ -41,7 +41,6 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
   height: 300px;
 }
 
-
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
@@ -281,7 +280,8 @@ TODO see what font to use
   margin-right: 0.5em;
   display: inline-flex;
 }
-.rightMenu .imgProfil{
+
+.rightMenu .imgProfil {
   margin-top: 0.2em;
 }
 
@@ -647,7 +647,7 @@ textarea {
 .newTopicBlock {
   position: relative;
   display: inline-block;
-  width: 100%;
+  width: calc(100% - 2.5em);
 }
 
 .btn_valid {
@@ -1485,7 +1485,7 @@ input {
   color: rgba(237, 242, 248, 1);
 }
 
-#inputSym .input-container{
+#inputSym .input-container {
   margin-top: 1px;
   margin-bottom: -1px;
 }
@@ -1499,26 +1499,14 @@ input {
   padding: 0.6em 0.57em !important;
 }
 
-/*________________ scroll ____________________________*/
-/*.nodeList, .users .list, .versionComments, .subjectList*/
-/*.contentScroll {*/
-/*list-style: none;*/
-/*max-height: 10.9em;*/
-/*overflow-y: auto;*/
-/*overflow-x: hidden;*/
-/*position: relative;*/
+/*_____ spinner ______________*/
 
-/*}*/
+.spinnerInner {
+  margin: 0 auto !important;
+  text-align: center !important;
+}
 
-/*.subjectList.contentScroll {*/
-/*max-height: 23.2em;*/
-/*}*/
-
-/*.versionComments.contentScroll {*/
-/*max-height: 22em;*/
-/*}*/
-
-/*________________END  scroll ____________________________*/
+/*__________________*/
 
 @media only screen and (max-width: 480px) {
 

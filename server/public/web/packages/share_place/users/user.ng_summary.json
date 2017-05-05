@@ -6,6 +6,10 @@
         "1": "package:share_place/common/util.dart",
         "4": "util",
         "5": false
+      },
+      {
+        "1": "dart:convert",
+        "5": false
       }
     ],
     "6": "user.dart"

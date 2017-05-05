@@ -88,7 +88,9 @@ import 'package:angular2_components/src/utils/angular/reference/reference.dart' 
 import '../users/info_popup/info_popup.dart' as import38;
 import '../users/info_popup/info_popup.template.dart' as import39;
 import 'package:angular2/src/security/dom_sanitization_service.dart' as import40;
-import 'package:angular2/src/core/linker/component_factory.dart' as import41;
+import 'package:angular2_components/src/components/material_spinner/material_spinner.dart' as import41;
+import 'package:angular2_components/src/components/material_spinner/material_spinner.template.dart' as import42;
+import 'package:angular2/src/core/linker/component_factory.dart' as import43;
 const List<dynamic> styles_SubjectListComponent = const [import0.styles];
 RenderComponentType renderType_SubjectListComponent;
 class ViewSubjectListComponent0 extends AppView<import3.SubjectListComponent> {
@@ -161,18 +163,22 @@ class ViewSubjectListComponent1 extends AppView<import3.SubjectListComponent> {
   Element _el_41;
   Element _el_43;
   Element _el_45;
-  UListElement _el_47;
-  ViewContainer _appEl_49;
-  dynamic _TemplateRef_49_4;
-  import17.NgFor _NgFor_49_5;
-  FormElement _el_54;
-  import18.NgForm _NgForm_54_2;
-  dynamic __ControlContainer_54_3;
-  Element _el_56;
-  InputElement _el_59;
-  Element _el_61;
-  ViewContainer _appEl_61;
-  import13.PostitComponent _PostitComponent_61_3;
+  Element _el_47;
+  ViewContainer _appEl_48;
+  dynamic _TemplateRef_48_4;
+  NgIf _NgIf_48_5;
+  UListElement _el_50;
+  ViewContainer _appEl_52;
+  dynamic _TemplateRef_52_4;
+  import17.NgFor _NgFor_52_5;
+  FormElement _el_57;
+  import18.NgForm _NgForm_57_2;
+  dynamic __ControlContainer_57_3;
+  Element _el_59;
+  InputElement _el_62;
+  Element _el_64;
+  ViewContainer _appEl_64;
+  import13.PostitComponent _PostitComponent_64_3;
   var _expr_0 = uninitialized;
   var _expr_1 = uninitialized;
   var _expr_2 = uninitialized;
@@ -181,10 +187,10 @@ class ViewSubjectListComponent1 extends AppView<import3.SubjectListComponent> {
   var _expr_7 = uninitialized;
   var _expr_9 = uninitialized;
   var _expr_12 = uninitialized;
-  var _expr_13 = uninitialized;
-  var _expr_18 = uninitialized;
+  var _expr_14 = uninitialized;
   var _expr_19 = uninitialized;
   var _expr_20 = uninitialized;
+  var _expr_21 = uninitialized;
   ViewSubjectListComponent1(import6.Injector parentInjector,ViewContainer declarationEl): super(ViewSubjectListComponent1,renderType_SubjectListComponent,import7.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
   dynamic get _DeferredContentAware_11_4 {
     if ((this.__DeferredContentAware_11_4 == null)) { (__DeferredContentAware_11_4 = this._ModalComponent_11_3); }
@@ -194,9 +200,9 @@ class ViewSubjectListComponent1 extends AppView<import3.SubjectListComponent> {
     if ((this.__Modal_11_5 == null)) { (__Modal_11_5 = this._ModalComponent_11_3); }
     return this.__Modal_11_5;
   }
-  dynamic get _ControlContainer_54_3 {
-    if ((this.__ControlContainer_54_3 == null)) { (__ControlContainer_54_3 = this._NgForm_54_2); }
-    return this.__ControlContainer_54_3;
+  dynamic get _ControlContainer_57_3 {
+    if ((this.__ControlContainer_57_3 == null)) { (__ControlContainer_57_3 = this._NgForm_57_2); }
+    return this.__ControlContainer_57_3;
   }
   ViewContainer createInternal(dynamic rootSelector) {
     var doc = document;
@@ -348,93 +354,104 @@ class ViewSubjectListComponent1 extends AppView<import3.SubjectListComponent> {
     _el_43 = doc.createElement('div');
     _el_43.setAttribute(shimCAttr,'');
     _el_41.append(_el_43);
-    _el_43.className = 'demo';
+    _el_43.className = 'subjectListScollZone';
     Text _text_44 = new Text('\n      ');
     _el_43.append(_text_44);
     _el_45 = doc.createElement('div');
     _el_45.setAttribute(shimCAttr,'');
     _el_43.append(_el_45);
     _el_45.className = 'scrollbar-macosx';
-    Text _text_46 = new Text('\n        ');
+    Text _text_46 = new Text('\n       ');
     _el_45.append(_text_46);
-    _el_47 = doc.createElement('ul');
+    _el_47 = doc.createElement('div');
     _el_47.setAttribute(shimCAttr,'');
     _el_45.append(_el_47);
-    _el_47.className = 'subjectList contentScroll_';
-    Text _text_48 = new Text('\n          ');
-    _el_47.append(_text_48);
-    var _anchor_49 = new Comment('template bindings={}');
-    _el_47?.append(_anchor_49);
-    _appEl_49 = new ViewContainer(49,47,this,_anchor_49);
-    _TemplateRef_49_4 = new TemplateRef(_appEl_49,viewFactory_SubjectListComponent5);
-    _NgFor_49_5 = new import17.NgFor(_appEl_49,_TemplateRef_49_4,this.parentInjector.get(import29.IterableDiffers),ref);
-    Text _text_50 = new Text('\n        ');
-    _el_47.append(_text_50);
-    Text _text_51 = new Text('\n      ');
-    _el_45.append(_text_51);
-    Text _text_52 = new Text('\n    ');
-    _el_43.append(_text_52);
-    Text _text_53 = new Text('\n\n    ');
-    _el_41.append(_text_53);
-    _el_54 = doc.createElement('form');
-    _el_54.setAttribute(shimCAttr,'');
-    _el_41.append(_el_54);
-    _el_54.className = 'uploadDropZone';
-    createAttr(_el_54,'id','fileForm');
-    _NgForm_54_2 = new import18.NgForm(null,null);
-    Text _text_55 = new Text('\n\n\n      ');
-    _el_54.append(_text_55);
-    _el_56 = doc.createElement('label');
-    _el_56.setAttribute(shimCAttr,'');
-    _el_54.append(_el_56);
-    createAttr(_el_56,'for','fileupload');
-    createAttr(_el_56,'id','labelfileupload');
-    Text _text_57 = new Text(' Drag\'n drop or browse file ');
-    _el_56.append(_text_57);
-    Text _text_58 = new Text('\n      ');
-    _el_54.append(_text_58);
-    _el_59 = doc.createElement('input');
+    _el_47.className = 'spinnerInner';
+    var _anchor_48 = new Comment('template bindings={}');
+    _el_47?.append(_anchor_48);
+    _appEl_48 = new ViewContainer(48,47,this,_anchor_48);
+    _TemplateRef_48_4 = new TemplateRef(_appEl_48,viewFactory_SubjectListComponent5);
+    _NgIf_48_5 = new NgIf(_appEl_48,_TemplateRef_48_4);
+    Text _text_49 = new Text('\n        ');
+    _el_45.append(_text_49);
+    _el_50 = doc.createElement('ul');
+    _el_50.setAttribute(shimCAttr,'');
+    _el_45.append(_el_50);
+    _el_50.className = 'subjectList';
+    Text _text_51 = new Text('\n          ');
+    _el_50.append(_text_51);
+    var _anchor_52 = new Comment('template bindings={}');
+    _el_50?.append(_anchor_52);
+    _appEl_52 = new ViewContainer(52,50,this,_anchor_52);
+    _TemplateRef_52_4 = new TemplateRef(_appEl_52,viewFactory_SubjectListComponent6);
+    _NgFor_52_5 = new import17.NgFor(_appEl_52,_TemplateRef_52_4,this.parentInjector.get(import29.IterableDiffers),ref);
+    Text _text_53 = new Text('\n        ');
+    _el_50.append(_text_53);
+    Text _text_54 = new Text('\n      ');
+    _el_45.append(_text_54);
+    Text _text_55 = new Text('\n    ');
+    _el_43.append(_text_55);
+    Text _text_56 = new Text('\n\n    ');
+    _el_41.append(_text_56);
+    _el_57 = doc.createElement('form');
+    _el_57.setAttribute(shimCAttr,'');
+    _el_41.append(_el_57);
+    _el_57.className = 'uploadDropZone';
+    createAttr(_el_57,'id','fileForm');
+    _NgForm_57_2 = new import18.NgForm(null,null);
+    Text _text_58 = new Text('\n\n\n      ');
+    _el_57.append(_text_58);
+    _el_59 = doc.createElement('label');
     _el_59.setAttribute(shimCAttr,'');
-    _el_54.append(_el_59);
-    _el_59.className = 'uploadFile';
-    createAttr(_el_59,'id','fileupload');
-    createAttr(_el_59,'name','toUpload');
-    createAttr(_el_59,'onClick','openFileDialogConditionally(event, document.getElementById(\'labelfileupload\'))');
-    createAttr(_el_59,'style','opacity: 0;');
-    createAttr(_el_59,'type','file');
-    Text _text_60 = new Text('\n\n\n      ');
-    _el_54.append(_text_60);
-    _el_61 = doc.createElement('postit-comp');
-    _el_61.setAttribute(shimCAttr,'');
-    _el_54.append(_el_61);
-    _el_61.className = 'filesPostit';
-    _appEl_61 = new ViewContainer(61,54,this,_el_61);
-    var compView_61 = import19.viewFactory_PostitComponent0(this.injector(61),_appEl_61);
-    _PostitComponent_61_3 = new import13.PostitComponent(this.parentInjector.get(import20.PlaceService),this.parentInjector.get(import21.Router),this.parentInjector.get(import22.Environment));
-    _appEl_61.initComponent(_PostitComponent_61_3,compView_61);
-    compView_61.createComp([],null);
-    Text _text_62 = new Text('\n    ');
-    _el_54.append(_text_62);
-    Text _text_63 = new Text('\n  ');
-    _el_41.append(_text_63);
-    Text _text_64 = new Text('\n');
-    _el_0.append(_text_64);
+    _el_57.append(_el_59);
+    createAttr(_el_59,'for','fileupload');
+    createAttr(_el_59,'id','labelfileupload');
+    Text _text_60 = new Text(' Drag\'n drop or browse file ');
+    _el_59.append(_text_60);
+    Text _text_61 = new Text('\n      ');
+    _el_57.append(_text_61);
+    _el_62 = doc.createElement('input');
+    _el_62.setAttribute(shimCAttr,'');
+    _el_57.append(_el_62);
+    _el_62.className = 'uploadFile';
+    createAttr(_el_62,'id','fileupload');
+    createAttr(_el_62,'name','toUpload');
+    createAttr(_el_62,'onClick','openFileDialogConditionally(event, document.getElementById(\'labelfileupload\'))');
+    createAttr(_el_62,'style','opacity: 0;');
+    createAttr(_el_62,'type','file');
+    Text _text_63 = new Text('\n\n\n      ');
+    _el_57.append(_text_63);
+    _el_64 = doc.createElement('postit-comp');
+    _el_64.setAttribute(shimCAttr,'');
+    _el_57.append(_el_64);
+    _el_64.className = 'filesPostit';
+    _appEl_64 = new ViewContainer(64,57,this,_el_64);
+    var compView_64 = import19.viewFactory_PostitComponent0(this.injector(64),_appEl_64);
+    _PostitComponent_64_3 = new import13.PostitComponent(this.parentInjector.get(import20.PlaceService),this.parentInjector.get(import21.Router),this.parentInjector.get(import22.Environment));
+    _appEl_64.initComponent(_PostitComponent_64_3,compView_64);
+    compView_64.createComp([],null);
+    Text _text_65 = new Text('\n    ');
+    _el_57.append(_text_65);
+    Text _text_66 = new Text('\n  ');
+    _el_41.append(_text_66);
+    Text _text_67 = new Text('\n');
+    _el_0.append(_text_67);
     listen(_el_6,'click',evt(_handle_click_6_0));
     listen(_el_9,'click',evt(_handle_click_9_0));
     listen(_el_32,'keyup.enter',evt(_handle_keyup_enter_32_0));
     listen(_el_34,'click',evt(_handle_click_34_0));
-    listen(_el_54,'dragenter',evt(_handle_dragenter_54_0));
-    listen(_el_54,'drop',evt(_handle_drop_54_1));
-    listen(_el_54,'submit',evt(_handle_submit_54_2));
-    listen(_el_59,'change',evt(_handle_change_59_0));
+    listen(_el_57,'dragenter',evt(_handle_dragenter_57_0));
+    listen(_el_57,'drop',evt(_handle_drop_57_1));
+    listen(_el_57,'submit',evt(_handle_submit_57_2));
+    listen(_el_62,'change',evt(_handle_change_62_0));
     init([_el_0],[
       _el_0,_text_1,_el_2,_text_3,_el_4,_text_5,_el_6,_text_7,_text_8,_el_9,_text_10,
       _el_11,_text_12,_el_13,_text_14,_el_15,_text_16,_text_17,_text_18,_anchor_19,_text_20,
       _text_21,_el_22,_text_23,_anchor_24,_text_25,_text_26,_text_27,_el_28,_text_29,
       _el_30,_text_31,_el_32,_text_33,_el_34,_text_35,_text_36,_el_37,_text_38,_text_39,
-      _text_40,_el_41,_text_42,_el_43,_text_44,_el_45,_text_46,_el_47,_text_48,_anchor_49,
-      _text_50,_text_51,_text_52,_text_53,_el_54,_text_55,_el_56,_text_57,_text_58,_el_59,
-      _text_60,_el_61,_text_62,_text_63,_text_64
+      _text_40,_el_41,_text_42,_el_43,_text_44,_el_45,_text_46,_el_47,_anchor_48,_text_49,
+      _el_50,_text_51,_anchor_52,_text_53,_text_54,_text_55,_text_56,_el_57,_text_58,
+      _el_59,_text_60,_text_61,_el_62,_text_63,_el_64,_text_65,_text_66,_text_67
     ]
     ,[]);
     return null;
@@ -450,11 +467,13 @@ class ViewSubjectListComponent1 extends AppView<import3.SubjectListComponent> {
     if ((identical(token, NgIf) && (19 == requestNodeIndex))) { return _NgIf_19_5; }
     if ((identical(token, TemplateRef) && (24 == requestNodeIndex))) { return _TemplateRef_24_4; }
     if ((identical(token, import17.NgFor) && (24 == requestNodeIndex))) { return _NgFor_24_5; }
-    if ((identical(token, TemplateRef) && (49 == requestNodeIndex))) { return _TemplateRef_49_4; }
-    if ((identical(token, import17.NgFor) && (49 == requestNodeIndex))) { return _NgFor_49_5; }
-    if ((identical(token, import13.PostitComponent) && (61 == requestNodeIndex))) { return _PostitComponent_61_3; }
-    if ((identical(token, import18.NgForm) && ((54 <= requestNodeIndex) && (requestNodeIndex <= 62)))) { return _NgForm_54_2; }
-    if ((identical(token, import31.ControlContainer) && ((54 <= requestNodeIndex) && (requestNodeIndex <= 62)))) { return _ControlContainer_54_3; }
+    if ((identical(token, TemplateRef) && (48 == requestNodeIndex))) { return _TemplateRef_48_4; }
+    if ((identical(token, NgIf) && (48 == requestNodeIndex))) { return _NgIf_48_5; }
+    if ((identical(token, TemplateRef) && (52 == requestNodeIndex))) { return _TemplateRef_52_4; }
+    if ((identical(token, import17.NgFor) && (52 == requestNodeIndex))) { return _NgFor_52_5; }
+    if ((identical(token, import13.PostitComponent) && (64 == requestNodeIndex))) { return _PostitComponent_64_3; }
+    if ((identical(token, import18.NgForm) && ((57 <= requestNodeIndex) && (requestNodeIndex <= 65)))) { return _NgForm_57_2; }
+    if ((identical(token, import31.ControlContainer) && ((57 <= requestNodeIndex) && (requestNodeIndex <= 65)))) { return _ControlContainer_57_3; }
     return notFoundResult;
   }
   void detectChangesInternal() {
@@ -487,28 +506,29 @@ class ViewSubjectListComponent1 extends AppView<import3.SubjectListComponent> {
       _expr_9 = currVal_9;
     }
     if (!import11.AppViewUtils.throwOnChanges) { _NgFor_24_5.ngDoCheck(); }
-    final currVal_13 = ctx.subjects;
-    if (import11.checkBinding(_expr_13,currVal_13)) {
-      _NgFor_49_5.ngForOf = currVal_13;
-      _expr_13 = currVal_13;
+    _NgIf_48_5.ngIf = (ctx.subjects == null);
+    final currVal_14 = ctx.subjects;
+    if (import11.checkBinding(_expr_14,currVal_14)) {
+      _NgFor_52_5.ngForOf = currVal_14;
+      _expr_14 = currVal_14;
     }
-    if (!import11.AppViewUtils.throwOnChanges) { _NgFor_49_5.ngDoCheck(); }
-    final currVal_18 = 'files';
-    if (import11.checkBinding(_expr_18,currVal_18)) {
-      _PostitComponent_61_3.name = currVal_18;
-      _expr_18 = currVal_18;
-    }
-    final currVal_19 = 'Cool !';
+    if (!import11.AppViewUtils.throwOnChanges) { _NgFor_52_5.ngDoCheck(); }
+    final currVal_19 = 'files';
     if (import11.checkBinding(_expr_19,currVal_19)) {
-      _PostitComponent_61_3.header = currVal_19;
+      _PostitComponent_64_3.name = currVal_19;
       _expr_19 = currVal_19;
     }
-    final currVal_20 = 'Now you can Drag\'n drop a file here and start collaborate with your team ';
+    final currVal_20 = 'Cool !';
     if (import11.checkBinding(_expr_20,currVal_20)) {
-      _PostitComponent_61_3.body = currVal_20;
+      _PostitComponent_64_3.header = currVal_20;
       _expr_20 = currVal_20;
     }
-    if ((identical(this.cdState, ChangeDetectorState.NeverChecked) && !import11.AppViewUtils.throwOnChanges)) { _PostitComponent_61_3.ngOnInit(); }
+    final currVal_21 = 'Now you can Drag\'n drop a file here and start collaborate with your team ';
+    if (import11.checkBinding(_expr_21,currVal_21)) {
+      _PostitComponent_64_3.body = currVal_21;
+      _expr_21 = currVal_21;
+    }
+    if ((identical(this.cdState, ChangeDetectorState.NeverChecked) && !import11.AppViewUtils.throwOnChanges)) { _PostitComponent_64_3.ngOnInit(); }
     this.detectContentChildrenChanges();
     _MaterialDialogComponent_13_3.ngAfterContentChecked();
     final currVal_0 = import11.interpolate1('',ctx.selectedFolder.name,'\n\n    ');
@@ -521,7 +541,7 @@ class ViewSubjectListComponent1 extends AppView<import3.SubjectListComponent> {
       setAttr(_el_11,'pane-id',((currVal_7 == null)? null: currVal_7.toString()));
       _expr_7 = currVal_7;
     }
-    final currVal_12 = import11.interpolate0((ctx.computeSizes(_el_47)? 'hideDropZone': 'dropZoneVisible'));
+    final currVal_12 = import11.interpolate0((ctx.computeSizes(_el_50)? 'hideDropZone': 'dropZoneVisible'));
     if (import11.checkBinding(_expr_12,currVal_12)) {
       setProp(_el_41,'className',currVal_12);
       _expr_12 = currVal_12;
@@ -554,22 +574,22 @@ class ViewSubjectListComponent1 extends AppView<import3.SubjectListComponent> {
     final dynamic pd_0 = !identical(((_el_32.value = '') as dynamic), false);
     return (true && pd_0);
   }
-  bool _handle_dragenter_54_0($event) {
+  bool _handle_dragenter_57_0($event) {
     this.markPathToRootAsCheckOnce();
-    final dynamic pd_0 = !identical((_el_54.style.setProperty('border','2px solid #9FC8FA') as dynamic), false);
+    final dynamic pd_0 = !identical((_el_57.style.setProperty('border','2px solid #9FC8FA') as dynamic), false);
     return (true && pd_0);
   }
-  bool _handle_drop_54_1($event) {
+  bool _handle_drop_57_1($event) {
     this.markPathToRootAsCheckOnce();
-    final dynamic pd_0 = !identical((_el_54.style.setProperty('border','2px dotted #273B54') as dynamic), false);
+    final dynamic pd_0 = !identical((_el_57.style.setProperty('border','2px dotted #273B54') as dynamic), false);
     return (true && pd_0);
   }
-  bool _handle_submit_54_2($event) {
+  bool _handle_submit_57_2($event) {
     this.markPathToRootAsCheckOnce();
-    final dynamic pd_0 = !identical((_NgForm_54_2.onSubmit() as dynamic), false);
+    final dynamic pd_0 = !identical((_NgForm_57_2.onSubmit() as dynamic), false);
     return (true && pd_0);
   }
-  bool _handle_change_59_0($event) {
+  bool _handle_change_62_0($event) {
     this.markPathToRootAsCheckOnce();
     final dynamic pd_0 = !identical((ctx.uploadFiles() as dynamic), false);
     return (true && pd_0);
@@ -847,6 +867,32 @@ AppView viewFactory_SubjectListComponent4(import6.Injector parentInjector,ViewCo
 }
 class ViewSubjectListComponent5 extends AppView<import3.SubjectListComponent> {
   Element _el_0;
+  ViewContainer _appEl_0;
+  import41.MaterialSpinnerComponent _MaterialSpinnerComponent_0_3;
+  ViewSubjectListComponent5(import6.Injector parentInjector,ViewContainer declarationEl): super(ViewSubjectListComponent5,renderType_SubjectListComponent,import7.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
+  ViewContainer createInternal(dynamic rootSelector) {
+    var doc = document;
+    _el_0 = doc.createElement('material-spinner');
+    _el_0.setAttribute(shimCAttr,'');
+    _el_0.className = 'spinner';
+    _appEl_0 = new ViewContainer(0,null,this,_el_0);
+    var compView_0 = import42.viewFactory_MaterialSpinnerComponent0(this.injector(0),_appEl_0);
+    _MaterialSpinnerComponent_0_3 = new import41.MaterialSpinnerComponent();
+    _appEl_0.initComponent(_MaterialSpinnerComponent_0_3,compView_0);
+    compView_0.createComp([],null);
+    init([_el_0],[_el_0],[]);
+    return null;
+  }
+  dynamic injectorGetInternal(dynamic token,int requestNodeIndex,dynamic notFoundResult) {
+    if ((identical(token, import41.MaterialSpinnerComponent) && (0 == requestNodeIndex))) { return _MaterialSpinnerComponent_0_3; }
+    return notFoundResult;
+  }
+}
+AppView viewFactory_SubjectListComponent5(import6.Injector parentInjector,ViewContainer declarationEl) {
+  return new ViewSubjectListComponent5(parentInjector,declarationEl);
+}
+class ViewSubjectListComponent6 extends AppView<import3.SubjectListComponent> {
+  Element _el_0;
   ViewContainer _appEl_2;
   dynamic _TemplateRef_2_4;
   NgIf _NgIf_2_5;
@@ -857,7 +903,7 @@ class ViewSubjectListComponent5 extends AppView<import3.SubjectListComponent> {
   var _expr_4 = uninitialized;
   var _expr_5 = uninitialized;
   var _expr_6 = uninitialized;
-  ViewSubjectListComponent5(import6.Injector parentInjector,ViewContainer declarationEl): super(ViewSubjectListComponent5,renderType_SubjectListComponent,import7.ViewType.EMBEDDED,{
+  ViewSubjectListComponent6(import6.Injector parentInjector,ViewContainer declarationEl): super(ViewSubjectListComponent6,renderType_SubjectListComponent,import7.ViewType.EMBEDDED,{
     '\$implicit': null,
     'index': null
   }
@@ -872,7 +918,7 @@ class ViewSubjectListComponent5 extends AppView<import3.SubjectListComponent> {
     var _anchor_2 = new Comment('template bindings={}');
     _el_0?.append(_anchor_2);
     _appEl_2 = new ViewContainer(2,0,this,_anchor_2);
-    _TemplateRef_2_4 = new TemplateRef(_appEl_2,viewFactory_SubjectListComponent6);
+    _TemplateRef_2_4 = new TemplateRef(_appEl_2,viewFactory_SubjectListComponent7);
     _NgIf_2_5 = new NgIf(_appEl_2,_TemplateRef_2_4);
     Text _text_3 = new Text('\n            ');
     _el_0.append(_text_3);
@@ -935,10 +981,10 @@ class ViewSubjectListComponent5 extends AppView<import3.SubjectListComponent> {
     return (true && pd_0);
   }
 }
-AppView viewFactory_SubjectListComponent5(import6.Injector parentInjector,ViewContainer declarationEl) {
-  return new ViewSubjectListComponent5(parentInjector,declarationEl);
+AppView viewFactory_SubjectListComponent6(import6.Injector parentInjector,ViewContainer declarationEl) {
+  return new ViewSubjectListComponent6(parentInjector,declarationEl);
 }
-class ViewSubjectListComponent6 extends AppView<import3.SubjectListComponent> {
+class ViewSubjectListComponent7 extends AppView<import3.SubjectListComponent> {
   Element _el_0;
   Element _el_2;
   Element _el_3;
@@ -956,7 +1002,7 @@ class ViewSubjectListComponent6 extends AppView<import3.SubjectListComponent> {
   var _expr_0 = uninitialized;
   var _expr_2 = uninitialized;
   var _expr_3 = uninitialized;
-  ViewSubjectListComponent6(import6.Injector parentInjector,ViewContainer declarationEl): super(ViewSubjectListComponent6,renderType_SubjectListComponent,import7.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
+  ViewSubjectListComponent7(import6.Injector parentInjector,ViewContainer declarationEl): super(ViewSubjectListComponent7,renderType_SubjectListComponent,import7.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
   ViewContainer createInternal(dynamic rootSelector) {
     var doc = document;
     _el_0 = doc.createElement('div');
@@ -978,7 +1024,7 @@ class ViewSubjectListComponent6 extends AppView<import3.SubjectListComponent> {
     var _anchor_6 = new Comment('template bindings={}');
     _el_0?.append(_anchor_6);
     _appEl_6 = new ViewContainer(6,0,this,_anchor_6);
-    _TemplateRef_6_4 = new TemplateRef(_appEl_6,viewFactory_SubjectListComponent7);
+    _TemplateRef_6_4 = new TemplateRef(_appEl_6,viewFactory_SubjectListComponent8);
     _NgIf_6_5 = new NgIf(_appEl_6,_TemplateRef_6_4);
     Text _text_7 = new Text('\n              ');
     _el_0.append(_text_7);
@@ -1004,7 +1050,7 @@ class ViewSubjectListComponent6 extends AppView<import3.SubjectListComponent> {
     var _anchor_15 = new Comment('template bindings={}');
     _el_13?.append(_anchor_15);
     _appEl_15 = new ViewContainer(15,13,this,_anchor_15);
-    _TemplateRef_15_4 = new TemplateRef(_appEl_15,viewFactory_SubjectListComponent8);
+    _TemplateRef_15_4 = new TemplateRef(_appEl_15,viewFactory_SubjectListComponent9);
     _NgFor_15_5 = new import17.NgFor(_appEl_15,_TemplateRef_15_4,this.parentInjector.get(import29.IterableDiffers),ref);
     Text _text_16 = new Text('\n                ');
     _el_13.append(_text_16);
@@ -1054,14 +1100,14 @@ class ViewSubjectListComponent6 extends AppView<import3.SubjectListComponent> {
     this.detectViewChildrenChanges();
   }
 }
-AppView viewFactory_SubjectListComponent6(import6.Injector parentInjector,ViewContainer declarationEl) {
-  return new ViewSubjectListComponent6(parentInjector,declarationEl);
+AppView viewFactory_SubjectListComponent7(import6.Injector parentInjector,ViewContainer declarationEl) {
+  return new ViewSubjectListComponent7(parentInjector,declarationEl);
 }
-class ViewSubjectListComponent7 extends AppView<import3.SubjectListComponent> {
+class ViewSubjectListComponent8 extends AppView<import3.SubjectListComponent> {
   Element _el_0;
   Text _text_1;
   var _expr_0 = uninitialized;
-  ViewSubjectListComponent7(import6.Injector parentInjector,ViewContainer declarationEl): super(ViewSubjectListComponent7,renderType_SubjectListComponent,import7.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
+  ViewSubjectListComponent8(import6.Injector parentInjector,ViewContainer declarationEl): super(ViewSubjectListComponent8,renderType_SubjectListComponent,import7.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
   ViewContainer createInternal(dynamic rootSelector) {
     var doc = document;
     _el_0 = doc.createElement('div');
@@ -1085,10 +1131,10 @@ class ViewSubjectListComponent7 extends AppView<import3.SubjectListComponent> {
     this.detectViewChildrenChanges();
   }
 }
-AppView viewFactory_SubjectListComponent7(import6.Injector parentInjector,ViewContainer declarationEl) {
-  return new ViewSubjectListComponent7(parentInjector,declarationEl);
+AppView viewFactory_SubjectListComponent8(import6.Injector parentInjector,ViewContainer declarationEl) {
+  return new ViewSubjectListComponent8(parentInjector,declarationEl);
 }
-class ViewSubjectListComponent8 extends AppView<import3.SubjectListComponent> {
+class ViewSubjectListComponent9 extends AppView<import3.SubjectListComponent> {
   Element _el_0;
   Element _el_2;
   import34.PopupSourceDirective _PopupSourceDirective_2_2;
@@ -1103,7 +1149,7 @@ class ViewSubjectListComponent8 extends AppView<import3.SubjectListComponent> {
   var _expr_2 = uninitialized;
   var _expr_3 = uninitialized;
   var _expr_4 = uninitialized;
-  ViewSubjectListComponent8(import6.Injector parentInjector,ViewContainer declarationEl): super(ViewSubjectListComponent8,renderType_SubjectListComponent,import7.ViewType.EMBEDDED,{'\$implicit': null},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
+  ViewSubjectListComponent9(import6.Injector parentInjector,ViewContainer declarationEl): super(ViewSubjectListComponent9,renderType_SubjectListComponent,import7.ViewType.EMBEDDED,{'\$implicit': null},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
   ViewContainer createInternal(dynamic rootSelector) {
     var doc = document;
     _el_0 = doc.createElement('li');
@@ -1131,14 +1177,14 @@ class ViewSubjectListComponent8 extends AppView<import3.SubjectListComponent> {
     var _anchor_7 = new Comment('template bindings={}');
     _el_0?.append(_anchor_7);
     _appEl_7 = new ViewContainer(7,0,this,_anchor_7);
-    _TemplateRef_7_4 = new TemplateRef(_appEl_7,viewFactory_SubjectListComponent9);
+    _TemplateRef_7_4 = new TemplateRef(_appEl_7,viewFactory_SubjectListComponent10);
     _NgIf_7_5 = new NgIf(_appEl_7,_TemplateRef_7_4);
     Text _text_8 = new Text('\n                    ');
     _el_0.append(_text_8);
     var _anchor_9 = new Comment('template bindings={}');
     _el_0?.append(_anchor_9);
     _appEl_9 = new ViewContainer(9,0,this,_anchor_9);
-    _TemplateRef_9_4 = new TemplateRef(_appEl_9,viewFactory_SubjectListComponent10);
+    _TemplateRef_9_4 = new TemplateRef(_appEl_9,viewFactory_SubjectListComponent11);
     _NgIf_9_5 = new NgIf(_appEl_9,_TemplateRef_9_4);
     Text _text_10 = new Text('\n                  ');
     _el_0.append(_text_10);
@@ -1193,13 +1239,13 @@ class ViewSubjectListComponent8 extends AppView<import3.SubjectListComponent> {
     return (true && pd_0);
   }
 }
-AppView viewFactory_SubjectListComponent8(import6.Injector parentInjector,ViewContainer declarationEl) {
-  return new ViewSubjectListComponent8(parentInjector,declarationEl);
+AppView viewFactory_SubjectListComponent9(import6.Injector parentInjector,ViewContainer declarationEl) {
+  return new ViewSubjectListComponent9(parentInjector,declarationEl);
 }
-class ViewSubjectListComponent9 extends AppView<import3.SubjectListComponent> {
+class ViewSubjectListComponent10 extends AppView<import3.SubjectListComponent> {
   InputElement _el_0;
   var _expr_1 = uninitialized;
-  ViewSubjectListComponent9(import6.Injector parentInjector,ViewContainer declarationEl): super(ViewSubjectListComponent9,renderType_SubjectListComponent,import7.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
+  ViewSubjectListComponent10(import6.Injector parentInjector,ViewContainer declarationEl): super(ViewSubjectListComponent10,renderType_SubjectListComponent,import7.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
   ViewContainer createInternal(dynamic rootSelector) {
     var doc = document;
     _el_0 = doc.createElement('input');
@@ -1225,10 +1271,10 @@ class ViewSubjectListComponent9 extends AppView<import3.SubjectListComponent> {
     return (true && pd_0);
   }
 }
-AppView viewFactory_SubjectListComponent9(import6.Injector parentInjector,ViewContainer declarationEl) {
-  return new ViewSubjectListComponent9(parentInjector,declarationEl);
+AppView viewFactory_SubjectListComponent10(import6.Injector parentInjector,ViewContainer declarationEl) {
+  return new ViewSubjectListComponent10(parentInjector,declarationEl);
 }
-class ViewSubjectListComponent10 extends AppView<import3.SubjectListComponent> {
+class ViewSubjectListComponent11 extends AppView<import3.SubjectListComponent> {
   Element _el_0;
   ViewContainer _appEl_0;
   import38.InfoPopup _InfoPopup_0_3;
@@ -1239,7 +1285,7 @@ class ViewSubjectListComponent10 extends AppView<import3.SubjectListComponent> {
   var _expr_4 = uninitialized;
   var _expr_5 = uninitialized;
   var _expr_6 = uninitialized;
-  ViewSubjectListComponent10(import6.Injector parentInjector,ViewContainer declarationEl): super(ViewSubjectListComponent10,renderType_SubjectListComponent,import7.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
+  ViewSubjectListComponent11(import6.Injector parentInjector,ViewContainer declarationEl): super(ViewSubjectListComponent11,renderType_SubjectListComponent,import7.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
   ViewContainer createInternal(dynamic rootSelector) {
     var doc = document;
     _el_0 = doc.createElement('info-popup');
@@ -1262,7 +1308,7 @@ class ViewSubjectListComponent10 extends AppView<import3.SubjectListComponent> {
       _InfoPopup_0_3.userId = currVal_0;
       _expr_0 = currVal_0;
     }
-    final currVal_1 = (parent as ViewSubjectListComponent8)._PopupSourceDirective_2_2;
+    final currVal_1 = (parent as ViewSubjectListComponent9)._PopupSourceDirective_2_2;
     if (import11.checkBinding(_expr_1,currVal_1)) {
       _InfoPopup_0_3.source = currVal_1;
       _expr_1 = currVal_1;
@@ -1297,8 +1343,8 @@ class ViewSubjectListComponent10 extends AppView<import3.SubjectListComponent> {
     this.detectViewChildrenChanges();
   }
 }
-AppView viewFactory_SubjectListComponent10(import6.Injector parentInjector,ViewContainer declarationEl) {
-  return new ViewSubjectListComponent10(parentInjector,declarationEl);
+AppView viewFactory_SubjectListComponent11(import6.Injector parentInjector,ViewContainer declarationEl) {
+  return new ViewSubjectListComponent11(parentInjector,declarationEl);
 }
 const List<dynamic> styles_SubjectListComponentHost = const [];
 RenderComponentType renderType_SubjectListComponentHost;
@@ -1334,7 +1380,7 @@ AppView viewFactory_SubjectListComponentHost0(import6.Injector parentInjector,Vi
   if (identical(renderType_SubjectListComponentHost, null)) { (renderType_SubjectListComponentHost = import11.appViewUtils.createRenderComponentType('',0,import12.ViewEncapsulation.Emulated,styles_SubjectListComponentHost)); }
   return new ViewSubjectListComponentHost0(parentInjector,declarationEl);
 }
-const import41.ComponentFactory SubjectListComponentNgFactory = const import41.ComponentFactory('subjects',viewFactory_SubjectListComponentHost0,import3.SubjectListComponent,_METADATA);
+const import43.ComponentFactory SubjectListComponentNgFactory = const import43.ComponentFactory('subjects',viewFactory_SubjectListComponentHost0,import3.SubjectListComponent,_METADATA);
 const _METADATA = const <dynamic>[SubjectListComponent, const <dynamic>[const Injectable()]];
 var _visited = false;
 void initReflector() {

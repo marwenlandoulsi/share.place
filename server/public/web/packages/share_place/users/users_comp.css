@@ -53,15 +53,15 @@ a {
   height: 25px;
   border-radius: 50%;
   display: inline-block;
-  margin-right: 0.3em;
+  margin-right: 2px;
 }
 
 .userName {
   vertical-align: middle;
   color: #273B54;
   font-size: 13px;
-  word-break: break-all;
-  max-width: 80%;
+  word-break: break-word;
+  width: calc(100% - 31.5px);
 }
 
 .userName:hover {

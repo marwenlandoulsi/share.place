@@ -1,3 +1,4 @@
+
 <div class="header headerplaces">
   <!--tittle places top-->
   <label class="label">Places</label>
@@ -6,11 +7,15 @@
 </div>
 </div>
 <ul class="places">
-<li [style.display]="adding ? 'block' : 'none'" class="addplace">
+
+
+  <li [style.display]="adding ? 'block' : 'none'" class="addplace">
 <txt #newPlace [confirm]="save" [sources]="['../images/ok.png', '../images/ok.png', '../images/ok.png']"
     class="saveAdd"></txt>
 </li>
+
 <material-expansionpanel-set>
+
  <material-expansionpanel flat *ngFor="let place of places" name="{{place.name}}" class="placePanel" showSaveCancel="false" (open)="selectedPlace = place">
    <div *ngIf="place?.id == selectedPlace?.id">
      <folders></folders>
@@ -20,3 +25,4 @@
 </material-expansionpanel-set>
 
 </ul>
+

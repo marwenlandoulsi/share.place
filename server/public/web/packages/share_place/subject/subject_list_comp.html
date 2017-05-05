@@ -48,9 +48,10 @@
   </div>
   <div class="{{computeSizes(subjectList) ? 'hideDropZone' : 'dropZoneVisible' }}">
 
-    <div class="demo">
+    <div class="subjectListScollZone">
       <div class="scrollbar-macosx">
-        <ul #subjectList class="subjectList contentScroll_">
+       <div class="spinnerInner"><material-spinner class="spinner" *ngIf="subjects == null"></material-spinner></div>
+        <ul #subjectList class="subjectList">
           <li *ngFor="let subject of subjects; let subjectIndex = index" (click)="gotoSubject(subject)"
               class="subjectItem"
               [class.qNote]="subject.dataType == 'quickNote'"

@@ -65,8 +65,9 @@ ipcMain.on('closeCurrentWindow', (event, status) => {
   // console.trace();
   let window = BrowserWindow.getFocusedWindow();
   window.close();
+  app.quit();
 })
-/*
+
 app.on('window-all-closed', () => {
   mainWindow.webContents.session.clearStorageData([{
 
@@ -75,7 +76,7 @@ app.on('window-all-closed', () => {
     server = null;
   }])
   app.quit();
-})*/
+})
 app.on('ready', function () {
 
   autoUpdater.checkForUpdates();
@@ -108,7 +109,7 @@ app.on('ready', function () {
     frame: false,
     show: false,
     backgroundColor: '#FFFFFF',
-    //transparent: true,
+    titleBarStyle: 'hidden-inset',
     title: "Share.Place V" + pjson.version,
     webPreferences: {nodeIntegration: false, preload: __dirname + "/preload.js"},
     icon: path.join(__dirname, 'server', 'static', 'images', 'iconElec.png')
@@ -123,16 +124,17 @@ app.on('ready', function () {
     event.sender.send('showFrame');
   })
 
- /* mainWindow.on('closed', function () {
-    mainWindow.webContents.session.clearStorageData([{
+  mainWindow.on('closed', function () {
+    /*mainWindow.webContents.session.clearStorageData([{
 
       storages: ["clear"]
     }, () => {
-      app.quit();
-      mainWindow = null;
-      server = null;
-    }])
-  });*/
+
+    }])*/
+    app.quit();
+    mainWindow = null;
+    expressApp = null;
+  });
 
   global.mainWindow = mainWindow;
 });

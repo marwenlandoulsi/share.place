@@ -72,21 +72,21 @@ import 'package:angular2/src/core/linker/component_factory.dart' as import32;
 const List<dynamic> styles_PlacesComponent = const [import0.styles];
 RenderComponentType renderType_PlacesComponent;
 class ViewPlacesComponent0 extends AppView<import3.PlacesComponent> {
-  Element _el_0;
-  Element _el_3;
-  Element _el_6;
-  Element _el_8;
-  UListElement _el_12;
-  Element _el_14;
-  Element _el_16;
-  ViewContainer _appEl_16;
-  import6.TextComp _TextComp_16_3;
-  Element _el_19;
-  import7.MaterialExpansionPanelSet _MaterialExpansionPanelSet_19_2;
-  import8.QueryList _query_MaterialExpansionPanel_19_0;
-  ViewContainer _appEl_21;
-  dynamic _TemplateRef_21_4;
-  import9.NgFor _NgFor_21_5;
+  Element _el_1;
+  Element _el_4;
+  Element _el_7;
+  Element _el_9;
+  UListElement _el_13;
+  Element _el_15;
+  Element _el_17;
+  ViewContainer _appEl_17;
+  import6.TextComp _TextComp_17_3;
+  Element _el_20;
+  import7.MaterialExpansionPanelSet _MaterialExpansionPanelSet_20_2;
+  import8.QueryList _query_MaterialExpansionPanel_20_0;
+  ViewContainer _appEl_22;
+  dynamic _TemplateRef_22_4;
+  import9.NgFor _NgFor_22_5;
   var _expr_1 = uninitialized;
   var _expr_2 = uninitialized;
   var _arr_0;
@@ -95,83 +95,85 @@ class ViewPlacesComponent0 extends AppView<import3.PlacesComponent> {
   ViewPlacesComponent0(import11.Injector parentInjector,ViewContainer declarationEl): super(ViewPlacesComponent0,renderType_PlacesComponent,import12.ViewType.COMPONENT,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
   ViewContainer createInternal(dynamic rootSelector) {
     final Node parentRenderNode = initViewRoot(this.declarationViewContainer.nativeElement);
+    Text _text_0 = new Text('\n');
+    parentRenderNode.append(_text_0);
     var doc = document;
-    _el_0 = doc.createElement('div');
-    _el_0.setAttribute(shimCAttr,'');
-    parentRenderNode.append(_el_0);
-    _el_0.className = 'header headerplaces';
-    Text _text_1 = new Text('\n  ');
-    _el_0.append(_text_1);
+    _el_1 = doc.createElement('div');
+    _el_1.setAttribute(shimCAttr,'');
+    parentRenderNode.append(_el_1);
+    _el_1.className = 'header headerplaces';
     Text _text_2 = new Text('\n  ');
-    _el_0.append(_text_2);
-    _el_3 = doc.createElement('label');
-    _el_3.setAttribute(shimCAttr,'');
-    _el_0.append(_el_3);
-    _el_3.className = 'label';
-    Text _text_4 = new Text('Places');
-    _el_3.append(_text_4);
-    Text _text_5 = new Text('\n  ');
-    _el_0.append(_text_5);
-    _el_6 = doc.createElement('div');
-    _el_6.setAttribute(shimCAttr,'');
-    _el_0.append(_el_6);
-    _el_6.className = 'add';
-    Text _text_7 = new Text('\n    ');
-    _el_6.append(_text_7);
-    _el_8 = doc.createElement('div');
-    _el_8.setAttribute(shimCAttr,'');
-    _el_6.append(_el_8);
-    _el_8.className = 'addBtn';
-    Text _text_9 = new Text('\n');
-    _el_6.append(_text_9);
+    _el_1.append(_text_2);
+    Text _text_3 = new Text('\n  ');
+    _el_1.append(_text_3);
+    _el_4 = doc.createElement('label');
+    _el_4.setAttribute(shimCAttr,'');
+    _el_1.append(_el_4);
+    _el_4.className = 'label';
+    Text _text_5 = new Text('Places');
+    _el_4.append(_text_5);
+    Text _text_6 = new Text('\n  ');
+    _el_1.append(_text_6);
+    _el_7 = doc.createElement('div');
+    _el_7.setAttribute(shimCAttr,'');
+    _el_1.append(_el_7);
+    _el_7.className = 'add';
+    Text _text_8 = new Text('\n    ');
+    _el_7.append(_text_8);
+    _el_9 = doc.createElement('div');
+    _el_9.setAttribute(shimCAttr,'');
+    _el_7.append(_el_9);
+    _el_9.className = 'addBtn';
     Text _text_10 = new Text('\n');
-    _el_0.append(_text_10);
+    _el_7.append(_text_10);
     Text _text_11 = new Text('\n');
-    parentRenderNode.append(_text_11);
-    _el_12 = doc.createElement('ul');
-    _el_12.setAttribute(shimCAttr,'');
-    parentRenderNode.append(_el_12);
-    _el_12.className = 'places';
-    Text _text_13 = new Text('\n');
-    _el_12.append(_text_13);
-    _el_14 = doc.createElement('li');
-    _el_14.setAttribute(shimCAttr,'');
-    _el_12.append(_el_14);
-    _el_14.className = 'addplace';
-    Text _text_15 = new Text('\n');
-    _el_14.append(_text_15);
-    _el_16 = doc.createElement('txt');
-    _el_16.setAttribute(shimCAttr,'');
-    _el_14.append(_el_16);
-    _el_16.className = 'saveAdd';
-    _appEl_16 = new ViewContainer(16,14,this,_el_16);
-    var compView_16 = import13.viewFactory_TextComp0(this.injector(16),_appEl_16);
-    _TextComp_16_3 = new import6.TextComp();
-    _appEl_16.initComponent(_TextComp_16_3,compView_16);
-    compView_16.createComp([],null);
-    Text _text_17 = new Text('\n');
-    _el_14.append(_text_17);
+    _el_1.append(_text_11);
+    Text _text_12 = new Text('\n');
+    parentRenderNode.append(_text_12);
+    _el_13 = doc.createElement('ul');
+    _el_13.setAttribute(shimCAttr,'');
+    parentRenderNode.append(_el_13);
+    _el_13.className = 'places';
+    Text _text_14 = new Text('\n\n\n  ');
+    _el_13.append(_text_14);
+    _el_15 = doc.createElement('li');
+    _el_15.setAttribute(shimCAttr,'');
+    _el_13.append(_el_15);
+    _el_15.className = 'addplace';
+    Text _text_16 = new Text('\n');
+    _el_15.append(_text_16);
+    _el_17 = doc.createElement('txt');
+    _el_17.setAttribute(shimCAttr,'');
+    _el_15.append(_el_17);
+    _el_17.className = 'saveAdd';
+    _appEl_17 = new ViewContainer(17,15,this,_el_17);
+    var compView_17 = import13.viewFactory_TextComp0(this.injector(17),_appEl_17);
+    _TextComp_17_3 = new import6.TextComp();
+    _appEl_17.initComponent(_TextComp_17_3,compView_17);
+    compView_17.createComp([],null);
     Text _text_18 = new Text('\n');
-    _el_12.append(_text_18);
-    _el_19 = doc.createElement('material-expansionpanel-set');
-    _el_19.setAttribute(shimCAttr,'');
-    _el_12.append(_el_19);
-    _MaterialExpansionPanelSet_19_2 = new import7.MaterialExpansionPanelSet();
-    _query_MaterialExpansionPanel_19_0 = new import8.QueryList();
-    Text _text_20 = new Text('\n ');
-    _el_19.append(_text_20);
-    var _anchor_21 = new Comment('template bindings={}');
-    _el_19?.append(_anchor_21);
-    _appEl_21 = new ViewContainer(21,19,this,_anchor_21);
-    _TemplateRef_21_4 = new TemplateRef(_appEl_21,viewFactory_PlacesComponent1);
-    _NgFor_21_5 = new import9.NgFor(_appEl_21,_TemplateRef_21_4,this.parentInjector.get(import15.IterableDiffers),ref);
-    Text _text_22 = new Text('\n');
-    _el_19.append(_text_22);
-    Text _text_23 = new Text('\n\n');
-    _el_12.append(_text_23);
-    Text _text_24 = new Text('\n');
-    parentRenderNode.append(_text_24);
-    listen(_el_8,'click',evt(_handle_click_8_0));
+    _el_15.append(_text_18);
+    Text _text_19 = new Text('\n\n');
+    _el_13.append(_text_19);
+    _el_20 = doc.createElement('material-expansionpanel-set');
+    _el_20.setAttribute(shimCAttr,'');
+    _el_13.append(_el_20);
+    _MaterialExpansionPanelSet_20_2 = new import7.MaterialExpansionPanelSet();
+    _query_MaterialExpansionPanel_20_0 = new import8.QueryList();
+    Text _text_21 = new Text('\n\n ');
+    _el_20.append(_text_21);
+    var _anchor_22 = new Comment('template bindings={}');
+    _el_20?.append(_anchor_22);
+    _appEl_22 = new ViewContainer(22,20,this,_anchor_22);
+    _TemplateRef_22_4 = new TemplateRef(_appEl_22,viewFactory_PlacesComponent1);
+    _NgFor_22_5 = new import9.NgFor(_appEl_22,_TemplateRef_22_4,this.parentInjector.get(import15.IterableDiffers),ref);
+    Text _text_23 = new Text('\n');
+    _el_20.append(_text_23);
+    Text _text_24 = new Text('\n\n');
+    _el_13.append(_text_24);
+    Text _text_25 = new Text('\n\n');
+    parentRenderNode.append(_text_25);
+    listen(_el_9,'click',evt(_handle_click_9_0));
     this._arr_0 = import16.pureProxy3((p0,p1,p2) {
       return [
         p0,p1,p2
@@ -179,59 +181,59 @@ class ViewPlacesComponent0 extends AppView<import3.PlacesComponent> {
       ;
     });
     init([],[
-      _el_0,_text_1,_text_2,_el_3,_text_4,_text_5,_el_6,_text_7,_el_8,_text_9,_text_10,
-      _text_11,_el_12,_text_13,_el_14,_text_15,_el_16,_text_17,_text_18,_el_19,_text_20,
-      _anchor_21,_text_22,_text_23,_text_24
+      _text_0,_el_1,_text_2,_text_3,_el_4,_text_5,_text_6,_el_7,_text_8,_el_9,_text_10,
+      _text_11,_text_12,_el_13,_text_14,_el_15,_text_16,_el_17,_text_18,_text_19,_el_20,
+      _text_21,_anchor_22,_text_23,_text_24,_text_25
     ]
     ,[]);
     return null;
   }
   dynamic injectorGetInternal(dynamic token,int requestNodeIndex,dynamic notFoundResult) {
-    if ((identical(token, import6.TextComp) && (16 == requestNodeIndex))) { return _TextComp_16_3; }
-    if ((identical(token, TemplateRef) && (21 == requestNodeIndex))) { return _TemplateRef_21_4; }
-    if ((identical(token, import9.NgFor) && (21 == requestNodeIndex))) { return _NgFor_21_5; }
-    if ((identical(token, import7.MaterialExpansionPanelSet) && ((19 <= requestNodeIndex) && (requestNodeIndex <= 22)))) { return _MaterialExpansionPanelSet_19_2; }
+    if ((identical(token, import6.TextComp) && (17 == requestNodeIndex))) { return _TextComp_17_3; }
+    if ((identical(token, TemplateRef) && (22 == requestNodeIndex))) { return _TemplateRef_22_4; }
+    if ((identical(token, import9.NgFor) && (22 == requestNodeIndex))) { return _NgFor_22_5; }
+    if ((identical(token, import7.MaterialExpansionPanelSet) && ((20 <= requestNodeIndex) && (requestNodeIndex <= 23)))) { return _MaterialExpansionPanelSet_20_2; }
     return notFoundResult;
   }
   void detectChangesInternal() {
     final currVal_2 = ctx.save;
     if (import16.checkBinding(_expr_2,currVal_2)) {
-      _TextComp_16_3.confirm = currVal_2;
+      _TextComp_17_3.confirm = currVal_2;
       _expr_2 = currVal_2;
     }
     final currVal_3 = _arr_0('../images/ok.png','../images/ok.png','../images/ok.png');
     if (import16.checkBinding(_expr_3,currVal_3)) {
-      _TextComp_16_3.sources = currVal_3;
+      _TextComp_17_3.sources = currVal_3;
       _expr_3 = currVal_3;
     }
     final currVal_4 = ctx.places;
     if (import16.checkBinding(_expr_4,currVal_4)) {
-      _NgFor_21_5.ngForOf = currVal_4;
+      _NgFor_22_5.ngForOf = currVal_4;
       _expr_4 = currVal_4;
     }
-    if (!import16.AppViewUtils.throwOnChanges) { _NgFor_21_5.ngDoCheck(); }
+    if (!import16.AppViewUtils.throwOnChanges) { _NgFor_22_5.ngDoCheck(); }
     this.detectContentChildrenChanges();
-    if (_query_MaterialExpansionPanel_19_0.dirty) {
-        _query_MaterialExpansionPanel_19_0.reset([_appEl_21.mapNestedViews(ViewPlacesComponent1,(ViewPlacesComponent1 nestedView) {
+    if (_query_MaterialExpansionPanel_20_0.dirty) {
+        _query_MaterialExpansionPanel_20_0.reset([_appEl_22.mapNestedViews(ViewPlacesComponent1,(ViewPlacesComponent1 nestedView) {
           return [nestedView._MaterialExpansionPanel_0_3];
       })]);
-      _MaterialExpansionPanelSet_19_2.panels = _query_MaterialExpansionPanel_19_0;
-      _query_MaterialExpansionPanel_19_0.notifyOnChanges();
+      _MaterialExpansionPanelSet_20_2.panels = _query_MaterialExpansionPanel_20_0;
+      _query_MaterialExpansionPanel_20_0.notifyOnChanges();
     }
     final currVal_1 = (ctx.adding? 'block': 'none');
     if (import16.checkBinding(_expr_1,currVal_1)) {
-      _el_14.style.setProperty('display',currVal_1?.toString());
+      _el_15.style.setProperty('display',currVal_1?.toString());
       _expr_1 = currVal_1;
     }
     this.detectViewChildrenChanges();
   }
   void destroyInternal() {
-    _MaterialExpansionPanelSet_19_2.ngOnDestroy();
+    _MaterialExpansionPanelSet_20_2.ngOnDestroy();
   }
-  bool _handle_click_8_0($event) {
+  bool _handle_click_9_0($event) {
     this.markPathToRootAsCheckOnce();
     ctx.add();
-    final dynamic pd_0 = !identical((_TextComp_16_3.focus('places') as dynamic), false);
+    final dynamic pd_0 = !identical((_TextComp_17_3.focus('places') as dynamic), false);
     return (true && pd_0);
   }
 }
@@ -316,7 +318,7 @@ class ViewPlacesComponent1 extends AppView<import3.PlacesComponent> {
     this.detectViewChildrenChanges();
   }
   void dirtyParentQueriesInternal() {
-    (parent as ViewPlacesComponent0)._query_MaterialExpansionPanel_19_0.setDirty();
+    (parent as ViewPlacesComponent0)._query_MaterialExpansionPanel_20_0.setDirty();
   }
   void destroyInternal() {
     _MaterialExpansionPanel_0_3.ngOnDestroy();

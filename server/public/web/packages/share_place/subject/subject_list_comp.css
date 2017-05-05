@@ -194,21 +194,38 @@ li.subjectItem.active .name {
 
 .addTopicBtn {
   font-family: 'Material-Design-Iconic-Font';
-  margin-left: 0.2em;
-  width: 1em;
-  height: 1em;
-  border: 1px solid;
+  margin-left: -0.1em;
+  width: 2.1em;
+  height: 2.1em;
+  line-height: 2em;
+  border: 0.1em solid rgba(146, 146, 146, 0.63);
+  display: inline-block;
+  vertical-align: top;
+  background-color: white;
+  border-radius: 3px;
+  -moz-border-radius: 3px;
+  -o-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  text-align: center;
+ cursor: pointer;
 }
 
 .addTopicBtn:before {
-  color: pink;
-  content: '\f22e';
+  color: #dde2e5;
+  content: '\f10d';
+  font-size: 1.7em;
+}
+
+.addTopicBtn:hover:before{
+  color: #4690D1;
 }
 
 .btn.editRoles {
   float: right;
   font-family: 'Material-Design-Iconic-Font';
   margin-right: 0.2em;
+  margin-left: 0.2em;
+  cursor: pointer;
 }
 
 .btn.editRoles:before {
@@ -236,7 +253,7 @@ li.subjectItem.active .name {
   -moz-border-radius: 50%;
   border-radius: 50%;
   float: right;
-  margin-right: 3px;
+  margin-left: 0.4em;
 }
 
 .useractive img {

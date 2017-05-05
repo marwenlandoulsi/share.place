@@ -1,8 +1,5 @@
 <div class="users">
   <div class="titleDiv">
-    <!--<btn (click)="add()"-->
-    <!--[sources]="['../images/addPerson.png', '../images/addPerson-h.png', '../images/addPerson-c.png']"-->
-    <!--class="addBtn" [disabled]="selectedPlace==null"></btn>-->
     <div class="title">
       <div class="hTitlein">People</div>
     </div>
@@ -10,19 +7,20 @@
   <div class="subtitle">in {{selectedPlace?.name}}</div>
   <ul class="list contentScroll">
     <div class="scrollbar-macosx">
-    <li *ngFor="let userItem of users" class="user">
-      <div class="userLine" [class.popupOpen]="clickedUserId == userItem.id"  (click)="clickedUserId = userItem.id"
-           popupSource alignPositionX="after"
-           alignPositionY="start" #userElem="popupSource">
-        <img src="/auth/user/photo/s/{{userItem.id}}" class="profileImg">
-        <div class="userName">{{userItem?.displayName}}</div>
-      </div>
-      <info-popup *ngIf="clickedUserId == userItem.id"
-                  [userId]="userItem.id"
-                  [source]="userElem" [offsetX]="20" [offsetY]="-10"
-                  [visible]="clickedUserId == userItem.id" [parent]="self"  [arrowCss]="'arrowLeft'">
-      </info-popup>
-    </li>
+      <div class="spinnerInner"> <material-spinner class="spinner" *ngIf="users == null"></material-spinner></div>
+      <li *ngFor="let userItem of users" class="user">
+        <div class="userLine" [class.popupOpen]="clickedUserId == userItem.id"  (click)="clickedUserId = userItem.id"
+             popupSource alignPositionX="after"
+             alignPositionY="start" #userElem="popupSource">
+          <img src="/auth/user/photo/s/{{userItem.id}}" class="profileImg">
+          <div class="userName">{{userItem?.displayName}}</div>
+        </div>
+        <info-popup *ngIf="clickedUserId == userItem.id"
+                    [userId]="userItem.id"
+                    [source]="userElem" [offsetX]="20" [offsetY]="-10"
+                    [visible]="clickedUserId == userItem.id" [parent]="self"  [arrowCss]="'arrowLeft'">
+        </info-popup>
+      </li>
     </div>
   </ul>
 </div>

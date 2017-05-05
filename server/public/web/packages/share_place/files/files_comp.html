@@ -25,6 +25,7 @@
     </div>
     <div class="versionsListScroll">
       <div class="scrollbar-macosx">
+        <div class="spinnerInner"> <material-spinner class="spinner" *ngIf="selectedFile == null"></material-spinner></div>
         <ul class="list">
           <li class="file">
             <div class="fileDesc">
@@ -48,10 +49,10 @@
                           </div>
                         </div>
                         <!-- end new uplo -->
-                        <div class="demo">
+                        <div class="perVersionScroll">
                           <div class="scrollbar-macosx">
                             <div *ngIf="isCommentsOpen(selectedFile.id, versionItem.v)"
-                                 class="versionComments contentScroll00">
+                                 class="versionComment ">
 
                               <ul class="actionList">
 

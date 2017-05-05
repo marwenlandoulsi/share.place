@@ -825,19 +825,31 @@ module.exports.putFolder = function (req, res) {
     getPathFolderInHomeDir(dataFolder, jsonfile.readFileSync(pathToDbFolders), newFolderName, (pathfolder, newPath) => {
       let pathFolderInHomeDir = path.join(global.homeDir, 'share.place', userId, placeName, pathfolder);
       let newPathToFolderInHomeDir = path.join(global.homeDir, 'share.place', userId, placeName, newPath);
-      fs.rename(pathFolderInHomeDir, newPathToFolderInHomeDir, (err) => {
-        if (err) {
-          showDialogBox("info", "rename folder", "please close opened files ");
-        } else {
-          httpPutJson(url, jsonToPut, (err, toReturn) => {
-            if (err)
-              globalService.sendError(res, err.statusCode, err.message)
+      if(fs.existsSync(pathFolderInHomeDir)){
+        fs.rename(pathFolderInHomeDir, newPathToFolderInHomeDir, (err) => {
+          if (err) {
+            log.error("error to rename folder:", pathFolderInHomeDir," , error :",err.message)
+            showDialogBox("info", "rename folder", "please close opened files ");
+          } else {
+            httpPutJson(url, jsonToPut, (err, toReturn) => {
+              if (err)
+                globalService.sendError(res, err.statusCode, err.message)
 
 
-            globalService.sendJsonResponse(res, 200, toReturn);
-          })
-        }
-      })
+              globalService.sendJsonResponse(res, 200, toReturn);
+            })
+          }
+        })
+      }else{
+        httpPutJson(url, jsonToPut, (err, toReturn) => {
+          if (err)
+            globalService.sendError(res, err.statusCode, err.message)
+
+
+          globalService.sendJsonResponse(res, 200, toReturn);
+        })
+      }
+
     });
   }
   else {

@@ -1,4 +1,7 @@
 import 'package:share_place/common/util.dart' as util;
+
+import 'dart:convert';
+
 class User {
   String _id;
   Map<String, String> photoIdMap;
@@ -37,9 +40,10 @@ class User {
     return toReturn;
   }
 
-  User.withRole(String id, String folderId, RoleEnum role) :
-    this._id = id,
-    this.folders = {folderId:role};
+  User.withRole(String id, String folderId, RoleEnum role)
+      :
+        this._id = id,
+        this.folders = {folderId: role};
 
   factory User.empty() =>
       new User(
@@ -57,11 +61,14 @@ class User {
 
 
   Map toJson() {
-    StringBuffer foldersBuff = new StringBuffer("[");
-    folders.forEach((key, RoleEnum value) =>
-        foldersBuff.write(
-            "{$key:${value.toString().substring('RoleEnum.'.length)}}"));
-    foldersBuff.write("]");
+    List folderList = [];
+    folders.forEach((key, RoleEnum value) {
+      String roleStr = value.toString().substring(
+          'RoleEnum.'.length);
+      folderList.add(
+          {'folderId':key, 'role':roleStr});
+    });
+
     return {
       '_id': id,
       'name': name,
@@ -70,7 +77,7 @@ class User {
       'photoIdMap': photoIdMap?.toString(),
       'skype': skype,
       'visiblePostits': visiblePostits,
-      'folders': foldersBuff.toString(),
+      'folders': folderList,
       'local': localAccount?.toJson(),
       'facebook': facebookAccount?.toJson(),
       'google': googleAccount?.toJson()
@@ -86,9 +93,9 @@ class User {
 
   String get mainMail {
     String toReturn = localAccount?.email;
-    if ( util.isEmpty( toReturn ) )
+    if (util.isEmpty(toReturn))
       toReturn = facebookAccount?.email;
-    if (util.isEmpty( toReturn ) )
+    if (util.isEmpty(toReturn))
       toReturn = googleAccount?.email;
 
     return toReturn;
@@ -98,7 +105,7 @@ class User {
     localAccount = new LocalAccount(email, null);
   }
 
-  String get displayName => util.isEmpty( name ) ? mainMail : name;
+  String get displayName => util.isEmpty(name) ? mainMail : name;
 
   static Map<String, RoleEnum> fromRoleList(List<Role> roleList) {
     return new

@@ -42,9 +42,10 @@ class RoleChooser implements OnInit {
   @Input()
   set selected(String role) {
     //on init, the choices are still not set
-    if (choices == null)
+
+    if (choices == null) {
       lastSelected = role;
-    else
+    } else
       this.role(role);
   }
 

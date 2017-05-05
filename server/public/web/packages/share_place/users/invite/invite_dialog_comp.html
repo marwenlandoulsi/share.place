@@ -34,7 +34,7 @@
         <tr *ngFor="let userRole of usersWithRoles">
           <td width="40%">
             <span class="labelinvit">Email</span>
-            <material-input #search class="mailToAdd" type="email" autofocus  md-autofocus
+            <material-input #search class="mailToAdd" type="email"   md-autofocus
                             (keyup)="onKeyUp(search.inputText)" class="emailinp"
                             placeholder="example@mydomain.com" [(ngModel)]="userRole.email"></material-input>
           </td>
@@ -44,14 +44,15 @@
         </tr>
       </table>
     </div>
-
     </div>
+
     <div class="addUserDiv">
       <div class="addUserDiv_inside" (click)="addUserLine()" onselectstart="return false"><span>More lines</span> </div>
     </div>
 
     <span class="labelinvit">Message</span>
-    <material-input [(ngModel)]="message" type="text" multiline rows="5" id="inviteLablel"
+
+    <material-input   [(ngModel)]="message" type="text" multiline rows="5" id="inviteLablel" contenteditable="true"
                     label="Hello! Join me on Share.Place, it's a super simple app to share and collaborate together!"></material-input>
   </div>
 

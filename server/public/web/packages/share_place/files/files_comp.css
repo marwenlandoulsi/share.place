@@ -202,6 +202,7 @@ a {
   -webkit-border-radius: 0 0 3px 3px;
   -moz-border-radius: 0 0 3px 3px;
   border-radius: 0 0 3px 3px;
+  margin-right: -0.5em;
 }
 
 .versionTitle > div {
@@ -252,6 +253,7 @@ a {
 
 .versions li {
   list-style-type: none;
+  padding-right: 0.5em;
 }
 
 .addCommentBlock {

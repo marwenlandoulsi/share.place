@@ -55,7 +55,12 @@ nav a.router-link-active {
   height: 2.2em;
   padding-left: 0.4em;
 }
-
+.desktopVersion{
+  color: #FEFEFE;
+  position: fixed;
+  left: 152px;
+  top: 10px;
+}
 .title {
   position: absolute;
   left: 120px;

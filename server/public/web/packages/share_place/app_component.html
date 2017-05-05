@@ -13,7 +13,7 @@
 
   <div class="header header-top">
     <img src="../images/logo0.png" class="logo">
-
+    <label class="desktopVersion" *ngIf="!isWebApp">V0.0.49</label>
     <div class="alertInner">
       <notification [msg]="error" class="notif error" [duration]="-1"></notification>
       <div *ngIf="messages != null && messages.length > 0">
