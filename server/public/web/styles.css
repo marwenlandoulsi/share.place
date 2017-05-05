@@ -30,6 +30,18 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
   width: 96% !important;
 }
 
+#page {
+  background: #FFF;
+  padding: 20px;
+  margin: 20px;
+}
+
+#demo {
+  width: 200px;
+  height: 300px;
+}
+
+
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
@@ -266,7 +278,10 @@ TODO see what font to use
 
 .rightMenu {
   float: right;
-  margin-right: 1em;
+  margin-right: 0.5em;
+  display: inline-flex;
+}
+.rightMenu .imgProfil{
   margin-top: 0.2em;
 }
 
@@ -307,15 +322,18 @@ TODO see what font to use
 }
 
 .row {
-  margin: 10px;
+  margin: 0.5em 0.5em 0 0.5em;
 }
 
 .header-top {
   position: relative;
+  z-index: 1001;
   width: 100%;
   height: 2.2em;
   background-color: #1F181F !important;
   padding: 0 !important;
+  -webkit-app-region: drag;
+  overflow: hidden;
 }
 
 .imgBtn {
@@ -532,7 +550,7 @@ textarea {
 
 #labelfileupload {
   cursor: pointer;
-  color: darkGray;
+  color: #DADFE2;
   z-index: 1;
   border-radius: 25px;
   background-color: transparent;
@@ -540,7 +558,8 @@ textarea {
   display: block;
   position: absolute;
   top: 45%;
-  width: 100%;
+  width: 12em;
+  left: calc(50% - 6em);
   -webkit-transition: 0.3s;
   -o-transition: 0.3s;
   transition: 0.3s;
@@ -553,17 +572,17 @@ textarea {
   left: 48%;
   position: absolute;
   font-size: 26px;
-  color: #9E9E9E;
+  color: #DADFE2;
   top: -34px;
 }
 
 .uploadDropZone:hover #labelfileupload:before, .uploadDropZone:focus #labelfileupload:before,
 .uploadDropZone:hover #labelfileupload, .uploadDropZone:focus #labelfileupload {
-  color: #fff;
+  color: #727272;
 }
 
 .uploadDropZone:hover, .uploadDropZone:focus {
-  background: #4690D1 !important;
+  background: #fff !important;
   -webkit-transition: 0.3s;
   -o-transition: 0.3s;
   transition: 0.3s;
@@ -583,8 +602,8 @@ textarea {
   border-radius: 3px 0 0 3px;
   -moz-border-radius: 3px 0 0 3px;
   -webkit-border-radius: 3px 0 0 3px;
-  height: 34px;
-  font-size: 0.9em;
+  height: 2.6em;
+  font-size: 0.8em;
   color: #000;
   font-family: Arial, Helvetica, sans-serif;
   background: #fff;
@@ -637,8 +656,7 @@ textarea {
   top: 0;
   background: white;
   width: 34px;
-  height: 34px;
-  line-height: 28px;
+  height: 1.6em;
   text-align: center;
   color: #c3c3c3;
   border-top: 1px solid rgba(146, 146, 146, 0.63);
@@ -668,8 +686,6 @@ textarea {
   -o-transition: 0.3s;
   transition: 0.3s;
 }
-
-
 
 .files .btn_valid:hover:after {
   color: #4690D1;
@@ -872,7 +888,7 @@ material-ripple {
 
 .userInfoPopup {
   min-width: 14em;
-  padding: 0.7em 0.5em 0.8em 0.6em;
+  padding: 0.7em 0.5em 0.4em 0.6em;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
@@ -1025,6 +1041,11 @@ header.closed .primary-text:before {
   color: transparent !important;
   background: url("../images/arrowP.png") no-repeat center center !important;
   width: 2.4em !important;
+}
+
+.placePanel .expand-button i.material-icons:hover,
+.placePanel .expand-button.expand-more i.material-icons:hover {
+  background: url("../images/arrowPhover.png") no-repeat center center !important;
 }
 
 .forgotPass footer {
@@ -1366,10 +1387,9 @@ material-button.menuItem.profile .content, material-button.menuItem.logout .cont
 }
 
 #login input {
-  width: calc(100% - 14px);
-  padding-left: 7px;
-  padding-right: 7px;
-  padding-top: 2px;
+  width: calc(100% - 14px) !important;
+  padding-left: 7px !important;
+  padding-right: 7px !important;
 }
 
 /*@media only screen and (max-width: 992px) {*/
@@ -1401,6 +1421,104 @@ input {
 .renameDiv input {
   width: calc(100% - 28px) !important;
 }
+
+/************************************/
+
+.addBtn {
+  font-family: 'Material-Design-Iconic-Font';
+  cursor: pointer;
+  -webkit-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.addBtn:before {
+  font-size: 2.3em;
+  color: rgba(255, 255, 255, 0.5);
+  content: '\f276';
+}
+
+/**********/
+.headerplaces .addBtn:before {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 2em;
+}
+
+.headerplaces .addBtn:hover:before {
+  color: rgba(237, 242, 248, 0.86);
+}
+
+.headerplaces .addBtn:active:before {
+  color: rgba(237, 242, 248, 1);
+}
+
+/**********/
+.folders .addBtn {
+  margin-top: -0.4em;
+}
+
+.folders .addBtn:before {
+  font-size: 1.8em;
+  /*color: rgba(255, 255, 255, 0.5);*/
+  color: rgba(39, 59, 84, 0.28) !important;
+  content: '\f276';
+}
+
+.folders .addBtn:hover:before {
+  color: rgba(52, 113, 170, 0.77) !important
+}
+
+.folders .addBtn:active:before {
+  color: rgba(52, 113, 170, 0.9) !important
+}
+
+/**********/
+.subjects .addBtn:before {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.subjects .addBtn:hover:before {
+  color: rgba(237, 242, 248, 0.86);
+}
+
+.subjects .addBtn:active:before {
+  color: rgba(237, 242, 248, 1);
+}
+
+#inputSym .input-container{
+  margin-top: 1px;
+  margin-bottom: -1px;
+}
+
+#signup .input-container {
+  margin-top: 1px;
+  margin-bottom: 3px;
+}
+
+.btn_login.is-raised > .content {
+  padding: 0.6em 0.57em !important;
+}
+
+/*________________ scroll ____________________________*/
+/*.nodeList, .users .list, .versionComments, .subjectList*/
+/*.contentScroll {*/
+/*list-style: none;*/
+/*max-height: 10.9em;*/
+/*overflow-y: auto;*/
+/*overflow-x: hidden;*/
+/*position: relative;*/
+
+/*}*/
+
+/*.subjectList.contentScroll {*/
+/*max-height: 23.2em;*/
+/*}*/
+
+/*.versionComments.contentScroll {*/
+/*max-height: 22em;*/
+/*}*/
+
+/*________________END  scroll ____________________________*/
 
 @media only screen and (max-width: 480px) {
 

@@ -76,9 +76,10 @@ class ViewUsersComp0 extends AppView<import3.UsersComp> {
   Element _el_14;
   Text _text_15;
   UListElement _el_17;
-  ViewContainer _appEl_19;
-  dynamic _TemplateRef_19_4;
-  import6.NgFor _NgFor_19_5;
+  Element _el_19;
+  ViewContainer _appEl_21;
+  dynamic _TemplateRef_21_4;
+  import6.NgFor _NgFor_21_5;
   var _expr_0 = uninitialized;
   var _expr_1 = uninitialized;
   ViewUsersComp0(import8.Injector parentInjector,ViewContainer declarationEl): super(ViewUsersComp0,renderType_UsersComp,import9.ViewType.COMPONENT,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
@@ -132,38 +133,46 @@ class ViewUsersComp0 extends AppView<import3.UsersComp> {
     _el_17 = doc.createElement('ul');
     _el_17.setAttribute(shimCAttr,'');
     _el_0.append(_el_17);
-    _el_17.className = 'list';
-    Text _text_18 = new Text('\n\n    ');
+    _el_17.className = 'list contentScroll';
+    Text _text_18 = new Text('\n    ');
     _el_17.append(_text_18);
-    var _anchor_19 = new Comment('template bindings={}');
-    _el_17?.append(_anchor_19);
-    _appEl_19 = new ViewContainer(19,17,this,_anchor_19);
-    _TemplateRef_19_4 = new TemplateRef(_appEl_19,viewFactory_UsersComp1);
-    _NgFor_19_5 = new import6.NgFor(_appEl_19,_TemplateRef_19_4,this.parentInjector.get(import11.IterableDiffers),ref);
-    Text _text_20 = new Text('\n  ');
-    _el_17.append(_text_20);
-    Text _text_21 = new Text('\n');
-    _el_0.append(_text_21);
+    _el_19 = doc.createElement('div');
+    _el_19.setAttribute(shimCAttr,'');
+    _el_17.append(_el_19);
+    _el_19.className = 'scrollbar-macosx';
+    Text _text_20 = new Text('\n    ');
+    _el_19.append(_text_20);
+    var _anchor_21 = new Comment('template bindings={}');
+    _el_19?.append(_anchor_21);
+    _appEl_21 = new ViewContainer(21,19,this,_anchor_21);
+    _TemplateRef_21_4 = new TemplateRef(_appEl_21,viewFactory_UsersComp1);
+    _NgFor_21_5 = new import6.NgFor(_appEl_21,_TemplateRef_21_4,this.parentInjector.get(import11.IterableDiffers),ref);
+    Text _text_22 = new Text('\n    ');
+    _el_19.append(_text_22);
+    Text _text_23 = new Text('\n  ');
+    _el_17.append(_text_23);
+    Text _text_24 = new Text('\n');
+    _el_0.append(_text_24);
     init([],[
       _el_0,_text_1,_el_2,_text_3,_text_4,_text_5,_text_6,_el_7,_text_8,_el_9,_text_10,
-      _text_11,_text_12,_text_13,_el_14,_text_15,_text_16,_el_17,_text_18,_anchor_19,
-      _text_20,_text_21
+      _text_11,_text_12,_text_13,_el_14,_text_15,_text_16,_el_17,_text_18,_el_19,_text_20,
+      _anchor_21,_text_22,_text_23,_text_24
     ]
     ,[]);
     return null;
   }
   dynamic injectorGetInternal(dynamic token,int requestNodeIndex,dynamic notFoundResult) {
-    if ((identical(token, TemplateRef) && (19 == requestNodeIndex))) { return _TemplateRef_19_4; }
-    if ((identical(token, import6.NgFor) && (19 == requestNodeIndex))) { return _NgFor_19_5; }
+    if ((identical(token, TemplateRef) && (21 == requestNodeIndex))) { return _TemplateRef_21_4; }
+    if ((identical(token, import6.NgFor) && (21 == requestNodeIndex))) { return _NgFor_21_5; }
     return notFoundResult;
   }
   void detectChangesInternal() {
     final currVal_1 = ctx.users;
     if (import12.checkBinding(_expr_1,currVal_1)) {
-      _NgFor_19_5.ngForOf = currVal_1;
+      _NgFor_21_5.ngForOf = currVal_1;
       _expr_1 = currVal_1;
     }
-    if (!import12.AppViewUtils.throwOnChanges) { _NgFor_19_5.ngDoCheck(); }
+    if (!import12.AppViewUtils.throwOnChanges) { _NgFor_21_5.ngDoCheck(); }
     this.detectContentChildrenChanges();
     final currVal_0 = import12.interpolate1('in ',((ctx.selectedPlace == null)? null: ctx.selectedPlace.name),'');
     if (import12.checkBinding(_expr_0,currVal_0)) {

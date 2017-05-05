@@ -7,7 +7,7 @@
   width: calc(100% - 20px);
   padding: 0 10px;
   font-size: 1em;
-  color: #000;
+  color: #fff;
   font-weight: normal !important;
   height: 2.3em;
   line-height: 2.2em;
@@ -86,7 +86,7 @@ ul {
 }
 
 .fileLink {
-  font-weight: bold;
+  font-weight: normal;
 }
 
 .list {
@@ -98,7 +98,7 @@ ul {
 .version {
   color: #727272;
   font-size: 14px;
-  padding: 0 0.4em;
+  padding: 0 0 0 0.4em;
   transition: transform 1s ease;
   position: relative;
 }
@@ -133,7 +133,7 @@ ul {
 }
 
 .newTopic {
-  padding: 1.3em;
+  padding: 0.5em;
   background: #dde2e5;
 }
 
@@ -197,8 +197,8 @@ a {
   line-height: 1.5em;
   padding: 0 0.5em;
   background: white;
-  color: #727272;
-  font-size: 1em;
+  color: #CACFD5;
+  font-size: 0.9em;
   -webkit-border-radius: 0 0 3px 3px;
   -moz-border-radius: 0 0 3px 3px;
   border-radius: 0 0 3px 3px;
@@ -235,11 +235,20 @@ a {
   float: right;
   z-index: 2;
   font-size: 2em;
-  color: #727272;
+  color: #CACFD5;
   cursor: pointer;
   position: relative;
   top: -5px;
 }
+
+.liVersion:hover  .toggleVersion.fa:before,
+.liVersion:hover .versionTitle {
+
+/*.toggleVersion.fa.fa-angle-up:before ,  .liVersion:hover .toggleVersion:hover:before ,  .toggleVersion:hover:before{*/
+  color: #727272;
+}
+
+
 
 .versions li {
   list-style-type: none;
@@ -253,7 +262,7 @@ a {
 
 .versionComments {
   transition: all 1s;
-  padding: 0.8em 0;
+  padding: 0.8em 0.4em 0.8em  0;
   border-radius: 0 0 3px 3px;
   -webkit-border-radius: 0 0 3px 3px;
   -moz-border-radius: 0 0 3px 3px;
@@ -305,6 +314,7 @@ a {
   color: #000;
   min-height: 1.3em;
   min-width: 1em;
+  font-size: 0.9em;
 }
 
 .bubbleContent {
@@ -748,6 +758,14 @@ li.more {
   border-right-color: transparent;
 }
 
+
+@media  (max-width: 800px) and (min-width: 700px) {
+
+  .pLeft {
+    display: none !important;
+  }
+
+}
 
 @media only screen and (max-width: 480px) {
   .bubble {

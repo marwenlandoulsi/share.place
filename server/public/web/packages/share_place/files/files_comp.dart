@@ -83,10 +83,10 @@ class FilesComp implements OnInit, PopupParent {
       String fileId) async {
     selectedFile = await _placeService.getFile(placeId, folderId, fileId);
     versionAttributes.clear();
-
     detectLastLockAction();
-
+    _environment.showScrollBar('showScroller');
     return selectedFile;
+
   }
 
   TextChanged writingComment(String comment) {
@@ -110,6 +110,8 @@ class FilesComp implements OnInit, PopupParent {
       selectedFile = await getFile(
           selectedPlace.id, selectedFolder.id,
           selectedSubject.fileId);
+
+
     }
   }
 
@@ -423,6 +425,10 @@ class FilesComp implements OnInit, PopupParent {
       popupUserInfoId =
           getActionsForVersion(version).toList()[actionIndex].user.userId;
   }
+
+  bool shouldShowApproveMenu(FileVersion version ) => isFile && isOwner && version.approved == null;
+
+  bool shouldShowUnApproveMenu(FileVersion version ) => isFile && isOwner && version.approved != null && connectedUser.id == version.approved.userId;
 
   int computeIndex(FileVersion version, int actionIndex) {
     return version.v * 10000 + actionIndex;

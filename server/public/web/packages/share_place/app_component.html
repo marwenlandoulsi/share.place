@@ -13,6 +13,7 @@
 
   <div class="header header-top">
     <img src="../images/logo0.png" class="logo">
+
     <div class="alertInner">
       <notification [msg]="error" class="notif error" [duration]="-1"></notification>
       <div *ngIf="messages != null && messages.length > 0">
@@ -22,17 +23,21 @@
       </div>
     </div>
     <div class="rightMenu">
-      <img popupSource #profileMenu="popupSource" src="/auth/user/photo/s/{{connectedUser?.id}}" class="profileImg"
-           (click)="profileMenuVisible = !profileMenuVisible">
+      <div class="imgProfil">
+        <img popupSource #profileMenu="popupSource" alignPositionX="end"
+             alignPositionY="after"
+             src="/auth/user/photo/s/{{connectedUser?.id}}" class="profileImg"
+             (click)="profileMenuVisible = !profileMenuVisible"></div>
       <!--<a href="/profile"><img src="../images/profile.png"></a>-->
       <material-popup defaultPopupSizeProvider
                       enforceSpaceConstraints
                       [source]="profileMenu"
-                      [(visible)]="profileMenuVisible" class="profilemenuvisible">
-        <div header class="popupHeader connectUsername">
+                      [(visible)]="profileMenuVisible"
+                      class="profilemenuvisible" *ngIf="connectedUser != null ">
+        <div header class="popupHeader connectUsername"  >
           <span>{{connectedUser?.displayName}}</span>
         </div>
-        <div class="popupContent">
+        <div class="popupContent" >
           <material-button (click)="profile()" class="menuItem profile">
             <div class="profile_chmp">Edit profile</div>
           </material-button>
@@ -40,9 +45,14 @@
             <div class="logout_chmp">Logout</div>
           </material-button>
         </div>
-        <div footer>
-        </div>
+
       </material-popup>
+
+      <div class="btnsWindow" *ngIf="!isWebApp">
+        <div class="btnHeader minus" aria-hidden="true" (click)="sendWindowEvent('minimizeWindow')"></div>
+        <div class="btnHeader window-maximize" aria-hidden="true" (click)="sendWindowEvent('maximizeWindow')"></div>
+        <div class="btnHeader closeWind" aria-hidden="true" (click)="sendWindowEvent('closeWindow')"></div>
+      </div>
     </div>
   </div>
 

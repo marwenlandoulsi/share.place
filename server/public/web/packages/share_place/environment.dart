@@ -12,9 +12,10 @@ import 'dart:async';
 import 'app_config.dart' as conf;
 import 'dart:html';
 import 'package:logging/logging.dart';
+
 @Injectable()
 class Environment {
-final Logger log = new Logger("Environment");
+  final Logger log = new Logger("Environment");
   final EventBus eventBus;
 
   Place _place;
@@ -24,6 +25,7 @@ final Logger log = new Logger("Environment");
   User _connected;
   User _user;
   bool _userInviteDialogOpen;
+  bool _userEditRolesDialogOpen;
   bool _isUploading;
   bool _loggedIn;
   bool _subscribeDialogVisible;
@@ -32,6 +34,7 @@ final Logger log = new Logger("Environment");
   List<String> _messages = [];
   SocketIoClient socketIoClient;
   Map<String, dynamic> notifications;
+
   //bool online;
 
   Environment(this.eventBus) {
@@ -44,6 +47,15 @@ final Logger log = new Logger("Environment");
     //window.onOffline.listen((Event e) => online = false);
   }
 
+  void sendWindowEvent(String type, String detail) {
+    var event = new CustomEvent(type, detail: detail);
+    log.finest("sending window event $type");
+    window.dispatchEvent(event);
+  }
+
+  void showScrollBar(String event) {
+    sendWindowEvent(event, null);
+  }
 
   Place get selectedPlace => _place;
 
@@ -53,7 +65,7 @@ final Logger log = new Logger("Environment");
     _file = null;
 
     eventBus.fire({
-      PlaceParam.placeId: place?.id?.toString(),
+      PlaceParam.placeId: place?.id,
       PlaceParam.folderId: null,
       PlaceParam.fileId: null
     });
@@ -97,7 +109,7 @@ final Logger log = new Logger("Environment");
     if (!wasLoggedIn) {
       connectSocket();
     }
-    if(!_loggedIn) {
+    if (!_loggedIn) {
       selectedFile = null;
       selectedFolder = null;
       selectedPlace = null;
@@ -109,7 +121,6 @@ final Logger log = new Logger("Environment");
   }
 
   Future<Null> connectSocket() async {
-
     String url = conf.remoteUrl + "?sId=";
     InputElement cookieSessionIdInput = document.querySelector("#cc");
     if (cookieSessionIdInput != null)
@@ -131,6 +142,13 @@ final Logger log = new Logger("Environment");
   void set inviteUsersDialog(bool open) {
     this._userInviteDialogOpen = open;
     eventBus.fire({PlaceParam.inviteUserDialog: open});
+  }
+
+  bool get editRolesUsersDialog => _userEditRolesDialogOpen;
+
+  void set editRolesUsersDialog(bool open) {
+    this._userEditRolesDialogOpen = open;
+    eventBus.fire({PlaceParam.editRolesUsersDialog: open});
   }
 
   bool get uploading => _isUploading;
@@ -167,7 +185,7 @@ final Logger log = new Logger("Environment");
 
 
   int getNotificationCount(String folderId) {
-    if( notifications == null )
+    if (notifications == null)
       return -1;
 
     var folderNotifs = notifications[folderId];
@@ -175,14 +193,15 @@ final Logger log = new Logger("Environment");
   }
 
   List<String> getNotificationFileIdList(String folderId) {
-    if( notifications == null )
+    if (notifications == null)
       return [];
 
     var folderNotifs = notifications[folderId];
     return folderNotifs != null ? folderNotifs['fileIdList'] : [];
   }
 
-  bool hasNotification(String folderId, String fileId) => getNotificationFileIdList(folderId).contains(fileId);
+  bool hasNotification(String folderId, String fileId) =>
+      getNotificationFileIdList(folderId).contains(fileId);
 }
 
 enum PlaceParam {
@@ -192,6 +211,7 @@ enum PlaceParam {
   fileId,
   userId,
   inviteUserDialog,
+  editRolesUsersDialog,
   invitedUsers,
   uploadStateChanged,
   keyPressed,
@@ -201,6 +221,7 @@ enum PlaceParam {
   login,
   subscribe,
   addButtonPressed, //to remove post-its
+  editRolesPressed,
 
   ioFolderUserConnected,
   ioFolderCreated,

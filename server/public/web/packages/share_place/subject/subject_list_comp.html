@@ -6,15 +6,21 @@
                  [body]="'Now invite some poople to join you clicking on the + icon'"
                  class="subjectsPostit"></postit-comp>
 
-    <btn (click)="add()"
-         [sources]="['../images/add-poeple.png', '../images/add-poeple.png', '../images/add-poeple.png']"
-         class="addBtn addpeople" [disabled]="selectedFolder==null"></btn>
+    <div (click)="add()" class="addBtn addPeople"></div> <!--[disabled]="selectedFolder==null"-->
+    <div (click)="editRoles()" class="btn editRoles"></div>
 
     <modal [visible]="adding">
       <material-dialog defaultPopupSizeProvider
                        enforceSpaceConstraints
                        class="profilemenuvisible">
         <invite-users-dialog></invite-users-dialog>
+      </material-dialog>
+    </modal>
+    <modal *ngIf="editing" [visible]="editing">
+      <material-dialog defaultPopupSizeProvider
+                       enforceSpaceConstraints
+                       class="profilemenuvisible">
+        <change-roles-dialog></change-roles-dialog>
       </material-dialog>
     </modal>
     <!-- emplacement des users  -->
@@ -24,7 +30,8 @@
           (click)="userInfoRequested=userItem">
         <img src="/auth/user/photo/s/{{userItem.id}}">
 
-        <info-popup *ngIf="infoPopupUser?.id == userItem.id" [(visible)]="infoPopupOpen" [source]="userInfoPopup" [offsetX]="7" [offsetY]="0"
+        <info-popup *ngIf="infoPopupUser?.id == userItem.id" [(visible)]="infoPopupOpen" [source]="userInfoPopup"
+                    [offsetX]="7" [offsetY]="0"
                     [userId]="userItem.id" [parent]="self" [arrowCss]="'arrowTop'"></info-popup>
       </li>
     </ul>
@@ -36,55 +43,66 @@
              class="txt"/>
       <div (click)="createQuickNote(text.value);text.value=''" class="btn_valid"></div>
     </div>
+    <div class="addTopicBtn"> </div>
+
   </div>
-  <div>
-    <ul class="subjectList">
-      <div class="subjectListInner">
-      <li *ngFor="let subject of subjects; let subjectIndex = index" (click)="gotoSubject(subject)" class="subjectItem"
-          [class.qNote]="subject.dataType == 'quickNote'"
-          [class.selected]="selectedSubject != null && subject.id == selectedSubject.id"
-          [class.approved]="subject.approved != null"
-          [class.locked]="subject.lockOwner != null"
-          [class.ownAction]="subject.lockOwner?.userId == connectedUser.id"
-          [class.unread]="wasRead(subject)">
-        <div *ngIf="renaming == null || renaming?.id != subject?.id" class="subject">
-          <div class="thumb"><img
-              src="/sp/place/{{selectedPlace.id}}/folder/{{selectedFolder?.id}}/file/{{subject.fileId}}/version/{{subject.v}}/thumb">
-          </div>
-          <div *ngIf="subject.dataType == 'file'" class="version"> V.{{subject.v}}</div>
-          <div class="name">{{subject.name}}</div>
-          <div class="users">
-            <ul>
-              <li *ngFor="let activeUser of subject.users" class="user">
-                <div class="profileImg" [class.validator]="activeUser.role == 'admin'"
-                     (click)="showSubjectUserInfoPopup( activeUser.userId, subjectIndex, $event )"
-                     popupSource alignPositionX="end"
-                     alignPositionY="after" #subjectParticipant="popupSource">
-                  <img src="/auth/user/photo/s/{{activeUser.userId}}">
-                </div>
-                <input *ngIf="renaming != null && renaming.id == subject?.id" type="text" #folderRenamer
-                       value="{{subject.name}}"
-                       (keydown.enter)="doRename(folderRenamer.value)" class="editSubject"/>
-                <info-popup *ngIf="subjectIndex == subjectInfoPopupIndex && popupUserInfoId == activeUser.userId"
-                            [userId]="popupUserInfoId"
-                            [source]="subjectParticipant" [offsetX]="11" [offsetY]="10"
-                            [visible]="popupUserInfoId == activeUser.userId" [parent]="self" [arrowCss]="'arrowTop'"></info-popup>
-              </li>
-            </ul>
+  <div class="{{computeSizes(subjectList) ? 'hideDropZone' : 'dropZoneVisible' }}">
+
+    <div class="demo">
+      <div class="scrollbar-macosx">
+        <ul #subjectList class="subjectList contentScroll_">
+          <li *ngFor="let subject of subjects; let subjectIndex = index" (click)="gotoSubject(subject)"
+              class="subjectItem"
+              [class.qNote]="subject.dataType == 'quickNote'"
+              [class.selected]="selectedSubject != null && subject.id == selectedSubject.id"
+              [class.approved]="subject.approved != null"
+              [class.locked]="subject.lockOwner != null"
+              [class.ownAction]="subject.lockOwner?.userId == connectedUser.id"
+              [class.unread]="wasRead(subject)">
+            <div *ngIf="renaming == null || renaming?.id != subject?.id" class="subject">
+              <div class="thumb"><img
+                  src="/sp/place/{{selectedPlace.id}}/folder/{{selectedFolder?.id}}/file/{{subject.fileId}}/version/{{subject.v}}/thumb">
+              </div>
+              <div *ngIf="subject.dataType == 'file'" class="version"> V.{{subject.v}}</div>
+              <div class="name">{{subject.name}}</div>
+              <div class="users">
+                <ul>
+                  <li *ngFor="let activeUser of subject.users" class="user">
+                    <div class="profileImg" [class.validator]="activeUser.role == 'admin'"
+                         (click)="showSubjectUserInfoPopup( activeUser.userId, subjectIndex, $event )"
+                         popupSource alignPositionX="end"
+                         alignPositionY="after" #subjectParticipant="popupSource">
+                      <img src="/auth/user/photo/s/{{activeUser.userId}}">
+                    </div>
+                    <input *ngIf="renaming != null && renaming.id == subject?.id" type="text" #folderRenamer
+                           value="{{subject.name}}"
+                           (keydown.enter)="doRename(folderRenamer.value)" class="editSubject"/>
+                    <info-popup *ngIf="subjectIndex == subjectInfoPopupIndex && popupUserInfoId == activeUser.userId"
+                                [userId]="popupUserInfoId"
+                                [source]="subjectParticipant" [offsetX]="11" [offsetY]="10"
+                                [visible]="popupUserInfoId == activeUser.userId" [parent]="self"
+                                [arrowCss]="'arrowTop'"></info-popup>
+                  </li>
+                </ul>
+                <div class="clearfix"></div>
+              </div>
+            </div>
             <div class="clearfix"></div>
-          </div>
-        </div>
-        <div class="clearfix"></div>
-      </li>
+          </li>
+        </ul>
       </div>
-    </ul>
+    </div>
 
     <form id="fileForm" #upload class="uploadDropZone"
           (dragenter)="upload.style.setProperty('border', '2px solid #9FC8FA')"
           (drop)="upload.style.setProperty('border', '2px dotted #273B54');">
+
+
       <label id="labelfileupload" for="fileupload"> Drag'n drop or browse file </label>
       <input type="file" id="fileupload" (change)="uploadFiles()" class="uploadFile" name="toUpload"
-             style="opacity: 0"/>
+             style="opacity: 0;"
+             onClick="openFileDialogConditionally(event, document.getElementById('labelfileupload'))"/>
+
 
       <postit-comp [name]="'files'" [header]="'Cool !'"
                    [body]="'Now you can Drag\'n drop a file here and start collaborate with your team '"
@@ -92,3 +110,5 @@
     </form>
   </div>
 </div>
+
+

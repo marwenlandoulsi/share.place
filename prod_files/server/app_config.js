@@ -21,6 +21,10 @@ module.exports = Object.freeze({
     url: 'https://app.share.place/sp',
     method: 'PUT',
   },
+  optionsDel: {
+    url: 'https://app.share.place/sp',
+    method: 'DELETE',
+  },
   optionsGet: {
     host: "app.share.place",
     port: 443,
@@ -32,7 +36,10 @@ module.exports = Object.freeze({
     port: 443,
     path: '/auth',
     method: 'GET'
-  },/*
+  },
+  urlFbLogin : "https://app.share.place/auth/facebook/d/",
+  urlGlogin : "https://app.share.place/auth/google/d/",
+  /*
   optionsGetFromAuth: {
    host: "127.0.0.1",
    port: 3000,

@@ -2,7 +2,6 @@
 <div class="inviteUsers" id="inviteUsers">
   <div class="modal-header">
     <h4 class="modal-title">
-      <!--<img src="../images/logo-s.png" width="22px">-->
       Send invites {{selectedPlace.name}}
     </h4>
   </div>
@@ -11,37 +10,44 @@
     <p>It's time to invite some colleagues and start to collaborate! <br/>
       Type email (internal or external), set authorizations
       and send invites!</p>
+    <table class="invites">
+      <tr>
+        <th width="40%"></th>
+        <th width="60%">
+          <span class="labelinvit textCenter magBtm">Authorization</span>
+
+          <p class="p_invi">User can <span class="fStrong">approve</span>, read, export, modify document and <span
+              class="fStrong">invite new people</span></p>
+          <p class="p_invi">User can read, export  and<span class="fStrong"> modify</span> document</p>
+          <p class="p_invi">User can read and export document</p>
+
+        </th>
+      </tr>
+
+    </table>
+
+
+
     <div class="containerInvites">
+      <div class="scrollbar-macosx">
       <table class="invites">
-        <tr>
-          <th width="40%"></th>
-          <th width="60%"><span class="labelinvit textCenter magBtm">Authorization</span>
-
-            <p class="p_invi">User can <span class="fStrong">approve</span>, read, export, modify document and <span
-                class="fStrong">invite new people</span></p>
-            <p class="p_invi">User can read, export and <span class="fStrong">modify</span> document</p>
-            <p class="p_invi">User can read and export document</p>
-
-          </th>
-        </tr>
-
         <tr *ngFor="let userRole of usersWithRoles">
-          <td>
+          <td width="40%">
             <span class="labelinvit">Email</span>
-            <material-input #search class="mailToAdd" type="email"
+            <material-input #search class="mailToAdd" type="email" autofocus  md-autofocus
                             (keyup)="onKeyUp(search.inputText)" class="emailinp"
                             placeholder="example@mydomain.com" [(ngModel)]="userRole.email"></material-input>
           </td>
-          <td class="rolesLine">
+          <td width="60%" class="rolesLine">
             <role-chooser-comp #role [(selected)]="userRole.roleName"></role-chooser-comp>
           </td>
         </tr>
       </table>
     </div>
+
+    </div>
     <div class="addUserDiv">
-      <div class="addUserDiv_inside" (click)="addUserLine()"> More lines
-        <img src="../images/add_blue.png" class="blueadd" alt=""/>
-     </div>
+      <div class="addUserDiv_inside" (click)="addUserLine()" onselectstart="return false"><span>More lines</span> </div>
     </div>
 
     <span class="labelinvit">Message</span>

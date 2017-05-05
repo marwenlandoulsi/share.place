@@ -63,7 +63,7 @@ class AppComponent
   bool profileMenuVisible;
 
   String get baseUrl => conf.baseUrl;
-
+  bool get isWebApp => conf.isWebApp;
   AppComponent(this._router, this._environment, this._placeService);
 
   Future<Null> ngOnInit() async {
@@ -78,6 +78,7 @@ class AppComponent
     _environment.eventBus.getBus().listen( (params) => show(params));
     _placeService.loadConnectedUser();
     conf.readConf();
+
   }
 
   show(Map<PlaceParam, dynamic> params) async {
@@ -102,5 +103,9 @@ class AppComponent
   bool get profilePopinVisible => _environment.profilePopinVisible;
   String get error => _environment.serverError;
   List<String> get messages => _environment.messages;
+
+  void sendWindowEvent(String event) {
+    _environment.sendWindowEvent(event, null);
+  }
 
 }

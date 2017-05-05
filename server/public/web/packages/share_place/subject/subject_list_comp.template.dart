@@ -25,6 +25,7 @@ import 'package:share_place/common/ui/button_comp.dart';
 import 'package:share_place/users/info_popup/info_popup.dart';
 import 'package:share_place/users/info_popup/popup_parent.dart';
 import 'package:share_place/users/invite/invite_dialog_comp.dart';
+import 'package:share_place/users/change_roles/change_roles_dialog_comp.dart';
 import 'package:share_place/users/user.dart';
 import 'package:share_place/users/user_list_provider.dart';
 import 'package:share_place/postit/postit_component.dart';
@@ -41,9 +42,10 @@ import 'package:share_place/common/ui/button_comp.template.dart' as i9;
 import 'package:share_place/users/info_popup/info_popup.template.dart' as i10;
 import 'package:share_place/users/info_popup/popup_parent.template.dart' as i11;
 import 'package:share_place/users/invite/invite_dialog_comp.template.dart' as i12;
-import 'package:share_place/users/user.template.dart' as i13;
-import 'package:share_place/users/user_list_provider.template.dart' as i14;
-import 'package:share_place/postit/postit_component.template.dart' as i15;
+import 'package:share_place/users/change_roles/change_roles_dialog_comp.template.dart' as i13;
+import 'package:share_place/users/user.template.dart' as i14;
+import 'package:share_place/users/user_list_provider.template.dart' as i15;
+import 'package:share_place/postit/postit_component.template.dart' as i16;
 export 'subject_list_comp.dart';
 import 'subject_list_comp.css.shim.dart' as import0;
 import 'package:angular2/src/core/render/api.dart';
@@ -59,26 +61,26 @@ import 'package:angular2/src/core/linker/template_ref.dart';
 import 'package:angular2/src/core/linker/app_view_utils.dart' as import11;
 import 'package:angular2/src/core/metadata/view.dart' as import12;
 import '../postit/postit_component.dart' as import13;
-import '../common/ui/button_comp.dart' as import14;
-import 'package:angular2_components/src/laminate/components/modal/modal.dart' as import15;
-import 'package:angular2_components/src/components/material_dialog/material_dialog.dart' as import16;
-import '../users/invite/invite_dialog_comp.dart' as import17;
-import 'package:angular2/src/common/directives/ng_for.dart' as import18;
-import 'package:angular2/src/common/forms/directives/ng_form.dart' as import19;
-import '../postit/postit_component.template.dart' as import20;
-import '../place_service.dart' as import21;
-import 'package:angular2/src/router/router.dart' as import22;
-import '../environment.dart' as import23;
-import '../common/ui/button_comp.template.dart' as import24;
-import 'package:angular2_components/src/laminate/components/modal/modal.template.dart' as import25;
-import 'package:angular2_components/src/laminate/overlay/src/overlay_service.dart' as import26;
-import 'package:angular2_components/src/components/material_dialog/material_dialog.template.dart' as import27;
-import 'package:angular2_components/src/utils/browser/dom_service/dom_service.dart' as import28;
-import '../users/invite/invite_dialog_comp.template.dart' as import29;
-import '../users/user_list_provider.dart' as import30;
-import 'package:angular2/src/core/change_detection/differs/iterable_differs.dart' as import31;
-import 'package:angular2_components/src/components/content/deferred_content_aware.dart' as import32;
-import 'package:angular2/src/common/forms/directives/control_container.dart' as import33;
+import 'package:angular2_components/src/laminate/components/modal/modal.dart' as import14;
+import 'package:angular2_components/src/components/material_dialog/material_dialog.dart' as import15;
+import '../users/invite/invite_dialog_comp.dart' as import16;
+import 'package:angular2/src/common/directives/ng_for.dart' as import17;
+import 'package:angular2/src/common/forms/directives/ng_form.dart' as import18;
+import '../postit/postit_component.template.dart' as import19;
+import '../place_service.dart' as import20;
+import 'package:angular2/src/router/router.dart' as import21;
+import '../environment.dart' as import22;
+import 'package:angular2_components/src/laminate/components/modal/modal.template.dart' as import23;
+import 'package:angular2_components/src/laminate/overlay/src/overlay_service.dart' as import24;
+import 'package:angular2_components/src/components/material_dialog/material_dialog.template.dart' as import25;
+import 'package:angular2_components/src/utils/browser/dom_service/dom_service.dart' as import26;
+import '../users/invite/invite_dialog_comp.template.dart' as import27;
+import '../users/user_list_provider.dart' as import28;
+import 'package:angular2/src/core/change_detection/differs/iterable_differs.dart' as import29;
+import 'package:angular2_components/src/components/content/deferred_content_aware.dart' as import30;
+import 'package:angular2/src/common/forms/directives/control_container.dart' as import31;
+import '../users/change_roles/change_roles_dialog_comp.dart' as import32;
+import '../users/change_roles/change_roles_dialog_comp.template.dart' as import33;
 import 'package:angular2_components/src/laminate/popup/src/popup_source_directive.dart' as import34;
 import 'package:angular2_components/src/laminate/popup/src/dom_popup_source.dart' as import35;
 import 'package:angular2/src/core/linker/element_ref.dart';
@@ -101,7 +103,12 @@ class ViewSubjectListComponent0 extends AppView<import3.SubjectListComponent> {
     _appEl_0 = new ViewContainer(0,null,this,_anchor_0);
     _TemplateRef_0_4 = new TemplateRef(_appEl_0,viewFactory_SubjectListComponent1);
     _NgIf_0_5 = new NgIf(_appEl_0,_TemplateRef_0_4);
-    init([],[_anchor_0],[]);
+    Text _text_1 = new Text('\n\n\n');
+    parentRenderNode.append(_text_1);
+    init([],[
+      _anchor_0,_text_1
+    ]
+    ,[]);
     return null;
   }
   dynamic injectorGetInternal(dynamic token,int requestNodeIndex,dynamic notFoundResult) {
@@ -127,67 +134,69 @@ class ViewSubjectListComponent1 extends AppView<import3.SubjectListComponent> {
   ViewContainer _appEl_4;
   import13.PostitComponent _PostitComponent_4_3;
   Element _el_6;
-  ViewContainer _appEl_6;
-  import14.ButtonComp _ButtonComp_6_3;
-  Element _el_8;
-  ViewContainer _appEl_8;
-  import15.ModalComponent _ModalComponent_8_3;
-  dynamic __DeferredContentAware_8_4;
-  dynamic __Modal_8_5;
-  Element _el_10;
-  ViewContainer _appEl_10;
-  import16.MaterialDialogComponent _MaterialDialogComponent_10_3;
-  Element _el_12;
-  ViewContainer _appEl_12;
-  import17.InviteUsersDialogComp _InviteUsersDialogComp_12_3;
-  UListElement _el_17;
+  Element _el_9;
+  Element _el_11;
+  ViewContainer _appEl_11;
+  import14.ModalComponent _ModalComponent_11_3;
+  dynamic __DeferredContentAware_11_4;
+  dynamic __Modal_11_5;
+  Element _el_13;
+  ViewContainer _appEl_13;
+  import15.MaterialDialogComponent _MaterialDialogComponent_13_3;
+  Element _el_15;
+  ViewContainer _appEl_15;
+  import16.InviteUsersDialogComp _InviteUsersDialogComp_15_3;
   ViewContainer _appEl_19;
   dynamic _TemplateRef_19_4;
-  import18.NgFor _NgFor_19_5;
-  Element _el_23;
-  Element _el_25;
-  InputElement _el_27;
-  Element _el_29;
-  Element _el_33;
-  UListElement _el_35;
+  NgIf _NgIf_19_5;
+  UListElement _el_22;
+  ViewContainer _appEl_24;
+  dynamic _TemplateRef_24_4;
+  import17.NgFor _NgFor_24_5;
+  Element _el_28;
+  Element _el_30;
+  InputElement _el_32;
+  Element _el_34;
   Element _el_37;
-  ViewContainer _appEl_39;
-  dynamic _TemplateRef_39_4;
-  import18.NgFor _NgFor_39_5;
-  FormElement _el_43;
-  import19.NgForm _NgForm_43_2;
-  dynamic __ControlContainer_43_3;
+  Element _el_41;
+  Element _el_43;
   Element _el_45;
-  InputElement _el_48;
-  Element _el_50;
-  ViewContainer _appEl_50;
-  import13.PostitComponent _PostitComponent_50_3;
+  UListElement _el_47;
+  ViewContainer _appEl_49;
+  dynamic _TemplateRef_49_4;
+  import17.NgFor _NgFor_49_5;
+  FormElement _el_54;
+  import18.NgForm _NgForm_54_2;
+  dynamic __ControlContainer_54_3;
+  Element _el_56;
+  InputElement _el_59;
+  Element _el_61;
+  ViewContainer _appEl_61;
+  import13.PostitComponent _PostitComponent_61_3;
   var _expr_0 = uninitialized;
   var _expr_1 = uninitialized;
   var _expr_2 = uninitialized;
   var _expr_3 = uninitialized;
-  var _arr_0;
-  var _expr_5 = uninitialized;
   var _expr_6 = uninitialized;
   var _expr_7 = uninitialized;
-  var _expr_8 = uninitialized;
   var _expr_9 = uninitialized;
   var _expr_12 = uninitialized;
-  var _expr_17 = uninitialized;
+  var _expr_13 = uninitialized;
   var _expr_18 = uninitialized;
   var _expr_19 = uninitialized;
+  var _expr_20 = uninitialized;
   ViewSubjectListComponent1(import6.Injector parentInjector,ViewContainer declarationEl): super(ViewSubjectListComponent1,renderType_SubjectListComponent,import7.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
-  dynamic get _DeferredContentAware_8_4 {
-    if ((this.__DeferredContentAware_8_4 == null)) { (__DeferredContentAware_8_4 = this._ModalComponent_8_3); }
-    return this.__DeferredContentAware_8_4;
+  dynamic get _DeferredContentAware_11_4 {
+    if ((this.__DeferredContentAware_11_4 == null)) { (__DeferredContentAware_11_4 = this._ModalComponent_11_3); }
+    return this.__DeferredContentAware_11_4;
   }
-  dynamic get _Modal_8_5 {
-    if ((this.__Modal_8_5 == null)) { (__Modal_8_5 = this._ModalComponent_8_3); }
-    return this.__Modal_8_5;
+  dynamic get _Modal_11_5 {
+    if ((this.__Modal_11_5 == null)) { (__Modal_11_5 = this._ModalComponent_11_3); }
+    return this.__Modal_11_5;
   }
-  dynamic get _ControlContainer_43_3 {
-    if ((this.__ControlContainer_43_3 == null)) { (__ControlContainer_43_3 = this._NgForm_43_2); }
-    return this.__ControlContainer_43_3;
+  dynamic get _ControlContainer_54_3 {
+    if ((this.__ControlContainer_54_3 == null)) { (__ControlContainer_54_3 = this._NgForm_54_2); }
+    return this.__ControlContainer_54_3;
   }
   ViewContainer createInternal(dynamic rootSelector) {
     var doc = document;
@@ -207,221 +216,245 @@ class ViewSubjectListComponent1 extends AppView<import3.SubjectListComponent> {
     _el_2.append(_el_4);
     _el_4.className = 'subjectsPostit';
     _appEl_4 = new ViewContainer(4,2,this,_el_4);
-    var compView_4 = import20.viewFactory_PostitComponent0(this.injector(4),_appEl_4);
-    _PostitComponent_4_3 = new import13.PostitComponent(this.parentInjector.get(import21.PlaceService),this.parentInjector.get(import22.Router),this.parentInjector.get(import23.Environment));
+    var compView_4 = import19.viewFactory_PostitComponent0(this.injector(4),_appEl_4);
+    _PostitComponent_4_3 = new import13.PostitComponent(this.parentInjector.get(import20.PlaceService),this.parentInjector.get(import21.Router),this.parentInjector.get(import22.Environment));
     _appEl_4.initComponent(_PostitComponent_4_3,compView_4);
     compView_4.createComp([],null);
     Text _text_5 = new Text('\n\n    ');
     _el_2.append(_text_5);
-    _el_6 = doc.createElement('btn');
+    _el_6 = doc.createElement('div');
     _el_6.setAttribute(shimCAttr,'');
     _el_2.append(_el_6);
-    _el_6.className = 'addBtn addpeople';
-    _appEl_6 = new ViewContainer(6,2,this,_el_6);
-    var compView_6 = import24.viewFactory_ButtonComp0(this.injector(6),_appEl_6);
-    _ButtonComp_6_3 = new import14.ButtonComp();
-    _appEl_6.initComponent(_ButtonComp_6_3,compView_6);
-    compView_6.createComp([],null);
-    Text _text_7 = new Text('\n\n    ');
+    _el_6.className = 'addBtn addPeople';
+    Text _text_7 = new Text(' ');
     _el_2.append(_text_7);
-    _el_8 = doc.createElement('modal');
-    _el_8.setAttribute(shimCAttr,'');
-    _el_2.append(_el_8);
-    _appEl_8 = new ViewContainer(8,2,this,_el_8);
-    var compView_8 = import25.viewFactory_ModalComponent0(this.injector(8),_appEl_8);
-    _ModalComponent_8_3 = new import15.ModalComponent(this.parentInjector.get(import26.OverlayService),this.parentInjector.get(import15.Modal,null),this.parentInjector.get(import15.GlobalModalStack,null));
-    _appEl_8.initComponent(_ModalComponent_8_3,compView_8);
-    Text _text_9 = new Text('\n      ');
-    _el_10 = doc.createElement('material-dialog');
-    _el_10.setAttribute(shimCAttr,'');
-    _el_10.className = 'profilemenuvisible';
-    createAttr(_el_10,'defaultPopupSizeProvider','');
-    createAttr(_el_10,'enforceSpaceConstraints','');
-    _appEl_10 = new ViewContainer(10,8,this,_el_10);
-    var compView_10 = import27.viewFactory_MaterialDialogComponent0(this.injector(10),_appEl_10);
-    _MaterialDialogComponent_10_3 = new import16.MaterialDialogComponent(this.parentInjector.get(import28.DomService),compView_10.ref,_ModalComponent_8_3);
-    _appEl_10.initComponent(_MaterialDialogComponent_10_3,compView_10);
-    Text _text_11 = new Text('\n        ');
-    _el_12 = doc.createElement('invite-users-dialog');
-    _el_12.setAttribute(shimCAttr,'');
-    _appEl_12 = new ViewContainer(12,10,this,_el_12);
-    var compView_12 = import29.viewFactory_InviteUsersDialogComp0(this.injector(12),_appEl_12);
-    _InviteUsersDialogComp_12_3 = new import17.InviteUsersDialogComp(this.parentInjector.get(import21.PlaceService),this.parentInjector.get(import22.Router),this.parentInjector.get(import23.Environment),this.parentInjector.get(import30.UserListProvider));
-    _appEl_12.initComponent(_InviteUsersDialogComp_12_3,compView_12);
-    compView_12.createComp([],null);
-    Text _text_13 = new Text('\n      ');
-    compView_10.createComp([
+    Text _text_8 = new Text('\n    ');
+    _el_2.append(_text_8);
+    _el_9 = doc.createElement('div');
+    _el_9.setAttribute(shimCAttr,'');
+    _el_2.append(_el_9);
+    _el_9.className = 'btn editRoles';
+    Text _text_10 = new Text('\n\n    ');
+    _el_2.append(_text_10);
+    _el_11 = doc.createElement('modal');
+    _el_11.setAttribute(shimCAttr,'');
+    _el_2.append(_el_11);
+    _appEl_11 = new ViewContainer(11,2,this,_el_11);
+    var compView_11 = import23.viewFactory_ModalComponent0(this.injector(11),_appEl_11);
+    _ModalComponent_11_3 = new import14.ModalComponent(this.parentInjector.get(import24.OverlayService),this.parentInjector.get(import14.Modal,null),this.parentInjector.get(import14.GlobalModalStack,null));
+    _appEl_11.initComponent(_ModalComponent_11_3,compView_11);
+    Text _text_12 = new Text('\n      ');
+    _el_13 = doc.createElement('material-dialog');
+    _el_13.setAttribute(shimCAttr,'');
+    _el_13.className = 'profilemenuvisible';
+    createAttr(_el_13,'defaultPopupSizeProvider','');
+    createAttr(_el_13,'enforceSpaceConstraints','');
+    _appEl_13 = new ViewContainer(13,11,this,_el_13);
+    var compView_13 = import25.viewFactory_MaterialDialogComponent0(this.injector(13),_appEl_13);
+    _MaterialDialogComponent_13_3 = new import15.MaterialDialogComponent(this.parentInjector.get(import26.DomService),compView_13.ref,_ModalComponent_11_3);
+    _appEl_13.initComponent(_MaterialDialogComponent_13_3,compView_13);
+    Text _text_14 = new Text('\n        ');
+    _el_15 = doc.createElement('invite-users-dialog');
+    _el_15.setAttribute(shimCAttr,'');
+    _appEl_15 = new ViewContainer(15,13,this,_el_15);
+    var compView_15 = import27.viewFactory_InviteUsersDialogComp0(this.injector(15),_appEl_15);
+    _InviteUsersDialogComp_15_3 = new import16.InviteUsersDialogComp(this.parentInjector.get(import20.PlaceService),this.parentInjector.get(import21.Router),this.parentInjector.get(import22.Environment),this.parentInjector.get(import28.UserListProvider));
+    _appEl_15.initComponent(_InviteUsersDialogComp_15_3,compView_15);
+    compView_15.createComp([],null);
+    Text _text_16 = new Text('\n      ');
+    compView_13.createComp([
       [],[
-        _text_11,_el_12,_text_13
+        _text_14,_el_15,_text_16
       ]
       ,[]
     ]
     ,null);
-    Text _text_14 = new Text('\n    ');
-      compView_8.createComp([[
-        _text_9,_el_10,_text_14
+    Text _text_17 = new Text('\n    ');
+      compView_11.createComp([[
+        _text_12,_el_13,_text_17
       ]
     ],null);
-    Text _text_15 = new Text('\n    ');
-    _el_2.append(_text_15);
-    Text _text_16 = new Text('\n    ');
-    _el_2.append(_text_16);
-    _el_17 = doc.createElement('ul');
-    _el_17.setAttribute(shimCAttr,'');
-    _el_2.append(_el_17);
-    _el_17.className = 'users_list';
-    Text _text_18 = new Text('\n      ');
-    _el_17.append(_text_18);
+    Text _text_18 = new Text('\n    ');
+    _el_2.append(_text_18);
     var _anchor_19 = new Comment('template bindings={}');
-    _el_17?.append(_anchor_19);
-    _appEl_19 = new ViewContainer(19,17,this,_anchor_19);
+    _el_2?.append(_anchor_19);
+    _appEl_19 = new ViewContainer(19,2,this,_anchor_19);
     _TemplateRef_19_4 = new TemplateRef(_appEl_19,viewFactory_SubjectListComponent2);
-    _NgFor_19_5 = new import18.NgFor(_appEl_19,_TemplateRef_19_4,this.parentInjector.get(import31.IterableDiffers),ref);
+    _NgIf_19_5 = new NgIf(_appEl_19,_TemplateRef_19_4);
     Text _text_20 = new Text('\n    ');
-    _el_17.append(_text_20);
-    Text _text_21 = new Text('\n  ');
+    _el_2.append(_text_20);
+    Text _text_21 = new Text('\n    ');
     _el_2.append(_text_21);
-    Text _text_22 = new Text('\n  ');
-    _el_0.append(_text_22);
-    _el_23 = doc.createElement('div');
-    _el_23.setAttribute(shimCAttr,'');
-    _el_0.append(_el_23);
-    _el_23.className = 'newTopic';
-    Text _text_24 = new Text('\n    ');
-    _el_23.append(_text_24);
-    _el_25 = doc.createElement('div');
-    _el_25.setAttribute(shimCAttr,'');
-    _el_23.append(_el_25);
-    _el_25.className = 'newTopicBlock';
-    Text _text_26 = new Text('\n      ');
-    _el_25.append(_text_26);
-    _el_27 = doc.createElement('input');
-    _el_27.setAttribute(shimCAttr,'');
-    _el_25.append(_el_27);
-    _el_27.className = 'txt';
-    createAttr(_el_27,'placeholder','Start a topic...');
-    createAttr(_el_27,'type','text');
-    Text _text_28 = new Text('\n      ');
-    _el_25.append(_text_28);
-    _el_29 = doc.createElement('div');
-    _el_29.setAttribute(shimCAttr,'');
-    _el_25.append(_el_29);
-    _el_29.className = 'btn_valid';
-    Text _text_30 = new Text('\n    ');
-    _el_25.append(_text_30);
-    Text _text_31 = new Text('\n  ');
-    _el_23.append(_text_31);
-    Text _text_32 = new Text('\n  ');
-    _el_0.append(_text_32);
-    _el_33 = doc.createElement('div');
-    _el_33.setAttribute(shimCAttr,'');
-    _el_0.append(_el_33);
-    Text _text_34 = new Text('\n    ');
-    _el_33.append(_text_34);
-    _el_35 = doc.createElement('ul');
-    _el_35.setAttribute(shimCAttr,'');
-    _el_33.append(_el_35);
-    _el_35.className = 'subjectList';
-    Text _text_36 = new Text('\n      ');
-    _el_35.append(_text_36);
+    _el_22 = doc.createElement('ul');
+    _el_22.setAttribute(shimCAttr,'');
+    _el_2.append(_el_22);
+    _el_22.className = 'users_list';
+    Text _text_23 = new Text('\n      ');
+    _el_22.append(_text_23);
+    var _anchor_24 = new Comment('template bindings={}');
+    _el_22?.append(_anchor_24);
+    _appEl_24 = new ViewContainer(24,22,this,_anchor_24);
+    _TemplateRef_24_4 = new TemplateRef(_appEl_24,viewFactory_SubjectListComponent3);
+    _NgFor_24_5 = new import17.NgFor(_appEl_24,_TemplateRef_24_4,this.parentInjector.get(import29.IterableDiffers),ref);
+    Text _text_25 = new Text('\n    ');
+    _el_22.append(_text_25);
+    Text _text_26 = new Text('\n  ');
+    _el_2.append(_text_26);
+    Text _text_27 = new Text('\n  ');
+    _el_0.append(_text_27);
+    _el_28 = doc.createElement('div');
+    _el_28.setAttribute(shimCAttr,'');
+    _el_0.append(_el_28);
+    _el_28.className = 'newTopic';
+    Text _text_29 = new Text('\n    ');
+    _el_28.append(_text_29);
+    _el_30 = doc.createElement('div');
+    _el_30.setAttribute(shimCAttr,'');
+    _el_28.append(_el_30);
+    _el_30.className = 'newTopicBlock';
+    Text _text_31 = new Text('\n      ');
+    _el_30.append(_text_31);
+    _el_32 = doc.createElement('input');
+    _el_32.setAttribute(shimCAttr,'');
+    _el_30.append(_el_32);
+    _el_32.className = 'txt';
+    createAttr(_el_32,'placeholder','Start a topic...');
+    createAttr(_el_32,'type','text');
+    Text _text_33 = new Text('\n      ');
+    _el_30.append(_text_33);
+    _el_34 = doc.createElement('div');
+    _el_34.setAttribute(shimCAttr,'');
+    _el_30.append(_el_34);
+    _el_34.className = 'btn_valid';
+    Text _text_35 = new Text('\n    ');
+    _el_30.append(_text_35);
+    Text _text_36 = new Text('\n    ');
+    _el_28.append(_text_36);
     _el_37 = doc.createElement('div');
     _el_37.setAttribute(shimCAttr,'');
-    _el_35.append(_el_37);
-    _el_37.className = 'subjectListInner';
-    Text _text_38 = new Text('\n      ');
+    _el_28.append(_el_37);
+    _el_37.className = 'addTopicBtn';
+    Text _text_38 = new Text(' ');
     _el_37.append(_text_38);
-    var _anchor_39 = new Comment('template bindings={}');
-    _el_37?.append(_anchor_39);
-    _appEl_39 = new ViewContainer(39,37,this,_anchor_39);
-    _TemplateRef_39_4 = new TemplateRef(_appEl_39,viewFactory_SubjectListComponent4);
-    _NgFor_39_5 = new import18.NgFor(_appEl_39,_TemplateRef_39_4,this.parentInjector.get(import31.IterableDiffers),ref);
-    Text _text_40 = new Text('\n      ');
-    _el_37.append(_text_40);
-    Text _text_41 = new Text('\n    ');
-    _el_35.append(_text_41);
+    Text _text_39 = new Text('\n\n  ');
+    _el_28.append(_text_39);
+    Text _text_40 = new Text('\n  ');
+    _el_0.append(_text_40);
+    _el_41 = doc.createElement('div');
+    _el_41.setAttribute(shimCAttr,'');
+    _el_0.append(_el_41);
     Text _text_42 = new Text('\n\n    ');
-    _el_33.append(_text_42);
-    _el_43 = doc.createElement('form');
+    _el_41.append(_text_42);
+    _el_43 = doc.createElement('div');
     _el_43.setAttribute(shimCAttr,'');
-    _el_33.append(_el_43);
-    _el_43.className = 'uploadDropZone';
-    createAttr(_el_43,'id','fileForm');
-    _NgForm_43_2 = new import19.NgForm(null,null);
+    _el_41.append(_el_43);
+    _el_43.className = 'demo';
     Text _text_44 = new Text('\n      ');
     _el_43.append(_text_44);
-    _el_45 = doc.createElement('label');
+    _el_45 = doc.createElement('div');
     _el_45.setAttribute(shimCAttr,'');
     _el_43.append(_el_45);
-    createAttr(_el_45,'for','fileupload');
-    createAttr(_el_45,'id','labelfileupload');
-    Text _text_46 = new Text(' Drag\'n drop or browse file ');
+    _el_45.className = 'scrollbar-macosx';
+    Text _text_46 = new Text('\n        ');
     _el_45.append(_text_46);
-    Text _text_47 = new Text('\n      ');
-    _el_43.append(_text_47);
-    _el_48 = doc.createElement('input');
-    _el_48.setAttribute(shimCAttr,'');
-    _el_43.append(_el_48);
-    _el_48.className = 'uploadFile';
-    createAttr(_el_48,'id','fileupload');
-    createAttr(_el_48,'name','toUpload');
-    createAttr(_el_48,'style','opacity: 0');
-    createAttr(_el_48,'type','file');
-    Text _text_49 = new Text('\n\n      ');
-    _el_43.append(_text_49);
-    _el_50 = doc.createElement('postit-comp');
-    _el_50.setAttribute(shimCAttr,'');
-    _el_43.append(_el_50);
-    _el_50.className = 'filesPostit';
-    _appEl_50 = new ViewContainer(50,43,this,_el_50);
-    var compView_50 = import20.viewFactory_PostitComponent0(this.injector(50),_appEl_50);
-    _PostitComponent_50_3 = new import13.PostitComponent(this.parentInjector.get(import21.PlaceService),this.parentInjector.get(import22.Router),this.parentInjector.get(import23.Environment));
-    _appEl_50.initComponent(_PostitComponent_50_3,compView_50);
-    compView_50.createComp([],null);
-    Text _text_51 = new Text('\n    ');
-    _el_43.append(_text_51);
-    Text _text_52 = new Text('\n  ');
-    _el_33.append(_text_52);
-    Text _text_53 = new Text('\n');
-    _el_0.append(_text_53);
+    _el_47 = doc.createElement('ul');
+    _el_47.setAttribute(shimCAttr,'');
+    _el_45.append(_el_47);
+    _el_47.className = 'subjectList contentScroll_';
+    Text _text_48 = new Text('\n          ');
+    _el_47.append(_text_48);
+    var _anchor_49 = new Comment('template bindings={}');
+    _el_47?.append(_anchor_49);
+    _appEl_49 = new ViewContainer(49,47,this,_anchor_49);
+    _TemplateRef_49_4 = new TemplateRef(_appEl_49,viewFactory_SubjectListComponent5);
+    _NgFor_49_5 = new import17.NgFor(_appEl_49,_TemplateRef_49_4,this.parentInjector.get(import29.IterableDiffers),ref);
+    Text _text_50 = new Text('\n        ');
+    _el_47.append(_text_50);
+    Text _text_51 = new Text('\n      ');
+    _el_45.append(_text_51);
+    Text _text_52 = new Text('\n    ');
+    _el_43.append(_text_52);
+    Text _text_53 = new Text('\n\n    ');
+    _el_41.append(_text_53);
+    _el_54 = doc.createElement('form');
+    _el_54.setAttribute(shimCAttr,'');
+    _el_41.append(_el_54);
+    _el_54.className = 'uploadDropZone';
+    createAttr(_el_54,'id','fileForm');
+    _NgForm_54_2 = new import18.NgForm(null,null);
+    Text _text_55 = new Text('\n\n\n      ');
+    _el_54.append(_text_55);
+    _el_56 = doc.createElement('label');
+    _el_56.setAttribute(shimCAttr,'');
+    _el_54.append(_el_56);
+    createAttr(_el_56,'for','fileupload');
+    createAttr(_el_56,'id','labelfileupload');
+    Text _text_57 = new Text(' Drag\'n drop or browse file ');
+    _el_56.append(_text_57);
+    Text _text_58 = new Text('\n      ');
+    _el_54.append(_text_58);
+    _el_59 = doc.createElement('input');
+    _el_59.setAttribute(shimCAttr,'');
+    _el_54.append(_el_59);
+    _el_59.className = 'uploadFile';
+    createAttr(_el_59,'id','fileupload');
+    createAttr(_el_59,'name','toUpload');
+    createAttr(_el_59,'onClick','openFileDialogConditionally(event, document.getElementById(\'labelfileupload\'))');
+    createAttr(_el_59,'style','opacity: 0;');
+    createAttr(_el_59,'type','file');
+    Text _text_60 = new Text('\n\n\n      ');
+    _el_54.append(_text_60);
+    _el_61 = doc.createElement('postit-comp');
+    _el_61.setAttribute(shimCAttr,'');
+    _el_54.append(_el_61);
+    _el_61.className = 'filesPostit';
+    _appEl_61 = new ViewContainer(61,54,this,_el_61);
+    var compView_61 = import19.viewFactory_PostitComponent0(this.injector(61),_appEl_61);
+    _PostitComponent_61_3 = new import13.PostitComponent(this.parentInjector.get(import20.PlaceService),this.parentInjector.get(import21.Router),this.parentInjector.get(import22.Environment));
+    _appEl_61.initComponent(_PostitComponent_61_3,compView_61);
+    compView_61.createComp([],null);
+    Text _text_62 = new Text('\n    ');
+    _el_54.append(_text_62);
+    Text _text_63 = new Text('\n  ');
+    _el_41.append(_text_63);
+    Text _text_64 = new Text('\n');
+    _el_0.append(_text_64);
     listen(_el_6,'click',evt(_handle_click_6_0));
-    this._arr_0 = import11.pureProxy3((p0,p1,p2) {
-      return [
-        p0,p1,p2
-      ]
-      ;
-    });
-    listen(_el_27,'keyup.enter',evt(_handle_keyup_enter_27_0));
-    listen(_el_29,'click',evt(_handle_click_29_0));
-    listen(_el_43,'dragenter',evt(_handle_dragenter_43_0));
-    listen(_el_43,'drop',evt(_handle_drop_43_1));
-    listen(_el_43,'submit',evt(_handle_submit_43_2));
-    listen(_el_48,'change',evt(_handle_change_48_0));
+    listen(_el_9,'click',evt(_handle_click_9_0));
+    listen(_el_32,'keyup.enter',evt(_handle_keyup_enter_32_0));
+    listen(_el_34,'click',evt(_handle_click_34_0));
+    listen(_el_54,'dragenter',evt(_handle_dragenter_54_0));
+    listen(_el_54,'drop',evt(_handle_drop_54_1));
+    listen(_el_54,'submit',evt(_handle_submit_54_2));
+    listen(_el_59,'change',evt(_handle_change_59_0));
     init([_el_0],[
-      _el_0,_text_1,_el_2,_text_3,_el_4,_text_5,_el_6,_text_7,_el_8,_text_9,_el_10,_text_11,
-      _el_12,_text_13,_text_14,_text_15,_text_16,_el_17,_text_18,_anchor_19,_text_20,
-      _text_21,_text_22,_el_23,_text_24,_el_25,_text_26,_el_27,_text_28,_el_29,_text_30,
-      _text_31,_text_32,_el_33,_text_34,_el_35,_text_36,_el_37,_text_38,_anchor_39,_text_40,
-      _text_41,_text_42,_el_43,_text_44,_el_45,_text_46,_text_47,_el_48,_text_49,_el_50,
-      _text_51,_text_52,_text_53
+      _el_0,_text_1,_el_2,_text_3,_el_4,_text_5,_el_6,_text_7,_text_8,_el_9,_text_10,
+      _el_11,_text_12,_el_13,_text_14,_el_15,_text_16,_text_17,_text_18,_anchor_19,_text_20,
+      _text_21,_el_22,_text_23,_anchor_24,_text_25,_text_26,_text_27,_el_28,_text_29,
+      _el_30,_text_31,_el_32,_text_33,_el_34,_text_35,_text_36,_el_37,_text_38,_text_39,
+      _text_40,_el_41,_text_42,_el_43,_text_44,_el_45,_text_46,_el_47,_text_48,_anchor_49,
+      _text_50,_text_51,_text_52,_text_53,_el_54,_text_55,_el_56,_text_57,_text_58,_el_59,
+      _text_60,_el_61,_text_62,_text_63,_text_64
     ]
     ,[]);
     return null;
   }
   dynamic injectorGetInternal(dynamic token,int requestNodeIndex,dynamic notFoundResult) {
     if ((identical(token, import13.PostitComponent) && (4 == requestNodeIndex))) { return _PostitComponent_4_3; }
-    if ((identical(token, import14.ButtonComp) && (6 == requestNodeIndex))) { return _ButtonComp_6_3; }
-    if ((identical(token, import17.InviteUsersDialogComp) && (12 == requestNodeIndex))) { return _InviteUsersDialogComp_12_3; }
-    if ((identical(token, import16.MaterialDialogComponent) && ((10 <= requestNodeIndex) && (requestNodeIndex <= 13)))) { return _MaterialDialogComponent_10_3; }
-    if ((identical(token, import15.ModalComponent) && ((8 <= requestNodeIndex) && (requestNodeIndex <= 14)))) { return _ModalComponent_8_3; }
-    if ((identical(token, import32.DeferredContentAware) && ((8 <= requestNodeIndex) && (requestNodeIndex <= 14)))) { return _DeferredContentAware_8_4; }
-    if ((identical(token, import15.Modal) && ((8 <= requestNodeIndex) && (requestNodeIndex <= 14)))) { return _Modal_8_5; }
+    if ((identical(token, import16.InviteUsersDialogComp) && (15 == requestNodeIndex))) { return _InviteUsersDialogComp_15_3; }
+    if ((identical(token, import15.MaterialDialogComponent) && ((13 <= requestNodeIndex) && (requestNodeIndex <= 16)))) { return _MaterialDialogComponent_13_3; }
+    if ((identical(token, import14.ModalComponent) && ((11 <= requestNodeIndex) && (requestNodeIndex <= 17)))) { return _ModalComponent_11_3; }
+    if ((identical(token, import30.DeferredContentAware) && ((11 <= requestNodeIndex) && (requestNodeIndex <= 17)))) { return _DeferredContentAware_11_4; }
+    if ((identical(token, import14.Modal) && ((11 <= requestNodeIndex) && (requestNodeIndex <= 17)))) { return _Modal_11_5; }
     if ((identical(token, TemplateRef) && (19 == requestNodeIndex))) { return _TemplateRef_19_4; }
-    if ((identical(token, import18.NgFor) && (19 == requestNodeIndex))) { return _NgFor_19_5; }
-    if ((identical(token, TemplateRef) && (39 == requestNodeIndex))) { return _TemplateRef_39_4; }
-    if ((identical(token, import18.NgFor) && (39 == requestNodeIndex))) { return _NgFor_39_5; }
-    if ((identical(token, import13.PostitComponent) && (50 == requestNodeIndex))) { return _PostitComponent_50_3; }
-    if ((identical(token, import19.NgForm) && ((43 <= requestNodeIndex) && (requestNodeIndex <= 51)))) { return _NgForm_43_2; }
-    if ((identical(token, import33.ControlContainer) && ((43 <= requestNodeIndex) && (requestNodeIndex <= 51)))) { return _ControlContainer_43_3; }
+    if ((identical(token, NgIf) && (19 == requestNodeIndex))) { return _NgIf_19_5; }
+    if ((identical(token, TemplateRef) && (24 == requestNodeIndex))) { return _TemplateRef_24_4; }
+    if ((identical(token, import17.NgFor) && (24 == requestNodeIndex))) { return _NgFor_24_5; }
+    if ((identical(token, TemplateRef) && (49 == requestNodeIndex))) { return _TemplateRef_49_4; }
+    if ((identical(token, import17.NgFor) && (49 == requestNodeIndex))) { return _NgFor_49_5; }
+    if ((identical(token, import13.PostitComponent) && (61 == requestNodeIndex))) { return _PostitComponent_61_3; }
+    if ((identical(token, import18.NgForm) && ((54 <= requestNodeIndex) && (requestNodeIndex <= 62)))) { return _NgForm_54_2; }
+    if ((identical(token, import31.ControlContainer) && ((54 <= requestNodeIndex) && (requestNodeIndex <= 62)))) { return _ControlContainer_54_3; }
     return notFoundResult;
   }
   void detectChangesInternal() {
@@ -441,101 +474,102 @@ class ViewSubjectListComponent1 extends AppView<import3.SubjectListComponent> {
       _expr_3 = currVal_3;
     }
     if ((identical(this.cdState, ChangeDetectorState.NeverChecked) && !import11.AppViewUtils.throwOnChanges)) { _PostitComponent_4_3.ngOnInit(); }
-    final currVal_5 = _arr_0('../images/add-poeple.png','../images/add-poeple.png','../images/add-poeple.png');
-    if (import11.checkBinding(_expr_5,currVal_5)) {
-      _ButtonComp_6_3.sources = currVal_5;
-      _expr_5 = currVal_5;
-    }
-    final currVal_6 = (ctx.selectedFolder == null);
+    final currVal_6 = ctx.adding;
     if (import11.checkBinding(_expr_6,currVal_6)) {
-      _ButtonComp_6_3.disabled = currVal_6;
+      _ModalComponent_11_3.visible = currVal_6;
       _expr_6 = currVal_6;
     }
-    final currVal_7 = ctx.adding;
-    if (import11.checkBinding(_expr_7,currVal_7)) {
-      _ModalComponent_8_3.visible = currVal_7;
-      _expr_7 = currVal_7;
-    }
-    if ((identical(this.cdState, ChangeDetectorState.NeverChecked) && !import11.AppViewUtils.throwOnChanges)) { _InviteUsersDialogComp_12_3.ngOnInit(); }
+    if ((identical(this.cdState, ChangeDetectorState.NeverChecked) && !import11.AppViewUtils.throwOnChanges)) { _InviteUsersDialogComp_15_3.ngOnInit(); }
+    _NgIf_19_5.ngIf = ctx.editing;
     final currVal_9 = ctx.users;
     if (import11.checkBinding(_expr_9,currVal_9)) {
-      _NgFor_19_5.ngForOf = currVal_9;
+      _NgFor_24_5.ngForOf = currVal_9;
       _expr_9 = currVal_9;
     }
-    if (!import11.AppViewUtils.throwOnChanges) { _NgFor_19_5.ngDoCheck(); }
-    final currVal_12 = ctx.subjects;
-    if (import11.checkBinding(_expr_12,currVal_12)) {
-      _NgFor_39_5.ngForOf = currVal_12;
-      _expr_12 = currVal_12;
+    if (!import11.AppViewUtils.throwOnChanges) { _NgFor_24_5.ngDoCheck(); }
+    final currVal_13 = ctx.subjects;
+    if (import11.checkBinding(_expr_13,currVal_13)) {
+      _NgFor_49_5.ngForOf = currVal_13;
+      _expr_13 = currVal_13;
     }
-    if (!import11.AppViewUtils.throwOnChanges) { _NgFor_39_5.ngDoCheck(); }
-    final currVal_17 = 'files';
-    if (import11.checkBinding(_expr_17,currVal_17)) {
-      _PostitComponent_50_3.name = currVal_17;
-      _expr_17 = currVal_17;
-    }
-    final currVal_18 = 'Cool !';
+    if (!import11.AppViewUtils.throwOnChanges) { _NgFor_49_5.ngDoCheck(); }
+    final currVal_18 = 'files';
     if (import11.checkBinding(_expr_18,currVal_18)) {
-      _PostitComponent_50_3.header = currVal_18;
+      _PostitComponent_61_3.name = currVal_18;
       _expr_18 = currVal_18;
     }
-    final currVal_19 = 'Now you can Drag\'n drop a file here and start collaborate with your team ';
+    final currVal_19 = 'Cool !';
     if (import11.checkBinding(_expr_19,currVal_19)) {
-      _PostitComponent_50_3.body = currVal_19;
+      _PostitComponent_61_3.header = currVal_19;
       _expr_19 = currVal_19;
     }
-    if ((identical(this.cdState, ChangeDetectorState.NeverChecked) && !import11.AppViewUtils.throwOnChanges)) { _PostitComponent_50_3.ngOnInit(); }
+    final currVal_20 = 'Now you can Drag\'n drop a file here and start collaborate with your team ';
+    if (import11.checkBinding(_expr_20,currVal_20)) {
+      _PostitComponent_61_3.body = currVal_20;
+      _expr_20 = currVal_20;
+    }
+    if ((identical(this.cdState, ChangeDetectorState.NeverChecked) && !import11.AppViewUtils.throwOnChanges)) { _PostitComponent_61_3.ngOnInit(); }
     this.detectContentChildrenChanges();
-    _MaterialDialogComponent_10_3.ngAfterContentChecked();
+    _MaterialDialogComponent_13_3.ngAfterContentChecked();
     final currVal_0 = import11.interpolate1('',ctx.selectedFolder.name,'\n\n    ');
     if (import11.checkBinding(_expr_0,currVal_0)) {
       _text_3.text = currVal_0;
       _expr_0 = currVal_0;
     }
-    final currVal_8 = _ModalComponent_8_3.uniquePaneId;
-    if (import11.checkBinding(_expr_8,currVal_8)) {
-      setAttr(_el_8,'pane-id',((currVal_8 == null)? null: currVal_8.toString()));
-      _expr_8 = currVal_8;
+    final currVal_7 = _ModalComponent_11_3.uniquePaneId;
+    if (import11.checkBinding(_expr_7,currVal_7)) {
+      setAttr(_el_11,'pane-id',((currVal_7 == null)? null: currVal_7.toString()));
+      _expr_7 = currVal_7;
+    }
+    final currVal_12 = import11.interpolate0((ctx.computeSizes(_el_47)? 'hideDropZone': 'dropZoneVisible'));
+    if (import11.checkBinding(_expr_12,currVal_12)) {
+      setProp(_el_41,'className',currVal_12);
+      _expr_12 = currVal_12;
     }
     this.detectViewChildrenChanges();
   }
   void destroyInternal() {
-    _MaterialDialogComponent_10_3.ngOnDestroy();
-    _ModalComponent_8_3.ngOnDestroy();
+    _MaterialDialogComponent_13_3.ngOnDestroy();
+    _ModalComponent_11_3.ngOnDestroy();
   }
   bool _handle_click_6_0($event) {
     this.markPathToRootAsCheckOnce();
     final dynamic pd_0 = !identical((ctx.add() as dynamic), false);
     return (true && pd_0);
   }
-  bool _handle_keyup_enter_27_0($event) {
+  bool _handle_click_9_0($event) {
     this.markPathToRootAsCheckOnce();
-    ctx.createQuickNote(_el_27.value);
-    final dynamic pd_0 = !identical(((_el_27.value = '') as dynamic), false);
+    final dynamic pd_0 = !identical((ctx.editRoles() as dynamic), false);
     return (true && pd_0);
   }
-  bool _handle_click_29_0($event) {
+  bool _handle_keyup_enter_32_0($event) {
     this.markPathToRootAsCheckOnce();
-    ctx.createQuickNote(_el_27.value);
-    final dynamic pd_0 = !identical(((_el_27.value = '') as dynamic), false);
+    ctx.createQuickNote(_el_32.value);
+    final dynamic pd_0 = !identical(((_el_32.value = '') as dynamic), false);
     return (true && pd_0);
   }
-  bool _handle_dragenter_43_0($event) {
+  bool _handle_click_34_0($event) {
     this.markPathToRootAsCheckOnce();
-    final dynamic pd_0 = !identical((_el_43.style.setProperty('border','2px solid #9FC8FA') as dynamic), false);
+    ctx.createQuickNote(_el_32.value);
+    final dynamic pd_0 = !identical(((_el_32.value = '') as dynamic), false);
     return (true && pd_0);
   }
-  bool _handle_drop_43_1($event) {
+  bool _handle_dragenter_54_0($event) {
     this.markPathToRootAsCheckOnce();
-    final dynamic pd_0 = !identical((_el_43.style.setProperty('border','2px dotted #273B54') as dynamic), false);
+    final dynamic pd_0 = !identical((_el_54.style.setProperty('border','2px solid #9FC8FA') as dynamic), false);
     return (true && pd_0);
   }
-  bool _handle_submit_43_2($event) {
+  bool _handle_drop_54_1($event) {
     this.markPathToRootAsCheckOnce();
-    final dynamic pd_0 = !identical((_NgForm_43_2.onSubmit() as dynamic), false);
+    final dynamic pd_0 = !identical((_el_54.style.setProperty('border','2px dotted #273B54') as dynamic), false);
     return (true && pd_0);
   }
-  bool _handle_change_48_0($event) {
+  bool _handle_submit_54_2($event) {
+    this.markPathToRootAsCheckOnce();
+    final dynamic pd_0 = !identical((_NgForm_54_2.onSubmit() as dynamic), false);
+    return (true && pd_0);
+  }
+  bool _handle_change_59_0($event) {
     this.markPathToRootAsCheckOnce();
     final dynamic pd_0 = !identical((ctx.uploadFiles() as dynamic), false);
     return (true && pd_0);
@@ -546,6 +580,109 @@ AppView viewFactory_SubjectListComponent1(import6.Injector parentInjector,ViewCo
 }
 class ViewSubjectListComponent2 extends AppView<import3.SubjectListComponent> {
   Element _el_0;
+  ViewContainer _appEl_0;
+  import14.ModalComponent _ModalComponent_0_3;
+  dynamic __DeferredContentAware_0_4;
+  dynamic __Modal_0_5;
+  Element _el_2;
+  ViewContainer _appEl_2;
+  import15.MaterialDialogComponent _MaterialDialogComponent_2_3;
+  Element _el_4;
+  ViewContainer _appEl_4;
+  import28.UserListProvider _UserListProvider_4_3;
+  import32.ChangeRolesDialogComp _ChangeRolesDialogComp_4_4;
+  var _expr_0 = uninitialized;
+  var _expr_1 = uninitialized;
+  ViewSubjectListComponent2(import6.Injector parentInjector,ViewContainer declarationEl): super(ViewSubjectListComponent2,renderType_SubjectListComponent,import7.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
+  dynamic get _DeferredContentAware_0_4 {
+    if ((this.__DeferredContentAware_0_4 == null)) { (__DeferredContentAware_0_4 = this._ModalComponent_0_3); }
+    return this.__DeferredContentAware_0_4;
+  }
+  dynamic get _Modal_0_5 {
+    if ((this.__Modal_0_5 == null)) { (__Modal_0_5 = this._ModalComponent_0_3); }
+    return this.__Modal_0_5;
+  }
+  ViewContainer createInternal(dynamic rootSelector) {
+    var doc = document;
+    _el_0 = doc.createElement('modal');
+    _el_0.setAttribute(shimCAttr,'');
+    _appEl_0 = new ViewContainer(0,null,this,_el_0);
+    var compView_0 = import23.viewFactory_ModalComponent0(this.injector(0),_appEl_0);
+    _ModalComponent_0_3 = new import14.ModalComponent(this.parentInjector.get(import24.OverlayService),this.parentInjector.get(import14.Modal,null),this.parentInjector.get(import14.GlobalModalStack,null));
+    _appEl_0.initComponent(_ModalComponent_0_3,compView_0);
+    Text _text_1 = new Text('\n      ');
+    _el_2 = doc.createElement('material-dialog');
+    _el_2.setAttribute(shimCAttr,'');
+    _el_2.className = 'profilemenuvisible';
+    createAttr(_el_2,'defaultPopupSizeProvider','');
+    createAttr(_el_2,'enforceSpaceConstraints','');
+    _appEl_2 = new ViewContainer(2,0,this,_el_2);
+    var compView_2 = import25.viewFactory_MaterialDialogComponent0(this.injector(2),_appEl_2);
+    _MaterialDialogComponent_2_3 = new import15.MaterialDialogComponent(this.parentInjector.get(import26.DomService),compView_2.ref,_ModalComponent_0_3);
+    _appEl_2.initComponent(_MaterialDialogComponent_2_3,compView_2);
+    Text _text_3 = new Text('\n        ');
+    _el_4 = doc.createElement('change-roles-dialog');
+    _el_4.setAttribute(shimCAttr,'');
+    _appEl_4 = new ViewContainer(4,2,this,_el_4);
+    var compView_4 = import33.viewFactory_ChangeRolesDialogComp0(this.injector(4),_appEl_4);
+    _UserListProvider_4_3 = new import28.UserListProvider(this.parentInjector.get(import22.Environment),this.parentInjector.get(import20.PlaceService));
+    _ChangeRolesDialogComp_4_4 = new import32.ChangeRolesDialogComp(this.parentInjector.get(import20.PlaceService),this.parentInjector.get(import21.Router),this.parentInjector.get(import22.Environment),_UserListProvider_4_3);
+    _appEl_4.initComponent(_ChangeRolesDialogComp_4_4,compView_4);
+    compView_4.createComp([],null);
+    Text _text_5 = new Text('\n      ');
+    compView_2.createComp([
+      [],[
+        _text_3,_el_4,_text_5
+      ]
+      ,[]
+    ]
+    ,null);
+    Text _text_6 = new Text('\n    ');
+      compView_0.createComp([[
+        _text_1,_el_2,_text_6
+      ]
+    ],null);
+    init([_el_0],[
+      _el_0,_text_1,_el_2,_text_3,_el_4,_text_5,_text_6
+    ]
+    ,[]);
+    return null;
+  }
+  dynamic injectorGetInternal(dynamic token,int requestNodeIndex,dynamic notFoundResult) {
+    if ((identical(token, import28.UserListProvider) && (4 == requestNodeIndex))) { return _UserListProvider_4_3; }
+    if ((identical(token, import32.ChangeRolesDialogComp) && (4 == requestNodeIndex))) { return _ChangeRolesDialogComp_4_4; }
+    if ((identical(token, import15.MaterialDialogComponent) && ((2 <= requestNodeIndex) && (requestNodeIndex <= 5)))) { return _MaterialDialogComponent_2_3; }
+    if ((identical(token, import14.ModalComponent) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 6)))) { return _ModalComponent_0_3; }
+    if ((identical(token, import30.DeferredContentAware) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 6)))) { return _DeferredContentAware_0_4; }
+    if ((identical(token, import14.Modal) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 6)))) { return _Modal_0_5; }
+    return notFoundResult;
+  }
+  void detectChangesInternal() {
+    final currVal_0 = ctx.editing;
+    if (import11.checkBinding(_expr_0,currVal_0)) {
+      _ModalComponent_0_3.visible = currVal_0;
+      _expr_0 = currVal_0;
+    }
+    if ((identical(this.cdState, ChangeDetectorState.NeverChecked) && !import11.AppViewUtils.throwOnChanges)) { _ChangeRolesDialogComp_4_4.ngOnInit(); }
+    this.detectContentChildrenChanges();
+    _MaterialDialogComponent_2_3.ngAfterContentChecked();
+    final currVal_1 = _ModalComponent_0_3.uniquePaneId;
+    if (import11.checkBinding(_expr_1,currVal_1)) {
+      setAttr(_el_0,'pane-id',((currVal_1 == null)? null: currVal_1.toString()));
+      _expr_1 = currVal_1;
+    }
+    this.detectViewChildrenChanges();
+  }
+  void destroyInternal() {
+    _MaterialDialogComponent_2_3.ngOnDestroy();
+    _ModalComponent_0_3.ngOnDestroy();
+  }
+}
+AppView viewFactory_SubjectListComponent2(import6.Injector parentInjector,ViewContainer declarationEl) {
+  return new ViewSubjectListComponent2(parentInjector,declarationEl);
+}
+class ViewSubjectListComponent3 extends AppView<import3.SubjectListComponent> {
+  Element _el_0;
   import34.PopupSourceDirective _PopupSourceDirective_0_2;
   Element _el_2;
   ViewContainer _appEl_4;
@@ -555,7 +692,7 @@ class ViewSubjectListComponent2 extends AppView<import3.SubjectListComponent> {
   var _expr_2 = uninitialized;
   var _expr_3 = uninitialized;
   var _expr_4 = uninitialized;
-  ViewSubjectListComponent2(import6.Injector parentInjector,ViewContainer declarationEl): super(ViewSubjectListComponent2,renderType_SubjectListComponent,import7.ViewType.EMBEDDED,{'\$implicit': null},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
+  ViewSubjectListComponent3(import6.Injector parentInjector,ViewContainer declarationEl): super(ViewSubjectListComponent3,renderType_SubjectListComponent,import7.ViewType.EMBEDDED,{'\$implicit': null},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
   ViewContainer createInternal(dynamic rootSelector) {
     var doc = document;
     _el_0 = doc.createElement('li');
@@ -575,7 +712,7 @@ class ViewSubjectListComponent2 extends AppView<import3.SubjectListComponent> {
     var _anchor_4 = new Comment('template bindings={}');
     _el_0?.append(_anchor_4);
     _appEl_4 = new ViewContainer(4,0,this,_anchor_4);
-    _TemplateRef_4_4 = new TemplateRef(_appEl_4,viewFactory_SubjectListComponent3);
+    _TemplateRef_4_4 = new TemplateRef(_appEl_4,viewFactory_SubjectListComponent4);
     _NgIf_4_5 = new NgIf(_appEl_4,_TemplateRef_4_4);
     Text _text_5 = new Text('\n      ');
     _el_0.append(_text_5);
@@ -627,10 +764,10 @@ class ViewSubjectListComponent2 extends AppView<import3.SubjectListComponent> {
     return (true && pd_0);
   }
 }
-AppView viewFactory_SubjectListComponent2(import6.Injector parentInjector,ViewContainer declarationEl) {
-  return new ViewSubjectListComponent2(parentInjector,declarationEl);
+AppView viewFactory_SubjectListComponent3(import6.Injector parentInjector,ViewContainer declarationEl) {
+  return new ViewSubjectListComponent3(parentInjector,declarationEl);
 }
-class ViewSubjectListComponent3 extends AppView<import3.SubjectListComponent> {
+class ViewSubjectListComponent4 extends AppView<import3.SubjectListComponent> {
   Element _el_0;
   ViewContainer _appEl_0;
   import38.InfoPopup _InfoPopup_0_3;
@@ -641,14 +778,14 @@ class ViewSubjectListComponent3 extends AppView<import3.SubjectListComponent> {
   var _expr_5 = uninitialized;
   var _expr_6 = uninitialized;
   var _expr_7 = uninitialized;
-  ViewSubjectListComponent3(import6.Injector parentInjector,ViewContainer declarationEl): super(ViewSubjectListComponent3,renderType_SubjectListComponent,import7.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
+  ViewSubjectListComponent4(import6.Injector parentInjector,ViewContainer declarationEl): super(ViewSubjectListComponent4,renderType_SubjectListComponent,import7.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
   ViewContainer createInternal(dynamic rootSelector) {
     var doc = document;
     _el_0 = doc.createElement('info-popup');
     _el_0.setAttribute(shimCAttr,'');
     _appEl_0 = new ViewContainer(0,null,this,_el_0);
     var compView_0 = import39.viewFactory_InfoPopup0(this.injector(0),_appEl_0);
-    _InfoPopup_0_3 = new import38.InfoPopup(this.parentInjector.get(import23.Environment),this.parentInjector.get(import21.PlaceService),this.parentInjector.get(import40.DomSanitizationService));
+    _InfoPopup_0_3 = new import38.InfoPopup(this.parentInjector.get(import22.Environment),this.parentInjector.get(import20.PlaceService),this.parentInjector.get(import40.DomSanitizationService));
     _appEl_0.initComponent(_InfoPopup_0_3,compView_0);
     compView_0.createComp([],null);
     listen(_el_0,'visibleChange',evt(_handle_visibleChange_0_0));
@@ -665,7 +802,7 @@ class ViewSubjectListComponent3 extends AppView<import3.SubjectListComponent> {
       _InfoPopup_0_3.userId = currVal_1;
       _expr_1 = currVal_1;
     }
-    final currVal_2 = (parent as ViewSubjectListComponent2)._PopupSourceDirective_0_2;
+    final currVal_2 = (parent as ViewSubjectListComponent3)._PopupSourceDirective_0_2;
     if (import11.checkBinding(_expr_2,currVal_2)) {
       _InfoPopup_0_3.source = currVal_2;
       _expr_2 = currVal_2;
@@ -705,10 +842,10 @@ class ViewSubjectListComponent3 extends AppView<import3.SubjectListComponent> {
     return (true && pd_0);
   }
 }
-AppView viewFactory_SubjectListComponent3(import6.Injector parentInjector,ViewContainer declarationEl) {
-  return new ViewSubjectListComponent3(parentInjector,declarationEl);
+AppView viewFactory_SubjectListComponent4(import6.Injector parentInjector,ViewContainer declarationEl) {
+  return new ViewSubjectListComponent4(parentInjector,declarationEl);
 }
-class ViewSubjectListComponent4 extends AppView<import3.SubjectListComponent> {
+class ViewSubjectListComponent5 extends AppView<import3.SubjectListComponent> {
   Element _el_0;
   ViewContainer _appEl_2;
   dynamic _TemplateRef_2_4;
@@ -720,7 +857,7 @@ class ViewSubjectListComponent4 extends AppView<import3.SubjectListComponent> {
   var _expr_4 = uninitialized;
   var _expr_5 = uninitialized;
   var _expr_6 = uninitialized;
-  ViewSubjectListComponent4(import6.Injector parentInjector,ViewContainer declarationEl): super(ViewSubjectListComponent4,renderType_SubjectListComponent,import7.ViewType.EMBEDDED,{
+  ViewSubjectListComponent5(import6.Injector parentInjector,ViewContainer declarationEl): super(ViewSubjectListComponent5,renderType_SubjectListComponent,import7.ViewType.EMBEDDED,{
     '\$implicit': null,
     'index': null
   }
@@ -730,20 +867,20 @@ class ViewSubjectListComponent4 extends AppView<import3.SubjectListComponent> {
     _el_0 = doc.createElement('li');
     _el_0.setAttribute(shimCAttr,'');
     _el_0.className = 'subjectItem';
-    Text _text_1 = new Text('\n        ');
+    Text _text_1 = new Text('\n            ');
     _el_0.append(_text_1);
     var _anchor_2 = new Comment('template bindings={}');
     _el_0?.append(_anchor_2);
     _appEl_2 = new ViewContainer(2,0,this,_anchor_2);
-    _TemplateRef_2_4 = new TemplateRef(_appEl_2,viewFactory_SubjectListComponent5);
+    _TemplateRef_2_4 = new TemplateRef(_appEl_2,viewFactory_SubjectListComponent6);
     _NgIf_2_5 = new NgIf(_appEl_2,_TemplateRef_2_4);
-    Text _text_3 = new Text('\n        ');
+    Text _text_3 = new Text('\n            ');
     _el_0.append(_text_3);
     _el_4 = doc.createElement('div');
     _el_4.setAttribute(shimCAttr,'');
     _el_0.append(_el_4);
     _el_4.className = 'clearfix';
-    Text _text_5 = new Text('\n      ');
+    Text _text_5 = new Text('\n          ');
     _el_0.append(_text_5);
     listen(_el_0,'click',evt(_handle_click_0_0));
     init([_el_0],[
@@ -798,10 +935,10 @@ class ViewSubjectListComponent4 extends AppView<import3.SubjectListComponent> {
     return (true && pd_0);
   }
 }
-AppView viewFactory_SubjectListComponent4(import6.Injector parentInjector,ViewContainer declarationEl) {
-  return new ViewSubjectListComponent4(parentInjector,declarationEl);
+AppView viewFactory_SubjectListComponent5(import6.Injector parentInjector,ViewContainer declarationEl) {
+  return new ViewSubjectListComponent5(parentInjector,declarationEl);
 }
-class ViewSubjectListComponent5 extends AppView<import3.SubjectListComponent> {
+class ViewSubjectListComponent6 extends AppView<import3.SubjectListComponent> {
   Element _el_0;
   Element _el_2;
   Element _el_3;
@@ -814,18 +951,18 @@ class ViewSubjectListComponent5 extends AppView<import3.SubjectListComponent> {
   UListElement _el_13;
   ViewContainer _appEl_15;
   dynamic _TemplateRef_15_4;
-  import18.NgFor _NgFor_15_5;
+  import17.NgFor _NgFor_15_5;
   Element _el_18;
   var _expr_0 = uninitialized;
   var _expr_2 = uninitialized;
   var _expr_3 = uninitialized;
-  ViewSubjectListComponent5(import6.Injector parentInjector,ViewContainer declarationEl): super(ViewSubjectListComponent5,renderType_SubjectListComponent,import7.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
+  ViewSubjectListComponent6(import6.Injector parentInjector,ViewContainer declarationEl): super(ViewSubjectListComponent6,renderType_SubjectListComponent,import7.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
   ViewContainer createInternal(dynamic rootSelector) {
     var doc = document;
     _el_0 = doc.createElement('div');
     _el_0.setAttribute(shimCAttr,'');
     _el_0.className = 'subject';
-    Text _text_1 = new Text('\n          ');
+    Text _text_1 = new Text('\n              ');
     _el_0.append(_text_1);
     _el_2 = doc.createElement('div');
     _el_2.setAttribute(shimCAttr,'');
@@ -834,16 +971,16 @@ class ViewSubjectListComponent5 extends AppView<import3.SubjectListComponent> {
     _el_3 = doc.createElement('img');
     _el_3.setAttribute(shimCAttr,'');
     _el_2.append(_el_3);
-    Text _text_4 = new Text('\n          ');
+    Text _text_4 = new Text('\n              ');
     _el_2.append(_text_4);
-    Text _text_5 = new Text('\n          ');
+    Text _text_5 = new Text('\n              ');
     _el_0.append(_text_5);
     var _anchor_6 = new Comment('template bindings={}');
     _el_0?.append(_anchor_6);
     _appEl_6 = new ViewContainer(6,0,this,_anchor_6);
-    _TemplateRef_6_4 = new TemplateRef(_appEl_6,viewFactory_SubjectListComponent6);
+    _TemplateRef_6_4 = new TemplateRef(_appEl_6,viewFactory_SubjectListComponent7);
     _NgIf_6_5 = new NgIf(_appEl_6,_TemplateRef_6_4);
-    Text _text_7 = new Text('\n          ');
+    Text _text_7 = new Text('\n              ');
     _el_0.append(_text_7);
     _el_8 = doc.createElement('div');
     _el_8.setAttribute(shimCAttr,'');
@@ -851,35 +988,35 @@ class ViewSubjectListComponent5 extends AppView<import3.SubjectListComponent> {
     _el_8.className = 'name';
     _text_9 = new Text('');
     _el_8.append(_text_9);
-    Text _text_10 = new Text('\n          ');
+    Text _text_10 = new Text('\n              ');
     _el_0.append(_text_10);
     _el_11 = doc.createElement('div');
     _el_11.setAttribute(shimCAttr,'');
     _el_0.append(_el_11);
     _el_11.className = 'users';
-    Text _text_12 = new Text('\n            ');
+    Text _text_12 = new Text('\n                ');
     _el_11.append(_text_12);
     _el_13 = doc.createElement('ul');
     _el_13.setAttribute(shimCAttr,'');
     _el_11.append(_el_13);
-    Text _text_14 = new Text('\n              ');
+    Text _text_14 = new Text('\n                  ');
     _el_13.append(_text_14);
     var _anchor_15 = new Comment('template bindings={}');
     _el_13?.append(_anchor_15);
     _appEl_15 = new ViewContainer(15,13,this,_anchor_15);
-    _TemplateRef_15_4 = new TemplateRef(_appEl_15,viewFactory_SubjectListComponent7);
-    _NgFor_15_5 = new import18.NgFor(_appEl_15,_TemplateRef_15_4,this.parentInjector.get(import31.IterableDiffers),ref);
-    Text _text_16 = new Text('\n            ');
+    _TemplateRef_15_4 = new TemplateRef(_appEl_15,viewFactory_SubjectListComponent8);
+    _NgFor_15_5 = new import17.NgFor(_appEl_15,_TemplateRef_15_4,this.parentInjector.get(import29.IterableDiffers),ref);
+    Text _text_16 = new Text('\n                ');
     _el_13.append(_text_16);
-    Text _text_17 = new Text('\n            ');
+    Text _text_17 = new Text('\n                ');
     _el_11.append(_text_17);
     _el_18 = doc.createElement('div');
     _el_18.setAttribute(shimCAttr,'');
     _el_11.append(_el_18);
     _el_18.className = 'clearfix';
-    Text _text_19 = new Text('\n          ');
+    Text _text_19 = new Text('\n              ');
     _el_11.append(_text_19);
-    Text _text_20 = new Text('\n        ');
+    Text _text_20 = new Text('\n            ');
     _el_0.append(_text_20);
     init([_el_0],[
       _el_0,_text_1,_el_2,_el_3,_text_4,_text_5,_anchor_6,_text_7,_el_8,_text_9,_text_10,
@@ -892,7 +1029,7 @@ class ViewSubjectListComponent5 extends AppView<import3.SubjectListComponent> {
     if ((identical(token, TemplateRef) && (6 == requestNodeIndex))) { return _TemplateRef_6_4; }
     if ((identical(token, NgIf) && (6 == requestNodeIndex))) { return _NgIf_6_5; }
     if ((identical(token, TemplateRef) && (15 == requestNodeIndex))) { return _TemplateRef_15_4; }
-    if ((identical(token, import18.NgFor) && (15 == requestNodeIndex))) { return _NgFor_15_5; }
+    if ((identical(token, import17.NgFor) && (15 == requestNodeIndex))) { return _NgFor_15_5; }
     return notFoundResult;
   }
   void detectChangesInternal() {
@@ -917,14 +1054,14 @@ class ViewSubjectListComponent5 extends AppView<import3.SubjectListComponent> {
     this.detectViewChildrenChanges();
   }
 }
-AppView viewFactory_SubjectListComponent5(import6.Injector parentInjector,ViewContainer declarationEl) {
-  return new ViewSubjectListComponent5(parentInjector,declarationEl);
+AppView viewFactory_SubjectListComponent6(import6.Injector parentInjector,ViewContainer declarationEl) {
+  return new ViewSubjectListComponent6(parentInjector,declarationEl);
 }
-class ViewSubjectListComponent6 extends AppView<import3.SubjectListComponent> {
+class ViewSubjectListComponent7 extends AppView<import3.SubjectListComponent> {
   Element _el_0;
   Text _text_1;
   var _expr_0 = uninitialized;
-  ViewSubjectListComponent6(import6.Injector parentInjector,ViewContainer declarationEl): super(ViewSubjectListComponent6,renderType_SubjectListComponent,import7.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
+  ViewSubjectListComponent7(import6.Injector parentInjector,ViewContainer declarationEl): super(ViewSubjectListComponent7,renderType_SubjectListComponent,import7.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
   ViewContainer createInternal(dynamic rootSelector) {
     var doc = document;
     _el_0 = doc.createElement('div');
@@ -948,10 +1085,10 @@ class ViewSubjectListComponent6 extends AppView<import3.SubjectListComponent> {
     this.detectViewChildrenChanges();
   }
 }
-AppView viewFactory_SubjectListComponent6(import6.Injector parentInjector,ViewContainer declarationEl) {
-  return new ViewSubjectListComponent6(parentInjector,declarationEl);
+AppView viewFactory_SubjectListComponent7(import6.Injector parentInjector,ViewContainer declarationEl) {
+  return new ViewSubjectListComponent7(parentInjector,declarationEl);
 }
-class ViewSubjectListComponent7 extends AppView<import3.SubjectListComponent> {
+class ViewSubjectListComponent8 extends AppView<import3.SubjectListComponent> {
   Element _el_0;
   Element _el_2;
   import34.PopupSourceDirective _PopupSourceDirective_2_2;
@@ -966,13 +1103,13 @@ class ViewSubjectListComponent7 extends AppView<import3.SubjectListComponent> {
   var _expr_2 = uninitialized;
   var _expr_3 = uninitialized;
   var _expr_4 = uninitialized;
-  ViewSubjectListComponent7(import6.Injector parentInjector,ViewContainer declarationEl): super(ViewSubjectListComponent7,renderType_SubjectListComponent,import7.ViewType.EMBEDDED,{'\$implicit': null},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
+  ViewSubjectListComponent8(import6.Injector parentInjector,ViewContainer declarationEl): super(ViewSubjectListComponent8,renderType_SubjectListComponent,import7.ViewType.EMBEDDED,{'\$implicit': null},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
   ViewContainer createInternal(dynamic rootSelector) {
     var doc = document;
     _el_0 = doc.createElement('li');
     _el_0.setAttribute(shimCAttr,'');
     _el_0.className = 'user';
-    Text _text_1 = new Text('\n                ');
+    Text _text_1 = new Text('\n                    ');
     _el_0.append(_text_1);
     _el_2 = doc.createElement('div');
     _el_2.setAttribute(shimCAttr,'');
@@ -982,28 +1119,28 @@ class ViewSubjectListComponent7 extends AppView<import3.SubjectListComponent> {
     _el_2.className = 'profileImg';
     createAttr(_el_2,'popupSource','');
     _PopupSourceDirective_2_2 = new import34.PopupSourceDirective(this.parentInjector.get(import35.DomPopupSourceFactory),new ElementRef(_el_2),this.parentInjector.get(import37.ReferenceDirective,null));
-    Text _text_3 = new Text('\n                  ');
+    Text _text_3 = new Text('\n                      ');
     _el_2.append(_text_3);
     _el_4 = doc.createElement('img');
     _el_4.setAttribute(shimCAttr,'');
     _el_2.append(_el_4);
-    Text _text_5 = new Text('\n                ');
+    Text _text_5 = new Text('\n                    ');
     _el_2.append(_text_5);
-    Text _text_6 = new Text('\n                ');
+    Text _text_6 = new Text('\n                    ');
     _el_0.append(_text_6);
     var _anchor_7 = new Comment('template bindings={}');
     _el_0?.append(_anchor_7);
     _appEl_7 = new ViewContainer(7,0,this,_anchor_7);
-    _TemplateRef_7_4 = new TemplateRef(_appEl_7,viewFactory_SubjectListComponent8);
+    _TemplateRef_7_4 = new TemplateRef(_appEl_7,viewFactory_SubjectListComponent9);
     _NgIf_7_5 = new NgIf(_appEl_7,_TemplateRef_7_4);
-    Text _text_8 = new Text('\n                ');
+    Text _text_8 = new Text('\n                    ');
     _el_0.append(_text_8);
     var _anchor_9 = new Comment('template bindings={}');
     _el_0?.append(_anchor_9);
     _appEl_9 = new ViewContainer(9,0,this,_anchor_9);
-    _TemplateRef_9_4 = new TemplateRef(_appEl_9,viewFactory_SubjectListComponent9);
+    _TemplateRef_9_4 = new TemplateRef(_appEl_9,viewFactory_SubjectListComponent10);
     _NgIf_9_5 = new NgIf(_appEl_9,_TemplateRef_9_4);
-    Text _text_10 = new Text('\n              ');
+    Text _text_10 = new Text('\n                  ');
     _el_0.append(_text_10);
     listen(_el_2,'click',evt(_handle_click_2_0));
     init([_el_0],[
@@ -1056,13 +1193,13 @@ class ViewSubjectListComponent7 extends AppView<import3.SubjectListComponent> {
     return (true && pd_0);
   }
 }
-AppView viewFactory_SubjectListComponent7(import6.Injector parentInjector,ViewContainer declarationEl) {
-  return new ViewSubjectListComponent7(parentInjector,declarationEl);
+AppView viewFactory_SubjectListComponent8(import6.Injector parentInjector,ViewContainer declarationEl) {
+  return new ViewSubjectListComponent8(parentInjector,declarationEl);
 }
-class ViewSubjectListComponent8 extends AppView<import3.SubjectListComponent> {
+class ViewSubjectListComponent9 extends AppView<import3.SubjectListComponent> {
   InputElement _el_0;
   var _expr_1 = uninitialized;
-  ViewSubjectListComponent8(import6.Injector parentInjector,ViewContainer declarationEl): super(ViewSubjectListComponent8,renderType_SubjectListComponent,import7.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
+  ViewSubjectListComponent9(import6.Injector parentInjector,ViewContainer declarationEl): super(ViewSubjectListComponent9,renderType_SubjectListComponent,import7.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
   ViewContainer createInternal(dynamic rootSelector) {
     var doc = document;
     _el_0 = doc.createElement('input');
@@ -1088,10 +1225,10 @@ class ViewSubjectListComponent8 extends AppView<import3.SubjectListComponent> {
     return (true && pd_0);
   }
 }
-AppView viewFactory_SubjectListComponent8(import6.Injector parentInjector,ViewContainer declarationEl) {
-  return new ViewSubjectListComponent8(parentInjector,declarationEl);
+AppView viewFactory_SubjectListComponent9(import6.Injector parentInjector,ViewContainer declarationEl) {
+  return new ViewSubjectListComponent9(parentInjector,declarationEl);
 }
-class ViewSubjectListComponent9 extends AppView<import3.SubjectListComponent> {
+class ViewSubjectListComponent10 extends AppView<import3.SubjectListComponent> {
   Element _el_0;
   ViewContainer _appEl_0;
   import38.InfoPopup _InfoPopup_0_3;
@@ -1102,14 +1239,14 @@ class ViewSubjectListComponent9 extends AppView<import3.SubjectListComponent> {
   var _expr_4 = uninitialized;
   var _expr_5 = uninitialized;
   var _expr_6 = uninitialized;
-  ViewSubjectListComponent9(import6.Injector parentInjector,ViewContainer declarationEl): super(ViewSubjectListComponent9,renderType_SubjectListComponent,import7.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
+  ViewSubjectListComponent10(import6.Injector parentInjector,ViewContainer declarationEl): super(ViewSubjectListComponent10,renderType_SubjectListComponent,import7.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
   ViewContainer createInternal(dynamic rootSelector) {
     var doc = document;
     _el_0 = doc.createElement('info-popup');
     _el_0.setAttribute(shimCAttr,'');
     _appEl_0 = new ViewContainer(0,null,this,_el_0);
     var compView_0 = import39.viewFactory_InfoPopup0(this.injector(0),_appEl_0);
-    _InfoPopup_0_3 = new import38.InfoPopup(this.parentInjector.get(import23.Environment),this.parentInjector.get(import21.PlaceService),this.parentInjector.get(import40.DomSanitizationService));
+    _InfoPopup_0_3 = new import38.InfoPopup(this.parentInjector.get(import22.Environment),this.parentInjector.get(import20.PlaceService),this.parentInjector.get(import40.DomSanitizationService));
     _appEl_0.initComponent(_InfoPopup_0_3,compView_0);
     compView_0.createComp([],null);
     init([_el_0],[_el_0],[]);
@@ -1125,7 +1262,7 @@ class ViewSubjectListComponent9 extends AppView<import3.SubjectListComponent> {
       _InfoPopup_0_3.userId = currVal_0;
       _expr_0 = currVal_0;
     }
-    final currVal_1 = (parent as ViewSubjectListComponent7)._PopupSourceDirective_2_2;
+    final currVal_1 = (parent as ViewSubjectListComponent8)._PopupSourceDirective_2_2;
     if (import11.checkBinding(_expr_1,currVal_1)) {
       _InfoPopup_0_3.source = currVal_1;
       _expr_1 = currVal_1;
@@ -1160,30 +1297,30 @@ class ViewSubjectListComponent9 extends AppView<import3.SubjectListComponent> {
     this.detectViewChildrenChanges();
   }
 }
-AppView viewFactory_SubjectListComponent9(import6.Injector parentInjector,ViewContainer declarationEl) {
-  return new ViewSubjectListComponent9(parentInjector,declarationEl);
+AppView viewFactory_SubjectListComponent10(import6.Injector parentInjector,ViewContainer declarationEl) {
+  return new ViewSubjectListComponent10(parentInjector,declarationEl);
 }
 const List<dynamic> styles_SubjectListComponentHost = const [];
 RenderComponentType renderType_SubjectListComponentHost;
 class ViewSubjectListComponentHost0 extends AppView<dynamic> {
   Element _el_0;
   ViewContainer _appEl_0;
-  import30.UserListProvider _UserListProvider_0_3;
+  import28.UserListProvider _UserListProvider_0_3;
   import3.SubjectListComponent _SubjectListComponent_0_4;
   ViewSubjectListComponentHost0(import6.Injector parentInjector,ViewContainer declarationEl): super(ViewSubjectListComponentHost0,renderType_SubjectListComponentHost,import7.ViewType.HOST,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
   ViewContainer createInternal(dynamic rootSelector) {
     _el_0 = selectOrCreateHostElement('subjects',rootSelector,null);
     _appEl_0 = new ViewContainer(0,null,this,_el_0);
     var compView_0 = viewFactory_SubjectListComponent0(this.injector(0),_appEl_0);
-    _UserListProvider_0_3 = new import30.UserListProvider(this.parentInjector.get(import23.Environment),this.parentInjector.get(import21.PlaceService));
-    _SubjectListComponent_0_4 = new import3.SubjectListComponent(this.parentInjector.get(import21.PlaceService),this.parentInjector.get(import22.Router),this.parentInjector.get(import23.Environment),_UserListProvider_0_3,this.parentInjector.get(import40.DomSanitizationService));
+    _UserListProvider_0_3 = new import28.UserListProvider(this.parentInjector.get(import22.Environment),this.parentInjector.get(import20.PlaceService));
+    _SubjectListComponent_0_4 = new import3.SubjectListComponent(this.parentInjector.get(import20.PlaceService),this.parentInjector.get(import21.Router),this.parentInjector.get(import22.Environment),_UserListProvider_0_3,this.parentInjector.get(import40.DomSanitizationService));
     _appEl_0.initComponent(_SubjectListComponent_0_4,compView_0);
     compView_0.createComp(projectableNodes,null);
     init([_el_0],[_el_0],[]);
     return _appEl_0;
   }
   dynamic injectorGetInternal(dynamic token,int requestNodeIndex,dynamic notFoundResult) {
-    if ((identical(token, import30.UserListProvider) && (0 == requestNodeIndex))) { return _UserListProvider_0_3; }
+    if ((identical(token, import28.UserListProvider) && (0 == requestNodeIndex))) { return _UserListProvider_0_3; }
     if ((identical(token, import3.SubjectListComponent) && (0 == requestNodeIndex))) { return _SubjectListComponent_0_4; }
     return notFoundResult;
   }
@@ -1226,4 +1363,5 @@ i12.initReflector();
 i13.initReflector();
 i14.initReflector();
 i15.initReflector();
+i16.initReflector();
 }

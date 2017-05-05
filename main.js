@@ -3,12 +3,17 @@ var BrowserWindow = require('electron').BrowserWindow;  // Module to create nati
 var dialog = require('electron').dialog;
 var pjson = require('./package.json');
 
+
 const log = require('electron-log');
 const {autoUpdater} = require('electron-updater');
 autoUpdater.autoDownload = true;
 autoUpdater.logger = log;
 autoUpdater.logger.transports.file.level = 'info';
-log.info('App starting...');
+log.info('\n' +
+    '  ================================================  \n' +
+    '||              share.place V' + pjson.version + '               ||\n' +
+    '  ================================================');
+
 var ipcMain = require('electron').ipcMain;
 //const {appUpdater} = require('./autopdater');
 
@@ -20,8 +25,6 @@ var mainWindow = null;
 var globalService = require("./server/app_api/global")
 var globalConfig = require("./app_config");
 globalService.checkPathOrCreateSync(globalConfig.dataDir, globalConfig.usersFileData, '[]');
-globalService.checkPathOrCreateSync(globalConfig.logDir, globalConfig.appLogFile, ' ');
-globalService.checkPathOrCreateSync(globalConfig.logDir, globalConfig.errorLogFile, ' ');
 //var checksum = require('checksum');
 //var ipc = require('electron').ipcRenderer;
 
@@ -42,6 +45,28 @@ ipcMain.on('online-status-changed', (event, status) => {
     mainWindow.setOverlayIcon(path.join(__dirname, 'Offline-red.ico'), 'you are offLine');
   }
 })
+
+ipcMain.on('minimizeCurrentWindow', (event, status) => {
+  // console.trace();
+  let window = BrowserWindow.getFocusedWindow();
+  window.minimize();
+})
+ipcMain.on('maximizeCurrentWindow', (event, status) => {
+  // console.trace();
+  let window = BrowserWindow.getFocusedWindow();
+  if (window.isMaximized()) {
+    window.unmaximize();
+  } else {
+    window.maximize();
+  }
+})
+
+ipcMain.on('closeCurrentWindow', (event, status) => {
+  // console.trace();
+  let window = BrowserWindow.getFocusedWindow();
+  window.close();
+})
+/*
 app.on('window-all-closed', () => {
   mainWindow.webContents.session.clearStorageData([{
 
@@ -50,7 +75,7 @@ app.on('window-all-closed', () => {
     server = null;
   }])
   app.quit();
-})
+})*/
 app.on('ready', function () {
 
   autoUpdater.checkForUpdates();
@@ -62,38 +87,43 @@ app.on('ready', function () {
   }, 3600000);
 
   global.homeDir = app.getPath('home');
- /* getPort(function (port) {
 
-
-  });*/
   var expressApp = require('./server/app');
-  // require('./server/app_api/config/socketio')(app, server);
-/*
-  var server = http.createServer(expressApp);
-
-  server.listen(0);*/
   var listener = expressApp.listen(0);
   global.serverPort = listener.address().port;
-  //expressApp.set('port', global.serverPort);
-  //expressApp.listen(3005)
+  global.address = listener.address().address;
   process.on('uncaughtException', (err) => {
-    server = null;
+    expressApp = null;
   });
+  /*
+   var screenElectron = require('electron').screen;
+   var mainScreen = screenElectron.getPrimaryDisplay();
+   const {width, height} = mainScreen.workAreaSize*/
   mainWindow = new BrowserWindow({
-    width: 900,
-    height: 600,
-    title: "Share.Place V"+pjson.version,
+    width: 1024,
+    height: 768,
+    center: true,
+    minWidth: 1024,
+    minHeight: 768,
+    frame: false,
+    show: false,
+    backgroundColor: '#FFFFFF',
+    //transparent: true,
+    title: "Share.Place V" + pjson.version,
     webPreferences: {nodeIntegration: false, preload: __dirname + "/preload.js"},
     icon: path.join(__dirname, 'server', 'static', 'images', 'iconElec.png')
   });
 
-  mainWindow.maximize();
+  //mainWindow.maximize();
   mainWindow.loadURL('http://127.0.0.1:' + global.serverPort + '/web/');
 
   global.homeUrlServer = 'http://127.0.0.1:' + global.serverPort + '/web';
+  mainWindow.once('ready-to-show', (event) => {
+    mainWindow.show();
+    event.sender.send('showFrame');
+  })
 
-
-  mainWindow.on('closed', function () {
+ /* mainWindow.on('closed', function () {
     mainWindow.webContents.session.clearStorageData([{
 
       storages: ["clear"]
@@ -102,7 +132,7 @@ app.on('ready', function () {
       mainWindow = null;
       server = null;
     }])
-  });
+  });*/
 
   global.mainWindow = mainWindow;
 });

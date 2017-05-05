@@ -50,8 +50,10 @@ class FolderComponent
 
   Future<Null> ngOnInit() async {
     _environment.eventBus.getBus().listen((params) => show(params));
+
     if (_environment.selectedPlace != null)
       await getFolders(_environment.selectedPlace.id);
+
   }
 
   Future<Null> fire(Map<PlaceParam, dynamic> params) {
@@ -112,6 +114,7 @@ class FolderComponent
     if (placeId != null) {
       List<Folder> folderList = await _placeService.getFolders(placeId);
       folders = asTree(folderList, notifications);
+      _environment.showScrollBar('showScroller');
     }
   }
 
@@ -241,4 +244,6 @@ class FolderComponent
     return _environment.connectedUserHasGreaterRole(
         RoleEnum.writer, _environment.selectedFolder);
   }
+
+
 }

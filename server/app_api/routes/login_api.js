@@ -3,7 +3,7 @@
 var bcrypt = require('bcrypt-nodejs')
 var passport = require('passport')
 var express = require('express')
-
+var BrowserWindow = require('electron').BrowserWindow;
 var request = require('request');
 var LocalStrategy = require('passport-local').Strategy
 
@@ -24,7 +24,7 @@ var multer = require('multer');
 let http = require("https");
 
 console.log("process.env.dev", process.env.DEV)
-if(process.env.DEV)
+if (process.env.DEV)
   http = require("http");
 var path = require('path');
 var globalService = require('../global')
@@ -63,7 +63,6 @@ router.get('/logout', function (req, res) {
   }, () => {
 
 
-
   }])
   req.logout()
   //globalService.sendError(res, 401, {error: "user logged out"});
@@ -83,6 +82,49 @@ router.get('/login', function (req, res) {
   })
 })
 
+
+
+let connectWithRs =  (req) =>{
+  var url = req.url;
+  if(global.onLine){
+    var authWindow = new BrowserWindow({
+      width: 1024, height: 700, show: false,
+      parent: global.mainWindow, modal: true, webPreferences: {nodeIntegration: false}
+    });
+    var urlAuth ;
+    if(url.indexOf("facebook")!= -1)
+      urlAuth = constants.urlFbLogin + global.serverPort;
+    else
+      urlAuth = constants.urlGlogin + global.serverPort;
+
+
+    authWindow.loadURL(urlAuth);
+
+    authWindow.show();
+
+    authWindow.webContents.on('did-get-redirect-request', function (event, oldUrl, newUrl) {
+      if (newUrl.indexOf("refreshUser") != -1) {
+        global.mainWindow.loadURL(newUrl);
+
+        authWindow.webContents.session.clearStorageData([{
+
+          storages: ["clear"]
+        }, () => {
+
+        }])
+        authWindow.close();
+      }
+    })
+  }else{
+    if(url.indexOf("facebook")!= -1)
+      proxy.dialogBox("info", "Share.place", "Sorry you are offline you can't singin with Facebook");
+    else
+      proxy.dialogBox("info", "Share.place", "Sorry you are offline you can't singin with Google");
+  }
+
+}
+router.get('/facebook', connectWithRs);
+router.get('/google', connectWithRs);
 // process the login form
 router.post('/login', (req, res, next) => authenticate(req, res, next, 'local-login'));
 
@@ -164,12 +206,12 @@ router.get('/gridfs/file/', (req, res) => {
   let pathToUserPicture = path.join(constants.dataDir, url, 'logo-profile.png');
   let pathToUserPictureDir = path.join(constants.dataDir, url);
   if (global.onLine) {
-      downloadFile(url, pathToUserPictureDir, pathToUserPicture, (err, pathPicture) => {
-        if (err)
-          globalService.sendError(res, 401, err.message)
+    downloadFile(url, pathToUserPictureDir, pathToUserPicture, (err, pathPicture) => {
+      if (err)
+        globalService.sendError(res, 401, err.message)
 
-        return readFile(res, pathPicture);
-      })
+      return readFile(res, pathPicture);
+    })
   } else {
     if (!fs.existsSync(pathToUserPicture)) {
       proxy.dialogBox("info", "Share.place", "sorry you are offline we can't show the profile picture")
@@ -220,7 +262,7 @@ router.get('/user/photo/:size', function (req, res) {
         });
       }).on('error', function (e) {
         log.error("error to download img");
-        if(fs.existsSync(pathToUserPicture))
+        if (fs.existsSync(pathToUserPicture))
           readFile(res, pathToUserPicture);
 
         readFile(res, constants.defaultPicture);
@@ -304,12 +346,12 @@ router.post('/forgot', function (req, res, next) {
 
 })
 
-router.post('/forgot_pass',  (req, res, next) => {
+router.post('/forgot_pass', (req, res, next) => {
 
   if (global.onLine) {
     forgotPassword(req, res, (err, data) => {
       if (err) {
-        log.error("ezrzerzer",  err.message)
+        log.error("ezrzerzer", err.message)
         globalService.sendError(res, 405, err.message);
       }
       log.error("sqsss", data)

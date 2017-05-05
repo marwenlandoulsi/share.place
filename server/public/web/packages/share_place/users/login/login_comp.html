@@ -41,7 +41,7 @@
           <div class="label">Email</div>
           <material-input  required label="example@domain.com" [(ngModel)]="user.email" class="mail"></material-input>
         </div>
-        <div class="pass">
+        <div class="pass" id="inputSym">
           <div class="label">Password</div>
           <div class="forgot"><a href="#" tabindex="-1" (click)="forgotPassDisplayed = true">forgot?</a></div>
           <material-input required [(ngModel)]="user.pass" type="password" class="password labelPassw" (keyup.enter)="login()"></material-input>
@@ -67,6 +67,6 @@
   </div>
 
   <footer>
-    <div class="copy">Copyright © 2017 share.place. All rights reserved.</div>
+    <div class="copy">Copyright © 2017 Share.Place. All rights reserved.</div>
   </footer>
 </div>

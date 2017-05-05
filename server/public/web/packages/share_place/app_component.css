@@ -37,6 +37,7 @@ nav a.router-link-active {
   width: 100%;
   background-color: #4e394c;
   padding: 2em 0 0 2em;
+  top: 0;
 }
 
 .content {
@@ -114,16 +115,6 @@ nav a.router-link-active {
 
 }
 
-.profile_chmp:before {
-  font-family: FontAwesome;
-  content: "\f013";
-  font-size: 20px;
-  font-weight: normal;
-  color: #263a53;
-  vertical-align: middle;
-  margin-right: 5px;
-
-}
 
 material-button .content {
   padding: 0.4em 0.57em !important;
@@ -152,3 +143,46 @@ material-button.menuItem.profile, material-button.menuItem.logout {
   display: inline;
 }
 
+.btnHeader{
+  -webkit-app-region: no-drag;
+  background-color: transparent;
+  border: none;
+  padding: 5px 10px;
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+  -o-border-radius: 0;
+  border-radius: 0;
+  cursor: pointer;
+  color: #D1D1D1;
+  font: normal normal normal 1.1em/1 'Material-Design-Iconic-Font';
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.btnsWindow {
+  display: inline-block;
+  margin-left: 3em;
+}
+.btnHeader.minus:before,
+.btnHeader.window-maximize:before,
+.btnHeader.closeWind:before{
+  color: #eeeeee;
+}
+.btnHeader.minus:before{
+  content: '\f1eb';
+  vertical-align: super;
+}
+.btnHeader.window-maximize:before {
+  content: '\f1ea';
+}
+
+.btnHeader.closeWind:before{
+  content: '\f136';
+}
+.imgProfil img {
+  -webkit-app-region: no-drag;
+}
+
+.btnHeader:hover:before{
+  color: #8792A0;
+}

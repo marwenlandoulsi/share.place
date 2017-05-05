@@ -1,5 +1,4 @@
 import 'package:share_place/common/util.dart' as util;
-
 class User {
   String _id;
   Map<String, String> photoIdMap;
@@ -37,6 +36,10 @@ class User {
     print("loaded User : ${toReturn.toJson()}");
     return toReturn;
   }
+
+  User.withRole(String id, String folderId, RoleEnum role) :
+    this._id = id,
+    this.folders = {folderId:role};
 
   factory User.empty() =>
       new User(
@@ -117,6 +120,8 @@ class User {
     }
     return roleOnFolder.index >= role.index;
   }
+
+  String get photoIdM => photoIdMap == null ? null : photoIdMap["photoIdM"];
 
 }
 

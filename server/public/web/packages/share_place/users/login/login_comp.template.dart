@@ -470,6 +470,7 @@ class ViewLoginComp0 extends AppView<import3.LoginComp> {
     _el_64.setAttribute(shimCAttr,'');
     _el_45.append(_el_64);
     _el_64.className = 'pass';
+    createAttr(_el_64,'id','inputSym');
     Text _text_65 = new Text('\n          ');
     _el_64.append(_text_65);
     _el_66 = doc.createElement('div');
@@ -601,7 +602,7 @@ class ViewLoginComp0 extends AppView<import3.LoginComp> {
     _el_103.setAttribute(shimCAttr,'');
     _el_101.append(_el_103);
     _el_103.className = 'copy';
-    Text _text_104 = new Text('Copyright © 2017 share.place. All rights reserved.');
+    Text _text_104 = new Text('Copyright © 2017 Share.Place. All rights reserved.');
     _el_103.append(_text_104);
     Text _text_105 = new Text('\n  ');
     _el_101.append(_text_105);

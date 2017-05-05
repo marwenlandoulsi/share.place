@@ -129,7 +129,7 @@ class ProfileComp implements OnInit {
     _environment.uploading = uploading;
   }
 
-  String get photoId => connectedUser?.photoIdMap == null ? null : connectedUser.photoIdMap["photoIdM"];
+  String get photoId => connectedUser?.photoIdM;
 
   String get userEmail {
     String email = connectedUser.email;

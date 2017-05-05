@@ -98,7 +98,7 @@ class SocketIoClient {
   attachBroadcast(Map<String, PlaceParam> eventMap) {
     eventMap.forEach((String event, PlaceParam fireParam) =>
         on(event, (data) {
-          print("event received $event");
+          print("socket io event received $event");
           eventBus.fire({
             fireParam: data
           });

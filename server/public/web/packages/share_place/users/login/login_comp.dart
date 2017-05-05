@@ -75,8 +75,10 @@ class LoginComp implements OnInit {
 
   List<String> get messages => _environment.messages;
 
-  String get loginFacebookUrl => conf.isWebApp ? "/auth/facebook/" : "${conf.remoteUrl}/auth/facebook/d/${conf.port}";
-  String get loginGoogleUrl => conf.isWebApp ? "/auth/google/" : "${conf.remoteUrl}/auth/google/d/${conf.port}";
+  //String get loginFacebookUrl => conf.isWebApp ? "/auth/facebook/" : "${conf.remoteUrl}/auth/facebook/d/${conf.port}";
+  //String get loginGoogleUrl => conf.isWebApp ? "/auth/google/" : "${conf.remoteUrl}/auth/google/d/${conf.port}";
+  String get loginFacebookUrl =>"/auth/facebook/";
+  String get loginGoogleUrl => "/auth/google/";
 
   /**
    * We must force the user to click only once on fb link : otherwise we can't handle the callback

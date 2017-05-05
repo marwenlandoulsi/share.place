@@ -3,19 +3,46 @@
 
 <head>
   <base href="">
+  <title>Share.Place</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
   <link rel="stylesheet" href="../font-awesome-4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="../material-design-iconic-font/css/material-design-iconic-font.css">
   <link rel="icon" type="image/ico" href="../images/faviconsp.ico">
-  <link rel="stylesheet" href="styles.css">
 
+  <link rel="stylesheet" href="styles.css">
 
   <script defer src="main.dart" type="application/dart"></script>
   <script defer src="packages/browser/dart.js"></script>
+
+  <script src="jquery.js"></script>
+  <script src="jquery.scrollbar.js"></script>
+  <link rel="stylesheet" href="scrollbar.css" />
+
+  <script type="application/javascript">
+    function openFileDialogConditionally(event, label) {
+      var rect = label.getBoundingClientRect();
+      var isInClickableZone = false;
+//        console.log(rect.top, rect.right, rect.bottom, rect.left);
+//        console.log(" mouse postion :", event.clientX, "label position", rect.left);
+      if (event.clientX >= rect.left && event.clientX <= rect.left + label.offsetWidth) {
+        if (event.clientY >= rect.top - 35 && event.clientY <= rect.top + label.offsetHeight) {
+          isInClickableZone = true;
+        }
+      }
+
+      if (!isInClickableZone)
+        event.preventDefault();
+
+    }
+
+
+  </script>
+
   <script type="application/javascript">
     function dispatchWindowEvent(detail) {
+      console.log("dispatchWindowEvent", detail)
       var event = document.createEvent('CustomEvent');
       event.initCustomEvent('sp', false, false, detail);
       window.dispatchEvent(event);
@@ -26,49 +53,54 @@
     });
 
     //prevent file drop to open in window body
-    window.addEventListener("dragover",function(e){
-      var drop  = document.getElementById('fileForm');
+    window.addEventListener("dragover", function (e) {
+      var drop = document.getElementById('fileForm');
       e = e || event;
-      console.log('e.target.id' ,e.target.id) ;
+      console.log('e.target.id', e.target.id);
       // check wich element is our target
       e.preventDefault();
 
-    },false);
+    }, false);
 
 
-
-    window.addEventListener("drop",function(e){
-      var drop  = document.getElementById('fileForm');
+    window.addEventListener("drop", function (e) {
+      var drop = document.getElementById('fileForm');
       e = e || event;
-      console.log('e.target' ,e.target.name) ;
+      console.log('e.target', e.target.name);
       if (e.target.type != "file") {  // check wich element is our target
         e.preventDefault();
       }
-    },false);
+    }, false);
+
+    window.addEventListener('showScroller', function (e) {
+      showScroll();
+    });
   </script>
 
 
 </head>
-
 <body>
-<my-app><div style="text-align:center; line-height: 81;"><img style="margin: 0 auto" src="../images/logo128.gif"></div> </my-app>
-<script src="../socketIo/socket.io.js"></script>
-<!--
-<script>
-  var socket = io.connect();
-  socket.on('connect', () => {
-    console.log('connected to server');
+<my-app>
 
-  });
-  socket.on('disconnect', () => {
-    console.log('disconnected from server');
-  });
-  socket.on('comment', (data) => {
-  	window.alert("socketio : "+ data);
-    console.log('information', data);
-  });
+  <img style="
+  position: fixed;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+ " src="../images/logo128.gif">
+</my-app>
+
+<script type="text/javascript">
+  function showScroll() {
+    console.log("showing scroll for ", jQuery('.scrollbar-macosx'));
+    jQuery('.scrollbar-macosx').scrollbar();
+  }
+  //jQuery(document).ready();
 </script>
--->
+
+<script src="../socketIo/socket.io.js"></script>
+
 
 <input type="hidden" id="baseUrl" value="err"/>
 <input type="hidden" id="loginUrl" value="err"/>
@@ -82,38 +114,7 @@
   document.getElementById('loginUrl').value = "http://app.share.place";
   document.getElementById('port').value = window.location.port;
 </script>
-<script type="application/javascript">
-  function dispatchWindowEvent(detail) {
-    console.log("dispatchWindowEvent", detail)
-    var event = document.createEvent('CustomEvent');
-    event.initCustomEvent('sp', false, false, detail);
-    window.dispatchEvent(event);
-  }
-  window.addEventListener('spB', function (e) {
-    console.log(e.detail);
-  });
 
-  //prevent file drop to open in window body
-  window.addEventListener("dragover",function(e){
-    var drop  = document.getElementById('fileForm');
-    e = e || event;
-    console.log('e.target.id' ,e.target.id) ;
-    // check wich element is our target
-    e.preventDefault();
-
-  },false);
-
-
-
-  window.addEventListener("drop",function(e){
-    var drop  = document.getElementById('fileForm');
-    e = e || event;
-    console.log('e.target' ,e.target.name) ;
-    if (e.target.type != "file") {  // check wich element is our target
-      e.preventDefault();
-    }
-  },false);
-</script>
 </body>
 
 </html>

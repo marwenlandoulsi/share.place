@@ -131,7 +131,6 @@ role-chooser-comp {
   font-weight: bold;
 }
 
-
 .addUserDiv {
   text-align: right;
   background: url("../images/tiret-grey.png") repeat-x center center;
@@ -142,13 +141,34 @@ role-chooser-comp {
   background: #eeeef0;
   padding-left: 0.5em;
   display: inline;
-  font-size: 12px;
+  font-size: 1em;
   vertical-align: middle;
   cursor: pointer;
+  font-family: 'Material-Design-Iconic-Font';
+  -webkit-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+  -webkit-user-select: none; /* Chrome, Opera, Safari */
+  -moz-user-select: none; /* Firefox 2+ */
+  -ms-user-select: none; /* IE 10+ */
+  user-select: none; /* Standard syntax */
+}
+
+.addUserDiv_inside:after {
+  font-size: 2.3em;
+  color: #21BAF5;
+  content: '\f276';
+}
+
+.addUserDiv_inside:hover:after, .addUserDiv_inside:hover span {
+  color: #6b707b;
 }
 
 .addUserDiv_inside:hover {
-  opacity: 0.7;
+  opacity: 0.9;
+}
+.addUserDiv_inside span{
+ vertical-align: super;
 }
 
 material-input.themeable {
@@ -158,18 +178,18 @@ material-input.themeable {
 
 .modal-footer {
   text-align: center;
-  background-color: #eeeef0;
   padding-bottom: 5%;
+  background-color: #eeeef0;
+
 }
 
-material-button.submitbottom.btn_login.is-raised  {
-  margin: 0 auto;
-  width: auto!important;
+material-button.submitbottom.btn_login.is-raised {
+  margin: 0 auto !important;
+  width: auto !important;
   padding-left: 20px;
   padding-right: 40px;
   background: #00adef url("../images/arrow-white.png") no-repeat 84% 49%;
 }
-
 
 .blueadd {
   width: 18px;
@@ -185,11 +205,4 @@ material-input.themeable {
 
 .textCenter, .rolesLine {
   text-align: center;
-}
-
-.containerInvites {
-  max-height: 30em;
-  overflow-y: scroll;
-  min-height: 10em;
-  margin-bottom: 3em;
 }

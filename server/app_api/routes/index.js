@@ -186,7 +186,33 @@ var post = function (url, callback, options) {
     });
   }
 };
-
+var del = function (url, callback, options) {
+  if (options === undefined) {
+    router.delete(url, function (req, res) {
+      try {
+        callback(req, res);
+      } catch (e) {
+        log.error(e);
+      }
+    });
+  } else if (options.role === undefined) {
+    router.delete(url, function (req, res) {
+      try {
+        callback(req, res);
+      } catch (e) {
+        log.error(e);
+      }
+    });
+  } else {
+    router.delete(url, options.role, function (req, res) {
+      try {
+        callback(req, res);
+      } catch (e) {
+        log.error(e);
+      }
+    });
+  }
+};
 
 get('/place', ctrlProxy.get);
 post('/place', ctrlProxy.post);
@@ -226,6 +252,7 @@ get('/place/:placeId/folder', ctrlProxy.get);
 get('/user', ctrlProxy.get);
 get('/place/:placeId/user', ctrlProxy.get);
 get('/user/:userId', ctrlProxy.get);
+del('/place/:placeId/folder/:folderId/user/:userId', ctrlProxy.delete);
 // news
 get('/news', ctrlProxy.get);
 

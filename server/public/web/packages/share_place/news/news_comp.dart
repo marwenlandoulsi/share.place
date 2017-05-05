@@ -32,9 +32,11 @@ class NewsComp implements OnInit {
 
   show(Map<PlaceParam, String> params) async {
     var folderId = params[PlaceParam.folderId];
+/*
     if (folderId != null) {
       Folder folder = await _placeService.getFolder(folderId);
       events = await _placeService.getNewsEvents(folder);
     }
+*/
   }
 }

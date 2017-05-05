@@ -8,8 +8,8 @@
     </div>
   </div>
   <div class="subtitle">in {{selectedPlace?.name}}</div>
-  <ul class="list">
-
+  <ul class="list contentScroll">
+    <div class="scrollbar-macosx">
     <li *ngFor="let userItem of users" class="user">
       <div class="userLine" [class.popupOpen]="clickedUserId == userItem.id"  (click)="clickedUserId = userItem.id"
            popupSource alignPositionX="after"
@@ -23,5 +23,6 @@
                   [visible]="clickedUserId == userItem.id" [parent]="self"  [arrowCss]="'arrowLeft'">
       </info-popup>
     </li>
+    </div>
   </ul>
 </div>

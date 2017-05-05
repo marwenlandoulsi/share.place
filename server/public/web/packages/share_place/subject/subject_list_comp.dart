@@ -16,6 +16,7 @@ import 'package:share_place/common/ui/button_comp.dart';
 import 'package:share_place/users/info_popup/info_popup.dart';
 import 'package:share_place/users/info_popup/popup_parent.dart';
 import 'package:share_place/users/invite/invite_dialog_comp.dart';
+import 'package:share_place/users/change_roles/change_roles_dialog_comp.dart';
 import 'package:share_place/users/user.dart';
 import 'package:share_place/users/user_list_provider.dart';
 import 'package:share_place/postit/postit_component.dart';
@@ -29,6 +30,7 @@ import 'package:share_place/postit/postit_component.dart';
       ButtonComp,
       materialDirectives,
       InviteUsersDialogComp,
+      ChangeRolesDialogComp,
       PostitComponent,
       InfoPopup
     ],
@@ -60,6 +62,7 @@ class SubjectListComponent
   }
 
   show(Map<PlaceParam, dynamic> params) async {
+
     var folderId = params[PlaceParam.folderId];
     var fileId = params[PlaceParam.lockStateChange];
     if (fileId == null)
@@ -107,6 +110,14 @@ class SubjectListComponent
     _environment.inviteUsersDialog = show;
   }
 
+  bool get editing => _environment.editRolesUsersDialog;
+
+  set editing(bool show) {
+    _environment.editRolesUsersDialog = show;
+  }
+
+
+
   bool isOwner(User user) =>
       user.hasGreaterRole(RoleEnum.owner, selectedFolder.id);
 
@@ -141,9 +152,15 @@ class SubjectListComponent
 
   Future<Null> getSubjects(String placeId, String folderId) async {
     subjects = await _placeService.getFolderSubjects(placeId, folderId);
-    subjects.forEach((FileInfo finfo) {
-      print("loaded ${finfo.toJson()}");
-    });
+    _environment.showScrollBar('showScroller');
+  }
+
+  bool computeSizes( Element subjectList ) {
+    int remainingSpace = window.innerHeight - 175 - subjectList.offsetHeight;
+    if( remainingSpace > 0 ) {
+      querySelector("#fileForm").style.height = "${remainingSpace}px";
+    }
+    return remainingSpace <= 0;
   }
 
   Future<Null> gotoSubject(FileInfo subject) {
@@ -151,6 +168,7 @@ class SubjectListComponent
       renaming = null;
 
     onSelect(subject);
+
   }
 
   Place get selectedPlace => _environment.selectedPlace;
@@ -163,19 +181,29 @@ class SubjectListComponent
     _environment.selectedSubject = subject;
   }
 
-  bool get iSOwner =>
+  //FIXME : must b renamed to isOwner
+  bool get connectedUserIsOwner =>
       _environment.connectedUserHasGreaterRole(
           RoleEnum.owner, _environment.selectedFolder);
 
   void add() {
-    if (!iSOwner) {
-       String errorMessage = " Viewer Can't invite new users";
-      _environment.serverError = errorMessage;
+    if (!connectedUserIsOwner) {
+      _environment.serverError = "Viewer can't invite new users";
       return;
     }
     if (_environment.selectedFolder != null)
-      _environment.inviteUsersDialog = true;
+      adding = true;
     _environment.fireEvent(PlaceParam.addButtonPressed, "invitePeople");
+  }
+
+  void editRoles() {
+    if (!connectedUserIsOwner) {
+      _environment.serverError = "Viewer can't change users roles";
+      return;
+    }
+    if (_environment.selectedFolder != null)
+      editing = true;
+    _environment.fireEvent(PlaceParam.editRolesPressed, "editRoles");
   }
 
   void rename() {
@@ -257,5 +285,7 @@ class SubjectListComponent
 
   bool wasRead(FileInfo subject) =>
       _environment.hasNotification(subject.folderId, subject.fileId);
+
+
 }
 

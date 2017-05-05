@@ -16,8 +16,8 @@ var eNotify = require('electron-notify');
 //let request = require('request-promise').defaults({ simple: false });
 let request = require('request');
 let http = require("https");
-
-if(process.env.DEV)
+console.log("process.env.DEV", process.env.DEV)
+if (process.env.DEV)
   http = require("http");
 
 let jsonfile = require('jsonfile');
@@ -249,8 +249,8 @@ module.exports.getFile = function (req, res) {
           if (!sameFile) {
             fs.unlink(pathToFile, function (err) {
               if (err) {
-                log.error('err to delete from '+pathToFile+' :', err);
-                showNotification("Error occured try again or delete the file in :"+pathToFile);
+                log.error('err to delete from ' + pathToFile + ' :', err);
+                showNotification("Error occured try again or delete the file in :" + pathToFile);
               }
               showNotification("Downloading File", dataFile.name);
               downloadFile(url, pathToDir, pathToFile, mode, (err, ok) => {
@@ -724,6 +724,20 @@ module.exports.post = function (req, res) {
    }*/
 }
 
+module.exports.delete = function (req, res) {
+  let url = req.url;
+  if (global.onLine) {
+    httpDelete(url, (err, toReturn) => {
+      if (err)
+        globalService.sendError(res, 402, "error occured try again")
+
+      globalService.sendJsonResponse(res, 200, toReturn)
+
+    })
+  }else{
+    showDialogBox("info", "share.place", "sorry you are offLine you can't delete")
+  }
+}
 module.exports.put = function (req, res) {
   let url = req.url;
   let userId = req.user._id;
@@ -755,8 +769,7 @@ module.exports.put = function (req, res) {
           }
           event = JSON.stringify(event);
           global.mainWindow.webContents.executeJavaScript(
-
-              `dispatchWindowEvent(`+event+`);`
+              `dispatchWindowEvent(` + event + `);`
           );
           globalService.sendJsonResponse(res, 200, toReturn);
 
@@ -983,7 +996,47 @@ let httpPostJson = function (url, jsonData, callBack) {
 
   })
 }
+let httpDelete = function (url, callBack) {
+  let headers = {
+    'Cookie': global.cookieReceived
+  }
+  let options = {
+    url: constants.optionsDel.url + url,
+    method: constants.optionsDel.method,
+    headers: headers
+  }
+  request(options, function (error, response, body) {
 
+    if (error) {
+      log.error("error to delete Data", error.message);
+      return callBack(error)
+    }
+
+    // Print out the response body
+
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      let data;
+      if (typeof (body) != "object") {
+        data = JSON.parse(body).data
+      } else {
+        data = body.data;
+      }
+      return callBack(null, data);
+    } else {
+      let err = new Error();
+      if (typeof (body) != "object") {
+        err.message = JSON.parse(body).error;
+        err.name = JSON.parse(body).errorDetail;
+      } else {
+        err.message = body.error;
+        err.name = body.errorDetail;
+      }
+
+      return callBack(err);
+    }
+
+  })
+}
 let httpPutJson = function (url, jsonData, callBack) {
 
   let headers = {

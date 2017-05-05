@@ -46,7 +46,7 @@ class PlaceService {
 
     var statusCode = resp.statusCode;
     var respBody = JSON.decode(resp.body);
-    var msg = respBody['msg'];
+    var msg = respBody['message'];
     if (msg != null)
       _environment.addMessage(msg);
 
@@ -56,6 +56,9 @@ class PlaceService {
       return toReturn;
     } else if (statusCode == 401) {
       _environment.connectedUser = null;
+      _environment.serverError = respBody['error'];
+      return null;
+    } else if (statusCode == 403) {
       _environment.serverError = respBody['error'];
       return null;
     } else if (statusCode > 400 && statusCode < 500) {
@@ -127,8 +130,6 @@ class PlaceService {
 
   Future<Map<String, dynamic>> postFileForm(html.FormData form,
       String postUrl) async {
-
-
     html.HttpRequest response = await html.HttpRequest
         .request(
         postUrl,
@@ -170,11 +171,6 @@ class PlaceService {
     } catch (e) {
       throw _handleError(e);
     }
-  }
-
-  Future<Folder> getFolder(String folderId) async {
-    return (await getFolders(_environment.selectedPlace.id))
-        .firstWhere((folder) => folder.id == folderId);
   }
 
   Future<List<User>> getPlaceUsers() async {
@@ -221,7 +217,11 @@ class PlaceService {
     try {
       final response = await get(
           "/sp/place/${placeId}/folder/${folderId}/fileInfo");
-      final subjects = _extractData(response)
+      var subjectsJson = _extractData(response);
+      if (subjectsJson == null)
+        return null;
+
+      final subjects = subjectsJson
           .map((value) => new FileInfo.fromJson(value))
           .toList();
       return subjects;
@@ -523,7 +523,7 @@ class PlaceService {
   }
 
   Future<User> saveProfile(User user, {bool mailChanged,
-  String newPass }) async {
+    String newPass }) async {
     var userBody = {};
     setIfNotEmpty(userBody, "name", user.name);
     setIfNotEmpty(userBody, "skype", user.skype);
@@ -585,20 +585,43 @@ class PlaceService {
   }
 
 
-
   Future<List<User>> removeUserFromFolder(User user) async {
     try {
       await del(
-          '/sp/place/${_environment.selectedPlace.id}/folder/${_environment.selectedFolder.id}/user/${user.id}');
+          '/sp/place/${_environment.selectedPlace.id}/folder/${_environment
+              .selectedFolder.id}/user/${user.id}');
+    } catch (e) {
+      throw _handleError(e);
+    }
+  }
+
+  Future<Folder> deleteFolder(Folder folder) async {
+    try {
+    await del(
+        '/sp/place/${_environment.selectedPlace.id}/folder/${folder.id}');
+   _environment.selectedFolder = null;
 
     } catch (e) {
       throw _handleError(e);
     }
   }
 
-  Future<Null> deleteFolder(Folder folder) async {
-    await del(
-        '/sp/place/${_environment.selectedPlace.id}/folder/${folder.id}');
-    _environment.selectedFolder = null;
+  Future<Null> changeRoles(List<User> userRoles) async {
+    StringBuffer buffer = new StringBuffer("[");
+    for (int i = 0; i < userRoles.length; i++) {
+      User user = userRoles[i];
+      buffer.write(JSON.encode( user.toJson() ));
+      if (i + 1 < userRoles.length)
+        buffer.write(",");
+    }
+    buffer.write("]");
+
+    print("saving roles : $buffer");
+
+    await put
+    ('/sp/place/${_environment.selectedPlace.id}/folder/${_environment
+        .selectedFolder.id}/user/role/list', headers: _headers,
+    body: JSON.encode(buffer.toString())
+    );
   }
 }
