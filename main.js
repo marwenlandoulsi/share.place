@@ -9,14 +9,11 @@ const {autoUpdater} = require('electron-updater');
 autoUpdater.autoDownload = true;
 autoUpdater.logger = log;
 autoUpdater.logger.transports.file.level = 'info';
-log.info('\n' +
-    '  ================================================  \n' +
-    '||              share.place V' + pjson.version + '               ||\n' +
-    '  ================================================');
+log.info("===================||   share.place V" + pjson.version + "   ||===================");
 
 var ipcMain = require('electron').ipcMain;
 //const {appUpdater} = require('./autopdater');
-
+const isOnline = require('is-online');
 var http = require('http');
 
 var fs = require('fs-extra');
@@ -39,8 +36,14 @@ ipcMain.on('online-status-changed', (event, status) => {
 
   global.onLine = status;
   if (status) {
-    mainWindow.setOverlayIcon(path.join(__dirname, 'Online.ico'), 'you are onLine');
-
+    isOnline({timeout: 2000}).then(online => {
+      if (online) {
+        mainWindow.setOverlayIcon(path.join(__dirname, 'Online.ico'), 'you are onLine');
+      } else {
+        global.onLine = online;
+        mainWindow.setOverlayIcon(path.join(__dirname, 'Offline-red.ico'), 'you are offLine');
+      }
+    });
   } else {
     mainWindow.setOverlayIcon(path.join(__dirname, 'Offline-red.ico'), 'you are offLine');
   }
@@ -73,9 +76,17 @@ app.on('window-all-closed', () => {
 
     storages: ["clear"]
   }, () => {
-    server = null;
+
   }])
   app.quit();
+})
+
+app.makeSingleInstance((commandLine, workingDirectory) => {
+  // Someone tried to run a second instance, we should focus our window.
+  if (mainWindow) {
+    if (mainWindow.isMinimized()) mainWindow.restore()
+    mainWindow.focus()
+  }
 })
 app.on('ready', function () {
 
@@ -127,10 +138,10 @@ app.on('ready', function () {
   mainWindow.on('closed', function () {
     /*mainWindow.webContents.session.clearStorageData([{
 
-      storages: ["clear"]
-    }, () => {
+     storages: ["clear"]
+     }, () => {
 
-    }])*/
+     }])*/
     app.quit();
     mainWindow = null;
     expressApp = null;
