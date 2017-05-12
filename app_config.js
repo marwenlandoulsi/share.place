@@ -36,8 +36,8 @@ module.exports = Object.freeze({
   },
   oauth: {
     'facebookAuth': {
-      'clientID': '163347820840648', // your App ID
-      'clientSecret': '833ecd841c606f4fa5c9c224492a048f', // your App Secret
+      'clientID': '1857571421164238', // your App ID
+      'clientSecret': 'a5c3db5b130f6b45f32fad88563b7137', // your App Secret
       'callbackURL': 'http://localhost:3000/auth/facebook/callback',
       'profileFields': ['id', 'email', 'gender', 'link', 'locale', 'name', 'timezone', 'updated_time', 'verified', 'picture']
     },

@@ -57,10 +57,10 @@
             <!--<div *ngIf="renaming == null || renaming?.id != subject?.id" class="subject" (dragstart)="$event.dataTransfer.setData('subjectId', subject.id);" draggable="true">-->
             <div *ngIf="renaming == null || renaming?.id != subject?.id" class="subject">
               <div class="thumb">
-                <div *ngIf="subject.thumbId == null" class="spinnerInner">
+                <div *ngIf="subject.status == 'waiting'" class="spinnerInner">
                   <material-spinner class="spinner"></material-spinner>
                 </div>
-                <img *ngIf="subject.thumbId != null"
+                <img *ngIf="subject.status != 'waiting'"
                   src="/sp/place/{{selectedPlace.id}}/folder/{{selectedFolder?.id}}/file/{{subject.fileId}}/version/{{subject.v}}/thumb">
               </div>
               <div *ngIf="subject.dataType == 'file'" class="version"> V.{{subject.v}}</div>

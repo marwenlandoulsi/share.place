@@ -288,7 +288,8 @@ TODO see what font to use
 
 .placePanel .panel-name .primary-text {
   font-weight: bold;
-  font-size: 1.2em;
+  /*font-size: 1.2em;*/
+  font-size: 1em;
   position: relative;
   line-height: 1em;
   padding: 3px 0 0 1.8em !important;
@@ -1547,7 +1548,7 @@ input {
   width: 2.1em;
   height: 2.1em;
   line-height: 2em;
-  border: 0.1em solid rgba(146, 146, 146, 0.63);
+  border: 1px solid rgba(146, 146, 146, 0.63);
   display: inline-block;
   vertical-align: top;
   background-color: white;

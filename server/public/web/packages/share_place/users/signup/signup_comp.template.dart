@@ -334,7 +334,7 @@ class ViewSignupComp0 extends AppView<import3.SignupComp> {
     _el_12.append(_text_28);
     Text _text_29 = new Text('\n  ');
     _el_2.append(_text_29);
-    Text _text_30 = new Text('\n\n\n  ');
+    Text _text_30 = new Text('\n\n  ');
     _el_0.append(_text_30);
     _el_31 = doc.createElement('div');
     _el_31.setAttribute(shimCAttr,'');

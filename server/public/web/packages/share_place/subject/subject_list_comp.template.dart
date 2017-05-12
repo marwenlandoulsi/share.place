@@ -995,8 +995,8 @@ class ViewSubjectListComponent6 extends AppView<import3.SubjectListComponent> {
     return notFoundResult;
   }
   void detectChangesInternal() {
-    _NgIf_4_5.ngIf = (parent.locals['\$implicit'].thumbId == null);
-    _NgIf_6_5.ngIf = (parent.locals['\$implicit'].thumbId != null);
+    _NgIf_4_5.ngIf = (parent.locals['\$implicit'].status == 'waiting');
+    _NgIf_6_5.ngIf = (parent.locals['\$implicit'].status != 'waiting');
     _NgIf_9_5.ngIf = (parent.locals['\$implicit'].dataType == 'file');
     final currVal_4 = parent.locals['\$implicit'].users;
     if (import11.checkBinding(_expr_4,currVal_4)) {
