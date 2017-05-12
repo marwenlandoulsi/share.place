@@ -11,9 +11,18 @@
     </material-dialog>
   </modal>
 
+  <modal *ngIf="editingRole" [visible]="editingRole">
+    <material-dialog defaultPopupSizeProvider
+                     enforceSpaceConstraints
+                     class="profilemenuvisible">
+      <change-roles-dialog></change-roles-dialog>
+    </material-dialog>
+  </modal>
+
+
   <div class="header header-top">
-    <img src="../images/logo0.png" class="logo">
-    <label class="desktopVersion" *ngIf="!isWebApp">V0.0.49</label>
+    <div class="logo_header"><img src="../images/logo0.png" class="logo"></div>
+    <label class="desktopVersion">V0.1.0</label>
     <div class="alertInner">
       <notification [msg]="error" class="notif error" [duration]="-1"></notification>
       <div *ngIf="messages != null && messages.length > 0">
@@ -27,17 +36,18 @@
         <img popupSource #profileMenu="popupSource" alignPositionX="end"
              alignPositionY="after"
              src="/auth/user/photo/s/{{connectedUser?.id}}" class="profileImg"
-             (click)="profileMenuVisible = !profileMenuVisible"></div>
-      <!--<a href="/profile"><img src="../images/profile.png"></a>-->
+             (click)="profileMenuVisible = !profileMenuVisible">
+      </div>
+
       <material-popup defaultPopupSizeProvider
                       enforceSpaceConstraints
                       [source]="profileMenu"
                       [(visible)]="profileMenuVisible"
                       class="profilemenuvisible" *ngIf="connectedUser != null ">
-        <div header class="popupHeader connectUsername"  >
+        <div header class="popupHeader connectUsername">
           <span>{{connectedUser?.displayName}}</span>
         </div>
-        <div class="popupContent" >
+        <div class="popupContent">
           <material-button (click)="profile()" class="menuItem profile">
             <div class="profile_chmp">Edit profile</div>
           </material-button>

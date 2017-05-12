@@ -5,6 +5,7 @@
 
 let log = require('electron-log');
 
+let request = require('request');
 
 var fsExtra = require('fs-extra');
 var fs = require("fs");
@@ -21,9 +22,9 @@ module.exports = {
   sendError: function (res, statusCode, errorMessage, errorDetail) {
     var err = new Error();
     res.status(statusCode);
-    let jsonRes = {error: errorMessage, errorDetail:errorDetail}
+    let jsonRes = {error: errorMessage, errorDetail: errorDetail}
     res.json(jsonRes);
-    log.error(jsonRes);
+    // log.error(jsonRes);
   },
   handleError: function (res, err) {
     res.status(err.status);
@@ -77,6 +78,55 @@ module.exports = {
     }
     sID = String(sidToken[1]).substring(0, String(sidToken[1]).indexOf('.'));
     global.mainWindow.webContents.executeJavaScript('document.getElementById("cc").value = "' + sID + '";');
+  },
+  requestRemoteServer: (options, callBack) => {
+    request(options, function (error, response, body) {
+
+      if (error) {
+        log.error("error to delete Data", error.message);
+        return callBack({errorRequest: error})
+      }
+
+      // Print out the response body
+
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        let data;
+        if (typeof (body) != "object") {
+          data = JSON.parse(body).data
+        } else {
+          data = body.data;
+        }
+        return callBack(null, data);
+      } else {
+        let errToReturn = {}
+        if (typeof (body) != "object") {
+          errToReturn.error = JSON.parse(body).error;
+          errToReturn.errorDetail = JSON.parse(body).errorDetail;
+        } else {
+          errToReturn.error = body.error;
+
+          errToReturn.errorDetail = body.errorDetail;
+        }
+
+        return callBack({errFromServer: errToReturn});
+      }
+
+    })
+  },
+  deleteFolderRecursive: (path, folderName) => {
+    if (path.indexOf(folderName) != -1) {
+      if (fs.existsSync(path)) {
+        fs.readdirSync(path).forEach(function (file, index) {
+          var curPath = path + "/" + file;
+          if (fs.lstatSync(curPath).isDirectory()) { // recurse
+            deleteFolderRecursive(curPath, folderName);
+          } else { // delete file
+            fs.unlinkSync(curPath)
+          }
+        });
+        fs.rmdirSync(path);
+      }
+    }
   }
 
 }

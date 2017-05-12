@@ -5,6 +5,7 @@ class Folder {
   String name;
   String fullPath;
   List<Folder> _children = new List<Folder>();
+
   /*
   * Holds the notification count
   */

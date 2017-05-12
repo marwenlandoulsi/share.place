@@ -61,32 +61,32 @@ class ViewPlaceSearchComponent0 extends AppView<import3.PlaceSearchComponent> {
     _el_0.setAttribute(shimCAttr,'');
     parentRenderNode.append(_el_0);
     createAttr(_el_0,'id','search-component');
-    Text _text_1 = new Text('\n	');
+    Text _text_1 = new Text('\n  ');
     _el_0.append(_text_1);
     _el_2 = doc.createElement('h4');
     _el_2.setAttribute(shimCAttr,'');
     _el_0.append(_el_2);
     Text _text_3 = new Text('Place Search');
     _el_2.append(_text_3);
-    Text _text_4 = new Text('\n	');
+    Text _text_4 = new Text('\n  ');
     _el_0.append(_text_4);
     _el_5 = doc.createElement('input');
     _el_5.setAttribute(shimCAttr,'');
     _el_0.append(_el_5);
     createAttr(_el_5,'id','search-box');
-    Text _text_6 = new Text('\n	');
+    Text _text_6 = new Text('\n  ');
     _el_0.append(_text_6);
     _el_7 = doc.createElement('div');
     _el_7.setAttribute(shimCAttr,'');
     _el_0.append(_el_7);
-    Text _text_8 = new Text('\n		');
+    Text _text_8 = new Text('\n    ');
     _el_7.append(_text_8);
     var _anchor_9 = new Comment('template bindings={}');
     _el_7?.append(_anchor_9);
     _appEl_9 = new ViewContainer(9,7,this,_anchor_9);
     _TemplateRef_9_4 = new TemplateRef(_appEl_9,viewFactory_PlaceSearchComponent1);
     _NgFor_9_5 = new import6.NgFor(_appEl_9,_TemplateRef_9_4,this.parentInjector.get(import12.IterableDiffers),ref);
-    Text _text_10 = new Text('\n	');
+    Text _text_10 = new Text('\n  ');
     _el_7.append(_text_10);
     Text _text_11 = new Text('\n');
     _el_0.append(_text_11);
@@ -149,7 +149,7 @@ class ViewPlaceSearchComponent1 extends AppView<import3.PlaceSearchComponent> {
   }
   void detectChangesInternal() {
     this.detectContentChildrenChanges();
-    final currVal_1 = import13.interpolate1('\n			',locals['\$implicit'].name,'\n		');
+    final currVal_1 = import13.interpolate1('\n      ',locals['\$implicit'].name,'\n    ');
     if (import13.checkBinding(_expr_1,currVal_1)) {
       _text_1.text = currVal_1;
       _expr_1 = currVal_1;

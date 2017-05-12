@@ -77,7 +77,8 @@ body, input[text], button {
 .rightPanelinside {
   width: 83%;
   padding: 0 !important;
-  background-color: white;
+  background-color: #fff;
+  height: calc(100vh - 2.2em);
 }
 
 .centerP {
@@ -88,7 +89,6 @@ body, input[text], button {
   width: 55%;
   border-left: 0 !important;
   background: transparent !important;
-  min-height: 38.2em;
 }
 
 .panel {
@@ -271,8 +271,9 @@ TODO see what font to use
 
 .buttonGroup {
   float: right;
-  margin-right: 0.5em;
   width: 1.3em;
+  padding-left: 0.3em;
+  background-color: white;
 }
 
 .rightMenu {
@@ -322,19 +323,10 @@ TODO see what font to use
 }
 
 .row {
-  margin: 0.5em 0.5em 0 0.5em;
+  margin: 0.4em 0.5em 0 0.5em;
 }
 
-.header-top {
-  position: relative;
-  z-index: 1001;
-  width: 100%;
-  height: 2.2em;
-  background-color: #1F181F !important;
-  padding: 0 !important;
-  -webkit-app-region: drag;
-  overflow: hidden;
-}
+
 
 .imgBtn {
   height: auto !important;
@@ -355,6 +347,7 @@ TODO see what font to use
 .rightPanelinside_header {
   background: #8792A0;
   height: 2.5em;
+  display: none;
 }
 
 header.closed:hover,
@@ -479,7 +472,8 @@ main, header, footer {
   box-shadow: none;
   font-size: 12px;
   color: #505050;
-  width: calc(100% - 17px);
+  width: calc(100% - 18px);
+  padding: 0 9px !important;
 }
 
 #signup .passEqual .top-section {
@@ -650,6 +644,14 @@ textarea {
   width: calc(100% - 2.5em);
 }
 
+.files .newTopicBlock {
+  width: 100%;
+}
+
+.files .arowmenow {
+  width: calc(100% - 5.3em);
+}
+
 .btn_valid {
   position: absolute;
   right: 0;
@@ -685,6 +687,13 @@ textarea {
   -webkit-transition: 0.3s;
   -o-transition: 0.3s;
   transition: 0.3s;
+}
+
+.btn_valid:hover {
+  border-top: 1px solid rgb(70, 144, 209);
+  border-bottom: 1px solid rgb(70, 144, 209);
+  border-left: 1px solid rgb(70, 144, 209);
+  border-right: 1px solid rgb(70, 144, 209);
 }
 
 .files .btn_valid:hover:after {
@@ -887,7 +896,7 @@ material-ripple {
 }
 
 .userInfoPopup {
-  min-width: 14em;
+  min-width: 5em;
   padding: 0.7em 0.5em 0.4em 0.6em;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
@@ -980,18 +989,6 @@ header.closed .primary-text:before {
   background-image: url(../images/ring-alt.gif) no-repeat center center;
 }
 
-.headerPopVersion {
-  background-color: white !important;
-  padding: 1em 1em 0.5em 1em;
-  color: #273B54;
-  /*font-size: 1em;*/
-}
-
-.headerPopVersion .fileName {
-  margin-bottom: 0.3em;
-  font-weight: bold;
-}
-
 .popinVersion {
   background-color: #fff;
   padding-top: 1em;
@@ -1007,6 +1004,7 @@ header.closed .primary-text:before {
 
 .popinVersion .content {
   padding: 0.1em 0.57em !important;
+  font-size: 0.8em;
 }
 
 .popinVersion .menuItemVers i {
@@ -1061,7 +1059,7 @@ header.closed .primary-text:before {
   font-size: 1em;
   display: block;
   position: absolute;
-  top: 50%;
+  top: calc(100% - 3em);
   left: calc(50% - 3em);
   color: #bebebe;
   text-decoration: underline;
@@ -1414,8 +1412,8 @@ material-button.menuItem.profile .content, material-button.menuItem.logout .cont
 /*}*/
 
 input {
-  width: calc(100% - 20px) !important;
-  padding: 1px 5px 0 9px !important;
+  /*width: calc(100% - 20px) !important;*/
+  /*padding: 1px 5px 0 9px !important;*/
 }
 
 .renameDiv input {
@@ -1453,9 +1451,6 @@ input {
 }
 
 /**********/
-.folders .addBtn {
-  margin-top: -0.4em;
-}
 
 .folders .addBtn:before {
   font-size: 1.8em;
@@ -1505,6 +1500,94 @@ input {
   margin: 0 auto !important;
   text-align: center !important;
 }
+
+#changeRoleUsers .roleChooser role-item {
+  background: none !important;
+}
+
+#changeRoleUsers .roleChooser role-item.owner {
+  background: url("../images/tiret-black-long.png") no-repeat right 50% !important;
+}
+
+#changeRoleUsers .roleChooser role-item.delete {
+  background: url("../images/tiret-black-long.png") no-repeat left 50% !important;
+}
+
+#changeRoleUsers .roleChooser role-item.viewer,
+#changeRoleUsers .roleChooser role-item.writer {
+  background: url("../images/tiret-black.png") repeat-x center center !important;
+}
+
+#changeRoleUsers .changeRoleUsersbody .roleChooser role-item {
+  width: 25%;
+}
+
+#changeRoleUsers .roleChooser role-item.delete {
+  display: block;
+}
+
+#changeRoleUsers .roleChooser role-item.owner,
+#changeRoleUsers .roleChooser role-item.viewer {
+  text-align: center;
+}
+
+#changeRoleUsers material-button.submitbottom.btn_login.is-raised {
+  background: #00adef;
+  background-image: none;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+/* _ _ __ _ _ _ __ _ _ */
+.addTopicBtn {
+  font-family: 'Material-Design-Iconic-Font';
+  margin-left: -0.1em;
+  width: 2.1em;
+  height: 2.1em;
+  line-height: 2em;
+  border: 0.1em solid rgba(146, 146, 146, 0.63);
+  display: inline-block;
+  vertical-align: top;
+  background-color: white;
+  border-radius: 3px;
+  -moz-border-radius: 3px;
+  -o-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  text-align: center;
+  cursor: pointer;
+  float: right;
+}
+
+.addTopicBtn:before {
+  color: #dde2e5;
+  content: '\f221';
+  font-size: 1.7em;
+}
+
+.addTopicBtn:hover {
+  border-color: #4690D1;
+}
+
+.addTopicBtn:hover:before {
+  color: #4690D1;
+}
+
+#inviteUsers  input {
+  width: calc(100% - 12px) !important;
+  padding: 0 6px !important;
+}
+
+.versionComment {
+  padding: 0.6em 0;
+}
+/* Help */
+
+.u-userBackgroundColor:not(disabled),
+.u-userBackgroundColor:not(disabled),
+.u-userBackgroundColor:not(disabled){
+  background-color: red !important;
+}
+
 
 /*__________________*/
 

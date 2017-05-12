@@ -10,6 +10,10 @@
       {
         "1": "dart:convert",
         "5": false
+      },
+      {
+        "1": "package:logging/logging.dart",
+        "5": false
       }
     ],
     "6": "user.dart",
@@ -73,6 +77,13 @@
     "roleFromString": {
       "class": "Identifier",
       "name": "roleFromString",
+      "moduleUrl": "asset:share_place/lib/users/user.dart",
+      "prefix": null,
+      "value": null
+    },
+    "roleStr": {
+      "class": "Identifier",
+      "name": "roleStr",
       "moduleUrl": "asset:share_place/lib/users/user.dart",
       "prefix": null,
       "value": null

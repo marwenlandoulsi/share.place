@@ -18,7 +18,7 @@ class RoleItem {
   @Output() final EventEmitter<String> pressAction = new EventEmitter<String>();
   @Output() final EventEmitter<String> select = new EventEmitter<String>();
 
-  get role => itemRole;
+  String get role => itemRole;
 
   @Input() set role(String role) {
     itemRole = role;

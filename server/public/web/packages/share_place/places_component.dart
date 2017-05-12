@@ -15,6 +15,7 @@ import 'package:share_place/common/ui/button_comp.dart';
 import 'package:share_place/common/ui/text_comp.dart';
 import 'package:share_place/folder/folder_component.dart';
 import 'package:share_place/users/users_comp.dart';
+import 'package:share_place/common/util.dart';
 
 @Component(
     selector: 'places',
@@ -50,9 +51,14 @@ class PlacesComponent implements OnInit {
 
   Future<Null> save(String placeName) async {
     adding = false;
+    if (isEmpty(placeName, trim: true))
+      return null;
+
     try {
-      Place toSelect = await _placeService.createPlace(placeName);
-      await loadPlaces();
+      Place toSelect = await
+      _placeService.createPlace(placeName);
+      await loadPlaces
+        ();
       onSelect(toSelect);
     } catch (ex) {
       print(ex);

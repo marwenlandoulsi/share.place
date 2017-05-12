@@ -25,7 +25,7 @@ class Environment {
   User _connected;
   User _user;
   bool _userInviteDialogOpen;
-  bool _userEditRolesDialogOpen;
+  User _roleDialogUser;
   bool _isUploading;
   bool _loggedIn;
   bool _subscribeDialogVisible;
@@ -144,11 +144,11 @@ class Environment {
     eventBus.fire({PlaceParam.inviteUserDialog: open});
   }
 
-  bool get editRolesUsersDialog => _userEditRolesDialogOpen;
+  User get roleDialogUser => _roleDialogUser;
 
-  void set editRolesUsersDialog(bool open) {
-    this._userEditRolesDialogOpen = open;
-    eventBus.fire({PlaceParam.editRolesUsersDialog: open});
+  void set roleDialogUser(User user) {
+    this._roleDialogUser = user;
+    eventBus.fire({PlaceParam.editRolesUsersDialog: user != null});
   }
 
   bool get uploading => _isUploading;
@@ -222,7 +222,6 @@ enum PlaceParam {
   subscribe,
   addButtonPressed, //to remove post-its
   editRolesPressed,
-
   ioFolderUserConnected,
   ioFolderCreated,
   treatFolderCreated,
@@ -239,4 +238,5 @@ enum PlaceParam {
   ioSubjectCreated,
   ioSubjectChanged, //user invite, rename, new active user (need to refresh from db)
   ioFileActionCreated,
+  treatFileChanged,
 }

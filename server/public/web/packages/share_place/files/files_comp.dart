@@ -58,11 +58,6 @@ class FilesComp implements OnInit, PopupParent {
 
 
   show(Map<PlaceParam, String> params) async {
-/*    if (_environment.connectedUser == null) {
-      selectedFile = null;
-      return;
-    }*/
-
     var fileInfoId = params[PlaceParam.fileInfoId];
     if (fileInfoId != null) {
       hideMenu();
@@ -73,9 +68,11 @@ class FilesComp implements OnInit, PopupParent {
           _environment.selectedSubject.fileId);
     } else if (params[PlaceParam.placeId] != null) {
       selectedFile = null;
-    } else if (params.containsKey(PlaceParam.ioFileActionCreated)) {
-      await reloadFile
-        ();
+    } else
+      if (params.containsKey(PlaceParam.ioFileActionCreated) ||
+        params.containsKey(PlaceParam.ioSubjectCreated) ||
+        params.containsKey(PlaceParam.ioSubjectChanged)) {
+      await reloadFile();
     }
   }
 
@@ -86,7 +83,6 @@ class FilesComp implements OnInit, PopupParent {
     detectLastLockAction();
     _environment.showScrollBar('showScroller');
     return selectedFile;
-
   }
 
   TextChanged writingComment(String comment) {
@@ -100,7 +96,6 @@ class FilesComp implements OnInit, PopupParent {
   Future<Null> addComment(String comment, int fileVersionIndex) async {
     _environment.fireEvent(PlaceParam.addButtonPressed, "comment");
     await _placeService.addComment(comment, fileVersionIndex);
-    //FIXME performance : should not relaod all files, but only update the selected one
     await reloadFile();
   }
 
@@ -110,8 +105,6 @@ class FilesComp implements OnInit, PopupParent {
       selectedFile = await getFile(
           selectedPlace.id, selectedFolder.id,
           selectedSubject.fileId);
-
-
     }
   }
 
@@ -252,7 +245,6 @@ class FilesComp implements OnInit, PopupParent {
   }
 
   void hideMenu() {
-    print("hiding menu : ${StackTrace.current}");
     fileMenuVisible = -1;
   }
 
@@ -426,9 +418,12 @@ class FilesComp implements OnInit, PopupParent {
           getActionsForVersion(version).toList()[actionIndex].user.userId;
   }
 
-  bool shouldShowApproveMenu(FileVersion version ) => isFile && isOwner && version.approved == null;
+  bool shouldShowApproveMenu(FileVersion version) =>
+      isFile && isOwner && version.approved == null;
 
-  bool shouldShowUnApproveMenu(FileVersion version ) => isFile && isOwner && version.approved != null && connectedUser.id == version.approved.userId;
+  bool shouldShowUnApproveMenu(FileVersion version) =>
+      isFile && isOwner && version.approved != null &&
+          connectedUser.id == version.approved.userId;
 
   int computeIndex(FileVersion version, int actionIndex) {
     return version.v * 10000 + actionIndex;
@@ -439,6 +434,30 @@ class FilesComp implements OnInit, PopupParent {
   }
 
   PopupParent get self => this;
+
+
+  Future<FileInfo> uploadVersion(String fileName) async {
+    var form = querySelector("#uploadVersion");
+    FileInfo createdFileInfo = await _placeService.prePostFile({"name":_environment.selectedFile.name});
+
+    FileInfo updatedFileInfo = await _placeService.postFile(
+        new FormData(form), asNewVersion: true);
+    return updatedFileInfo;
+  }
+
+  void dragEnter(Element dropZone) {
+    dropZone.classes.add("dragging");
+  }
+
+  void fileDropped(Element dropZone) {
+    dropZone.classes.remove("dragging");
+  }
+
+  void dragLeave(Element dropZone) {
+    dropZone.classes.remove("dragging");
+    dropZone.classes.add("uploading");
+  }
+
 
 }
 

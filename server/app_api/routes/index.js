@@ -240,7 +240,8 @@ get('/place/:placeId/folder/:folderId/file', ctrlProxy.get);
 get('/place/:placeId/folder/:folderId/file/:fileId/version/:fileVersion/thumb', ctrlProxy.getUtilFile);
 // Place
 get('/place', ctrlProxy.get);
-post('/place/:placeId/folder/:folderId/file', ctrlProxy.uploadFile, {
+post('/place/:placeId/folder/:folderId/file', ctrlProxy.post);
+post('/place/:placeId/folder/:folderId/file/:fileId', ctrlProxy.uploadFile, {
   upload: upload.array('toUpload', 10),
 });
 // Folder
@@ -253,6 +254,7 @@ get('/user', ctrlProxy.get);
 get('/place/:placeId/user', ctrlProxy.get);
 get('/user/:userId', ctrlProxy.get);
 del('/place/:placeId/folder/:folderId/user/:userId', ctrlProxy.delete);
+del('/place/:placeId/folder/:folderId', ctrlProxy.deleteFolder)
 // news
 get('/news', ctrlProxy.get);
 
@@ -270,8 +272,10 @@ put('/place/:placeId/folder/:folderId/file/:fileId/version/:version/approve', ct
 put('/place/:placeId/folder/:folderId/file/:fileId', ctrlProxy.put);
 put('/place/:placeId/folder/:folderId',ctrlProxy.putFolder);
 put('/user/close-postit', ctrlProxy.put);
-
+put('/place/:placeId/folder/:folderId/user/role/list', ctrlProxy.put)
 // notify
 get('/place/:placeId/notify', ctrlProxy.get);
+
+put('/place/:placeId/folder/:folderId/fileInfo/:fileInfoId/moveToFolder/:tagedFolderId', ctrlProxy.put);
 module.exports = router;
 

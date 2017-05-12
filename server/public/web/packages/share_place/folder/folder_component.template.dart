@@ -24,6 +24,8 @@ import 'package:angular2_components/angular2_components.dart';
 import 'package:share_place/postit/postit_component.dart';
 import 'package:share_place/folder/node/tree_node_component.dart';
 import 'package:share_place/users/user.dart';
+import 'package:share_place/common/util.dart';
+import 'package:share_place/files/cloud_file.dart';
 import 'package:angular2/core.template.dart' as i0;
 import 'package:angular2/router.template.dart' as i1;
 import 'package:share_place/environment.template.dart' as i2;
@@ -36,6 +38,8 @@ import 'package:angular2_components/angular2_components.template.dart' as i8;
 import 'package:share_place/postit/postit_component.template.dart' as i9;
 import 'package:share_place/folder/node/tree_node_component.template.dart' as i10;
 import 'package:share_place/users/user.template.dart' as i11;
+import 'package:share_place/common/util.template.dart' as i12;
+import 'package:share_place/files/cloud_file.template.dart' as i13;
 export 'folder_component.dart';
 import 'folder_component.css.shim.dart' as import0;
 import 'package:angular2/src/core/render/api.dart';
@@ -102,8 +106,8 @@ class ViewFolderComponent1 extends AppView<import3.FolderComponent> {
   Element _el_2;
   Element _el_4;
   Element _el_6;
-  Element _el_10;
-  Element _el_12;
+  Element _el_9;
+  Element _el_11;
   Element _el_16;
   UListElement _el_18;
   Element _el_20;
@@ -151,22 +155,22 @@ class ViewFolderComponent1 extends AppView<import3.FolderComponent> {
     _el_6.className = 'hTitleIn';
     Text _text_7 = new Text('Folders');
     _el_6.append(_text_7);
-    Text _text_8 = new Text('\n		');
+    Text _text_8 = new Text('\n      ');
     _el_4.append(_text_8);
-    Text _text_9 = new Text('\n    ');
-    _el_2.append(_text_9);
-    _el_10 = doc.createElement('div');
-    _el_10.setAttribute(shimCAttr,'');
-    _el_2.append(_el_10);
-    _el_10.className = 'buttonGroup';
-    Text _text_11 = new Text('\n      ');
-    _el_10.append(_text_11);
-    _el_12 = doc.createElement('div');
-    _el_12.setAttribute(shimCAttr,'');
-    _el_10.append(_el_12);
-    _el_12.className = 'addBtn';
-    Text _text_13 = new Text('\n    ');
-    _el_10.append(_text_13);
+    _el_9 = doc.createElement('div');
+    _el_9.setAttribute(shimCAttr,'');
+    _el_4.append(_el_9);
+    _el_9.className = 'buttonGroup';
+    Text _text_10 = new Text('\n      ');
+    _el_9.append(_text_10);
+    _el_11 = doc.createElement('div');
+    _el_11.setAttribute(shimCAttr,'');
+    _el_9.append(_el_11);
+    _el_11.className = 'addBtn';
+    Text _text_12 = new Text('\n    ');
+    _el_9.append(_text_12);
+    Text _text_13 = new Text('\n		');
+    _el_4.append(_text_13);
     Text _text_14 = new Text('\n  ');
     _el_2.append(_text_14);
     Text _text_15 = new Text('\n  ');
@@ -225,7 +229,7 @@ class ViewFolderComponent1 extends AppView<import3.FolderComponent> {
     compView_29.createComp([],null);
     Text _text_30 = new Text('\n');
     _el_0.append(_text_30);
-    listen(_el_12,'click',evt(_handle_click_12_0));
+    listen(_el_11,'click',evt(_handle_click_11_0));
     this._arr_0 = import11.pureProxy3((p0,p1,p2) {
       return [
         p0,p1,p2
@@ -233,8 +237,8 @@ class ViewFolderComponent1 extends AppView<import3.FolderComponent> {
       ;
     });
     init([_el_0],[
-      _el_0,_text_1,_el_2,_text_3,_el_4,_text_5,_el_6,_text_7,_text_8,_text_9,_el_10,
-      _text_11,_el_12,_text_13,_text_14,_text_15,_el_16,_text_17,_el_18,_text_19,_el_20,
+      _el_0,_text_1,_el_2,_text_3,_el_4,_text_5,_el_6,_text_7,_text_8,_el_9,_text_10,
+      _el_11,_text_12,_text_13,_text_14,_text_15,_el_16,_text_17,_el_18,_text_19,_el_20,
       _text_21,_el_22,_text_23,_el_24,_text_25,_text_26,_text_27,_text_28,_el_29,_text_30
     ]
     ,[]);
@@ -282,7 +286,7 @@ class ViewFolderComponent1 extends AppView<import3.FolderComponent> {
     this.detectContentChildrenChanges();
     final bool currVal_0 = !ctx.canCreateSubfolder;
     if (import11.checkBinding(_expr_0,currVal_0)) {
-      updateClass(_el_10,'hidden',currVal_0);
+      updateClass(_el_9,'hidden',currVal_0);
       _expr_0 = currVal_0;
     }
     final currVal_5 = (ctx.adding? 'block': 'none');
@@ -292,7 +296,7 @@ class ViewFolderComponent1 extends AppView<import3.FolderComponent> {
     }
     this.detectViewChildrenChanges();
   }
-  bool _handle_click_12_0($event) {
+  bool _handle_click_11_0($event) {
     this.markPathToRootAsCheckOnce();
     final dynamic pd_0 = !identical((ctx.add() as dynamic), false);
     return (true && pd_0);
@@ -357,4 +361,6 @@ i8.initReflector();
 i9.initReflector();
 i10.initReflector();
 i11.initReflector();
+i12.initReflector();
+i13.initReflector();
 }

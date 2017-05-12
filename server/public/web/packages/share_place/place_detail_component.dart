@@ -8,28 +8,28 @@ import 'place.dart';
 import 'place_service.dart';
 
 @Component(
-		selector: 'my-place-detail',
-		templateUrl: 'place_detail_component.html',
-		styleUrls: const ['place_detail_component.css'])
+    selector: 'my-place-detail',
+    templateUrl: 'place_detail_component.html',
+    styleUrls: const ['place_detail_component.css'])
 class PlaceDetailComponent implements OnInit {
-	Place place;
-	final PlaceService _placeService;
-	final RouteParams _routeParams;
+  Place place;
+  final PlaceService _placeService;
+  final RouteParams _routeParams;
 
-	PlaceDetailComponent(this._placeService, this._routeParams);
+  PlaceDetailComponent(this._placeService, this._routeParams);
 
-	Future<Null> ngOnInit() async {
-		var idString = _routeParams.get('id');
-		var id = int.parse(idString, onError: (_) => null);
-		if (id != null) place = await (_placeService.getPlace(id));
-	}
+  Future<Null> ngOnInit() async {
+    var idString = _routeParams.get('id');
+    var id = int.parse(idString, onError: (_) => null);
+    if (id != null) place = await (_placeService.getPlace(id));
+  }
 
-	Future<Null> save() async {
-		await _placeService.update(place);
-		goBack();
-	}
+  Future<Null> save() async {
+    await _placeService.update(place);
+    goBack();
+  }
 
-	void goBack() {
-		window.history.back();
-	}
+  void goBack() {
+    window.history.back();
+  }
 }

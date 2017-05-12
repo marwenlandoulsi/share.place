@@ -16,10 +16,11 @@ import 'package:share_place/common/ui/button_comp.dart';
 import 'package:share_place/users/info_popup/info_popup.dart';
 import 'package:share_place/users/info_popup/popup_parent.dart';
 import 'package:share_place/users/invite/invite_dialog_comp.dart';
-import 'package:share_place/users/change_roles/change_roles_dialog_comp.dart';
+
 import 'package:share_place/users/user.dart';
 import 'package:share_place/users/user_list_provider.dart';
 import 'package:share_place/postit/postit_component.dart';
+import 'package:share_place/common/html/html_util.dart' as html_util;
 
 @Injectable()
 @Component(
@@ -30,7 +31,6 @@ import 'package:share_place/postit/postit_component.dart';
       ButtonComp,
       materialDirectives,
       InviteUsersDialogComp,
-      ChangeRolesDialogComp,
       PostitComponent,
       InfoPopup
     ],
@@ -62,7 +62,6 @@ class SubjectListComponent
   }
 
   show(Map<PlaceParam, dynamic> params) async {
-
     var folderId = params[PlaceParam.folderId];
     var fileId = params[PlaceParam.lockStateChange];
     if (fileId == null)
@@ -110,24 +109,23 @@ class SubjectListComponent
     _environment.inviteUsersDialog = show;
   }
 
-  bool get editing => _environment.editRolesUsersDialog;
-
-  set editing(bool show) {
-    _environment.editRolesUsersDialog = show;
-  }
-
-
-
   bool isOwner(User user) =>
       user.hasGreaterRole(RoleEnum.owner, selectedFolder.id);
 
 
-  Future<Null> uploadFiles() async {
+  Future<Null> uploadFiles(String fileName) async {
     _environment.uploading = true;
     _environment.fireEvent(PlaceParam.addButtonPressed, "files");
-    var fileForm = querySelector("#fileForm");
-    FileInfo createdFileInfo = await _placeService.postFile(
-        new FormData(fileForm));
+
+    FormElement fileForm = querySelector("#fileForm");
+
+    FileInfo createdFileInfo = await _placeService.prePostFile(
+        {"name": fileName});
+    refreshSubjectListAndSelect(createdFileInfo);
+
+    var formData = new FormData(fileForm);
+    createdFileInfo = await _placeService.postFile(
+        formData, fileId: createdFileInfo.fileId);
     fileForm.style.border = "none";
 
     _environment.uploading = false;
@@ -152,12 +150,15 @@ class SubjectListComponent
 
   Future<Null> getSubjects(String placeId, String folderId) async {
     subjects = await _placeService.getFolderSubjects(placeId, folderId);
+    if (subjects != null) {
+      subjects = subjects.reversed;
+    }
     _environment.showScrollBar('showScroller');
   }
 
-  bool computeSizes( Element subjectList ) {
+  bool computeSizes(Element subjectList) {
     int remainingSpace = window.innerHeight - 175 - subjectList.offsetHeight;
-    if( remainingSpace > 0 ) {
+    if (remainingSpace > 0) {
       querySelector("#fileForm").style.height = "${remainingSpace}px";
     }
     return remainingSpace <= 0;
@@ -168,7 +169,6 @@ class SubjectListComponent
       renaming = null;
 
     onSelect(subject);
-
   }
 
   Place get selectedPlace => _environment.selectedPlace;
@@ -196,15 +196,6 @@ class SubjectListComponent
     _environment.fireEvent(PlaceParam.addButtonPressed, "invitePeople");
   }
 
-  void editRoles() {
-    if (!connectedUserIsOwner) {
-      _environment.serverError = "Viewer can't change users roles";
-      return;
-    }
-    if (_environment.selectedFolder != null)
-      editing = true;
-    _environment.fireEvent(PlaceParam.editRolesPressed, "editRoles");
-  }
 
   void rename() {
     if (renaming != null)
@@ -287,5 +278,23 @@ class SubjectListComponent
       _environment.hasNotification(subject.folderId, subject.fileId);
 
 
+  void dragEnter(Element dropZone) {
+    print("drag enter");
+    dropZone.classes.add("dragging");
+  }
+
+  void fileDropped(Element dropZone) {
+    dropZone.classes.remove("dragging");
+  }
+
+  void dragLeave(Element dropZone) {
+    print("drag leave");
+    dropZone.classes.remove("dragging");
+  }
+
+  void openFileDialogConditionally(MouseEvent event,
+      DivElement fileUploadLabel) {
+    html_util.openFileDialogConditionally(event, fileUploadLabel);
+  }
 }
 

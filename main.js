@@ -2,10 +2,10 @@ var app = require('electron').app;  // Module to control application life.
 var BrowserWindow = require('electron').BrowserWindow;  // Module to create native browser window.
 var dialog = require('electron').dialog;
 var pjson = require('./package.json');
-
-
+var jsonfile = require('jsonfile');
 const log = require('electron-log');
 const {autoUpdater} = require('electron-updater');
+const {session} = require('electron')
 autoUpdater.autoDownload = true;
 autoUpdater.logger = log;
 autoUpdater.logger.transports.file.level = 'info';
@@ -22,6 +22,7 @@ var mainWindow = null;
 var globalService = require("./server/app_api/global")
 var globalConfig = require("./app_config");
 globalService.checkPathOrCreateSync(globalConfig.dataDir, globalConfig.usersFileData, '[]');
+globalService.checkPathOrCreateSync(globalConfig.dataDir, globalConfig.lastLoginFileData, '{}');
 //var checksum = require('checksum');
 //var ipc = require('electron').ipcRenderer;
 
@@ -31,23 +32,31 @@ globalService.checkPathOrCreateSync(globalConfig.dataDir, globalConfig.usersFile
 var path = require('path');
 var portrange = 3001;
 
+if (!process.env.DEV) {
+  ipcMain.on('online-status-changed', (event, status) => {
 
-ipcMain.on('online-status-changed', (event, status) => {
+    global.onLine = status;
+    if (status) {
+      //  mainWindow.setOverlayIcon(path.join(__dirname, 'Online.ico'), 'you are onLine');
 
-  global.onLine = status;
-  if (status) {
-    isOnline({timeout: 2000}).then(online => {
-      if (online) {
-        mainWindow.setOverlayIcon(path.join(__dirname, 'Online.ico'), 'you are onLine');
-      } else {
-        global.onLine = online;
-        mainWindow.setOverlayIcon(path.join(__dirname, 'Offline-red.ico'), 'you are offLine');
-      }
-    });
-  } else {
-    mainWindow.setOverlayIcon(path.join(__dirname, 'Offline-red.ico'), 'you are offLine');
-  }
-})
+      setInterval(function () {
+        isOnline({timeout: 2000}).then(online => {
+          if (online) {
+            mainWindow.setOverlayIcon(path.join(__dirname, 'Online.ico'), 'you are onLine');
+          } else {
+            global.onLine = online;
+            mainWindow.setOverlayIcon(path.join(__dirname, 'Offline-red.ico'), 'you are offLine');
+          }
+        });
+      }, 5000);
+
+    } else {
+      mainWindow.setOverlayIcon(path.join(__dirname, 'Offline-red.ico'), 'you are offLine');
+    }
+  })
+} else {
+  global.onLine = true;
+}
 
 ipcMain.on('minimizeCurrentWindow', (event, status) => {
   // console.trace();
@@ -68,20 +77,20 @@ ipcMain.on('closeCurrentWindow', (event, status) => {
   // console.trace();
   let window = BrowserWindow.getFocusedWindow();
   window.close();
-  app.quit();
+  //app.quit();
 })
 
 app.on('window-all-closed', () => {
-  mainWindow.webContents.session.clearStorageData([{
+  /*mainWindow.webContents.session.clearStorageData([{
 
-    storages: ["clear"]
-  }, () => {
+   storages: ["clear"]
+   }, () => {
 
-  }])
+   }])*/
   app.quit();
 })
 
-const shouldQuit =app.makeSingleInstance((commandLine, workingDirectory) => {
+const shouldQuit = app.makeSingleInstance((commandLine, workingDirectory) => {
   // Someone tried to run a second instance, we should focus our window.
   if (mainWindow) {
     if (mainWindow.isMinimized()) mainWindow.restore()
@@ -94,13 +103,16 @@ if (shouldQuit) {
 }
 app.on('ready', function () {
 
-  autoUpdater.checkForUpdates();
+  if (!process.env.DEV) {
+    autoUpdater.checkForUpdates();
 
-  setInterval(function () {
-    if (global.onLine) {
-      autoUpdater.checkForUpdates();
-    }
-  }, 3600000);
+    setInterval(function () {
+      if (global.onLine) {
+        autoUpdater.checkForUpdates();
+      }
+    }, 3600000);
+
+  }
 
   global.homeDir = app.getPath('home');
 
@@ -109,7 +121,7 @@ app.on('ready', function () {
   global.serverPort = listener.address().port;
   global.address = listener.address().address;
   process.on('uncaughtException', (err) => {
-    expressApp = null;
+    log.error("process error : ", err);
   });
   /*
    var screenElectron = require('electron').screen;
@@ -117,10 +129,10 @@ app.on('ready', function () {
    const {width, height} = mainScreen.workAreaSize*/
   mainWindow = new BrowserWindow({
     width: 1024,
-    height: 768,
+    height: 775,
     center: true,
     minWidth: 1024,
-    minHeight: 768,
+    minHeight: 775,
     frame: false,
     show: false,
     backgroundColor: '#FFFFFF',
@@ -137,6 +149,7 @@ app.on('ready', function () {
   mainWindow.once('ready-to-show', (event) => {
     mainWindow.show();
     event.sender.send('showFrame');
+
   })
 
   mainWindow.on('closed', function () {
@@ -147,8 +160,6 @@ app.on('ready', function () {
 
      }])*/
     app.quit();
-    mainWindow = null;
-    expressApp = null;
   });
 
   global.mainWindow = mainWindow;

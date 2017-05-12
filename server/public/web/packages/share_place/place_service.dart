@@ -106,12 +106,27 @@ class PlaceService {
     return new FileInfo.fromJson(_extractData(response));
   }
 
-  Future<FileInfo> postFile(html.FormData form) async {
+  Future<FileInfo> prePostFile(Map<String, String> body) async {
     var postUrl = "/sp/place/" +
         _environment.selectedPlace.id +
         "/folder/" +
         _environment.selectedFolder.id +
         "/file";
+    var response = await post(postUrl, headers: _headers, body: JSON.encode(body));
+    return response == null ? null : new FileInfo.fromJson(_extractData( response) );
+  }
+
+  Future<FileInfo> postFile(html.FormData form, {bool asNewVersion:false, String fileId}) async {
+    var postUrl = "/sp/place/" +
+        _environment.selectedPlace.id +
+        "/folder/" +
+        _environment.selectedFolder.id +
+        "/file";
+    if( fileId != null )
+      postUrl += "/"+fileId;
+    else if( asNewVersion )
+      postUrl += "/"+_environment.selectedFile.id;
+
     Map<String, dynamic> response = await postFileForm(form, postUrl);
     return response == null ? null : new FileInfo.fromJson(response);
   }
@@ -523,7 +538,7 @@ class PlaceService {
   }
 
   Future<User> saveProfile(User user, {bool mailChanged,
-    String newPass }) async {
+  String newPass }) async {
     var userBody = {};
     setIfNotEmpty(userBody, "name", user.name);
     setIfNotEmpty(userBody, "skype", user.skype);
@@ -597,10 +612,9 @@ class PlaceService {
 
   Future<Folder> deleteFolder(Folder folder) async {
     try {
-    await del(
-        '/sp/place/${_environment.selectedPlace.id}/folder/${folder.id}');
-   _environment.selectedFolder = null;
-
+      await del(
+          '/sp/place/${_environment.selectedPlace.id}/folder/${folder.id}');
+      _environment.selectedFolder = null;
     } catch (e) {
       throw _handleError(e);
     }
@@ -611,6 +625,15 @@ class PlaceService {
     ('/sp/place/${_environment.selectedPlace.id}/folder/${_environment
         .selectedFolder.id}/user/role/list', headers: _headers,
     body: JSON.encode({'userList':userRoles})
+    );
+  }
+
+  Future<Null> moveSubject(subjectId, folderId) async {
+    await put
+      ('/sp/place/${_environment.selectedPlace.id}/folder/${_environment
+        .selectedFolder.id}/fileInfo/$subjectId/moveToFolder/$folderId',
+        headers: _headers,
+        body: JSON.encode({'empty': 'yes'})
     );
   }
 }

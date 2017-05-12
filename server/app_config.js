@@ -37,6 +37,7 @@ module.exports = Object.freeze({
     path: '/auth',
     method: 'GET'
   },
+  lastLoginFileData: path.join(__dirname,'..',"data", "lastLogin.json"),
   urlFbLogin : "https://app.share.place/auth/facebook/d/",
   urlGlogin : "https://app.share.place/auth/google/d/",
   /*

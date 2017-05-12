@@ -12,7 +12,8 @@ import 'package:http/http.dart';
  */
 
 void main() {
-	bootstrap(
-			TestsComp, [provide(Client, useClass: BrowserDataService), Environment, EventBus]
-	);
+  bootstrap(
+      TestsComp,
+      [provide(Client, useClass: BrowserDataService), Environment, EventBus]
+  );
 }

@@ -6,21 +6,13 @@
                  [body]="'Now invite some poople to join you clicking on the + icon'"
                  class="subjectsPostit"></postit-comp>
 
-    <div (click)="add()" class="addBtn addPeople"></div> <!--[disabled]="selectedFolder==null"-->
-    <div (click)="editRoles()" class="btn editRoles"></div>
+    <div (click)="add()" class="addBtn addPeople"></div>
 
     <modal [visible]="adding">
       <material-dialog defaultPopupSizeProvider
                        enforceSpaceConstraints
                        class="profilemenuvisible">
         <invite-users-dialog></invite-users-dialog>
-      </material-dialog>
-    </modal>
-    <modal *ngIf="editing" [visible]="editing">
-      <material-dialog defaultPopupSizeProvider
-                       enforceSpaceConstraints
-                       class="profilemenuvisible">
-        <change-roles-dialog></change-roles-dialog>
       </material-dialog>
     </modal>
     <!-- emplacement des users  -->
@@ -43,14 +35,16 @@
              class="txt"/>
       <div (click)="createQuickNote(text.value);text.value=''" class="btn_valid"></div>
     </div>
-    <div class="addTopicBtn"> </div>
+    <div class="addTopicBtn" (click)="fileInput.click()"></div>
 
   </div>
-  <div class="{{computeSizes(subjectList) ? 'hideDropZone' : 'dropZoneVisible' }}">
+  <div #dropZone class="dropZone {{computeSizes(subjectList) ? 'hideDropZone' : 'dropZoneVisible' }}">
 
-    <div class="subjectListScollZone">
+    <div (dragenter)="dragEnter(dropZone)" class="subjectListScollZone">
       <div class="scrollbar-macosx">
-       <div class="spinnerInner"><material-spinner class="spinner" *ngIf="subjects == null"></material-spinner></div>
+        <div class="spinnerInner">
+          <material-spinner class="spinner" *ngIf="subjects == null"></material-spinner>
+        </div>
         <ul #subjectList class="subjectList">
           <li *ngFor="let subject of subjects; let subjectIndex = index" (click)="gotoSubject(subject)"
               class="subjectItem"
@@ -60,8 +54,13 @@
               [class.locked]="subject.lockOwner != null"
               [class.ownAction]="subject.lockOwner?.userId == connectedUser.id"
               [class.unread]="wasRead(subject)">
+            <!--<div *ngIf="renaming == null || renaming?.id != subject?.id" class="subject" (dragstart)="$event.dataTransfer.setData('subjectId', subject.id);" draggable="true">-->
             <div *ngIf="renaming == null || renaming?.id != subject?.id" class="subject">
-              <div class="thumb"><img
+              <div class="thumb">
+                <div *ngIf="subject.status == 'waiting'" class="spinnerInner">
+                  <material-spinner class="spinner"></material-spinner>
+                </div>
+                <img *ngIf="subject.status != 'waiting'"
                   src="/sp/place/{{selectedPlace.id}}/folder/{{selectedFolder?.id}}/file/{{subject.fileId}}/version/{{subject.v}}/thumb">
               </div>
               <div *ngIf="subject.dataType == 'file'" class="version"> V.{{subject.v}}</div>
@@ -94,15 +93,14 @@
       </div>
     </div>
 
-    <form id="fileForm" #upload class="uploadDropZone"
-          (dragenter)="upload.style.setProperty('border', '2px solid #9FC8FA')"
-          (drop)="upload.style.setProperty('border', '2px dotted #273B54');">
+   <!-- new onclick="event.preventDefault();"  supprimer du form  /  add this to form #dropZone -->
+    <form  id="fileForm" class="uploadDropZone" (dragenter)="dragEnter(dropZone)" (dragleave)="dragLeave(dropZone)"
+          (drop)="fileDropped(dropZone)">
 
-
-      <label id="labelfileupload" for="fileupload"> Drag'n drop or browse file </label>
-      <input type="file" id="fileupload" (change)="uploadFiles()" class="uploadFile" name="toUpload"
+      <label #fileUploadLabel id="labelfileupload" for="fileupload"> Drag'n drop or browse file </label>
+      <input #fileInput type="file" id="fileupload" (change)="uploadFiles($event.target.files[0].name)" class="uploadFile" name="toUpload"
              style="opacity: 0;"
-             onClick="openFileDialogConditionally(event, document.getElementById('labelfileupload'))"/>
+             (click)="openFileDialogConditionally($event, fileUploadLabel)"/>
 
 
       <postit-comp [name]="'files'" [header]="'Cool !'"

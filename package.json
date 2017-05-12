@@ -1,6 +1,6 @@
 {
   "name": "Share.Place",
-  "version": "0.0.50",
+  "version": "0.1.0",
   "description": "share place",
   "main": "main.js",
   "repository": {
@@ -10,6 +10,7 @@
   "scripts": {
     "start": "set DEV=true && electron .",
     "build:win": "build --win --ia32 --x64 --publish always",
+    "build:winDev": "build --win --ia32 --x64",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {

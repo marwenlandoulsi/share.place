@@ -51,7 +51,7 @@ class CloudFile {
         'version': version,
         'name': name,
         'versions': versions.toString(),
-        'dataType':dataType
+        'dataType': dataType
       };
 
   String get id => _id;
@@ -68,6 +68,7 @@ class FileVersion {
   String mimeType;
   DateTime ts;
   String userId;
+  String name;
   String userName;
   String status;
   int size;
@@ -76,7 +77,7 @@ class FileVersion {
   Approved approved;
 
   FileVersion(this._id, this.v, this.mimeType, this.status, this.size, this.ts,
-      this.userId,
+      this.userId, this.name,
       this.userName, this.actionCount, this.approved, this.actions);
 
   factory FileVersion.fromJson(Map<String, dynamic> file) {
@@ -90,6 +91,7 @@ class FileVersion {
           new DateTime.fromMillisecondsSinceEpoch(
               int.parse(file['ts'] ??= 0), isUtc: true),
           file['userId'],
+          file['name'] ,
           file['userName'],
           file['commentCount'],
           new Approved.fromJson(file['approved']),
@@ -110,6 +112,7 @@ class FileVersion {
           null,
           null,
           null,
+          null,
           0,
           null,
           null);
@@ -125,6 +128,7 @@ class FileVersion {
         'size': size,
         'ts': ts?.millisecondsSinceEpoch,
         'userId': userId,
+        'name' : name,
         'userName': userName,
         'commentCount': actionCount,
         "approved": approved?.toJson(),

@@ -1,8 +1,11 @@
 import 'package:share_place/common/util.dart' as util;
 
 import 'dart:convert';
+import 'package:logging/logging.dart';
 
 class User {
+  final Logger log = new Logger("User");
+
   String _id;
   Map<String, String> photoIdMap;
   String name;
@@ -63,10 +66,14 @@ class User {
   Map toJson() {
     List folderList = [];
     folders.forEach((key, RoleEnum value) {
-      String roleStr = value.toString().substring(
+      String roleStr;
+      if( value == null )
+        roleStr = "delete";
+      else
+        roleStr = value.toString().substring(
           'RoleEnum.'.length);
       folderList.add(
-          {'folderId':key, 'role':roleStr});
+          {'folderId': key, 'role': roleStr});
     });
 
     return {
@@ -121,8 +128,8 @@ class User {
     var roleOnFolder = folders[folderId];
     // CHECK this code is not needed
     if (roleOnFolder == null) {
-      print(
-          "ERROR : user ${toJson()} must be refreshed before calling this method : \n\tfolder ${folderId} not associated to user");
+      log.finest(
+          "folder ${folderId} not associated to user $displayName ($id)");
       return false;
     }
     return roleOnFolder.index >= role.index;
@@ -219,12 +226,15 @@ enum RoleEnum {
   owner
 }
 
-RoleEnum roleFromString(String roleStr) {
+RoleEnum roleFromString(String roleString) {
   List<RoleEnum> roles = RoleEnum.values;
   for (var role in roles) {
-    if (role.toString().toLowerCase().substring("roleenum.".length) ==
-        roleStr.toLowerCase())
+    if (roleStr(role) ==
+        roleString)
       return role;
   }
-  throw "No user role with name $roleStr";
+  return null;
 }
+
+String roleStr(RoleEnum role) =>
+    role.toString().toLowerCase().substring("RoleEnum.".length);

@@ -18,7 +18,7 @@ var loginImpl = require('../config/passport')
 let log = require('electron-log');
 var stream = require('stream')
 var constants = require('../../app_config')
-
+var jsonfile = require('jsonfile');
 
 var multer = require('multer');
 let http = require("https");
@@ -33,7 +33,7 @@ var upload = multer({
   dest: path.join(__dirname, '..', '..', 'tmp', 'upload/')
 })
 var proxy = require('../controllers/proxy');
-
+var lastLoginUserFIle = constants.lastLoginFileData;
 // normal routes ===============================================================
 
 // show the home page (will also have our login links)
@@ -56,15 +56,10 @@ router.get('/profile', isLoggedIn, function (req, res) {
 })
 // LOGOUT ==============================
 router.get('/logout', function (req, res) {
-
-  global.mainWindow.webContents.session.clearStorageData([{
-
-    storages: ["clear"]
-  }, () => {
-
-
-  }])
-  req.logout()
+  req.logout();
+  global.executeSync = false;
+  var deleteUser = {};
+  jsonfile.writeFileSync(lastLoginUserFIle, deleteUser);
   //globalService.sendError(res, 401, {error: "user logged out"});
   res.redirect(conf.onLoginRedirect)
 })
@@ -86,6 +81,7 @@ router.get('/login', function (req, res) {
 
 let connectWithRs =  (req) =>{
   var url = req.url;
+  global.mainWindow.webContents.stop();
   if(global.onLine){
     var authWindow = new BrowserWindow({
       width: 1024, height: 700, show: false,
@@ -478,6 +474,7 @@ var httpGetFile = function (options, cb) {
 var readFile = function (res, iconPath) {
   fs.readFile(iconPath, function (err, contents) {
     if (err) {
+      log.error("error to read file", err);
       return globalService.sendError(res, 400, err.message);
     } else {
       res.end(contents);

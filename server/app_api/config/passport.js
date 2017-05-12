@@ -9,6 +9,7 @@ var proxy = require('../controllers/proxy');
 var constants = require('../../app_config');
 var ctrlLoginApi = require('../routes/login_api');
 var configAuth = constants.oauth; // load the auth variables
+const {session} = require('electron')
 
 
 //var request = require('request-promise').defaults({ simple: false });
@@ -22,6 +23,7 @@ var path = require('path');
 var sep = path.sep;
 
 var userfile = path.join(constants.usersFileData);
+var lastLoginUserFIle = constants.lastLoginFileData;
 var cron = require("../controllers/cron");
 var pro = require('express-http-proxy');
 var globalService = require('../global')
@@ -49,6 +51,17 @@ module.exports = function (passport) {
     localUsers = taffy(users);
 
     var userLocal = localUsers({_id: id});
+    if(!global.enterToDes){
+      global.enterToDes = true;
+      session.defaultSession.cookies.get({url: 'http://127.0.0.1', name:"connect.sid"}, (error, cookies) => {
+        if(error)
+          log.error("can't get cookie:", error);
+        var cookie = cookies[0];
+        cookie.cookierFromServer = global.cookieReceived;
+        jsonfile.writeFile(lastLoginUserFIle, cookie);
+      })
+    }
+
     done(null, userLocal.get()[0]);
 
   });
@@ -91,7 +104,7 @@ module.exports = function (passport) {
                 jsonfile.writeFileSync(userfile, users);
                 localUsers = taffy(users);
                 global.userConnected = user;
-                cron.sync();
+                //cron.sync();
                 return done(null, user);
               } else {
                 if (user) {
@@ -105,11 +118,11 @@ module.exports = function (passport) {
                     });
                     jsonfile.writeFileSync(userfile, localUsers().get());
                     global.userConnected = user;
-                    cron.sync();
+               //     cron.sync();
                     return done(null, user);
                   }
                   global.userConnected = user;
-                  cron.sync();
+                //  cron.sync();
                   return done(null, user);
                 } else {
 
@@ -162,8 +175,7 @@ module.exports = function (passport) {
           if (global.onLine) {
             var name = req.body.name;
             var skype = req.body.skype;
-            if(name.length == 0)
-              name=null;
+
 
             signUpFromServer(req, email, password, name, skype, (err, user) => {
               if (err)
@@ -212,8 +224,21 @@ module.exports = function (passport) {
           global.userConnected = user;
           saveUserInLocalDb(users, userfile, localUsers, user);
           globalService.setSidInInput(global.cookieReceived);
+
+          session.defaultSession.cookies.get({url: 'http://127.0.0.1'}, (error, cookies) => {
+            if(error)
+              log.error("can't get cookie:", error);
+
+            var cookie = cookies[0];
+            if(cookie)
+              cookie.cookierFromServer = global.cookieReceived;
+            else
+              cookie = {"cookierFromServer":  global.cookieReceived};
+            global.enterToDes = true;
+            jsonfile.writeFile(lastLoginUserFIle, cookie);
+          })
           callback(null, user);
-          cron.sync()
+
 
 
 
@@ -306,6 +331,7 @@ var signUpFromServer = function (req, email, password, name, skype, cb) {
 // Configure the request
   var url = req.url;
   var pathToFile = null;
+
 
 // Start the request
   var r = request.post(constants.urlLoginProxy + url, function (error, response, body) {

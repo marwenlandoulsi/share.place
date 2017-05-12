@@ -40,6 +40,7 @@
 
   </script>
 
+
   <script type="application/javascript">
     function dispatchWindowEvent(detail) {
       console.log("dispatchWindowEvent", detail)
@@ -52,19 +53,8 @@
       console.log(e.detail);
     });
 
-    //prevent file drop to open in window body
+
     window.addEventListener("dragover", function (e) {
-      var drop = document.getElementById('fileForm');
-      e = e || event;
-      console.log('e.target.id', e.target.id);
-      // check wich element is our target
-      e.preventDefault();
-
-    }, false);
-
-
-    window.addEventListener("drop", function (e) {
-      var drop = document.getElementById('fileForm');
       e = e || event;
       console.log('e.target', e.target.name);
       if (e.target.type != "file") {  // check wich element is our target
@@ -72,11 +62,19 @@
       }
     }, false);
 
+    window.addEventListener("drop", function (e) {
+      e = e || event;
+      if (e.target.type != "file") {  // check wich element is our target
+        e.preventDefault();
+      }
+    }, false);
+
     window.addEventListener('showScroller', function (e) {
+
       showScroll();
     });
   </script>
-
+  <script src="../js/zendesk.js"></script>
 
 </head>
 <body>
@@ -93,7 +91,6 @@
 
 <script type="text/javascript">
   function showScroll() {
-    console.log("showing scroll for ", jQuery('.scrollbar-macosx'));
     jQuery('.scrollbar-macosx').scrollbar();
   }
   //jQuery(document).ready();

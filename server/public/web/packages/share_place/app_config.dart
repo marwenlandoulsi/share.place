@@ -1,17 +1,22 @@
 //version à prendre
+
 import 'dart:html';
 import 'package:logging/logging.dart';
 
 String _baseUrlValue = '';
 String _loginUrlValue = '';
-String _cookieSessionIdValue= '';
+String _cookieSessionIdValue = '';
 int _port = 80;
 String _env = "web";
 //const baseUrl = 'https://share-place.herokuapp.com';
 String get baseUrl => _baseUrlValue;
+
 String get remoteUrl => _loginUrlValue;
+
 String get cookieSessionId => _cookieSessionIdValue;
+
 int get port => _port;
+
 bool get isWebApp => _env == "web";
 
 Logger log = new Logger("app_config");

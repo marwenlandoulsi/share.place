@@ -15,6 +15,7 @@ import 'package:share_place/app_component.dart';
 
 import 'package:angular2_components/angular2_components.dart';
 
+import 'package:share_place/app_config.dart' as conf;
 @Component(
     selector: 'profile-comp',
     templateUrl: 'profile_comp.html',
@@ -29,6 +30,7 @@ class ProfileComp implements OnInit {
 
   bool emailChanging = false;
   bool passwordChanging = false;
+  bool get isWebApp => conf.isWebApp;
 
   String newPass;
   String emailAtStart;

@@ -12,6 +12,7 @@
 import 'user.dart';
 import 'package:share_place/common/util.dart' as util;
 import 'dart:convert';
+import 'package:logging/logging.dart';
 import 'package:share_place/common/util.template.dart' as i0;
 export 'user.dart';
 

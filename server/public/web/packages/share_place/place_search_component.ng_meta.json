@@ -133,7 +133,7 @@
       ],
       "template": {
         "encapsulation": 0,
-        "template": "<div id=\"search-component\">\r\n\t<h4>Place Search</h4>\r\n\t<input #searchBox id=\"search-box\" (keyup)=\"search(searchBox.value)\"/>\r\n\t<div>\r\n\t\t<div *ngFor=\"let place of places | async\"\r\n\t\t\t\t (click)=\"gotoDetail(place)\" class=\"search-result\">\r\n\t\t\t{{place.name}}\r\n\t\t</div>\r\n\t</div>\r\n</div>\r\n",
+        "template": "<div id=\"search-component\">\r\n  <h4>Place Search</h4>\r\n  <input #searchBox id=\"search-box\" (keyup)=\"search(searchBox.value)\"/>\r\n  <div>\r\n    <div *ngFor=\"let place of places | async\"\r\n         (click)=\"gotoDetail(place)\" class=\"search-result\">\r\n      {{place.name}}\r\n    </div>\r\n  </div>\r\n</div>\r\n",
         "templateUrl": "asset:share_place/lib/place_search_component.html",
         "styles": [],
         "styleUrls": [

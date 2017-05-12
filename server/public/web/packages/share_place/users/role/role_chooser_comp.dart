@@ -23,6 +23,7 @@ class RoleChooser implements OnInit {
   @ViewChild('owner') RoleItem owner;
   @ViewChild('writer') RoleItem writer;
   @ViewChild('viewer') RoleItem viewer;
+  @ViewChild('delete') RoleItem delete;
   List<RoleItem> choices;
   String lastSelected;
   @Output() EventEmitter<String> selectedChange = new EventEmitter<String>();
@@ -32,7 +33,7 @@ class RoleChooser implements OnInit {
   }
 
   Future<Null> ngOnInit() async {
-    choices = [owner, writer, viewer];
+    choices = [owner, writer, viewer, delete];
     if (lastSelected != null)
       role(lastSelected);
   }

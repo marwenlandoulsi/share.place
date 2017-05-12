@@ -203,6 +203,18 @@ a {
   -moz-border-radius: 0 0 3px 3px;
   border-radius: 0 0 3px 3px;
   margin-right: -0.5em;
+  /*position: relative;*/
+  z-index: 2;
+}
+
+
+.versionTitle:hover {
+  cursor: pointer;
+  /*background: rgba(0, 0, 0, 0.1);*/
+  color: #909090;
+  transition: all 0.2s;
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
 }
 
 .versionTitle > div {
@@ -242,14 +254,13 @@ a {
   top: -5px;
 }
 
-.liVersion:hover  .toggleVersion.fa:before,
-.liVersion:hover .versionTitle {
-
-/*.toggleVersion.fa.fa-angle-up:before ,  .liVersion:hover .toggleVersion:hover:before ,  .toggleVersion:hover:before{*/
+.liVersion:hover .toggleVersion.fa:before,
+.liVersion:hover .versionTitle,
+.closeIt .toggleVersion.fa:before,
+.closeIt .versionTitle {
+  /*.toggleVersion.fa.fa-angle-up:before ,  .liVersion:hover .toggleVersion:hover:before ,  .toggleVersion:hover:before{*/
   color: #727272;
 }
-
-
 
 .versions li {
   list-style-type: none;
@@ -264,7 +275,7 @@ a {
 
 .versionComments {
   transition: all 1s;
-  padding: 0.8em 0.4em 0.8em  0;
+  padding: 0.8em 0.4em 0.8em 0;
   border-radius: 0 0 3px 3px;
   -webkit-border-radius: 0 0 3px 3px;
   -moz-border-radius: 0 0 3px 3px;
@@ -283,24 +294,24 @@ a {
 }
 
 /*.isUploading {*/
-  /*height: 0.8em;*/
-  /*width: 30%;*/
-  /*padding: 0;*/
-  /*margin: auto;*/
-  /*border: 1px solid;*/
-  /*border-radius: 2px;*/
-  /*background-color: turquoise;*/
+/*height: 0.8em;*/
+/*width: 30%;*/
+/*padding: 0;*/
+/*margin: auto;*/
+/*border: 1px solid;*/
+/*border-radius: 2px;*/
+/*background-color: turquoise;*/
 /*}*/
 
 /*.progress {*/
-  /*height: 0.8em;*/
-  /*width: 10%;*/
-  /*border-radius: 2px;*/
-  /*margin: 0;*/
-  /*animation: nomAnim;*/
-  /*animation-iteration-count: 100;*/
-  /*animation-duration: 5s;*/
-  /*animation-timing-function: linear;*/
+/*height: 0.8em;*/
+/*width: 10%;*/
+/*border-radius: 2px;*/
+/*margin: 0;*/
+/*animation: nomAnim;*/
+/*animation-iteration-count: 100;*/
+/*animation-duration: 5s;*/
+/*animation-timing-function: linear;*/
 /*}*/
 
 .bubble {
@@ -319,6 +330,10 @@ a {
   font-size: 0.9em;
 }
 
+.actionBlock.draft {
+  /*margin: 0.8em 0 0.5em 0;*/
+}
+
 .bubbleContent {
   word-break: break-word;
   display: inline;
@@ -331,6 +346,8 @@ a {
 .pLeft {
   width: calc(100% - 4.4em);
   cursor: pointer;
+  position: relative;
+  z-index: 2;
 }
 
 .pLeft.noClick {
@@ -496,15 +513,15 @@ li.more {
 }
 
 .fileThumb .fileThumb_bg {
-  width: 60px;
-  height: 55px;
+  /*width: 60px;*/
+  /*height: 55px;*/
 }
 
 .fileThumb .fileThumb_bg:after {
   content: "";
   background: url("../images/valid_big.png") no-repeat center center;
-  width: 2em;
-  height: 2em;
+  width: 2.3em;
+  height: 2.3em;
   z-index: 99 !important;
   left: auto;
   position: absolute;
@@ -572,14 +589,14 @@ li.more {
   color: white;
   border-radius: 50%;
   -webkit-border-radius: 50%;
-  width: 2em;
+  min-width: 2em;
   height: 2em;
   line-height: 2em;
   text-align: center;
   display: inline-block;
   vertical-align: middle;
   font-size: 1.1em;
-  letter-spacing: -0.5px;
+  letter-spacing: -1.5px;
   margin: 0;
 }
 
@@ -599,6 +616,7 @@ li.more {
 .isActionOn .lockBlock .bubbleContent:before {
   border-right-color: #F2542F;
 }
+
 .isActionOn.ownAction .lockBlock .bubbleContent:before {
   border-right-color: transparent;
 }
@@ -610,7 +628,6 @@ li.more {
 .constructText {
   display: inline-block;
   vertical-align: middle;
-  font-size: 0.9em;
 }
 
 .isActionOn .lockBlock .release {
@@ -620,7 +637,10 @@ li.more {
   padding: 0.3em 1em;
   margin-left: 0.5em;
   cursor: pointer;
-  float: right
+  float: right;
+  position: relative;
+  z-index: 3;
+  -webkit-app-region: no-drag;
 }
 
 @keyframes nomAnim {
@@ -703,7 +723,7 @@ li.more {
 
 .ownAction .actionBlock.etatBlock .constructText {
   float: right;
-  line-height: 2;
+  line-height: 1.5;
   padding-top: 0.3em;
 }
 
@@ -718,7 +738,7 @@ li.more {
   border: 1px solid #00ADEF;
 }
 
-.ownAction.isActionOn  .lockBlock .bubbleContent:after {
+.ownAction.isActionOn .lockBlock .bubbleContent:after {
   border-right-color: transparent;
 }
 
@@ -726,10 +746,9 @@ li.more {
   border-left-color: #00ADEF;
 }
 
-.ownAction.isActionOn  .lockBlock .bubbleContent:before {
+.ownAction.isActionOn .lockBlock .bubbleContent:before {
   border-left-color: #00ADEF;
 }
-
 
 /* _____________________ approveBlock ________________________  */
 
@@ -760,8 +779,62 @@ li.more {
   border-right-color: transparent;
 }
 
+.versionsListScroll {
+  position: relative;
+}
 
-@media  (max-width: 800px) and (min-width: 700px) {
+.fileDropZone {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
+.dragging .fileDropZone {
+  z-index: 2;
+  opacity: 0.5;
+  /*border: 2px dashed lightblue;*/
+  background-color: #00ADEF;
+}
+
+/*.uploading {*/
+  /*opacity: 0.5;*/
+  /*!*border: 2px dashed #00aced;*!*/
+  /*background-color: #00e4e4;*/
+
+/*}*/
+
+.headerPopVersion {
+  background-color: white !important;
+  padding: 1em 1em 0.5em 1em;
+  color: #273B54;
+}
+
+.headerPopVersion .fileName {
+  margin-bottom: 0.3em;
+  font-weight: bold;
+}
+
+.headerPopVersion .fileName,
+.headerPopVersion .fileInfo {
+  font-size: 0.9em;
+}
+.addTopicBtn{
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.addTopicBtn .fileDropZone {
+  opacity: 1;
+  position: absolute;
+  left: 0;
+  top:0;
+  cursor: pointer;
+}
+
+
+@media (max-width: 800px) and (min-width: 700px) {
 
   .pLeft {
     display: none !important;

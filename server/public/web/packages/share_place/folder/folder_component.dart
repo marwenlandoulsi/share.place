@@ -17,6 +17,8 @@ import 'package:share_place/postit/postit_component.dart';
 
 import 'package:share_place/folder/node/tree_node_component.dart';
 import 'package:share_place/users/user.dart';
+import 'package:share_place/common/util.dart';
+import 'package:share_place/files/cloud_file.dart';
 
 @Injectable()
 @Component(
@@ -69,6 +71,9 @@ class FolderComponent
     } else if (params.containsKey(PlaceParam.treatFolderChanged) ||
         params.containsKey(PlaceParam.treatFolderCreated)
     ) {
+      placeId = _environment.selectedPlace.id;
+      await getFolders(placeId);
+    } else if (params.containsKey(PlaceParam.treatFileChanged) ) {
       placeId = _environment.selectedPlace.id;
       await getFolders(placeId);
     } else if (params.containsKey(PlaceParam.treatUserInvite)) {
@@ -211,6 +216,9 @@ class FolderComponent
 
   Future<Folder> saveNewFolder(String folderName) async {
     adding = false;
+    if (isEmpty(folderName, trim: true))
+      return null;
+
     Folder toSelect = await _placeService.createFolder(folderName);
     await getFolders(selectedPlace.id);
     await _placeService.loadConnectedUser();

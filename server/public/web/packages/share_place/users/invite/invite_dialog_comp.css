@@ -116,6 +116,7 @@ role-chooser-comp {
   width: 100%;
 }
 
+
 .p_invi {
   display: inline-block;
   width: 31%;
@@ -161,14 +162,15 @@ role-chooser-comp {
 }
 
 .addUserDiv_inside:hover:after, .addUserDiv_inside:hover span {
-  color: #6b707b;
+  color: #04B1F3;
 }
 
 .addUserDiv_inside:hover {
   opacity: 0.9;
 }
-.addUserDiv_inside span{
- vertical-align: super;
+
+.addUserDiv_inside span {
+  vertical-align: super;
 }
 
 material-input.themeable {
@@ -205,4 +207,9 @@ material-input.themeable {
 
 .textCenter, .rolesLine {
   text-align: center;
+}
+
+.containerInvites > input {
+  padding: 0 0.5em !important;
+  width: calc(100% - 1em) !important;
 }

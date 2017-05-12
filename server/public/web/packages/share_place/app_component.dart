@@ -21,7 +21,7 @@ import 'package:share_place/users/user.dart';
 
 import 'package:share_place/postit/postit_component.dart';
 import 'package:share_place/common/ui/notification.dart' as notif;
-
+import 'package:share_place/users/change_roles/change_roles_dialog_comp.dart';
 /**
  * file upload from http://stackoverflow.com/questions/13298140/how-to-upload-a-file-in-dart
  */
@@ -42,7 +42,8 @@ import 'package:share_place/common/ui/notification.dart' as notif;
       LoginComp,
       ProfileComp,
       PostitComponent,
-      notif.Notification
+      notif.Notification,
+      ChangeRolesDialogComp
     ],
     providers: const [
       PlaceService,
@@ -63,7 +64,9 @@ class AppComponent
   bool profileMenuVisible;
 
   String get baseUrl => conf.baseUrl;
+
   bool get isWebApp => conf.isWebApp;
+
   AppComponent(this._router, this._environment, this._placeService);
 
   Future<Null> ngOnInit() async {
@@ -75,10 +78,9 @@ class AppComponent
       _environment.fireEvent(PlaceParam.pageClick, event);
     });
 
-    _environment.eventBus.getBus().listen( (params) => show(params));
+    _environment.eventBus.getBus().listen((params) => show(params));
     _placeService.loadConnectedUser();
     conf.readConf();
-
   }
 
   show(Map<PlaceParam, dynamic> params) async {
@@ -101,11 +103,15 @@ class AppComponent
   }
 
   bool get profilePopinVisible => _environment.profilePopinVisible;
+
   String get error => _environment.serverError;
+
   List<String> get messages => _environment.messages;
 
   void sendWindowEvent(String event) {
     _environment.sendWindowEvent(event, null);
   }
+
+  bool get editingRole => _environment.roleDialogUser != null;
 
 }

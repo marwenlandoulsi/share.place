@@ -9,12 +9,13 @@ class FileInfo {
   String name;
   String v;
   String fullPath;
+  String status;
   List<SubjectUser> users;
   Approved approved;
   LockOwner lockOwner;
 
   FileInfo(this._id, this.fileId, this.placeId, this.folderId, this.name,
-      this.dataType, this.v, this.users, this.approved, this.lockOwner);
+      this.dataType, this.v, this.status, this.users, this.approved, this.lockOwner);
 
   factory FileInfo.fromJson(Map<String, dynamic> fileInfo) =>
       new FileInfo(
@@ -25,6 +26,7 @@ class FileInfo {
           fileInfo['name'],
           fileInfo['dataType'],
           fileInfo['v'],
+          fileInfo['status'],
           fileInfo['users']?.map((version) =>
           new SubjectUser.fromJson(version))?.toList(),
           new Approved.fromJson(fileInfo['approved']),
@@ -40,6 +42,7 @@ class FileInfo {
         'name': name,
         'dataType': dataType,
         'v': v,
+        'status': status,
         "users": users.toString(),
         "approved": approved?.toJson(),
         "lockOwner": lockOwner?.toJson()
@@ -82,11 +85,12 @@ class LockOwner {
   LockOwner(this.userId, this.userName, this.photoId);
 
   factory LockOwner.fromJson(Map<String, dynamic> lockOwner) {
-    if( lockOwner == null )
+    if (lockOwner == null)
       return null;
     return new LockOwner (
         lockOwner['userId'], lockOwner['userName'], lockOwner['photoId']);
   }
+
   Map toJson() =>
       {
         'userId': userId,

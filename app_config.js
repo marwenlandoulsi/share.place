@@ -2,13 +2,14 @@
 var path = require('path');
 module.exports = Object.freeze({
   uploadDir: __dirname + "/tmp/upload/",
-  dbFiles:["users.json"],
-  hostURL : "http//share-place.herokuapp.com",
-  dataDir:path.join(__dirname, "data") ,
-  usersFileData: path.join(__dirname, "data","users.json"),
-  logDir:  __dirname + "/log",
-  errorLogFile :__dirname + "/log/error.log",
-  appLogFile :__dirname + "/log/app.log",
+  dbFiles: ["users.json"],
+  hostURL: "http//share-place.herokuapp.com",
+  dataDir: path.join(__dirname, "data"),
+  usersFileData: path.join(__dirname, "data", "users.json"),
+  lastLoginFileData: path.join(__dirname, "data", "lastLogin.json"),
+  logDir: __dirname + "/log",
+  errorLogFile: __dirname + "/log/error.log",
+  appLogFile: __dirname + "/log/app.log",
   downloadDir: __dirname + "/tmp/download/",
   storj: {
     privateKey: '1d649a05fd0373e6c6c847ca8a6f04cc5eb755a771a9c3c32acb1f1f06450db2',
@@ -16,9 +17,9 @@ module.exports = Object.freeze({
     cryptFilePath: './',
     keypass: 'keypass'
   },
-  onLoginRedirect:'index.html',
-  debugServer:false,
-  urlLoginProxy :'http://127.0.0.1:3000/auth',
+  onLoginRedirect: 'index.html',
+  debugServer: false,
+  urlLoginProxy: 'http://127.0.0.1:3000/auth',
   optionsPost: {
     url: 'http://127.0.0.1:3000/sp',
     method: 'POST',
@@ -27,8 +28,8 @@ module.exports = Object.freeze({
     url: 'http://127.0.0.1:3000/sp',
     method: 'PUT',
   },
-  optionsGet :{
-    host:  "127.0.0.1",
+  optionsGet: {
+    host: "127.0.0.1",
     port: 3000,
     path: '/sp',
     method: 'GET'

@@ -49,6 +49,7 @@ class ViewRoleChooser0 extends AppView<import3.RoleChooser> {
   import4.QueryList _viewQuery_owner_0;
   import4.QueryList _viewQuery_writer_1;
   import4.QueryList _viewQuery_viewer_2;
+  import4.QueryList _viewQuery_delete_3;
   Element _el_0;
   Element _el_2;
   ViewContainer _appEl_2;
@@ -59,18 +60,24 @@ class ViewRoleChooser0 extends AppView<import3.RoleChooser> {
   Element _el_6;
   ViewContainer _appEl_6;
   import7.RoleItem _RoleItem_6_3;
+  Element _el_8;
+  ViewContainer _appEl_8;
+  import7.RoleItem _RoleItem_8_3;
   var _expr_1 = uninitialized;
   var _expr_2 = uninitialized;
   var _expr_4 = uninitialized;
   var _expr_5 = uninitialized;
   var _expr_7 = uninitialized;
   var _expr_8 = uninitialized;
+  var _expr_10 = uninitialized;
+  var _expr_11 = uninitialized;
   ViewRoleChooser0(import9.Injector parentInjector,ViewContainer declarationEl): super(ViewRoleChooser0,renderType_RoleChooser,import10.ViewType.COMPONENT,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
   ViewContainer createInternal(dynamic rootSelector) {
     final Node parentRenderNode = initViewRoot(this.declarationViewContainer.nativeElement);
     _viewQuery_owner_0 = new import4.QueryList();
     _viewQuery_writer_1 = new import4.QueryList();
     _viewQuery_viewer_2 = new import4.QueryList();
+    _viewQuery_delete_3 = new import4.QueryList();
     var doc = document;
     _el_0 = doc.createElement('div');
     _el_0.setAttribute(shimCAttr,'');
@@ -92,6 +99,7 @@ class ViewRoleChooser0 extends AppView<import3.RoleChooser> {
     _el_4 = doc.createElement('role-item');
     _el_4.setAttribute(shimCAttr,'');
     _el_0.append(_el_4);
+    _el_4.className = 'writer';
     _appEl_4 = new ViewContainer(4,0,this,_el_4);
     var compView_4 = import11.viewFactory_RoleItem0(this.injector(4),_appEl_4);
     _RoleItem_4_3 = new import7.RoleItem(this.parentInjector.get(import12.PlaceService),this.parentInjector.get(import13.Router),this.parentInjector.get(import14.Environment));
@@ -108,27 +116,42 @@ class ViewRoleChooser0 extends AppView<import3.RoleChooser> {
     _RoleItem_6_3 = new import7.RoleItem(this.parentInjector.get(import12.PlaceService),this.parentInjector.get(import13.Router),this.parentInjector.get(import14.Environment));
     _appEl_6.initComponent(_RoleItem_6_3,compView_6);
     compView_6.createComp([],null);
-    Text _text_7 = new Text('\n');
+    Text _text_7 = new Text('\n  ');
     _el_0.append(_text_7);
-    Text _text_8 = new Text('\n');
-    parentRenderNode.append(_text_8);
+    _el_8 = doc.createElement('role-item');
+    _el_8.setAttribute(shimCAttr,'');
+    _el_0.append(_el_8);
+    _el_8.className = 'delete';
+    _appEl_8 = new ViewContainer(8,0,this,_el_8);
+    var compView_8 = import11.viewFactory_RoleItem0(this.injector(8),_appEl_8);
+    _RoleItem_8_3 = new import7.RoleItem(this.parentInjector.get(import12.PlaceService),this.parentInjector.get(import13.Router),this.parentInjector.get(import14.Environment));
+    _appEl_8.initComponent(_RoleItem_8_3,compView_8);
+    compView_8.createComp([],null);
+    Text _text_9 = new Text('\n');
+    _el_0.append(_text_9);
+    Text _text_10 = new Text('\n');
+    parentRenderNode.append(_text_10);
     listen(_el_2,'select',evt(_handle_select_2_0));
     final subscription_0 = _RoleItem_2_3.select.listen(evt(_handle_select_2_0));
     listen(_el_4,'select',evt(_handle_select_4_0));
     final subscription_1 = _RoleItem_4_3.select.listen(evt(_handle_select_4_0));
     listen(_el_6,'select',evt(_handle_select_6_0));
     final subscription_2 = _RoleItem_6_3.select.listen(evt(_handle_select_6_0));
+    listen(_el_8,'select',evt(_handle_select_8_0));
+    final subscription_3 = _RoleItem_8_3.select.listen(evt(_handle_select_8_0));
     _viewQuery_owner_0.reset([_RoleItem_2_3]);
     ctx.owner = _viewQuery_owner_0.first;
     _viewQuery_writer_1.reset([_RoleItem_4_3]);
     ctx.writer = _viewQuery_writer_1.first;
     _viewQuery_viewer_2.reset([_RoleItem_6_3]);
     ctx.viewer = _viewQuery_viewer_2.first;
+    _viewQuery_delete_3.reset([_RoleItem_8_3]);
+    ctx.delete = _viewQuery_delete_3.first;
     init([],[
-      _el_0,_text_1,_el_2,_text_3,_el_4,_text_5,_el_6,_text_7,_text_8
+      _el_0,_text_1,_el_2,_text_3,_el_4,_text_5,_el_6,_text_7,_el_8,_text_9,_text_10
     ]
     ,[
-      subscription_0,subscription_1,subscription_2
+      subscription_0,subscription_1,subscription_2,subscription_3
     ]
     );
     return null;
@@ -137,6 +160,7 @@ class ViewRoleChooser0 extends AppView<import3.RoleChooser> {
     if ((identical(token, import7.RoleItem) && (2 == requestNodeIndex))) { return _RoleItem_2_3; }
     if ((identical(token, import7.RoleItem) && (4 == requestNodeIndex))) { return _RoleItem_4_3; }
     if ((identical(token, import7.RoleItem) && (6 == requestNodeIndex))) { return _RoleItem_6_3; }
+    if ((identical(token, import7.RoleItem) && (8 == requestNodeIndex))) { return _RoleItem_8_3; }
     return notFoundResult;
   }
   void detectChangesInternal() {
@@ -170,6 +194,16 @@ class ViewRoleChooser0 extends AppView<import3.RoleChooser> {
       _RoleItem_6_3.title = currVal_8;
       _expr_8 = currVal_8;
     }
+    final currVal_10 = 'delete';
+    if (import15.checkBinding(_expr_10,currVal_10)) {
+      _RoleItem_8_3.role = currVal_10;
+      _expr_10 = currVal_10;
+    }
+    final currVal_11 = 'Delete';
+    if (import15.checkBinding(_expr_11,currVal_11)) {
+      _RoleItem_8_3.title = currVal_11;
+      _expr_11 = currVal_11;
+    }
     this.detectContentChildrenChanges();
     this.detectViewChildrenChanges();
   }
@@ -186,6 +220,11 @@ class ViewRoleChooser0 extends AppView<import3.RoleChooser> {
   bool _handle_select_6_0($event) {
     this.markPathToRootAsCheckOnce();
     final dynamic pd_0 = !identical((ctx.role(_RoleItem_6_3.role) as dynamic), false);
+    return (true && pd_0);
+  }
+  bool _handle_select_8_0($event) {
+    this.markPathToRootAsCheckOnce();
+    final dynamic pd_0 = !identical((ctx.role('delete') as dynamic), false);
     return (true && pd_0);
   }
 }

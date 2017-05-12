@@ -1,3 +1,4 @@
+<!-- https://github.com/CindyLinz/JS-Crop-Image -->
 <div class="login" id="login" (keyup.esc)="cancel()">
   <div class="header">
     <div class="title">Profile</div>
@@ -7,7 +8,7 @@
           (drop)="upload.style.setProperty('border', '2px dotted #273B54');">
       <label id="labelfileuploadprf" for="filename">
         <!--?refreshHack=... obliges the browser to refresh the image if it changes-->
-        <div class="spinAnim"><img src="/auth/gridfs/file/{{photoId}}" title=""/>
+        <div class="spinAnim"><img src="/auth/gridfs/file/{{photoId}}"/>
           <div class="spinAnimCircle"></div>
         </div>
         <span class="spprof">Change</span>
@@ -66,7 +67,7 @@
       </form>
     </div>
     <div class="social">
-      <div class="line" [class.loggedIn]="linkedToFacebook">
+      <div class="line" [class.loggedIn]="linkedToFacebook" *ngIf="isWebApp">
         <div class="logLeft"><span class="log">{{hasFacebookAccount ? 'Logged in with' : 'Sign in'}} </span>
           <span class="nameConnected"> {{connectedUser?.facebookAccount?.firstName }} {{connectedUser?.facebookAccount?.lastName }}</span>
         </div>
@@ -74,7 +75,7 @@
           <span class="fa fa-facebook">  </span>
         </a>
       </div>
-      <div class="line" [class.loggedIn]="linkedToFacebook">
+      <div class="line" [class.loggedIn]="linkedToFacebook" *ngIf="isWebApp">
         <div class="logLeft"><span class="log">{{hasGoogleAccount ? 'Logged in with' : 'Sign in'}} </span>
           <span class="nameConnected"> {{connectedUser?.googleAccount?.displayName  }}</span>
         </div>

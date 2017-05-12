@@ -11,7 +11,7 @@
   left: 0;
   top: 0;
   font-size: 1em;
-  width: calc(100% - 2.3em);
+  width: calc(100% - 0.6em);
   color: #414c5f;
   float: left;
   background: url("../images/tiret-grey.png") repeat-x center center;
@@ -22,6 +22,8 @@
   background: white;
   padding-right: 0.5em;
   display: inline;
+  vertical-align: -webkit-baseline-middle;
+  vertical-align: baseline-middle;
 }
 
 .header .add {
