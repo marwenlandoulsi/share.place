@@ -20,7 +20,7 @@ process.once('loaded', () => {
 
   const showNotifcation = (title, body) => {
 
-    var url = path.join(__dirname, 'iconElec.png');
+    var url = path.join(__dirname, 'iconElecNotif.png');
 
     var notif = new Notification(title, {
       icon: url,

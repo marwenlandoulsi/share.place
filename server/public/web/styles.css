@@ -326,8 +326,6 @@ TODO see what font to use
   margin: 0.4em 0.5em 0 0.5em;
 }
 
-
-
 .imgBtn {
   height: auto !important;
   vertical-align: middle;
@@ -472,6 +470,10 @@ main, header, footer {
   box-shadow: none;
   font-size: 12px;
   color: #505050;
+}
+
+#signup input, #signup textarea,
+#forgotPass input {
   width: calc(100% - 18px);
   padding: 0 9px !important;
 }
@@ -1572,7 +1574,7 @@ input {
   color: #4690D1;
 }
 
-#inviteUsers  input {
+#inviteUsers input {
   width: calc(100% - 12px) !important;
   padding: 0 6px !important;
 }
@@ -1580,14 +1582,14 @@ input {
 .versionComment {
   padding: 0.6em 0;
 }
+
 /* Help */
 
 .u-userBackgroundColor:not(disabled),
 .u-userBackgroundColor:not(disabled),
-.u-userBackgroundColor:not(disabled){
+.u-userBackgroundColor:not(disabled) {
   background-color: red !important;
 }
-
 
 /*__________________*/
 
