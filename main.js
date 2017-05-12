@@ -39,11 +39,11 @@ if (!process.env.DEV) {
     if (status) {
       //  mainWindow.setOverlayIcon(path.join(__dirname, 'Online.ico'), 'you are onLine');
       global.onLine = online;
+      mainWindow.setOverlayIcon(path.join(__dirname, 'Online.ico'), 'you are onLine');
+
       setInterval(function () {
         isOnline().then(online => {
-          if (online) {
-            mainWindow.setOverlayIcon(path.join(__dirname, 'Online.ico'), 'you are onLine');
-          } else {
+          if (!online){
             global.onLine = online;
             mainWindow.setOverlayIcon(path.join(__dirname, 'Offline-red.ico'), 'you are offLine');
           }
