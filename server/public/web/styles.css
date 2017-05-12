@@ -896,7 +896,7 @@ material-ripple {
 }
 
 .userInfoPopup {
-  min-width: 5em;
+  min-width: 18em;
   padding: 0.7em 0.5em 0.4em 0.6em;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;

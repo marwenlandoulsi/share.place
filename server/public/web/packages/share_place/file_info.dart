@@ -10,12 +10,13 @@ class FileInfo {
   String v;
   String fullPath;
   String status;
+  String thumbId;
   List<SubjectUser> users;
   Approved approved;
   LockOwner lockOwner;
 
   FileInfo(this._id, this.fileId, this.placeId, this.folderId, this.name,
-      this.dataType, this.v, this.status, this.users, this.approved, this.lockOwner);
+      this.dataType, this.v, this.status, this.thumbId, this.users, this.approved, this.lockOwner);
 
   factory FileInfo.fromJson(Map<String, dynamic> fileInfo) =>
       new FileInfo(
@@ -27,6 +28,7 @@ class FileInfo {
           fileInfo['dataType'],
           fileInfo['v'],
           fileInfo['status'],
+          fileInfo['thumbId'],
           fileInfo['users']?.map((version) =>
           new SubjectUser.fromJson(version))?.toList(),
           new Approved.fromJson(fileInfo['approved']),
@@ -43,6 +45,7 @@ class FileInfo {
         'dataType': dataType,
         'v': v,
         'status': status,
+        'thumbId': thumbId,
         "users": users.toString(),
         "approved": approved?.toJson(),
         "lockOwner": lockOwner?.toJson()

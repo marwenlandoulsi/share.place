@@ -196,7 +196,7 @@ material-button.menuItem.profile, material-button.menuItem.logout {
   height: 2.2em;
   background-color: #1F181F !important;
   padding: 0 !important;
-  /*-webkit-app-region: drag;*/
+  -webkit-app-region: drag;
 }
 
 .desktopVersion {

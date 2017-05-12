@@ -68,6 +68,7 @@ class SubjectListComponent
       fileId = params[PlaceParam.approvalStateChange];
 
     if (folderId != null) { // folder selected
+      selectedSubject = null;
       await getSubjects(_environment.selectedPlace.id, folderId);
     } else if (fileId != null) { // file changed
       await reloadSubjects();

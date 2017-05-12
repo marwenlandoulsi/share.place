@@ -38,9 +38,9 @@ if (!process.env.DEV) {
     global.onLine = status;
     if (status) {
       //  mainWindow.setOverlayIcon(path.join(__dirname, 'Online.ico'), 'you are onLine');
-
+      global.onLine = online;
       setInterval(function () {
-        isOnline({timeout: 2000}).then(online => {
+        isOnline().then(online => {
           if (online) {
             mainWindow.setOverlayIcon(path.join(__dirname, 'Online.ico'), 'you are onLine');
           } else {

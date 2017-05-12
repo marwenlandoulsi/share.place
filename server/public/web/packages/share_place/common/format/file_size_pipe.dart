@@ -41,7 +41,7 @@ class FileSizePipe {
           return format(size);
       }
     }
-    return "error";
+    return "computing size...";
   }
 }
 
