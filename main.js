@@ -38,17 +38,8 @@ if (!process.env.DEV) {
     global.onLine = status;
     if (status) {
       //  mainWindow.setOverlayIcon(path.join(__dirname, 'Online.ico'), 'you are onLine');
-      global.onLine = online;
-      mainWindow.setOverlayIcon(path.join(__dirname, 'Online.ico'), 'you are onLine');
 
-      setInterval(function () {
-        isOnline().then(online => {
-          if (!online){
-            global.onLine = online;
-            mainWindow.setOverlayIcon(path.join(__dirname, 'Offline-red.ico'), 'you are offLine');
-          }
-        });
-      }, 5000);
+      mainWindow.setOverlayIcon(path.join(__dirname, 'Online.ico'), 'you are onLine');
 
     } else {
       mainWindow.setOverlayIcon(path.join(__dirname, 'Offline-red.ico'), 'you are offLine');
