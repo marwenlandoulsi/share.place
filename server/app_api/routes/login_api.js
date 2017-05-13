@@ -78,20 +78,20 @@ router.get('/login', function (req, res) {
 })
 
 
-
-let connectWithRs =  (req) =>{
+let connectWithRs = (req) => {
   var url = req.url;
   global.mainWindow.webContents.stop();
-  if(global.onLine){
+  if (global.onLine) {
     var authWindow = new BrowserWindow({
       width: 1024, height: 700, show: false,
       parent: global.mainWindow, modal: true, webPreferences: {nodeIntegration: false}
     });
-    var urlAuth ;
-    if(url.indexOf("facebook")!= -1)
+    var urlAuth;
+    if (url.indexOf("facebook") != -1)
       urlAuth = constants.urlFbLogin + global.serverPort;
     else
       urlAuth = constants.urlGlogin + global.serverPort;
+
 
 
     authWindow.loadURL(urlAuth);
@@ -110,9 +110,39 @@ let connectWithRs =  (req) =>{
         }])
         authWindow.close();
       }
+
     })
-  }else{
-    if(url.indexOf("facebook")!= -1)
+
+
+    authWindow.webContents.on('did-finish-load' , ()=>{
+       let url = authWindow.webContents.getURL();
+      if(process.env.DEV){
+        if(url.indexOf('localhost:3000') != -1){
+          authWindow.webContents.session.clearStorageData([{
+
+            storages: ["clear"]
+          }, () => {
+
+          }])
+          authWindow.close();
+          global.mainWindow.webContents.reload();
+
+        }
+      }else{
+        if(url.indexOf('share.place/') != -1){
+          authWindow.webContents.session.clearStorageData([{
+
+            storages: ["clear"]
+          }, () => {
+
+          }])
+          authWindow.close();
+          global.mainWindow.webContents.reload();
+        }
+      }
+    })
+  } else {
+    if (url.indexOf("facebook") != -1)
       proxy.dialogBox("info", "Share.place", "Sorry you are offline you can't singin with Facebook");
     else
       proxy.dialogBox("info", "Share.place", "Sorry you are offline you can't singin with Google");

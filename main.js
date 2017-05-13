@@ -108,52 +108,58 @@ app.on('ready', function () {
   global.homeDir = app.getPath('home');
 
   var expressApp = require('./server/app');
-  var listener = expressApp.listen(0);
-  global.serverPort = listener.address().port;
-  global.address = listener.address().address;
-  process.on('uncaughtException', (err) => {
-    log.error("process error : ", err);
+  var listener = expressApp.listen(0, '127.0.0.1', ()=>{
+    global.serverPort = listener.address().port;
+    global.address = listener.address().address;
+    process.on('uncaughtException', (err) => {
+      log.error("process error : ", err);
+    });
+    /*
+     var screenElectron = require('electron').screen;
+     var mainScreen = screenElectron.getPrimaryDisplay();
+     const {width, height} = mainScreen.workAreaSize*/
+    mainWindow = new BrowserWindow({
+      width: 1024,
+      height: 775,
+      center: true,
+      minWidth: 1024,
+      minHeight: 775,
+      frame: false,
+      show: false,
+      backgroundColor: '#FFFFFF',
+      titleBarStyle: 'hidden-inset',
+      title: "Share.Place V" + pjson.version,
+      webPreferences: {nodeIntegration: false, preload: __dirname + "/preload.js"},
+      icon: path.join(__dirname, 'server', 'static', 'images', 'iconElec.png')
+    });
+
+    //mainWindow.maximize();
+    mainWindow.loadURL('http://127.0.0.1:' + global.serverPort + '/web/');
+
+    global.homeUrlServer = 'http://127.0.0.1:' + global.serverPort + '/web';
+    mainWindow.once('ready-to-show', (event) => {
+      mainWindow.show();
+      event.sender.send('showFrame');
+
+    })
+
+    mainWindow.on('closed', function () {
+      /*mainWindow.webContents.session.clearStorageData([{
+
+       storages: ["clear"]
+       }, () => {
+
+       }])*/
+      app.quit();
+    });
+/*
+    mainWindow.webContents.on('will-navigate', function(event) {
+      event.preventDefault();
+    });*/
+
+    global.mainWindow = mainWindow;
   });
-  /*
-   var screenElectron = require('electron').screen;
-   var mainScreen = screenElectron.getPrimaryDisplay();
-   const {width, height} = mainScreen.workAreaSize*/
-  mainWindow = new BrowserWindow({
-    width: 1024,
-    height: 775,
-    center: true,
-    minWidth: 1024,
-    minHeight: 775,
-    frame: false,
-    show: false,
-    backgroundColor: '#FFFFFF',
-    titleBarStyle: 'hidden-inset',
-    title: "Share.Place V" + pjson.version,
-    webPreferences: {nodeIntegration: false, preload: __dirname + "/preload.js"},
-    icon: path.join(__dirname, 'server', 'static', 'images', 'iconElec.png')
-  });
 
-  //mainWindow.maximize();
-  mainWindow.loadURL('http://127.0.0.1:' + global.serverPort + '/web/');
-
-  global.homeUrlServer = 'http://127.0.0.1:' + global.serverPort + '/web';
-  mainWindow.once('ready-to-show', (event) => {
-    mainWindow.show();
-    event.sender.send('showFrame');
-
-  })
-
-  mainWindow.on('closed', function () {
-    /*mainWindow.webContents.session.clearStorageData([{
-
-     storages: ["clear"]
-     }, () => {
-
-     }])*/
-    app.quit();
-  });
-
-  global.mainWindow = mainWindow;
 });
 
 

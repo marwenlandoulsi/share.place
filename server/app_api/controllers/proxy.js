@@ -116,9 +116,11 @@ module.exports.get = function (req, res) {
 
 module.exports.proxyGet = function (url, callBack) {
   let userId = global.userConnected._id;
-
-  let email = global.userConnected.local.email;
-  let password = global.userConnected.local.password;
+  let email, password;
+  if (global.userConnected.local) {
+    email = global.userConnected.local.email;
+    password = global.userConnected.local.password;
+  }
   let pathDirectory = path.join(constants.dataDir, userId, url);
   let pathToDataFile = path.join(constants.dataDir, userId, url, 'data.json');
   globalService.checkPathOrCreateSync(pathDirectory, pathToDataFile, '[]');
@@ -363,8 +365,8 @@ function downloadFileInDisc(url, mode, callBack) {
               if (err)
                 return callBack(err)
               if (!sameFile) {
-                fs.unlink(pathToFile, (err)=>{
-                  if(err)
+                fs.unlink(pathToFile, (err) => {
+                  if (err)
                     return callBack(err);
 
                   downloadFile(url, pathToDir, pathToFile, mode, (err, ok) => {
@@ -777,29 +779,29 @@ module.exports.deleteFolder = function (req, res) {
     getPathFolderInHomeDir(dataFolder, jsonfile.readFileSync(pathToDbFolders), null, (pathfolder) => {
       let pathFolderInHomeDir = path.join(global.homeDir, 'share.place', userId, placeName, pathfolder);
       if (fs.existsSync(pathFolderInHomeDir)) {
-       /* globalService.deleteFolderRecursive(pathFolderInHomeDir, dataFolder.name, (error) => {
-          if (error) {
-            log.error("error to delete folder:", pathFolderInHomeDir, " , error :", error)
-            showDialogBox("info", "share.place", "please close opened files ");
-          } else {
-            httpDelete(url, (objError, toReturn) => {
-              if (objError) {
-                if (objError.errFromServer) {
-                  return globalService.sendError(res, 402, objError.errFromServer.error, objError.errFromServer.errorDetail)
-                } else {
-                  log.error("error to delete", objError.errorRequest)
-                  return globalService.sendError(res, 402, "error occured try again")
-                }
-              }
+        /* globalService.deleteFolderRecursive(pathFolderInHomeDir, dataFolder.name, (error) => {
+         if (error) {
+         log.error("error to delete folder:", pathFolderInHomeDir, " , error :", error)
+         showDialogBox("info", "share.place", "please close opened files ");
+         } else {
+         httpDelete(url, (objError, toReturn) => {
+         if (objError) {
+         if (objError.errFromServer) {
+         return globalService.sendError(res, 402, objError.errFromServer.error, objError.errFromServer.errorDetail)
+         } else {
+         log.error("error to delete", objError.errorRequest)
+         return globalService.sendError(res, 402, "error occured try again")
+         }
+         }
 
 
-              return globalService.sendJsonResponse(res, 200, toReturn)
+         return globalService.sendJsonResponse(res, 200, toReturn)
 
-            });
-          }
-        })
-*/
-        try{
+         });
+         }
+         })
+         */
+        try {
           globalService.deleteFolderRecursive(pathFolderInHomeDir, dataFolder.name);
           httpDelete(url, (objError, toReturn) => {
             if (objError) {
@@ -816,7 +818,7 @@ module.exports.deleteFolder = function (req, res) {
 
           });
         }
-        catch(err) {
+        catch (err) {
           log.error("error to delete folder:", pathFolderInHomeDir, " , error :", error)
           showDialogBox("info", "share.place", "please close opened files ");
         }
@@ -893,24 +895,24 @@ module.exports.put = function (req, res) {
 
         return globalService.sendJsonResponse(res, 200, user);
       })
-    }else if(url.indexOf("moveToFolder") != -1){
+    } else if (url.indexOf("moveToFolder") != -1) {
       console.log("erbzaeazeaze")
       let fileInfoId = req.params.fileInfoId;
-      let folderId= req.params.folderId;
+      let folderId = req.params.folderId;
       let placeId = req.params.placeId;
-      let pathdbFileInfo = path.join(constants.dataDir, userId, 'place', placeId, 'folder', folderId,'fileInfo', 'data.json');
+      let pathdbFileInfo = path.join(constants.dataDir, userId, 'place', placeId, 'folder', folderId, 'fileInfo', 'data.json');
 
-      let dbFileInfos = taffy( jsonfile.readFileSync(pathdbFileInfo));
+      let dbFileInfos = taffy(jsonfile.readFileSync(pathdbFileInfo));
       let fileName = dbFileInfos({_id: fileInfoId}).select("name")[0];
-      getPathFolderInHomeDirFromReq(req, (pathToFolder)=>{
+      getPathFolderInHomeDirFromReq(req, (pathToFolder) => {
         let pathToFileToMove = path.join(pathToFolder, fileName);
 
         console.log("pathToFileToMove", pathToFileToMove)
-        if(fs.existsSync(pathToFileToMove)){
+        if (fs.existsSync(pathToFileToMove)) {
           console.log("fs.existsSync(pathToFileToMove)", fs.existsSync(pathToFileToMove))
-          fs.unlink(pathToFileToMove, (err)=>{
-            if(err){
-              showDialogBox("info", "Share.place", "Please close the file "+fileName+" before moving it");
+          fs.unlink(pathToFileToMove, (err) => {
+            if (err) {
+              showDialogBox("info", "Share.place", "Please close the file " + fileName + " before moving it");
             }
 
             httpPutJson(url, jsonToPut, (err, toReturn) => {
@@ -921,7 +923,7 @@ module.exports.put = function (req, res) {
               return globalService.sendJsonResponse(res, 200, toReturn);
             })
           })
-        }else{
+        } else {
           console.log("fs.existsSync(ssss)", fs.existsSync(pathToFileToMove))
           httpPutJson(url, jsonToPut, (err, toReturn) => {
             if (err)
@@ -1002,10 +1004,10 @@ module.exports.putFolder = function (req, res) {
 
 }
 
-let getPathFolderInHomeDirFromReq = (req, callBack)=>{
+let getPathFolderInHomeDirFromReq = (req, callBack) => {
   let url = req.url;
   let userId = req.user._id;
- // let jsonToPut = req.body;
+  // let jsonToPut = req.body;
   //let newFolderName = req.body.name;
   let folderId = req.params.folderId;
   let placeId = req.params.placeId;
@@ -1243,24 +1245,24 @@ let readFile = function (res, iconPath, url, userId) {
   fs.readFile(iconPath, function (err, contents) {
     if (err) {
 
-    /*  downloadUtilFileToDisc(url, (fileDownloaded) => {
-        fs.readFile(iconPath, (err, fileUtil) => {
-          return res.end(fileUtil);
-        })
-      })*/
+      /*  downloadUtilFileToDisc(url, (fileDownloaded) => {
+       fs.readFile(iconPath, (err, fileUtil) => {
+       return res.end(fileUtil);
+       })
+       })*/
 
       let pathDirectory = path.join(constants.dataDir, userId, url);
       let pathToUtilFile = path.join(constants.dataDir, userId, url, 'icon.bmp');
 
-          downloadFile(url, pathDirectory, pathToUtilFile, 0o0500, (err, pathFileDownload) => {
-            //TODO return default pictur if error;
-            if (err)
-              globalService.sendError(res, 405, "failed to download icon");
+      downloadFile(url, pathDirectory, pathToUtilFile, 0o0500, (err, pathFileDownload) => {
+        //TODO return default pictur if error;
+        if (err)
+          globalService.sendError(res, 405, "failed to download icon");
 
-            fs.readFile(pathFileDownload, (err, fileUtil) => {
-              return res.end(fileUtil);
-            })
-          });
+        fs.readFile(pathFileDownload, (err, fileUtil) => {
+          return res.end(fileUtil);
+        })
+      });
 
 
     } else {
@@ -1297,7 +1299,7 @@ let getPathFileInHomeDir = function (fileData, ListeOfFolder, callBack) {
   return callBack(pathToHomDir, pathToFileInDir);
 }
 
-let  getPathFolderInHomeDir = function (folderData, ListeOfFolder, newNameFolder, callBack) {
+let getPathFolderInHomeDir = function (folderData, ListeOfFolder, newNameFolder, callBack) {
 
   let folderId = folderData._id;
   let folderName = folderData.name;
@@ -1341,28 +1343,28 @@ var showProgressBar = function (progress) {
 }
 
 var showNotification = function (title, message) {
-/*
-// Change config options
-  eNotify.setConfig({
-    width: 300,
-    height: 65,
-    defaultStyleContainer: {
-      backgroundColor: '#f0f0f0',
-      overflow: 'hidden',
-      padding: 8,
-      border: '1px solid #CCC',
-      fontFamily: 'Arial',
-      fontSize: 15,
-      position: 'relative',
-    },
+  /*
+   // Change config options
+   eNotify.setConfig({
+   width: 300,
+   height: 65,
+   defaultStyleContainer: {
+   backgroundColor: '#f0f0f0',
+   overflow: 'hidden',
+   padding: 8,
+   border: '1px solid #CCC',
+   fontFamily: 'Arial',
+   fontSize: 15,
+   position: 'relative',
+   },
 
-    appIcon: path.join(__dirname, '..', '..', 'static', 'images', 'iconElec.png'),
-    displayTime: 4000
-  });
+   appIcon: path.join(__dirname, '..', '..', 'static', 'images', 'iconElec.png'),
+   displayTime: 4000
+   });
 
-// Send simple notification
-  eNotify.notify({title: title, text: message});*/
-  global.mainWindow.send("showNotif",  {title:title, message:message});
+   // Send simple notification
+   eNotify.notify({title: title, text: message});*/
+  global.mainWindow.send("showNotif", {title: title, message: message});
 }
 module.exports.proxyShowNotification = showNotification;
 module.exports.dialogBox = showDialogBox;

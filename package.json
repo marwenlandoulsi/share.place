@@ -1,6 +1,6 @@
 {
   "name": "Share.Place",
-  "version": "0.1.0",
+  "version": "0.1.10",
   "description": "share place",
   "main": "main.js",
   "repository": {
@@ -58,7 +58,7 @@
   "license": "ISC",
   "copyright": "©2017 Share.Place, Inc.",
   "devDependencies": {
-    "electron": "1.4.15",
+    "electron": "1.6.7",
     "electron-builder": "^15.6.2"
   }
 }

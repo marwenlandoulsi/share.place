@@ -21,49 +21,12 @@
   <link rel="stylesheet" href="scrollbar.css" />
 
   <script type="application/javascript">
-    function openFileDialogConditionally(event, label) {
-      var rect = label.getBoundingClientRect();
-      var isInClickableZone = false;
-//        console.log(rect.top, rect.right, rect.bottom, rect.left);
-//        console.log(" mouse postion :", event.clientX, "label position", rect.left);
-      if (event.clientX >= rect.left && event.clientX <= rect.left + label.offsetWidth) {
-        if (event.clientY >= rect.top - 35 && event.clientY <= rect.top + label.offsetHeight) {
-          isInClickableZone = true;
-        }
-      }
-
-      if (!isInClickableZone)
-        event.preventDefault();
-
-    }
 
 
   </script>
 
   <script type="application/javascript">
-    function dispatchWindowEvent(detail) {
-      console.log("dispatchWindowEvent", detail)
-      var event = document.createEvent('CustomEvent');
-      event.initCustomEvent('sp', false, false, detail);
-      window.dispatchEvent(event);
-    }
 
-    window.addEventListener('spB', function (e) {
-      console.log(e.detail);
-    });
-
-
-		window.addEventListener("drop", function (e) {
-			e = e || event;
-			console.log('e.target', e.target.name);
-			if (e.target.type != "file") {  // check wich element is our target
-				e.preventDefault();
-			}
-		}, false);
-
-    window.addEventListener('showScroller', function (e) {
-      showScroll();
-    });
   </script>
 
 
@@ -81,9 +44,7 @@
 </my-app>
 
 <script type="text/javascript">
-  function showScroll() {
-    jQuery('.scrollbar-macosx').scrollbar();
-  }
+
   //jQuery(document).ready();
 </script>
 
