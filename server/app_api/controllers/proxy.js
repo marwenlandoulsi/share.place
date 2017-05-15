@@ -16,7 +16,7 @@ var eNotify = require('electron-notify');
 //let request = require('request-promise').defaults({ simple: false });
 let request = require('request');
 let http = require("https");
-console.log("process.env.DEV", process.env.DEV)
+
 if (process.env.DEV)
   http = require("http");
 
@@ -214,11 +214,22 @@ module.exports.getFile = function (req, res) {
   let folder = dbFolder({_id: dataFile.folderId});
   let placeName = place.select("name")[0];
   let folderName = folder.select("name")[0];
+  let donwloadVersion = false;
 
+  if(dataFile.versions.length  != v)
+    donwloadVersion = true;
 
   getPathFileInHomeDir(dataFile, dataFolder, (pathToHomDir, pathToFileInDir) => {
     let pathToDir = path.join(global.homeDir, 'share.place', userId, placeName, pathToHomDir + '/');
-    let pathToFile = path.join(pathToDir + dataFile.name);
+    let pathToFile = path.join(pathToDir + dataFile.versions[v-1].name);
+    let nameFileWithoutExt = String(dataFile.name).substr(0, String(dataFile.name).indexOf('.'))
+
+    if(donwloadVersion){
+      pathToDir =   path.join(pathToDir, nameFileWithoutExt+"_V"+v);
+      pathToFile = path.join(pathToDir,dataFile.versions[v-1].name);
+    }
+
+
     let mode = 0o0500;
     let modeFile = '0555';
     if (global.onLine) {
@@ -230,7 +241,10 @@ module.exports.getFile = function (req, res) {
 
 
       if (!fs.existsSync(pathToFile)) {
-        showNotification("Download File", dataFile.name)
+  /*      if(!fs.existsSync(path.join(pathToDir,nameFileWithoutExt+"_V"+v )))
+            globalService.checkDirectorySync(path.join(pathToDir,nameFileWithoutExt+"_V"+v )
+*/
+        showNotification("Downloading File", dataFile.name)
         downloadFile(url, pathToDir, pathToFile, mode, (err, ok) => {
           if (err)
             showDialogBox("error", "share.place", "failed to download/open the file");
@@ -345,7 +359,9 @@ function downloadFileInDisc(url, mode, callBack) {
       let file = dbFile({_id: fileId});
       let placeName = place.select("name")[0];
       let folderName = folder.select("name")[0];
-      let fileName = file.select("name")[0];
+      let versions = file.select("versions")[0]
+      let fileName = versions[versions.length - 1].name;
+      console.log("fileName",fileName)
       getPathFileInHomeDir(file.get()[0], dataFolder, (pathToHomDir, pathToFileInDir) => {
 
         let pathToDir = path.join(global.homeDir, 'share.place', userId, placeName, pathToHomDir + '/');

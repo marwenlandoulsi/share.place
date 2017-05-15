@@ -9,11 +9,11 @@ const {session} = require('electron')
 autoUpdater.autoDownload = true;
 autoUpdater.logger = log;
 autoUpdater.logger.transports.file.level = 'info';
-log.info("===================||   share.place V" + pjson.version + "   ||===================");
-
+log.info("============================||   share.place V" + pjson.version + "   ||============================");
+log.info("run in dev mode:", process.env.DEV ? process.env.DEV : false)
 var ipcMain = require('electron').ipcMain;
 //const {appUpdater} = require('./autopdater');
-const isOnline = require('is-online');
+const isReachable = require('is-reachable');
 var http = require('http');
 
 var fs = require('fs-extra');
@@ -40,13 +40,47 @@ if (!process.env.DEV) {
       //  mainWindow.setOverlayIcon(path.join(__dirname, 'Online.ico'), 'you are onLine');
 
       mainWindow.setOverlayIcon(path.join(__dirname, 'Online.ico'), 'you are onLine');
+      isReachable(['https://app.share.place', 'https://qa.share.place']).then(reachable => {
+       log.info("'https://app.share.place' and 'https://qa.share.place' are reachable", reachable)
+        if(!reachable){
+          global.onLine = reachable;
+          mainWindow.setOverlayIcon(path.join(__dirname, 'Offline-red.ico'), 'you are offLine');
 
+        }
+      });
     } else {
       mainWindow.setOverlayIcon(path.join(__dirname, 'Offline-red.ico'), 'you are offLine');
     }
   })
 } else {
-  global.onLine = true;
+  //global.onLine = true;
+  ipcMain.on('online-status-changed', (event, status) => {
+
+    global.onLine = status;
+    log.info("network exist:", status)
+    if (status) {
+      //  mainWindow.setOverlayIcon(path.join(__dirname, 'Online.ico'), 'you are onLine');
+
+      mainWindow.setOverlayIcon(path.join(__dirname, 'Online.ico'), 'you are onLine');
+      isReachable('localhost:3000').then(reachable => {
+        log.info("'localhost:3000' is reachable:", reachable)
+        if(!reachable){
+          global.onLine = reachable;
+          mainWindow.setOverlayIcon(path.join(__dirname, 'Offline-red.ico'), 'you are offLine');
+
+        }
+      });
+    } else {
+
+      isReachable('localhost:3000').then(reachable => {
+        log.info("'localhost:3000' is reachable:", reachable)
+        if(!reachable){
+          global.onLine = reachable;
+          mainWindow.setOverlayIcon(path.join(__dirname, 'Offline-red.ico'), 'you are offLine');
+
+        }
+      });    }
+  })
 }
 
 ipcMain.on('minimizeCurrentWindow', (event, status) => {

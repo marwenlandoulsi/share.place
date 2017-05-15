@@ -23,9 +23,10 @@ var jsonfile = require('jsonfile');
 var multer = require('multer');
 let http = require("https");
 
-console.log("process.env.dev", process.env.DEV)
+
 if (process.env.DEV)
   http = require("http");
+
 var path = require('path');
 var globalService = require('../global')
 
