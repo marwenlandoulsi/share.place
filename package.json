@@ -31,7 +31,7 @@
       {
         "provider": "github",
         "owner": "marwenlandoulsi",
-        "repo": "share.place.qa"
+        "repo": "share.place"
       }
     ],
     "asar": false,
