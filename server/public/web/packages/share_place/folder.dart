@@ -4,6 +4,7 @@ class Folder {
   String parentId;
   String name;
   String fullPath;
+  String type;
   List<Folder> _children = new List<Folder>();
 
   /*
@@ -13,14 +14,14 @@ class Folder {
   bool hasChildrenNotifications = false;
 
 
-  Folder(this._id, this.parentId, this.placeId, this.name);
+  Folder(this._id, this.parentId, this.placeId, this.name, this.type);
 
   factory Folder.fromJson(Map<String, dynamic> place) =>
       new Folder(
-          place['_id'], place['parentId'], place['placeId'], place['name']);
+          place['_id'], place['parentId'], place['placeId'], place['name'], place['folderType']);
 
   Map toJson() =>
-      {'_id': id, 'parentId': parentId, 'placeId': placeId, 'name': name};
+      {'_id': id, 'parentId': parentId, 'placeId': placeId, 'name': name, 'folderType' : type};
 
   String get id => _id;
 

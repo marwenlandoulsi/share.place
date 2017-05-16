@@ -46,6 +46,7 @@
                         <!--*ngIf="actionBlock has class draft"-->
 
                       <div class="versionTitle" (click)="switchCommentOpen(selectedFile.id, versionItem.v)">
+                        <!--*ngIf="selectedFile.dataType != 'quickNote'"-->
                         <div class="versionTitleNumber">Version {{versionItem?.v}}</div>
                         <div class="toggleVersion fa"
                              [ngClass]="{'fa-angle-down': isCommentsOpen(selectedFile.id, versionItem.v), 'fa-angle-up': !isCommentsOpen(selectedFile.id, versionItem.v)}"
@@ -177,11 +178,8 @@
                                           <img *ngIf="versionItem.status != 'waiting'"
                                               src="/sp/place/{{selectedPlace?.id}}/folder/{{selectedFolder?.id}}/file/{{selectedFile?.id}}/version/{{versionItem.v}}/thumb"
                                               class="thumbnail">
-                                          <div
-                                              *ngIf="versionItem.status!='uploaded' && versionItem?.mimeType != 'application/quickNote'"
-                                              class="uploadStatus">
-                                            <img
-                                                src="../images/uploading.png"/></div>
+                                          <div *ngIf="versionItem.status!='uploaded' && versionItem?.mimeType != 'application/quickNote'"
+                                              class="uploadStatus"></div>
                                         </div>
                                       </div>
                                       <div class="rightDetails">
@@ -217,9 +215,10 @@
                                                     [visible]="fileMenuVisible == versionItem.v"
                                                     (close)="fileMenuVisible = -1">
                                       <div header class="headerPopVersion">
-                                        <div class="fileName">{{selectedFile.name}}</div>
+                                        <div class="fileName">{{versionItem.name}}</div>
                                         <div class="fileInfo">
-                                          Version {{versionItem.v}}, {{versionItem.ts | agoDateFormat}}
+                                          <!--*ngIf="selectedFile.dataType != 'quickNote'"-->
+                                          <span>Version {{versionItem.v}},</span> {{versionItem.ts | agoDateFormat}}
                                         </div>
                                       </div>
                                       <div class="popupContent popinVersion">

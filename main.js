@@ -3,9 +3,19 @@ var BrowserWindow = require('electron').BrowserWindow;  // Module to create nati
 var dialog = require('electron').dialog;
 var pjson = require('./package.json');
 var jsonfile = require('jsonfile');
+//var menubar = require('./tray/menubar')
 const log = require('electron-log');
 const {autoUpdater} = require('electron-updater');
-const {session} = require('electron')
+const {session} = require('electron');
+const {crashReporter} = require('electron');
+
+/*
+crashReporter.start({
+  productName: 'Share.place',
+  companyName: 'Share.place',
+  submitURL: 'http://localhost:3000/sp/app-crash',
+  uploadToServer: true
+});*/
 autoUpdater.autoDownload = true;
 autoUpdater.logger = log;
 autoUpdater.logger.transports.file.level = 'info';
@@ -41,8 +51,8 @@ if (!process.env.DEV) {
 
       mainWindow.setOverlayIcon(path.join(__dirname, 'Online.ico'), 'you are onLine');
       isReachable(['https://app.share.place', 'https://qa.share.place']).then(reachable => {
-       log.info("'https://app.share.place' and 'https://qa.share.place' are reachable", reachable)
-        if(!reachable){
+        log.info("'https://app.share.place' and 'https://qa.share.place' are reachable", reachable)
+        if (!reachable) {
           global.onLine = reachable;
           mainWindow.setOverlayIcon(path.join(__dirname, 'Offline-red.ico'), 'you are offLine');
 
@@ -64,7 +74,7 @@ if (!process.env.DEV) {
       mainWindow.setOverlayIcon(path.join(__dirname, 'Online.ico'), 'you are onLine');
       isReachable('localhost:3000').then(reachable => {
         log.info("'localhost:3000' is reachable:", reachable)
-        if(!reachable){
+        if (!reachable) {
           global.onLine = reachable;
           mainWindow.setOverlayIcon(path.join(__dirname, 'Offline-red.ico'), 'you are offLine');
 
@@ -74,17 +84,19 @@ if (!process.env.DEV) {
 
       isReachable('localhost:3000').then(reachable => {
         log.info("'localhost:3000' is reachable:", reachable)
-        if(!reachable){
+        if (!reachable) {
           global.onLine = reachable;
           mainWindow.setOverlayIcon(path.join(__dirname, 'Offline-red.ico'), 'you are offLine');
 
         }
-      });    }
+      });
+    }
   })
 }
 
 ipcMain.on('minimizeCurrentWindow', (event, status) => {
   // console.trace();
+
   let window = BrowserWindow.getFocusedWindow();
   window.minimize();
 })
@@ -126,6 +138,11 @@ const shouldQuit = app.makeSingleInstance((commandLine, workingDirectory) => {
 if (shouldQuit) {
   app.quit()
 }
+
+app.on('gpu-process-crashed', (event, killed)=>{
+  log.error("app crashed", event)
+
+})
 app.on('ready', function () {
 
   if (!process.env.DEV) {
@@ -142,7 +159,15 @@ app.on('ready', function () {
   global.homeDir = app.getPath('home');
 
   var expressApp = require('./server/app');
-  var listener = expressApp.listen(0, '127.0.0.1', ()=>{
+  var listener = expressApp.listen(0, '127.0.0.1', () => {
+    /*var mb =  menubar ({
+      index : "http://localhost:"+listener.address().port+"/web",
+      icon : path.join( __dirname, 'shareElecIco.ico')
+    })
+    mb.on('ready', function ready () {
+      console.log('app is ready')
+      // your app code here
+    })*/
     global.serverPort = listener.address().port;
     global.address = listener.address().address;
     process.on('uncaughtException', (err) => {
@@ -186,10 +211,10 @@ app.on('ready', function () {
        }])*/
       app.quit();
     });
-/*
-    mainWindow.webContents.on('will-navigate', function(event) {
-      event.preventDefault();
-    });*/
+    /*
+     mainWindow.webContents.on('will-navigate', function(event) {
+     event.preventDefault();
+     });*/
 
     global.mainWindow = mainWindow;
   });

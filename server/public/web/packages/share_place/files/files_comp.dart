@@ -303,7 +303,12 @@ class FilesComp implements OnInit, PopupParent {
     return "$mimeType Document";
   }
 
-  bool get isFile => selectedFile?.dataType == "file";
+  bool isFile(int version) {
+    if(selectedFile == null)
+      return false;
+
+    return selectedFile.versions[version-1].mimeType != "application/quickNote";
+  }
 
   bool get isWriter =>
       _environment.connectedUserHasGreaterRole(
@@ -314,7 +319,7 @@ class FilesComp implements OnInit, PopupParent {
           RoleEnum.owner, _environment.selectedFolder);
 
   void openFileDialog(int version) {
-    if (!isFile)
+    if (!isFile(version))
       return;
     if (!isWriter) {
       _environment.addMessage("You can open this file only in read mode");
@@ -324,9 +329,8 @@ class FilesComp implements OnInit, PopupParent {
     if (selectedFile.lockOwner == null) {
       openFileVersion = version;
       return;
-    }
-    if (isLockOwner) {
-      openFileVersion = version;
+    } else if (isLockOwner) {
+      openFileLink(version);
       return;
     }
     _environment.addMessage("File is locked by ${selectedFile.lockOwner
@@ -419,10 +423,10 @@ class FilesComp implements OnInit, PopupParent {
   }
 
   bool shouldShowApproveMenu(FileVersion version) =>
-      isFile && isOwner && version.approved == null;
+      isFile(version.v) && isOwner && version.approved == null;
 
   bool shouldShowUnApproveMenu(FileVersion version) =>
-      isFile && isOwner && version.approved != null &&
+      isFile(version.v) && isOwner && version.approved != null &&
           connectedUser.id == version.approved.userId;
 
   int computeIndex(FileVersion version, int actionIndex) {
@@ -459,6 +463,8 @@ class FilesComp implements OnInit, PopupParent {
   }
 
 
+  @override
+  bool get allowRoleChange => _environment.selectedFolder != null ? _environment.selectedFolder.type != "support" ? true : false : false;
 }
 
 class FileVersionAttributes {

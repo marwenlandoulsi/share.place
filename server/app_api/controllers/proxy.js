@@ -1083,7 +1083,7 @@ let unlockFile = function (url, fileId, jsonToPut, callBack) {
   let dataFolder = jsonfile.readFileSync(pathDbDataFolder);
   let dataFile = jsonfile.readFileSync(pathDbDataFile);
   if (global.onLine) {
-    let urlToUploadFile = "/place/" + placeId + "/folder/" + folderId + "/file";
+    let urlToUploadFile = "/place/" + placeId + "/folder/" + folderId + "/file/"+fileId;
     httpPutJson(url, jsonToPut, (err, toReturn) => {
       if (err) {
         log.error("error to unlock:", err.message)
@@ -1121,12 +1121,13 @@ let unlockFile = function (url, fileId, jsonToPut, callBack) {
                 log.error("error to test isSameFile:", err.message)
 
               if (!sameFile) {
+
                 httpUploadNewVersion(urlToUploadFile, pathToFile, fileName, contentType, (err, dataReceivedAfterUpload) => {
                   if (err) {
                     log.error("error to upload the new version:", err.message)
                     showDialogBox("error", "share.place", "sorry, an error occured while uploading the file :'" + fileName + "' please retry later")
                   }
-
+                  log.info ("new version uploaded")
                 });
               }
             });

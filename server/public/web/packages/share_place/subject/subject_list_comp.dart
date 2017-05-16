@@ -297,5 +297,8 @@ class SubjectListComponent
       DivElement fileUploadLabel) {
     html_util.openFileDialogConditionally(event, fileUploadLabel);
   }
+
+  @override
+  bool get allowRoleChange => _environment.selectedFolder != null ? _environment.selectedFolder.type != "support" ? true : false : false;
 }
 

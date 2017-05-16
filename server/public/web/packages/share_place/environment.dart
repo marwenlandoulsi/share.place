@@ -180,8 +180,12 @@ class Environment {
     });
   }
 
-  bool connectedUserHasGreaterRole(RoleEnum role, Folder folder) =>
-      connectedUser.hasGreaterRole(role, folder.id);
+  bool connectedUserHasGreaterRole(RoleEnum role, Folder folder) {
+    if( folder == null )
+      return false;
+
+    return connectedUser.hasGreaterRole(role, folder.id);
+  }
 
 
   int getNotificationCount(String folderId) {

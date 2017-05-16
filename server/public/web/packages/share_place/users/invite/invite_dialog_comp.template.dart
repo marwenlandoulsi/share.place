@@ -259,13 +259,12 @@ class ViewInviteUsersDialogComp0 extends AppView<import3.InviteUsersDialogComp> 
     _el_38.setAttribute(shimCAttr,'');
     _el_25.append(_el_38);
     _el_38.className = 'p_invi';
-    Text _text_39 = new Text('User can read, export  and');
+    Text _text_39 = new Text('User can read, export  and ');
     _el_38.append(_text_39);
-    _el_40 = doc.createElement('span');
+    _el_40 = doc.createElement('strong');
     _el_40.setAttribute(shimCAttr,'');
     _el_38.append(_el_40);
-    _el_40.className = 'fStrong';
-    Text _text_41 = new Text(' modify');
+    Text _text_41 = new Text('modify');
     _el_40.append(_text_41);
     Text _text_42 = new Text(' document');
     _el_38.append(_text_42);

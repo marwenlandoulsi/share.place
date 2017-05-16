@@ -1,0 +1,63 @@
+{
+  "name": "Share.Place",
+  "version": "0.1.12  ",
+  "description": "share place",
+  "main": "main.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/marwenlandoulsi/share.place"
+  },
+  "scripts": {
+    "start": "set DEV=true && electron .",
+    "build:win": "build --win --ia32 --x64 --publish always",
+    "build:winDev": "build --win --ia32 --x64",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "electron-log": "^1.3.0",
+    "electron-notifications": "^1.0.0",
+    "electron-notify": "^0.1.0",
+    "electron-packager": "^8.5.2",
+    "electron-updater": "^1.10.3",
+    "fs-extra": "^2.0.0",
+    "http": "0.0.0",
+    "is-reachable": "^2.3.2",
+    "nedb-session-store": "^1.1.1",
+    "path": "^0.12.7"
+  },
+  "build": {
+    "icon": "./shareElecIco.ico",
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "marwenlandoulsi",
+        "repo": "share.place"
+      }
+    ],
+    "asar": false,
+    "copyright": "©2017 Share.Place, Inc.",
+    "appId": "com.share.place",
+    "win": {
+      "icon": "./shareElecIco.ico",
+      "target": "nsis"
+    },
+    "nsis": {
+      "installerIcon": "./shareElecIco.ico",
+      "perMachine": false,
+      "oneClick": true,
+      "runAfterFinish": true
+    }
+  },
+  "keywords": [
+    "Electron",
+    "Windows",
+    "autoupdate"
+  ],
+  "author": "share.place",
+  "license": "ISC",
+  "copyright": "©2017 Share.Place, Inc.",
+  "devDependencies": {
+    "electron": "1.6.7",
+    "electron-builder": "^15.6.2"
+  }
+}

@@ -334,7 +334,7 @@ class ViewAppComponent0 extends AppView<import3.AppComponent> {
     _el_13.setAttribute(shimCAttr,'');
     _el_8.append(_el_13);
     _el_13.className = 'desktopVersion';
-    Text _text_14 = new Text('V0.1.10');
+    Text _text_14 = new Text('V0.1.12');
     _el_13.append(_text_14);
     Text _text_15 = new Text('\n    ');
     _el_8.append(_text_15);

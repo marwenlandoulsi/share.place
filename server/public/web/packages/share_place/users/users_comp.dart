@@ -77,4 +77,7 @@ class UsersComp implements OnInit, PopupParent {
   }
 
   PopupParent get self => this;
+
+  @override
+  bool get allowRoleChange => false;
 }

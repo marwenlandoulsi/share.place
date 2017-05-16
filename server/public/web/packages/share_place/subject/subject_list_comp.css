@@ -22,14 +22,14 @@ ul.subjectList {
 }
 
 li.subjectItem {
-  padding: 0.1em 0.55em 0.1em 0.6em;
+  padding: 0.1em 0.55em 0.1em 0.7em;
   cursor: pointer;
   background: #edf2f8;
   position: relative;
   border-bottom: 1px solid #ffffff;
   /*border-left: 0.4em solid #edf2f8;*/
   /*width: calc(95% - 1.15em);*/
-  width: calc(100% - 1.15em);
+  width: calc(100% - 1.25em);
 }
 
 li.unread {
