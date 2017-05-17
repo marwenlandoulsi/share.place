@@ -37,4 +37,6 @@
   margin: 0 0 0 7px;
 }
 
-.folderItem > div { vertical-align: middle !important; }
+.folderItem > div {
+  vertical-align: middle !important;
+}

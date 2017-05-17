@@ -297,6 +297,9 @@ TODO see what font to use
   line-height: 1em;
   padding: 3px 0 0 1.8em !important;
   word-break: break-all;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .expand-button {
@@ -1431,58 +1434,59 @@ input {
 .addBtn {
   font-family: 'Material-Design-Iconic-Font';
   cursor: pointer;
-  -webkit-transition: 0.3s;
-  -o-transition: 0.3s;
-  transition: 0.3s;
 }
 
-.addBtn:before {
+.addBtn:after {
   font-size: 2.3em;
-  color: rgba(255, 255, 255, 0.5);
+  color: #3471AA;
   content: '\f276';
 }
 
 /**********/
-.headerplaces .addBtn:before {
+
+.nameTroq {
+  display: inline-block;
+  width: calc(50% - 2.3em);
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+
+.folders .scrollbar-macosx {
+  width: calc(100% + 10px);
+}
+
+.folders .scrollContent {
+  width:calc(100% - 10px);
+}
+
+/**********/
+.headerplaces .addBtn:after {
   color: rgba(255, 255, 255, 0.5);
   font-size: 2em;
 }
 
-.headerplaces .addBtn:hover:before {
+.headerplaces .addBtn:hover:after {
   color: rgba(237, 242, 248, 0.86);
 }
 
-.headerplaces .addBtn:active:before {
+.headerplaces .addBtn:active:after {
   color: rgba(237, 242, 248, 1);
 }
 
 /**********/
 
-.folders .addBtn:before {
-  font-size: 1.8em;
-  /*color: rgba(255, 255, 255, 0.5);*/
-  color: rgba(39, 59, 84, 0.28) !important;
-  content: '\f276';
-}
-
-.folders .addBtn:hover:before {
-  color: rgba(52, 113, 170, 0.77) !important
-}
-
-.folders .addBtn:active:before {
-  color: rgba(52, 113, 170, 0.9) !important
-}
-
 /**********/
-.subjects .addBtn:before {
+.subjects .addBtn:after {
   color: rgba(255, 255, 255, 0.5);
 }
 
-.subjects .addBtn:hover:before {
+.subjects .addBtn:hover:after {
   color: rgba(237, 242, 248, 0.86);
 }
 
-.subjects .addBtn:active:before {
+.subjects .addBtn:active:after {
   color: rgba(237, 242, 248, 1);
 }
 

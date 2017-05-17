@@ -102,9 +102,11 @@ li.subjectItem.active .name {
   font-size: 0.8em;
   color: #353535;
   max-width: calc(100% - 11.7em);
-  text-transform: lowercase;
-  word-break: break-all;
+  word-break: break-word;
   line-height: 1;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .version {
@@ -176,6 +178,7 @@ li.subjectItem.active .name {
   line-height: 2.2em;
   padding: 0 0.3em 0 1em;
   overflow: hidden;
+  position: relative;
 }
 
 .newTopic {
@@ -194,6 +197,10 @@ li.subjectItem.active .name {
   margin-right: 0.1em;
   margin-top: 0.25em;
   list-style: none;
+  position: absolute;
+  top: 0;
+  right: 39px;
+  max-width: 50%;
 }
 
 .useractive {
@@ -203,6 +210,7 @@ li.subjectItem.active .name {
   float: right;
   margin-left: 0.4em;
   margin-top: -0.1em;
+
 }
 
 .useractive img {
@@ -211,6 +219,7 @@ li.subjectItem.active .name {
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   border-radius: 50%;
+  background-color: white;
 }
 
 .useractive.approver img {

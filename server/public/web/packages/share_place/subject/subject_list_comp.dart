@@ -154,7 +154,7 @@ class SubjectListComponent
     if (subjects != null) {
       subjects = subjects.reversed;
     }
-    _environment.showScrollBar('showScroller');
+    _environment.showScrollBar();
   }
 
   bool computeSizes(Element subjectList) {

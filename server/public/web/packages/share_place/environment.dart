@@ -53,8 +53,8 @@ class Environment {
     window.dispatchEvent(event);
   }
 
-  void showScrollBar(String event) {
-    sendWindowEvent(event, null);
+  void showScrollBar() {
+    sendWindowEvent('showScroller', null);
   }
 
   Place get selectedPlace => _place;

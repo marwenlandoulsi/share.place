@@ -13,7 +13,7 @@
              popupSource alignPositionX="after"
              alignPositionY="start" #userElem="popupSource">
           <img src="/auth/user/photo/s/{{userItem.id}}" class="profileImg">
-          <div class="userName">{{userItem?.displayName}}</div>
+          <div class="userName" title="{{userItem?.displayName}}">{{userItem?.displayName}}</div>
         </div>
         <info-popup *ngIf="clickedUserId == userItem.id"
                     [userId]="userItem.id"

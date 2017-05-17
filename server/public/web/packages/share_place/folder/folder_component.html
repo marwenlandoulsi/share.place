@@ -2,9 +2,9 @@
   <div class="header">
 		<span class="hTitle">
 			<div class="hTitleIn">Folders</div>
-      <div class="buttonGroup" [class.hidden]="!canCreateSubfolder">
-      <div class="addBtn" (click)="add()"></div>
-    </div>
+      <!--<div class="buttonGroup" [class.hidden]="!canCreateSubfolder">-->
+      <!--<div class="addBtn" (click)="add()"></div>-->
+      <!--</div>-->
 		</span>
   </div>
   <div>
@@ -18,5 +18,12 @@
       </li>
     </ul>
   </div>
-  <tree-node-comp [nodes]="folders"></tree-node-comp>
+  <div class="folders">
+    <div class="scrollbar-macosx">
+      <div class="scrollContent">
+        <tree-node-comp [nodes]="folders"></tree-node-comp>
+      </div>
+    </div>
+  </div>
+
 </div>

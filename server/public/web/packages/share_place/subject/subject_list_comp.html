@@ -1,6 +1,6 @@
 <div *ngIf="selectedFolder != null" class="subjects">
 
-  <div class="title">{{selectedFolder.name}}
+  <div class="title"> <span class="nameTroq" title="{{selectedFolder.name}}">{{selectedFolder.name}}</span>
 
     <postit-comp [name]="'invitePeople'" [header]="'Great!'"
                  [body]="'Now invite some poople to join you clicking on the + icon'"
@@ -64,7 +64,7 @@
                   src="/sp/place/{{selectedPlace.id}}/folder/{{selectedFolder?.id}}/file/{{subject.fileId}}/version/{{subject.v}}/thumb">
               </div>
               <div *ngIf="subject.dataType == 'file'" class="version"> V.{{subject.v}}</div>
-              <div class="name">{{subject.name}}</div>
+              <div class="name" title="{{subject.name}}">{{subject.name}}</div>
               <div class="users">
                 <ul>
                   <li *ngFor="let activeUser of subject.users" class="user">

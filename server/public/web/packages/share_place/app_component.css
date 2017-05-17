@@ -204,8 +204,7 @@ material-button.menuItem.profile, material-button.menuItem.logout {
   position: absolute;
   top: 10px;
   left: auto;
-  margin-left: 6px;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 500;
 }
 

@@ -129,74 +129,76 @@ AppView viewFactory_SubjectListComponent0(import6.Injector parentInjector,ViewCo
 class ViewSubjectListComponent1 extends AppView<import3.SubjectListComponent> {
   Element _el_0;
   Element _el_2;
-  Text _text_3;
   Element _el_4;
-  ViewContainer _appEl_4;
-  import13.PostitComponent _PostitComponent_4_3;
-  Element _el_6;
-  Element _el_8;
-  ViewContainer _appEl_8;
-  import14.ModalComponent _ModalComponent_8_3;
-  dynamic __DeferredContentAware_8_4;
-  dynamic __Modal_8_5;
-  Element _el_10;
-  ViewContainer _appEl_10;
-  import15.MaterialDialogComponent _MaterialDialogComponent_10_3;
-  Element _el_12;
-  ViewContainer _appEl_12;
-  import16.InviteUsersDialogComp _InviteUsersDialogComp_12_3;
-  UListElement _el_17;
-  ViewContainer _appEl_19;
-  dynamic _TemplateRef_19_4;
-  import17.NgFor _NgFor_19_5;
-  Element _el_23;
-  Element _el_25;
-  InputElement _el_27;
-  Element _el_29;
+  Text _text_5;
+  Element _el_7;
+  ViewContainer _appEl_7;
+  import13.PostitComponent _PostitComponent_7_3;
+  Element _el_9;
+  Element _el_11;
+  ViewContainer _appEl_11;
+  import14.ModalComponent _ModalComponent_11_3;
+  dynamic __DeferredContentAware_11_4;
+  dynamic __Modal_11_5;
+  Element _el_13;
+  ViewContainer _appEl_13;
+  import15.MaterialDialogComponent _MaterialDialogComponent_13_3;
+  Element _el_15;
+  ViewContainer _appEl_15;
+  import16.InviteUsersDialogComp _InviteUsersDialogComp_15_3;
+  UListElement _el_20;
+  ViewContainer _appEl_22;
+  dynamic _TemplateRef_22_4;
+  import17.NgFor _NgFor_22_5;
+  Element _el_26;
+  Element _el_28;
+  InputElement _el_30;
   Element _el_32;
   Element _el_35;
-  Element _el_37;
-  Element _el_39;
-  Element _el_41;
-  ViewContainer _appEl_43;
-  dynamic _TemplateRef_43_4;
-  NgIf _NgIf_43_5;
-  UListElement _el_46;
-  ViewContainer _appEl_48;
-  dynamic _TemplateRef_48_4;
-  import17.NgFor _NgFor_48_5;
-  FormElement _el_54;
-  import18.NgForm _NgForm_54_2;
-  dynamic __ControlContainer_54_3;
-  Element _el_56;
-  InputElement _el_59;
-  Element _el_61;
-  ViewContainer _appEl_61;
-  import13.PostitComponent _PostitComponent_61_3;
+  Element _el_38;
+  Element _el_40;
+  Element _el_42;
+  Element _el_44;
+  ViewContainer _appEl_46;
+  dynamic _TemplateRef_46_4;
+  NgIf _NgIf_46_5;
+  UListElement _el_49;
+  ViewContainer _appEl_51;
+  dynamic _TemplateRef_51_4;
+  import17.NgFor _NgFor_51_5;
+  FormElement _el_57;
+  import18.NgForm _NgForm_57_2;
+  dynamic __ControlContainer_57_3;
+  Element _el_59;
+  InputElement _el_62;
+  Element _el_64;
+  ViewContainer _appEl_64;
+  import13.PostitComponent _PostitComponent_64_3;
   var _expr_0 = uninitialized;
   var _expr_1 = uninitialized;
   var _expr_2 = uninitialized;
   var _expr_3 = uninitialized;
-  var _expr_5 = uninitialized;
+  var _expr_4 = uninitialized;
   var _expr_6 = uninitialized;
   var _expr_7 = uninitialized;
-  var _expr_11 = uninitialized;
-  var _expr_14 = uninitialized;
-  var _expr_21 = uninitialized;
+  var _expr_8 = uninitialized;
+  var _expr_12 = uninitialized;
+  var _expr_15 = uninitialized;
   var _expr_22 = uninitialized;
   var _expr_23 = uninitialized;
+  var _expr_24 = uninitialized;
   ViewSubjectListComponent1(import6.Injector parentInjector,ViewContainer declarationEl): super(ViewSubjectListComponent1,renderType_SubjectListComponent,import7.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
-  dynamic get _DeferredContentAware_8_4 {
-    if ((this.__DeferredContentAware_8_4 == null)) { (__DeferredContentAware_8_4 = this._ModalComponent_8_3); }
-    return this.__DeferredContentAware_8_4;
+  dynamic get _DeferredContentAware_11_4 {
+    if ((this.__DeferredContentAware_11_4 == null)) { (__DeferredContentAware_11_4 = this._ModalComponent_11_3); }
+    return this.__DeferredContentAware_11_4;
   }
-  dynamic get _Modal_8_5 {
-    if ((this.__Modal_8_5 == null)) { (__Modal_8_5 = this._ModalComponent_8_3); }
-    return this.__Modal_8_5;
+  dynamic get _Modal_11_5 {
+    if ((this.__Modal_11_5 == null)) { (__Modal_11_5 = this._ModalComponent_11_3); }
+    return this.__Modal_11_5;
   }
-  dynamic get _ControlContainer_54_3 {
-    if ((this.__ControlContainer_54_3 == null)) { (__ControlContainer_54_3 = this._NgForm_54_2); }
-    return this.__ControlContainer_54_3;
+  dynamic get _ControlContainer_57_3 {
+    if ((this.__ControlContainer_57_3 == null)) { (__ControlContainer_57_3 = this._NgForm_57_2); }
+    return this.__ControlContainer_57_3;
   }
   ViewContainer createInternal(dynamic rootSelector) {
     var doc = document;
@@ -209,386 +211,399 @@ class ViewSubjectListComponent1 extends AppView<import3.SubjectListComponent> {
     _el_2.setAttribute(shimCAttr,'');
     _el_0.append(_el_2);
     _el_2.className = 'title';
-    _text_3 = new Text('');
+    Text _text_3 = new Text(' ');
     _el_2.append(_text_3);
-    _el_4 = doc.createElement('postit-comp');
+    _el_4 = doc.createElement('span');
     _el_4.setAttribute(shimCAttr,'');
     _el_2.append(_el_4);
-    _el_4.className = 'subjectsPostit';
-    _appEl_4 = new ViewContainer(4,2,this,_el_4);
-    var compView_4 = import19.viewFactory_PostitComponent0(this.injector(4),_appEl_4);
-    _PostitComponent_4_3 = new import13.PostitComponent(this.parentInjector.get(import20.PlaceService),this.parentInjector.get(import21.Router),this.parentInjector.get(import22.Environment));
-    _appEl_4.initComponent(_PostitComponent_4_3,compView_4);
-    compView_4.createComp([],null);
-    Text _text_5 = new Text('\n\n    ');
-    _el_2.append(_text_5);
-    _el_6 = doc.createElement('div');
-    _el_6.setAttribute(shimCAttr,'');
-    _el_2.append(_el_6);
-    _el_6.className = 'addBtn addPeople';
-    Text _text_7 = new Text('\n\n    ');
-    _el_2.append(_text_7);
-    _el_8 = doc.createElement('modal');
-    _el_8.setAttribute(shimCAttr,'');
-    _el_2.append(_el_8);
-    _appEl_8 = new ViewContainer(8,2,this,_el_8);
-    var compView_8 = import23.viewFactory_ModalComponent0(this.injector(8),_appEl_8);
-    _ModalComponent_8_3 = new import14.ModalComponent(this.parentInjector.get(import24.OverlayService),this.parentInjector.get(import14.Modal,null),this.parentInjector.get(import14.GlobalModalStack,null));
-    _appEl_8.initComponent(_ModalComponent_8_3,compView_8);
-    Text _text_9 = new Text('\n      ');
-    _el_10 = doc.createElement('material-dialog');
-    _el_10.setAttribute(shimCAttr,'');
-    _el_10.className = 'profilemenuvisible';
-    createAttr(_el_10,'defaultPopupSizeProvider','');
-    createAttr(_el_10,'enforceSpaceConstraints','');
-    _appEl_10 = new ViewContainer(10,8,this,_el_10);
-    var compView_10 = import25.viewFactory_MaterialDialogComponent0(this.injector(10),_appEl_10);
-    _MaterialDialogComponent_10_3 = new import15.MaterialDialogComponent(this.parentInjector.get(import26.DomService),compView_10.ref,_ModalComponent_8_3);
-    _appEl_10.initComponent(_MaterialDialogComponent_10_3,compView_10);
-    Text _text_11 = new Text('\n        ');
-    _el_12 = doc.createElement('invite-users-dialog');
-    _el_12.setAttribute(shimCAttr,'');
-    _appEl_12 = new ViewContainer(12,10,this,_el_12);
-    var compView_12 = import27.viewFactory_InviteUsersDialogComp0(this.injector(12),_appEl_12);
-    _InviteUsersDialogComp_12_3 = new import16.InviteUsersDialogComp(this.parentInjector.get(import20.PlaceService),this.parentInjector.get(import21.Router),this.parentInjector.get(import22.Environment),this.parentInjector.get(import28.UserListProvider));
-    _appEl_12.initComponent(_InviteUsersDialogComp_12_3,compView_12);
-    compView_12.createComp([],null);
-    Text _text_13 = new Text('\n      ');
-    compView_10.createComp([
+    _el_4.className = 'nameTroq';
+    _text_5 = new Text('');
+    _el_4.append(_text_5);
+    Text _text_6 = new Text('\n\n    ');
+    _el_2.append(_text_6);
+    _el_7 = doc.createElement('postit-comp');
+    _el_7.setAttribute(shimCAttr,'');
+    _el_2.append(_el_7);
+    _el_7.className = 'subjectsPostit';
+    _appEl_7 = new ViewContainer(7,2,this,_el_7);
+    var compView_7 = import19.viewFactory_PostitComponent0(this.injector(7),_appEl_7);
+    _PostitComponent_7_3 = new import13.PostitComponent(this.parentInjector.get(import20.PlaceService),this.parentInjector.get(import21.Router),this.parentInjector.get(import22.Environment));
+    _appEl_7.initComponent(_PostitComponent_7_3,compView_7);
+    compView_7.createComp([],null);
+    Text _text_8 = new Text('\n\n    ');
+    _el_2.append(_text_8);
+    _el_9 = doc.createElement('div');
+    _el_9.setAttribute(shimCAttr,'');
+    _el_2.append(_el_9);
+    _el_9.className = 'addBtn addPeople';
+    Text _text_10 = new Text('\n\n    ');
+    _el_2.append(_text_10);
+    _el_11 = doc.createElement('modal');
+    _el_11.setAttribute(shimCAttr,'');
+    _el_2.append(_el_11);
+    _appEl_11 = new ViewContainer(11,2,this,_el_11);
+    var compView_11 = import23.viewFactory_ModalComponent0(this.injector(11),_appEl_11);
+    _ModalComponent_11_3 = new import14.ModalComponent(this.parentInjector.get(import24.OverlayService),this.parentInjector.get(import14.Modal,null),this.parentInjector.get(import14.GlobalModalStack,null));
+    _appEl_11.initComponent(_ModalComponent_11_3,compView_11);
+    Text _text_12 = new Text('\n      ');
+    _el_13 = doc.createElement('material-dialog');
+    _el_13.setAttribute(shimCAttr,'');
+    _el_13.className = 'profilemenuvisible';
+    createAttr(_el_13,'defaultPopupSizeProvider','');
+    createAttr(_el_13,'enforceSpaceConstraints','');
+    _appEl_13 = new ViewContainer(13,11,this,_el_13);
+    var compView_13 = import25.viewFactory_MaterialDialogComponent0(this.injector(13),_appEl_13);
+    _MaterialDialogComponent_13_3 = new import15.MaterialDialogComponent(this.parentInjector.get(import26.DomService),compView_13.ref,_ModalComponent_11_3);
+    _appEl_13.initComponent(_MaterialDialogComponent_13_3,compView_13);
+    Text _text_14 = new Text('\n        ');
+    _el_15 = doc.createElement('invite-users-dialog');
+    _el_15.setAttribute(shimCAttr,'');
+    _appEl_15 = new ViewContainer(15,13,this,_el_15);
+    var compView_15 = import27.viewFactory_InviteUsersDialogComp0(this.injector(15),_appEl_15);
+    _InviteUsersDialogComp_15_3 = new import16.InviteUsersDialogComp(this.parentInjector.get(import20.PlaceService),this.parentInjector.get(import21.Router),this.parentInjector.get(import22.Environment),this.parentInjector.get(import28.UserListProvider));
+    _appEl_15.initComponent(_InviteUsersDialogComp_15_3,compView_15);
+    compView_15.createComp([],null);
+    Text _text_16 = new Text('\n      ');
+    compView_13.createComp([
       [],[
-        _text_11,_el_12,_text_13
+        _text_14,_el_15,_text_16
       ]
       ,[]
     ]
     ,null);
-    Text _text_14 = new Text('\n    ');
-      compView_8.createComp([[
-        _text_9,_el_10,_text_14
+    Text _text_17 = new Text('\n    ');
+      compView_11.createComp([[
+        _text_12,_el_13,_text_17
       ]
     ],null);
-    Text _text_15 = new Text('\n    ');
-    _el_2.append(_text_15);
-    Text _text_16 = new Text('\n    ');
-    _el_2.append(_text_16);
-    _el_17 = doc.createElement('ul');
-    _el_17.setAttribute(shimCAttr,'');
-    _el_2.append(_el_17);
-    _el_17.className = 'users_list';
-    Text _text_18 = new Text('\n      ');
-    _el_17.append(_text_18);
-    var _anchor_19 = new Comment('template bindings={}');
-    _el_17?.append(_anchor_19);
-    _appEl_19 = new ViewContainer(19,17,this,_anchor_19);
-    _TemplateRef_19_4 = new TemplateRef(_appEl_19,viewFactory_SubjectListComponent2);
-    _NgFor_19_5 = new import17.NgFor(_appEl_19,_TemplateRef_19_4,this.parentInjector.get(import29.IterableDiffers),ref);
-    Text _text_20 = new Text('\n    ');
-    _el_17.append(_text_20);
-    Text _text_21 = new Text('\n  ');
-    _el_2.append(_text_21);
-    Text _text_22 = new Text('\n  ');
-    _el_0.append(_text_22);
-    _el_23 = doc.createElement('div');
-    _el_23.setAttribute(shimCAttr,'');
-    _el_0.append(_el_23);
-    _el_23.className = 'newTopic';
-    Text _text_24 = new Text('\n    ');
-    _el_23.append(_text_24);
-    _el_25 = doc.createElement('div');
-    _el_25.setAttribute(shimCAttr,'');
-    _el_23.append(_el_25);
-    _el_25.className = 'newTopicBlock';
-    Text _text_26 = new Text('\n      ');
-    _el_25.append(_text_26);
-    _el_27 = doc.createElement('input');
-    _el_27.setAttribute(shimCAttr,'');
-    _el_25.append(_el_27);
-    _el_27.className = 'txt';
-    createAttr(_el_27,'placeholder','Start a topic...');
-    createAttr(_el_27,'type','text');
-    Text _text_28 = new Text('\n      ');
-    _el_25.append(_text_28);
-    _el_29 = doc.createElement('div');
-    _el_29.setAttribute(shimCAttr,'');
-    _el_25.append(_el_29);
-    _el_29.className = 'btn_valid';
-    Text _text_30 = new Text('\n    ');
-    _el_25.append(_text_30);
-    Text _text_31 = new Text('\n    ');
-    _el_23.append(_text_31);
+    Text _text_18 = new Text('\n    ');
+    _el_2.append(_text_18);
+    Text _text_19 = new Text('\n    ');
+    _el_2.append(_text_19);
+    _el_20 = doc.createElement('ul');
+    _el_20.setAttribute(shimCAttr,'');
+    _el_2.append(_el_20);
+    _el_20.className = 'users_list';
+    Text _text_21 = new Text('\n      ');
+    _el_20.append(_text_21);
+    var _anchor_22 = new Comment('template bindings={}');
+    _el_20?.append(_anchor_22);
+    _appEl_22 = new ViewContainer(22,20,this,_anchor_22);
+    _TemplateRef_22_4 = new TemplateRef(_appEl_22,viewFactory_SubjectListComponent2);
+    _NgFor_22_5 = new import17.NgFor(_appEl_22,_TemplateRef_22_4,this.parentInjector.get(import29.IterableDiffers),ref);
+    Text _text_23 = new Text('\n    ');
+    _el_20.append(_text_23);
+    Text _text_24 = new Text('\n  ');
+    _el_2.append(_text_24);
+    Text _text_25 = new Text('\n  ');
+    _el_0.append(_text_25);
+    _el_26 = doc.createElement('div');
+    _el_26.setAttribute(shimCAttr,'');
+    _el_0.append(_el_26);
+    _el_26.className = 'newTopic';
+    Text _text_27 = new Text('\n    ');
+    _el_26.append(_text_27);
+    _el_28 = doc.createElement('div');
+    _el_28.setAttribute(shimCAttr,'');
+    _el_26.append(_el_28);
+    _el_28.className = 'newTopicBlock';
+    Text _text_29 = new Text('\n      ');
+    _el_28.append(_text_29);
+    _el_30 = doc.createElement('input');
+    _el_30.setAttribute(shimCAttr,'');
+    _el_28.append(_el_30);
+    _el_30.className = 'txt';
+    createAttr(_el_30,'placeholder','Start a topic...');
+    createAttr(_el_30,'type','text');
+    Text _text_31 = new Text('\n      ');
+    _el_28.append(_text_31);
     _el_32 = doc.createElement('div');
     _el_32.setAttribute(shimCAttr,'');
-    _el_23.append(_el_32);
-    _el_32.className = 'addTopicBtn';
-    Text _text_33 = new Text('\n\n  ');
-    _el_23.append(_text_33);
-    Text _text_34 = new Text('\n  ');
-    _el_0.append(_text_34);
+    _el_28.append(_el_32);
+    _el_32.className = 'btn_valid';
+    Text _text_33 = new Text('\n    ');
+    _el_28.append(_text_33);
+    Text _text_34 = new Text('\n    ');
+    _el_26.append(_text_34);
     _el_35 = doc.createElement('div');
     _el_35.setAttribute(shimCAttr,'');
-    _el_0.append(_el_35);
-    Text _text_36 = new Text('\n\n    ');
-    _el_35.append(_text_36);
-    _el_37 = doc.createElement('div');
-    _el_37.setAttribute(shimCAttr,'');
-    _el_35.append(_el_37);
-    _el_37.className = 'subjectListScollZone';
-    Text _text_38 = new Text('\n      ');
-    _el_37.append(_text_38);
-    _el_39 = doc.createElement('div');
-    _el_39.setAttribute(shimCAttr,'');
-    _el_37.append(_el_39);
-    _el_39.className = 'scrollbar-macosx';
-    Text _text_40 = new Text('\n        ');
-    _el_39.append(_text_40);
-    _el_41 = doc.createElement('div');
-    _el_41.setAttribute(shimCAttr,'');
-    _el_39.append(_el_41);
-    _el_41.className = 'spinnerInner';
-    Text _text_42 = new Text('\n          ');
-    _el_41.append(_text_42);
-    var _anchor_43 = new Comment('template bindings={}');
-    _el_41?.append(_anchor_43);
-    _appEl_43 = new ViewContainer(43,41,this,_anchor_43);
-    _TemplateRef_43_4 = new TemplateRef(_appEl_43,viewFactory_SubjectListComponent4);
-    _NgIf_43_5 = new NgIf(_appEl_43,_TemplateRef_43_4);
-    Text _text_44 = new Text('\n        ');
-    _el_41.append(_text_44);
-    Text _text_45 = new Text('\n        ');
-    _el_39.append(_text_45);
-    _el_46 = doc.createElement('ul');
-    _el_46.setAttribute(shimCAttr,'');
-    _el_39.append(_el_46);
-    _el_46.className = 'subjectList';
-    Text _text_47 = new Text('\n          ');
-    _el_46.append(_text_47);
-    var _anchor_48 = new Comment('template bindings={}');
-    _el_46?.append(_anchor_48);
-    _appEl_48 = new ViewContainer(48,46,this,_anchor_48);
-    _TemplateRef_48_4 = new TemplateRef(_appEl_48,viewFactory_SubjectListComponent5);
-    _NgFor_48_5 = new import17.NgFor(_appEl_48,_TemplateRef_48_4,this.parentInjector.get(import29.IterableDiffers),ref);
-    Text _text_49 = new Text('\n        ');
-    _el_46.append(_text_49);
-    Text _text_50 = new Text('\n      ');
-    _el_39.append(_text_50);
-    Text _text_51 = new Text('\n    ');
-    _el_37.append(_text_51);
-    Text _text_52 = new Text('\n\n   ');
-    _el_35.append(_text_52);
-    Text _text_53 = new Text('\n    ');
-    _el_35.append(_text_53);
-    _el_54 = doc.createElement('form');
-    _el_54.setAttribute(shimCAttr,'');
-    _el_35.append(_el_54);
-    _el_54.className = 'uploadDropZone';
-    createAttr(_el_54,'id','fileForm');
-    _NgForm_54_2 = new import18.NgForm(null,null);
-    Text _text_55 = new Text('\n\n      ');
-    _el_54.append(_text_55);
-    _el_56 = doc.createElement('label');
-    _el_56.setAttribute(shimCAttr,'');
-    _el_54.append(_el_56);
-    createAttr(_el_56,'for','fileupload');
-    createAttr(_el_56,'id','labelfileupload');
-    Text _text_57 = new Text(' Drag\'n drop or browse file ');
-    _el_56.append(_text_57);
-    Text _text_58 = new Text('\n      ');
-    _el_54.append(_text_58);
-    _el_59 = doc.createElement('input');
+    _el_26.append(_el_35);
+    _el_35.className = 'addTopicBtn';
+    Text _text_36 = new Text('\n\n  ');
+    _el_26.append(_text_36);
+    Text _text_37 = new Text('\n  ');
+    _el_0.append(_text_37);
+    _el_38 = doc.createElement('div');
+    _el_38.setAttribute(shimCAttr,'');
+    _el_0.append(_el_38);
+    Text _text_39 = new Text('\n\n    ');
+    _el_38.append(_text_39);
+    _el_40 = doc.createElement('div');
+    _el_40.setAttribute(shimCAttr,'');
+    _el_38.append(_el_40);
+    _el_40.className = 'subjectListScollZone';
+    Text _text_41 = new Text('\n      ');
+    _el_40.append(_text_41);
+    _el_42 = doc.createElement('div');
+    _el_42.setAttribute(shimCAttr,'');
+    _el_40.append(_el_42);
+    _el_42.className = 'scrollbar-macosx';
+    Text _text_43 = new Text('\n        ');
+    _el_42.append(_text_43);
+    _el_44 = doc.createElement('div');
+    _el_44.setAttribute(shimCAttr,'');
+    _el_42.append(_el_44);
+    _el_44.className = 'spinnerInner';
+    Text _text_45 = new Text('\n          ');
+    _el_44.append(_text_45);
+    var _anchor_46 = new Comment('template bindings={}');
+    _el_44?.append(_anchor_46);
+    _appEl_46 = new ViewContainer(46,44,this,_anchor_46);
+    _TemplateRef_46_4 = new TemplateRef(_appEl_46,viewFactory_SubjectListComponent4);
+    _NgIf_46_5 = new NgIf(_appEl_46,_TemplateRef_46_4);
+    Text _text_47 = new Text('\n        ');
+    _el_44.append(_text_47);
+    Text _text_48 = new Text('\n        ');
+    _el_42.append(_text_48);
+    _el_49 = doc.createElement('ul');
+    _el_49.setAttribute(shimCAttr,'');
+    _el_42.append(_el_49);
+    _el_49.className = 'subjectList';
+    Text _text_50 = new Text('\n          ');
+    _el_49.append(_text_50);
+    var _anchor_51 = new Comment('template bindings={}');
+    _el_49?.append(_anchor_51);
+    _appEl_51 = new ViewContainer(51,49,this,_anchor_51);
+    _TemplateRef_51_4 = new TemplateRef(_appEl_51,viewFactory_SubjectListComponent5);
+    _NgFor_51_5 = new import17.NgFor(_appEl_51,_TemplateRef_51_4,this.parentInjector.get(import29.IterableDiffers),ref);
+    Text _text_52 = new Text('\n        ');
+    _el_49.append(_text_52);
+    Text _text_53 = new Text('\n      ');
+    _el_42.append(_text_53);
+    Text _text_54 = new Text('\n    ');
+    _el_40.append(_text_54);
+    Text _text_55 = new Text('\n\n   ');
+    _el_38.append(_text_55);
+    Text _text_56 = new Text('\n    ');
+    _el_38.append(_text_56);
+    _el_57 = doc.createElement('form');
+    _el_57.setAttribute(shimCAttr,'');
+    _el_38.append(_el_57);
+    _el_57.className = 'uploadDropZone';
+    createAttr(_el_57,'id','fileForm');
+    _NgForm_57_2 = new import18.NgForm(null,null);
+    Text _text_58 = new Text('\n\n      ');
+    _el_57.append(_text_58);
+    _el_59 = doc.createElement('label');
     _el_59.setAttribute(shimCAttr,'');
-    _el_54.append(_el_59);
-    _el_59.className = 'uploadFile';
-    createAttr(_el_59,'id','fileupload');
-    createAttr(_el_59,'name','toUpload');
-    createAttr(_el_59,'style','opacity: 0;');
-    createAttr(_el_59,'type','file');
-    Text _text_60 = new Text('\n\n\n      ');
-    _el_54.append(_text_60);
-    _el_61 = doc.createElement('postit-comp');
-    _el_61.setAttribute(shimCAttr,'');
-    _el_54.append(_el_61);
-    _el_61.className = 'filesPostit';
-    _appEl_61 = new ViewContainer(61,54,this,_el_61);
-    var compView_61 = import19.viewFactory_PostitComponent0(this.injector(61),_appEl_61);
-    _PostitComponent_61_3 = new import13.PostitComponent(this.parentInjector.get(import20.PlaceService),this.parentInjector.get(import21.Router),this.parentInjector.get(import22.Environment));
-    _appEl_61.initComponent(_PostitComponent_61_3,compView_61);
-    compView_61.createComp([],null);
-    Text _text_62 = new Text('\n    ');
-    _el_54.append(_text_62);
-    Text _text_63 = new Text('\n  ');
-    _el_35.append(_text_63);
-    Text _text_64 = new Text('\n');
-    _el_0.append(_text_64);
-    listen(_el_6,'click',evt(_handle_click_6_0));
-    listen(_el_27,'keyup.enter',evt(_handle_keyup_enter_27_0));
-    listen(_el_29,'click',evt(_handle_click_29_0));
+    _el_57.append(_el_59);
+    createAttr(_el_59,'for','fileupload');
+    createAttr(_el_59,'id','labelfileupload');
+    Text _text_60 = new Text(' Drag\'n drop or browse file ');
+    _el_59.append(_text_60);
+    Text _text_61 = new Text('\n      ');
+    _el_57.append(_text_61);
+    _el_62 = doc.createElement('input');
+    _el_62.setAttribute(shimCAttr,'');
+    _el_57.append(_el_62);
+    _el_62.className = 'uploadFile';
+    createAttr(_el_62,'id','fileupload');
+    createAttr(_el_62,'name','toUpload');
+    createAttr(_el_62,'style','opacity: 0;');
+    createAttr(_el_62,'type','file');
+    Text _text_63 = new Text('\n\n\n      ');
+    _el_57.append(_text_63);
+    _el_64 = doc.createElement('postit-comp');
+    _el_64.setAttribute(shimCAttr,'');
+    _el_57.append(_el_64);
+    _el_64.className = 'filesPostit';
+    _appEl_64 = new ViewContainer(64,57,this,_el_64);
+    var compView_64 = import19.viewFactory_PostitComponent0(this.injector(64),_appEl_64);
+    _PostitComponent_64_3 = new import13.PostitComponent(this.parentInjector.get(import20.PlaceService),this.parentInjector.get(import21.Router),this.parentInjector.get(import22.Environment));
+    _appEl_64.initComponent(_PostitComponent_64_3,compView_64);
+    compView_64.createComp([],null);
+    Text _text_65 = new Text('\n    ');
+    _el_57.append(_text_65);
+    Text _text_66 = new Text('\n  ');
+    _el_38.append(_text_66);
+    Text _text_67 = new Text('\n');
+    _el_0.append(_text_67);
+    listen(_el_9,'click',evt(_handle_click_9_0));
+    listen(_el_30,'keyup.enter',evt(_handle_keyup_enter_30_0));
     listen(_el_32,'click',evt(_handle_click_32_0));
-    listen(_el_37,'dragenter',evt(_handle_dragenter_37_0));
-    listen(_el_54,'dragenter',evt(_handle_dragenter_54_0));
-    listen(_el_54,'dragleave',evt(_handle_dragleave_54_1));
-    listen(_el_54,'drop',evt(_handle_drop_54_2));
-    listen(_el_54,'submit',evt(_handle_submit_54_3));
-    listen(_el_59,'change',evt(_handle_change_59_0));
-    listen(_el_59,'click',evt(_handle_click_59_1));
+    listen(_el_35,'click',evt(_handle_click_35_0));
+    listen(_el_40,'dragenter',evt(_handle_dragenter_40_0));
+    listen(_el_57,'dragenter',evt(_handle_dragenter_57_0));
+    listen(_el_57,'dragleave',evt(_handle_dragleave_57_1));
+    listen(_el_57,'drop',evt(_handle_drop_57_2));
+    listen(_el_57,'submit',evt(_handle_submit_57_3));
+    listen(_el_62,'change',evt(_handle_change_62_0));
+    listen(_el_62,'click',evt(_handle_click_62_1));
     init([_el_0],[
-      _el_0,_text_1,_el_2,_text_3,_el_4,_text_5,_el_6,_text_7,_el_8,_text_9,_el_10,_text_11,
-      _el_12,_text_13,_text_14,_text_15,_text_16,_el_17,_text_18,_anchor_19,_text_20,
-      _text_21,_text_22,_el_23,_text_24,_el_25,_text_26,_el_27,_text_28,_el_29,_text_30,
-      _text_31,_el_32,_text_33,_text_34,_el_35,_text_36,_el_37,_text_38,_el_39,_text_40,
-      _el_41,_text_42,_anchor_43,_text_44,_text_45,_el_46,_text_47,_anchor_48,_text_49,
-      _text_50,_text_51,_text_52,_text_53,_el_54,_text_55,_el_56,_text_57,_text_58,_el_59,
-      _text_60,_el_61,_text_62,_text_63,_text_64
+      _el_0,_text_1,_el_2,_text_3,_el_4,_text_5,_text_6,_el_7,_text_8,_el_9,_text_10,
+      _el_11,_text_12,_el_13,_text_14,_el_15,_text_16,_text_17,_text_18,_text_19,_el_20,
+      _text_21,_anchor_22,_text_23,_text_24,_text_25,_el_26,_text_27,_el_28,_text_29,
+      _el_30,_text_31,_el_32,_text_33,_text_34,_el_35,_text_36,_text_37,_el_38,_text_39,
+      _el_40,_text_41,_el_42,_text_43,_el_44,_text_45,_anchor_46,_text_47,_text_48,_el_49,
+      _text_50,_anchor_51,_text_52,_text_53,_text_54,_text_55,_text_56,_el_57,_text_58,
+      _el_59,_text_60,_text_61,_el_62,_text_63,_el_64,_text_65,_text_66,_text_67
     ]
     ,[]);
     return null;
   }
   dynamic injectorGetInternal(dynamic token,int requestNodeIndex,dynamic notFoundResult) {
-    if ((identical(token, import13.PostitComponent) && (4 == requestNodeIndex))) { return _PostitComponent_4_3; }
-    if ((identical(token, import16.InviteUsersDialogComp) && (12 == requestNodeIndex))) { return _InviteUsersDialogComp_12_3; }
-    if ((identical(token, import15.MaterialDialogComponent) && ((10 <= requestNodeIndex) && (requestNodeIndex <= 13)))) { return _MaterialDialogComponent_10_3; }
-    if ((identical(token, import14.ModalComponent) && ((8 <= requestNodeIndex) && (requestNodeIndex <= 14)))) { return _ModalComponent_8_3; }
-    if ((identical(token, import30.DeferredContentAware) && ((8 <= requestNodeIndex) && (requestNodeIndex <= 14)))) { return _DeferredContentAware_8_4; }
-    if ((identical(token, import14.Modal) && ((8 <= requestNodeIndex) && (requestNodeIndex <= 14)))) { return _Modal_8_5; }
-    if ((identical(token, TemplateRef) && (19 == requestNodeIndex))) { return _TemplateRef_19_4; }
-    if ((identical(token, import17.NgFor) && (19 == requestNodeIndex))) { return _NgFor_19_5; }
-    if ((identical(token, TemplateRef) && (43 == requestNodeIndex))) { return _TemplateRef_43_4; }
-    if ((identical(token, NgIf) && (43 == requestNodeIndex))) { return _NgIf_43_5; }
-    if ((identical(token, TemplateRef) && (48 == requestNodeIndex))) { return _TemplateRef_48_4; }
-    if ((identical(token, import17.NgFor) && (48 == requestNodeIndex))) { return _NgFor_48_5; }
-    if ((identical(token, import13.PostitComponent) && (61 == requestNodeIndex))) { return _PostitComponent_61_3; }
-    if ((identical(token, import18.NgForm) && ((54 <= requestNodeIndex) && (requestNodeIndex <= 62)))) { return _NgForm_54_2; }
-    if ((identical(token, import31.ControlContainer) && ((54 <= requestNodeIndex) && (requestNodeIndex <= 62)))) { return _ControlContainer_54_3; }
+    if ((identical(token, import13.PostitComponent) && (7 == requestNodeIndex))) { return _PostitComponent_7_3; }
+    if ((identical(token, import16.InviteUsersDialogComp) && (15 == requestNodeIndex))) { return _InviteUsersDialogComp_15_3; }
+    if ((identical(token, import15.MaterialDialogComponent) && ((13 <= requestNodeIndex) && (requestNodeIndex <= 16)))) { return _MaterialDialogComponent_13_3; }
+    if ((identical(token, import14.ModalComponent) && ((11 <= requestNodeIndex) && (requestNodeIndex <= 17)))) { return _ModalComponent_11_3; }
+    if ((identical(token, import30.DeferredContentAware) && ((11 <= requestNodeIndex) && (requestNodeIndex <= 17)))) { return _DeferredContentAware_11_4; }
+    if ((identical(token, import14.Modal) && ((11 <= requestNodeIndex) && (requestNodeIndex <= 17)))) { return _Modal_11_5; }
+    if ((identical(token, TemplateRef) && (22 == requestNodeIndex))) { return _TemplateRef_22_4; }
+    if ((identical(token, import17.NgFor) && (22 == requestNodeIndex))) { return _NgFor_22_5; }
+    if ((identical(token, TemplateRef) && (46 == requestNodeIndex))) { return _TemplateRef_46_4; }
+    if ((identical(token, NgIf) && (46 == requestNodeIndex))) { return _NgIf_46_5; }
+    if ((identical(token, TemplateRef) && (51 == requestNodeIndex))) { return _TemplateRef_51_4; }
+    if ((identical(token, import17.NgFor) && (51 == requestNodeIndex))) { return _NgFor_51_5; }
+    if ((identical(token, import13.PostitComponent) && (64 == requestNodeIndex))) { return _PostitComponent_64_3; }
+    if ((identical(token, import18.NgForm) && ((57 <= requestNodeIndex) && (requestNodeIndex <= 65)))) { return _NgForm_57_2; }
+    if ((identical(token, import31.ControlContainer) && ((57 <= requestNodeIndex) && (requestNodeIndex <= 65)))) { return _ControlContainer_57_3; }
     return notFoundResult;
   }
   void detectChangesInternal() {
-    final currVal_1 = 'invitePeople';
-    if (import11.checkBinding(_expr_1,currVal_1)) {
-      _PostitComponent_4_3.name = currVal_1;
-      _expr_1 = currVal_1;
-    }
-    final currVal_2 = 'Great!';
+    final currVal_2 = 'invitePeople';
     if (import11.checkBinding(_expr_2,currVal_2)) {
-      _PostitComponent_4_3.header = currVal_2;
+      _PostitComponent_7_3.name = currVal_2;
       _expr_2 = currVal_2;
     }
-    final currVal_3 = 'Now invite some poople to join you clicking on the + icon';
+    final currVal_3 = 'Great!';
     if (import11.checkBinding(_expr_3,currVal_3)) {
-      _PostitComponent_4_3.body = currVal_3;
+      _PostitComponent_7_3.header = currVal_3;
       _expr_3 = currVal_3;
     }
-    if ((identical(this.cdState, ChangeDetectorState.NeverChecked) && !import11.AppViewUtils.throwOnChanges)) { _PostitComponent_4_3.ngOnInit(); }
-    final currVal_5 = ctx.adding;
-    if (import11.checkBinding(_expr_5,currVal_5)) {
-      _ModalComponent_8_3.visible = currVal_5;
-      _expr_5 = currVal_5;
+    final currVal_4 = 'Now invite some poople to join you clicking on the + icon';
+    if (import11.checkBinding(_expr_4,currVal_4)) {
+      _PostitComponent_7_3.body = currVal_4;
+      _expr_4 = currVal_4;
     }
-    if ((identical(this.cdState, ChangeDetectorState.NeverChecked) && !import11.AppViewUtils.throwOnChanges)) { _InviteUsersDialogComp_12_3.ngOnInit(); }
-    final currVal_7 = ctx.users;
-    if (import11.checkBinding(_expr_7,currVal_7)) {
-      _NgFor_19_5.ngForOf = currVal_7;
-      _expr_7 = currVal_7;
-    }
-    if (!import11.AppViewUtils.throwOnChanges) { _NgFor_19_5.ngDoCheck(); }
-    _NgIf_43_5.ngIf = (ctx.subjects == null);
-    final currVal_14 = ctx.subjects;
-    if (import11.checkBinding(_expr_14,currVal_14)) {
-      _NgFor_48_5.ngForOf = currVal_14;
-      _expr_14 = currVal_14;
-    }
-    if (!import11.AppViewUtils.throwOnChanges) { _NgFor_48_5.ngDoCheck(); }
-    final currVal_21 = 'files';
-    if (import11.checkBinding(_expr_21,currVal_21)) {
-      _PostitComponent_61_3.name = currVal_21;
-      _expr_21 = currVal_21;
-    }
-    final currVal_22 = 'Cool !';
-    if (import11.checkBinding(_expr_22,currVal_22)) {
-      _PostitComponent_61_3.header = currVal_22;
-      _expr_22 = currVal_22;
-    }
-    final currVal_23 = 'Now you can Drag\'n drop a file here and start collaborate with your team ';
-    if (import11.checkBinding(_expr_23,currVal_23)) {
-      _PostitComponent_61_3.body = currVal_23;
-      _expr_23 = currVal_23;
-    }
-    if ((identical(this.cdState, ChangeDetectorState.NeverChecked) && !import11.AppViewUtils.throwOnChanges)) { _PostitComponent_61_3.ngOnInit(); }
-    this.detectContentChildrenChanges();
-    _MaterialDialogComponent_10_3.ngAfterContentChecked();
-    final currVal_0 = import11.interpolate1('',ctx.selectedFolder.name,'\n\n    ');
-    if (import11.checkBinding(_expr_0,currVal_0)) {
-      _text_3.text = currVal_0;
-      _expr_0 = currVal_0;
-    }
-    final currVal_6 = _ModalComponent_8_3.uniquePaneId;
+    if ((identical(this.cdState, ChangeDetectorState.NeverChecked) && !import11.AppViewUtils.throwOnChanges)) { _PostitComponent_7_3.ngOnInit(); }
+    final currVal_6 = ctx.adding;
     if (import11.checkBinding(_expr_6,currVal_6)) {
-      setAttr(_el_8,'pane-id',((currVal_6 == null)? null: currVal_6.toString()));
+      _ModalComponent_11_3.visible = currVal_6;
       _expr_6 = currVal_6;
     }
-    final currVal_11 = import11.interpolate1('dropZone ',(ctx.computeSizes(_el_46)? 'hideDropZone': 'dropZoneVisible'),'');
-    if (import11.checkBinding(_expr_11,currVal_11)) {
-      setProp(_el_35,'className',currVal_11);
-      _expr_11 = currVal_11;
+    if ((identical(this.cdState, ChangeDetectorState.NeverChecked) && !import11.AppViewUtils.throwOnChanges)) { _InviteUsersDialogComp_15_3.ngOnInit(); }
+    final currVal_8 = ctx.users;
+    if (import11.checkBinding(_expr_8,currVal_8)) {
+      _NgFor_22_5.ngForOf = currVal_8;
+      _expr_8 = currVal_8;
+    }
+    if (!import11.AppViewUtils.throwOnChanges) { _NgFor_22_5.ngDoCheck(); }
+    _NgIf_46_5.ngIf = (ctx.subjects == null);
+    final currVal_15 = ctx.subjects;
+    if (import11.checkBinding(_expr_15,currVal_15)) {
+      _NgFor_51_5.ngForOf = currVal_15;
+      _expr_15 = currVal_15;
+    }
+    if (!import11.AppViewUtils.throwOnChanges) { _NgFor_51_5.ngDoCheck(); }
+    final currVal_22 = 'files';
+    if (import11.checkBinding(_expr_22,currVal_22)) {
+      _PostitComponent_64_3.name = currVal_22;
+      _expr_22 = currVal_22;
+    }
+    final currVal_23 = 'Cool !';
+    if (import11.checkBinding(_expr_23,currVal_23)) {
+      _PostitComponent_64_3.header = currVal_23;
+      _expr_23 = currVal_23;
+    }
+    final currVal_24 = 'Now you can Drag\'n drop a file here and start collaborate with your team ';
+    if (import11.checkBinding(_expr_24,currVal_24)) {
+      _PostitComponent_64_3.body = currVal_24;
+      _expr_24 = currVal_24;
+    }
+    if ((identical(this.cdState, ChangeDetectorState.NeverChecked) && !import11.AppViewUtils.throwOnChanges)) { _PostitComponent_64_3.ngOnInit(); }
+    this.detectContentChildrenChanges();
+    _MaterialDialogComponent_13_3.ngAfterContentChecked();
+    final currVal_0 = import11.interpolate0(ctx.selectedFolder.name);
+    if (import11.checkBinding(_expr_0,currVal_0)) {
+      setProp(_el_4,'title',currVal_0);
+      _expr_0 = currVal_0;
+    }
+    final currVal_1 = import11.interpolate0(ctx.selectedFolder.name);
+    if (import11.checkBinding(_expr_1,currVal_1)) {
+      _text_5.text = currVal_1;
+      _expr_1 = currVal_1;
+    }
+    final currVal_7 = _ModalComponent_11_3.uniquePaneId;
+    if (import11.checkBinding(_expr_7,currVal_7)) {
+      setAttr(_el_11,'pane-id',((currVal_7 == null)? null: currVal_7.toString()));
+      _expr_7 = currVal_7;
+    }
+    final currVal_12 = import11.interpolate1('dropZone ',(ctx.computeSizes(_el_49)? 'hideDropZone': 'dropZoneVisible'),'');
+    if (import11.checkBinding(_expr_12,currVal_12)) {
+      setProp(_el_38,'className',currVal_12);
+      _expr_12 = currVal_12;
     }
     this.detectViewChildrenChanges();
   }
   void destroyInternal() {
-    _MaterialDialogComponent_10_3.ngOnDestroy();
-    _ModalComponent_8_3.ngOnDestroy();
+    _MaterialDialogComponent_13_3.ngOnDestroy();
+    _ModalComponent_11_3.ngOnDestroy();
   }
-  bool _handle_click_6_0($event) {
+  bool _handle_click_9_0($event) {
     this.markPathToRootAsCheckOnce();
     final dynamic pd_0 = !identical((ctx.add() as dynamic), false);
     return (true && pd_0);
   }
-  bool _handle_keyup_enter_27_0($event) {
+  bool _handle_keyup_enter_30_0($event) {
     this.markPathToRootAsCheckOnce();
-    ctx.createQuickNote(_el_27.value);
-    final dynamic pd_0 = !identical(((_el_27.value = '') as dynamic), false);
-    return (true && pd_0);
-  }
-  bool _handle_click_29_0($event) {
-    this.markPathToRootAsCheckOnce();
-    ctx.createQuickNote(_el_27.value);
-    final dynamic pd_0 = !identical(((_el_27.value = '') as dynamic), false);
+    ctx.createQuickNote(_el_30.value);
+    final dynamic pd_0 = !identical(((_el_30.value = '') as dynamic), false);
     return (true && pd_0);
   }
   bool _handle_click_32_0($event) {
     this.markPathToRootAsCheckOnce();
-    final dynamic pd_0 = !identical((_el_59.click() as dynamic), false);
+    ctx.createQuickNote(_el_30.value);
+    final dynamic pd_0 = !identical(((_el_30.value = '') as dynamic), false);
     return (true && pd_0);
   }
-  bool _handle_dragenter_37_0($event) {
+  bool _handle_click_35_0($event) {
     this.markPathToRootAsCheckOnce();
-    final dynamic pd_0 = !identical((ctx.dragEnter(_el_35) as dynamic), false);
+    final dynamic pd_0 = !identical((_el_62.click() as dynamic), false);
     return (true && pd_0);
   }
-  bool _handle_dragenter_54_0($event) {
+  bool _handle_dragenter_40_0($event) {
     this.markPathToRootAsCheckOnce();
-    final dynamic pd_0 = !identical((ctx.dragEnter(_el_35) as dynamic), false);
+    final dynamic pd_0 = !identical((ctx.dragEnter(_el_38) as dynamic), false);
     return (true && pd_0);
   }
-  bool _handle_dragleave_54_1($event) {
+  bool _handle_dragenter_57_0($event) {
     this.markPathToRootAsCheckOnce();
-    final dynamic pd_0 = !identical((ctx.dragLeave(_el_35) as dynamic), false);
+    final dynamic pd_0 = !identical((ctx.dragEnter(_el_38) as dynamic), false);
     return (true && pd_0);
   }
-  bool _handle_drop_54_2($event) {
+  bool _handle_dragleave_57_1($event) {
     this.markPathToRootAsCheckOnce();
-    final dynamic pd_0 = !identical((ctx.fileDropped(_el_35) as dynamic), false);
+    final dynamic pd_0 = !identical((ctx.dragLeave(_el_38) as dynamic), false);
     return (true && pd_0);
   }
-  bool _handle_submit_54_3($event) {
+  bool _handle_drop_57_2($event) {
     this.markPathToRootAsCheckOnce();
-    final dynamic pd_0 = !identical((_NgForm_54_2.onSubmit() as dynamic), false);
+    final dynamic pd_0 = !identical((ctx.fileDropped(_el_38) as dynamic), false);
     return (true && pd_0);
   }
-  bool _handle_change_59_0($event) {
+  bool _handle_submit_57_3($event) {
+    this.markPathToRootAsCheckOnce();
+    final dynamic pd_0 = !identical((_NgForm_57_2.onSubmit() as dynamic), false);
+    return (true && pd_0);
+  }
+  bool _handle_change_62_0($event) {
     this.markPathToRootAsCheckOnce();
     final dynamic pd_0 = !identical((ctx.uploadFiles($event.target.files[0].name) as dynamic), false);
     return (true && pd_0);
   }
-  bool _handle_click_59_1($event) {
+  bool _handle_click_62_1($event) {
     this.markPathToRootAsCheckOnce();
-    final dynamic pd_0 = !identical((ctx.openFileDialogConditionally($event,_el_56) as dynamic), false);
+    final dynamic pd_0 = !identical((ctx.openFileDialogConditionally($event,_el_59) as dynamic), false);
     return (true && pd_0);
   }
 }
@@ -902,6 +917,7 @@ class ViewSubjectListComponent6 extends AppView<import3.SubjectListComponent> {
   Element _el_21;
   var _expr_3 = uninitialized;
   var _expr_4 = uninitialized;
+  var _expr_5 = uninitialized;
   ViewSubjectListComponent6(import6.Injector parentInjector,ViewContainer declarationEl): super(ViewSubjectListComponent6,renderType_SubjectListComponent,import7.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
   ViewContainer createInternal(dynamic rootSelector) {
     var doc = document;
@@ -998,17 +1014,22 @@ class ViewSubjectListComponent6 extends AppView<import3.SubjectListComponent> {
     _NgIf_4_5.ngIf = (parent.locals['\$implicit'].status == 'waiting');
     _NgIf_6_5.ngIf = (parent.locals['\$implicit'].status != 'waiting');
     _NgIf_9_5.ngIf = (parent.locals['\$implicit'].dataType == 'file');
-    final currVal_4 = parent.locals['\$implicit'].users;
-    if (import11.checkBinding(_expr_4,currVal_4)) {
-      _NgFor_18_5.ngForOf = currVal_4;
-      _expr_4 = currVal_4;
+    final currVal_5 = parent.locals['\$implicit'].users;
+    if (import11.checkBinding(_expr_5,currVal_5)) {
+      _NgFor_18_5.ngForOf = currVal_5;
+      _expr_5 = currVal_5;
     }
     if (!import11.AppViewUtils.throwOnChanges) { _NgFor_18_5.ngDoCheck(); }
     this.detectContentChildrenChanges();
     final currVal_3 = import11.interpolate0(parent.locals['\$implicit'].name);
     if (import11.checkBinding(_expr_3,currVal_3)) {
-      _text_12.text = currVal_3;
+      setProp(_el_11,'title',currVal_3);
       _expr_3 = currVal_3;
+    }
+    final currVal_4 = import11.interpolate0(parent.locals['\$implicit'].name);
+    if (import11.checkBinding(_expr_4,currVal_4)) {
+      _text_12.text = currVal_4;
+      _expr_4 = currVal_4;
     }
     this.detectViewChildrenChanges();
   }

@@ -243,6 +243,7 @@ class ViewUsersComp2 extends AppView<import3.UsersComp> {
   var _expr_3 = uninitialized;
   var _expr_4 = uninitialized;
   var _expr_5 = uninitialized;
+  var _expr_6 = uninitialized;
   ViewUsersComp2(import9.Injector parentInjector,ViewContainer declarationEl): super(ViewUsersComp2,renderType_UsersComp,import10.ViewType.EMBEDDED,{'\$implicit': null},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
   ViewContainer createInternal(dynamic rootSelector) {
     var doc = document;
@@ -323,8 +324,13 @@ class ViewUsersComp2 extends AppView<import3.UsersComp> {
     }
     final currVal_5 = import13.interpolate0(((locals['\$implicit'] == null)? null: locals['\$implicit'].displayName));
     if (import13.checkBinding(_expr_5,currVal_5)) {
-      _text_7.text = currVal_5;
+      setProp(_el_6,'title',currVal_5);
       _expr_5 = currVal_5;
+    }
+    final currVal_6 = import13.interpolate0(((locals['\$implicit'] == null)? null: locals['\$implicit'].displayName));
+    if (import13.checkBinding(_expr_6,currVal_6)) {
+      _text_7.text = currVal_6;
+      _expr_6 = currVal_6;
     }
     this.detectViewChildrenChanges();
     if (identical(this.cdState, ChangeDetectorState.NeverChecked)) { _PopupSourceDirective_2_2.ngAfterViewInit(); }

@@ -206,9 +206,10 @@ class ViewFilesComp1 extends AppView<import3.FilesComp> {
   import17.NgFor _NgFor_55_5;
   var _expr_0 = uninitialized;
   var _expr_1 = uninitialized;
-  var _expr_5 = uninitialized;
+  var _expr_2 = uninitialized;
   var _expr_6 = uninitialized;
-  var _expr_13 = uninitialized;
+  var _expr_7 = uninitialized;
+  var _expr_14 = uninitialized;
   ViewFilesComp1(import9.Injector parentInjector,ViewContainer declarationEl): super(ViewFilesComp1,renderType_FilesComp,import10.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
   dynamic get _ControlContainer_30_3 {
     if ((this.__ControlContainer_30_3 == null)) { (__ControlContainer_30_3 = this._NgForm_30_2); }
@@ -434,34 +435,39 @@ class ViewFilesComp1 extends AppView<import3.FilesComp> {
     return notFoundResult;
   }
   void detectChangesInternal() {
-    final currVal_5 = 'comment';
-    if (import13.checkBinding(_expr_5,currVal_5)) {
-      _PostitComponent_24_3.name = currVal_5;
-      _expr_5 = currVal_5;
-    }
-    final currVal_6 = 'To talk to the team, type a comment here...';
+    final currVal_6 = 'comment';
     if (import13.checkBinding(_expr_6,currVal_6)) {
-      _PostitComponent_24_3.body = currVal_6;
+      _PostitComponent_24_3.name = currVal_6;
       _expr_6 = currVal_6;
+    }
+    final currVal_7 = 'To talk to the team, type a comment here...';
+    if (import13.checkBinding(_expr_7,currVal_7)) {
+      _PostitComponent_24_3.body = currVal_7;
+      _expr_7 = currVal_7;
     }
     if ((identical(this.cdState, ChangeDetectorState.NeverChecked) && !import13.AppViewUtils.throwOnChanges)) { _PostitComponent_24_3.ngOnInit(); }
     _NgIf_40_5.ngIf = (ctx.selectedFile == null);
-    final currVal_13 = ctx.selectedFile.orderedVersions;
-    if (import13.checkBinding(_expr_13,currVal_13)) {
-      _NgFor_55_5.ngForOf = currVal_13;
-      _expr_13 = currVal_13;
+    final currVal_14 = ctx.selectedFile.orderedVersions;
+    if (import13.checkBinding(_expr_14,currVal_14)) {
+      _NgFor_55_5.ngForOf = currVal_14;
+      _expr_14 = currVal_14;
     }
     if (!import13.AppViewUtils.throwOnChanges) { _NgFor_55_5.ngDoCheck(); }
     this.detectContentChildrenChanges();
-    final currVal_0 = import13.interpolate1('',ctx.selectedFile.name,'\n      ');
+    final currVal_0 = import13.interpolate0(ctx.selectedFile.name);
     if (import13.checkBinding(_expr_0,currVal_0)) {
-      _text_3.text = currVal_0;
+      setProp(_el_2,'title',currVal_0);
       _expr_0 = currVal_0;
     }
-    final currVal_1 = import13.interpolate1('/auth/user/photo/s/',ctx.connectedUser.id,'');
+    final currVal_1 = import13.interpolate1(' ',ctx.selectedFile.name,'\n      ');
     if (import13.checkBinding(_expr_1,currVal_1)) {
-      setProp(_el_14,'src',import13.appViewUtils.sanitizer.sanitizeUrl(currVal_1));
+      _text_3.text = currVal_1;
       _expr_1 = currVal_1;
+    }
+    final currVal_2 = import13.interpolate1('/auth/user/photo/s/',ctx.connectedUser.id,'');
+    if (import13.checkBinding(_expr_2,currVal_2)) {
+      setProp(_el_14,'src',import13.appViewUtils.sanitizer.sanitizeUrl(currVal_2));
+      _expr_2 = currVal_2;
     }
     this.detectViewChildrenChanges();
   }
@@ -823,8 +829,9 @@ class ViewFilesComp6 extends AppView<import3.FilesComp> {
   var _expr_7 = uninitialized;
   var _expr_10 = uninitialized;
   var _expr_14 = uninitialized;
-  var _expr_18 = uninitialized;
+  var _expr_15 = uninitialized;
   var _expr_19 = uninitialized;
+  var _expr_20 = uninitialized;
   var _pipe_agoDateFormat_0_3;
   ViewFilesComp6(import9.Injector parentInjector,ViewContainer declarationEl): super(ViewFilesComp6,renderType_FilesComp,import10.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
   ViewContainer createInternal(dynamic rootSelector) {
@@ -1107,15 +1114,15 @@ class ViewFilesComp6 extends AppView<import3.FilesComp> {
     _NgIf_36_5.ngIf = ((parent.locals['\$implicit'].status != 'uploaded') && (((parent.locals['\$implicit'] == null)? null: parent.locals['\$implicit'].mimeType) != 'application/quickNote'));
     _NgIf_53_5.ngIf = (((parent.locals['\$implicit'] == null)? null: parent.locals['\$implicit'].mimeType) != 'application/quickNote');
     _NgIf_61_5.ngIf = (((parent.locals['\$implicit'] == null)? null: parent.locals['\$implicit'].mimeType) != 'application/quickNote');
-    final currVal_18 = 'end';
-    if (import13.checkBinding(_expr_18,currVal_18)) {
-      _PopupSourceDirective_63_2.alignX = currVal_18;
-      _expr_18 = currVal_18;
-    }
-    final currVal_19 = 'after';
+    final currVal_19 = 'end';
     if (import13.checkBinding(_expr_19,currVal_19)) {
-      _PopupSourceDirective_63_2.alignY = currVal_19;
+      _PopupSourceDirective_63_2.alignX = currVal_19;
       _expr_19 = currVal_19;
+    }
+    final currVal_20 = 'after';
+    if (import13.checkBinding(_expr_20,currVal_20)) {
+      _PopupSourceDirective_63_2.alignY = currVal_20;
+      _expr_20 = currVal_20;
     }
     _NgIf_66_5.ngIf = (ctx.fileMenuVisible == parent.locals['\$implicit'].v);
     this.detectContentChildrenChanges();
@@ -1147,8 +1154,13 @@ class ViewFilesComp6 extends AppView<import3.FilesComp> {
     }
     final currVal_14 = import13.interpolate0(((parent.locals['\$implicit'] == null)? null: parent.locals['\$implicit'].name));
     if (import13.checkBinding(_expr_14,currVal_14)) {
-      _text_50.text = currVal_14;
+      setProp(_el_49,'title',currVal_14);
       _expr_14 = currVal_14;
+    }
+    final currVal_15 = import13.interpolate0(((parent.locals['\$implicit'] == null)? null: parent.locals['\$implicit'].name));
+    if (import13.checkBinding(_expr_15,currVal_15)) {
+      _text_50.text = currVal_15;
+      _expr_15 = currVal_15;
     }
     this.detectViewChildrenChanges();
     if (identical(this.cdState, ChangeDetectorState.NeverChecked)) { _PopupSourceDirective_11_2.ngAfterViewInit(); }

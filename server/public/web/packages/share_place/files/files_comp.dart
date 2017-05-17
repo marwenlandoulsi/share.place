@@ -81,7 +81,7 @@ class FilesComp implements OnInit, PopupParent {
     selectedFile = await _placeService.getFile(placeId, folderId, fileId);
     versionAttributes.clear();
     detectLastLockAction();
-    _environment.showScrollBar('showScroller');
+    _environment.showScrollBar();
     return selectedFile;
   }
 

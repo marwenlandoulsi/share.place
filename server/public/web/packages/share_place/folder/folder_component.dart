@@ -119,7 +119,7 @@ class FolderComponent
     if (placeId != null) {
       List<Folder> folderList = await _placeService.getFolders(placeId);
       folders = asTree(folderList, notifications);
-      _environment.showScrollBar('showScroller');
+      _environment.showScrollBar();
     }
   }
 

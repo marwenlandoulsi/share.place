@@ -134,7 +134,7 @@ class ViewPlacesComponent0 extends AppView<import3.PlacesComponent> {
     _el_12.setAttribute(shimCAttr,'');
     parentRenderNode.append(_el_12);
     _el_12.className = 'places';
-    Text _text_13 = new Text('\n\n\n  ');
+    Text _text_13 = new Text('\n\n  ');
     _el_12.append(_text_13);
     _el_14 = doc.createElement('li');
     _el_14.setAttribute(shimCAttr,'');
