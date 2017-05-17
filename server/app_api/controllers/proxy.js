@@ -1089,8 +1089,14 @@ let unlockFile = function (url, fileId, jsonToPut, callBack) {
         log.error("error to unlock:", err.message)
         return callBack(err)
       }
+      let email ;
+      let password;
+      if(global.userConnected.local){
 
-      getDataFromServer(null, null, global.userConnected.local.email, global.userConnected.local.password, urlListeFile, (err, dataReceived) => {
+        email = global.userConnected.local.email;
+        password = global.userConnected.local.password;
+      }
+      getDataFromServer(null, null,email , password, urlListeFile, (err, dataReceived) => {
         if (err) {
           log.error("error to receive data after Unlock: ", err.message);
           return callBack(err)
@@ -1110,8 +1116,8 @@ let unlockFile = function (url, fileId, jsonToPut, callBack) {
 
           let placeName = place.select("name")[0];
           let folderName = folder.select("name")[0];
-          let fileName = file.name;
-          let contentType = file.fileType;
+          let fileName = file.versions[file.versions.length-1].name;
+          let contentType = file.versions[file.versions.length-1].fileType;
 
 
           getPathFileInHomeDir(file, dataFolder, (pathToHomDir, pathToFileInDir) => {
@@ -1289,7 +1295,7 @@ let readFile = function (res, iconPath, url, userId) {
 };
 
 let getPathFileInHomeDir = function (fileData, ListeOfFolder, callBack) {
-  let fileName = fileData.name;
+  let fileName = fileData.versions[fileData.versions.length-1].name;
 
   let folderId = fileData.folderId;
 
