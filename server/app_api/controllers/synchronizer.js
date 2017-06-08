@@ -28,22 +28,25 @@ var getData = function (url, callback) {
       var pathToDbFiles = path.join(constants.dataDir, userId, "place", placeId, "folder", folderId, "file", "data.json");
       var mode = 0o0500;
       if (fs.existsSync(pathToDbFiles)) {
-        var dataFromDbFiles = jsonfile.readFileSync(pathToDbFiles);
-        var dbFiles = new taffy(dataFromDbFiles);
-        var file = dbFiles({_id: fileId});
+        var dataFromDbFiles = jsonfile.readFile(pathToDbFiles, (err) => {
+          if (err) {
+            log.error('error to set mode file', err)
+          } else {
+            var dbFiles = new taffy(dataFromDbFiles);
+            var file = dbFiles({_id: fileId});
 
-        var isLocked = file.select("isLocked")[0];
-        var lockOwner = file.select("lockOwner")[0];
-        if ((isLocked) && (lockOwner.userId == userId)) {
-          mode = 0o666;
-        }
+            var isLocked = file.select("isLocked")[0];
+            var lockOwner = file.select("lockOwner")[0];
+            if ((isLocked) && (lockOwner.userId == userId)) {
+              mode = 0o666;
+            }
+          }
+          var result = proxy.downloadFileToDisc(urlC, mode, (ok) => {
+            log.info('Synchronize file: ', urlC)
+            callback([]);
+          });
+        });
       }
-
-      var result = proxy.downloadFileToDisc(urlC, mode, (ok) => {
-        log.info('Synchronize file: ', urlC)
-        callback([]);
-      });
-
     } else if (url.indexOf("/thumb") != -1) {
       var result = proxy.downloadUtilFileToDisc(urlC, (ok) => {
 
