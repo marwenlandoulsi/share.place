@@ -14,7 +14,6 @@ if (process.env.DEV)
 module.exports.checkInternetConnection = (options, cb)=>{
   log.info('Checking network connection to '+ options.hostname + ' ...');
 
-  global.mainWindow.setOverlayIcon(path.join(__dirname, '..','Devices-network-wireless-icon.png'), 'you are offLine');
       checkServerConnection(options, (error, status)=>{
 
         if(error) {

@@ -23,8 +23,8 @@ if (process.env.DEV)
 var electronProxyAgent = require('electron-proxy-agent');
 
 var agent = new electronProxyAgent({
-  resolveProxy : function(url, callback) {
-    callback(global.proxy+"; DIRECT"); // return a valid pac syntax
+  resolveProxy: function (url, callback) {
+    callback(global.proxy + "; DIRECT"); // return a valid pac syntax
   }
 });
 http.globalAgent = agent;
@@ -51,7 +51,7 @@ module.exports.getUtilFile = (req, res) => {
       // let mode = 0o0500;
       downloadFile(url, pathDirectory, pathToUtilFile, 0o0500, (err, pathFileDownload) => {
         if (err)
-          globalService.sendError(res, 405, "error to download file");
+          return globalService.sendError(res, 405, "error to download file");
 
         readFile(res, pathFileDownload, url, userId)
       });
@@ -70,7 +70,7 @@ let downloadUtilFileToDisc = module.exports.downloadUtilFileToDisc = (url, callB
     if (!fs.existsSync(pathToUtilFile)) {
       downloadFile(url, pathDirectory, pathToUtilFile, 0o0500, (err, pathFileDownload) => {
         if (err)
-          globalService.sendError(res, 405, "failed to download icon");
+          log.error("failed to download icon: ", err);
 
         return callBack(true)
       });
@@ -104,21 +104,21 @@ module.exports.get = function (req, res) {
 
     getDataFromServer(req, res, email, password, url, (err, received) => {
       if (err)
-        globalService.sendError(res, err.statusCode, err.message);
+        return globalService.sendError(res, err.statusCode, err.message);
 
 
       let dataReceived = received.data;
       saveInLocalDb(dataReceived, dataFromFile, pathToDataFile, (err, toReturn) => {
         if (err)
-          globalService.sendError(res, err.statusCode, err.message);
+          return globalService.sendError(res, err.statusCode, err.message);
 
-        globalService.sendJsonResponse(res, 200, dataReceived);
+        return globalService.sendJsonResponse(res, 200, dataReceived);
 
       })
     });
 
   } else {
-    globalService.sendJsonResponse(res, 200, dataFromFile);
+    return globalService.sendJsonResponse(res, 200, dataFromFile);
   }
 
 }
@@ -139,8 +139,8 @@ module.exports.proxyGet = function (url, callBack) {
   if (global.onLine) {
     getDataFromServer(null, null, email, password, url, (err, received) => {
       if (err) {
-        return log.error("error to sync data ", err.message);
-        callBack(err)
+        log.error("error to sync data ", err.message);
+        return callBack(err)
       }
 
 
@@ -150,7 +150,7 @@ module.exports.proxyGet = function (url, callBack) {
         if (err)
           return log.error("error to save in localDb", err.message);
 
-        callBack(null, dataReceived)
+        return callBack(null, dataReceived)
       })
     });
   }
@@ -193,7 +193,7 @@ module.exports.uploadFile = function (req, res) {
           return globalService.sendJsonResponse(res, 405, err.message);
 
         } else {
-          globalService.sendJsonResponse(res, 200, dataReceived);
+          return globalService.sendJsonResponse(res, 200, dataReceived);
         }
       });
     });
@@ -225,17 +225,17 @@ module.exports.getFile = function (req, res) {
   let folderName = folder.select("name")[0];
   let donwloadVersion = false;
 
-  if(dataFile.versions.length  != v)
+  if (dataFile.versions.length != v)
     donwloadVersion = true;
 
   getPathFileInHomeDir(dataFile, dataFolder, (pathToHomDir, pathToFileInDir) => {
     let pathToDir = path.join(global.homeDir, 'share.place', userId, placeName, pathToHomDir + '/');
-    let pathToFile = path.join(pathToDir + dataFile.versions[v-1].name);
+    let pathToFile = path.join(pathToDir + dataFile.versions[v - 1].name);
     let nameFileWithoutExt = String(dataFile.name).substr(0, String(dataFile.name).indexOf('.'))
 
-    if(donwloadVersion){
-      pathToDir =   path.join(pathToDir, nameFileWithoutExt+"_V"+v);
-      pathToFile = path.join(pathToDir,dataFile.versions[v-1].name);
+    if (donwloadVersion) {
+      pathToDir = path.join(pathToDir, nameFileWithoutExt + "_V" + v);
+      pathToFile = path.join(pathToDir, dataFile.versions[v - 1].name);
     }
 
 
@@ -250,9 +250,9 @@ module.exports.getFile = function (req, res) {
 
 
       if (!fs.existsSync(pathToFile)) {
-  /*      if(!fs.existsSync(path.join(pathToDir,nameFileWithoutExt+"_V"+v )))
-            globalService.checkDirectorySync(path.join(pathToDir,nameFileWithoutExt+"_V"+v )
-*/
+        /*      if(!fs.existsSync(path.join(pathToDir,nameFileWithoutExt+"_V"+v )))
+         globalService.checkDirectorySync(path.join(pathToDir,nameFileWithoutExt+"_V"+v )
+         */
         showNotification("Downloading File", dataFile.name)
         downloadFile(url, pathToDir, pathToFile, mode, (err, ok) => {
           if (err)
@@ -271,7 +271,7 @@ module.exports.getFile = function (req, res) {
       } else {
         isSameFile(dataFile, pathToFile, (err, sameFile) => {
           if (err)
-            globalService.sendError(res, 405, err);
+            log.error('error to check if same file', err);
 
           if (!sameFile) {
             fs.unlink(pathToFile, function (err) {
@@ -348,11 +348,11 @@ function downloadFileInDisc(url, mode, callBack) {
   let dataFile = jsonfile.readFileSync(pathDbDataFile);
   let email;
   let password;
-  if(global.userConnected.local){
+  if (global.userConnected.local) {
     email = global.userConnected.local.email;
     password = global.userConnected.local.password
   }
-  getDataFromServer(null, null, email,  password, urlListeFile, (err, dataReceived) => {
+  getDataFromServer(null, null, email, password, urlListeFile, (err, dataReceived) => {
     if (err) {
       log.error("error to receive data: ", err.message);
       return callBack(err)
@@ -430,20 +430,20 @@ let getDataFromServer = function (req, res, email, password, url, cb) {
     }
     login.loginFromServer(req, email, password, function (err, user, info) {
       if (err) {
-        globalService.sendError(res, err.statusCode, err.statusCode);
+        return globalService.sendError(res, err.statusCode, err.statusCode);
       }
 
       if (info) {
-        globalService.sendError(res, 401, "you are online again please log in")
+        return globalService.sendError(res, 401, "you are online again please log in")
       }
       if (user) {
         globalService.setSidInInput(global.cookieReceived);
-        httpGetJson(global.cookieReceived, url, cb)
+        return httpGetJson(global.cookieReceived, url, cb)
       }
     })
   }
   globalService.setSidInInput(global.cookieReceived);
-  httpGetJson(global.cookieReceived, url, cb);
+  return httpGetJson(global.cookieReceived, url, cb);
 };
 let openFile = function (res, dataFile, pathFile) {
   return shell.openItem(pathFile);
@@ -468,14 +468,14 @@ let httpPostFileToUpload = function (url, fileToUpload, cb) {
     method: constants.optionsPost.method,
     headers: headers,
     formData: formData,
-    agent : agent
+    agent: agent
   }
   request(options, function (err, resp, body) {
     if (err)
-      cb(err);
+      return cb(err);
 
     if (!err && resp.statusCode == 200) {
-      cb(null, body);
+      return cb(null, body);
     }
 
   });
@@ -502,14 +502,14 @@ let httpUploadNewVersion = function (url, pathOfFile, filename, contentType, cb)
     method: constants.optionsPost.method,
     headers: headers,
     formData: formData,
-    agent : agent
+    agent: agent
   }
   request(options, function (err, resp, body) {
     if (err)
-      cb(err);
+      return cb(err);
 
     if (!err && resp.statusCode == 200) {
-      cb(null, body);
+      return cb(null, body);
     }
   });
 }
@@ -524,7 +524,7 @@ let httpGetJson = function (cookie, url, cb) {
     method: constants.optionsGet.method,
     port: constants.optionsGet.port,
     path: constants.optionsGet.path + url,
-    agent : agent,
+    agent: agent,
     headers: {
       'Cookie': global.cookieReceived,
     }
@@ -539,19 +539,24 @@ let httpGetJson = function (cookie, url, cb) {
     });
     response.on('error', function (err) {
       // Data reception is done, do whatever with it!
-      cb(err);
+      return cb(err);
     });
     response.on('end', function () {
       // Data reception is done, do whatever with it!
 
       let parsed = JSON.parse(body);
+      if (response.statusCode > 400) {
+        var error = new Error(parsed.error)
+        error.statusCode = response.statusCode;
 
-      cb(null, parsed);
+        return cb(error);
+      }
+      return cb(null, parsed);
 
 
     });
   }).on('error', function (e) {
-    cb(e);
+    return cb(e);
   });
 }
 module.exports.callRemoteServer = httpGetJson;
@@ -579,12 +584,12 @@ function downloadFile(url, directory, pathFile, mode, cb) {
   };
   httpGetFile(options, function (err, data) {
     if (err)
-      cb(err);
+      return cb(err);
 
     log.info("download file in :", pathFile);
     //fs.writeFileSync(path, data);
     globalService.checkPathOrCreateSync(directory, pathFile, data, mode);
-    cb(null, pathFile)
+    return cb(null, pathFile)
 
   });
 };
@@ -628,7 +633,7 @@ let httpGetFile = function (options, cb) {
     }
 
   }).on('error', function (e) {
-    cb(e)
+    return cb(e)
   });
 }
 
@@ -673,20 +678,25 @@ let saveInLocalDb = (data, dataInFile, path, cb) => {
    }
    }*/
   let err = new Error();
-  if ((typeof (data.length) != "undefined" && typeof (dataInFile.length) != "undefined")
-      || (typeof (data.length) == "undefined" && typeof (dataInFile.length) == "undefined")
-      || dataInFile.length == 0) {
-    jsonfile.writeFileSync(path, data);
+  if (data) {
+    if ((typeof (data.length) != "undefined" && typeof (dataInFile.length) != "undefined")
+        || (typeof (data.length) == "undefined" && typeof (dataInFile.length) == "undefined")
+        || dataInFile.length == 0) {
+      jsonfile.writeFileSync(path, data);
+    } else {
+      log.error("conflict between data received and data in file: " + path);
+
+      err.status = 500;
+      err.message = "conflict between data received and data in file";
+      jsonfile.writeFileSync(path, data);
+    }
+    var dataSaved = jsonfile.readFileSync(path);
+
+    return cb(null, dataSaved);
   } else {
-    log.error("conflict between data received and data in file: " + path);
-
-    err.status = 500;
-    err.message = "conflict between data received and data in file";
-    jsonfile.writeFileSync(path, data);
+    return cb(null, data);
   }
-  var dataSaved = jsonfile.readFileSync(path);
 
-  return cb(null, dataSaved);
 }
 
 let nth_occurrence = (string, char, nth) => {
@@ -714,7 +724,7 @@ let isSameFile = (datafile, pathFileHome, cb) => {
     if (err) {
       log.error("error checksum : ", err.message);
       //  globalService.sendError(res, err.statusCode, err.message);
-      cb(err)
+      return cb(err)
     }
 
     let localCs = data.versions[data.versions.length - 1].sum;
@@ -1105,20 +1115,20 @@ let unlockFile = function (url, fileId, jsonToPut, callBack) {
   let dataFolder = jsonfile.readFileSync(pathDbDataFolder);
   let dataFile = jsonfile.readFileSync(pathDbDataFile);
   if (global.onLine) {
-    let urlToUploadFile = "/place/" + placeId + "/folder/" + folderId + "/file/"+fileId;
+    let urlToUploadFile = "/place/" + placeId + "/folder/" + folderId + "/file/" + fileId;
     httpPutJson(url, jsonToPut, (err, toReturn) => {
       if (err) {
         log.error("error to unlock:", err.message)
         return callBack(err)
       }
-      let email ;
+      let email;
       let password;
-      if(global.userConnected.local){
+      if (global.userConnected.local) {
 
         email = global.userConnected.local.email;
         password = global.userConnected.local.password;
       }
-      getDataFromServer(null, null,email , password, urlListeFile, (err, dataReceived) => {
+      getDataFromServer(null, null, email, password, urlListeFile, (err, dataReceived) => {
         if (err) {
           log.error("error to receive data after Unlock: ", err.message);
           return callBack(err)
@@ -1138,8 +1148,8 @@ let unlockFile = function (url, fileId, jsonToPut, callBack) {
 
           let placeName = place.select("name")[0];
           let folderName = folder.select("name")[0];
-          let fileName = file.versions[file.versions.length-1].name;
-          let contentType = file.versions[file.versions.length-1].fileType;
+          let fileName = file.versions[file.versions.length - 1].name;
+          let contentType = file.versions[file.versions.length - 1].fileType;
 
 
           getPathFileInHomeDir(file, dataFolder, (pathToHomDir, pathToFileInDir) => {
@@ -1155,7 +1165,7 @@ let unlockFile = function (url, fileId, jsonToPut, callBack) {
                     log.error("error to upload the new version:", err.message)
                     showDialogBox("error", "share.place", "sorry, an error occured while uploading the file :'" + fileName + "' please retry later")
                   }
-                  log.info ("new version uploaded")
+                  log.info("new version uploaded")
                 });
               }
             });
@@ -1252,7 +1262,7 @@ let httpPutJson = function (url, jsonData, callBack) {
     method: constants.optionsPut.method,
     headers: headers,
     json: jsonData,
-    agent:agent
+    agent: agent
   }
 
 // Start the request
@@ -1304,7 +1314,7 @@ let readFile = function (res, iconPath, url, userId) {
       downloadFile(url, pathDirectory, pathToUtilFile, 0o0500, (err, pathFileDownload) => {
         //TODO return default pictur if error;
         if (err)
-          globalService.sendError(res, 405, "failed to download icon");
+          return globalService.sendError(res, 405, "failed to download icon");
 
         fs.readFile(pathFileDownload, (err, fileUtil) => {
           return res.end(fileUtil);
@@ -1319,7 +1329,7 @@ let readFile = function (res, iconPath, url, userId) {
 };
 
 let getPathFileInHomeDir = function (fileData, ListeOfFolder, callBack) {
-  let fileName = fileData.versions[fileData.versions.length-1].name;
+  let fileName = fileData.versions[fileData.versions.length - 1].name;
 
   let folderId = fileData.folderId;
 

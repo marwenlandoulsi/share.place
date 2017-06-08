@@ -31,10 +31,10 @@ function generateUrlTree(url, level, getData, returnList, counter) {
   getData(url, function resultCb(entityList) {
     returnList.push(url);
     var urlSuffixList = URL_PATTERNS[level];
-    log.info("calling get ", url, " suffix list:", urlSuffixList, " result : ", entityList, " size: ", entityList.length);
+    log.info("calling get ", url, " suffix list:", urlSuffixList);
     if (urlSuffixList != null && entityList != null) {
       for (var entityIndex = 0; entityIndex < entityList.length; entityIndex++) {
-        log.info("entering id ", entityList[entityIndex]);
+
         var currentEntity = entityList[entityIndex];
         for (var suffixIndex = 0; suffixIndex < urlSuffixList.length; suffixIndex++) {
           var urlSuffix = urlSuffixList[suffixIndex];

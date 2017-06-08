@@ -80,7 +80,7 @@ ipcMain.on('online-status-changed', (event, status) => {
           mainWindow.setOverlayIcon(path.join(__dirname, 'Online.ico'), 'you are onLine');
         }
       })
-    }, 10000);
+    }, 60000);
 
   } else {
     mainWindow.setOverlayIcon(path.join(__dirname, 'Offline-red.ico'), 'you are offLine');
