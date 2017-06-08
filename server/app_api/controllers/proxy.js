@@ -683,12 +683,16 @@ let saveInLocalDb = (data, dataInFile, path, cb) => {
       if (err)
         log.error("error to save in local db:", err)
     });
-    if (( !data.length && !dataInFile.length) ||
-        (data.length && dataInFile.length) ||
-        dataInFile.length == 0) {
-      log.error("conflict between data received and data in file: " + path);
-      // jsonfile.writeFileSync(path, data);
+
+
+    if (dataInFile.length != 0) {
+      if (( !data.length && dataInFile.length) ||
+          (data.length && !dataInFile.length)) {
+        log.error("conflict between data received and data in file: " + path);
+        // jsonfile.writeFileSync(path, data);
+      }
     }
+
     //var dataSaved = jsonfile.readFileSync(path);
 
   }
