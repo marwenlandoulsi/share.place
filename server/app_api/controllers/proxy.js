@@ -679,24 +679,20 @@ let saveInLocalDb = (data, dataInFile, path, cb) => {
    }*/
   let err = new Error();
   if (data) {
-    if ((typeof (data.length) != "undefined" && typeof (dataInFile.length) != "undefined")
-        || (typeof (data.length) == "undefined" && typeof (dataInFile.length) == "undefined")
-        || dataInFile.length == 0) {
-      jsonfile.writeFileSync(path, data);
-    } else {
+    jsonfile.writeFile(path, data, (err) => {
+      if (err)
+        log.error("error to save in local db:", err)
+    });
+    if (( !data.length && !dataInFile.length) ||
+        (data.length && dataInFile.length) ||
+        dataInFile.length == 0) {
       log.error("conflict between data received and data in file: " + path);
-
-      err.status = 500;
-      err.message = "conflict between data received and data in file";
-      jsonfile.writeFileSync(path, data);
+      // jsonfile.writeFileSync(path, data);
     }
-    var dataSaved = jsonfile.readFileSync(path);
+    //var dataSaved = jsonfile.readFileSync(path);
 
-    return cb(null, dataSaved);
-  } else {
-    return cb(null, data);
   }
-
+  return cb(null, data);
 }
 
 let nth_occurrence = (string, char, nth) => {
