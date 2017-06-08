@@ -598,7 +598,7 @@ class ViewSubjectListComponent1 extends AppView<import3.SubjectListComponent> {
   }
   bool _handle_change_62_0($event) {
     this.markPathToRootAsCheckOnce();
-    final dynamic pd_0 = !identical((ctx.uploadFiles($event.target.files[0].name) as dynamic), false);
+    final dynamic pd_0 = !identical((ctx.uploadFiles($event.target.files[0].name,$event.target.files[0].size) as dynamic), false);
     return (true && pd_0);
   }
   bool _handle_click_62_1($event) {

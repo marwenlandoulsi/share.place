@@ -113,26 +113,32 @@ class SubjectListComponent
   bool isOwner(User user) =>
       user.hasGreaterRole(RoleEnum.owner, selectedFolder.id);
 
-
-  Future<Null> uploadFiles(String fileName) async {
+  Future<Null> uploadFiles(String fileName, String size) async {
     _environment.uploading = true;
     _environment.fireEvent(PlaceParam.addButtonPressed, "files");
 
-    FormElement fileForm = querySelector("#fileForm");
+    if(size == 0) {
+      _environment.serverError = " Can not Upload empty Files ";
+      return null;
+    }
 
-    FileInfo createdFileInfo = await _placeService.prePostFile(
-        {"name": fileName});
-    refreshSubjectListAndSelect(createdFileInfo);
+    else{
+      FormElement fileForm = querySelector("#fileForm");
+      FileInfo createdFileInfo = await _placeService.prePostFile(
+          {"name": fileName});
+      refreshSubjectListAndSelect(createdFileInfo);
 
-    var formData = new FormData(fileForm);
-    createdFileInfo = await _placeService.postFile(
-        formData, fileId: createdFileInfo.fileId);
-    fileForm.style.border = "none";
+      var formData = new FormData(fileForm);
+      createdFileInfo = await _placeService.postFile(
+          formData, fileId: createdFileInfo.fileId);
+      fileForm.style.border = "none";
 
-    _environment.uploading = false;
+      _environment.uploading = false;
 
-    refreshSubjectListAndSelect(createdFileInfo);
+      refreshSubjectListAndSelect(createdFileInfo);
+    }
   }
+
 
   Future<Null> createQuickNote(String note) async {
     FileInfo createdFileInfo = await _placeService.createQuickNote(note);

@@ -173,40 +173,43 @@ class ViewAppComponent0 extends AppView<import3.AppComponent> {
   Element _el_38;
   ViewContainer _appEl_38;
   import9.PostitComponent _PostitComponent_38_3;
-  Element _el_40;
   ViewContainer _appEl_40;
-  import10.PlacesComponent _PlacesComponent_40_3;
-  Element _el_43;
+  dynamic _TemplateRef_40_4;
+  NgIf _NgIf_40_5;
+  Element _el_42;
+  ViewContainer _appEl_42;
+  import10.PlacesComponent _PlacesComponent_42_3;
   Element _el_45;
   Element _el_47;
   Element _el_49;
   Element _el_51;
-  ViewContainer _appEl_51;
-  import11.UserListProvider _UserListProvider_51_3;
-  import12.SubjectListComponent _SubjectListComponent_51_4;
-  Element _el_54;
+  Element _el_53;
+  ViewContainer _appEl_53;
+  import11.UserListProvider _UserListProvider_53_3;
+  import12.SubjectListComponent _SubjectListComponent_53_4;
   Element _el_56;
   Element _el_58;
   Element _el_60;
-  ViewContainer _appEl_60;
-  import13.FilesComp _FilesComp_60_3;
-  dynamic __defaultPopupPositions_60_4;
-  import14.Angular2ManagedZone __ManagedZone_60_5;
-  dynamic __Window_60_6;
-  dynamic __DomService_60_7;
-  import15.AcxImperativeViewUtils __AcxImperativeViewUtils_60_8;
-  dynamic __Document_60_9;
-  import16.DomRuler __DomRuler_60_10;
-  dynamic __overlayContainerName_60_11;
-  dynamic __overlayContainerParent_60_12;
-  dynamic __overlayContainerToken_60_13;
-  dynamic __overlaySyncDom_60_14;
-  import17.OverlayStyleConfig __OverlayStyleConfig_60_15;
-  import18.ZIndexer __ZIndexer_60_16;
-  import19.OverlayDomRenderService __OverlayDomRenderService_60_17;
-  import20.OverlayDomService __OverlayService_60_18;
-  import21.DomPopupSourceFactory __DomPopupSourceFactory_60_19;
-  import22.PopupService __PopupService_60_20;
+  Element _el_62;
+  ViewContainer _appEl_62;
+  import13.FilesComp _FilesComp_62_3;
+  dynamic __defaultPopupPositions_62_4;
+  import14.Angular2ManagedZone __ManagedZone_62_5;
+  dynamic __Window_62_6;
+  dynamic __DomService_62_7;
+  import15.AcxImperativeViewUtils __AcxImperativeViewUtils_62_8;
+  dynamic __Document_62_9;
+  import16.DomRuler __DomRuler_62_10;
+  dynamic __overlayContainerName_62_11;
+  dynamic __overlayContainerParent_62_12;
+  dynamic __overlayContainerToken_62_13;
+  dynamic __overlaySyncDom_62_14;
+  import17.OverlayStyleConfig __OverlayStyleConfig_62_15;
+  import18.ZIndexer __ZIndexer_62_16;
+  import19.OverlayDomRenderService __OverlayDomRenderService_62_17;
+  import20.OverlayDomService __OverlayService_62_18;
+  import21.DomPopupSourceFactory __DomPopupSourceFactory_62_19;
+  import22.PopupService __PopupService_62_20;
   var _expr_3 = uninitialized;
   var _expr_4 = uninitialized;
   var _expr_7 = uninitialized;
@@ -216,73 +219,73 @@ class ViewAppComponent0 extends AppView<import3.AppComponent> {
   var _expr_13 = uninitialized;
   var _expr_14 = uninitialized;
   ViewAppComponent0(import24.Injector parentInjector,ViewContainer declarationEl): super(ViewAppComponent0,renderType_AppComponent,import25.ViewType.COMPONENT,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
-  dynamic get _defaultPopupPositions_60_4 {
-    if ((this.__defaultPopupPositions_60_4 == null)) { (__defaultPopupPositions_60_4 = import26.inlinePositions); }
-    return this.__defaultPopupPositions_60_4;
+  dynamic get _defaultPopupPositions_62_4 {
+    if ((this.__defaultPopupPositions_62_4 == null)) { (__defaultPopupPositions_62_4 = import26.inlinePositions); }
+    return this.__defaultPopupPositions_62_4;
   }
-  import14.Angular2ManagedZone get _ManagedZone_60_5 {
-    if ((this.__ManagedZone_60_5 == null)) { (__ManagedZone_60_5 = new import14.Angular2ManagedZone(this.parentInjector.get(import27.NgZone))); }
-    return this.__ManagedZone_60_5;
+  import14.Angular2ManagedZone get _ManagedZone_62_5 {
+    if ((this.__ManagedZone_62_5 == null)) { (__ManagedZone_62_5 = new import14.Angular2ManagedZone(this.parentInjector.get(import27.NgZone))); }
+    return this.__ManagedZone_62_5;
   }
-  dynamic get _Window_60_6 {
-    if ((this.__Window_60_6 == null)) { (__Window_60_6 = import28.getWindow()); }
-    return this.__Window_60_6;
+  dynamic get _Window_62_6 {
+    if ((this.__Window_62_6 == null)) { (__Window_62_6 = import28.getWindow()); }
+    return this.__Window_62_6;
   }
-  dynamic get _DomService_60_7 {
-    if ((this.__DomService_60_7 == null)) { (__DomService_60_7 = import29.createDomService(this.parentInjector.get(import30.DomService,null),this.parentInjector.get(import31.Disposer,null),this._ManagedZone_60_5,this._Window_60_6)); }
-    return this.__DomService_60_7;
+  dynamic get _DomService_62_7 {
+    if ((this.__DomService_62_7 == null)) { (__DomService_62_7 = import29.createDomService(this.parentInjector.get(import30.DomService,null),this.parentInjector.get(import31.Disposer,null),this._ManagedZone_62_5,this._Window_62_6)); }
+    return this.__DomService_62_7;
   }
-  import15.AcxImperativeViewUtils get _AcxImperativeViewUtils_60_8 {
-    if ((this.__AcxImperativeViewUtils_60_8 == null)) { (__AcxImperativeViewUtils_60_8 = new import15.AcxImperativeViewUtils(this.parentInjector.get(import32.DynamicComponentLoader),this._DomService_60_7)); }
-    return this.__AcxImperativeViewUtils_60_8;
+  import15.AcxImperativeViewUtils get _AcxImperativeViewUtils_62_8 {
+    if ((this.__AcxImperativeViewUtils_62_8 == null)) { (__AcxImperativeViewUtils_62_8 = new import15.AcxImperativeViewUtils(this.parentInjector.get(import32.DynamicComponentLoader),this._DomService_62_7)); }
+    return this.__AcxImperativeViewUtils_62_8;
   }
-  dynamic get _Document_60_9 {
-    if ((this.__Document_60_9 == null)) { (__Document_60_9 = import28.getDocument()); }
-    return this.__Document_60_9;
+  dynamic get _Document_62_9 {
+    if ((this.__Document_62_9 == null)) { (__Document_62_9 = import28.getDocument()); }
+    return this.__Document_62_9;
   }
-  import16.DomRuler get _DomRuler_60_10 {
-    if ((this.__DomRuler_60_10 == null)) { (__DomRuler_60_10 = new import16.DomRuler(this._Document_60_9,this._DomService_60_7)); }
-    return this.__DomRuler_60_10;
+  import16.DomRuler get _DomRuler_62_10 {
+    if ((this.__DomRuler_62_10 == null)) { (__DomRuler_62_10 = new import16.DomRuler(this._Document_62_9,this._DomService_62_7)); }
+    return this.__DomRuler_62_10;
   }
-  dynamic get _overlayContainerName_60_11 {
-    if ((this.__overlayContainerName_60_11 == null)) { (__overlayContainerName_60_11 = 'default'); }
-    return this.__overlayContainerName_60_11;
+  dynamic get _overlayContainerName_62_11 {
+    if ((this.__overlayContainerName_62_11 == null)) { (__overlayContainerName_62_11 = 'default'); }
+    return this.__overlayContainerName_62_11;
   }
-  dynamic get _overlayContainerParent_60_12 {
-    if ((this.__overlayContainerParent_60_12 == null)) { (__overlayContainerParent_60_12 = import33.getOverlayContainerParent(this._Document_60_9)); }
-    return this.__overlayContainerParent_60_12;
+  dynamic get _overlayContainerParent_62_12 {
+    if ((this.__overlayContainerParent_62_12 == null)) { (__overlayContainerParent_62_12 = import33.getOverlayContainerParent(this._Document_62_9)); }
+    return this.__overlayContainerParent_62_12;
   }
-  dynamic get _overlayContainerToken_60_13 {
-    if ((this.__overlayContainerToken_60_13 == null)) { (__overlayContainerToken_60_13 = import33.getDefaultContainer(this._overlayContainerName_60_11,this._overlayContainerParent_60_12)); }
-    return this.__overlayContainerToken_60_13;
+  dynamic get _overlayContainerToken_62_13 {
+    if ((this.__overlayContainerToken_62_13 == null)) { (__overlayContainerToken_62_13 = import33.getDefaultContainer(this._overlayContainerName_62_11,this._overlayContainerParent_62_12)); }
+    return this.__overlayContainerToken_62_13;
   }
-  dynamic get _overlaySyncDom_60_14 {
-    if ((this.__overlaySyncDom_60_14 == null)) { (__overlaySyncDom_60_14 = true); }
-    return this.__overlaySyncDom_60_14;
+  dynamic get _overlaySyncDom_62_14 {
+    if ((this.__overlaySyncDom_62_14 == null)) { (__overlaySyncDom_62_14 = true); }
+    return this.__overlaySyncDom_62_14;
   }
-  import17.OverlayStyleConfig get _OverlayStyleConfig_60_15 {
-    if ((this.__OverlayStyleConfig_60_15 == null)) { (__OverlayStyleConfig_60_15 = new import17.OverlayStyleConfig(this._Document_60_9)); }
-    return this.__OverlayStyleConfig_60_15;
+  import17.OverlayStyleConfig get _OverlayStyleConfig_62_15 {
+    if ((this.__OverlayStyleConfig_62_15 == null)) { (__OverlayStyleConfig_62_15 = new import17.OverlayStyleConfig(this._Document_62_9)); }
+    return this.__OverlayStyleConfig_62_15;
   }
-  import18.ZIndexer get _ZIndexer_60_16 {
-    if ((this.__ZIndexer_60_16 == null)) { (__ZIndexer_60_16 = new import18.ZIndexer()); }
-    return this.__ZIndexer_60_16;
+  import18.ZIndexer get _ZIndexer_62_16 {
+    if ((this.__ZIndexer_62_16 == null)) { (__ZIndexer_62_16 = new import18.ZIndexer()); }
+    return this.__ZIndexer_62_16;
   }
-  import19.OverlayDomRenderService get _OverlayDomRenderService_60_17 {
-    if ((this.__OverlayDomRenderService_60_17 == null)) { (__OverlayDomRenderService_60_17 = new import19.OverlayDomRenderService(this._OverlayStyleConfig_60_15,this._overlayContainerToken_60_13,this._overlayContainerName_60_11,this._DomRuler_60_10,this._DomService_60_7,this._AcxImperativeViewUtils_60_8,this._overlaySyncDom_60_14,this._ZIndexer_60_16)); }
-    return this.__OverlayDomRenderService_60_17;
+  import19.OverlayDomRenderService get _OverlayDomRenderService_62_17 {
+    if ((this.__OverlayDomRenderService_62_17 == null)) { (__OverlayDomRenderService_62_17 = new import19.OverlayDomRenderService(this._OverlayStyleConfig_62_15,this._overlayContainerToken_62_13,this._overlayContainerName_62_11,this._DomRuler_62_10,this._DomService_62_7,this._AcxImperativeViewUtils_62_8,this._overlaySyncDom_62_14,this._ZIndexer_62_16)); }
+    return this.__OverlayDomRenderService_62_17;
   }
-  import20.OverlayDomService get _OverlayService_60_18 {
-    if ((this.__OverlayService_60_18 == null)) { (__OverlayService_60_18 = new import20.OverlayDomService(this.parentInjector.get(import27.NgZone),this._overlaySyncDom_60_14,this._OverlayDomRenderService_60_17,this.parentInjector.get(import34.OverlayService,null))); }
-    return this.__OverlayService_60_18;
+  import20.OverlayDomService get _OverlayService_62_18 {
+    if ((this.__OverlayService_62_18 == null)) { (__OverlayService_62_18 = new import20.OverlayDomService(this.parentInjector.get(import27.NgZone),this._overlaySyncDom_62_14,this._OverlayDomRenderService_62_17,this.parentInjector.get(import34.OverlayService,null))); }
+    return this.__OverlayService_62_18;
   }
-  import21.DomPopupSourceFactory get _DomPopupSourceFactory_60_19 {
-    if ((this.__DomPopupSourceFactory_60_19 == null)) { (__DomPopupSourceFactory_60_19 = new import21.DomPopupSourceFactory(this._Window_60_6,this._DomRuler_60_10)); }
-    return this.__DomPopupSourceFactory_60_19;
+  import21.DomPopupSourceFactory get _DomPopupSourceFactory_62_19 {
+    if ((this.__DomPopupSourceFactory_62_19 == null)) { (__DomPopupSourceFactory_62_19 = new import21.DomPopupSourceFactory(this._Window_62_6,this._DomRuler_62_10)); }
+    return this.__DomPopupSourceFactory_62_19;
   }
-  import22.PopupService get _PopupService_60_20 {
-    if ((this.__PopupService_60_20 == null)) { (__PopupService_60_20 = new import22.PopupService(this._defaultPopupPositions_60_4,this._OverlayService_60_18,this._ZIndexer_60_16)); }
-    return this.__PopupService_60_20;
+  import22.PopupService get _PopupService_62_20 {
+    if ((this.__PopupService_62_20 == null)) { (__PopupService_62_20 = new import22.PopupService(this._defaultPopupPositions_62_4,this._OverlayService_62_18,this._ZIndexer_62_16)); }
+    return this.__PopupService_62_20;
   }
   ViewContainer createInternal(dynamic rootSelector) {
     final Node parentRenderNode = initViewRoot(this.declarationViewContainer.nativeElement);
@@ -421,106 +424,114 @@ class ViewAppComponent0 extends AppView<import3.AppComponent> {
     _PostitComponent_38_3 = new import9.PostitComponent(this.parentInjector.get(import40.PlaceService),this.parentInjector.get(import41.Router),this.parentInjector.get(import42.Environment));
     _appEl_38.initComponent(_PostitComponent_38_3,compView_38);
     compView_38.createComp([],null);
-    Text _text_39 = new Text('\n    ');
+    Text _text_39 = new Text('\n\n\n    ');
     _el_36.append(_text_39);
-    _el_40 = doc.createElement('places');
-    _el_40.setAttribute(shimCAttr,'');
-    _el_36.append(_el_40);
-    _appEl_40 = new ViewContainer(40,36,this,_el_40);
-    var compView_40 = import43.viewFactory_PlacesComponent0(this.injector(40),_appEl_40);
-    _PlacesComponent_40_3 = new import10.PlacesComponent(this.parentInjector.get(import40.PlaceService),this.parentInjector.get(import41.Router),this.parentInjector.get(import42.Environment));
-    _appEl_40.initComponent(_PlacesComponent_40_3,compView_40);
-    compView_40.createComp([],null);
-    Text _text_41 = new Text('\n  ');
+    var _anchor_40 = new Comment('template bindings={}');
+    _el_36?.append(_anchor_40);
+    _appEl_40 = new ViewContainer(40,36,this,_anchor_40);
+    _TemplateRef_40_4 = new TemplateRef(_appEl_40,viewFactory_AppComponent8);
+    _NgIf_40_5 = new NgIf(_appEl_40,_TemplateRef_40_4);
+    Text _text_41 = new Text('\n\n\n    ');
     _el_36.append(_text_41);
-    Text _text_42 = new Text('\n  ');
-    _el_0.append(_text_42);
-    _el_43 = doc.createElement('div');
-    _el_43.setAttribute(shimCAttr,'');
-    _el_0.append(_el_43);
-    _el_43.className = 'rightPanelinside';
-    Text _text_44 = new Text('\n    ');
-    _el_43.append(_text_44);
+    _el_42 = doc.createElement('places');
+    _el_42.setAttribute(shimCAttr,'');
+    _el_36.append(_el_42);
+    _appEl_42 = new ViewContainer(42,36,this,_el_42);
+    var compView_42 = import43.viewFactory_PlacesComponent0(this.injector(42),_appEl_42);
+    _PlacesComponent_42_3 = new import10.PlacesComponent(this.parentInjector.get(import40.PlaceService),this.parentInjector.get(import41.Router),this.parentInjector.get(import42.Environment));
+    _appEl_42.initComponent(_PlacesComponent_42_3,compView_42);
+    compView_42.createComp([],null);
+    Text _text_43 = new Text('\n  ');
+    _el_36.append(_text_43);
+    Text _text_44 = new Text('\n  ');
+    _el_0.append(_text_44);
     _el_45 = doc.createElement('div');
     _el_45.setAttribute(shimCAttr,'');
-    _el_43.append(_el_45);
-    _el_45.className = 'rightPanelinside_header';
+    _el_0.append(_el_45);
+    _el_45.className = 'rightPanelinside';
     Text _text_46 = new Text('\n    ');
-    _el_43.append(_text_46);
+    _el_45.append(_text_46);
     _el_47 = doc.createElement('div');
     _el_47.setAttribute(shimCAttr,'');
-    _el_43.append(_el_47);
-    _el_47.className = 'row';
-    Text _text_48 = new Text('\n      ');
-    _el_47.append(_text_48);
+    _el_45.append(_el_47);
+    _el_47.className = 'rightPanelinside_header';
+    Text _text_48 = new Text('\n    ');
+    _el_45.append(_text_48);
     _el_49 = doc.createElement('div');
     _el_49.setAttribute(shimCAttr,'');
-    _el_47.append(_el_49);
-    _el_49.className = 'centerP';
-    Text _text_50 = new Text('\n        ');
+    _el_45.append(_el_49);
+    _el_49.className = 'row';
+    Text _text_50 = new Text('\n      ');
     _el_49.append(_text_50);
-    _el_51 = doc.createElement('subjects');
+    _el_51 = doc.createElement('div');
     _el_51.setAttribute(shimCAttr,'');
     _el_49.append(_el_51);
-    _appEl_51 = new ViewContainer(51,49,this,_el_51);
-    var compView_51 = import44.viewFactory_SubjectListComponent0(this.injector(51),_appEl_51);
-    _UserListProvider_51_3 = new import11.UserListProvider(this.parentInjector.get(import42.Environment),this.parentInjector.get(import40.PlaceService));
-    _SubjectListComponent_51_4 = new import12.SubjectListComponent(this.parentInjector.get(import40.PlaceService),this.parentInjector.get(import41.Router),this.parentInjector.get(import42.Environment),_UserListProvider_51_3,this.parentInjector.get(import45.DomSanitizationService));
-    _appEl_51.initComponent(_SubjectListComponent_51_4,compView_51);
-    compView_51.createComp([],null);
-    Text _text_52 = new Text('\n      ');
-    _el_49.append(_text_52);
-    Text _text_53 = new Text('\n\n      ');
-    _el_47.append(_text_53);
-    _el_54 = doc.createElement('div');
-    _el_54.setAttribute(shimCAttr,'');
-    _el_47.append(_el_54);
-    _el_54.className = 'rightP';
-    Text _text_55 = new Text('\n        ');
-    _el_54.append(_text_55);
+    _el_51.className = 'centerP';
+    Text _text_52 = new Text('\n        ');
+    _el_51.append(_text_52);
+    _el_53 = doc.createElement('subjects');
+    _el_53.setAttribute(shimCAttr,'');
+    _el_51.append(_el_53);
+    _appEl_53 = new ViewContainer(53,51,this,_el_53);
+    var compView_53 = import44.viewFactory_SubjectListComponent0(this.injector(53),_appEl_53);
+    _UserListProvider_53_3 = new import11.UserListProvider(this.parentInjector.get(import42.Environment),this.parentInjector.get(import40.PlaceService));
+    _SubjectListComponent_53_4 = new import12.SubjectListComponent(this.parentInjector.get(import40.PlaceService),this.parentInjector.get(import41.Router),this.parentInjector.get(import42.Environment),_UserListProvider_53_3,this.parentInjector.get(import45.DomSanitizationService));
+    _appEl_53.initComponent(_SubjectListComponent_53_4,compView_53);
+    compView_53.createComp([],null);
+    Text _text_54 = new Text('\n      ');
+    _el_51.append(_text_54);
+    Text _text_55 = new Text('\n\n      ');
+    _el_49.append(_text_55);
     _el_56 = doc.createElement('div');
     _el_56.setAttribute(shimCAttr,'');
-    _el_54.append(_el_56);
-    _el_56.className = 'rightPinside';
-    Text _text_57 = new Text('\n          ');
+    _el_49.append(_el_56);
+    _el_56.className = 'rightP';
+    Text _text_57 = new Text('\n        ');
     _el_56.append(_text_57);
     _el_58 = doc.createElement('div');
     _el_58.setAttribute(shimCAttr,'');
     _el_56.append(_el_58);
-    _el_58.className = 'files';
-    Text _text_59 = new Text('\n            ');
+    _el_58.className = 'rightPinside';
+    Text _text_59 = new Text('\n          ');
     _el_58.append(_text_59);
-    _el_60 = doc.createElement('files-comp');
+    _el_60 = doc.createElement('div');
     _el_60.setAttribute(shimCAttr,'');
     _el_58.append(_el_60);
-    _appEl_60 = new ViewContainer(60,58,this,_el_60);
-    var compView_60 = import46.viewFactory_FilesComp0(this.injector(60),_appEl_60);
-    _FilesComp_60_3 = new import13.FilesComp(this.parentInjector.get(import40.PlaceService),this.parentInjector.get(import41.Router),this.parentInjector.get(import42.Environment));
-    _appEl_60.initComponent(_FilesComp_60_3,compView_60);
-    compView_60.createComp([],null);
-    Text _text_61 = new Text('\n          ');
-    _el_58.append(_text_61);
-    Text _text_62 = new Text('\n        ');
-    _el_56.append(_text_62);
-    Text _text_63 = new Text('\n      ');
-    _el_54.append(_text_63);
-    Text _text_64 = new Text('\n    ');
-    _el_47.append(_text_64);
-    Text _text_65 = new Text('\n  ');
-    _el_43.append(_text_65);
-    Text _text_66 = new Text('\n  ');
-    _el_0.append(_text_66);
-    Text _text_67 = new Text('\n');
-    _el_0.append(_text_67);
+    _el_60.className = 'files';
+    Text _text_61 = new Text('\n            ');
+    _el_60.append(_text_61);
+    _el_62 = doc.createElement('files-comp');
+    _el_62.setAttribute(shimCAttr,'');
+    _el_60.append(_el_62);
+    _appEl_62 = new ViewContainer(62,60,this,_el_62);
+    var compView_62 = import46.viewFactory_FilesComp0(this.injector(62),_appEl_62);
+    _FilesComp_62_3 = new import13.FilesComp(this.parentInjector.get(import40.PlaceService),this.parentInjector.get(import41.Router),this.parentInjector.get(import42.Environment));
+    _appEl_62.initComponent(_FilesComp_62_3,compView_62);
+    compView_62.createComp([],null);
+    Text _text_63 = new Text('\n          ');
+    _el_60.append(_text_63);
+    Text _text_64 = new Text('\n        ');
+    _el_58.append(_text_64);
+    Text _text_65 = new Text('\n      ');
+    _el_56.append(_text_65);
+    Text _text_66 = new Text('\n    ');
+    _el_49.append(_text_66);
+    Text _text_67 = new Text('\n  ');
+    _el_45.append(_text_67);
+    Text _text_68 = new Text('\n  ');
+    _el_0.append(_text_68);
+    Text _text_69 = new Text('\n');
+    _el_0.append(_text_69);
     listen(_el_27,'click',evt(_handle_click_27_0));
     init([],[
       _el_0,_text_1,_anchor_2,_text_3,_anchor_4,_text_5,_anchor_6,_text_7,_el_8,_text_9,
       _el_10,_el_11,_text_12,_el_13,_text_14,_text_15,_el_16,_text_17,_el_18,_text_19,
       _anchor_20,_text_21,_text_22,_el_23,_text_24,_el_25,_text_26,_el_27,_text_28,_text_29,
       _anchor_30,_text_31,_anchor_32,_text_33,_text_34,_text_35,_el_36,_text_37,_el_38,
-      _text_39,_el_40,_text_41,_text_42,_el_43,_text_44,_el_45,_text_46,_el_47,_text_48,
-      _el_49,_text_50,_el_51,_text_52,_text_53,_el_54,_text_55,_el_56,_text_57,_el_58,
-      _text_59,_el_60,_text_61,_text_62,_text_63,_text_64,_text_65,_text_66,_text_67
+      _text_39,_anchor_40,_text_41,_el_42,_text_43,_text_44,_el_45,_text_46,_el_47,_text_48,
+      _el_49,_text_50,_el_51,_text_52,_el_53,_text_54,_text_55,_el_56,_text_57,_el_58,
+      _text_59,_el_60,_text_61,_el_62,_text_63,_text_64,_text_65,_text_66,_text_67,_text_68,
+      _text_69
     ]
     ,[]);
     return null;
@@ -541,27 +552,29 @@ class ViewAppComponent0 extends AppView<import3.AppComponent> {
     if ((identical(token, TemplateRef) && (32 == requestNodeIndex))) { return _TemplateRef_32_4; }
     if ((identical(token, NgIf) && (32 == requestNodeIndex))) { return _NgIf_32_5; }
     if ((identical(token, import9.PostitComponent) && (38 == requestNodeIndex))) { return _PostitComponent_38_3; }
-    if ((identical(token, import10.PlacesComponent) && (40 == requestNodeIndex))) { return _PlacesComponent_40_3; }
-    if ((identical(token, import11.UserListProvider) && (51 == requestNodeIndex))) { return _UserListProvider_51_3; }
-    if ((identical(token, import12.SubjectListComponent) && (51 == requestNodeIndex))) { return _SubjectListComponent_51_4; }
-    if ((identical(token, import13.FilesComp) && (60 == requestNodeIndex))) { return _FilesComp_60_3; }
-    if ((identical(token, import22.defaultPopupPositions) && (60 == requestNodeIndex))) { return _defaultPopupPositions_60_4; }
-    if ((identical(token, import47.ManagedZone) && (60 == requestNodeIndex))) { return _ManagedZone_60_5; }
-    if ((identical(token, Window) && (60 == requestNodeIndex))) { return _Window_60_6; }
-    if ((identical(token, import30.DomService) && (60 == requestNodeIndex))) { return _DomService_60_7; }
-    if ((identical(token, import15.AcxImperativeViewUtils) && (60 == requestNodeIndex))) { return _AcxImperativeViewUtils_60_8; }
-    if ((identical(token, Document) && (60 == requestNodeIndex))) { return _Document_60_9; }
-    if ((identical(token, import16.DomRuler) && (60 == requestNodeIndex))) { return _DomRuler_60_10; }
-    if ((identical(token, import19.overlayContainerName) && (60 == requestNodeIndex))) { return _overlayContainerName_60_11; }
-    if ((identical(token, import19.overlayContainerParent) && (60 == requestNodeIndex))) { return _overlayContainerParent_60_12; }
-    if ((identical(token, import19.overlayContainerToken) && (60 == requestNodeIndex))) { return _overlayContainerToken_60_13; }
-    if ((identical(token, import19.overlaySyncDom) && (60 == requestNodeIndex))) { return _overlaySyncDom_60_14; }
-    if ((identical(token, import17.OverlayStyleConfig) && (60 == requestNodeIndex))) { return _OverlayStyleConfig_60_15; }
-    if ((identical(token, import18.ZIndexer) && (60 == requestNodeIndex))) { return _ZIndexer_60_16; }
-    if ((identical(token, import19.OverlayDomRenderService) && (60 == requestNodeIndex))) { return _OverlayDomRenderService_60_17; }
-    if ((identical(token, import34.OverlayService) && (60 == requestNodeIndex))) { return _OverlayService_60_18; }
-    if ((identical(token, import21.DomPopupSourceFactory) && (60 == requestNodeIndex))) { return _DomPopupSourceFactory_60_19; }
-    if ((identical(token, import22.PopupService) && (60 == requestNodeIndex))) { return _PopupService_60_20; }
+    if ((identical(token, TemplateRef) && (40 == requestNodeIndex))) { return _TemplateRef_40_4; }
+    if ((identical(token, NgIf) && (40 == requestNodeIndex))) { return _NgIf_40_5; }
+    if ((identical(token, import10.PlacesComponent) && (42 == requestNodeIndex))) { return _PlacesComponent_42_3; }
+    if ((identical(token, import11.UserListProvider) && (53 == requestNodeIndex))) { return _UserListProvider_53_3; }
+    if ((identical(token, import12.SubjectListComponent) && (53 == requestNodeIndex))) { return _SubjectListComponent_53_4; }
+    if ((identical(token, import13.FilesComp) && (62 == requestNodeIndex))) { return _FilesComp_62_3; }
+    if ((identical(token, import22.defaultPopupPositions) && (62 == requestNodeIndex))) { return _defaultPopupPositions_62_4; }
+    if ((identical(token, import47.ManagedZone) && (62 == requestNodeIndex))) { return _ManagedZone_62_5; }
+    if ((identical(token, Window) && (62 == requestNodeIndex))) { return _Window_62_6; }
+    if ((identical(token, import30.DomService) && (62 == requestNodeIndex))) { return _DomService_62_7; }
+    if ((identical(token, import15.AcxImperativeViewUtils) && (62 == requestNodeIndex))) { return _AcxImperativeViewUtils_62_8; }
+    if ((identical(token, Document) && (62 == requestNodeIndex))) { return _Document_62_9; }
+    if ((identical(token, import16.DomRuler) && (62 == requestNodeIndex))) { return _DomRuler_62_10; }
+    if ((identical(token, import19.overlayContainerName) && (62 == requestNodeIndex))) { return _overlayContainerName_62_11; }
+    if ((identical(token, import19.overlayContainerParent) && (62 == requestNodeIndex))) { return _overlayContainerParent_62_12; }
+    if ((identical(token, import19.overlayContainerToken) && (62 == requestNodeIndex))) { return _overlayContainerToken_62_13; }
+    if ((identical(token, import19.overlaySyncDom) && (62 == requestNodeIndex))) { return _overlaySyncDom_62_14; }
+    if ((identical(token, import17.OverlayStyleConfig) && (62 == requestNodeIndex))) { return _OverlayStyleConfig_62_15; }
+    if ((identical(token, import18.ZIndexer) && (62 == requestNodeIndex))) { return _ZIndexer_62_16; }
+    if ((identical(token, import19.OverlayDomRenderService) && (62 == requestNodeIndex))) { return _OverlayDomRenderService_62_17; }
+    if ((identical(token, import34.OverlayService) && (62 == requestNodeIndex))) { return _OverlayService_62_18; }
+    if ((identical(token, import21.DomPopupSourceFactory) && (62 == requestNodeIndex))) { return _DomPopupSourceFactory_62_19; }
+    if ((identical(token, import22.PopupService) && (62 == requestNodeIndex))) { return _PopupService_62_20; }
     return notFoundResult;
   }
   void detectChangesInternal() {
@@ -607,9 +620,10 @@ class ViewAppComponent0 extends AppView<import3.AppComponent> {
       _expr_14 = currVal_14;
     }
     if ((identical(this.cdState, ChangeDetectorState.NeverChecked) && !import48.AppViewUtils.throwOnChanges)) { _PostitComponent_38_3.ngOnInit(); }
-    if ((identical(this.cdState, ChangeDetectorState.NeverChecked) && !import48.AppViewUtils.throwOnChanges)) { _PlacesComponent_40_3.ngOnInit(); }
-    if ((identical(this.cdState, ChangeDetectorState.NeverChecked) && !import48.AppViewUtils.throwOnChanges)) { _SubjectListComponent_51_4.ngOnInit(); }
-    if ((identical(this.cdState, ChangeDetectorState.NeverChecked) && !import48.AppViewUtils.throwOnChanges)) { _FilesComp_60_3.ngOnInit(); }
+    _NgIf_40_5.ngIf = (ctx.folder != null);
+    if ((identical(this.cdState, ChangeDetectorState.NeverChecked) && !import48.AppViewUtils.throwOnChanges)) { _PlacesComponent_42_3.ngOnInit(); }
+    if ((identical(this.cdState, ChangeDetectorState.NeverChecked) && !import48.AppViewUtils.throwOnChanges)) { _SubjectListComponent_53_4.ngOnInit(); }
+    if ((identical(this.cdState, ChangeDetectorState.NeverChecked) && !import48.AppViewUtils.throwOnChanges)) { _FilesComp_62_3.ngOnInit(); }
     this.detectContentChildrenChanges();
     final currVal_7 = import48.interpolate1('/auth/user/photo/s/',((ctx.connectedUser == null)? null: ctx.connectedUser.id),'');
     if (import48.checkBinding(_expr_7,currVal_7)) {
@@ -1439,6 +1453,55 @@ class ViewAppComponent7 extends AppView<import3.AppComponent> {
 }
 AppView viewFactory_AppComponent7(import24.Injector parentInjector,ViewContainer declarationEl) {
   return new ViewAppComponent7(parentInjector,declarationEl);
+}
+class ViewAppComponent8 extends AppView<import3.AppComponent> {
+  Element _el_0;
+  ViewContainer _appEl_0;
+  import9.PostitComponent _PostitComponent_0_3;
+  var _expr_0 = uninitialized;
+  var _expr_1 = uninitialized;
+  var _expr_2 = uninitialized;
+  ViewAppComponent8(import24.Injector parentInjector,ViewContainer declarationEl): super(ViewAppComponent8,renderType_AppComponent,import25.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
+  ViewContainer createInternal(dynamic rootSelector) {
+    var doc = document;
+    _el_0 = doc.createElement('postit-comp');
+    _el_0.setAttribute(shimCAttr,'');
+    _el_0.className = 'foldersPostit';
+    _appEl_0 = new ViewContainer(0,null,this,_el_0);
+    var compView_0 = import39.viewFactory_PostitComponent0(this.injector(0),_appEl_0);
+    _PostitComponent_0_3 = new import9.PostitComponent(this.parentInjector.get(import40.PlaceService),this.parentInjector.get(import41.Router),this.parentInjector.get(import42.Environment));
+    _appEl_0.initComponent(_PostitComponent_0_3,compView_0);
+    compView_0.createComp([],null);
+    init([_el_0],[_el_0],[]);
+    return null;
+  }
+  dynamic injectorGetInternal(dynamic token,int requestNodeIndex,dynamic notFoundResult) {
+    if ((identical(token, import9.PostitComponent) && (0 == requestNodeIndex))) { return _PostitComponent_0_3; }
+    return notFoundResult;
+  }
+  void detectChangesInternal() {
+    final currVal_0 = 'folders';
+    if (import48.checkBinding(_expr_0,currVal_0)) {
+      _PostitComponent_0_3.name = currVal_0;
+      _expr_0 = currVal_0;
+    }
+    final currVal_1 = 'Create a folder';
+    if (import48.checkBinding(_expr_1,currVal_1)) {
+      _PostitComponent_0_3.header = currVal_1;
+      _expr_1 = currVal_1;
+    }
+    final currVal_2 = 'To start, create a folder clicking on the + icon';
+    if (import48.checkBinding(_expr_2,currVal_2)) {
+      _PostitComponent_0_3.body = currVal_2;
+      _expr_2 = currVal_2;
+    }
+    if ((identical(this.cdState, ChangeDetectorState.NeverChecked) && !import48.AppViewUtils.throwOnChanges)) { _PostitComponent_0_3.ngOnInit(); }
+    this.detectContentChildrenChanges();
+    this.detectViewChildrenChanges();
+  }
+}
+AppView viewFactory_AppComponent8(import24.Injector parentInjector,ViewContainer declarationEl) {
+  return new ViewAppComponent8(parentInjector,declarationEl);
 }
 const List<dynamic> styles_AppComponentHost = const [];
 RenderComponentType renderType_AppComponentHost;

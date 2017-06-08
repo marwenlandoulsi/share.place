@@ -15,6 +15,7 @@ class PbList<E> extends Object with ListMixin<E> implements List<E> {
   }
 
   PbList.from(List from)
+      // TODO(sra): Should this be validated?
       : _wrappedList = new List<E>.from(from),
         check = _checkNotNull;
 
@@ -25,11 +26,11 @@ class PbList<E> extends Object with ListMixin<E> implements List<E> {
 
   int get hashCode {
     int hash = 0;
-    _wrappedList.forEach((E value) {
+    for (final value in _wrappedList) {
       hash = (hash + value.hashCode) & 0x3fffffff;
       hash = (hash + hash << 10) & 0x3fffffff;
       hash = (hash ^ hash >> 6) & 0x3fffffff;
-    });
+    }
     hash = (hash + hash << 3) & 0x3fffffff;
     hash = (hash ^ hash >> 11) & 0x3fffffff;
     hash = (hash + hash << 15) & 0x3fffffff;
@@ -40,6 +41,19 @@ class PbList<E> extends Object with ListMixin<E> implements List<E> {
    * Returns an [Iterator] for the list.
    */
   Iterator<E> get iterator => _wrappedList.iterator;
+
+  /**
+   * Returns a new lazy [Iterable] with elements that are created by calling `f`
+   * on each element of this `PbList` in iteration order.
+   */
+  Iterable/*<T>*/ map/*<T>*/(/*=T*/ f(E e)) => _wrappedList.map/*<T>*/(f);
+
+  /**
+   * Applies the function [f] to each element of this list in iteration order.
+   */
+  void forEach(void f(E element)) {
+    _wrappedList.forEach(f);
+  }
 
   /**
    * Returns the element at the given [index] in the list or throws

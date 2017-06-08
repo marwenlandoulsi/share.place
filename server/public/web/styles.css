@@ -20,7 +20,7 @@ html, body, my-app, my-app > div, .leftP, my-place, .folders {
 .leftP {
   width: 17%;
   height: calc(100vh - 2.2em);
-  /*position: relative;*/
+  position: relative;
   z-index: 2;
 }
 
@@ -611,7 +611,7 @@ textarea {
   font-family: Arial, Helvetica, sans-serif;
   background: #fff;
   border: 1px solid rgba(146, 146, 146, 0.63);
-  width: calc(100% - 34px) !important;
+  width: calc(100% - 55px) !important;
   padding: 0 20px 0 10px !important;
 }
 
@@ -743,13 +743,13 @@ form#fileForm {
 }
 
 .placesPostit .postit {
-  left: 17.4% !important;
-  top: 30px !important;
+  left: 103.4% !important;
+  top: 2px !important;
 }
 
 .foldersPostit .postit {
-  left: 17.4% !important;
-  top: 113px !important;
+  left: 87% !important;
+  top: 126px !important;
 }
 
 .subjectsPostit .postit {
@@ -758,13 +758,13 @@ form#fileForm {
 }
 
 .filesPostit .postit {
-  right: 0% !important;
+  right: 0 !important;
   top: 20.5% !important;
   transform: rotate(0deg);
 }
 
 .commentPostit .postit {
-  right: -23px !important;
+  right: 0!important;
   top: -4px !important;
 }
 

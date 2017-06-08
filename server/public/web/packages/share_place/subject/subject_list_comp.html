@@ -98,7 +98,7 @@
           (drop)="fileDropped(dropZone)">
 
       <label #fileUploadLabel id="labelfileupload" for="fileupload"> Drag'n drop or browse file </label>
-      <input #fileInput type="file" id="fileupload" (change)="uploadFiles($event.target.files[0].name)" class="uploadFile" name="toUpload"
+      <input #fileInput type="file" id="fileupload" (change)="uploadFiles($event.target.files[0].name, $event.target.files[0].size)" class="uploadFile" name="toUpload"
              style="opacity: 0;"
              (click)="openFileDialogConditionally($event, fileUploadLabel)"/>
 

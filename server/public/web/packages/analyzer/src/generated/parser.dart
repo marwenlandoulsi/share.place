@@ -238,7 +238,7 @@ class Parser {
   /**
    * A flag indicating whether the parser is to parse generic method syntax.
    */
-  bool parseGenericMethods = true;
+  bool parseGenericMethods = false;
 
   /**
    * A flag indicating whether to parse generic method comments, of the form

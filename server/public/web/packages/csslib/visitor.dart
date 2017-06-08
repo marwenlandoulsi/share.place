@@ -20,6 +20,13 @@ abstract class VisitorBase {
   visitNoOp(NoOp node);
   visitTopLevelProduction(TopLevelProduction node);
   visitDirective(Directive node);
+  visitDocumentDirective(DocumentDirective node);
+  visitSupportsDirective(SupportsDirective node);
+  visitSupportsConditionInParens(SupportsConditionInParens node);
+  visitSupportsNegation(SupportsNegation node);
+  visitSupportsConjunction(SupportsConjunction node);
+  visitSupportsDisjunction(SupportsDisjunction node);
+  visitViewportDirective(ViewportDirective node);
   visitMediaExpression(MediaExpression node);
   visitMediaQuery(MediaQuery node);
   visitMediaDirective(MediaDirective node);
@@ -152,19 +159,43 @@ class Visitor implements VisitorBase {
     }
   }
 
+  visitDocumentDirective(DocumentDirective node) {
+    _visitNodeList(node.functions);
+    _visitNodeList(node.groupRuleBody);
+  }
+
+  visitSupportsDirective(SupportsDirective node) {
+    node.condition.visit(this);
+    _visitNodeList(node.groupRuleBody);
+  }
+
+  visitSupportsConditionInParens(SupportsConditionInParens node) {
+    node.condition.visit(this);
+  }
+
+  visitSupportsNegation(SupportsNegation node) {
+    node.condition.visit(this);
+  }
+
+  visitSupportsConjunction(SupportsConjunction node) {
+    _visitNodeList(node.conditions);
+  }
+
+  visitSupportsDisjunction(SupportsDisjunction node) {
+    _visitNodeList(node.conditions);
+  }
+
+  visitViewportDirective(ViewportDirective node) {
+    node.declarations.visit(this);
+  }
+
   visitMediaDirective(MediaDirective node) {
-    for (var mediaQuery in node.mediaQueries) {
-      visitMediaQuery(mediaQuery);
-    }
-    for (var ruleset in node.rulesets) {
-      visitRuleSet(ruleset);
-    }
+    _visitNodeList(node.mediaQueries);
+    _visitNodeList(node.rules);
   }
 
   visitHostDirective(HostDirective node) {
-    for (var ruleset in node.rulesets) {
-      visitRuleSet(ruleset);
-    }
+    _visitNodeList(node.rules);
   }
 
   visitPageDirective(PageDirective node) {
@@ -200,7 +231,7 @@ class Visitor implements VisitorBase {
   }
 
   visitStyletDirective(StyletDirective node) {
-    _visitNodeList(node.rulesets);
+    _visitNodeList(node.rules);
   }
 
   visitNamespaceDirective(NamespaceDirective node) {}

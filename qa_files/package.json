@@ -1,6 +1,6 @@
 {
   "name": "Share.Place",
-  "version": "0.1.14",
+  "version": "0.1.15",
   "description": "share place",
   "main": "main.js",
   "repository": {
@@ -18,10 +18,10 @@
     "electron-notifications": "^1.0.0",
     "electron-notify": "^0.1.0",
     "electron-packager": "^8.5.2",
+    "electron-proxy-agent": "^1.0.2",
     "electron-updater": "^1.10.3",
     "fs-extra": "^2.0.0",
     "http": "0.0.0",
-    "is-reachable": "^2.3.2",
     "nedb-session-store": "^1.1.1",
     "path": "^0.12.7"
   },

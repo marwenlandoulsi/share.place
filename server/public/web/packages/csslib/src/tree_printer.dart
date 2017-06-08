@@ -85,8 +85,59 @@ class _TreePrinter extends Visitor {
     heading('MediaDirective', node);
     output.depth++;
     output.writeNodeList('media queries', node.mediaQueries);
-    output.writeNodeList('rule sets', node.rulesets);
+    output.writeNodeList('rule sets', node.rules);
     super.visitMediaDirective(node);
+    output.depth--;
+  }
+
+  void visitDocumentDirective(DocumentDirective node) {
+    heading('DocumentDirective', node);
+    output.depth++;
+    output.writeNodeList('functions', node.functions);
+    output.writeNodeList('group rule body', node.groupRuleBody);
+    output.depth--;
+  }
+
+  void visitSupportsDirective(SupportsDirective node) {
+    heading('SupportsDirective', node);
+    output.depth++;
+    output.writeNode('condition', node.condition);
+    output.writeNodeList('group rule body', node.groupRuleBody);
+    output.depth--;
+  }
+
+  void visitSupportsConditionInParens(SupportsConditionInParens node) {
+    heading('SupportsConditionInParens', node);
+    output.depth++;
+    output.writeNode('condition', node.condition);
+    output.depth--;
+  }
+
+  void visitSupportsNegation(SupportsNegation node) {
+    heading('SupportsNegation', node);
+    output.depth++;
+    output.writeNode('condition', node.condition);
+    output.depth--;
+  }
+
+  void visitSupportsConjunction(SupportsConjunction node) {
+    heading('SupportsConjunction', node);
+    output.depth++;
+    output.writeNodeList('conditions', node.conditions);
+    output.depth--;
+  }
+
+  void visitSupportsDisjunction(SupportsDisjunction node) {
+    heading('SupportsDisjunction', node);
+    output.depth++;
+    output.writeNodeList('conditions', node.conditions);
+    output.depth--;
+  }
+
+  void visitViewportDirective(ViewportDirective node) {
+    heading('ViewportDirective', node);
+    output.depth++;
+    super.visitViewportDirective(node);
     output.depth--;
   }
 
@@ -140,7 +191,7 @@ class _TreePrinter extends Visitor {
     heading('StyletDirective', node);
     output.writeValue('dartClassName', node.dartClassName);
     output.depth++;
-    output.writeNodeList('rulesets', node.rulesets);
+    output.writeNodeList('rulesets', node.rules);
     output.depth--;
   }
 

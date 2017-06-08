@@ -62,11 +62,11 @@ class AppComponent
   final Environment _environment;
   final PlaceService _placeService;
   bool profileMenuVisible;
-
   String get baseUrl => conf.baseUrl;
 
   bool get isWebApp => conf.isWebApp;
 
+  get folder => _environment.selectedFolder;
   AppComponent(this._router, this._environment, this._placeService);
 
   Future<Null> ngOnInit() async {

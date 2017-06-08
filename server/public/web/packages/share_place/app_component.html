@@ -69,6 +69,13 @@
   <div class="leftP">
     <postit-comp [name]="'places'" [header]="'Welcome!'" [body]="'You can create your place on clicking on the + icon'"
                  class="placesPostit"></postit-comp>
+
+
+    <postit-comp *ngIf="folder != null" [name]="'folders'" [header]="'Create a folder'"
+                 [body]="'To start, create a folder clicking on the + icon'"
+                 class="foldersPostit"></postit-comp>
+
+
     <places></places>
   </div>
   <div class="rightPanelinside">

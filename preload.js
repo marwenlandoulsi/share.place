@@ -17,7 +17,7 @@ process.once('loaded', () => {
   ipcRenderer.once('showFrame', () => {
     updateOnlineStatus();
   });
-
+  
 
   const showNotifcation = (title, body) => {
 
@@ -32,6 +32,10 @@ process.once('loaded', () => {
       notif.close();
     }
   }
+
+
+
+
 
 
   window.addEventListener('online', updateOnlineStatus);
@@ -53,6 +57,7 @@ process.once('loaded', () => {
 
     showNotifcation(data.title, data.message);
   });
+
 
   function dispatchWindowEvent(detail) {
     console.log("dispatchWindowEvent", detail)

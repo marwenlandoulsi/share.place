@@ -41,7 +41,9 @@ class PlacesComponent implements OnInit {
   }
 
   Future<Null> loadPlaces() async {
+    _environment.showScrollBar();
     places = await _placeService.getPlaces();
+
   }
 
   void add() {

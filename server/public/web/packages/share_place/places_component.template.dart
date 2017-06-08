@@ -78,17 +78,19 @@ class ViewPlacesComponent0 extends AppView<import3.PlacesComponent> {
   Element _el_3;
   Element _el_6;
   Element _el_8;
-  UListElement _el_12;
+  Element _el_12;
   Element _el_14;
-  Element _el_16;
-  ViewContainer _appEl_16;
-  import6.TextComp _TextComp_16_3;
-  Element _el_19;
-  import7.MaterialExpansionPanelSet _MaterialExpansionPanelSet_19_2;
-  import8.QueryList _query_MaterialExpansionPanel_19_0;
-  ViewContainer _appEl_21;
-  dynamic _TemplateRef_21_4;
-  import9.NgFor _NgFor_21_5;
+  UListElement _el_16;
+  Element _el_21;
+  Element _el_23;
+  ViewContainer _appEl_23;
+  import6.TextComp _TextComp_23_3;
+  Element _el_26;
+  import7.MaterialExpansionPanelSet _MaterialExpansionPanelSet_26_2;
+  import8.QueryList _query_MaterialExpansionPanel_26_0;
+  ViewContainer _appEl_28;
+  dynamic _TemplateRef_28_4;
+  import9.NgFor _NgFor_28_5;
   var _expr_1 = uninitialized;
   var _expr_2 = uninitialized;
   var _arr_0;
@@ -130,49 +132,69 @@ class ViewPlacesComponent0 extends AppView<import3.PlacesComponent> {
     _el_0.append(_text_10);
     Text _text_11 = new Text('\n');
     parentRenderNode.append(_text_11);
-    _el_12 = doc.createElement('ul');
+    _el_12 = doc.createElement('div');
     _el_12.setAttribute(shimCAttr,'');
     parentRenderNode.append(_el_12);
-    _el_12.className = 'places';
-    Text _text_13 = new Text('\n\n  ');
+    _el_12.className = 'placesInner';
+    Text _text_13 = new Text('\n  ');
     _el_12.append(_text_13);
-    _el_14 = doc.createElement('li');
+    _el_14 = doc.createElement('div');
     _el_14.setAttribute(shimCAttr,'');
     _el_12.append(_el_14);
-    _el_14.className = 'addplace';
+    _el_14.className = 'scrollbar-macosx';
     Text _text_15 = new Text('\n    ');
     _el_14.append(_text_15);
-    _el_16 = doc.createElement('txt');
+    _el_16 = doc.createElement('ul');
     _el_16.setAttribute(shimCAttr,'');
     _el_14.append(_el_16);
-    _el_16.className = 'saveAdd';
-    _appEl_16 = new ViewContainer(16,14,this,_el_16);
-    var compView_16 = import13.viewFactory_TextComp0(this.injector(16),_appEl_16);
-    _TextComp_16_3 = new import6.TextComp();
-    _appEl_16.initComponent(_TextComp_16_3,compView_16);
-    compView_16.createComp([],null);
-    Text _text_17 = new Text('\n  ');
-    _el_14.append(_text_17);
-    Text _text_18 = new Text('\n\n  ');
-    _el_12.append(_text_18);
-    _el_19 = doc.createElement('material-expansionpanel-set');
-    _el_19.setAttribute(shimCAttr,'');
-    _el_12.append(_el_19);
-    _MaterialExpansionPanelSet_19_2 = new import7.MaterialExpansionPanelSet();
-    _query_MaterialExpansionPanel_19_0 = new import8.QueryList();
-    Text _text_20 = new Text('\n\n    ');
-    _el_19.append(_text_20);
-    var _anchor_21 = new Comment('template bindings={}');
-    _el_19?.append(_anchor_21);
-    _appEl_21 = new ViewContainer(21,19,this,_anchor_21);
-    _TemplateRef_21_4 = new TemplateRef(_appEl_21,viewFactory_PlacesComponent1);
-    _NgFor_21_5 = new import9.NgFor(_appEl_21,_TemplateRef_21_4,this.parentInjector.get(import15.IterableDiffers),ref);
-    Text _text_22 = new Text('\n  ');
-    _el_19.append(_text_22);
-    Text _text_23 = new Text('\n\n');
-    _el_12.append(_text_23);
-    Text _text_24 = new Text('\n\n');
-    parentRenderNode.append(_text_24);
+    _el_16.className = 'places';
+    Text _text_17 = new Text('\n\n      ');
+    _el_16.append(_text_17);
+    Text _text_18 = new Text('\n      ');
+    _el_16.append(_text_18);
+    Text _text_19 = new Text('\n      ');
+    _el_16.append(_text_19);
+    Text _text_20 = new Text('\n\n      ');
+    _el_16.append(_text_20);
+    _el_21 = doc.createElement('li');
+    _el_21.setAttribute(shimCAttr,'');
+    _el_16.append(_el_21);
+    _el_21.className = 'addplace';
+    Text _text_22 = new Text('\n        ');
+    _el_21.append(_text_22);
+    _el_23 = doc.createElement('txt');
+    _el_23.setAttribute(shimCAttr,'');
+    _el_21.append(_el_23);
+    _el_23.className = 'saveAdd';
+    _appEl_23 = new ViewContainer(23,21,this,_el_23);
+    var compView_23 = import13.viewFactory_TextComp0(this.injector(23),_appEl_23);
+    _TextComp_23_3 = new import6.TextComp();
+    _appEl_23.initComponent(_TextComp_23_3,compView_23);
+    compView_23.createComp([],null);
+    Text _text_24 = new Text('\n      ');
+    _el_21.append(_text_24);
+    Text _text_25 = new Text('\n\n      ');
+    _el_16.append(_text_25);
+    _el_26 = doc.createElement('material-expansionpanel-set');
+    _el_26.setAttribute(shimCAttr,'');
+    _el_16.append(_el_26);
+    _MaterialExpansionPanelSet_26_2 = new import7.MaterialExpansionPanelSet();
+    _query_MaterialExpansionPanel_26_0 = new import8.QueryList();
+    Text _text_27 = new Text('\n        ');
+    _el_26.append(_text_27);
+    var _anchor_28 = new Comment('template bindings={}');
+    _el_26?.append(_anchor_28);
+    _appEl_28 = new ViewContainer(28,26,this,_anchor_28);
+    _TemplateRef_28_4 = new TemplateRef(_appEl_28,viewFactory_PlacesComponent1);
+    _NgFor_28_5 = new import9.NgFor(_appEl_28,_TemplateRef_28_4,this.parentInjector.get(import15.IterableDiffers),ref);
+    Text _text_29 = new Text('\n      ');
+    _el_26.append(_text_29);
+    Text _text_30 = new Text('\n\n    ');
+    _el_16.append(_text_30);
+    Text _text_31 = new Text('\n  ');
+    _el_14.append(_text_31);
+    Text _text_32 = new Text('\n');
+    _el_12.append(_text_32);
     listen(_el_8,'click',evt(_handle_click_8_0));
     this._arr_0 = import16.pureProxy3((p0,p1,p2) {
       return [
@@ -182,58 +204,59 @@ class ViewPlacesComponent0 extends AppView<import3.PlacesComponent> {
     });
     init([],[
       _el_0,_text_1,_text_2,_el_3,_text_4,_text_5,_el_6,_text_7,_el_8,_text_9,_text_10,
-      _text_11,_el_12,_text_13,_el_14,_text_15,_el_16,_text_17,_text_18,_el_19,_text_20,
-      _anchor_21,_text_22,_text_23,_text_24
+      _text_11,_el_12,_text_13,_el_14,_text_15,_el_16,_text_17,_text_18,_text_19,_text_20,
+      _el_21,_text_22,_el_23,_text_24,_text_25,_el_26,_text_27,_anchor_28,_text_29,_text_30,
+      _text_31,_text_32
     ]
     ,[]);
     return null;
   }
   dynamic injectorGetInternal(dynamic token,int requestNodeIndex,dynamic notFoundResult) {
-    if ((identical(token, import6.TextComp) && (16 == requestNodeIndex))) { return _TextComp_16_3; }
-    if ((identical(token, TemplateRef) && (21 == requestNodeIndex))) { return _TemplateRef_21_4; }
-    if ((identical(token, import9.NgFor) && (21 == requestNodeIndex))) { return _NgFor_21_5; }
-    if ((identical(token, import7.MaterialExpansionPanelSet) && ((19 <= requestNodeIndex) && (requestNodeIndex <= 22)))) { return _MaterialExpansionPanelSet_19_2; }
+    if ((identical(token, import6.TextComp) && (23 == requestNodeIndex))) { return _TextComp_23_3; }
+    if ((identical(token, TemplateRef) && (28 == requestNodeIndex))) { return _TemplateRef_28_4; }
+    if ((identical(token, import9.NgFor) && (28 == requestNodeIndex))) { return _NgFor_28_5; }
+    if ((identical(token, import7.MaterialExpansionPanelSet) && ((26 <= requestNodeIndex) && (requestNodeIndex <= 29)))) { return _MaterialExpansionPanelSet_26_2; }
     return notFoundResult;
   }
   void detectChangesInternal() {
     final currVal_2 = ctx.save;
     if (import16.checkBinding(_expr_2,currVal_2)) {
-      _TextComp_16_3.confirm = currVal_2;
+      _TextComp_23_3.confirm = currVal_2;
       _expr_2 = currVal_2;
     }
     final currVal_3 = _arr_0('../images/ok.png','../images/ok.png','../images/ok.png');
     if (import16.checkBinding(_expr_3,currVal_3)) {
-      _TextComp_16_3.sources = currVal_3;
+      _TextComp_23_3.sources = currVal_3;
       _expr_3 = currVal_3;
     }
     final currVal_4 = ctx.places;
     if (import16.checkBinding(_expr_4,currVal_4)) {
-      _NgFor_21_5.ngForOf = currVal_4;
+      _NgFor_28_5.ngForOf = currVal_4;
       _expr_4 = currVal_4;
     }
-    if (!import16.AppViewUtils.throwOnChanges) { _NgFor_21_5.ngDoCheck(); }
+    if (!import16.AppViewUtils.throwOnChanges) { _NgFor_28_5.ngDoCheck(); }
     this.detectContentChildrenChanges();
-    if (_query_MaterialExpansionPanel_19_0.dirty) {
-        _query_MaterialExpansionPanel_19_0.reset([_appEl_21.mapNestedViews(ViewPlacesComponent1,(ViewPlacesComponent1 nestedView) {
+    if (_query_MaterialExpansionPanel_26_0.dirty) {
+        _query_MaterialExpansionPanel_26_0.reset([_appEl_28.mapNestedViews(ViewPlacesComponent1,(ViewPlacesComponent1 nestedView) {
           return [nestedView._MaterialExpansionPanel_0_3];
       })]);
-      _MaterialExpansionPanelSet_19_2.panels = _query_MaterialExpansionPanel_19_0;
-      _query_MaterialExpansionPanel_19_0.notifyOnChanges();
+      _MaterialExpansionPanelSet_26_2.panels = _query_MaterialExpansionPanel_26_0;
+      _query_MaterialExpansionPanel_26_0.notifyOnChanges();
     }
     final currVal_1 = (ctx.adding? 'block': 'none');
     if (import16.checkBinding(_expr_1,currVal_1)) {
-      _el_14.style.setProperty('display',currVal_1?.toString());
+      _el_21.style.setProperty('display',currVal_1?.toString());
       _expr_1 = currVal_1;
     }
     this.detectViewChildrenChanges();
   }
   void destroyInternal() {
-    _MaterialExpansionPanelSet_19_2.ngOnDestroy();
+    _MaterialExpansionPanelSet_26_2.ngOnDestroy();
   }
   bool _handle_click_8_0($event) {
     this.markPathToRootAsCheckOnce();
     ctx.add();
-    final dynamic pd_0 = !identical((_TextComp_16_3.focus('places') as dynamic), false);
+    final dynamic pd_0 = !identical((_TextComp_23_3.focus('places') as dynamic), false);
     return (true && pd_0);
   }
 }
@@ -267,13 +290,13 @@ class ViewPlacesComponent1 extends AppView<import3.PlacesComponent> {
     var compView_0 = import20.viewFactory_MaterialExpansionPanel0(this.injector(0),_appEl_0);
     _MaterialExpansionPanel_0_3 = new import18.MaterialExpansionPanel(this.parentInjector.get(import21.ManagedZone),compView_0.ref);
     _appEl_0.initComponent(_MaterialExpansionPanel_0_3,compView_0);
-    Text _text_1 = new Text('\n      ');
+    Text _text_1 = new Text('\n          ');
     var _anchor_2 = new Comment('template bindings={}');
     null?.append(_anchor_2);
     _appEl_2 = new ViewContainer(2,0,this,_anchor_2);
     _TemplateRef_2_4 = new TemplateRef(_appEl_2,viewFactory_PlacesComponent2);
     _NgIf_2_5 = new NgIf(_appEl_2,_TemplateRef_2_4);
-    Text _text_3 = new Text('\n    ');
+    Text _text_3 = new Text('\n        ');
     compView_0.createComp([
       [],[],[
         _text_1,_appEl_2,_text_3
@@ -318,7 +341,7 @@ class ViewPlacesComponent1 extends AppView<import3.PlacesComponent> {
     this.detectViewChildrenChanges();
   }
   void dirtyParentQueriesInternal() {
-    (parent as ViewPlacesComponent0)._query_MaterialExpansionPanel_19_0.setDirty();
+    (parent as ViewPlacesComponent0)._query_MaterialExpansionPanel_26_0.setDirty();
   }
   void destroyInternal() {
     _MaterialExpansionPanel_0_3.ngOnDestroy();
@@ -346,7 +369,7 @@ class ViewPlacesComponent2 extends AppView<import3.PlacesComponent> {
     var doc = document;
     _el_0 = doc.createElement('div');
     _el_0.setAttribute(shimCAttr,'');
-    Text _text_1 = new Text('\n        ');
+    Text _text_1 = new Text('\n            ');
     _el_0.append(_text_1);
     _el_2 = doc.createElement('folders');
     _el_2.setAttribute(shimCAttr,'');
@@ -356,7 +379,7 @@ class ViewPlacesComponent2 extends AppView<import3.PlacesComponent> {
     _FolderComponent_2_3 = new import23.FolderComponent(this.parentInjector.get(import27.PlaceService),this.parentInjector.get(import28.Router),this.parentInjector.get(import29.Environment));
     _appEl_2.initComponent(_FolderComponent_2_3,compView_2);
     compView_2.createComp([],null);
-    Text _text_3 = new Text('\n        ');
+    Text _text_3 = new Text('\n            ');
     _el_0.append(_text_3);
     _el_4 = doc.createElement('users-comp');
     _el_4.setAttribute(shimCAttr,'');
@@ -367,7 +390,7 @@ class ViewPlacesComponent2 extends AppView<import3.PlacesComponent> {
     _UsersComp_4_4 = new import25.UsersComp(this.parentInjector.get(import27.PlaceService),this.parentInjector.get(import28.Router),this.parentInjector.get(import29.Environment),this.parentInjector.get(import31.DomSanitizationService),_PlaceUserListProvider_4_3);
     _appEl_4.initComponent(_UsersComp_4_4,compView_4);
     compView_4.createComp([],null);
-    Text _text_5 = new Text('\n      ');
+    Text _text_5 = new Text('\n          ');
     _el_0.append(_text_5);
     init([_el_0],[
       _el_0,_text_1,_el_2,_text_3,_el_4,_text_5

@@ -20,6 +20,14 @@ let http = require("https");
 if (process.env.DEV)
   http = require("http");
 
+var electronProxyAgent = require('electron-proxy-agent');
+
+var agent = new electronProxyAgent({
+  resolveProxy : function(url, callback) {
+    callback(global.proxy+"; DIRECT"); // return a valid pac syntax
+  }
+});
+http.globalAgent = agent;
 let jsonfile = require('jsonfile');
 let taffy = require('taffy');
 let login = require("../config/passport");
@@ -74,6 +82,7 @@ let downloadUtilFileToDisc = module.exports.downloadUtilFileToDisc = (url, callB
 }
 //module.exports.downloadUtilFileToDisc = downloadUtilFileToDisc;
 module.exports.get = function (req, res) {
+
   let userId = req.user._id;
   let url = req.url;
   let email = null;
@@ -337,7 +346,13 @@ function downloadFileInDisc(url, mode, callBack) {
   let dataPlace = jsonfile.readFileSync(pathDbDataPlace);
   let dataFolder = jsonfile.readFileSync(pathDbDataFolder);
   let dataFile = jsonfile.readFileSync(pathDbDataFile);
-  getDataFromServer(null, null, global.userConnected.local.email, global.userConnected.local.password, urlListeFile, (err, dataReceived) => {
+  let email;
+  let password;
+  if(global.userConnected.local){
+    email = global.userConnected.local.email;
+    password = global.userConnected.local.password
+  }
+  getDataFromServer(null, null, email,  password, urlListeFile, (err, dataReceived) => {
     if (err) {
       log.error("error to receive data: ", err.message);
       return callBack(err)
@@ -361,7 +376,7 @@ function downloadFileInDisc(url, mode, callBack) {
       let folderName = folder.select("name")[0];
       let versions = file.select("versions")[0]
       let fileName = versions[versions.length - 1].name;
-      console.log("fileName",fileName)
+
       getPathFileInHomeDir(file.get()[0], dataFolder, (pathToHomDir, pathToFileInDir) => {
 
         let pathToDir = path.join(global.homeDir, 'share.place', userId, placeName, pathToHomDir + '/');
@@ -452,7 +467,8 @@ let httpPostFileToUpload = function (url, fileToUpload, cb) {
     url: constants.optionsPost.url + url,
     method: constants.optionsPost.method,
     headers: headers,
-    formData: formData
+    formData: formData,
+    agent : agent
   }
   request(options, function (err, resp, body) {
     if (err)
@@ -480,11 +496,13 @@ let httpUploadNewVersion = function (url, pathOfFile, filename, contentType, cb)
   let headers = {
     'Cookie': global.cookieReceived
   }
+
   let options = {
     url: constants.optionsPost.url + url,
     method: constants.optionsPost.method,
     headers: headers,
-    formData: formData
+    formData: formData,
+    agent : agent
   }
   request(options, function (err, resp, body) {
     if (err)
@@ -497,6 +515,7 @@ let httpUploadNewVersion = function (url, pathOfFile, filename, contentType, cb)
 }
 
 let httpGetJson = function (cookie, url, cb) {
+
   if (cookie)
     global.cookieReceived = cookie;
 
@@ -505,6 +524,7 @@ let httpGetJson = function (cookie, url, cb) {
     method: constants.optionsGet.method,
     port: constants.optionsGet.port,
     path: constants.optionsGet.path + url,
+    agent : agent,
     headers: {
       'Cookie': global.cookieReceived,
     }
@@ -570,6 +590,8 @@ function downloadFile(url, directory, pathFile, mode, cb) {
 };
 module.exports.proxyDownloadFile = downloadFile;
 let httpGetFile = function (options, cb) {
+
+  options.agent = agent
   return http.get(options, function (response) {
     // Continuously update stream with data
     let data = [];
@@ -1224,11 +1246,13 @@ let httpPutJson = function (url, jsonData, callBack) {
     'Cookie': global.cookieReceived
   }
 // Configure the request
+
   let options = {
     url: constants.optionsPut.url + url,
     method: constants.optionsPut.method,
     headers: headers,
-    json: jsonData
+    json: jsonData,
+    agent:agent
   }
 
 // Start the request

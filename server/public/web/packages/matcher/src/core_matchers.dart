@@ -2,6 +2,8 @@
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
+import 'package:stack_trace/stack_trace.dart';
+
 import 'description.dart';
 import 'interfaces.dart';
 import 'util.dart';
@@ -121,7 +123,7 @@ class _DeepMatcher extends Matcher {
 
     var expectedIterator = expected.iterator;
     var actualIterator = actual.iterator;
-    for (var index = 0; ; index++) {
+    for (var index = 0;; index++) {
       // Advance in lockstep.
       var expectedNext = expectedIterator.moveNext();
       var actualNext = actualIterator.moveNext();
@@ -261,7 +263,7 @@ class _DeepMatcher extends Matcher {
 
   Description describeMismatch(
       item, Description mismatchDescription, Map matchState, bool verbose) {
-    var reason = matchState['reason'];
+    var reason = matchState['reason'] ?? '';
     // If we didn't get a good reason, that would normally be a
     // simple 'is <value>' message. We only add that if the mismatch
     // description is non empty (so we are supplementing the mismatch
@@ -308,11 +310,11 @@ class _StringEqualsMatcher extends Matcher {
       }
       if (start == minLength) {
         if (escapedValue.length < escapedItem.length) {
-          buff.write(' Both strings start the same, but the given value also'
+          buff.write(' Both strings start the same, but the actual value also'
               ' has the following trailing characters: ');
           _writeTrailing(buff, escapedItem, escapedValue.length);
         } else {
-          buff.write(' Both strings start the same, but the given value is'
+          buff.write(' Both strings start the same, but the actual value is'
               ' missing the following trailing characters: ');
           _writeTrailing(buff, escapedValue, escapedItem.length);
         }
@@ -361,7 +363,7 @@ class _IsAnything extends Matcher {
 }
 
 /// Returns a matcher that matches if an object is an instance
-/// of [type] (or a subtype).
+/// of [T] (or a subtype).
 ///
 /// As types are not first class objects in Dart we can only
 /// approximate this test by using a generic wrapper class.
@@ -528,8 +530,8 @@ class _Contains extends Matcher {
   Description describeMismatch(
       item, Description mismatchDescription, Map matchState, bool verbose) {
     if (item is String || item is Iterable || item is Map) {
-      return super.describeMismatch(
-          item, mismatchDescription, matchState, verbose);
+      return super
+          .describeMismatch(item, mismatchDescription, matchState, verbose);
     } else {
       return mismatchDescription.add('is not a string, map or iterable');
     }
@@ -614,9 +616,23 @@ class CustomMatcher extends Matcher {
   featureValueOf(actual) => actual;
 
   bool matches(item, Map matchState) {
-    var f = featureValueOf(item);
-    if (_matcher.matches(f, matchState)) return true;
-    addStateInfo(matchState, {'feature': f});
+    try {
+      var f = featureValueOf(item);
+      if (_matcher.matches(f, matchState)) return true;
+      addStateInfo(matchState, {'custom.feature': f});
+    } catch (exception, stack) {
+      addStateInfo(matchState, {
+        'custom.exception': exception.toString(),
+        'custom.stack': new Chain.forTrace(stack)
+            .foldFrames(
+                (frame) =>
+                    frame.package == 'test' ||
+                    frame.package == 'stream_channel' ||
+                    frame.package == 'matcher',
+                terse: true)
+            .toString()
+      });
+    }
     return false;
   }
 
@@ -625,14 +641,25 @@ class CustomMatcher extends Matcher {
 
   Description describeMismatch(
       item, Description mismatchDescription, Map matchState, bool verbose) {
+    if (matchState['custom.exception'] != null) {
+      mismatchDescription
+          .add('threw ')
+          .addDescriptionOf(matchState['custom.exception'])
+          .add('\n')
+          .add(matchState['custom.stack'].toString());
+      return mismatchDescription;
+    }
+
     mismatchDescription
         .add('has ')
         .add(_featureName)
         .add(' with value ')
-        .addDescriptionOf(matchState['feature']);
+        .addDescriptionOf(matchState['custom.feature']);
     var innerDescription = new StringDescription();
-    _matcher.describeMismatch(
-        matchState['feature'], innerDescription, matchState['state'], verbose);
+
+    _matcher.describeMismatch(matchState['custom.feature'], innerDescription,
+        matchState['state'], verbose);
+
     if (innerDescription.length > 0) {
       mismatchDescription.add(' which ').add(innerDescription.toString());
     }

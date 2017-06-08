@@ -23,9 +23,16 @@ var jsonfile = require('jsonfile');
 var multer = require('multer');
 let http = require("https");
 
-
-if (process.env.DEV)
+if (process.env.DEV )
   http = require("http");
+
+
+var electronProxyAgent = require('electron-proxy-agent');
+var agent = new electronProxyAgent({
+  resolveProxy : function(url, callback) {
+    callback(global.proxy+"; DIRECT"); // return a valid pac syntax
+  }
+});
 
 var path = require('path');
 var globalService = require('../global')
@@ -273,6 +280,7 @@ router.get('/user/photo/:size', function (req, res) {
       globalService.checkPathOrCreateSync(pathToUserPictureDir, pathToUserPicture)
 
       var file = fs.createWriteStream(pathToUserPicture);
+
       var options = {
         host: conf.optionsGetFromAuth.host,
         port: conf.optionsGetFromAuth.port,
@@ -280,7 +288,8 @@ router.get('/user/photo/:size', function (req, res) {
         method: conf.optionsGetFromAuth.method,
         headers: {
           'Cookie': global.cookieReceived
-        }
+        },
+        agent:agent
       };
       var request = http.get(options, function (response) {
         var stream = response.pipe(file);
@@ -321,6 +330,7 @@ router.get('/user/photo/:size/:userId', function (req, res) {
     globalService.checkPathOrCreateSync(pathToUserPictureDir, pathToUserPicture)
 
     var file = fs.createWriteStream(pathToUserPicture);
+
     var options = {
       host: conf.optionsGetFromAuth.host,
       port: conf.optionsGetFromAuth.port,
@@ -328,7 +338,8 @@ router.get('/user/photo/:size/:userId', function (req, res) {
       method: conf.optionsGetFromAuth.method,
       headers: {
         'Cookie': global.cookieReceived
-      }
+      },
+      agent:agent
     };
     var request = http.get(options, function (response) {
       var stream = response.pipe(file);
@@ -464,6 +475,7 @@ function downloadFile(url, pathToUserPictureDir, pathToUserPicture, cb) {
   globalService.checkPathOrCreateSync(pathToUserPictureDir, pathToUserPicture)
 
   var file = fs.createWriteStream(pathToUserPicture);
+
   var options = {
     host: conf.optionsGetFromAuth.host,
     port: conf.optionsGetFromAuth.port,
@@ -471,7 +483,8 @@ function downloadFile(url, pathToUserPictureDir, pathToUserPicture, cb) {
     method: conf.optionsGetFromAuth.method,
     headers: {
       'Cookie': global.cookieReceived
-    }
+    },
+    agent:agent
   };
   var request = http.get(options, function (response) {
     var stream = response.pipe(file);
@@ -484,6 +497,9 @@ function downloadFile(url, pathToUserPictureDir, pathToUserPicture, cb) {
 };
 
 var httpGetFile = function (options, cb) {
+
+
+  options.agent = agent
   return http.get(options, function (response) {
     // Continuously update stream with data
     var data = [];
@@ -524,6 +540,7 @@ var editProfile = function (req, res, cb) {
 // Configure the request
   if (req.file) {
     let options = {
+      agent : agent,
       url: constants.urlLoginProxy + url,
       headers: headers,
     }
@@ -570,6 +587,7 @@ var editProfile = function (req, res, cb) {
     }
   } else {
     let options = {
+      agent: agent,
       url: constants.urlLoginProxy + url,
       headers: headers,
       form: req.body
@@ -615,6 +633,7 @@ var forgotPassword = function (req, res, cb) {
 // Configure the request
 
   let options = {
+    agent:agent,
     url: constants.urlLoginProxy + url,
     form: req.body
   }

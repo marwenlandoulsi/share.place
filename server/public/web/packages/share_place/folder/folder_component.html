@@ -8,10 +8,10 @@
 		</span>
   </div>
   <div>
+
     <ul class="folderList">
-      <postit-comp [name]="'folders'" [header]="'Create a folder'"
-                   [body]="'To start, create a folder clicking on the + icon'"
-                   class="foldersPostit"></postit-comp>
+
+
       <li [style.display]="adding ? 'block' : 'none'" class="liAdd">
         <txt #newFolder [confirm]="saveNewFolder"
              [sources]="['../images/ok.png', '../images/ok.png', '../images/ok-c.png']"></txt>

@@ -7,6 +7,7 @@ module.exports = Object.freeze({
   //hostURLPort: "http://localhost:3000",
   //port: 3000,
   port: 443,
+  remoteUrl:"http://localhost:3000/web",
   debugServer: false,
   defaultPicture: path.join(__dirname, 'static', "images", "user1.png"),
   dataDir: path.join(__dirname, '..', "data"),

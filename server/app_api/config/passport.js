@@ -27,6 +27,17 @@ var lastLoginUserFIle = constants.lastLoginFileData;
 var cron = require("../controllers/cron");
 var pro = require('express-http-proxy');
 var globalService = require('../global')
+var querystring = require("querystring");
+
+var electronProxyAgent = require('electron-proxy-agent');
+//var sess  = global.mainWindow.webContents.session;
+
+var agent = new electronProxyAgent({
+  resolveProxy: function (url, callback) {
+    callback(global.proxy + "; DIRECT"); // return a valid pac syntax
+  }
+});
+
 
 module.exports = function (passport) {
   var users = jsonfile.readFileSync(userfile);
@@ -51,10 +62,10 @@ module.exports = function (passport) {
     localUsers = taffy(users);
 
     var userLocal = localUsers({_id: id});
-    if(!global.enterToDes){
+    if (!global.enterToDes) {
       global.enterToDes = true;
-      session.defaultSession.cookies.get({url: 'http://127.0.0.1', name:"connect.sid"}, (error, cookies) => {
-        if(error)
+      session.defaultSession.cookies.get({url: 'http://127.0.0.1', name: "connect.sid"}, (error, cookies) => {
+        if (error)
           log.error("can't get cookie:", error);
         var cookie = cookies[0];
         cookie.cookierFromServer = global.cookieReceived;
@@ -84,6 +95,8 @@ module.exports = function (passport) {
 
 
           if (global.onLine) {
+
+
             loginFromServer(req, email, password, function (err, user) {
               if (err) {
                 return done(err);
@@ -118,11 +131,11 @@ module.exports = function (passport) {
                     });
                     jsonfile.writeFileSync(userfile, localUsers().get());
                     global.userConnected = user;
-               //     cron.sync();
+                    //     cron.sync();
                     return done(null, user);
                   }
                   global.userConnected = user;
-                //  cron.sync();
+                  //  cron.sync();
                   return done(null, user);
                 } else {
 
@@ -212,7 +225,7 @@ module.exports = function (passport) {
       (req, callback) => {
         //log.info("calling remote server ", global.cookieReceived);
         // Do your custom user finding logic here, or set to false based on req object
-       // global.cookieReceived = req.get('Cookie') ;
+        // global.cookieReceived = req.get('Cookie') ;
         proxy.callRemoteServer(global.cookieReceived, "/user/connected", (err, dataReceived) => {
 
           if (err)
@@ -226,20 +239,18 @@ module.exports = function (passport) {
           globalService.setSidInInput(global.cookieReceived);
 
           session.defaultSession.cookies.get({url: 'http://127.0.0.1'}, (error, cookies) => {
-            if(error)
+            if (error)
               log.error("can't get cookie:", error);
 
             var cookie = cookies[0];
-            if(cookie)
+            if (cookie)
               cookie.cookierFromServer = global.cookieReceived;
             else
-              cookie = {"cookierFromServer":  global.cookieReceived};
+              cookie = {"cookierFromServer": global.cookieReceived};
             global.enterToDes = true;
             jsonfile.writeFile(lastLoginUserFIle, cookie);
           })
           callback(null, user);
-
-
 
 
         })
@@ -290,7 +301,8 @@ var loginFromServer = function (req, email, password, cb) {
     url: constants.urlLoginProxy + url,
     method: constants.optionsPost.method,
     headers: headers,
-    form: {'email': email, 'password': password}
+    form: {'email': email, 'password': password},
+    agent: agent
   };
 
 // Start the request
@@ -328,12 +340,12 @@ var loginFromServer = function (req, email, password, cb) {
 var signUpFromServer = function (req, email, password, name, skype, cb) {
 
 
-// Configure the request
+  // Configure the request
   var url = req.url;
   var pathToFile = null;
 
 
-// Start the request
+  // Start the request
   var r = request.post(constants.urlLoginProxy + url, function (error, response, body) {
 
     if (error) {
@@ -352,11 +364,11 @@ var signUpFromServer = function (req, email, password, name, skype, cb) {
       } else {
         cookie += response.headers['set-cookie'][0];
       }
-      log.info("user created:",user)
+      log.info("user created:", user)
       global.cookieReceived = cookie;
       globalService.setSidInInput(cookie);
 
-      if(pathToFile){
+      if (pathToFile) {
         fs.unlink(pathToFile, function (err) {
           if (err)
             log.error('err  delete from tmp', err);
@@ -368,11 +380,13 @@ var signUpFromServer = function (req, email, password, name, skype, cb) {
     }
   });
   var form = r.form();
-  if(req.file){
+  if (req.file) {
     var pathToFile = path.join(__dirname, '..', '..', 'tmp', 'upload', req.file.filename);
     form.append('filename', fs.createReadStream(path.join(__dirname, '..', '..', 'tmp', 'upload', req.file.filename)),
-        { filename: req.file.originalname,
-          contentType: req.file.mimeType});
+        {
+          filename: req.file.originalname,
+          contentType: req.file.mimeType
+        });
   }
   form.append('email', email);
   form.append('password', password);
@@ -382,4 +396,27 @@ var signUpFromServer = function (req, email, password, name, skype, cb) {
 
 }
 
+/*
+ var signUpFromServer = async function (req, email, password, name, skype, cb) {
+
+ const form = new FormData()
+ let pathToFile;
+ if (req.file) {
+ pathToFile = path.join(__dirname, '..', '..', 'tmp', 'upload', req.file.filename);
+ form.append('filename', fs.createReadStream(path.join(__dirname, '..', '..', 'tmp', 'upload', req.file.filename)),
+ {
+ filename: req.file.originalname,
+ contentType: req.file.mimeType
+ });
+ }
+ form.append('email', email)
+ form.append('password', password)
+ form.append('name', name)
+ form.append('skype', skype)
+
+ const res = await fetch(constants.urlLoginProxy + req.url, {method: 'POST', body: form})
+ const json = await res.json()
+ console.log(json)
+ }
+ */
 module.exports.loginFromServer = loginFromServer;

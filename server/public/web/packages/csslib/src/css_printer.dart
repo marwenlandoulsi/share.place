@@ -54,8 +54,11 @@ class CssPrinter extends Visitor {
 
   void visitMediaExpression(MediaExpression node) {
     emit(node.andOperator ? ' AND ' : ' ');
-    emit('(${node.mediaFeature}:');
-    visitExpressions(node.exprs);
+    emit('(${node.mediaFeature}');
+    if (node.exprs.expressions.isNotEmpty) {
+      emit(':');
+      visitExpressions(node.exprs);
+    }
     emit(')');
   }
 
@@ -68,31 +71,88 @@ class CssPrinter extends Visitor {
     }
   }
 
-  void emitMediaQueries(queries) {
+  void emitMediaQueries(List<MediaQuery> queries) {
     var queriesLen = queries.length;
     for (var i = 0; i < queriesLen; i++) {
       var query = queries[i];
-      if (query.hasMediaType && i > 0) emit(',');
+      if (i > 0) emit(',');
       visitMediaQuery(query);
     }
   }
 
+  void visitDocumentDirective(DocumentDirective node) {
+    emit('$_newLine@-moz-document ');
+    node.functions.first.visit(this);
+    for (var function in node.functions.skip(1)) {
+      emit(',$_sp');
+      function.visit(this);
+    }
+    emit('$_sp{');
+    for (var ruleSet in node.groupRuleBody) {
+      ruleSet.visit(this);
+    }
+    emit('$_newLine}');
+  }
+
+  void visitSupportsDirective(SupportsDirective node) {
+    emit('$_newLine@supports ');
+    node.condition.visit(this);
+    emit('$_sp{');
+    for (var rule in node.groupRuleBody) {
+      rule.visit(this);
+    }
+    emit('$_newLine}');
+  }
+
+  void visitSupportsConditionInParens(SupportsConditionInParens node) {
+    emit('(');
+    node.condition.visit(this);
+    emit(')');
+  }
+
+  void visitSupportsNegation(SupportsNegation node) {
+    emit('not$_sp');
+    node.condition.visit(this);
+  }
+
+  void visitSupportsConjunction(SupportsConjunction node) {
+    node.conditions.first.visit(this);
+    for (var condition in node.conditions.skip(1)) {
+      emit('${_sp}and$_sp');
+      condition.visit(this);
+    }
+  }
+
+  void visitSupportsDisjunction(SupportsDisjunction node) {
+    node.conditions.first.visit(this);
+    for (var condition in node.conditions.skip(1)) {
+      emit('${_sp}or$_sp');
+      condition.visit(this);
+    }
+  }
+
+  void visitViewportDirective(ViewportDirective node) {
+    emit('@${node.name}$_sp{$_newLine');
+    node.declarations.visit(this);
+    emit('}');
+  }
+
   void visitMediaDirective(MediaDirective node) {
-    emit(' @media');
+    emit('$_newLine@media');
     emitMediaQueries(node.mediaQueries);
-    emit(' {');
-    for (var ruleset in node.rulesets) {
+    emit('$_sp{');
+    for (var ruleset in node.rules) {
       ruleset.visit(this);
     }
-    emit('$_newLine\}');
+    emit('$_newLine}');
   }
 
   void visitHostDirective(HostDirective node) {
-    emit('\n@host {');
-    for (var ruleset in node.rulesets) {
+    emit('$_newLine@host$_sp{');
+    for (var ruleset in node.rules) {
       ruleset.visit(this);
     }
-    emit('$_newLine\}');
+    emit('$_newLine}');
   }
 
   /**
@@ -251,12 +311,11 @@ class CssPrinter extends Visitor {
   }
 
   void visitDeclaration(Declaration node) {
-    String importantAsString() => node.important ? '$_sp!important' : '';
-
-    emit("${node.property}: ");
+    emit('${node.property}:$_sp');
     node._expression.visit(this);
-
-    emit("${importantAsString()}");
+    if (node.important) {
+      emit('$_sp!important');
+    }
   }
 
   void visitVarDefinition(VarDefinition node) {
