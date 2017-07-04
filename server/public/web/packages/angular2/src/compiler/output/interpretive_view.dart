@@ -1,5 +1,5 @@
-import 'package:angular2/src/core/linker/view_container.dart';
 import 'package:angular2/src/core/linker/app_view.dart';
+import 'package:angular2/src/core/linker/component_factory.dart';
 import 'package:angular2/src/debug/debug_app_view.dart';
 import 'package:angular2/src/debug/debug_context.dart' show StaticNodeDebugInfo;
 import 'package:angular2/src/facade/exceptions.dart' show BaseException;
@@ -20,35 +20,54 @@ class InterpretiveAppViewInstanceFactory implements InstanceFactory {
       // However, in prod mode we generate a constructor call that does
       // not have the argument for the debugNodeInfos.
       args = (new List.from(args)..addAll([null]));
-      return new _InterpretiveAppView(args, props, getters, methods);
+      return new _InterpretiveAppView(clazz, args, props, getters, methods);
     } else if (identical(superClass, DebugAppView)) {
-      return new _InterpretiveAppView(args, props, getters, methods);
+      return new _InterpretiveAppView(clazz, args, props, getters, methods);
     }
     throw new BaseException(
         "Can't instantiate class ${superClass} in interpretative mode");
   }
 }
 
-class _InterpretiveAppView extends DebugAppView<dynamic>
+class _InterpretiveAppView<T> extends DebugAppView<T>
     implements DynamicInstance {
+  @override
+  final dynamicRuntimeType;
+
   @override
   final Map<String, dynamic> props;
   @override
   final Map<String, Function> getters;
   @override
   final Map<String, Function> methods;
+
   _InterpretiveAppView(
-      List<dynamic> args, this.props, this.getters, this.methods)
-      : super(args[0], args[1], args[2], args[3] as Map<String, dynamic>,
-            args[4], args[5], args[6], args[7] as List<StaticNodeDebugInfo>);
+    this.dynamicRuntimeType,
+    List<dynamic> args,
+    this.props,
+    this.getters,
+    this.methods,
+  )
+      : super(
+          args[0],
+          args[1] as Map<String, dynamic>,
+          args[2],
+          args[3],
+          args[4],
+          args[5] as List<StaticNodeDebugInfo>,
+        );
+
+  // This getter is accessed by reflective tests
+  // ignore: unused_element
+  T get _ctx => ctx;
 
   @override
-  ViewContainer createInternal(dynamic /* String | dynamic */ rootSelector) {
-    var m = methods['createInternal'];
+  ComponentRef build() {
+    var m = methods['build'];
     if (m != null) {
-      return m(rootSelector);
+      return m();
     } else {
-      return super.createInternal(rootSelector);
+      return super.build();
     }
   }
 
@@ -58,9 +77,8 @@ class _InterpretiveAppView extends DebugAppView<dynamic>
     var m = methods['injectorGetInternal'];
     if (m != null) {
       return m(token, nodeIndex, notFoundResult);
-    } else {
-      return super.injectorGet(token, nodeIndex, notFoundResult);
     }
+    return notFoundResult;
   }
 
   @override

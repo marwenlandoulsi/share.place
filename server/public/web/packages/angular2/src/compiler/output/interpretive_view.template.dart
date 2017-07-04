@@ -10,14 +10,14 @@
 // @ignoreProblemForFile UNUSED_SHOWN_NAME
 // @ignoreProblemForFile UNUSED_LOCAL_VARIABLE
 import 'interpretive_view.dart';
-import 'package:angular2/src/core/linker/view_container.dart';
 import 'package:angular2/src/core/linker/app_view.dart';
+import 'package:angular2/src/core/linker/component_factory.dart';
 import 'package:angular2/src/debug/debug_app_view.dart';
 import 'package:angular2/src/debug/debug_context.dart' show StaticNodeDebugInfo;
 import 'package:angular2/src/facade/exceptions.dart' show BaseException;
 import 'dynamic_instance.dart';
-import 'package:angular2/src/core/linker/view_container.template.dart' as i0;
-import 'package:angular2/src/core/linker/app_view.template.dart' as i1;
+import 'package:angular2/src/core/linker/app_view.template.dart' as i0;
+import 'package:angular2/src/core/linker/component_factory.template.dart' as i1;
 import 'package:angular2/src/debug/debug_app_view.template.dart' as i2;
 import 'package:angular2/src/debug/debug_context.template.dart' as i3;
 import 'package:angular2/src/facade/exceptions.template.dart' as i4;

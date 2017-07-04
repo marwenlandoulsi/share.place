@@ -12,11 +12,11 @@
 library angular2.security.template.dart;
 
 import 'security.dart';
-import 'package:angular2/src/security/dom_sanitization_service.template.dart' as i0;
-import 'package:angular2/src/security/safe_inner_html.template.dart' as i1;
+import 'src/security/dom_sanitization_service.template.dart' as i0;
+import 'src/security/safe_inner_html.template.dart' as i1;
 export 'security.dart';
-export 'package:angular2/src/security/dom_sanitization_service.dart';
-export 'package:angular2/src/security/safe_inner_html.dart';
+export 'src/security/dom_sanitization_service.dart';
+export 'src/security/safe_inner_html.dart';
 
 var _visited = false;
 void initReflector() {

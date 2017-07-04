@@ -12,22 +12,22 @@
 import 'router.dart';
 import 'package:angular2/src/core/reflection/reflection.dart' as _ngRef;
 import 'dart:async';
-import 'package:angular2/core.dart' show Inject, Injectable;
+import 'package:angular2/di.dart' show Inject, Injectable;
 import 'package:angular2/platform/common.dart' show Location, PathLocationStrategy;
 import 'package:angular2/src/facade/async.dart' show EventEmitter;
 import 'package:angular2/src/facade/exceptions.dart' show BaseException;
 import 'directives/router_outlet.dart' show RouterOutlet;
 import 'instruction.dart' show ComponentInstruction, Instruction;
-import 'route_config/route_config_impl.dart' show RouteDefinition;
+import 'route_config/route_config_decorator.dart' show RouteDefinition;
 import 'route_registry.dart' show RouteRegistry, ROUTER_PRIMARY_COMPONENT;
 import 'utils.dart' show getCanActivateHook;
-import 'package:angular2/core.template.dart' as i0;
+import 'package:angular2/di.template.dart' as i0;
 import 'package:angular2/platform/common.template.dart' as i1;
 import 'package:angular2/src/facade/async.template.dart' as i2;
 import 'package:angular2/src/facade/exceptions.template.dart' as i3;
 import 'directives/router_outlet.template.dart' as i4;
 import 'instruction.template.dart' as i5;
-import 'route_config/route_config_impl.template.dart' as i6;
+import 'route_config/route_config_decorator.template.dart' as i6;
 import 'route_registry.template.dart' as i7;
 import 'utils.template.dart' as i8;
 export 'router.dart';
@@ -44,7 +44,7 @@ const [const <dynamic>[RouteRegistry], const <dynamic>[Router], const <dynamic>[
 ..registerType(RootRouter, new _ngRef.ReflectionInfo(
 const <dynamic>[const Injectable()],
 const [const <dynamic>[RouteRegistry], const <dynamic>[Location], const <dynamic>[dynamic, const Inject(ROUTER_PRIMARY_COMPONENT)]],
-(RouteRegistry registry, Location location, dynamic primaryComponent) => new RootRouter(registry, location, primaryComponent))
+(RouteRegistry registry, Location _location, dynamic primaryComponent) => new RootRouter(registry, _location, primaryComponent))
 )
 ;
 i0.initReflector();

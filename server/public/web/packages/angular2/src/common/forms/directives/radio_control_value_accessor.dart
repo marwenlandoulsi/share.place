@@ -1,18 +1,13 @@
-import "package:angular2/core.dart"
-    show
-        Directive,
-        ElementRef,
-        Provider,
-        Input,
-        OnInit,
-        OnDestroy,
-        Injector,
-        Injectable;
-import 'package:angular2/src/platform/dom/dom_adapter.dart' show DOM;
-import "package:angular2/src/common/forms/directives/control_value_accessor.dart"
+import 'dart:js_util' as js_util;
+
+import 'package:angular2/core.dart'
+    show Directive, ElementRef, Provider, Input, OnInit, OnDestroy, Injector;
+import 'package:angular2/di.dart' show Injectable;
+import 'package:func/func.dart' show Func0, VoidFunc0;
+
+import 'control_value_accessor.dart'
     show NG_VALUE_ACCESSOR, ControlValueAccessor;
-import "package:angular2/src/common/forms/directives/ng_control.dart"
-    show NgControl;
+import 'ng_control.dart' show NgControl;
 
 const RADIO_VALUE_ACCESSOR = const Provider(NG_VALUE_ACCESSOR,
     useExisting: RadioControlValueAccessor, multi: true);
@@ -21,15 +16,15 @@ const RADIO_VALUE_ACCESSOR = const Provider(NG_VALUE_ACCESSOR,
 /// name.
 @Injectable()
 class RadioControlRegistry {
-  List<dynamic> _accessors = [];
+  final List<dynamic> _accessors = [];
   void add(NgControl control, RadioControlValueAccessor accessor) {
-    this._accessors.add([control, accessor]);
+    _accessors.add([control, accessor]);
   }
 
   void remove(RadioControlValueAccessor accessor) {
     var indexToRemove = -1;
-    for (var i = 0; i < this._accessors.length; ++i) {
-      if (identical(this._accessors[i][1], accessor)) {
+    for (var i = 0; i < _accessors.length; ++i) {
+      if (identical(_accessors[i][1], accessor)) {
         indexToRemove = i;
       }
     }
@@ -37,7 +32,7 @@ class RadioControlRegistry {
   }
 
   void select(RadioControlValueAccessor accessor) {
-    this._accessors.forEach((c) {
+    _accessors.forEach((c) {
       if (identical(c[0].control.root, accessor._control.control.root) &&
           !identical(c[1], accessor)) {
         c[1].fireUncheck();
@@ -71,9 +66,10 @@ class RadioButtonState {
 /// }
 /// ```
 @Directive(
-    selector:
-        "input[type=radio][ngControl],input[type=radio][ngFormControl],input[type=radio][ngModel]",
-    host: const {"(change)": "onChange()", "(blur)": "onTouched()"},
+    selector: 'input[type=radio][ngControl],'
+        'input[type=radio][ngFormControl],'
+        'input[type=radio][ngModel]',
+    host: const {'(change)': 'changeHandler()', '(blur)': 'touchHandler()'},
     providers: const [RADIO_VALUE_ACCESSOR])
 class RadioControlValueAccessor
     implements ControlValueAccessor, OnDestroy, OnInit {
@@ -85,44 +81,52 @@ class RadioControlValueAccessor
   @Input()
   String name;
   Function _fn;
-  var onChange = () {};
-  var onTouched = () {};
+  void changeHandler() {
+    onChange();
+  }
+
+  void touchHandler() {
+    onTouched();
+  }
+
+  VoidFunc0 onChange = () {};
+  Func0 onTouched = () {};
   RadioControlValueAccessor(this._elementRef, this._registry, this._injector);
 
   @override
   void ngOnInit() {
-    this._control = this._injector.get(NgControl);
-    this._registry.add(this._control, this);
+    _control = _injector.get(NgControl);
+    _registry.add(_control, this);
   }
 
   @override
   void ngOnDestroy() {
-    this._registry.remove(this);
+    _registry.remove(this);
   }
 
   @override
   void writeValue(dynamic value) {
-    this._state = value;
+    _state = value;
     if (value?.checked ?? false) {
-      DOM.setProperty(_elementRef.nativeElement, 'checked', true);
+      js_util.setProperty(_elementRef.nativeElement, 'checked', true);
     }
   }
 
   @override
   void registerOnChange(dynamic fn(dynamic _)) {
-    this._fn = fn;
-    this.onChange = () {
-      fn(new RadioButtonState(true, this._state.value));
-      this._registry.select(this);
+    _fn = fn;
+    onChange = () {
+      fn(new RadioButtonState(true, _state.value));
+      _registry.select(this);
     };
   }
 
   void fireUncheck() {
-    this._fn(new RadioButtonState(false, this._state.value));
+    _fn(new RadioButtonState(false, _state.value));
   }
 
   @override
   void registerOnTouched(dynamic fn()) {
-    this.onTouched = fn;
+    onTouched = fn;
   }
 }

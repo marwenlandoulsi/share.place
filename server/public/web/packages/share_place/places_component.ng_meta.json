@@ -11,24 +11,40 @@
         "5": false
       },
       {
-        "1": "dart:convert",
-        "5": false
-      },
-      {
-        "1": "app_config.dart",
-        "4": "conf",
-        "5": false
-      },
-      {
-        "1": "package:angular2_components/angular2_components.dart",
-        "5": false
-      },
-      {
         "1": "package:angular2/core.dart",
         "5": false
       },
       {
         "1": "package:angular2/router.dart",
+        "5": false
+      },
+      {
+        "1": "package:angular_components/angular_components.dart",
+        "5": false
+      },
+      {
+        "1": "package:share_place/common/ui/button_comp.dart",
+        "5": false
+      },
+      {
+        "1": "package:share_place/common/ui/text_comp.dart",
+        "5": false
+      },
+      {
+        "1": "package:share_place/common/util.dart",
+        "5": false
+      },
+      {
+        "1": "package:share_place/folder/folder_component.dart",
+        "5": false
+      },
+      {
+        "1": "package:share_place/users/users_comp.dart",
+        "5": false
+      },
+      {
+        "1": "app_config.dart",
+        "4": "conf",
         "5": false
       },
       {
@@ -41,26 +57,6 @@
       },
       {
         "1": "place_service.dart",
-        "5": false
-      },
-      {
-        "1": "package:share_place/common/ui/button_comp.dart",
-        "5": false
-      },
-      {
-        "1": "package:share_place/common/ui/text_comp.dart",
-        "5": false
-      },
-      {
-        "1": "package:share_place/folder/folder_component.dart",
-        "5": false
-      },
-      {
-        "1": "package:share_place/users/users_comp.dart",
-        "5": false
-      },
-      {
-        "1": "package:share_place/common/util.dart",
         "5": false
       }
     ],
@@ -109,51 +105,51 @@
     "6": "places_component.dart",
     "7": [
       {
-        "1": "app_config.template.dart",
+        "1": "package:angular2/core.template.dart",
         "4": "i0"
       },
       {
-        "1": "package:angular2_components/angular2_components.template.dart",
+        "1": "package:angular2/router.template.dart",
         "4": "i1"
       },
       {
-        "1": "package:angular2/core.template.dart",
+        "1": "package:angular_components/angular_components.template.dart",
         "4": "i2"
       },
       {
-        "1": "package:angular2/router.template.dart",
+        "1": "package:share_place/common/ui/button_comp.template.dart",
         "4": "i3"
       },
       {
-        "1": "environment.template.dart",
+        "1": "package:share_place/common/ui/text_comp.template.dart",
         "4": "i4"
       },
       {
-        "1": "place.template.dart",
+        "1": "package:share_place/common/util.template.dart",
         "4": "i5"
       },
       {
-        "1": "place_service.template.dart",
+        "1": "package:share_place/folder/folder_component.template.dart",
         "4": "i6"
       },
       {
-        "1": "package:share_place/common/ui/button_comp.template.dart",
+        "1": "package:share_place/users/users_comp.template.dart",
         "4": "i7"
       },
       {
-        "1": "package:share_place/common/ui/text_comp.template.dart",
+        "1": "app_config.template.dart",
         "4": "i8"
       },
       {
-        "1": "package:share_place/folder/folder_component.template.dart",
+        "1": "environment.template.dart",
         "4": "i9"
       },
       {
-        "1": "package:share_place/users/users_comp.template.dart",
+        "1": "place.template.dart",
         "4": "i10"
       },
       {
-        "1": "package:share_place/common/util.template.dart",
+        "1": "place_service.template.dart",
         "4": "i11"
       }
     ]
@@ -246,7 +242,7 @@
       ],
       "template": {
         "encapsulation": 0,
-        "template": "<div class=\"header headerplaces\">\r\n  <!--tittle places top-->\r\n  <label class=\"label\">Places</label>\r\n  <div class=\"add\">\r\n    <div (click)=\"add();newPlace.focus('places')\" class=\"addBtn\"></div>\r\n  </div>\r\n</div>\r\n<div class=\"placesInner\">\r\n  <div class=\"scrollbar-macosx\">\r\n    <ul class=\"places\">\r\n\r\n      <!--<div class=\"spinnerInner\">-->\r\n      <!--<material-spinner class=\"spinner\" *ngIf=\"subjects == null\"></material-spinner>-->\r\n      <!--</div>-->\r\n\r\n      <li [style.display]=\"adding ? 'block' : 'none'\" class=\"addplace\">\r\n        <txt #newPlace [confirm]=\"save\" [sources]=\"['../images/ok.png', '../images/ok.png', '../images/ok.png']\"\r\n             class=\"saveAdd\"></txt>\r\n      </li>\r\n\r\n      <material-expansionpanel-set>\r\n        <material-expansionpanel flat *ngFor=\"let place of places\" name=\"{{place.name}}\" class=\"placePanel\"\r\n                                 showSaveCancel=\"false\" (open)=\"selectedPlace = place\">\r\n          <div *ngIf=\"place?.id == selectedPlace?.id\">\r\n            <folders></folders>\r\n            <users-comp></users-comp>\r\n          </div>\r\n        </material-expansionpanel>\r\n      </material-expansionpanel-set>\r\n\r\n    </ul>\r\n  </div>\r\n</div>",
+        "template": "<div class=\"header headerplaces\">\r\n  <!--tittle places top-->\r\n  <label class=\"label\">Places</label>\r\n  <div class=\"add\">\r\n    <div (click)=\"add();newPlace.focus('places')\" class=\"addBtn\"></div>\r\n  </div>\r\n</div>\r\n<div class=\"placesInner\">\r\n  <div class=\"scrollbar-macosx\">\r\n    <ul class=\"places\">\r\n\r\n      <!--<div class=\"spinnerInner\">-->\r\n      <!--<material-spinner class=\"spinner\" *ngIf=\"subjects == null\"></material-spinner>-->\r\n      <!--</div>-->\r\n\r\n      <li [style.display]=\"adding ? 'block' : 'none'\" class=\"addplace\">\r\n        <txt #newPlace [confirm]=\"save\" [sources]=\"['../images/ok.png', '../images/ok.png', '../images/ok.png']\"\r\n             class=\"saveAdd\"></txt>\r\n      </li>\r\n\r\n      <material-expansionpanel-set>\r\n        <material-expansionpanel flat *ngFor=\"let place of places\" name=\"{{place.name}}\" class=\"placePanel\"\r\n                                 showSaveCancel=\"false\" (open)=\"selectedPlace = place\" [expanded]=\"selectedPlace?.id == place.id\">\r\n          <div *ngIf=\"place?.id == selectedPlace?.id\">\r\n            <folders></folders>\r\n            <users-comp></users-comp>\r\n          </div>\r\n        </material-expansionpanel>\r\n      </material-expansionpanel-set>\r\n\r\n    </ul>\r\n  </div>\r\n</div>",
         "templateUrl": "asset:share_place/lib/places_component.html",
         "styles": [],
         "styleUrls": [

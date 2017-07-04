@@ -17,16 +17,16 @@
       "prefix": null,
       "value": null
     },
-    "SubjectUser": {
+    "LockOwnerInfo": {
       "class": "Identifier",
-      "name": "SubjectUser",
+      "name": "LockOwnerInfo",
       "moduleUrl": "asset:share_place/lib/file_info.dart",
       "prefix": null,
       "value": null
     },
-    "LockOwner": {
+    "SubjectUser": {
       "class": "Identifier",
-      "name": "LockOwner",
+      "name": "SubjectUser",
       "moduleUrl": "asset:share_place/lib/file_info.dart",
       "prefix": null,
       "value": null

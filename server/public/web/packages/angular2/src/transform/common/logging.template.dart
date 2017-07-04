@@ -13,6 +13,7 @@ import 'logging.dart';
 import 'dart:async';
 import 'dart:io' show stderr;
 import 'package:barback/barback.dart';
+import 'package:logging/logging.dart';
 import 'package:source_span/source_span.dart';
 import 'zone.dart' as zone show log;
 import 'zone.template.dart' as i0;

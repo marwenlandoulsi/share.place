@@ -1,115 +1,165 @@
-import 'dart:async';
+import 'package:angular2/core.dart';
 
-import "package:angular2/core.dart" show Provider, Attribute, Directive;
+import '../model.dart' show AbstractControl;
+import '../validators.dart' show Validators, NG_VALIDATORS;
 
-import "../model.dart" show AbstractControl;
-import "../validators.dart" show Validators, NG_VALIDATORS;
-
-/// An interface that can be implemented by classes that can act as validators.
+/// An interface to be implemented as classes acting as validators.
 ///
 /// ## Usage
 ///
 /// ```dart
 /// @Directive(
 ///   selector: '[custom-validator]',
-///   providers: const [provide(NG_VALIDATORS, {useExisting: CustomValidatorDirective, multi: true})]
+///   providers: const [
+///     const Provider(
+///       NG_VALIDATORS,
+///       useExisting: CustomValidatorDirective,
+///       multi: true,
+///     ),
+///   ]
 /// )
 /// class CustomValidatorDirective implements Validator {
-///   Map<String, dynamic> validate(Control c) {
-///     return {"custom": true};
+///   @override
+///   Map<String, dynamic> validate(AbstractControl control) {
+///     // The length of the input string can't be longer than 14 characters.
+///     final value = c.value;
+///     if (value is String && value.length > 14) {
+///       return {
+///         'length': value.length,
+///       };
+///     }
+///     return null;
 ///   }
 /// }
 /// ```
 abstract class Validator {
-  Map<String, dynamic> validate(AbstractControl c);
+  /// Returns a map of the errors associated with this control.
+  ///
+  /// Each entry in the map is a separate error associated with the control.
+  /// The key is an identifier for the error while the value is additional
+  /// information used by the component to display the error. For instance a
+  /// length validator could provide information about how long the current
+  /// invalid string is and the max string length for the input to display.
+  Map<String, dynamic> validate(AbstractControl control);
 }
 
-const REQUIRED = Validators.required;
-const REQUIRED_VALIDATOR =
-    const Provider(NG_VALIDATORS, useValue: REQUIRED, multi: true);
+/// Returns a map of the errors associated with this control.
+///
+/// Each entry in the map is a separate error associated with the control.
+/// The key is an identifier for the error while the value is additional
+/// information used by the component to display the error. For instance a
+/// length validator could provide information about how long the current
+/// invalid string is and the max string length for the input to display.
+typedef Map<String, dynamic> ValidatorFn(AbstractControl c);
 
-/// A Directive that adds the `required` validator to any controls marked with
-/// the `required` attribute, via the [NG_VALIDATORS] binding.
+/// Validator that requires controls to have a non-empty value.
+const ValidatorFn REQUIRED = Validators.required;
+
+/// A [Directive] adding a [REQUIRED] validator to controls with `required`:
 ///
-/// ### Example
+/// ```html
+/// <input ngControl="fullName" required />
+/// ```
 ///
-///     <input ngControl="fullName" required>
+/// A _required_ control must have a non-empty value.
 @Directive(
-    selector:
-        "[required][ngControl],[required][ngFormControl],[required][ngModel]",
-    providers: const [REQUIRED_VALIDATOR])
+  selector: ''
+      '[required][ngControl],'
+      '[required][ngFormControl],'
+      '[required][ngModel]',
+  providers: const [
+    const Provider(
+      NG_VALIDATORS,
+      useValue: REQUIRED,
+      multi: true,
+    ),
+  ],
+)
 class RequiredValidator {}
 
-typedef Map<String, dynamic> ValidatorFn(AbstractControl c);
-typedef Future AsyncValidatorFn<T extends AbstractControl>(T c);
-
-/// Provider which adds [MinLengthValidator] to [NG_VALIDATORS].
-const MIN_LENGTH_VALIDATOR =
-    const Provider(NG_VALIDATORS, useExisting: MinLengthValidator, multi: true);
-
-/// A directive which installs the [MinLengthValidator] for any `ngControl`,
-/// `ngFormControl`, or control with `ngModel` that also has a `minlength`
-/// attribute.
+/// A [Directive] adding minimum-length validator to controls with `minlength`.
+///
+/// ```html
+/// <input ngControl="fullName" minLength="10" />
+/// ```
 @Directive(
-    selector:
-        "[minlength][ngControl],[minlength][ngFormControl],[minlength][ngModel]",
-    providers: const [MIN_LENGTH_VALIDATOR])
+  selector: ''
+      '[minlength][ngControl],'
+      '[minlength][ngFormControl],'
+      '[minlength][ngModel]',
+  providers: const [
+    const Provider(
+      NG_VALIDATORS,
+      useExisting: MinLengthValidator,
+      multi: true,
+    ),
+  ],
+)
 class MinLengthValidator implements Validator {
-  ValidatorFn _validator;
-  MinLengthValidator(@Attribute("minlength") String minLength) {
-    this._validator = Validators.minLength(int.parse(minLength, radix: 10));
-  }
+  final ValidatorFn _validator;
+
+  MinLengthValidator(@Attribute('minlength') String minLength)
+      : _validator = Validators.minLength(int.parse(minLength, radix: 10));
 
   @override
-  Map<String, dynamic> validate(AbstractControl c) {
-    return this._validator(c);
-  }
+  Map<String, dynamic> validate(AbstractControl c) => _validator(c);
 }
 
-/// Provider which adds [MaxLengthValidator] to [NG_VALIDATORS].
-const MAX_LENGTH_VALIDATOR =
-    const Provider(NG_VALIDATORS, useExisting: MaxLengthValidator, multi: true);
-
-/// A directive which installs the [MaxLengthValidator] for any `ngControl`,
-/// `ngFormControl`, or control with `ngModel` that also has a `maxlength`
-/// attribute.
+/// A [Directive] adding minimum-length validator to controls with `maxlength`.
+///
+/// ```html
+/// <input ngControl="fullName" maxLength="10" />
+/// ```
 @Directive(
-    selector:
-        "[maxlength][ngControl],[maxlength][ngFormControl],[maxlength][ngModel]",
-    providers: const [MAX_LENGTH_VALIDATOR])
+  selector: ''
+      '[maxlength][ngControl],'
+      '[maxlength][ngFormControl],'
+      '[maxlength][ngModel]',
+  providers: const [
+    const Provider(
+      NG_VALIDATORS,
+      useExisting: MaxLengthValidator,
+      multi: true,
+    ),
+  ],
+)
 class MaxLengthValidator implements Validator {
-  ValidatorFn _validator;
-  MaxLengthValidator(@Attribute("maxlength") String maxLength) {
-    this._validator = Validators.maxLength(int.parse(maxLength, radix: 10));
-  }
+  final ValidatorFn _validator;
+
+  MaxLengthValidator(@Attribute('maxlength') String maxLength)
+      : _validator = Validators.maxLength(int.parse(maxLength, radix: 10));
+
   @override
-  Map<String, dynamic> validate(AbstractControl c) {
-    return this._validator(c);
-  }
+  Map<String, dynamic> validate(AbstractControl c) => _validator(c);
 }
 
-/// A Directive that adds the `pattern` validator to any controls marked with
-/// the `pattern` attribute, via the [NG_VALIDATORS] binding. Uses attribute
-/// value as the regex to validate Control value against.  Follows pattern
-/// attribute semantics; i.e. regex must match entire Control value.
+/// A [Directive] that adds a pattern validator to any controls with `pattern`:
 ///
-/// ### Example
+/// ```html
+/// <input ngControl="fullName" pattern="[a-zA-Z ]*" />
+/// ```
 ///
-///     <input [ngControl]="fullName" pattern="[a-zA-Z ]*">
-const PATTERN_VALIDATOR =
-    const Provider(NG_VALIDATORS, useExisting: PatternValidator, multi: true);
-
+/// The attribute value is parsed and used as a [RegExp] to validate the control
+/// value against. The regular expression must match the entire control value.
 @Directive(
-    selector:
-        "[pattern][ngControl],[pattern][ngFormControl],[pattern][ngModel]",
-    providers: const [PATTERN_VALIDATOR])
+  selector: ''
+      '[pattern][ngControl],'
+      '[pattern][ngFormControl],'
+      '[pattern][ngModel]',
+  providers: const [
+    const Provider(
+      NG_VALIDATORS,
+      useExisting: PatternValidator,
+      multi: true,
+    ),
+  ],
+)
 class PatternValidator implements Validator {
-  ValidatorFn _validator;
-  PatternValidator(@Attribute("pattern") String pattern) {
-    this._validator = Validators.pattern(pattern);
-  }
+  final ValidatorFn _validator;
+
+  PatternValidator(@Attribute('pattern') String pattern)
+      : _validator = Validators.pattern(pattern);
+
   @override
-  Map<String, dynamic> validate(AbstractControl c) {
-    return this._validator(c);
-  }
+  Map<String, dynamic> validate(AbstractControl c) => _validator(c);
 }

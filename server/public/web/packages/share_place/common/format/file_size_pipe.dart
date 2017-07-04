@@ -8,7 +8,7 @@ const int TBYTE = GBYTE * 1024;
 
 List<int> units = [TBYTE, GBYTE, MBYTE, KBYTE, BYTE];
 
-@Pipe(name: 'fileSizeFormat')
+@Pipe('fileSizeFormat')
 class FileSizePipe {
   String addPlural(int count) => count == 1 ? "" : "s";
 

@@ -17,7 +17,7 @@ import '../output/output_ast.dart' as o;
 import '../template_ast.dart' show DirectiveAst;
 import 'compile_element.dart' show CompileElement;
 import 'compile_view.dart' show CompileView;
-import 'constants.dart' show DetectChangesVars, ChangeDetectorStateEnum;
+import 'constants.dart' show DetectChangesVars;
 import 'package:angular2/src/core/metadata/lifecycle_hooks.template.dart' as i0;
 import '../compile_metadata.template.dart' as i1;
 import '../identifiers.template.dart' as i2;

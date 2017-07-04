@@ -4,7 +4,6 @@ import 'package:angular2/src/core/di.dart' show Injector;
 import 'package:angular2/src/core/reflection/reflection.dart' show reflector;
 
 import '../change_detection/change_detection.dart' show ChangeDetectorRef;
-import 'view_container.dart';
 import 'app_view.dart';
 import 'app_view_utils.dart' show OnDestroyCallback;
 import 'element_ref.dart' show ElementRef;
@@ -15,55 +14,42 @@ import 'view_ref.dart' show ViewRef;
 /// [ComponentRef] provides access to the Component Instance as well other
 /// objects related to this Component Instance and allows you to destroy the
 /// Component Instance via the [#destroy] method.
-abstract class ComponentRef {
+class ComponentRef<C> {
+  final AppView _parentView;
+  final int _nodeIndex;
+  final Element _nativeElement;
+  final C _component;
+
+  ComponentRef(
+      this._nodeIndex, this._parentView, this._nativeElement, this._component);
+
   /// Location of the Host Element of this Component Instance.
-  ElementRef get location;
+  ElementRef get location => new ElementRef(_nativeElement);
 
   /// The injector on which the component instance exists.
-  Injector get injector;
+  Injector get injector => _parentView.injector(_nodeIndex);
 
   /// The instance of the Component.
-  dynamic get instance;
+  C get instance => _component;
 
   /// The [ViewRef] of the Host View of this Component instance.
-  ViewRef get hostView;
+  ViewRef get hostView => _parentView.ref;
 
   /// The [ChangeDetectorRef] of the Component instance.
-  ChangeDetectorRef get changeDetectorRef;
+  ChangeDetectorRef get changeDetectorRef => _parentView.ref;
 
-  /// The component type.
-  Type get componentType;
+  /// Returns type of component.
+  /// TODO: remove use from angular router and deprecate.
+  Type get componentType => _component.runtimeType;
 
   /// Destroys the component instance and all of the data structures associated
   /// with it.
-  void destroy();
+  void destroy() {
+    _parentView.detachAndDestroy();
+  }
 
   /// Allows to register a callback that will be called when the component is
   /// destroyed.
-  void onDestroy(OnDestroyCallback callback);
-}
-
-class ComponentRefImpl extends ComponentRef {
-  final ViewContainer hostElement;
-  final Type componentType;
-  final List<dynamic> metadata;
-
-  ComponentRefImpl(this.hostElement, this.componentType, this.metadata);
-
-  ElementRef get location => hostElement.elementRef;
-
-  Injector get injector => hostElement.injector;
-
-  dynamic get instance => hostElement.component;
-
-  ViewRef get hostView => hostElement.parentView.ref;
-
-  ChangeDetectorRef get changeDetectorRef => hostElement.parentView.ref;
-
-  void destroy() {
-    hostElement.parentView.destroy();
-  }
-
   void onDestroy(OnDestroyCallback callback) {
     hostView.onDestroy(callback);
   }
@@ -102,36 +88,25 @@ class ComponentFactory {
   }
 
   /// Creates a new component.
-  ComponentRef create(Injector injector,
-      [List<List> projectableNodes, String selector]) {
+  ComponentRef create(Injector injector, [List<List> projectableNodes]) {
     projectableNodes ??= [];
     // Note: Host views don't need a declarationViewContainer!
-    AppView hostView = _viewFactory(injector, null);
-    var hostElement = hostView.create(projectableNodes, selector);
-    return new ComponentRefImpl(hostElement, this.componentType, this.metadata);
-  }
-
-  ComponentRef loadIntoNode(Injector injector,
-      [List<List<dynamic>> projectableNodes, Node node]) {
-    projectableNodes ??= [];
-
-    // Note: Host views don't need a declarationViewContainer!
-    AppView hostView = _viewFactory(injector, null);
-    var hostElement = hostView.create(projectableNodes, node);
-    return new ComponentRefImpl(hostElement, this.componentType, this.metadata);
+    AppView hostView = _viewFactory(null, null);
+    return hostView.createHostView(injector, projectableNodes);
   }
 }
 
 /// Angular Component Factory signature.
 ///
-/// The compiler generates a viewFactory per component host using this signature
-/// to lazily create a RenderComponentType and create a new instance of the
-/// View class.
+/// Do not rely on parameters of this signature in your code. Instead use
+/// the typedef only and ViewContainer(sync) apis to pass this factory to
+/// construct the component.
+/// This signature will likely change over time as actual implementation
+/// of views change for further optimizations.
 ///
 /// Example:
-///     AppView<dynamic> viewFactory_MyComponent_Host0... {
-///        renderType_MyComponent = viewUtils.createRenderComponentType(....);
-///        return new _View_MyComponent_Host0(parentInjector, declElement);
-///     }
-typedef AppView NgViewFactory(
-    Injector injector, ViewContainer declarationElement);
+///     const ComponentFactory MaterialFabComponentNgFactory =
+///     const ComponentFactory('material-fab',
+///         viewFactory_MaterialFabComponentHost0,
+///         import5.MaterialFabComponent,_METADATA);
+typedef AppView NgViewFactory(AppView parentView, int parentIndex);

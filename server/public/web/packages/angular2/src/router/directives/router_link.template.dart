@@ -11,6 +11,7 @@
 // @ignoreProblemForFile UNUSED_LOCAL_VARIABLE
 import 'router_link.dart';
 import 'package:angular2/src/core/reflection/reflection.dart' as _ngRef;
+import 'dart:html' show MouseEvent;
 import 'package:angular2/core.dart' show Directive;
 import 'package:angular2/platform/common.dart' show Location;
 import '../instruction.dart' show Instruction;

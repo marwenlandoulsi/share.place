@@ -42,6 +42,7 @@
         "2": [
           "bindRenderOutputs",
           "collectEventListeners",
+          "CompileEventListener",
           "bindDirectiveOutputs"
         ],
         "5": false
@@ -97,16 +98,16 @@
     ]
   },
   "type": {
-    "bindView": {
+    "ViewBinderVisitor": {
       "class": "Identifier",
-      "name": "bindView",
+      "name": "ViewBinderVisitor",
       "moduleUrl": "asset:angular2/lib/src/compiler/view_compiler/view_binder.dart",
       "prefix": null,
       "value": null
     },
-    "ViewBinderVisitor": {
+    "bindView": {
       "class": "Identifier",
-      "name": "ViewBinderVisitor",
+      "name": "bindView",
       "moduleUrl": "asset:angular2/lib/src/compiler/view_compiler/view_binder.dart",
       "prefix": null,
       "value": null

@@ -10,15 +10,8 @@
 // @ignoreProblemForFile UNUSED_SHOWN_NAME
 // @ignoreProblemForFile UNUSED_LOCAL_VARIABLE
 import 'injector.dart';
-import 'package:angular2/src/facade/exceptions.dart' show BaseException;
-import 'decorators.dart';
-import 'package:angular2/src/facade/exceptions.template.dart' as i0;
-import 'decorators.template.dart' as i1;
+import 'package:meta/meta.dart';
 export 'injector.dart';
 
-var _visited = false;
 void initReflector() {
-if (_visited) return; _visited = true;
-i0.initReflector();
-i1.initReflector();
 }

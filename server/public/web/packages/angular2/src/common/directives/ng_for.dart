@@ -1,19 +1,14 @@
-import "package:angular2/core.dart"
+import 'package:angular2/core.dart'
     show
         DoCheck,
         Directive,
-        ChangeDetectorRef,
-        IterableDiffer,
-        IterableDiffers,
         ViewContainerRef,
         ViewRef,
         TemplateRef,
-        EmbeddedViewRef,
-        TrackByFn;
+        EmbeddedViewRef;
 
-import "../../core/change_detection/differs/default_iterable_differ.dart"
-    show DefaultIterableDiffer, CollectionChangeRecord;
-import "../../facade/exceptions.dart" show BaseException;
+import '../../core/change_detection/differs/default_iterable_differ.dart'
+    show DefaultIterableDiffer, CollectionChangeRecord, TrackByFn;
 
 /// The `NgFor` directive instantiates a template once per item from an
 /// iterable. The context for each instantiated template inherits from the outer
@@ -66,66 +61,78 @@ import "../../facade/exceptions.dart" show BaseException;
 ///
 /// ### Examples
 ///
-/// {@example docs/template-syntax/lib/app_component.html region=NgFor-1}
+/// <?code-excerpt "docs/template-syntax/lib/app_component.html (NgFor-1)"?>
+/// ```html
+/// <div *ngFor="let hero of heroes">{{hero.name}}</div>
+/// ```
 ///
-/// {@example docs/template-syntax/lib/app_component.html region=NgFor-3}
+/// <?code-excerpt "docs/template-syntax/lib/app_component.html (NgFor-2)"?>
+/// ```html
+/// <hero-detail *ngFor="let hero of heroes" [hero]="hero"></hero-detail>
+/// ```
 ///
-/// {@example docs/template-syntax/lib/app_component.html region=Template-3}
+/// <?code-excerpt "docs/structural-directives/lib/app_component.html (inside-ngfor)"?>
+/// ```html
+/// <div *ngFor="let hero of heroes; let i=index; let odd=odd; trackBy: trackById"
+///      [class.odd]="odd">
+///   ({{i}}) {{hero.name}}
+/// </div>
 ///
-/// {@example docs/template-syntax/lib/app_component.html region=Template-4}
+/// <div template="ngFor let hero of heroes; let i=index; let odd=odd; trackBy: trackById"
+///      [class.odd]="odd">
+///   ({{i}}) {{hero.name}}
+/// </div>
 ///
-/// See the [Template Syntax section on `ngFor`][guide] for details.
+/// <template ngFor let-hero [ngForOf]="heroes" let-i="index" let-odd="odd"
+///           [ngForTrackBy]="trackById">
+///   <div [class.odd]="odd">({{i}}) {{hero.name}}</div>
+/// </template>
+/// ```
 ///
-/// [guide]: docs/guide/template-syntax.html#ngFor
+/// For details, see the [`ngFor` discussion in the Template Syntax][guide]
+/// page.
+///
+/// [guide]: https://webdev.dartlang.org/angular/guide/template-syntax.html#ngFor
 @Directive(
-    selector: "[ngFor][ngForOf]",
-    inputs: const ["ngForTrackBy", "ngForOf", "ngForTemplate"])
+    selector: '[ngFor][ngForOf]',
+    inputs: const ['ngForTrackBy', 'ngForOf', 'ngForTemplate'])
 class NgFor implements DoCheck {
-  ViewContainerRef _viewContainer;
-  TemplateRef _templateRef;
-  IterableDiffers _iterableDiffers;
-  ChangeDetectorRef _cdr;
-  dynamic _ngForOf;
+  final ViewContainerRef _viewContainer;
+
+  DefaultIterableDiffer _differ;
+  Iterable _ngForOf;
   TrackByFn _ngForTrackBy;
-  IterableDiffer _differ;
-  NgFor(
-      this._viewContainer, this._templateRef, this._iterableDiffers, this._cdr);
-  set ngForOf(dynamic value) {
-    this._ngForOf = value;
+  TemplateRef _templateRef;
+
+  NgFor(this._viewContainer, this._templateRef);
+
+  set ngForOf(value) {
+    assert(
+        value == null || value is Iterable,
+        'Cannot diff `$value` of type ${value.runtimeType}. $NgFor only '
+        'supports binding to something that implements the `Iterable` '
+        'interface, such as `List`.');
+    _ngForOf = value as Iterable;
     if (_differ == null && value != null) {
-      try {
-        this._differ = this
-            ._iterableDiffers
-            .find(value)
-            .create(this._cdr, this._ngForTrackBy);
-      } catch (_) {
-        assert(() {
-          throw new BaseException('Cannot find a differ supporting object'
-              ' \'${ value}\' of type'
-              ' \'${ value?.runtimeType }\''
-              '. NgFor only supports binding to Iterables '
-              'such as Arrays.');
-        });
-        rethrow;
-      }
+      _differ = new DefaultIterableDiffer(_ngForTrackBy);
     }
   }
 
   set ngForTemplate(TemplateRef value) {
     if (value != null) {
-      this._templateRef = value;
+      _templateRef = value;
     }
   }
 
   set ngForTrackBy(TrackByFn value) {
-    this._ngForTrackBy = value;
+    _ngForTrackBy = value;
   }
 
   @override
   void ngDoCheck() {
     if (_differ != null) {
-      var changes = this._differ.diff(this._ngForOf);
-      if (changes != null) this._applyChanges(changes);
+      var changes = _differ.diff(_ngForOf);
+      if (changes != null) _applyChanges(changes);
     }
   }
 
@@ -138,47 +145,44 @@ class NgFor implements DoCheck {
         int adjustedPreviousIndex, int currentIndex) {
       if (item.previousIndex == null) {
         var view =
-            this._viewContainer.insertEmbeddedView(_templateRef, currentIndex);
+            _viewContainer.insertEmbeddedView(_templateRef, currentIndex);
         var tuple = new RecordViewTuple(item, view);
         insertTuples.add(tuple);
       } else if (currentIndex == null) {
         _viewContainer.remove(adjustedPreviousIndex);
       } else {
-        ViewRef view = this._viewContainer.get(adjustedPreviousIndex);
-        this._viewContainer.move(view, currentIndex);
+        ViewRef view = _viewContainer.get(adjustedPreviousIndex);
+        _viewContainer.move(view, currentIndex);
         RecordViewTuple tuple = new RecordViewTuple(item, view);
         insertTuples.add(tuple);
       }
     });
 
     for (var i = 0; i < insertTuples.length; i++) {
-      this._perViewChange(insertTuples[i].view, insertTuples[i].record);
+      _perViewChange(insertTuples[i].view, insertTuples[i].record);
     }
-    for (var i = 0, ilen = this._viewContainer.length; i < ilen; i++) {
+    for (var i = 0, len = _viewContainer.length; i < len; i++) {
       var viewRef = _viewContainer.get(i);
-      viewRef.setLocal("first", identical(i, 0));
-      viewRef.setLocal("last", identical(i, ilen - 1));
-      viewRef.setLocal("index", i);
-      viewRef.setLocal("count", ilen);
+      viewRef.setLocal('first', identical(i, 0));
+      viewRef.setLocal('last', identical(i, len - 1));
+      viewRef.setLocal('index', i);
+      viewRef.setLocal('count', len);
     }
     changes.forEachIdentityChange((record) {
       var viewRef = _viewContainer.get(record.currentIndex);
-      viewRef.setLocal("\$implicit", record.item);
+      viewRef.setLocal('\$implicit', record.item);
     });
   }
 
   void _perViewChange(EmbeddedViewRef view, CollectionChangeRecord record) {
-    view.setLocal("\$implicit", record.item);
-    view.setLocal("even", (record.currentIndex % 2 == 0));
-    view.setLocal("odd", (record.currentIndex % 2 == 1));
+    view.setLocal('\$implicit', record.item);
+    view.setLocal('even', (record.currentIndex % 2 == 0));
+    view.setLocal('odd', (record.currentIndex % 2 == 1));
   }
 }
 
 class RecordViewTuple {
-  EmbeddedViewRef view;
-  dynamic record;
-  RecordViewTuple(dynamic record, EmbeddedViewRef view) {
-    this.record = record;
-    this.view = view;
-  }
+  final EmbeddedViewRef view;
+  final dynamic record;
+  RecordViewTuple(this.record, this.view);
 }

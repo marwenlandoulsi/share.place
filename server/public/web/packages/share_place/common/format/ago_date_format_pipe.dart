@@ -9,7 +9,7 @@ const int YEAR = DAY * 365;
 
 List<int> units = [YEAR, MONTH, DAY, HOUR, MINUTE, SECOND];
 
-@Pipe(name: 'agoDateFormat')
+@Pipe('agoDateFormat')
 class AgoDateFormatPipe {
   String addPlural(int count) => count == 1 ? "" : "s";
 

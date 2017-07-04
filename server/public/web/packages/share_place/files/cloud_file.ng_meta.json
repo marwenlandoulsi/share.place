@@ -16,6 +16,13 @@
     ]
   },
   "type": {
+    "Approved": {
+      "class": "Identifier",
+      "name": "Approved",
+      "moduleUrl": "asset:share_place/lib/files/cloud_file.dart",
+      "prefix": null,
+      "value": null
+    },
     "CloudFile": {
       "class": "Identifier",
       "name": "CloudFile",
@@ -37,9 +44,9 @@
       "prefix": null,
       "value": null
     },
-    "Approved": {
+    "MailInfo": {
       "class": "Identifier",
-      "name": "Approved",
+      "name": "MailInfo",
       "moduleUrl": "asset:share_place/lib/files/cloud_file.dart",
       "prefix": null,
       "value": null

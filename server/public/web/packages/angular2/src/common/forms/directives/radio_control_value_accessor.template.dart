@@ -11,14 +11,16 @@
 // @ignoreProblemForFile UNUSED_LOCAL_VARIABLE
 import 'radio_control_value_accessor.dart';
 import 'package:angular2/src/core/reflection/reflection.dart' as _ngRef;
-import 'package:angular2/core.dart' show Directive, ElementRef, Provider, Input, OnInit, OnDestroy, Injector, Injectable;
-import 'package:angular2/src/platform/dom/dom_adapter.dart' show DOM;
-import 'package:angular2/src/common/forms/directives/control_value_accessor.dart' show NG_VALUE_ACCESSOR, ControlValueAccessor;
-import 'package:angular2/src/common/forms/directives/ng_control.dart' show NgControl;
+import 'dart:js_util' as js_util;
+import 'package:angular2/core.dart' show Directive, ElementRef, Provider, Input, OnInit, OnDestroy, Injector;
+import 'package:angular2/di.dart' show Injectable;
+import 'package:func/func.dart' show Func0, VoidFunc0;
+import 'control_value_accessor.dart' show NG_VALUE_ACCESSOR, ControlValueAccessor;
+import 'ng_control.dart' show NgControl;
 import 'package:angular2/core.template.dart' as i0;
-import 'package:angular2/src/platform/dom/dom_adapter.template.dart' as i1;
-import 'package:angular2/src/common/forms/directives/control_value_accessor.template.dart' as i2;
-import 'package:angular2/src/common/forms/directives/ng_control.template.dart' as i3;
+import 'package:angular2/di.template.dart' as i1;
+import 'control_value_accessor.template.dart' as i2;
+import 'ng_control.template.dart' as i3;
 export 'radio_control_value_accessor.dart';
 
 var _visited = false;

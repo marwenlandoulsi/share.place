@@ -4,7 +4,7 @@ import 'dart:html';
 import 'package:angular2/core.dart';
 import 'package:angular2/router.dart';
 import 'package:angular2/security.dart';
-import 'package:angular2_components/angular2_components.dart';
+import 'package:angular_components/angular_components.dart';
 import 'package:share_place/environment.dart';
 import 'package:share_place/folder.dart';
 import 'package:share_place/place.dart';
@@ -16,7 +16,7 @@ import 'package:share_place/common/ui/button_comp.dart';
 import 'package:share_place/users/info_popup/info_popup.dart';
 import 'package:share_place/users/info_popup/popup_parent.dart';
 import 'package:share_place/users/invite/invite_dialog_comp.dart';
-
+import 'package:share_place/app_config.dart' as conf;
 import 'package:share_place/users/user.dart';
 import 'package:share_place/users/user_list_provider.dart';
 import 'package:share_place/postit/postit_component.dart';
@@ -47,7 +47,6 @@ class SubjectListComponent
   FileInfo renaming;
   User infoPopupUser;
   bool infoPopupOpen;
-
   String popupUserInfoId;
   int subjectInfoPopupIndex;
 
@@ -62,11 +61,10 @@ class SubjectListComponent
   }
 
   show(Map<PlaceParam, dynamic> params) async {
-    var folderId = params[PlaceParam.folderId];
     var fileId = params[PlaceParam.lockStateChange];
     if (fileId == null)
       fileId = params[PlaceParam.approvalStateChange];
-
+    var folderId = params[PlaceParam.folderId];
     if (folderId != null) { // folder selected
       selectedSubject = null;
       await getSubjects(_environment.selectedPlace.id, folderId);
@@ -77,6 +75,14 @@ class SubjectListComponent
         params.containsKey(PlaceParam.ioSubjectChanged)
     ) {
       await reloadSubjects();
+    } else if (params.containsKey(PlaceParam.fileInfoIdRequested)) {
+      print("fileInfoIdRequested ${params.values}");
+      for (FileInfo subject in subjects) {
+        if (subject.id == params[PlaceParam.fileInfoIdRequested]) {
+          selectedSubject = subject;
+          return;
+        }
+      }
     } else if (params.containsKey(PlaceParam.treatUserInvite)) {
       await _placeService.loadConnectedUser();
     }
@@ -96,10 +102,11 @@ class SubjectListComponent
   }
 
   Future reloadSubjects() async {
+    print("reload subjects called ");
     if (_environment.selectedPlace == null ||
         _environment.selectedFolder == null)
       return;
-
+    print("reload subjects executing");
     await getSubjects(
         _environment.selectedPlace.id, _environment.selectedFolder.id);
   }
@@ -117,12 +124,12 @@ class SubjectListComponent
     _environment.uploading = true;
     _environment.fireEvent(PlaceParam.addButtonPressed, "files");
 
-    if(size == 0) {
+    if (size == 0) {
       _environment.serverError = " Can not Upload empty Files ";
       return null;
     }
 
-    else{
+    else {
       FormElement fileForm = querySelector("#fileForm");
       FileInfo createdFileInfo = await _placeService.prePostFile(
           {"name": fileName});
@@ -142,6 +149,7 @@ class SubjectListComponent
 
   Future<Null> createQuickNote(String note) async {
     FileInfo createdFileInfo = await _placeService.createQuickNote(note);
+    _environment.track("subjectCreate", data: {"subject": createdFileInfo});
     refreshSubjectListAndSelect(createdFileInfo);
   }
 
@@ -157,8 +165,10 @@ class SubjectListComponent
 
   Future<Null> getSubjects(String placeId, String folderId) async {
     subjects = await _placeService.getFolderSubjects(placeId, folderId);
+    print("############### subjects reloaded : ${subjects?.length}");
     if (subjects != null) {
       subjects = subjects.reversed;
+      _environment.fireEvent(PlaceParam.fileInfoListLoaded, folderId);
     }
     _environment.showScrollBar();
   }
@@ -209,9 +219,15 @@ class SubjectListComponent
       return;
     renaming = selectedSubject;
   }
+  bool isRenaming(FileInfo subject) {
+    if (renaming == null)
+      return false;
 
+    return renaming.id == subject?.id;
+  }
 
   Future<FileInfo> doRename(String subjectNewName) async {
+    print("#####hgdchsg");
     FileInfo toRename = renaming;
     renaming = null;
     FileInfo toSelect = await _placeService.renameSubject(
@@ -221,15 +237,18 @@ class SubjectListComponent
   }
 
 
-  Future<FileInfo> save(String folderName) async {
+  Future<FileInfo> save(String subjectName) async {
     adding = false;
-    FileInfo toSelect = await _placeService.createSubject(folderName);
+    FileInfo toSelect = await _placeService.createSubject(subjectName);
     await getSubjects(selectedPlace.id, _environment.selectedFolder.id);
+    _environment.track("subjectRename",
+        data: {"subjectName": subjectName, "subject": selectedSubject});
     onSelect(toSelect);
   }
 
   void onSelect(FileInfo fileInfo) {
     _environment.selectedSubject = fileInfo;
+    _environment.track("subject", data: {"subject": fileInfo});
   }
 
   void cancelRename() {
@@ -304,7 +323,103 @@ class SubjectListComponent
     html_util.openFileDialogConditionally(event, fileUploadLabel);
   }
 
+  String userPictureId(userItem) {
+    if (userItem?.photoId!= null)
+      return  "/auth/gridfs/file/${userItem?.photoIdMap['photoIdS']}/picture.x";
+    else
+      return  "../images/img_profile.png" ;
+  }
+
+
+  String thumbSrc(FileInfo subject, Folder selectedFolder) {
+
+    String mimeType = subject.mimeType;
+    if (mimeType == null)
+      return conf.defaultIcon;
+    switch (mimeType) {
+      case 'image/png' :
+      case 'image/jpeg' :
+      case 'image/bpm' :
+        return "/sp/place/${selectedPlace.id}/folder/${selectedFolder
+            ?.id}/file/${subject.fileId}/version/${subject.v}/thumb.x";
+        break;
+      case 'application/quickNote' :
+        return conf.quickNoteIcon;
+        break;
+      case 'text/plain':
+        return conf.txtIcon;
+        break;
+      case 'application/x-pdf':
+        return conf.pdfIcon;
+        break;
+      case 'application/pdf':
+        return conf.pdfIcon;
+        break;
+      case 'application/msword':
+        return conf.wordIcon;
+        break;
+      case 'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
+        return conf.wordIcon;
+        break;
+      case 'application/vnd.ms-word.document.macroEnabled.12':
+        return conf.wordIcon;
+        break;
+      case 'application/vnd.ms-word.template.macroEnabled.12':
+        return conf.wordIcon;
+        break;
+      case 'application/vnd.ms-powerpoint':
+        return conf.pptIcon;
+        break;
+      case 'application/vnd.openxmlformats-officedocument.presentationml.presentation':
+        return conf.pptIcon;
+        break;
+      case 'application/vnd.openxmlformats-officedocument.presentationml.template':
+        return conf.pptIcon;
+        break;
+      case '  application/vnd.openxmlformats-officedocument.presentationml.slideshow':
+        return conf.pptIcon;
+        break;
+      case '  application/vnd.ms-powerpoint.addin.macroEnabled.12':
+        return conf.pptIcon;
+        break;
+      case 'application/vnd.ms-powerpoint.presentation.macroEnabled.12':
+        return conf.pptIcon;
+        break;
+      case 'application/vnd.ms-powerpoint.addin.macroEnabled.12':
+        return conf.pptIcon;
+        break;
+      case 'application/vnd.ms-excel':
+        return conf.excelIcon;
+        break;
+      case 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet':
+        return conf.excelIcon;
+        break;
+      case 'application/vnd.openxmlformats-officedocument.spreadsheetml.template':
+        return conf.excelIcon;
+        break;
+      case 'application/vnd.ms-excel.sheet.macroEnabled.12':
+        return conf.excelIcon;
+        break;
+      case 'application/vnd.ms-excel.template.macroEnabled.12':
+        return conf.excelIcon;
+        break;
+      case 'application/vnd.ms-excel.addin.macroEnabled.12':
+        return conf.excelIcon;
+        break;
+      case 'application/vnd.ms-excel.sheet.binary.macroEnabled.12':
+        return conf.excelIcon;
+        break;
+      default:
+        return conf.defaultIcon;
+    }
+  }
+  Future<Null> removeTopic(FileInfo subject) async {
+    await _placeService.removeTopic(subject);
+  }
+
   @override
-  bool get allowRoleChange => _environment.selectedFolder != null ? _environment.selectedFolder.type != "support" ? true : false : false;
+  bool get allowRoleChange =>
+      _environment.selectedFolder != null ? _environment.selectedFolder.type !=
+          "support" ? true : false : false;
 }
 

@@ -1,21 +1,17 @@
 import 'dart:async';
+import 'dart:html' show Event;
 
-import "package:angular2/core.dart"
-    show Directive, Provider, Optional, Inject, Self;
-import "package:angular2/src/facade/async.dart" show EventEmitter;
+import 'package:angular2/core.dart' show Directive, Provider;
+import 'package:angular2/di.dart' show Optional, Inject, Self;
+import 'package:angular2/src/facade/async.dart' show EventEmitter;
 
-import "../model.dart" show AbstractControl, ControlGroup, Control;
-import "../validators.dart" show NG_VALIDATORS, NG_ASYNC_VALIDATORS;
-import "control_container.dart" show ControlContainer;
-import "form_interface.dart" show Form;
-import "ng_control.dart" show NgControl;
-import "ng_control_group.dart" show NgControlGroup;
-import "shared.dart"
-    show
-        setUpControl,
-        setUpControlGroup,
-        composeValidators,
-        composeAsyncValidators;
+import '../model.dart' show AbstractControl, ControlGroup, Control;
+import '../validators.dart' show NG_VALIDATORS;
+import 'control_container.dart' show ControlContainer;
+import 'form_interface.dart' show Form;
+import 'ng_control.dart' show NgControl;
+import 'ng_control_group.dart' show NgControlGroup;
+import 'shared.dart' show setUpControl, setUpControlGroup, composeValidators;
 
 const formDirectiveProvider =
     const Provider(ControlContainer, useExisting: NgForm);
@@ -71,50 +67,33 @@ const formDirectiveProvider =
 ///   String data;
 ///
 ///   void onSubmit(data) {
-///     this.data = JSON.encode(data);
+///     data = JSON.encode(data);
 ///   }
 /// }
 /// ```
 @Directive(
-    selector: "form:not([ngNoForm]):not([ngFormModel]),ngForm,[ngForm]",
+    selector: 'form:not([ngNoForm]):not([ngFormModel]),ngForm,[ngForm]',
     providers: const [formDirectiveProvider],
-    host: const {"(submit)": "onSubmit()"},
-    outputs: const ["ngSubmit", "ngBeforeSubmit"],
-    exportAs: "ngForm")
+    host: const {'(submit)': 'onSubmit(\$event)'},
+    outputs: const ['ngSubmit', 'ngBeforeSubmit'],
+    exportAs: 'ngForm')
 class NgForm extends ControlContainer implements Form {
   ControlGroup form;
   var ngSubmit = new EventEmitter<ControlGroup>(false);
   var ngBeforeSubmit = new EventEmitter<ControlGroup>(false);
-  NgForm(
-      @Optional()
-      @Self()
-      @Inject(NG_VALIDATORS)
-          List<dynamic> validators,
-      @Optional()
-      @Self()
-      @Inject(NG_ASYNC_VALIDATORS)
-          List<dynamic> asyncValidators) {
-    this.form = new ControlGroup({}, null, composeValidators(validators),
-        composeAsyncValidators(asyncValidators));
+  NgForm(@Optional() @Self() @Inject(NG_VALIDATORS) List<dynamic> validators) {
+    form = new ControlGroup({}, null, composeValidators(validators));
   }
   @override
-  Form get formDirective {
-    return this;
-  }
+  Form get formDirective => this;
 
   @override
-  ControlGroup get control {
-    return this.form;
-  }
+  ControlGroup get control => form;
 
   @override
-  List<String> get path {
-    return [];
-  }
+  List<String> get path => [];
 
-  Map<String, AbstractControl> get controls {
-    return this.form.controls;
-  }
+  Map<String, AbstractControl> get controls => form.controls;
 
   @override
   void addControl(NgControl dir) {
@@ -128,14 +107,12 @@ class NgForm extends ControlContainer implements Form {
   }
 
   @override
-  Control getControl(NgControl dir) {
-    return (this.form.find(dir.path) as Control);
-  }
+  Control getControl(NgControl dir) => (form.find(dir.path) as Control);
 
   @override
   void removeControl(NgControl dir) {
     scheduleMicrotask(() {
-      var container = this._findContainer(dir.path);
+      var container = _findContainer(dir.path);
       if (container != null) {
         container.removeControl(dir.name);
         container.updateValueAndValidity(emitEvent: false);
@@ -157,7 +134,7 @@ class NgForm extends ControlContainer implements Form {
   @override
   void removeControlGroup(NgControlGroup dir) {
     scheduleMicrotask(() {
-      var container = this._findContainer(dir.path);
+      var container = _findContainer(dir.path);
       if (container != null) {
         container.removeControl(dir.name);
         container.updateValueAndValidity(emitEvent: false);
@@ -166,26 +143,25 @@ class NgForm extends ControlContainer implements Form {
   }
 
   @override
-  ControlGroup getControlGroup(NgControlGroup dir) {
-    return (this.form.find(dir.path) as ControlGroup);
-  }
+  ControlGroup getControlGroup(NgControlGroup dir) =>
+      (form.find(dir.path) as ControlGroup);
 
   @override
   void updateModel(NgControl dir, dynamic value) {
     scheduleMicrotask(() {
-      var ctrl = (this.form.find(dir.path) as Control);
-      ctrl.updateValue(value);
+      Control ctrl = form.find(dir.path);
+      ctrl?.updateValue(value);
     });
   }
 
-  bool onSubmit() {
+  void onSubmit(Event event) {
     ngBeforeSubmit.add(form);
     ngSubmit.add(form);
-    return false;
+    event.preventDefault();
   }
 
   ControlGroup _findContainer(List<String> path) {
     path.removeLast();
-    return path.isEmpty ? this.form : (this.form.find(path) as ControlGroup);
+    return path.isEmpty ? form : (form.find(path) as ControlGroup);
   }
 }

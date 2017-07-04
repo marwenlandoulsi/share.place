@@ -26,11 +26,19 @@ module.exports = Object.freeze({
     url: 'https://qa.share.place/sp',
     method: 'DELETE',
   },
+  optionsGetReq: {
+    url: 'https://qa.share.place/sp',
+    method: 'GET',
+  },
   optionsGet: {
     host: "qa.share.place",
     port: 443,
     path: '/sp',
     method: 'GET'
+  },
+  optionsGetFromAuthReq: {
+    url: 'https://qa.share.place/auth',
+    method: 'GET',
   },
   optionsGetFromAuth: {
     host: "qa.share.place",

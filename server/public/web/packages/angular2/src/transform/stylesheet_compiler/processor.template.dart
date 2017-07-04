@@ -11,21 +11,24 @@
 // @ignoreProblemForFile UNUSED_LOCAL_VARIABLE
 import 'processor.dart';
 import 'dart:async';
-import 'package:angular2/src/compiler/offline_compiler.dart';
+import 'package:angular2/src/compiler/config.dart';
 import 'package:angular2/src/transform/common/asset_reader.dart';
-import 'package:angular2/src/transform/common/code/source_module.dart';
+import 'package:angular2/src/compiler/source_module.dart';
 import 'package:angular2/src/transform/common/logging.dart';
 import 'package:angular2/src/transform/common/names.dart';
+import 'package:angular2/src/transform/common/options.dart';
 import 'package:angular2/src/transform/common/ng_compiler.dart';
 import 'package:angular2/src/transform/common/zone.dart' as zone;
+import 'package:analyzer/dart/ast/token.dart' show Keyword;
 import 'package:barback/barback.dart';
-import 'package:angular2/src/compiler/offline_compiler.template.dart' as i0;
+import 'package:angular2/src/compiler/config.template.dart' as i0;
 import 'package:angular2/src/transform/common/asset_reader.template.dart' as i1;
-import 'package:angular2/src/transform/common/code/source_module.template.dart' as i2;
+import 'package:angular2/src/compiler/source_module.template.dart' as i2;
 import 'package:angular2/src/transform/common/logging.template.dart' as i3;
 import 'package:angular2/src/transform/common/names.template.dart' as i4;
-import 'package:angular2/src/transform/common/ng_compiler.template.dart' as i5;
-import 'package:angular2/src/transform/common/zone.template.dart' as i6;
+import 'package:angular2/src/transform/common/options.template.dart' as i5;
+import 'package:angular2/src/transform/common/ng_compiler.template.dart' as i6;
+import 'package:angular2/src/transform/common/zone.template.dart' as i7;
 export 'processor.dart';
 
 var _visited = false;
@@ -38,4 +41,5 @@ i3.initReflector();
 i4.initReflector();
 i5.initReflector();
 i6.initReflector();
+i7.initReflector();
 }

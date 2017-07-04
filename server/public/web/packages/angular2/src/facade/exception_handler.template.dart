@@ -10,8 +10,9 @@
 // @ignoreProblemForFile UNUSED_SHOWN_NAME
 // @ignoreProblemForFile UNUSED_LOCAL_VARIABLE
 import 'exception_handler.dart';
-import 'package:angular2/src/facade/base_wrapped_exception.dart' show BaseWrappedException;
-import 'package:angular2/src/facade/base_wrapped_exception.template.dart' as i0;
+import 'package:logging/logging.dart';
+import 'exceptions.dart' show WrappedException;
+import 'exceptions.template.dart' as i0;
 export 'exception_handler.dart';
 
 var _visited = false;

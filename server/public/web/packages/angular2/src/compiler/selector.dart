@@ -1,12 +1,13 @@
 import "package:angular2/src/facade/exceptions.dart" show BaseException;
 
-const _EMPTY_ATTR_VALUE = "";
-final _SELECTOR_REGEXP = new RegExp("(\\:not\\()|" +
-    "([-\\w]+)|" +
-    "(?:\\.([-\\w]+))|" +
-    "(?:\\[([-\\w*]+)(?:=([^\\]]*))?\\])|" +
-    "(\\))|" +
-    "(\\s*,\\s*)");
+const _EMPTY_ATTR_VALUE = '';
+final _SELECTOR_REGEXP = new RegExp(r'(:not\()|' + // ":not("
+        r'([-\w]+)|' + // "tag-name"
+        r'(?:\.([-\w]+))|' + // ".class"
+        r'(?:\[([-\w*]+)(?:=([^\]]*))?\])|' + // "[name]", "[name=value]"
+        r'(\))|' + // ")"
+        r'(\s*,\s*)' // ","
+    );
 
 /// A css selector contains an element name,
 /// css classes and attribute/value pairs with the purpose
@@ -146,13 +147,13 @@ class SelectorMatcher {
     return notMatcher;
   }
 
-  var _elementMap = new Map<String, List<SelectorContext>>();
-  var _elementPartialMap = new Map<String, SelectorMatcher>();
-  var _classMap = new Map<String, List<SelectorContext>>();
-  var _classPartialMap = new Map<String, SelectorMatcher>();
-  var _attrValueMap = new Map<String, Map<String, List<SelectorContext>>>();
-  var _attrValuePartialMap = new Map<String, Map<String, SelectorMatcher>>();
-  List<SelectorListContext> _listContexts = [];
+  final _elementMap = new Map<String, List<SelectorContext>>();
+  final _elementPartialMap = new Map<String, SelectorMatcher>();
+  final _classMap = new Map<String, List<SelectorContext>>();
+  final _classPartialMap = new Map<String, SelectorMatcher>();
+  final _attrValueMap = new Map<String, Map<String, List<SelectorContext>>>();
+  final _attrValuePartialMap = new Map<String, Map<String, SelectorMatcher>>();
+  final _listContexts = <SelectorListContext>[];
   void addSelectables(List<CssSelector> cssSelectors, [dynamic callbackCtxt]) {
     var listContext;
     if (cssSelectors.length > 1) {
@@ -294,7 +295,6 @@ class SelectorMatcher {
     return result;
   }
 
-  /** @internal */
   bool _matchTerminal(Map<String, List<SelectorContext>> map, name,
       CssSelector cssSelector, void matchedCallback(CssSelector c, dynamic a)) {
     if (map == null || name == null) {
@@ -317,7 +317,6 @@ class SelectorMatcher {
     return result;
   }
 
-  /** @internal */
   bool _matchPartial(Map<String, SelectorMatcher> map, name,
       CssSelector cssSelector, void matchedCallback(CssSelector c, dynamic a)) {
     if (map == null || name == null) {

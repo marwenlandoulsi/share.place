@@ -10,15 +10,15 @@
 // @ignoreProblemForFile UNUSED_SHOWN_NAME
 // @ignoreProblemForFile UNUSED_LOCAL_VARIABLE
 import 'compile_element.dart';
-import '../compile_metadata.dart' show CompileTokenMap, CompileDirectiveMetadata, CompileTokenMetadata, CompileQueryMetadata, CompileProviderMetadata, CompileDiDependencyMetadata;
+import '../compile_metadata.dart' show CompileTokenMap, CompileDirectiveMetadata, CompileIdentifierMetadata, CompileTokenMetadata, CompileQueryMetadata, CompileProviderMetadata, CompileDiDependencyMetadata;
 import '../identifiers.dart' show Identifiers, identifierToken;
 import '../output/output_ast.dart' as o;
 import '../template_ast.dart' show TemplateAst, ProviderAst, ProviderAstType, ReferenceAst;
 import 'compile_method.dart' show CompileMethod;
-import 'compile_query.dart' show CompileQuery, createQueryList, addQueryToTokenMap;
+import 'compile_query.dart' show CompileQuery, createQueryListField, addQueryToTokenMap;
 import 'compile_view.dart' show CompileView;
 import 'constants.dart' show InjectMethodVars;
-import 'view_compiler_utils.dart' show getPropertyInView, createDiTokenExpression, injectFromViewParentInjector, convertValueToOutputAst;
+import 'view_compiler_utils.dart' show getPropertyInView, getViewFactoryName, createDiTokenExpression, injectFromViewParentInjector, convertValueToOutputAst;
 import '../compile_metadata.template.dart' as i0;
 import '../identifiers.template.dart' as i1;
 import '../output/output_ast.template.dart' as i2;

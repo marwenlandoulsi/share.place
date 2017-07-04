@@ -41,25 +41,65 @@ const {ipcRenderer} = require('electron');
 const sendEvent = (nameOfEvent, content) => {
   ipcRenderer.send(nameOfEvent, content)
 }
-module.exports.getUtilFile = (req, res) => {
-  let userId = req.user._id;
-  let url = req.url;
-  let pathDirectory = path.join(constants.dataDir, userId, url);
-  let pathToUtilFile = path.join(constants.dataDir, userId, url, 'icon.bmp');
-  if (global.onLine) {
-    if (!fs.existsSync(pathToUtilFile)) {
-      // let mode = 0o0500;
-      downloadFile(url, pathDirectory, pathToUtilFile, 0o0500, (err, pathFileDownload) => {
-        if (err)
-          return globalService.sendError(res, 405, "error to download file");
 
-        readFile(res, pathFileDownload, url, userId)
-      });
-      // return res.redirect('http://localhost:3000/sp/' + url);
+
+module.exports.searchFileFromElastic = (req, res) => {
+
+  let url = req.url;
+  let jsonData = req.body;
+  let userId = global.userConnected._id;
+
+
+  if (global.isProxy) {
+    if (global.userProxy) {
+      var proxyUrl = "http://" + global.userProxy + ":" + global.pswProxy + "@" + global.proxyUrl;
+      var proxiedRequest = request.defaults({'proxy': proxyUrl});
+      request = proxiedRequest;
     }
   }
-  readFile(res, pathToUtilFile, url, userId)
-}
+
+  let headers = {
+    'Content-Type': 'application/json; charset=utf-8',
+    'Cookie': global.cookieReceived
+  }
+// Configure the request
+  let options = {
+    url: constants.remoteUrl + '/elastic/sp/file/_search',
+    method: constants.optionsPost.method,
+    headers: headers,
+    json: jsonData
+  }
+  request(options, function (error, response, body) {
+
+    if (error) {
+      log.error("error to delete Data", error.message);
+      return globalService.sendError(res, error.statusCode, error.message)
+    }
+
+    // Print out the response body
+    res.status(response.statusCode);
+    res.json(body);
+  })
+},
+    module.exports.getUtilFile = (req, res) => {
+      let userId = req.user._id;
+      let url = req.url;
+      let pathDirectory = path.join(constants.dataDir, userId, url);
+      let pathToUtilFile = path.join(constants.dataDir, userId, url, 'icon.bmp');
+      if (global.onLine) {
+        if (!fs.existsSync(pathToUtilFile)) {
+          // let mode = 0o0500;
+          downloadFile(url, pathDirectory, pathToUtilFile, 0o0500, (err, pathFileDownload) => {
+            if (err)
+              return globalService.sendError(res, err.statusCode, err.message);
+
+            return readFile(res, pathFileDownload, url, userId)
+          });
+          // return res.redirect('http://localhost:3000/sp/' + url);
+        }
+      }
+      return readFile(res, pathToUtilFile, url, userId)
+    }
 
 let downloadUtilFileToDisc = module.exports.downloadUtilFileToDisc = (url, callBack) => {
   let userId = global.userConnected._id;
@@ -70,7 +110,7 @@ let downloadUtilFileToDisc = module.exports.downloadUtilFileToDisc = (url, callB
     if (!fs.existsSync(pathToUtilFile)) {
       downloadFile(url, pathDirectory, pathToUtilFile, 0o0500, (err, pathFileDownload) => {
         if (err)
-          log.error("failed to download icon: ", err);
+          log.info("failed to download icon: ", err.message);
 
         return callBack(true)
       });
@@ -504,6 +544,13 @@ let httpUploadNewVersion = function (url, pathOfFile, filename, contentType, cb)
     formData: formData,
     agent: agent
   }
+  if (global.isProxy) {
+    if (global.userProxy) {
+      var proxyUrl = "http://" + global.userProxy + ":" + global.pswProxy + "@" + global.proxyUrl;
+      var proxiedRequest = request.defaults({'proxy': proxyUrl});
+      request = proxiedRequest;
+    }
+  }
   request(options, function (err, resp, body) {
     if (err)
       return cb(err);
@@ -520,44 +567,78 @@ let httpGetJson = function (cookie, url, cb) {
     global.cookieReceived = cookie;
 
   let options = {
-    host: constants.optionsGet.host,
-    method: constants.optionsGet.method,
-    port: constants.optionsGet.port,
-    path: constants.optionsGet.path + url,
-    agent: agent,
+    url: constants.optionsGetReq.url + url,
+    method: constants.optionsGetReq.method,
     headers: {
       'Cookie': global.cookieReceived,
-    }
+    },
+    agent: agent
   };
-  return http.get(options, function (response) {
+  /*
+   let options = {
+   host: constants.optionsGet.host,
+   method: constants.optionsGet.method,
+   port: constants.optionsGet.port,
+   path: constants.optionsGet.path + url,
+   agent: agent,
+   headers: {
+   'Cookie': global.cookieReceived,
+   }
+   };*/
+  if (global.isProxy) {
+    if (global.userProxy) {
+      var proxyUrl = "http://" + global.userProxy + ":" + global.pswProxy + "@" + global.proxyUrl;
+      var proxiedRequest = request.defaults({'proxy': proxyUrl});
+      request = proxiedRequest;
+    }
+  }
+  request(options, function (error, response, body) {
 
-    // Continuously update stream with data
-    let body = '';
+    if (error) {
+      log.error("error to get data from server:", error)
+      return cb(error)
+    }
+    if (response.statusCode > 400) {
+      var error = new Error(body.error)
+      error.statusCode = response.statusCode;
 
-    response.on('data', function (d) {
-      body += d;
-    });
-    response.on('error', function (err) {
-      // Data reception is done, do whatever with it!
-      return cb(err);
-    });
-    response.on('end', function () {
-      // Data reception is done, do whatever with it!
-
-      let parsed = JSON.parse(body);
-      if (response.statusCode > 400) {
-        var error = new Error(parsed.error)
-        error.statusCode = response.statusCode;
-
-        return cb(error);
-      }
-      return cb(null, parsed);
+      return cb(error);
+    }
+    let parsed = JSON.parse(body);
+    return cb(null, parsed);
 
 
-    });
-  }).on('error', function (e) {
-    return cb(e);
   });
+  /*
+   return http.get(options, function (response) {
+
+   // Continuously update stream with data
+   let body = '';
+
+   response.on('data', function (d) {
+   body += d;
+   });
+   response.on('error', function (err) {
+   // Data reception is done, do whatever with it!
+   return cb(err);
+   });
+   response.on('end', function () {
+   // Data reception is done, do whatever with it!
+
+   let parsed = JSON.parse(body);
+   if (response.statusCode > 400) {
+   var error = new Error(parsed.error)
+   error.statusCode = response.statusCode;
+
+   return cb(error);
+   }
+   return cb(null, parsed);
+
+
+   });
+   }).on('error', function (e) {
+   return cb(e);
+   });*/
 }
 module.exports.callRemoteServer = httpGetJson;
 function downloadFile(url, directory, pathFile, mode, cb) {
@@ -575,13 +656,13 @@ function downloadFile(url, directory, pathFile, mode, cb) {
   let headers = {
     'Cookie': global.cookieReceived
   }
+
+
   let options = {
-    host: constants.optionsGet.host,
-    port: constants.optionsGet.port,
-    path: constants.optionsGet.path + url,
-    method: constants.optionsGet.method,
+    url: constants.optionsGetReq.url + url,
+    method: constants.optionsGetReq.method,
     headers: headers
-  };
+  }
   httpGetFile(options, function (err, data) {
     if (err)
       return cb(err);
@@ -597,44 +678,101 @@ module.exports.proxyDownloadFile = downloadFile;
 let httpGetFile = function (options, cb) {
 
   options.agent = agent
-  return http.get(options, function (response) {
-    // Continuously update stream with data
-    let data = [];
-    let total_bytes = parseInt(response.headers['content-length'], 10);
-    let received_bytes = 0
-    if (response.statusCode == 200 || response.statusCode == 201) {
-
-
-      response.on('data', function (chunk) {
-
-        received_bytes += chunk.length;
-        let progress = parseFloat(received_bytes / total_bytes);
-        showProgressBar(progress);
-        data.push(chunk);
-
-      });
-      response.on('error', function (err) {
-        // Data reception is done, do whatever with it!
-        return cb(err);
-      });
-
-      response.on('end', function () {
-        // Data reception is done, do whatever with it!
-
-        showProgressBar(-1);
-        let buffer = Buffer.concat(data);
-        return cb(null, buffer);
-      });
-    } else {
-      let error = new Error();
-      error.statusCode = response.statusCode;
-      error.message = response.error;
-      return cb(error);
+  if (global.isProxy) {
+    if (global.userProxy) {
+      var proxyUrl = "http://" + global.userProxy + ":" + global.pswProxy + "@" + global.proxyUrl;
+      var proxiedRequest = request.defaults({'proxy': proxyUrl});
+      request = proxiedRequest;
     }
+  }
 
-  }).on('error', function (e) {
-    return cb(e)
-  });
+  request(options)
+      .on('response', function (response) {
+        let data = [];
+        let total_bytes = parseInt(response.headers['content-length'], 10);
+        let received_bytes = 0
+        let err;
+        response.on('data', function (chunk) {
+
+          if (response.statusCode == 200 || response.statusCode == 201) {
+
+            received_bytes += chunk.length;
+            let progress = parseFloat(received_bytes / total_bytes);
+            showProgressBar(progress);
+            data.push(chunk);
+          } else {
+            err = chunk.toString()
+          }
+
+        });
+        response.on('error', function (err) {
+          // Data reception is done, do whatever with it!
+          return cb(err);
+        });
+
+        response.on('end', function () {
+          // Data reception is done, do whatever with it!
+          if (response.statusCode == 200 || response.statusCode == 201) {
+            showProgressBar(-1);
+            let buffer = Buffer.concat(data);
+            return cb(null, buffer);
+          } else {
+            let error = new Error();
+            error.statusCode = response.statusCode;
+            error.message = JSON.parse(err).error;
+            return cb(error);
+          }
+        });
+        /*else {
+         console.log("response.body.error",response.body.error)
+         let error = new Error();
+         error.statusCode = response.statusCode;
+         error.message = response.body.error;
+         return cb(error);
+         }*/
+
+      }).on('error', function (err) {
+    return cb(err);
+  })
+  /*
+   return http.get(options, function (response) {
+   // Continuously update stream with data
+   let data = [];
+   let total_bytes = parseInt(response.headers['content-length'], 10);
+   let received_bytes = 0
+   if (response.statusCode == 200 || response.statusCode == 201) {
+
+
+   response.on('data', function (chunk) {
+
+   received_bytes += chunk.length;
+   let progress = parseFloat(received_bytes / total_bytes);
+   showProgressBar(progress);
+   data.push(chunk);
+
+   });
+   response.on('error', function (err) {
+   // Data reception is done, do whatever with it!
+   return cb(err);
+   });
+
+   response.on('end', function () {
+   // Data reception is done, do whatever with it!
+
+   showProgressBar(-1);
+   let buffer = Buffer.concat(data);
+   return cb(null, buffer);
+   });
+   } else {
+   let error = new Error();
+   error.statusCode = response.statusCode;
+   error.message = response.error;
+   return cb(error);
+   }
+
+   }).on('error', function (e) {
+   return cb(e)
+   });*/
 }
 
 
@@ -1264,7 +1402,13 @@ let httpPutJson = function (url, jsonData, callBack) {
     json: jsonData,
     agent: agent
   }
-
+  if (global.isProxy) {
+    if (global.userProxy) {
+      var proxyUrl = "http://" + global.userProxy + ":" + global.pswProxy + "@" + global.proxyUrl;
+      var proxiedRequest = request.defaults({'proxy': proxyUrl});
+      request = proxiedRequest;
+    }
+  }
 // Start the request
   request(options, function (error, response, body) {
 
@@ -1314,7 +1458,7 @@ let readFile = function (res, iconPath, url, userId) {
       downloadFile(url, pathDirectory, pathToUtilFile, 0o0500, (err, pathFileDownload) => {
         //TODO return default pictur if error;
         if (err)
-          return globalService.sendError(res, 405, "failed to download icon");
+          return globalService.sendError(res, err.statusCode, err.message);
 
         fs.readFile(pathFileDownload, (err, fileUtil) => {
           return res.end(fileUtil);

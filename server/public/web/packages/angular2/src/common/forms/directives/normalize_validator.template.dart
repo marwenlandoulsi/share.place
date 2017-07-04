@@ -10,8 +10,8 @@
 // @ignoreProblemForFile UNUSED_SHOWN_NAME
 // @ignoreProblemForFile UNUSED_LOCAL_VARIABLE
 import 'normalize_validator.dart';
-import 'package:angular2/src/common/forms/directives/validators.dart' show Validator, ValidatorFn;
-import 'package:angular2/src/common/forms/directives/validators.template.dart' as i0;
+import 'validators.dart' show Validator, ValidatorFn;
+import 'validators.template.dart' as i0;
 export 'normalize_validator.dart';
 
 var _visited = false;

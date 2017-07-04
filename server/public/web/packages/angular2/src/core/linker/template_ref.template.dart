@@ -10,13 +10,13 @@
 // @ignoreProblemForFile UNUSED_SHOWN_NAME
 // @ignoreProblemForFile UNUSED_LOCAL_VARIABLE
 import 'template_ref.dart';
-import 'view_container.dart';
 import 'app_view.dart';
 import 'element_ref.dart';
+import 'view_container.dart';
 import 'view_ref.dart' show EmbeddedViewRef;
-import 'view_container.template.dart' as i0;
-import 'app_view.template.dart' as i1;
-import 'element_ref.template.dart' as i2;
+import 'app_view.template.dart' as i0;
+import 'element_ref.template.dart' as i1;
+import 'view_container.template.dart' as i2;
 import 'view_ref.template.dart' as i3;
 export 'template_ref.dart';
 

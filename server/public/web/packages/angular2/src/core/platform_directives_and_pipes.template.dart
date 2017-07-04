@@ -10,8 +10,8 @@
 // @ignoreProblemForFile UNUSED_SHOWN_NAME
 // @ignoreProblemForFile UNUSED_LOCAL_VARIABLE
 import 'platform_directives_and_pipes.dart';
-import 'package:angular2/src/core/di.dart' show OpaqueToken;
-import 'package:angular2/src/core/di.template.dart' as i0;
+import 'di.dart' show OpaqueToken;
+import 'di.template.dart' as i0;
 export 'platform_directives_and_pipes.dart';
 
 var _visited = false;

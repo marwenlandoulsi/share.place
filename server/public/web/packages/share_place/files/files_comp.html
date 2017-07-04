@@ -10,20 +10,28 @@
 
     <div class="newTopic">
       <div class="newComment newTopicBlock">
-        <img src="/auth/user/photo/s/{{connectedUser.id}}" class="profileImg">
-        <div class="arowmenow"><input #comment class="comment" placeholder="Write your comment here"
+
+        <img *ngIf ="connectedUser.photoIdMap != null" src="/auth/gridfs/file/{{connectedUser?.photoIdMap['photoIdS']}}/picture.x" class="profileImg">
+        <img  *ngIf ="connectedUser.photoIdMap == null" src="../images/img_profile.png" class="profileImg">
+        <div class="arowmenow">
+          <input #comment class="comment" placeholder="Write your comment here"
                                       (keyup.enter)="addComment(comment.value, selectedFile.versions.last.v);comment.value='';"
                                       class="txt"/>
+          <!--<textarea #comment class="comment"  id="commentArea" placeholder="ffffff your comment here"-->
+                 <!--(keyup.enter)="addComment(comment.value, selectedFile.versions.last.v);comment.value='';"-->
+                 <!--class="txt"></textarea>-->
+
 
           <div (click)="addComment(comment.value, selectedFile.versions.last.v);comment.value='';"
                class="btn_valid"></div>
+
         </div>
         <div class="addTopicBtn"  (click)="fileInput.click()"></div>
         <postit-comp [name]="'comment'" [body]="'To talk to the team, type a comment here...'"
                      class="commentPostit"></postit-comp>
       </div>
     </div>
-    <div #dropZone class="versionsListScroll" (dragenter)="dragEnter(dropZone)">
+    <div #dropZone class="versionsListScroll scrollIe" (dragenter)="dragEnter(dropZone)">
 
       <form id="uploadVersion">
         <input #fileInput  type="file" name="toUpload" (change)="uploadVersion($event.target.files[0].name)" class="fileDropZone"
@@ -54,6 +62,11 @@
                         </div>
                       </div>
                       <div class="version">
+                        <div *ngIf="versionItem.mailInfo != null" class="mailInfo">
+                          <div class="account">{{versionItem.mailInfo.account}}</div>
+                          <div class="subject">{{versionItem.mailInfo.subject}}</div>
+                          <div class="body">{{versionItem.mailInfo.body}}</div>
+                        </div>
                         <!-- new uplo -->
                         <div *ngIf="selectedFile.orderedVersions.length == versionItem.v ">
                           <div *ngIf="isUploading" class="isUploading">
@@ -176,10 +189,13 @@
                                             <material-spinner class="spinner"></material-spinner>
                                           </div>
                                           <img *ngIf="versionItem.status != 'waiting'"
-                                              src="/sp/place/{{selectedPlace?.id}}/folder/{{selectedFolder?.id}}/file/{{selectedFile?.id}}/version/{{versionItem.v}}/thumb"
+                                              src="{{thumbSrc(versionItem,selectedFolder,selectedFile )}}"
                                               class="thumbnail">
+
                                           <div *ngIf="versionItem.status!='uploaded' && versionItem?.mimeType != 'application/quickNote'"
-                                              class="uploadStatus"></div>
+                                              class="uploadStatus">
+
+                                          </div>
                                         </div>
                                       </div>
                                       <div class="rightDetails">
@@ -243,7 +259,7 @@
                                                   class="zmdi zmdi-comment commentVers"></i> </span>Comment
 
                                         </material-button>
-                                        <material-button (click)="delete()" class="menuItemVers" *ngIf="false">
+                                        <material-button (click)="delete(versionItem)" class="menuItemVers" >
                                           <span class="spanVers"><i class="zmdi zmdi-delete delete"></i> </span>
                                           Delete
                                         </material-button>

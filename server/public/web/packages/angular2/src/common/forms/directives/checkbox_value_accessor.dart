@@ -1,9 +1,9 @@
 import 'dart:html';
 
-import "package:angular2/core.dart" show Directive, ElementRef, Provider;
+import 'package:angular2/core.dart' show Directive, ElementRef, Provider;
 
-import "control_value_accessor.dart"
-    show NG_VALUE_ACCESSOR, ControlValueAccessor;
+import 'control_value_accessor.dart'
+    show ChangeFunction, ControlValueAccessor, NG_VALUE_ACCESSOR, TouchFunction;
 
 const CHECKBOX_VALUE_ACCESSOR = const Provider(NG_VALUE_ACCESSOR,
     useExisting: CheckboxControlValueAccessor, multi: true);
@@ -11,35 +11,40 @@ const CHECKBOX_VALUE_ACCESSOR = const Provider(NG_VALUE_ACCESSOR,
 /// The accessor for writing a value and listening to changes on a checkbox input element.
 ///
 /// ### Example
-///     <input type="checkbox" ngControl="rememberLogin">
+///     <input type='checkbox" ngControl="rememberLogin">
 @Directive(
-    selector:
-        "input[type=checkbox][ngControl],input[type=checkbox][ngFormControl],input[type=checkbox][ngModel]",
+    selector: 'input[type=checkbox][ngControl],'
+        'input[type=checkbox][ngFormControl],'
+        'input[type=checkbox][ngModel]',
     host: const {
-      "(change)": "onChange(\$event.target.checked)",
-      "(blur)": "onTouched()"
+      '(change)': 'onChange(\$event.target.checked)',
+      '(blur)': 'touchHandler()'
     },
     providers: const [
       CHECKBOX_VALUE_ACCESSOR
     ])
 class CheckboxControlValueAccessor implements ControlValueAccessor {
   final ElementRef _elementRef;
-  var onChange = (dynamic _) {};
-  var onTouched = () {};
+  ChangeFunction onChange = (_, {String rawValue}) {};
+  void touchHandler() {
+    onTouched();
+  }
+
+  TouchFunction onTouched = () {};
   CheckboxControlValueAccessor(this._elementRef);
   @override
   void writeValue(dynamic value) {
-    InputElement elm = this._elementRef.nativeElement;
+    InputElement elm = _elementRef.nativeElement;
     elm.checked = value;
   }
 
   @override
-  void registerOnChange(dynamic fn) {
-    this.onChange = fn;
+  void registerOnChange(ChangeFunction fn) {
+    onChange = fn;
   }
 
   @override
-  void registerOnTouched(dynamic fn) {
-    this.onTouched = fn;
+  void registerOnTouched(TouchFunction fn) {
+    onTouched = fn;
   }
 }

@@ -1,20 +1,24 @@
 import 'dart:async';
+import 'dart:html';
 
-import 'package:angular2/src/core/change_detection/change_detector_ref.dart';
-import 'package:angular2/src/core/di.dart';
-import 'package:angular2/src/core/linker/app_view_utils.dart';
-import 'package:angular2/src/core/linker/component_factory.dart'
-    show ComponentRef, ComponentFactory;
-import 'package:angular2/src/core/linker/component_resolver.dart';
-import 'package:angular2/src/core/testability/testability.dart'
-    show TestabilityRegistry, Testability;
-import 'package:angular2/src/core/zone/ng_zone.dart' show NgZone, NgZoneError;
+import 'package:angular2/platform/common_dom.dart';
+import 'package:angular2/src/core/change_detection/constants.dart';
+import 'package:angular2/src/core/linker/app_view.dart'
+    show lastGuardedView, caughtException, caughtStack;
+import 'package:angular2/src/core/linker/view_ref.dart';
 import 'package:angular2/src/facade/exceptions.dart'
     show BaseException, ExceptionHandler;
-import 'package:angular2/src/facade/lang.dart' show assertionsEnabled;
+import 'package:angular2/src/facade/lang.dart' show assertionsEnabled, isDartVM;
+import 'package:angular2/src/platform/dom/shared_styles_host.dart';
 
 import 'application_tokens.dart' show PLATFORM_INITIALIZER, APP_INITIALIZER;
-import 'profile/profile.dart' show wtfLeave, wtfCreateScope, WtfScopeFn;
+import 'change_detection/change_detector_ref.dart';
+import 'di.dart';
+import 'linker/app_view_utils.dart';
+import 'linker/component_factory.dart' show ComponentRef, ComponentFactory;
+import 'linker/component_resolver.dart';
+import 'testability/testability.dart' show TestabilityRegistry, Testability;
+import 'zone/ng_zone.dart' show NgZone, NgZoneError;
 
 /// Create an Angular zone.
 NgZone createNgZone() => new NgZone(enableLongStackTrace: assertionsEnabled());
@@ -35,9 +39,17 @@ PlatformRefImpl createPlatform(Injector injector) {
     }
     return true;
   });
+  if (isDartVM && !assertionsEnabled()) {
+    window.console.warn(''
+        'When using Dartium, CHECKED mode is recommended to catch type and '
+        'assertion warnings, along with more specialized runtime checks in '
+        'Angular itself for developers.\n\n'
+        'See https://webdev.dartlang.org/tools/dartium for more information.');
+  }
   _inPlatformCreate = true;
+  sharedStylesHost ??= new DomSharedStylesHost(document);
   try {
-    _platform = injector.get(PlatformRef);
+    _platform = injector.get(PlatformRef) as PlatformRefImpl;
     _platform.init(injector);
   } finally {
     _inPlatformCreate = false;
@@ -139,9 +151,13 @@ class PlatformRefImpl extends PlatformRef {
   }
 
   void dispose() {
-    _applications.forEach((app) => app.dispose());
+    for (var app in _applications) {
+      app.dispose();
+    }
     _applications.clear();
-    _disposeListeners.forEach((dispose) => dispose());
+    for (var dispose in _disposeListeners) {
+      dispose();
+    }
     _disposeListeners.clear();
     _disposed = true;
   }
@@ -169,19 +185,14 @@ abstract class ApplicationRef {
   /// Runs the given [callback] in the zone and returns the result of the call.
   ///
   /// Exceptions will be forwarded to the ExceptionHandler and rethrown.
-  run(callback());
+  run<R>(FutureOr<R> callback());
 
   /// Bootstrap a new component at the root level of the application.
   ///
-  /// ### Bootstrap process
-  ///
-  /// When bootstrapping a new root component into an application, Angular mounts the
-  /// specified application component onto DOM elements identified by the [componentType]'s
-  /// selector and kicks off automatic change detection to finish initializing the component.
-  ///
-  /// ### Example
-  ///     {@example core/ts/platform/platform.ts region='longform'}
-  ///
+  /// When bootstrapping a new root component into an application,
+  /// Angular mounts the specified application component onto DOM elements
+  /// identified by the [ComponentFactory.componentType]'s selector and kicks
+  /// off automatic change detection to finish initializing the component.
   ComponentRef bootstrap(ComponentFactory componentFactory);
 
   /// Retrieve the application [Injector].
@@ -217,7 +228,6 @@ class ApplicationRefImpl extends ApplicationRef {
   final PlatformRefImpl _platform;
   final NgZone _zone;
   final Injector _injector;
-  static WtfScopeFn _tickScope = wtfCreateScope('ApplicationRef#tick()');
   final List<Function> _bootstrapListeners = [];
   final List<Function> _disposeListeners = [];
   final List<ComponentRef> _rootComponents = [];
@@ -291,7 +301,11 @@ class ApplicationRefImpl extends ApplicationRef {
   // There is no current way to express the valid results of this call.
   // The real solution here is to remove supports for returning anything.
   // i.e. just void run(void callback()) { ... }
-  /*Future<R>|R|Null*/ run(callback()) {
+  // TODO(leafp): The return type of this is essentially Future<R>|R|Null.
+  // When FutureOr<T> lands, this can be expressed as FutureOr<R>.  For now
+  // leave it as dynamic, but pass a generic type so that the returned
+  // Future (if any) has the correct reified type.
+  run<R>(FutureOr<R> callback()) {
     // TODO(matanl): Remove support for futures inside of appRef.run.
     var zone = injector.get(NgZone);
     var result;
@@ -300,7 +314,7 @@ class ApplicationRefImpl extends ApplicationRef {
     //
     // Note: the completer needs to be created outside of `zone.run` as Dart
     // swallows rejected promises via the onError callback of the promise.
-    var completer = new Completer();
+    var completer = new Completer<R>();
     zone.run(() {
       try {
         result = callback();
@@ -332,10 +346,28 @@ class ApplicationRefImpl extends ApplicationRef {
 
     return run(() {
       _rootComponentFactories.add(componentFactory);
-      var compRef =
-          componentFactory.create(_injector, [], componentFactory.selector);
+      var compRef = componentFactory.create(_injector, const []);
+      Element existingElement =
+          document.querySelector(componentFactory.selector);
+      Element replacement;
+      if (existingElement != null) {
+        Element newElement = compRef.location.nativeElement as Element;
+        // For app shards using bootstrapStatic, transfer element id
+        // from original node to allow hosting applications to locate loaded
+        // application root.
+        if (newElement.id == null || newElement.id.isEmpty) {
+          newElement.id = existingElement.id;
+        }
+        existingElement.replaceWith(newElement);
+        replacement = newElement;
+      } else {
+        assert(compRef.location.nativeElement != null,
+            'Could not locate node with selector ${componentFactory.selector}');
+        document.body.append(compRef.location.nativeElement);
+      }
       compRef.onDestroy(() {
         _unloadComponent(compRef);
+        replacement?.remove();
       });
       var testability = compRef.injector.get(Testability, null);
       if (testability != null) {
@@ -352,7 +384,9 @@ class ApplicationRefImpl extends ApplicationRef {
     _changeDetectorRefs.add(componentRef.changeDetectorRef);
     tick();
     _rootComponents.add(componentRef);
-    _bootstrapListeners.forEach((listener) => listener(componentRef));
+    for (var listener in _bootstrapListeners) {
+      listener(componentRef);
+    }
   }
 
   void _unloadComponent(ComponentRef componentRef) {
@@ -372,33 +406,84 @@ class ApplicationRefImpl extends ApplicationRef {
   @override
   void tick() {
     AppViewUtils.resetChangeDetection();
-    if (_runningTick) {
-      throw new BaseException('ApplicationRef.tick is called recursively');
-    }
-    var s = ApplicationRefImpl._tickScope();
+
+    // Protect against tick being called recursively in development mode.
+    //
+    // This is mostly to assert valid changes to the framework, not user code.
+    assert(() {
+      if (_runningTick) {
+        throw new BaseException('ApplicationRef.tick is called recursively');
+      }
+      return true;
+    });
+
+    // Run the top-level 'tick' (i.e. detectChanges on root components).
     try {
-      _runningTick = true;
-      int changeDetectorCount = _changeDetectorRefs.length;
-      for (int c = 0; c < changeDetectorCount; c++) {
-        _changeDetectorRefs[c].detectChanges();
-      }
-      if (_enforceNoNewChanges) {
-        for (int c = 0; c < changeDetectorCount; c++) {
-          _changeDetectorRefs[c].checkNoChanges();
-        }
-      }
+      _runTick();
+    } catch (_) {
+      // A crash (uncaught exception) was found. That means at least one
+      // directive in the application tree is throwing. We need to re-run
+      // change detection to disable offending directives.
+      _runTickGuarded();
+
+      // Propagate the original exception/stack upwards.
+      rethrow;
     } finally {
+      // Tick is complete.
       _runningTick = false;
-      wtfLeave(s);
+      lastGuardedView = null;
     }
+  }
+
+  /// Runs `detectChanges` for all top-level components/views.
+  void _runTick() {
+    _runningTick = true;
+    for (int c = 0; c < _changeDetectorRefs.length; c++) {
+      _changeDetectorRefs[c].detectChanges();
+    }
+
+    // Only occurs in dev-mode.
+    if (_enforceNoNewChanges) {
+      for (int c = 0; c < _changeDetectorRefs.length; c++) {
+        _changeDetectorRefs[c].checkNoChanges();
+      }
+    }
+  }
+
+  /// Runs `detectChanges` for all top-level components/views.
+  ///
+  /// Unlike `_runTick`, this enters a guarded mode that checks a view tree
+  /// for exceptions, trying to find the leaf-most node that throws during
+  /// change detection.
+  void _runTickGuarded() {
+    _runningTick = true;
+
+    // For all ViewRefImpls (i.e. concrete AppViews), run change detection.
+    for (int c = 0; c < _changeDetectorRefs.length; c++) {
+      var cdRef = _changeDetectorRefs[c];
+      if (cdRef is ViewRefImpl) {
+        lastGuardedView = cdRef.appView;
+        cdRef.appView.detectChanges();
+      }
+    }
+
+    // TODO: Call ExceptionHandler.onCrash(...) here for logging.
+    lastGuardedView?.cdState = ChangeDetectorState.Errored;
+    _exceptionHandler.call(caughtException, caughtStack);
   }
 
   @override
   void dispose() {
-    _rootComponents.forEach((ref) => ref.destroy());
-    _disposeListeners.forEach((dispose) => dispose());
+    for (var ref in _rootComponents) {
+      ref.destroy();
+    }
+    for (var dispose in _disposeListeners) {
+      dispose();
+    }
     _disposeListeners.clear();
-    _streamSubscriptions.forEach((subscription) => subscription.cancel());
+    for (var subscription in _streamSubscriptions) {
+      subscription.cancel();
+    }
     _streamSubscriptions.clear();
     _platform._applicationDisposed(this);
   }

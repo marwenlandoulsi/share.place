@@ -11,15 +11,15 @@
 // @ignoreProblemForFile UNUSED_LOCAL_VARIABLE
 import 'reflective_injector.dart';
 import 'package:angular2/src/facade/exceptions.dart' show BaseException;
-import 'injector.dart' show Injector, THROW_IF_NOT_FOUND;
 import 'decorators.dart';
+import 'injector.dart' show Injector, THROW_IF_NOT_FOUND;
 import 'provider.dart' show Provider;
 import 'reflective_exceptions.dart' show AbstractProviderError, NoProviderError, CyclicDependencyError, InstantiationError, OutOfBoundsError;
 import 'reflective_key.dart' show ReflectiveKey;
 import 'reflective_provider.dart' show ResolvedReflectiveProvider, ReflectiveDependency, ResolvedReflectiveFactory, resolveReflectiveProviders;
 import 'package:angular2/src/facade/exceptions.template.dart' as i0;
-import 'injector.template.dart' as i1;
-import 'decorators.template.dart' as i2;
+import 'decorators.template.dart' as i1;
+import 'injector.template.dart' as i2;
 import 'provider.template.dart' as i3;
 import 'reflective_exceptions.template.dart' as i4;
 import 'reflective_key.template.dart' as i5;

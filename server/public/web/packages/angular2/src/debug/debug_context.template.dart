@@ -11,13 +11,11 @@
 // @ignoreProblemForFile UNUSED_LOCAL_VARIABLE
 import 'debug_context.dart';
 import 'package:angular2/src/core/di.dart' show Injector;
-import 'package:angular2/src/core/linker/view_type.dart';
 import 'package:angular2/src/core/render/api.dart' show RenderDebugInfo;
-import 'package:angular2/src/debug/debug_app_view.dart';
+import 'debug_app_view.dart';
 import 'package:angular2/src/core/di.template.dart' as i0;
-import 'package:angular2/src/core/linker/view_type.template.dart' as i1;
-import 'package:angular2/src/core/render/api.template.dart' as i2;
-import 'package:angular2/src/debug/debug_app_view.template.dart' as i3;
+import 'package:angular2/src/core/render/api.template.dart' as i1;
+import 'debug_app_view.template.dart' as i2;
 export 'debug_context.dart';
 
 var _visited = false;
@@ -26,5 +24,4 @@ if (_visited) return; _visited = true;
 i0.initReflector();
 i1.initReflector();
 i2.initReflector();
-i3.initReflector();
 }

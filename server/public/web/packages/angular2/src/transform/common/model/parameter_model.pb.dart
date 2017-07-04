@@ -25,11 +25,8 @@ class ParameterModel extends GeneratedMessage {
   static ParameterModel create() => new ParameterModel();
   static PbList<ParameterModel> createRepeated() =>
       new PbList<ParameterModel>();
-  static ParameterModel getDefault() {
-    if (_defaultInstance == null)
-      _defaultInstance = new _ReadonlyParameterModel();
-    return _defaultInstance;
-  }
+  static ParameterModel getDefault() =>
+      _defaultInstance ??= new _ReadonlyParameterModel();
 
   static ParameterModel _defaultInstance;
   static void $checkItem(ParameterModel v) {
@@ -63,8 +60,7 @@ class ParameterModel extends GeneratedMessage {
   void clearParamName() => clearField(4);
 }
 
-class _ReadonlyParameterModel extends ParameterModel with ReadonlyMessageMixin {
-}
+class _ReadonlyParameterModel extends ParameterModel {}
 
 const ParameterModel$json = const {
   '1': 'ParameterModel',

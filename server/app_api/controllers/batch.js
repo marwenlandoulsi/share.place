@@ -11,7 +11,7 @@ const URL_PATTERNS = {
   '': ['folder', 'user'],
   folder: ['fileInfo', 'file'],
   file: ['', 'version', 'download'],
-  version: ['thumb']
+  version: ['thumb.x']
 }
 
 var callback = function (resultList) {

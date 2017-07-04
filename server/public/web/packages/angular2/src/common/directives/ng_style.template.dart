@@ -12,8 +12,8 @@
 import 'ng_style.dart';
 import 'package:angular2/src/core/reflection/reflection.dart' as _ngRef;
 import 'dart:html';
-import 'package:angular2/core.dart' show DoCheck, KeyValueDiffer, KeyValueDiffers, ElementRef, Directive;
-import '../../core/change_detection/differs/default_keyvalue_differ.dart' show KeyValueChangeRecord;
+import 'package:angular2/core.dart' show DoCheck, ElementRef, Directive;
+import '../../core/change_detection/differs/default_keyvalue_differ.dart' show DefaultKeyValueDiffer, KeyValueChangeRecord;
 import 'package:angular2/core.template.dart' as i0;
 import '../../core/change_detection/differs/default_keyvalue_differ.template.dart' as i1;
 export 'ng_style.dart';
@@ -24,8 +24,8 @@ if (_visited) return; _visited = true;
 _ngRef.reflector
 ..registerType(NgStyle, new _ngRef.ReflectionInfo(
 const <dynamic>[],
-const [const <dynamic>[KeyValueDiffers], const <dynamic>[ElementRef]],
-(KeyValueDiffers _differs, ElementRef elementRef) => new NgStyle(_differs, elementRef),
+const [const <dynamic>[ElementRef]],
+(ElementRef elementRef) => new NgStyle(elementRef),
 const <dynamic>[DoCheck])
 )
 ;

@@ -1,15 +1,15 @@
 import 'package:angular2/di.dart' show Injectable, Inject;
 import 'package:angular2/src/core/application_tokens.dart' show APP_ID;
 import 'package:angular2/src/core/change_detection/change_detection.dart'
-    show devModeEqual, uninitialized;
+    show devModeEqual;
 import 'package:angular2/src/core/metadata/view.dart' show ViewEncapsulation;
 import 'package:angular2/src/core/render/api.dart' show RenderComponentType;
 import 'package:angular2/src/core/security.dart' show SafeValue;
 import 'package:angular2/src/core/security.dart';
-import 'package:angular2/src/facade/exceptions.dart' show BaseException;
 import 'package:angular2/src/facade/lang.dart' show looseIdentical;
 import 'package:angular2/src/platform/dom/events/event_manager.dart'
     show EventManager;
+
 import 'exceptions.dart' show ExpressionChangedAfterItHasBeenCheckedException;
 
 /// Function called when a view is destroyed.
@@ -22,7 +22,7 @@ AppViewUtils appViewUtils;
 /// provide access to root dom renderer.
 @Injectable()
 class AppViewUtils {
-  String _appId;
+  final String _appId;
   EventManager eventManager;
   static int _nextCompTypeId = 0;
 
@@ -36,14 +36,14 @@ class AppViewUtils {
 
   AppViewUtils(@Inject(APP_ID) this._appId, this.sanitizer, this.eventManager);
 
-  /// Used by the generated code.
-  RenderComponentType createRenderComponentType(
+  /// Used by the generated code to initialize and share common rendering data
+  /// such as css across instances.
+  RenderComponentType createRenderType(
       String templateUrl,
-      num slotCount,
       ViewEncapsulation encapsulation,
       List<dynamic /* String | List < dynamic > */ > styles) {
-    return new RenderComponentType('${_appId}-${_nextCompTypeId++}',
-        templateUrl, slotCount, encapsulation, styles);
+    return new RenderComponentType(
+        '${_appId}-${_nextCompTypeId++}', templateUrl, encapsulation, styles);
   }
 
   /// Enters execution mode that will throw exceptions if any binding
@@ -72,161 +72,223 @@ class AppViewUtils {
   }
 }
 
-List ensureSlotCount(List projectableNodes, int expectedSlotCount) {
-  var res;
-  if (projectableNodes == null) {
-    return const [];
-  }
-  if (projectableNodes.length < expectedSlotCount) {
-    var givenSlotCount = projectableNodes.length;
-    res = new List(expectedSlotCount);
-    for (var i = 0; i < expectedSlotCount; i++) {
-      res[i] = (i < givenSlotCount) ? projectableNodes[i] : const [];
-    }
-  } else {
-    res = projectableNodes;
-  }
-  return res;
-}
-
 dynamic interpolate0(dynamic p) {
   if (p is SafeValue) return p;
-  return p == null ? '' : (p is String ? p : p.toString());
+  return p == null ? '' : '$p';
 }
 
-dynamic interpolate1(String c0, dynamic a1, String c1) =>
-    c0 + (a1 == null ? '' : (a1 is String ? a1 : a1.toString())) + c1;
+String interpolate1(String c0, dynamic a1, String c1) =>
+    c0 + (a1 == null ? '' : '$a1') + c1;
 
-dynamic interpolate2(String c0, dynamic a1, String c1, dynamic a2, String c2) =>
+String interpolate2(String c0, dynamic a1, String c1, dynamic a2, String c2) =>
     c0 + _toStringWithNull(a1) + c1 + _toStringWithNull(a2) + c2;
 
-const MAX_INTERPOLATION_VALUES = 9;
-String interpolate(num valueCount, String c0, dynamic a1, String c1,
-    [dynamic a2,
-    String c2,
-    dynamic a3,
-    String c3,
-    dynamic a4,
-    String c4,
-    dynamic a5,
-    String c5,
-    dynamic a6,
-    String c6,
-    dynamic a7,
-    String c7,
-    dynamic a8,
-    String c8,
-    dynamic a9,
-    String c9]) {
-  switch (valueCount) {
-    case 1:
-      return c0 + _toStringWithNull(a1) + c1;
-    case 2:
-      return c0 + _toStringWithNull(a1) + c1 + _toStringWithNull(a2) + c2;
-    case 3:
-      return c0 +
-          _toStringWithNull(a1) +
-          c1 +
-          _toStringWithNull(a2) +
-          c2 +
-          _toStringWithNull(a3) +
-          c3;
-    case 4:
-      return c0 +
-          _toStringWithNull(a1) +
-          c1 +
-          _toStringWithNull(a2) +
-          c2 +
-          _toStringWithNull(a3) +
-          c3 +
-          _toStringWithNull(a4) +
-          c4;
-    case 5:
-      return c0 +
-          _toStringWithNull(a1) +
-          c1 +
-          _toStringWithNull(a2) +
-          c2 +
-          _toStringWithNull(a3) +
-          c3 +
-          _toStringWithNull(a4) +
-          c4 +
-          _toStringWithNull(a5) +
-          c5;
-    case 6:
-      return c0 +
-          _toStringWithNull(a1) +
-          c1 +
-          _toStringWithNull(a2) +
-          c2 +
-          _toStringWithNull(a3) +
-          c3 +
-          _toStringWithNull(a4) +
-          c4 +
-          _toStringWithNull(a5) +
-          c5 +
-          _toStringWithNull(a6) +
-          c6;
-    case 7:
-      return c0 +
-          _toStringWithNull(a1) +
-          c1 +
-          _toStringWithNull(a2) +
-          c2 +
-          _toStringWithNull(a3) +
-          c3 +
-          _toStringWithNull(a4) +
-          c4 +
-          _toStringWithNull(a5) +
-          c5 +
-          _toStringWithNull(a6) +
-          c6 +
-          _toStringWithNull(a7) +
-          c7;
-    case 8:
-      return c0 +
-          _toStringWithNull(a1) +
-          c1 +
-          _toStringWithNull(a2) +
-          c2 +
-          _toStringWithNull(a3) +
-          c3 +
-          _toStringWithNull(a4) +
-          c4 +
-          _toStringWithNull(a5) +
-          c5 +
-          _toStringWithNull(a6) +
-          c6 +
-          _toStringWithNull(a7) +
-          c7 +
-          _toStringWithNull(a8) +
-          c8;
-    case 9:
-      return c0 +
-          _toStringWithNull(a1) +
-          c1 +
-          _toStringWithNull(a2) +
-          c2 +
-          _toStringWithNull(a3) +
-          c3 +
-          _toStringWithNull(a4) +
-          c4 +
-          _toStringWithNull(a5) +
-          c5 +
-          _toStringWithNull(a6) +
-          c6 +
-          _toStringWithNull(a7) +
-          c7 +
-          _toStringWithNull(a8) +
-          c8 +
-          _toStringWithNull(a9) +
-          c9;
-    default:
-      throw new BaseException('''Does not support more than 9 expressions''');
-  }
-}
+String interpolate3(
+  String c0,
+  dynamic a1,
+  String c1,
+  dynamic a2,
+  String c2,
+  dynamic a3,
+  String c3,
+) =>
+    c0 +
+    _toStringWithNull(a1) +
+    c1 +
+    _toStringWithNull(a2) +
+    c2 +
+    _toStringWithNull(a3) +
+    c3;
 
-String _toStringWithNull(dynamic v) => v?.toString() ?? '';
+String interpolate4(
+  String c0,
+  dynamic a1,
+  String c1,
+  dynamic a2,
+  String c2,
+  dynamic a3,
+  String c3,
+  dynamic a4,
+  String c4,
+) =>
+    c0 +
+    _toStringWithNull(a1) +
+    c1 +
+    _toStringWithNull(a2) +
+    c2 +
+    _toStringWithNull(a3) +
+    c3 +
+    _toStringWithNull(a4) +
+    c4;
+
+String interpolate5(
+  String c0,
+  dynamic a1,
+  String c1,
+  dynamic a2,
+  String c2,
+  dynamic a3,
+  String c3,
+  dynamic a4,
+  String c4,
+  dynamic a5,
+  String c5,
+) =>
+    c0 +
+    _toStringWithNull(a1) +
+    c1 +
+    _toStringWithNull(a2) +
+    c2 +
+    _toStringWithNull(a3) +
+    c3 +
+    _toStringWithNull(a4) +
+    c4 +
+    _toStringWithNull(a5) +
+    c5;
+
+String interpolate6(
+  String c0,
+  dynamic a1,
+  String c1,
+  dynamic a2,
+  String c2,
+  dynamic a3,
+  String c3,
+  dynamic a4,
+  String c4,
+  dynamic a5,
+  String c5,
+  dynamic a6,
+  String c6,
+) =>
+    c0 +
+    _toStringWithNull(a1) +
+    c1 +
+    _toStringWithNull(a2) +
+    c2 +
+    _toStringWithNull(a3) +
+    c3 +
+    _toStringWithNull(a4) +
+    c4 +
+    _toStringWithNull(a5) +
+    c5 +
+    _toStringWithNull(a6) +
+    c6;
+
+String interpolate7(
+  String c0,
+  dynamic a1,
+  String c1,
+  dynamic a2,
+  String c2,
+  dynamic a3,
+  String c3,
+  dynamic a4,
+  String c4,
+  dynamic a5,
+  String c5,
+  dynamic a6,
+  String c6,
+  dynamic a7,
+  String c7,
+) =>
+    c0 +
+    _toStringWithNull(a1) +
+    c1 +
+    _toStringWithNull(a2) +
+    c2 +
+    _toStringWithNull(a3) +
+    c3 +
+    _toStringWithNull(a4) +
+    c4 +
+    _toStringWithNull(a5) +
+    c5 +
+    _toStringWithNull(a6) +
+    c6 +
+    _toStringWithNull(a7) +
+    c7;
+
+String interpolate8(
+  String c0,
+  dynamic a1,
+  String c1,
+  dynamic a2,
+  String c2,
+  dynamic a3,
+  String c3,
+  dynamic a4,
+  String c4,
+  dynamic a5,
+  String c5,
+  dynamic a6,
+  String c6,
+  dynamic a7,
+  String c7,
+  dynamic a8,
+  String c8,
+) =>
+    c0 +
+    _toStringWithNull(a1) +
+    c1 +
+    _toStringWithNull(a2) +
+    c2 +
+    _toStringWithNull(a3) +
+    c3 +
+    _toStringWithNull(a4) +
+    c4 +
+    _toStringWithNull(a5) +
+    c5 +
+    _toStringWithNull(a6) +
+    c6 +
+    _toStringWithNull(a7) +
+    c7 +
+    _toStringWithNull(a8) +
+    c8;
+
+String interpolate9(
+  String c0,
+  dynamic a1,
+  String c1,
+  dynamic a2,
+  String c2,
+  dynamic a3,
+  String c3,
+  dynamic a4,
+  String c4,
+  dynamic a5,
+  String c5,
+  dynamic a6,
+  String c6,
+  dynamic a7,
+  String c7,
+  dynamic a8,
+  String c8,
+  dynamic a9,
+  String c9,
+) =>
+    c0 +
+    _toStringWithNull(a1) +
+    c1 +
+    _toStringWithNull(a2) +
+    c2 +
+    _toStringWithNull(a3) +
+    c3 +
+    _toStringWithNull(a4) +
+    c4 +
+    _toStringWithNull(a5) +
+    c5 +
+    _toStringWithNull(a6) +
+    c6 +
+    _toStringWithNull(a7) +
+    c7 +
+    _toStringWithNull(a8) +
+    c8 +
+    _toStringWithNull(a9) +
+    c9;
+
+const MAX_INTERPOLATION_VALUES = 9;
+
+String _toStringWithNull(dynamic v) => v == null ? '' : '$v';
 
 bool checkBinding(dynamic oldValue, dynamic newValue) {
   if (AppViewUtils.throwOnChanges) {
@@ -270,15 +332,21 @@ dynamic/*= T */ castByValue/*< T >*/(dynamic input, dynamic/*= T */ value) {
   return (input as dynamic/*= T */);
 }
 
+// TODO(matanl): Remove this hack.
+//
+// Purposefully have unused (_, __) parameters in the proxy functions below in
+// order to get around the lack of a properly typed API for DDC. Once we have a
+// typed API we can remove pureProxy and these unused parameters.
+
 const EMPTY_ARRAY = const [];
 const EMPTY_MAP = const {};
-dynamic /* (p0: P0) => R */ pureProxy1/*< P0, R >*/(
-    dynamic/*= R */ fn(dynamic /* P0 */ p0)) {
-  dynamic/*= R */ result;
+dynamic pureProxy1(dynamic fn(dynamic p0)) {
+  dynamic result;
+  var first = true;
   var v0;
-  v0 = uninitialized;
-  return (p0) {
-    if (!looseIdentical(v0, p0)) {
+  return ([p0, _, __]) {
+    if (first || !looseIdentical(v0, p0)) {
+      first = false;
       v0 = p0;
       result = fn(p0);
     }
@@ -286,13 +354,13 @@ dynamic /* (p0: P0) => R */ pureProxy1/*< P0, R >*/(
   };
 }
 
-dynamic /* (p0: P0, p1: P1) => R */ pureProxy2/*< P0, P1, R >*/(
-    dynamic/*= R */ fn(dynamic /* P0 */ p0, dynamic /* P1 */ p1)) {
-  dynamic/*= R */ result;
+dynamic pureProxy2(dynamic fn(dynamic p0, dynamic p1)) {
+  dynamic result;
+  var first = true;
   var v0, v1;
-  v0 = v1 = uninitialized;
-  return (p0, p1) {
-    if (!looseIdentical(v0, p0) || !looseIdentical(v1, p1)) {
+  return ([p0, p1, _, __]) {
+    if (first || !looseIdentical(v0, p0) || !looseIdentical(v1, p1)) {
+      first = false;
       v0 = p0;
       v1 = p1;
       result = fn(p0, p1);
@@ -301,19 +369,16 @@ dynamic /* (p0: P0, p1: P1) => R */ pureProxy2/*< P0, P1, R >*/(
   };
 }
 
-dynamic
-    /* (p0: P0, p1: P1,
-                                                                               p2: P2) => R */
-    pureProxy3/*< P0, P1, P2, R >*/(
-        dynamic/*= R */ fn(
-            dynamic /* P0 */ p0, dynamic /* P1 */ p1, dynamic /* P2 */ p2)) {
-  dynamic/*= R */ result;
+dynamic pureProxy3(dynamic fn(dynamic p0, dynamic p1, dynamic p2)) {
+  dynamic result;
+  var first = true;
   var v0, v1, v2;
-  v0 = v1 = v2 = uninitialized;
-  return (p0, p1, p2) {
-    if (!looseIdentical(v0, p0) ||
+  return ([p0, p1, p2, _, __]) {
+    if (first ||
+        !looseIdentical(v0, p0) ||
         !looseIdentical(v1, p1) ||
         !looseIdentical(v2, p2)) {
+      first = false;
       v0 = p0;
       v1 = p1;
       v2 = p2;
@@ -323,19 +388,17 @@ dynamic
   };
 }
 
-dynamic /* (
-    p0: P0, p1: P1, p2: P2, p3: P3) => R */
-    pureProxy4/*< P0, P1, P2, P3, R >*/(
-        dynamic/*= R */ fn(dynamic /* P0 */ p0, dynamic /* P1 */ p1,
-            dynamic /* P2 */ p2, dynamic /* P3 */ p3)) {
-  dynamic/*= R */ result;
+dynamic pureProxy4(dynamic fn(dynamic p0, dynamic p1, dynamic p2, dynamic p3)) {
+  dynamic result;
+  var first = true;
   var v0, v1, v2, v3;
-  v0 = v1 = v2 = v3 = uninitialized;
-  return (p0, p1, p2, p3) {
-    if (!looseIdentical(v0, p0) ||
+  return ([p0, p1, p2, p3, _, __]) {
+    if (first ||
+        !looseIdentical(v0, p0) ||
         !looseIdentical(v1, p1) ||
         !looseIdentical(v2, p2) ||
         !looseIdentical(v3, p3)) {
+      first = false;
       v0 = p0;
       v1 = p1;
       v2 = p2;
@@ -346,21 +409,19 @@ dynamic /* (
   };
 }
 
-dynamic /* (p0: P0, p1: P1, p2: P2, p3: P3, p4: P4) =>
-    R */
-    pureProxy5/*< P0, P1, P2, P3, P4, R >*/(
-        dynamic/*= R */
-        fn(dynamic /* P0 */ p0, dynamic /* P1 */ p1, dynamic /* P2 */ p2,
-            dynamic /* P3 */ p3, dynamic /* P4 */ p4)) {
-  dynamic/*= R */ result;
+dynamic pureProxy5(
+    dynamic fn(dynamic p0, dynamic p1, dynamic p2, dynamic p3, dynamic p4)) {
+  dynamic result;
+  var first = true;
   var v0, v1, v2, v3, v4;
-  v0 = v1 = v2 = v3 = v4 = uninitialized;
-  return (p0, p1, p2, p3, p4) {
-    if (!looseIdentical(v0, p0) ||
+  return ([p0, p1, p2, p3, p4, _, __]) {
+    if (first ||
+        !looseIdentical(v0, p0) ||
         !looseIdentical(v1, p1) ||
         !looseIdentical(v2, p2) ||
         !looseIdentical(v3, p3) ||
         !looseIdentical(v4, p4)) {
+      first = false;
       v0 = p0;
       v1 = p1;
       v2 = p2;
@@ -372,23 +433,21 @@ dynamic /* (p0: P0, p1: P1, p2: P2, p3: P3, p4: P4) =>
   };
 }
 
-dynamic
-    /* (p0: P0, p1: P1, p2: P2, p3: P3,
-                                                                 p4: P4, p5: P5) => R */
-    pureProxy6/*< P0, P1, P2, P3, P4, P5, R >*/(
-        dynamic/*= R */
-        fn(dynamic /* P0 */ p0, dynamic /* P1 */ p1, dynamic /* P2 */ p2,
-            dynamic /* P3 */ p3, dynamic /* P4 */ p4, dynamic /* P5 */ p5)) {
-  dynamic/*= R */ result;
+dynamic pureProxy6(
+    dynamic fn(dynamic p0, dynamic p1, dynamic p2, dynamic p3, dynamic p4,
+        dynamic p5)) {
+  dynamic result;
+  var first = true;
   var v0, v1, v2, v3, v4, v5;
-  v0 = v1 = v2 = v3 = v4 = v5 = uninitialized;
-  return (p0, p1, p2, p3, p4, p5) {
-    if (!looseIdentical(v0, p0) ||
+  return ([p0, p1, p2, p3, p4, p5, _, __]) {
+    if (first ||
+        !looseIdentical(v0, p0) ||
         !looseIdentical(v1, p1) ||
         !looseIdentical(v2, p2) ||
         !looseIdentical(v3, p3) ||
         !looseIdentical(v4, p4) ||
         !looseIdentical(v5, p5)) {
+      first = false;
       v0 = p0;
       v1 = p1;
       v2 = p2;
@@ -401,27 +460,22 @@ dynamic
   };
 }
 
-dynamic /* (p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6) => R */
-    pureProxy7/*< P0, P1, P2, P3, P4, P5, P6, R >*/(
-        dynamic/*= R */ fn(
-            dynamic /* P0 */ p0,
-            dynamic /* P1 */ p1,
-            dynamic /* P2 */ p2,
-            dynamic /* P3 */ p3,
-            dynamic /* P4 */ p4,
-            dynamic /* P5 */ p5,
-            dynamic /* P6 */ p6)) {
-  dynamic/*= R */ result;
+dynamic pureProxy7(
+    dynamic fn(dynamic p0, dynamic p1, dynamic p2, dynamic p3, dynamic p4,
+        dynamic p5, dynamic p6)) {
+  dynamic result;
+  var first = true;
   var v0, v1, v2, v3, v4, v5, v6;
-  v0 = v1 = v2 = v3 = v4 = v5 = v6 = uninitialized;
-  return (p0, p1, p2, p3, p4, p5, p6) {
-    if (!looseIdentical(v0, p0) ||
+  return ([p0, p1, p2, p3, p4, p5, p6, _, __]) {
+    if (first ||
+        !looseIdentical(v0, p0) ||
         !looseIdentical(v1, p1) ||
         !looseIdentical(v2, p2) ||
         !looseIdentical(v3, p3) ||
         !looseIdentical(v4, p4) ||
         !looseIdentical(v5, p5) ||
         !looseIdentical(v6, p6)) {
+      first = false;
       v0 = p0;
       v1 = p1;
       v2 = p2;
@@ -435,23 +489,15 @@ dynamic /* (p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6) => R */
   };
 }
 
-dynamic
-    /* (p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7) => R */
-    pureProxy8/*< P0, P1, P2, P3, P4, P5, P6, P7, R >*/(
-        dynamic/*= R */ fn(
-            dynamic /* P0 */ p0,
-            dynamic /* P1 */ p1,
-            dynamic /* P2 */ p2,
-            dynamic /* P3 */ p3,
-            dynamic /* P4 */ p4,
-            dynamic /* P5 */ p5,
-            dynamic /* P6 */ p6,
-            dynamic /* P7 */ p7)) {
-  dynamic/*= R */ result;
+dynamic pureProxy8(
+    dynamic fn(dynamic p0, dynamic p1, dynamic p2, dynamic p3, dynamic p4,
+        dynamic p5, dynamic p6, dynamic p7)) {
+  dynamic result;
+  var first = true;
   var v0, v1, v2, v3, v4, v5, v6, v7;
-  v0 = v1 = v2 = v3 = v4 = v5 = v6 = v7 = uninitialized;
-  return (p0, p1, p2, p3, p4, p5, p6, p7) {
-    if (!looseIdentical(v0, p0) ||
+  return ([p0, p1, p2, p3, p4, p5, p6, p7, _, __]) {
+    if (first ||
+        !looseIdentical(v0, p0) ||
         !looseIdentical(v1, p1) ||
         !looseIdentical(v2, p2) ||
         !looseIdentical(v3, p3) ||
@@ -459,6 +505,7 @@ dynamic
         !looseIdentical(v5, p5) ||
         !looseIdentical(v6, p6) ||
         !looseIdentical(v7, p7)) {
+      first = false;
       v0 = p0;
       v1 = p1;
       v2 = p2;
@@ -473,22 +520,15 @@ dynamic
   };
 }
 
-dynamic /* (p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8) => R */ pureProxy9/*< P0, P1, P2, P3, P4, P5, P6, P7, P8, R >*/(
-    dynamic/*= R */ fn(
-        dynamic /* P0 */ p0,
-        dynamic /* P1 */ p1,
-        dynamic /* P2 */ p2,
-        dynamic /* P3 */ p3,
-        dynamic /* P4 */ p4,
-        dynamic /* P5 */ p5,
-        dynamic /* P6 */ p6,
-        dynamic /* P7 */ p7,
-        dynamic /* P8 */ p8)) {
-  dynamic/*= R */ result;
+dynamic pureProxy9(
+    dynamic fn(dynamic p0, dynamic p1, dynamic p2, dynamic p3, dynamic p4,
+        dynamic p5, dynamic p6, dynamic p7, dynamic p8)) {
+  dynamic result;
+  var first = true;
   var v0, v1, v2, v3, v4, v5, v6, v7, v8;
-  v0 = v1 = v2 = v3 = v4 = v5 = v6 = v7 = v8 = uninitialized;
-  return (p0, p1, p2, p3, p4, p5, p6, p7, p8) {
-    if (!looseIdentical(v0, p0) ||
+  return ([p0, p1, p2, p3, p4, p5, p6, p7, p8, _, __]) {
+    if (first ||
+        !looseIdentical(v0, p0) ||
         !looseIdentical(v1, p1) ||
         !looseIdentical(v2, p2) ||
         !looseIdentical(v3, p3) ||
@@ -497,6 +537,7 @@ dynamic /* (p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: 
         !looseIdentical(v6, p6) ||
         !looseIdentical(v7, p7) ||
         !looseIdentical(v8, p8)) {
+      first = false;
       v0 = p0;
       v1 = p1;
       v2 = p2;
@@ -512,23 +553,15 @@ dynamic /* (p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: 
   };
 }
 
-dynamic /* (p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9) => R */ pureProxy10/*< P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, R >*/(
-    dynamic/*= R */ fn(
-        dynamic /* P0 */ p0,
-        dynamic /* P1 */ p1,
-        dynamic /* P2 */ p2,
-        dynamic /* P3 */ p3,
-        dynamic /* P4 */ p4,
-        dynamic /* P5 */ p5,
-        dynamic /* P6 */ p6,
-        dynamic /* P7 */ p7,
-        dynamic /* P8 */ p8,
-        dynamic /* P9 */ p9)) {
-  dynamic/*= R */ result;
+dynamic pureProxy10(
+    dynamic fn(dynamic p0, dynamic p1, dynamic p2, dynamic p3, dynamic p4,
+        dynamic p5, dynamic p6, dynamic p7, dynamic p8, dynamic p9)) {
+  dynamic result;
+  var first = true;
   var v0, v1, v2, v3, v4, v5, v6, v7, v8, v9;
-  v0 = v1 = v2 = v3 = v4 = v5 = v6 = v7 = v8 = v9 = uninitialized;
-  return (p0, p1, p2, p3, p4, p5, p6, p7, p8, p9) {
-    if (!looseIdentical(v0, p0) ||
+  return ([p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, _, __]) {
+    if (first ||
+        !looseIdentical(v0, p0) ||
         !looseIdentical(v1, p1) ||
         !looseIdentical(v2, p2) ||
         !looseIdentical(v3, p3) ||
@@ -538,6 +571,7 @@ dynamic /* (p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: 
         !looseIdentical(v7, p7) ||
         !looseIdentical(v8, p8) ||
         !looseIdentical(v9, p9)) {
+      first = false;
       v0 = p0;
       v1 = p1;
       v2 = p2;

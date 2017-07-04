@@ -1,7 +1,8 @@
 import "dart:async";
 
 import "package:angular2/core.dart"
-    show Pipe, Injectable, ChangeDetectorRef, OnDestroy, WrappedValue;
+    show Pipe, ChangeDetectorRef, OnDestroy, WrappedValue;
+import "package:angular2/di.dart" show Injectable;
 
 import "invalid_pipe_argument_exception.dart" show InvalidPipeArgumentException;
 
@@ -30,18 +31,55 @@ class PromiseStrategy {
   void onDestroy(dynamic subscription) {}
 }
 
-var _promiseStrategy = new PromiseStrategy();
-var _observableStrategy = new ObservableStrategy();
-Future<dynamic> ___unused;
+final _promiseStrategy = new PromiseStrategy();
+final _observableStrategy = new ObservableStrategy();
 
 /// An `async` pipe awaits for a value from a [Future] or [Stream]. When a value
 /// is received, the `async` pipe marks the component to be checked for changes.
 ///
 /// ### Example
 ///
-/// {@example common/pipes/lib/async_pipe.dart region='AsyncPipe'}
+/// <?code-excerpt "common/pipes/lib/async_pipe.dart (AsyncPipe)"?>
+/// ```dart
+/// @Component(
+///     selector: 'async-greeter',
+///     template: '''
+///       <div>
+///         <p>Wait for it ... {{ greeting | async }}</p>
+///         <button [disabled]="!done" (click)="tryAgain()">Try Again!</button>
+///       </div>''')
+/// class AsyncGreeterPipe {
+///   static const _delay = const Duration(seconds: 2);
 ///
-@Pipe(name: "async", pure: false)
+///   Future<String> greeting;
+///   bool done;
+///
+///   AsyncGreeterPipe() {
+///     tryAgain();
+///   }
+///
+///   String greet() {
+///     done = true;
+///     return "Hi!";
+///   }
+///
+///   void tryAgain() {
+///     done = false;
+///     greeting = new Future<String>.delayed(_delay, greet);
+///   }
+/// }
+///
+/// @Component(
+///     selector: 'async-time',
+///     template: "<p>Time: {{ time | async | date:'mediumTime'}}</p>") //
+/// class AsyncTimePipe {
+///   static const _delay = const Duration(seconds: 1);
+///   final Stream<DateTime> time =
+///       new Stream.periodic(_delay, (_) => new DateTime.now());
+/// }
+/// ```
+///
+@Pipe("async", pure: false)
 @Injectable()
 class AsyncPipe implements OnDestroy {
   Object _latestValue;
@@ -69,7 +107,9 @@ class AsyncPipe implements OnDestroy {
       this._latestReturnedValue = this._latestValue;
       return this._latestValue;
     }
-    if (!identical(obj, this._obj)) {
+    // StreamController.stream getter always returns new Stream instance,
+    // operator== check is also needed. See https://github.com/dart-lang/angular2/issues/260
+    if (!_maybeStreamIdentical(obj, this._obj)) {
       this._dispose();
       return this.transform(obj);
     }
@@ -113,5 +153,12 @@ class AsyncPipe implements OnDestroy {
       this._latestValue = value;
       this._ref.markForCheck();
     }
+  }
+
+  static bool _maybeStreamIdentical(a, b) {
+    if (!identical(a, b)) {
+      return a is Stream && b is Stream && a == b;
+    }
+    return true;
   }
 }

@@ -13,17 +13,15 @@ import 'core_directives.dart';
 import 'ng_class.dart' show NgClass;
 import 'ng_for.dart' show NgFor;
 import 'ng_if.dart' show NgIf;
-import 'ng_plural.dart' show NgPlural, NgPluralCase;
 import 'ng_style.dart' show NgStyle;
 import 'ng_switch.dart' show NgSwitch, NgSwitchWhen, NgSwitchDefault;
 import 'ng_template_outlet.dart' show NgTemplateOutlet;
 import 'ng_class.template.dart' as i0;
 import 'ng_for.template.dart' as i1;
 import 'ng_if.template.dart' as i2;
-import 'ng_plural.template.dart' as i3;
-import 'ng_style.template.dart' as i4;
-import 'ng_switch.template.dart' as i5;
-import 'ng_template_outlet.template.dart' as i6;
+import 'ng_style.template.dart' as i3;
+import 'ng_switch.template.dart' as i4;
+import 'ng_template_outlet.template.dart' as i5;
 export 'core_directives.dart';
 
 var _visited = false;
@@ -35,5 +33,4 @@ i2.initReflector();
 i3.initReflector();
 i4.initReflector();
 i5.initReflector();
-i6.initReflector();
 }

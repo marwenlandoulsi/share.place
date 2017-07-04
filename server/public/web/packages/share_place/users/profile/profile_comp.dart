@@ -1,21 +1,19 @@
 import 'dart:async';
 import 'dart:html';
+
 import 'package:angular2/core.dart';
 import 'package:angular2/router.dart';
-
+import 'package:angular_components/angular_components.dart';
+import 'package:croppie_dart/croppie_dart.dart';
+import 'package:share_place/app_component.dart';
+import 'package:share_place/app_config.dart' as conf;
+import 'package:share_place/common/ui/button_comp.dart';
+import 'package:share_place/common/ui/text_comp.dart';
 import 'package:share_place/environment.dart';
 import 'package:share_place/place.dart';
 import 'package:share_place/place_service.dart';
-
-
 import 'package:share_place/users/user.dart';
-import 'package:share_place/common/ui/button_comp.dart';
-import 'package:share_place/common/ui/text_comp.dart';
-import 'package:share_place/app_component.dart';
 
-import 'package:angular2_components/angular2_components.dart';
-
-import 'package:share_place/app_config.dart' as conf;
 @Component(
     selector: 'profile-comp',
     templateUrl: 'profile_comp.html',
@@ -28,12 +26,20 @@ class ProfileComp implements OnInit {
   final Environment _environment;
   final AppComponent appComponent;
 
+  @ViewChild("fileInput")
+  ElementRef fileInput;
+  @ViewChild("photoDiv")
+  ElementRef photoDiv;
+
+
   bool emailChanging = false;
   bool passwordChanging = false;
+
   bool get isWebApp => conf.isWebApp;
 
   String newPass;
   String emailAtStart;
+  Croppie croppie;
 
   ProfileComp(this._placeService, this._router, this._environment,
       this.appComponent);
@@ -61,6 +67,8 @@ class ProfileComp implements OnInit {
   void startEmailChange() {
     if (!emailChanging) {
       emailChanging = true;
+      _environment.track(
+          "emailChange", data: {"user": _environment.connectedUser});
     }
   }
 
@@ -89,22 +97,40 @@ class ProfileComp implements OnInit {
   }
 
   Future<Null> save() async {
-    User updated = await _placeService.saveProfile(
-        connectedUser, mailChanged: emailChanging, newPass: newPass);
-    if (updated != null)
+    String croppieResult;
+    if (croppie!=null)
+      croppieResult = await croppie.resultBase64();
+    //TODO merge both services calls in one (image upload and profile save)
+    _environment.connectedUser = await _placeService.saveProfile(
+        connectedUser, mailChanged: emailChanging, newPass: newPass  ,croppieData : croppieResult);
+    if (connectedUser != null)
       close();
   }
 
-  Future<Null> uploadFile() async {
-    uploading = true;
-    var fileForm = querySelector("#profileImageForm");
-    _environment.connectedUser = await _placeService.postProfileImage(
-        new FormData(fileForm));
-    fileForm.style.border = "none";
+  Future<Null> imgChange(e) async {
+    if (fileInput.nativeElement.files == null ||
+        fileInput.nativeElement.files.length == 0)
+      return;
+    ImageElement croppieContainer = new Element.img();
+    croppieContainer.id = "cropping";
+    croppieContainer.src = "/auth/gridfs/file/${photoId}/picture.x";
+    photoDiv.nativeElement.children.clear();
+    photoDiv.nativeElement.children.add(croppieContainer);
+    Element CroppieDiv = querySelector('#photoDiv');
+    CroppieDiv.addEventListener('click',
+            (event) =>  event.preventDefault(), false);
+    FileReader reader = new FileReader();
+    reader.onLoad.listen((e) async {
+      croppieContainer.setAttribute("src", e.target.result);
+      croppie = new Croppie(croppieContainer,
+          new Options(boundary: new Boundary(width: 100, height: 100),
+              viewport: new ViewPort(width: 90, height: 90, type: 'circle')));
 
-    //FIXME this shouldn't be called since the return value of the post should be up to date (on profile image update)
-    await _placeService.loadConnectedUser();
-    uploading = false;
+      await croppie.bind(new BindConfiguration(url: e.target.result));
+    });
+
+
+    reader.readAsDataUrl(fileInput.nativeElement.files[0]);
   }
 
   String get facebookUrl {
@@ -135,9 +161,9 @@ class ProfileComp implements OnInit {
 
   String get userEmail {
     String email = connectedUser.email;
-    if( email == null )
+    if (email == null)
       email = connectedUser.facebookAccount.email;
-    if( email == null )
+    if (email == null)
       email = connectedUser.googleAccount.email;
     return email;
   }
@@ -149,7 +175,9 @@ class ProfileComp implements OnInit {
   bool get isSocialAccount => connectedUser.email == null;
 
   bool get hasFacebookAccount => connectedUser.facebookAccount != null;
+
   bool get hasGoogleAccount => connectedUser.googleAccount != null;
 
+  String get photoUrl => photoId == null ? "../images/img_profile.png" : "/auth/gridfs/file/$photoId/picture.x";
 
 }

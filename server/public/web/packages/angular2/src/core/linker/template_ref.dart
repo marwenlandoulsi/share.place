@@ -1,6 +1,6 @@
-import 'view_container.dart';
 import 'app_view.dart';
 import 'element_ref.dart';
+import 'view_container.dart';
 import 'view_ref.dart' show EmbeddedViewRef;
 
 /// Represents an Embedded Template that can be used to instantiate Embedded
@@ -16,14 +16,15 @@ import 'view_ref.dart' show EmbeddedViewRef;
 /// [ViewContainerRef#createEmbeddedView], which will create the View and attach
 /// it to the View Container.
 class TemplateRef {
-  final ViewContainer _appElement;
+  final ViewContainer _viewContainer;
   final Function _viewFactory;
 
-  TemplateRef(this._appElement, this._viewFactory);
+  TemplateRef(this._viewContainer, this._viewFactory);
 
-  EmbeddedViewRef createEmbeddedView() {
-    AppView view = _viewFactory(_appElement.parentInjector, _appElement);
-    view.create(null, null);
+  EmbeddedViewRef createEmbeddedView(context) {
+    AppView parentView = _viewContainer.parentView;
+    AppView view = _viewFactory(parentView, _viewContainer.index);
+    view.create(parentView.ctx, parentView.projectableNodes);
     return view.ref;
   }
 
@@ -36,5 +37,5 @@ class TemplateRef {
   /// location, but in advanced use-cases, the View can be attached to a
   /// different container while keeping the data-binding and injection context
   /// from the original location.
-  ElementRef get elementRef => _appElement.elementRef;
+  ElementRef get elementRef => _viewContainer.elementRef;
 }

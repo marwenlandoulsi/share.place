@@ -21,7 +21,7 @@ import 'package:angular2/src/compiler/schema/dom_element_schema_registry.dart';
 import 'package:angular2/src/compiler/style_compiler.dart';
 import 'package:angular2/src/compiler/template_parser.dart';
 import 'package:angular2/src/compiler/view_compiler/view_compiler.dart';
-import 'package:angular2/src/transform/common/asset_reader.dart';
+import 'asset_reader.dart';
 import 'url_resolver.dart';
 import 'xhr_impl.dart';
 import 'package:angular2/src/compiler/config.template.dart' as i0;
@@ -35,7 +35,7 @@ import 'package:angular2/src/compiler/schema/dom_element_schema_registry.templat
 import 'package:angular2/src/compiler/style_compiler.template.dart' as i8;
 import 'package:angular2/src/compiler/template_parser.template.dart' as i9;
 import 'package:angular2/src/compiler/view_compiler/view_compiler.template.dart' as i10;
-import 'package:angular2/src/transform/common/asset_reader.template.dart' as i11;
+import 'asset_reader.template.dart' as i11;
 import 'url_resolver.template.dart' as i12;
 import 'xhr_impl.template.dart' as i13;
 export 'ng_compiler.dart';

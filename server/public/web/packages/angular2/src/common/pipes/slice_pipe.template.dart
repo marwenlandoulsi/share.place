@@ -23,7 +23,7 @@ void initReflector() {
 if (_visited) return; _visited = true;
 _ngRef.reflector
 ..registerType(SlicePipe, new _ngRef.ReflectionInfo(
-const <dynamic>[const Pipe(name: "slice", pure: false), const Injectable()],
+const <dynamic>[const Pipe("slice", pure: false), const Injectable()],
 const [],
 () => new SlicePipe(),
 const <dynamic>[PipeTransform])

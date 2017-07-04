@@ -44,9 +44,7 @@ import "location_strategy.dart" show LocationStrategy;
 @Injectable()
 class Location {
   LocationStrategy platformStrategy;
-  /** @internal */
-  EventEmitter<dynamic> _subject = new EventEmitter();
-  /** @internal */
+  final _subject = new EventEmitter<dynamic>();
   String _baseHref;
   Location(this.platformStrategy) {
     var browserBaseHref = this.platformStrategy.getBaseHref();

@@ -1,9 +1,10 @@
-import 'package:angular2/src/source_gen/common/namespace_model.dart';
-import 'package:angular2/src/source_gen/common/reflection_info_model.dart';
 import 'package:angular2/src/transform/common/names.dart';
 import 'package:code_builder/code_builder.dart';
 import 'package:code_builder/dart/core.dart';
 import 'package:quiver/iterables.dart';
+
+import 'namespace_model.dart';
+import 'reflection_info_model.dart';
 
 /// A model with all of the metadata necessary to generate the initialize of the
 /// Dependency Injection system for Angular.
@@ -43,7 +44,7 @@ class NgDepsModel {
     // Write code to prevent reentry.
     if (hasInitializationCode) {
       setUpMethod.addStatement(ifThen(reference(_visited), [returnVoid]));
-      setUpMethod.addStatement(literal(true).asAssign(_visited));
+      setUpMethod.addStatement(literal(true).asAssign(reference(_visited)));
     }
 
     reflectables.forEach((r) {
@@ -52,7 +53,6 @@ class NgDepsModel {
 
     // Call the setup method for our dependencies.
     for (var importModel in depImports) {
-      // TODO(alorenzen): Fix scoping (prefix).
       setUpMethod
           .addStatement(reference(SETUP_METHOD_NAME, importModel.uri).call([]));
     }

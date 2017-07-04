@@ -23,7 +23,15 @@ const conf = require(path.join(__dirname, 'server', 'app_config.js'));
 autoUpdater.autoDownload = true;
 autoUpdater.logger = log;
 autoUpdater.logger.transports.file.level = 'info';
-log.info("============================||   share.place V" + pjson.version + "   ||============================");
+//log.info("============================||   share.place V" + pjson.version + "   ||============================");
+const os = require('os');
+
+const dateFormat = require('dateformat');
+const now = new Date();
+log.info("╔══════════════════════════════════════════════════════════════════════════════════════════════════╗")
+log.info("║      Share.place " + pjson.version + ", " + os.platform() + " " + os.release() + " at " + dateFormat(now, "GMT:dddd, mmmm dS, yyyy, h:MM:ss TT Z") + "           ║")
+log.info("╚══════════════════════════════════════════════════════════════════════════════════════════════════╝")
+
 log.info("run in dev mode:", process.env.DEV ? process.env.DEV : false);
 var ipcMain = require('electron').ipcMain;
 //const {appUpdater} = require('./autopdater');
@@ -44,7 +52,7 @@ globalService.checkPathOrCreateSync(globalConfig.dataDir, globalConfig.lastLogin
 
 var portrange = 3001;
 let domains = '*';
-//app.commandLine.appendSwitch('auth-server-whitelist', domains)
+app.commandLine.appendSwitch('auth-server-whitelist', domains)
 app.commandLine.appendSwitch('disable-http-cache')
 
 global.onLine = true
@@ -61,7 +69,7 @@ ipcMain.on('online-status-changed', (event, status) => {
       port: conf.optionsGet.port,
       path: '/'
     }
-    checkConnectionCtrl.checkInternetConnection(options, (remoteIsReachable) => {
+    checkConnectionCtrl.checkInternetConnection("https://github.com/", (remoteIsReachable) => {
       global.onLine = remoteIsReachable;
       if (!remoteIsReachable) {
 
@@ -71,7 +79,7 @@ ipcMain.on('online-status-changed', (event, status) => {
       }
     })
     setInterval(function () {
-      checkConnectionCtrl.checkInternetConnection(options, (remoteIsReachable) => {
+      checkConnectionCtrl.checkInternetConnection("https://github.com/", (remoteIsReachable) => {
         global.onLine = remoteIsReachable;
         if (!remoteIsReachable) {
 
@@ -80,7 +88,7 @@ ipcMain.on('online-status-changed', (event, status) => {
           mainWindow.setOverlayIcon(path.join(__dirname, 'Online.ico'), 'you are onLine');
         }
       })
-    }, 60000);
+    }, 10000);
 
   } else {
     mainWindow.setOverlayIcon(path.join(__dirname, 'Offline-red.ico'), 'you are offLine');
@@ -184,7 +192,9 @@ if (shouldQuit) {
   app.quit()
 }
 app.on('login', (event, webContents, request, authInfo, callback) => {
+
   event.preventDefault()
+
   log.info("user behind proxy and event on login executed")
   log.info("app on login event request url: ", request.url, ' and the referrer :', request.referrer)
   log.info("app on login event authInfo: ")
@@ -192,7 +202,38 @@ app.on('login', (event, webContents, request, authInfo, callback) => {
   log.info("host ", authInfo.host)
   log.info("realm  ", authInfo.realm)
   log.info("port ", authInfo.port)
-  callback('', '')
+
+  let credentialsEvent = {
+    showPopupCredentials: {
+      serverAdress: authInfo.host,
+      serverName: authInfo.realm
+    }
+  }
+
+  credentialsEvent = JSON.stringify(credentialsEvent);
+
+  webContents.executeJavaScript(
+      `dispatchWindowEvent(` + credentialsEvent + `);`
+  );
+
+  ipcMain.once('sendProxyCredentials', (event, data) => {
+    let username = data.name
+    let psw = data.pass
+    if (username === null || username === undefined) {
+      username = ''
+    }
+
+    if (psw === null || psw === undefined) {
+      psw = ''
+    }
+
+
+    global.userProxy = username
+    global.pswProxy = psw
+
+    return callback(username, psw)
+  });
+  //callback('', '')
 })
 app.on('gpu-process-crashed', (event, killed) => {
   log.error("app crashed", event)
@@ -200,17 +241,15 @@ app.on('gpu-process-crashed', (event, killed) => {
 });
 app.on('ready', function () {
 
-  //session.defaultSession.allowNTLMCredentialsForDomains(domains);
-  const ses = session.fromPartition('')
+  session.defaultSession.allowNTLMCredentialsForDomains(domains);
+  const ses = session.fromPartition('', {cache: false})
 
   ses.resolveProxy('google.com', (proxy) => {
     log.info("you are behind the proxy : ", proxy)
     global.proxy = proxy
     if (proxy != "DIRECT") {
       global.isProxy = true
-
       var proxyArr = proxy.split(' ');
-
       global.proxyUrl = proxyArr[1]
       global.proxyHost = String(proxyArr[1]).substr(0, String(proxyArr[1]).indexOf(':'))
       global.proxyPort = String(proxyArr[1]).substr(String(proxyArr[1]).indexOf(':') + 1, String(proxyArr[1]).length)
@@ -233,7 +272,7 @@ app.on('ready', function () {
     global.homeDir = app.getPath('home');
 
     var expressApp = require('./server/app');
-    var listener = expressApp.listen(0, '127.0.0.1', () => {
+    var listener = expressApp.listen(0, 'localhost', () => {
 
       /*var mb =  menubar ({
        index : "http://localhost:"+listener.address().port+"/web",
@@ -269,9 +308,13 @@ app.on('ready', function () {
 
       //mainWindow.maximize();
 
-      mainWindow.webContents.session.setProxy({proxyRules: global.proxyUrl, proxyBypassRules: '<local>'}, function () {
+      if(global.isProxy){
+        mainWindow.webContents.session.setProxy({proxyRules: global.proxyUrl, proxyBypassRules: '<local>'}, function () {
+          mainWindow.loadURL('http://127.0.0.1:' + global.serverPort + '/web/');
+        });
+      }else{
         mainWindow.loadURL('http://127.0.0.1:' + global.serverPort + '/web/');
-      });
+      }
 
       // mainWindow.loadURL('http://127.0.0.1:' + global.serverPort + '/web/');
       global.homeUrlServer = 'http://127.0.0.1:' + global.serverPort + '/web';

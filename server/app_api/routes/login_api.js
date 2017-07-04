@@ -22,15 +22,15 @@ var jsonfile = require('jsonfile');
 
 var multer = require('multer');
 let http = require("https");
-
-if (process.env.DEV )
+let _ = require('underscore')
+if (process.env.DEV)
   http = require("http");
 
 
 var electronProxyAgent = require('electron-proxy-agent');
 var agent = new electronProxyAgent({
-  resolveProxy : function(url, callback) {
-    callback(global.proxy+"; DIRECT"); // return a valid pac syntax
+  resolveProxy: function (url, callback) {
+    callback(global.proxy + "; DIRECT"); // return a valid pac syntax
   }
 });
 
@@ -101,7 +101,6 @@ let connectWithRs = (req) => {
       urlAuth = constants.urlGlogin + global.serverPort;
 
 
-
     authWindow.loadURL(urlAuth);
 
     authWindow.show();
@@ -122,10 +121,10 @@ let connectWithRs = (req) => {
     })
 
 
-    authWindow.webContents.on('did-finish-load' , ()=>{
-       let url = authWindow.webContents.getURL();
-      if(process.env.DEV){
-        if(url.indexOf('localhost:3000') != -1){
+    authWindow.webContents.on('did-finish-load', () => {
+      let url = authWindow.webContents.getURL();
+      if (process.env.DEV) {
+        if (url.indexOf('localhost:3000') != -1) {
           authWindow.webContents.session.clearStorageData([{
 
             storages: ["clear"]
@@ -136,8 +135,8 @@ let connectWithRs = (req) => {
           global.mainWindow.webContents.reload();
 
         }
-      }else{
-        if(url.indexOf('share.place/') != -1){
+      } else {
+        if (url.indexOf('share.place/') != -1) {
           authWindow.webContents.session.clearStorageData([{
 
             storages: ["clear"]
@@ -198,8 +197,7 @@ router.post('/login', passport.authenticate('local-login', {
 
 // edit profile ---------------------------------
 router.post('/profile/edit', isLoggedIn, (req, res, next) => {
-  console.log("req.body", req.body);
-  console.log("req.file", req.file)
+
   if (global.onLine) {
     editProfile(req, res, (err, user) => {
       if (err) {
@@ -280,29 +278,50 @@ router.get('/user/photo/:size', function (req, res) {
       globalService.checkPathOrCreateSync(pathToUserPictureDir, pathToUserPicture)
 
       var file = fs.createWriteStream(pathToUserPicture);
-
+      if (global.isProxy) {
+        if (global.userProxy) {
+          var proxyUrl = "http://" + global.userProxy + ":" + global.pswProxy + "@" + global.proxyUrl;
+          var proxiedRequest = request.defaults({'proxy': proxyUrl});
+          request = proxiedRequest;
+        }
+      }
       var options = {
-        host: conf.optionsGetFromAuth.host,
-        port: conf.optionsGetFromAuth.port,
-        path: conf.optionsGetFromAuth.path + url,
-        method: conf.optionsGetFromAuth.method,
+        url: conf.optionsGetFromAuthReq.url + url,
+
+        method: conf.optionsGetFromAuthReq.method,
         headers: {
           'Cookie': global.cookieReceived
         },
-        agent:agent
+        agent: agent
       };
-      var request = http.get(options, function (response) {
-        var stream = response.pipe(file);
-        stream.on('finish', function () {
-          readFile(res, pathToUserPicture);
-        });
-      }).on('error', function (e) {
-        log.error("error to download img");
-        if (fs.existsSync(pathToUserPicture))
-          readFile(res, pathToUserPicture);
 
-        readFile(res, constants.defaultPicture);
-      });
+      request(options)
+          .on('response', function (response) {
+            var stream = response.pipe(file);
+            stream.on('finish', function () {
+              readFile(res, pathToUserPicture);
+            });
+          })
+          .on('error', function (err) {
+            log.error("error to download profile picture", err);
+
+            if (fs.existsSync(pathToUserPicture))
+              readFile(res, pathToUserPicture);
+
+            readFile(res, constants.defaultPicture);
+          })
+      /* var request = http.get(options, function (response) {
+       var stream = response.pipe(file);
+       stream.on('finish', function () {
+       readFile(res, pathToUserPicture);
+       });
+       }).on('error', function (e) {
+       log.error("error to download img");
+       if (fs.existsSync(pathToUserPicture))
+       readFile(res, pathToUserPicture);
+
+       readFile(res, constants.defaultPicture);
+       });*/
     } else {
       readFile(res, constants.defaultPicture);
     }
@@ -331,29 +350,38 @@ router.get('/user/photo/:size/:userId', function (req, res) {
 
     var file = fs.createWriteStream(pathToUserPicture);
 
+    if (global.isProxy) {
+      if (global.userProxy) {
+        var proxyUrl = "http://" + global.userProxy + ":" + global.pswProxy + "@" + global.proxyUrl;
+        var proxiedRequest = request.defaults({'proxy': proxyUrl});
+        request = proxiedRequest;
+      }
+    }
     var options = {
-      host: conf.optionsGetFromAuth.host,
-      port: conf.optionsGetFromAuth.port,
-      path: conf.optionsGetFromAuth.path + url,
-      method: conf.optionsGetFromAuth.method,
+      url: conf.optionsGetFromAuthReq.url + url,
+
+      method: conf.optionsGetFromAuthReq.method,
       headers: {
         'Cookie': global.cookieReceived
       },
-      agent:agent
+      agent: agent
     };
-    var request = http.get(options, function (response) {
-      var stream = response.pipe(file);
-      stream.on('finish', function () {
-        readFile(res, pathToUserPicture);
-      });
-    }).on('error', function (e) {
-      log.error("error to download img", e)
-      if (fs.existsSync(pathToUserPicture)) {
-        readFile(res, pathToUserPicture);
-      } else {
-        readFile(res, constants.defaultPicture);
-      }
-    });
+
+    request(options)
+        .on('response', function (response) {
+          var stream = response.pipe(file);
+          stream.on('finish', function () {
+            readFile(res, pathToUserPicture);
+          });
+        })
+        .on('error', function (err) {
+          log.error("error to download profile picture", err);
+
+          if (fs.existsSync(pathToUserPicture))
+            readFile(res, pathToUserPicture);
+
+          readFile(res, constants.defaultPicture);
+        })
   } else {
     if (fs.existsSync(pathToUserPicture)) {
       readFile(res, pathToUserPicture);
@@ -389,16 +417,130 @@ router.post('/forgot_pass', (req, res, next) => {
   if (global.onLine) {
     forgotPassword(req, res, (err, data) => {
       if (err) {
-        log.error("ezrzerzer", err.message)
         globalService.sendError(res, 405, err.message);
       }
-      log.error("sqsss", data)
+
       globalService.sendJsonResponse(res, 201, "", data);
 
     })
   } else {
     proxy.dialogBox("info", "Share.place", "sorry you are offline you can't reset your password")
   }
+})
+
+// sends the image we saved by userId   ---------------------------------
+router.get('/gridfs/file/:fileId/picture.x', (req, res) => {
+
+  let url = req.url
+
+
+
+  if (global.isProxy) {
+    if (global.userProxy) {
+      var proxyUrl = "http://" + global.userProxy + ":" + global.pswProxy + "@" + global.proxyUrl;
+      var proxiedRequest = request.defaults({'proxy': proxyUrl});
+      request = proxiedRequest;
+    }
+  }
+  var options = {
+    url: conf.optionsGetFromAuthReq.url + url,
+
+    method: conf.optionsGetFromAuthReq.method,
+    headers: {
+      'Cookie': global.cookieReceived
+    },
+    agent: agent
+  };
+
+  return request(options).pipe(res)
+
+
+  /*if (req.file) {
+   var pathToFile = path.join(__dirname, '..', '..', 'tmp', 'upload', req.file.filename);
+   form.append('filename', fs.createReadStream(path.join(__dirname, '..', '..', 'tmp', 'upload', req.file.filename)),
+   {
+   filename: req.file.originalname,
+   contentType: req.file.mimeType
+   });
+   }*/
+
+});
+
+// sends the image we saved by userId   ---------------------------------
+router.get('/gridfs/file/', (req, res) => {
+  let url = req.url
+  if (global.isProxy) {
+    if (global.userProxy) {
+      var proxyUrl = "http://" + global.userProxy + ":" + global.pswProxy + "@" + global.proxyUrl;
+      var proxiedRequest = request.defaults({'proxy': proxyUrl});
+      request = proxiedRequest;
+    }
+  }
+  var options = {
+    url: conf.optionsGetFromAuthReq.url + url,
+
+    method: conf.optionsGetFromAuthReq.method,
+    headers: {
+      'Cookie': global.cookieReceived
+    },
+    agent: agent
+  };
+  return request(options)
+      .on('response', function (response) {
+        console.log(response.statusCode) // 200
+        console.log(response.headers['content-type']) // 'image/png'
+      })
+      .pipe(res)
+});
+
+router.post('/profile/uploadImageBase64', function (req, res, next) {
+  let url = req.url
+
+  let profilePicture = req.body.data
+
+
+  let form = {};
+
+  if(!_.isEmpty(profilePicture)){
+    form.data = profilePicture
+  }
+
+  let headers = {
+    'Cookie': global.cookieReceived
+  }
+
+  let options = {
+    url: constants.optionsGetFromAuthReq.url + url,
+    method: constants.optionsPost.method,
+    headers: headers,
+    form: form,
+    agent: agent
+  }
+  if (global.isProxy) {
+    if (global.userProxy) {
+      var proxyUrl = "http://" + global.userProxy + ":" + global.pswProxy + "@" + global.proxyUrl;
+      var proxiedRequest = request.defaults({'proxy': proxyUrl});
+      request = proxiedRequest;
+    }
+  }
+  request(options, function (err, resp, body) {
+
+
+    if (err)
+      return globalService.sendError(res, err.statusCode, err.message)
+
+    if (!err && ((resp.statusCode == 200 || resp.statusCode == 201))) {
+      var user = JSON.parse(body).data;
+
+      return globalService.sendJsonResponse(res, resp.statusCode, user)
+    }else{
+
+      var error = JSON.parse(body).error;
+      return globalService.sendJsonResponse(res, resp.statusCode, error)
+    }
+  });
+
+
 })
 // to read user data
 var readUserData = function (req, user) {
@@ -476,24 +618,36 @@ function downloadFile(url, pathToUserPictureDir, pathToUserPicture, cb) {
 
   var file = fs.createWriteStream(pathToUserPicture);
 
+
+  if (global.isProxy) {
+    if (global.userProxy) {
+      var proxyUrl = "http://" + global.userProxy + ":" + global.pswProxy + "@" + global.proxyUrl;
+      var proxiedRequest = request.defaults({'proxy': proxyUrl});
+      request = proxiedRequest;
+    }
+  }
   var options = {
-    host: conf.optionsGetFromAuth.host,
-    port: conf.optionsGetFromAuth.port,
-    path: conf.optionsGetFromAuth.path + url,
-    method: conf.optionsGetFromAuth.method,
+    url: conf.optionsGetFromAuthReq.url + url,
+
+    method: conf.optionsGetFromAuthReq.method,
     headers: {
       'Cookie': global.cookieReceived
     },
-    agent:agent
+    agent: agent
   };
-  var request = http.get(options, function (response) {
-    var stream = response.pipe(file);
-    stream.on('finish', function () {
-      return cb(null, pathToUserPicture);
-    });
-  }).on('error', function (e) {
-    return cb(e);
-  });
+
+  request(options)
+      .on('response', function (response) {
+        var stream = response.pipe(file);
+        stream.on('finish', function () {
+          return cb(null, pathToUserPicture);
+        });
+      })
+      .on('error', function (err) {
+        log.error("error to download file", err);
+
+        return cb(err);
+      })
 };
 
 var httpGetFile = function (options, cb) {
@@ -540,7 +694,7 @@ var editProfile = function (req, res, cb) {
 // Configure the request
   if (req.file) {
     let options = {
-      agent : agent,
+      agent: agent,
       url: constants.urlLoginProxy + url,
       headers: headers,
     }
@@ -557,7 +711,7 @@ var editProfile = function (req, res, cb) {
       if (!error && (response.statusCode == 200 || response.statusCode == 201)) {
         // Print out the response body
         var user = JSON.parse(body).data;
-        log.error("response.statusCode", user);
+
         if (pathToFile) {
           fs.unlink(pathToFile, function (err) {
             if (err)
@@ -603,7 +757,7 @@ var editProfile = function (req, res, cb) {
       if (!error && (response.statusCode == 200 || response.statusCode == 201)) {
         // Print out the response body
         var user = JSON.parse(body).data;
-        log.error("response.statusCode", user);
+
         if (pathToFile) {
           fs.unlink(pathToFile, function (err) {
             if (err)
@@ -633,7 +787,7 @@ var forgotPassword = function (req, res, cb) {
 // Configure the request
 
   let options = {
-    agent:agent,
+    agent: agent,
     url: constants.urlLoginProxy + url,
     form: req.body
   }
@@ -647,7 +801,7 @@ var forgotPassword = function (req, res, cb) {
 
     if (!error && (response.statusCode == 200 || response.statusCode == 201)) {
       // Print out the response body
-      console.log('ddddddd', body)
+
       let data = JSON.parse(body).msg;
       return cb(null, data);
     } else {

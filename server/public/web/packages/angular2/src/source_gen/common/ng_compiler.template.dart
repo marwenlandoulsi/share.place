@@ -22,8 +22,8 @@ import 'package:angular2/src/compiler/style_compiler.dart';
 import 'package:angular2/src/compiler/template_parser.dart';
 import 'package:angular2/src/compiler/url_resolver.dart';
 import 'package:angular2/src/compiler/view_compiler/view_compiler.dart';
-import 'package:angular2/src/source_gen/common/xhr_impl.dart';
 import 'package:build/build.dart';
+import 'xhr_impl.dart';
 import 'package:angular2/src/compiler/config.template.dart' as i0;
 import 'package:angular2/src/compiler/directive_normalizer.template.dart' as i1;
 import 'package:angular2/src/compiler/expression_parser/lexer.template.dart' as i2;
@@ -36,7 +36,7 @@ import 'package:angular2/src/compiler/style_compiler.template.dart' as i8;
 import 'package:angular2/src/compiler/template_parser.template.dart' as i9;
 import 'package:angular2/src/compiler/url_resolver.template.dart' as i10;
 import 'package:angular2/src/compiler/view_compiler/view_compiler.template.dart' as i11;
-import 'package:angular2/src/source_gen/common/xhr_impl.template.dart' as i12;
+import 'xhr_impl.template.dart' as i12;
 export 'ng_compiler.dart';
 
 var _visited = false;

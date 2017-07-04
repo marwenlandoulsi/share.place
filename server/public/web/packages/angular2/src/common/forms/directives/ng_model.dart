@@ -1,20 +1,20 @@
-import "package:angular2/core.dart"
-    show OnChanges, SimpleChange, Directive, Provider, Inject, Optional, Self;
-import "package:angular2/src/facade/async.dart" show EventEmitter;
+import 'package:angular2/core.dart'
+    show OnChanges, OnInit, SimpleChange, Directive, Provider;
+import 'package:angular2/di.dart' show Inject, Optional, Self;
+import 'package:angular2/src/facade/async.dart' show EventEmitter;
 
-import "../model.dart" show Control;
-import "../validators.dart" show NG_VALIDATORS, NG_ASYNC_VALIDATORS;
-import "control_value_accessor.dart"
+import '../model.dart' show Control;
+import '../validators.dart' show NG_VALIDATORS;
+import 'control_value_accessor.dart'
     show ControlValueAccessor, NG_VALUE_ACCESSOR;
-import "ng_control.dart" show NgControl;
-import "shared.dart"
+import 'ng_control.dart' show NgControl;
+import 'shared.dart'
     show
         setUpControl,
         isPropertyUpdated,
         selectValueAccessor,
-        composeValidators,
-        composeAsyncValidators;
-import "validators.dart" show ValidatorFn, AsyncValidatorFn;
+        composeValidators;
+import 'validators.dart' show ValidatorFn;
 
 const formControlBinding = const Provider(NgControl, useExisting: NgModel);
 
@@ -28,31 +28,40 @@ const formControlBinding = const Provider(NgControl, useExisting: NgModel);
 /// need is the `ngModel` selector to activate it. For a two-way binding, use
 /// the `[(ngModel)]` syntax to ensure the model updates in both directions.
 ///
-/// Learn more about `ngModel` in the Guide [Forms](docs/guide/forms.html#ngModel)
-/// and [Template Syntax](docs/guide/template-syntax.html#ngModel) pages.
+/// Learn more about `ngModel` in the [Forms][] and [Template Syntax][TS] pages.
+///
+/// [Forms]: https://webdev.dartlang.org/angular/guide/forms#ngModel
+/// [TS]: https://webdev.dartlang.org/angular/guide/template-syntax#ngModel
 ///
 /// ### Examples
 ///
-/// {@example docs/template-syntax/lib/app_component.html region=NgModel-1}
+/// <?code-excerpt "docs/template-syntax/lib/app_component.html (NgModel-1)"?>
+/// ```html
+/// <input [(ngModel)]="currentHero.name">
+/// ```
 ///
 /// This is equivalent to having separate bindings:
 ///
-/// {@example docs/template-syntax/lib/app_component.html region=NgModel-3}
+/// <?code-excerpt "docs/template-syntax/lib/app_component.html (NgModel-3)"?>
+/// ```html
+/// <input
+///   [ngModel]="currentHero.name"
+///   (ngModelChange)="currentHero.name=$event">
+/// ```
 ///
 /// Try the [live example][ex].
-/// [ex]: examples/template-syntax/#ngModel
+///
+/// [ex]: http://angular-examples.github.io/template-syntax/#ngModel
 @Directive(
-    selector: "[ngModel]:not([ngControl]):not([ngFormControl])",
+    selector: '[ngModel]:not([ngControl]):not([ngFormControl])',
     providers: const [formControlBinding],
-    inputs: const ["model: ngModel"],
-    outputs: const ["update: ngModelChange"],
-    exportAs: "ngForm")
-class NgModel extends NgControl implements OnChanges {
-  List<dynamic> _validators;
-  List<dynamic> _asyncValidators;
-  var _control = new Control();
-  var _added = false;
-  var update = new EventEmitter(false);
+    inputs: const ['model: ngModel'],
+    outputs: const ['update: ngModelChange'],
+    exportAs: 'ngForm')
+class NgModel extends NgControl implements OnChanges, OnInit {
+  final List<dynamic> _validators;
+  final _control = new Control();
+  final update = new EventEmitter<dynamic>(false);
   dynamic model;
   dynamic viewModel;
   NgModel(
@@ -62,51 +71,37 @@ class NgModel extends NgControl implements OnChanges {
           this._validators,
       @Optional()
       @Self()
-      @Inject(NG_ASYNC_VALIDATORS)
-          this._asyncValidators,
-      @Optional()
-      @Self()
       @Inject(NG_VALUE_ACCESSOR)
           List<ControlValueAccessor> valueAccessors)
       : super() {
-    this.valueAccessor = selectValueAccessor(this, valueAccessors);
+    valueAccessor = selectValueAccessor(this, valueAccessors);
   }
+
   @override
   void ngOnChanges(Map<String, SimpleChange> changes) {
-    if (!this._added) {
-      setUpControl(this._control, this);
-      this._control.updateValueAndValidity(emitEvent: false);
-      this._added = true;
-    }
-    if (isPropertyUpdated(changes, this.viewModel)) {
-      this._control.updateValue(this.model);
-      this.viewModel = this.model;
+    if (isPropertyUpdated(changes, viewModel)) {
+      _control.updateValue(model);
+      viewModel = model;
     }
   }
 
   @override
-  Control get control {
-    return this._control;
+  ngOnInit() {
+    setUpControl(_control, this);
+    _control.updateValueAndValidity(emitEvent: false);
   }
 
-  @override
-  List<String> get path {
-    return [];
-  }
+  Control get control => _control;
 
   @override
-  ValidatorFn get validator {
-    return composeValidators(this._validators);
-  }
+  List<String> get path => [];
 
   @override
-  AsyncValidatorFn get asyncValidator {
-    return composeAsyncValidators(this._asyncValidators);
-  }
+  ValidatorFn get validator => composeValidators(_validators);
 
   @override
   void viewToModelUpdate(dynamic newValue) {
-    this.viewModel = newValue;
-    this.update.add(newValue);
+    viewModel = newValue;
+    update.add(newValue);
   }
 }

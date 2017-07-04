@@ -13,7 +13,7 @@ import 'view_binder.dart';
 import '../template_ast.dart' show TemplateAst, TemplateAstVisitor, NgContentAst, EmbeddedTemplateAst, ElementAst, ReferenceAst, VariableAst, BoundEventAst, BoundElementPropertyAst, AttrAst, BoundTextAst, TextAst, DirectiveAst, BoundDirectivePropertyAst, templateVisitAll;
 import 'compile_element.dart' show CompileElement;
 import 'compile_view.dart' show CompileView;
-import 'event_binder.dart' show bindRenderOutputs, collectEventListeners, bindDirectiveOutputs;
+import 'event_binder.dart' show bindRenderOutputs, collectEventListeners, CompileEventListener, bindDirectiveOutputs;
 import 'lifecycle_binder.dart' show bindDirectiveAfterContentLifecycleCallbacks, bindDirectiveAfterViewLifecycleCallbacks, bindDirectiveDestroyLifecycleCallbacks, bindPipeDestroyLifecycleCallbacks, bindDirectiveDetectChangesLifecycleCallbacks;
 import 'property_binder.dart' show bindRenderText, bindRenderInputs, bindDirectiveInputs, bindDirectiveHostProps;
 import '../template_ast.template.dart' as i0;

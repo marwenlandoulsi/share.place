@@ -12,10 +12,10 @@
 import 'utils.dart';
 import 'package:angular2/src/core/linker/component_factory.dart' show ComponentFactory;
 import 'package:angular2/src/core/reflection/reflection.dart' show reflector;
-import 'lifecycle/lifecycle_annotations_impl.dart' show CanActivate;
+import 'lifecycle/lifecycle_annotations.dart' show CanActivate;
 import 'package:angular2/src/core/linker/component_factory.template.dart' as i0;
 import 'package:angular2/src/core/reflection/reflection.template.dart' as i1;
-import 'lifecycle/lifecycle_annotations_impl.template.dart' as i2;
+import 'lifecycle/lifecycle_annotations.template.dart' as i2;
 export 'utils.dart';
 
 var _visited = false;

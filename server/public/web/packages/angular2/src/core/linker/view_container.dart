@@ -1,13 +1,15 @@
-import "package:angular2/src/core/di.dart" show Injector;
-import "package:angular2/src/facade/exceptions.dart" show BaseException;
+import 'package:angular2/src/compiler/output/dynamic_instance.dart';
+import 'package:angular2/src/core/di.dart' show Injector;
+import 'package:angular2/src/facade/exceptions.dart' show BaseException;
+import 'package:meta/meta.dart';
 
-import "app_view.dart";
+import 'app_view.dart';
 import 'component_factory.dart' show ComponentFactory, ComponentRef;
-import "element_ref.dart";
+import 'element_ref.dart';
 import 'template_ref.dart';
-import "view_container_ref.dart";
-import "view_type.dart";
+import 'view_container_ref.dart';
 import 'view_ref.dart' show EmbeddedViewRef, ViewRef, ViewRefImpl;
+import 'view_type.dart';
 
 /// A ViewContainer is created for elements that contain
 /// a nested component or a `<template>` element to provide an insertion point
@@ -18,19 +20,13 @@ class ViewContainer implements ViewContainerRef {
   final AppView parentView;
   final dynamic nativeElement;
   List<AppView> nestedViews;
-  AppView componentView;
-  dynamic component;
   ElementRef _elementRef;
+  Injector _parentInjector;
 
   ViewContainer(
       this.index, this.parentIndex, this.parentView, this.nativeElement);
 
   ElementRef get elementRef => _elementRef ??= new ElementRef(nativeElement);
-
-  void initComponent(dynamic component, AppView view) {
-    this.component = component;
-    componentView = view;
-  }
 
   /// Returns the [ViewRef] for the View located in this container at the
   /// specified index.
@@ -49,10 +45,25 @@ class ViewContainer implements ViewContainerRef {
   ElementRef get element => elementRef;
 
   @override
-  Injector get parentInjector => parentView.injector(parentIndex);
+  Injector get parentInjector =>
+      _parentInjector ??= parentView.injector(parentIndex);
 
   @override
   Injector get injector => parentView.injector(index);
+
+  void detectChangesInNestedViews() {
+    if (nestedViews == null) return;
+    for (var i = 0, len = nestedViews.length; i < len; i++) {
+      nestedViews[i].detectChanges();
+    }
+  }
+
+  void destroyNestedViews() {
+    if (nestedViews == null) return;
+    for (var i = 0, len = nestedViews.length; i < len; i++) {
+      nestedViews[i].destroy();
+    }
+  }
 
   /// Instantiates an Embedded View based on the [TemplateRef `templateRef`]
   /// and inserts it into this container at the specified `index`.
@@ -63,7 +74,7 @@ class ViewContainer implements ViewContainerRef {
   /// Returns the [ViewRef] for the newly created View.
   @override
   EmbeddedViewRef insertEmbeddedView(TemplateRef templateRef, int index) {
-    EmbeddedViewRef viewRef = templateRef.createEmbeddedView();
+    EmbeddedViewRef viewRef = templateRef.createEmbeddedView(parentView.ctx);
     insert(viewRef, index);
     return viewRef;
   }
@@ -72,7 +83,7 @@ class ViewContainer implements ViewContainerRef {
   /// and appends it into this container.
   @override
   EmbeddedViewRef createEmbeddedView(TemplateRef templateRef) {
-    EmbeddedViewRef viewRef = templateRef.createEmbeddedView();
+    EmbeddedViewRef viewRef = templateRef.createEmbeddedView(parentView.ctx);
     attachView((viewRef as ViewRefImpl).appView, length);
     return viewRef;
   }
@@ -140,14 +151,34 @@ class ViewContainer implements ViewContainerRef {
     }
   }
 
-  List<dynamic> mapNestedViews(dynamic nestedViewClass, Function callback) {
+  List<dynamic> mapNestedViews(/*Type*/ nestedViewClass, Function callback) {
+    // TODO: Once reflective compiler removed, type 'nestedViewClass'.
     var result = [];
     if (nestedViews != null) {
-      nestedViews.forEach((nestedView) {
-        if (identical(nestedView.clazz, nestedViewClass)) {
+      for (var nestedView in nestedViews) {
+        // It's currently unsupported to use identical(...) with runtimeType:
+        // https://github.com/dart-lang/sdk/issues/23852
+        if (nestedView.runtimeType == nestedViewClass) {
           result.add(callback(nestedView));
         }
-      });
+      }
+    }
+    return result;
+  }
+
+  /// **INTERNAL ONLY**: Used only for the reflective runtime, deprecated.
+  ///
+  /// Should be tree-shaken in a production application (no instances of use).
+  @visibleForTesting
+  List<dynamic> mapNestedViewsDynamic(dynamicViewClass, Function callback) {
+    var result = [];
+    if (nestedViews != null) {
+      for (var nestedView in nestedViews) {
+        if (identical((nestedView as DynamicInstance).dynamicRuntimeType,
+            dynamicViewClass)) {
+          result.add(callback(nestedView));
+        }
+      }
     }
     return result;
   }

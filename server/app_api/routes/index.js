@@ -16,7 +16,11 @@ var router = express.Router();
 var ctrlProxy = require('../controllers/proxy');
 
 var ctrlCron = require('../controllers/cron');
+var path = require('path')
 
+let globalService
+if (process.env.DEV)
+ globalService = require(path.join(__dirname, '..', '..', '..', '..', 'app_api', 'global'));
 
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -235,9 +239,9 @@ get('/place/:placeId/folder/:folderId/file/:fileId/version/:v/download', ctrlPro
 get('/place/:placeId/folder/:folderId/user', ctrlProxy.get);
 get('/place/:placeId/folder/:folderId/file/:fileId', ctrlProxy.get);
 
-
+del('/place/:placeId/folder/:folderId/file/:fileId', ctrlProxy.delete);
 get('/place/:placeId/folder/:folderId/file', ctrlProxy.get);
-get('/place/:placeId/folder/:folderId/file/:fileId/version/:fileVersion/thumb', ctrlProxy.getUtilFile);
+get('/place/:placeId/folder/:folderId/file/:fileId/version/:fileVersion/thumb.x', ctrlProxy.getUtilFile);
 // Place
 get('/place', ctrlProxy.get);
 post('/place/:placeId/folder/:folderId/file', ctrlProxy.post);
@@ -270,12 +274,21 @@ get('/me', ctrlProxy.get);
 
 put('/place/:placeId/folder/:folderId/file/:fileId/version/:version/approve', ctrlProxy.put);
 put('/place/:placeId/folder/:folderId/file/:fileId', ctrlProxy.put);
-put('/place/:placeId/folder/:folderId',ctrlProxy.putFolder);
+put('/place/:placeId/folder/:folderId', ctrlProxy.putFolder);
 put('/user/close-postit', ctrlProxy.put);
 put('/place/:placeId/folder/:folderId/user/role/list', ctrlProxy.put)
+put('/place/:placeId/folder/:folderId/fileInfo/:fileInfoId', ctrlProxy.put);
 // notify
 get('/place/:placeId/notify', ctrlProxy.get);
 
-put('/place/:placeId/folder/:folderId/fileInfo/:fileInfoId/moveToFolder/:tagedFolderId', ctrlProxy.put);
+put('/place/:placeId/folder/:folderId/fileInfo/:fileInfoId/moveToFolder/:targetFolderId', ctrlProxy.put);
+
+post('/file/_search', ctrlProxy.searchFileFromElastic);
+
+var pathElectronServerRoutes = path.join(__dirname, '..', '..', '..', '..', 'test', 'electronServerRoutes.json')
+
+if (process.env.DEV)
+  globalService.generateRoutesFile(router.stack, pathElectronServerRoutes)
+
 module.exports = router;
 

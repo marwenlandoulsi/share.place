@@ -37,12 +37,29 @@ class UserListProvider {
   }
 
   bool shouldReload(Map<PlaceParam, String> params) {
-    return params.containsKey(PlaceParam.userId) ||
+    if (params.containsKey(PlaceParam.userId) ||
         params.containsKey(PlaceParam.placeId) ||
         params.containsKey(PlaceParam.invitedUsers) ||
         params.containsKey(PlaceParam.treatUserInvite) ||
         params.containsKey(PlaceParam.treatFolderUserRemoved) ||
-        params.containsKey(PlaceParam.folderId);
+        params.containsKey(PlaceParam.folderId)||
+        params.containsKey(PlaceParam.ioPlaceUserListChanged))
+      return true;
+    if(params.containsKey(PlaceParam.ioProfileChanged)) {
+      String userId = params[PlaceParam.ioProfileChanged];
+      return userInSelection(userId);
+    }
+    return false;
+
+
+  }
+
+  bool userInSelection(String id) {
+    for(User user in users) {
+      if( user.id == id )
+        return true;
+    }
+    return false;
   }
 
   Future<List<User>> loadUsers() async {

@@ -11,7 +11,6 @@
 // @ignoreProblemForFile UNUSED_LOCAL_VARIABLE
 import 'dart_object_utils.dart';
 import 'package:analyzer/dart/constant/value.dart';
-import 'package:analyzer/dart/element/element.dart';
 export 'dart_object_utils.dart';
 
 void initReflector() {

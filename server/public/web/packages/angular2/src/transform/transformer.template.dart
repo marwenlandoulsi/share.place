@@ -10,7 +10,9 @@
 // @ignoreProblemForFile UNUSED_SHOWN_NAME
 // @ignoreProblemForFile UNUSED_LOCAL_VARIABLE
 import 'transformer.dart';
+import 'package:angular2/source_gen.dart';
 import 'package:barback/barback.dart';
+import 'package:build_barback/build_barback.dart';
 import 'package:dart_style/dart_style.dart';
 import 'common/eager_transformer_wrapper.dart';
 import 'common/formatter.dart' as formatter;
@@ -23,17 +25,18 @@ import 'inliner_for_test/transformer.dart';
 import 'reflection_remover/transformer.dart';
 import 'stylesheet_compiler/transformer.dart';
 import 'template_compiler/transformer.dart';
-import 'common/eager_transformer_wrapper.template.dart' as i0;
-import 'common/formatter.template.dart' as i1;
-import 'common/options.template.dart' as i2;
-import 'common/options_reader.template.dart' as i3;
-import 'deferred_rewriter/transformer.template.dart' as i4;
-import 'directive_metadata_linker/transformer.template.dart' as i5;
-import 'directive_processor/transformer.template.dart' as i6;
-import 'inliner_for_test/transformer.template.dart' as i7;
-import 'reflection_remover/transformer.template.dart' as i8;
-import 'stylesheet_compiler/transformer.template.dart' as i9;
-import 'template_compiler/transformer.template.dart' as i10;
+import 'package:angular2/source_gen.template.dart' as i0;
+import 'common/eager_transformer_wrapper.template.dart' as i1;
+import 'common/formatter.template.dart' as i2;
+import 'common/options.template.dart' as i3;
+import 'common/options_reader.template.dart' as i4;
+import 'deferred_rewriter/transformer.template.dart' as i5;
+import 'directive_metadata_linker/transformer.template.dart' as i6;
+import 'directive_processor/transformer.template.dart' as i7;
+import 'inliner_for_test/transformer.template.dart' as i8;
+import 'reflection_remover/transformer.template.dart' as i9;
+import 'stylesheet_compiler/transformer.template.dart' as i10;
+import 'template_compiler/transformer.template.dart' as i11;
 export 'transformer.dart';
 export 'common/options.dart';
 
@@ -51,4 +54,5 @@ i7.initReflector();
 i8.initReflector();
 i9.initReflector();
 i10.initReflector();
+i11.initReflector();
 }

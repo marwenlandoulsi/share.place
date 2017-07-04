@@ -22,7 +22,7 @@ void initReflector() {
 if (_visited) return; _visited = true;
 _ngRef.reflector
 ..registerType(LowerCasePipe, new _ngRef.ReflectionInfo(
-const <dynamic>[const Pipe(name: "lowercase"), const Injectable()],
+const <dynamic>[const Pipe("lowercase"), const Injectable()],
 const [],
 () => new LowerCasePipe(),
 const <dynamic>[PipeTransform])

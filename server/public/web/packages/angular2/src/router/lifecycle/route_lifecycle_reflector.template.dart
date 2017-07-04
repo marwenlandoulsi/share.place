@@ -11,9 +11,9 @@
 // @ignoreProblemForFile UNUSED_LOCAL_VARIABLE
 import 'route_lifecycle_reflector.dart';
 import 'package:angular2/src/router/interfaces.dart';
-import 'package:angular2/src/router/lifecycle/lifecycle_annotations_impl.dart';
+import 'lifecycle_annotations.dart';
 import 'package:angular2/src/router/interfaces.template.dart' as i0;
-import 'package:angular2/src/router/lifecycle/lifecycle_annotations_impl.template.dart' as i1;
+import 'lifecycle_annotations.template.dart' as i1;
 export 'route_lifecycle_reflector.dart';
 
 var _visited = false;

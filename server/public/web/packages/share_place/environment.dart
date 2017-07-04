@@ -1,17 +1,18 @@
-import 'package:angular2/core.dart';
 import 'dart:async';
+import 'dart:html';
 
+import 'package:angular2/core.dart';
+import 'package:logging/logging.dart';
+import 'package:share_place/common/net/mix_panel.dart';
+import 'package:share_place/common/net/socket.io.dart';
+import 'package:share_place/users/user.dart';
+
+import 'app_config.dart' as conf;
 import 'event_bus.dart';
+import 'file_info.dart';
+import 'files/cloud_file.dart';
 import 'folder.dart';
 import 'place.dart';
-import 'package:share_place/users/user.dart';
-import 'files/cloud_file.dart';
-import 'file_info.dart';
-import 'package:share_place/common/net/socket.io.dart';
-import 'dart:async';
-import 'app_config.dart' as conf;
-import 'dart:html';
-import 'package:logging/logging.dart';
 
 @Injectable()
 class Environment {
@@ -24,24 +25,39 @@ class Environment {
   CloudFile _file;
   User _connected;
   User _user;
-  bool _userInviteDialogOpen;
+  bool _userInviteDialogOpen = false;
   User _roleDialogUser;
-  bool _isUploading;
-  bool _loggedIn;
-  bool _subscribeDialogVisible;
-  bool profilePopinVisible;
+  bool _isUploading = false;
+  bool _loggedIn = false;
+  bool _subscribeDialogVisible = false;
+  bool profilePopinVisible = false;
+  bool termsAndConditionsVisible;
+  String searchText;
+  bool condPopupVisible;
   String serverError = null;
   List<String> _messages = [];
   SocketIoClient socketIoClient;
   Map<String, dynamic> notifications;
+  MixPanel mixPanel = new MixPanel();
+  ElectronProxyCredentials electronProxyCredentials;
+
+//  bool condPopupVisible = false;
+//
+//  bool get getCondPopupVisible => condPopupVisible;
+//
+//  void set setCondPopupVisible(bool visible) {
+//    this.condPopupVisible = visible;
+//  }
+
 
   //bool online;
-
   Environment(this.eventBus) {
     socketIoClient = new SocketIoClient(eventBus);
-    window.on['sp'].listen((event) {
-      log.finer('window event: $event');
-      fireEvent(PlaceParam.fileId, selectedFile.id);
+    window.on['sp'].listen((CustomEvent event) {
+      if (event.detail['refresh'] != null) {
+        log.finer('window event: $event');
+        fireEvent(PlaceParam.fileId, selectedFile.id);
+      }
     });
     //window.onOnline.listen((Event e) => online = true);
     //window.onOffline.listen((Event e) => online = false);
@@ -51,10 +67,6 @@ class Environment {
     var event = new CustomEvent(type, detail: detail);
     log.finest("sending window event $type");
     window.dispatchEvent(event);
-  }
-
-  void showScrollBar() {
-    sendWindowEvent('showScroller', null);
   }
 
   Place get selectedPlace => _place;
@@ -121,6 +133,9 @@ class Environment {
   }
 
   Future<Null> connectSocket() async {
+    if (connectedUser == null)
+      return null;
+
     String url = conf.remoteUrl + "?sId=";
     InputElement cookieSessionIdInput = document.querySelector("#cc");
     if (cookieSessionIdInput != null)
@@ -128,6 +143,8 @@ class Environment {
 
     log.fine("sio connecting to $url");
     await socketIoClient.connect(url);
+    mixPanel.init(connectedUser);
+    track("login", data: {'user': connectedUser.id});
   }
 
   User get selectedUser => _user;
@@ -151,6 +168,7 @@ class Environment {
     eventBus.fire({PlaceParam.editRolesUsersDialog: user != null});
   }
 
+
   bool get uploading => _isUploading;
 
   void set uploading(bool state) {
@@ -158,8 +176,8 @@ class Environment {
     eventBus.fire({PlaceParam.uploadStateChanged: state});
   }
 
-  void fireEvent(PlaceParam param, dynamic value) {
-    eventBus.fire({param: value});
+  Future<Null> fireEvent(PlaceParam param, dynamic value) async {
+    await eventBus.fire({param: value});
   }
 
   bool get loggedIn => _loggedIn;
@@ -173,7 +191,11 @@ class Environment {
 
   List<String> get messages => _messages;
 
+
   void addMessage(String msg) {
+    if (_messages.contains(msg))
+      return;
+
     _messages.add(msg);
     new Future.delayed(const Duration(seconds: 3), () {
       _messages.remove(msg);
@@ -181,7 +203,7 @@ class Environment {
   }
 
   bool connectedUserHasGreaterRole(RoleEnum role, Folder folder) {
-    if( folder == null )
+    if (folder == null)
       return false;
 
     return connectedUser.hasGreaterRole(role, folder.id);
@@ -206,12 +228,54 @@ class Environment {
 
   bool hasNotification(String folderId, String fileId) =>
       getNotificationFileIdList(folderId).contains(fileId);
+
+  Future<Null> selectSubjectInOtherPlace(String placeId, String folderId,
+      String fileInfoId) async {
+    consumeOnce(PlaceParam.placeLoaded, (dynamic placeId) {
+      print( "place loaded" );
+      consumeOnce(PlaceParam.folderListLoaded, (dynamic placeId) {
+        print( "folder list loaded" );
+        consumeOnce(PlaceParam.fileInfoListLoaded, (dynamic folderId) {
+          print( "subject list loaded" );
+          fireEvent(PlaceParam.fileInfoIdRequested, fileInfoId);
+        });
+        fireEvent(PlaceParam.folderIdRequested, folderId);
+      });
+    });
+    //now trigger the chain
+    fireEvent(PlaceParam.placeIdRequested, placeId);
+  }
+
+  void consumeOnce(PlaceParam param, Function executeOnce) {
+    eventBus.consumeOnce(param, executeOnce);
+  }
+
+  void track(String operation, {Map data: null}) {
+    mixPanel.track(operation, data: data);
+  }
+
+  bool get getCondPopupVisible => condPopupVisible;
+
+  void set setCondPopupVisible(bool visible) {
+    this.condPopupVisible = visible;
+  }
+
+  void showScrollBar() {
+    sendWindowEvent('showScroller', null);
+  }
+
 }
 
 enum PlaceParam {
   placeId,
+  placeIdRequested,
+  placeLoaded,
+  folderIdRequested,
+  fileInfoIdRequested,
   folderId,
+  folderListLoaded,
   fileInfoId,
+  fileInfoListLoaded,
   fileId,
   userId,
   inviteUserDialog,
@@ -225,6 +289,7 @@ enum PlaceParam {
   login,
   subscribe,
   addButtonPressed, //to remove post-its
+  search,
   editRolesPressed,
   ioFolderUserConnected,
   ioFolderCreated,
@@ -243,4 +308,13 @@ enum PlaceParam {
   ioSubjectChanged, //user invite, rename, new active user (need to refresh from db)
   ioFileActionCreated,
   treatFileChanged,
+  ioProfileChanged,
+  ioPlaceUserListChanged
+}
+
+class ElectronProxyCredentials {
+  String serverAdress;
+  String serverName;
+
+  ElectronProxyCredentials(this.serverAdress, this.serverName);
 }

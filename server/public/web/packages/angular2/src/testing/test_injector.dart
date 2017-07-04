@@ -47,26 +47,21 @@ class TestInjector {
 }
 
 TestInjector _testInjector;
-TestInjector getTestInjector() {
-  if (_testInjector == null) {
-    _testInjector = new TestInjector();
-  }
-  return _testInjector;
-}
+TestInjector getTestInjector() => _testInjector ??= new TestInjector();
 
 /// Set the providers that the test injector should use. These should be providers
 /// common to every test in the suite.
 ///
 /// This may only be called once, to set up the common providers for the current test
-/// suite on teh current platform. If you absolutely need to change the providers,
+/// suite on the current platform. If you absolutely need to change the providers,
 /// first use `resetBaseTestProviders`.
 ///
 /// Test Providers for individual platforms are available from
 /// 'angular2/platform/testing/<platform_name>'.
 void setBaseTestProviders(
     List<dynamic /* Type | Provider | List < dynamic > */ > platformProviders,
-    List<
-        dynamic /* Type | Provider | List < dynamic > */ > applicationProviders) {
+    List<dynamic /* Type | Provider | List < dynamic > */ >
+        applicationProviders) {
   var testInjector = getTestInjector();
   if (testInjector.platformProviders.length > 0 ||
       testInjector.applicationProviders.length > 0) {
@@ -107,21 +102,21 @@ void resetBaseTestProviders() {
 /// ```
 ///
 /// Notes:
-/// - inject is currently a function because of some Traceur limitation the syntax should
-/// eventually
-///   becomes `it('...', @Inject (object: AClass, async: AsyncTestCompleter) => { ... });`
+/// - Inject is currently a function because of some Traceur limitation. The
+///   syntax should eventually become `it('...', @Inject (object: AClass, async:
+///   AsyncTestCompleter) => { ... });`
 FunctionWithParamTokens inject(List<dynamic> tokens, Function fn) {
   return new FunctionWithParamTokens(tokens, fn, false);
 }
 
 class InjectSetupWrapper {
-  dynamic /* () => any */ _providers;
+  final /* () => any */ _providers;
   InjectSetupWrapper(this._providers);
   FunctionWithParamTokens inject(List<dynamic> tokens, Function fn) {
     return new FunctionWithParamTokens(tokens, fn, false, this._providers);
   }
 
-  /** @Deprecated {use async(withProviders().inject())} */
+  @Deprecated("Use `async(withProviders().inject())`")
   FunctionWithParamTokens injectAsync(List<dynamic> tokens, Function fn) {
     return new FunctionWithParamTokens(tokens, fn, true, this._providers);
   }
@@ -131,7 +126,7 @@ InjectSetupWrapper withProviders(dynamic providers()) {
   return new InjectSetupWrapper(providers);
 }
 
-/// @Deprecated {use async(inject())}
+/// Deprecated: use `async(inject())`.
 ///
 /// Allows injecting dependencies in `beforeEach()` and `it()`. The test must return
 /// a promise which will resolve when all asynchronous activity is complete.
@@ -145,6 +140,7 @@ InjectSetupWrapper withProviders(dynamic providers()) {
 ///   });
 /// })
 /// ```
+@Deprecated("Use `async(inject())`")
 FunctionWithParamTokens injectAsync(List<dynamic> tokens, Function fn) {
   return new FunctionWithParamTokens(tokens, fn, true);
 }
@@ -180,7 +176,7 @@ List<dynamic> emptyArray() {
 }
 
 class FunctionWithParamTokens {
-  List<dynamic> _tokens;
+  final List<dynamic> _tokens;
   Function fn;
   bool isAsync;
   dynamic /* () => any */ additionalProviders;

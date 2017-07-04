@@ -11,10 +11,12 @@
 // @ignoreProblemForFile UNUSED_LOCAL_VARIABLE
 import 'ng_control_status.dart';
 import 'package:angular2/src/core/reflection/reflection.dart' as _ngRef;
-import 'package:angular2/core.dart' show Directive, Self;
+import 'package:angular2/core.dart' show Directive;
+import 'package:angular2/di.dart' show Self;
 import 'ng_control.dart' show NgControl;
 import 'package:angular2/core.template.dart' as i0;
-import 'ng_control.template.dart' as i1;
+import 'package:angular2/di.template.dart' as i1;
+import 'ng_control.template.dart' as i2;
 export 'ng_control_status.dart';
 
 var _visited = false;
@@ -22,11 +24,12 @@ void initReflector() {
 if (_visited) return; _visited = true;
 _ngRef.reflector
 ..registerType(NgControlStatus, new _ngRef.ReflectionInfo(
-const <dynamic>[const Deprecated("Use listeners or variable binding on the control itself instead. " "This adds overhead for every form control whether the class is " "used or not.")],
+const <dynamic>[const Deprecated('Use listeners or variable binding on the control itself instead. ' 'This adds overhead for every form control whether the class is ' 'used or not.')],
 const [const <dynamic>[NgControl, const Self()]],
-(NgControl cd) => new NgControlStatus(cd))
+(NgControl _cd) => new NgControlStatus(_cd))
 )
 ;
 i0.initReflector();
 i1.initReflector();
+i2.initReflector();
 }

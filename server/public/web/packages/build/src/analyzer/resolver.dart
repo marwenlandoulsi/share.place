@@ -4,48 +4,58 @@
 import 'dart:async';
 
 import 'package:analyzer/dart/element/element.dart';
-import 'package:code_transformers/resolver.dart' as code_transformers
-    show Resolver, Resolvers, dartSdkDirectory;
 
 import '../asset/id.dart';
 import '../builder/build_step.dart';
-import '../util/barback.dart';
 
-class Resolver {
-  final code_transformers.Resolver _resolver;
-
-  Resolver(this._resolver);
-
-  /// Release this resolver so it can be updated by following build steps.
-  void release() => _resolver.release();
-
-  /// Gets the resolved Dart library for an asset, or null if the AST has not
-  /// been resolved.
+/// Standard interface for resolving Dart source code as part of a build.
+abstract class Resolver {
+  /// Returns whether [assetId] represents an Dart library file.
   ///
-  /// If the AST has not been resolved then this normally means that the
-  /// transformer hosting this needs to be in an earlier phase.
-  LibraryElement getLibrary(AssetId assetId) =>
-      _resolver.getLibrary(toBarbackAssetId(assetId));
+  /// This will be `false` in the case where the file is not Dart source code,
+  /// or is a `part of` file (not a standalone Dart library).
+  bool isLibrary(AssetId assetId);
 
-  /// Gets all libraries accessible from the entry point, recursively.
+  /// All libraries accessible from the entry point, recursively.
   ///
-  /// This includes all Dart SDK libraries as well.
-  Iterable<LibraryElement> get libraries => _resolver.libraries;
+  /// **NOTE**: This includes all Dart SDK libraries as well.
+  Iterable<LibraryElement> get libraries;
+
+  /// Returns a resolved library representing the file defined in [assetId].
+  ///
+  /// * Throws [NonLibraryAssetException] if [assetId] is not a Dart library.
+  LibraryElement getLibrary(AssetId assetId);
 
   /// Finds the first library identified by [libraryName], or null if no
   /// library can be found.
-  LibraryElement getLibraryByName(String libraryName) =>
-      _resolver.getLibraryByName(libraryName);
+
+  /// Returns the first library identified by [libraryName].
+  ///
+  /// If no library can be found, returns `null`.
+  ///
+  /// **NOTE**: In general, its recommended to use [getLibrary] with an absolute
+  /// asset id instead of a named identifier that has the possibility of not
+  /// being unique.
+  LibraryElement getLibraryByName(String libraryName);
 }
 
-class Resolvers {
-  static final code_transformers.Resolvers _resolvers =
-      new code_transformers.Resolvers(code_transformers.dartSdkDirectory);
+/// A resolver that should be manually released at the end of a build step.
+abstract class ReleasableResolver implements Resolver {
+  /// Release this resolver so it can be updated by following build steps.
+  void release();
+}
 
-  const Resolvers();
+/// A factory that returns a resolver for a given [BuildStep].
+abstract class Resolvers {
+  Future<ReleasableResolver> get(BuildStep buildStep);
+}
 
-  Future<Resolver> get(BuildStep buildStep, List<AssetId> entryPoints,
-          bool resolveAllConstants) async =>
-      new Resolver(await _resolvers.get(toBarbackTransform(buildStep),
-          entryPoints.map(toBarbackAssetId).toList(), resolveAllConstants));
+/// Thrown when attempting to read a non-Dart library in a [Resolver].
+class NonLibraryAssetException implements Exception {
+  final AssetId assetId;
+
+  const NonLibraryAssetException(this.assetId);
+
+  @override
+  String toString() => 'Asset [$assetId] is not a Dart library source file.';
 }

@@ -11,12 +11,12 @@
 // @ignoreProblemForFile UNUSED_LOCAL_VARIABLE
 import 'default_value_accessor.dart';
 import 'package:angular2/src/core/reflection/reflection.dart' as _ngRef;
+import 'dart:js_util' as js_util;
 import 'package:angular2/core.dart' show Directive, ElementRef, Provider;
-import 'control_value_accessor.dart' show NG_VALUE_ACCESSOR, ControlValueAccessor;
-import 'package:angular2/src/platform/dom/dom_adapter.dart' show DOM;
+import 'package:func/func.dart' show VoidFunc0, VoidFunc1;
+import 'control_value_accessor.dart';
 import 'package:angular2/core.template.dart' as i0;
 import 'control_value_accessor.template.dart' as i1;
-import 'package:angular2/src/platform/dom/dom_adapter.template.dart' as i2;
 export 'default_value_accessor.dart';
 
 var _visited = false;
@@ -32,5 +32,4 @@ const <dynamic>[ControlValueAccessor])
 ;
 i0.initReflector();
 i1.initReflector();
-i2.initReflector();
 }

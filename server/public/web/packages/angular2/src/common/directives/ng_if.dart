@@ -1,20 +1,37 @@
 import 'package:angular2/core.dart'
     show Directive, ViewContainerRef, TemplateRef;
 
-/// Causes an element and its contents to be added/removed from the DOM
-/// conditionally, based on the value of the supplied boolean template
-/// expression.
+/// Causes an element and its contents to be conditionally added/removed from
+/// the DOM based on the value of the given boolean template expression.
 ///
-/// See the [Template Syntax section on `ngIf`][guide] for more details.
+/// For details, see the [`ngIf` discussion in the Template Syntax][guide] page.
 ///
 /// ### Examples
 ///
-/// {@example docs/template-syntax/lib/app_component.html region=NgIf-1}
+/// <?code-excerpt "docs/template-syntax/lib/app_component.html (NgIf-1)"?>
+/// ```html
+/// <hero-detail *ngIf="isActive"></hero-detail>
+/// ```
 ///
-/// {@example docs/template-syntax/lib/app_component.html region=Template-2}
+/// <?code-excerpt "docs/structural-directives/lib/app_component.html (asterisk)"?>
+/// ```html
+/// <div *ngIf="hero != null" >{{hero.name}}</div>
+/// ```
 ///
-/// [guide]: docs/guide/template-syntax.html#ngIf
-@Directive(selector: "[ngIf]", inputs: const ["ngIf"])
+/// <?code-excerpt "docs/structural-directives/lib/app_component.html (ngif-template-attr)"?>
+/// ```html
+/// <div template="ngIf hero != null">{{hero.name}}</div>
+/// ```
+///
+/// <?code-excerpt "docs/structural-directives/lib/app_component.html (ngif-template)"?>
+/// ```html
+/// <template [ngIf]="hero != null">
+///   <div>{{hero.name}}</div>
+/// </template>
+/// ```
+///
+/// [guide]: https://webdev.dartlang.org/angular/guide/template-syntax.html#ngIf
+@Directive(selector: '[ngIf]', inputs: const ['ngIf'])
 class NgIf {
   final TemplateRef _templateRef;
   final ViewContainerRef _viewContainer;

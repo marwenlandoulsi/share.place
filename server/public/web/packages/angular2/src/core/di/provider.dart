@@ -15,7 +15,7 @@ const noValueProvided = '__noValueProvided__';
 ///
 ///     expect(injector.get('message'), 'Hello');
 ///
-/// [di]: docs/guide/dependency-injection.html#injector-providers
+/// [di]: https://webdev.dartlang.org/angular/guide/dependency-injection.html#injector-providers
 class Provider {
   /// Token used when retrieving this provider. Usually, it is a type [Type].
   final token;
@@ -100,11 +100,6 @@ class Provider {
   /// Used in conjunction with dependencies.
   final Function useFactory;
 
-  /// Specifies the property of the configuration class to use as value.
-  ///
-  /// Only used in conjunction with the @Injector class.
-  final String useProperty;
-
   /// Specifies a set of dependencies
   /// (as `token`s) which should be injected into the factory function.
   ///
@@ -126,7 +121,6 @@ class Provider {
       this.useValue: noValueProvided,
       this.useExisting,
       this.useFactory,
-      this.useProperty,
       List<Object> deps,
       bool multi})
       : dependencies = deps,
@@ -158,22 +152,37 @@ class Provider {
   bool get multi => _multi ?? false;
 }
 
-/// Creates an injector [Provider] for the given [token] based on a given
+/// Creates a [Provider] that associates [token] with one of the following:
 ///
-/// - Class
-/// - Value
-/// - Factory function, or
+/// - A class
+/// - A value
+/// - A factory function
 /// - Another token
 ///
-/// The [token] is most commonly a class or an opaque token. More details
-/// concerning providers can be found in the [Dependency Injection][di] page
-/// of the Angular Guide.
+/// A [token] is most commonly a class. See the [Dependency Injection][di] page
+/// for more details.
 ///
 /// ### Example
 ///
-/// {@example docs/toh-6/web/main.dart}
+/// <?code-excerpt "docs/toh-6/web/main.dart"?>
+/// ```dart
+/// import 'package:angular2/angular2.dart';
+/// import 'package:angular2/platform/browser.dart';
+/// import 'package:angular_tour_of_heroes/app_component.dart';
+/// import 'package:angular_tour_of_heroes/in_memory_data_service.dart';
+/// import 'package:http/http.dart';
 ///
-/// [di]: docs/guide/dependency-injection.html#injector-providers
+/// void main() {
+///   bootstrap(AppComponent,
+///     [provide(Client, useClass: InMemoryDataService)]
+///     // Using a real back end?
+///     // Import browser_client.dart and change the above to:
+///     // [provide(Client, useFactory: () => new BrowserClient(), deps: [])]
+///   );
+/// }
+/// ```
+///
+/// [di]: https://webdev.dartlang.org/angular/guide/dependency-injection.html#injector-providers
 Provider provide(token,
     {Type useClass,
     dynamic useValue: noValueProvided,

@@ -1,3 +1,5 @@
+import 'dart:html' show MouseEvent;
+
 import "package:angular2/core.dart" show Directive;
 import "package:angular2/platform/common.dart" show Location;
 
@@ -8,11 +10,22 @@ import "../router.dart" show Router;
 ///
 /// Consider the following route configuration:
 ///
-/// {@example docs/toh-5/lib/app_component.dart region=heroes}
+/// <?code-excerpt "docs/toh-5/lib/app_component.dart (heroes)"?>
+/// ```dart
+/// @RouteConfig(const [
+///   const Route(path: '/heroes', name: 'Heroes', component: HeroesComponent)
+/// ])
+/// ```
 ///
 /// When linking to this `Heroes` route, you can write:
 ///
-/// {@example docs/toh-5/lib/app_component_1.dart region=template-v2}
+/// <?code-excerpt "docs/toh-5/lib/app_component_1.dart (template-v2)"?>
+/// ```dart
+/// template: '''
+///   <h1>{{title}}</h1>
+///   <a [routerLink]="['Heroes']">Heroes</a>
+///   <router-outlet></router-outlet>''',
+/// ```
 ///
 /// RouterLink expects the value to be an array of route names, followed by the params
 /// for that level of routing. For instance `['/Team', {teamId: 1}, 'User', {userId: 2}]`
@@ -28,7 +41,7 @@ import "../router.dart" show Router;
   "routeParams: routerLink",
   "target: target"
 ], host: const {
-  "(click)": "onClick()",
+  "(click)": "onClick(\$event)",
   "[attr.href]": "visibleHref",
   "[class.router-link-active]": "isRouteActive"
 })
@@ -63,12 +76,19 @@ class RouterLink {
     this._updateLink();
   }
 
-  bool onClick() {
-    // If no target, or if target is _self, prevent default browser behavior
-    if (this.target is! String || this.target == "_self") {
-      this._router.navigateByInstruction(this._navigationInstruction);
-      return false;
+  void onClick(MouseEvent event) {
+    // If any "open in new window" modifier is present, use default browser
+    // behavior
+    if (event.button != 0 || event.ctrlKey || event.metaKey) {
+      return;
     }
-    return true;
+
+    // If target is present and not _self, use default browser behavior
+    if (this.target is String && this.target != "_self") {
+      return;
+    }
+
+    this._router.navigateByInstruction(this._navigationInstruction);
+    event.preventDefault();
   }
 }

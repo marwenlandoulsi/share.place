@@ -1,9 +1,10 @@
 library angular2.platform.browser;
 
-import "dart:async";
+import 'dart:async';
+import 'dart:html';
 
-import "package:angular2/compiler.dart" show COMPILER_PROVIDERS, XHR;
-import "package:angular2/core.dart"
+import 'package:angular2/compiler.dart' show COMPILER_PROVIDERS, XHR;
+import 'package:angular2/core.dart'
     show
         ComponentRef,
         coreLoadAndBootstrap,
@@ -12,27 +13,25 @@ import "package:angular2/core.dart"
         PlatformRef,
         getPlatform,
         createPlatform;
-import "package:angular2/src/compiler/runtime_compiler.dart"
+import 'package:angular2/src/compiler/runtime_compiler.dart'
     show RuntimeCompiler;
-import "package:angular2/src/core/di.dart" show Provider;
-import "package:angular2/src/core/linker/component_resolver.dart"
+import 'package:angular2/src/core/di.dart' show Provider;
+import 'package:angular2/src/core/linker/component_resolver.dart'
     show ComponentResolver;
-import "package:angular2/src/core/reflection/reflection_capabilities.dart"
+import 'package:angular2/src/core/reflection/reflection_capabilities.dart'
     show ReflectionCapabilities;
-import "package:angular2/src/platform/browser/xhr_impl.dart" show XHRImpl;
-import "package:angular2/src/platform/browser_common.dart"
+import 'package:angular2/src/platform/browser/xhr_impl.dart' show XHRImpl;
+import 'package:angular2/src/platform/browser_common.dart'
     show BROWSER_PROVIDERS, BROWSER_APP_COMMON_PROVIDERS;
+import 'package:angular2/src/platform/dom/dom_tokens.dart' show DOCUMENT;
 
-export "package:angular2/src/core/angular_entrypoint.dart";
-export "package:angular2/src/core/security.dart"
+export 'package:angular2/src/core/angular_entrypoint.dart';
+export 'package:angular2/src/core/security.dart'
     show SanitizationService, TemplateSecurityContext;
-export "package:angular2/src/platform/browser_common.dart"
+export 'package:angular2/src/platform/browser_common.dart'
     show
         BROWSER_PROVIDERS,
-        CACHED_TEMPLATE_PROVIDER,
         BROWSER_SANITIZATION_PROVIDERS,
-        BrowserDomAdapter,
-        Title,
         DOCUMENT,
         enableDebugTools,
         disableDebugTools;
@@ -46,10 +45,13 @@ const List RUNTIME_COMPILER_PROVIDERS = const [
 /// bootstrapping a component.
 const List<dynamic> BROWSER_APP_PROVIDERS = const [
   BROWSER_APP_COMMON_PROVIDERS,
+  const Provider(DOCUMENT, useFactory: defaultDocumentProvider, deps: const []),
   COMPILER_PROVIDERS,
   RUNTIME_COMPILER_PROVIDERS,
   const Provider(XHR, useClass: XHRImpl)
 ];
+
+defaultDocumentProvider() => document;
 
 PlatformRef browserPlatform() {
   if (getPlatform() == null) {
@@ -69,7 +71,7 @@ PlatformRef browserPlatform() {
 /// in index.html. This is mainly for security reasons, as well as architectural
 /// changes in Angular 2. This means that `index.html` can safely be processed
 /// using server-side technologies such as providers. Bindings can thus use
-/// double-curlyi syntax, `{{...}}`, without collision with Angular 2
+/// double-curly syntax, `{{...}}`, without collision with Angular 2
 /// `{{...}}` template syntax.
 ///
 /// When an app developer invokes [bootstrap] with a root component
@@ -103,13 +105,40 @@ PlatformRef browserPlatform() {
 ///
 /// ### Examples
 ///
-/// {@example docs/quickstart/web/main.dart}
+/// <?code-excerpt "docs/quickstart/web/main.dart"?>
+/// ```dart
+/// import 'package:angular2/platform/browser.dart';
 ///
-/// {@example docs/toh-6/web/main.dart}
+/// import 'package:angular_quickstart/app_component.dart';
+///
+/// void main() {
+///   bootstrap(AppComponent);
+/// }
+/// ```
+///
+/// <?code-excerpt "docs/toh-6/web/main.dart"?>
+/// ```dart
+/// import 'package:angular2/angular2.dart';
+/// import 'package:angular2/platform/browser.dart';
+/// import 'package:angular_tour_of_heroes/app_component.dart';
+/// import 'package:angular_tour_of_heroes/in_memory_data_service.dart';
+/// import 'package:http/http.dart';
+///
+/// void main() {
+///   bootstrap(AppComponent,
+///     [provide(Client, useClass: InMemoryDataService)]
+///     // Using a real back end?
+///     // Import browser_client.dart and change the above to:
+///     // [provide(Client, useFactory: () => new BrowserClient(), deps: [])]
+///   );
+/// }
+/// ```
 ///
 /// For details concerning these examples see the
-/// [Quickstart](docs/quickstart.html) and
-/// [Tour of Heros Part 6](docs/tutorial/toh-pt6.html) documents, respectively.
+/// [Quickstart](https://webdev.dartlang.org/angular/quickstart) and
+/// [Tour of Heros Part 6][toh] documents, respectively.
+///
+/// [toh]: https://webdev.dartlang.org/angular/tutorial/toh-pt6
 ///
 /// ### API
 ///
@@ -120,7 +149,6 @@ PlatformRef browserPlatform() {
 ///   app injector to override default injection behavior.
 ///
 /// Returns a [Future] of [ComponentRef].
-///
 Future<ComponentRef> bootstrap(Type appComponentType,
     [List<dynamic> customProviders]) {
   reflector.reflectionCapabilities = new ReflectionCapabilities();

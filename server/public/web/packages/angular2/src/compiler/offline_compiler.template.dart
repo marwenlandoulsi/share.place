@@ -11,14 +11,17 @@
 // @ignoreProblemForFile UNUSED_LOCAL_VARIABLE
 import 'offline_compiler.dart';
 import 'dart:async';
+import 'dart:convert';
 import 'package:angular2/src/facade/exceptions.dart' show BaseException;
-import 'compile_metadata.dart' show CompileDirectiveMetadata, CompilePipeMetadata, createHostComponentMeta, CompileTypeMetadata;
+import 'compile_metadata.dart' show CompileDirectiveMetadata, CompilePipeMetadata, CompileTypeMetadata, createHostComponentMeta;
 import 'compiler_utils.dart' show MODULE_SUFFIX;
 import 'directive_normalizer.dart' show DirectiveNormalizer;
 import 'identifiers.dart';
 import 'output/abstract_emitter.dart' show OutputEmitter;
 import 'output/output_ast.dart' as o;
+import 'source_module.dart';
 import 'style_compiler.dart' show StyleCompiler, StylesCompileResult;
+import 'template_ast.dart';
 import 'template_parser.dart' show TemplateParser;
 import 'view_compiler/view_compiler.dart' show ViewCompiler, ViewCompileResult;
 import 'package:angular2/src/facade/exceptions.template.dart' as i0;
@@ -28,9 +31,11 @@ import 'directive_normalizer.template.dart' as i3;
 import 'identifiers.template.dart' as i4;
 import 'output/abstract_emitter.template.dart' as i5;
 import 'output/output_ast.template.dart' as i6;
-import 'style_compiler.template.dart' as i7;
-import 'template_parser.template.dart' as i8;
-import 'view_compiler/view_compiler.template.dart' as i9;
+import 'source_module.template.dart' as i7;
+import 'style_compiler.template.dart' as i8;
+import 'template_ast.template.dart' as i9;
+import 'template_parser.template.dart' as i10;
+import 'view_compiler/view_compiler.template.dart' as i11;
 export 'offline_compiler.dart';
 
 var _visited = false;
@@ -46,4 +51,6 @@ i6.initReflector();
 i7.initReflector();
 i8.initReflector();
 i9.initReflector();
+i10.initReflector();
+i11.initReflector();
 }

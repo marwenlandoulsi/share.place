@@ -13,7 +13,7 @@ import 'checkbox_value_accessor.dart';
 import 'package:angular2/src/core/reflection/reflection.dart' as _ngRef;
 import 'dart:html';
 import 'package:angular2/core.dart' show Directive, ElementRef, Provider;
-import 'control_value_accessor.dart' show NG_VALUE_ACCESSOR, ControlValueAccessor;
+import 'control_value_accessor.dart' show ChangeFunction, ControlValueAccessor, NG_VALUE_ACCESSOR, TouchFunction;
 import 'package:angular2/core.template.dart' as i0;
 import 'control_value_accessor.template.dart' as i1;
 export 'checkbox_value_accessor.dart';

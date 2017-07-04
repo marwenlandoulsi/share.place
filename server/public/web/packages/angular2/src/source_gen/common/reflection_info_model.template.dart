@@ -10,15 +10,15 @@
 // @ignoreProblemForFile UNUSED_SHOWN_NAME
 // @ignoreProblemForFile UNUSED_LOCAL_VARIABLE
 import 'reflection_info_model.dart';
-import 'package:angular2/src/source_gen/common/annotation_model.dart';
-import 'package:angular2/src/source_gen/common/parameter_model.dart';
 import 'package:angular2/src/transform/common/names.dart';
 import 'package:code_builder/code_builder.dart';
 import 'package:code_builder/dart/core.dart';
 import 'package:quiver/strings.dart' as strings;
-import 'package:angular2/src/source_gen/common/annotation_model.template.dart' as i0;
-import 'package:angular2/src/source_gen/common/parameter_model.template.dart' as i1;
-import 'package:angular2/src/transform/common/names.template.dart' as i2;
+import 'annotation_model.dart';
+import 'parameter_model.dart';
+import 'package:angular2/src/transform/common/names.template.dart' as i0;
+import 'annotation_model.template.dart' as i1;
+import 'parameter_model.template.dart' as i2;
 export 'reflection_info_model.dart';
 
 var _visited = false;

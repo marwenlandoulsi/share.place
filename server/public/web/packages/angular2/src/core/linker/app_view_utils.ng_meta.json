@@ -20,8 +20,7 @@
       {
         "1": "package:angular2/src/core/change_detection/change_detection.dart",
         "2": [
-          "devModeEqual",
-          "uninitialized"
+          "devModeEqual"
         ],
         "5": false
       },
@@ -48,13 +47,6 @@
       },
       {
         "1": "package:angular2/src/core/security.dart",
-        "5": false
-      },
-      {
-        "1": "package:angular2/src/facade/exceptions.dart",
-        "2": [
-          "BaseException"
-        ],
         "5": false
       },
       {
@@ -134,59 +126,20 @@
         "4": "i5"
       },
       {
-        "1": "package:angular2/src/facade/exceptions.template.dart",
+        "1": "package:angular2/src/facade/lang.template.dart",
         "4": "i6"
       },
       {
-        "1": "package:angular2/src/facade/lang.template.dart",
+        "1": "package:angular2/src/platform/dom/events/event_manager.template.dart",
         "4": "i7"
       },
       {
-        "1": "package:angular2/src/platform/dom/events/event_manager.template.dart",
-        "4": "i8"
-      },
-      {
         "1": "exceptions.template.dart",
-        "4": "i9"
+        "4": "i8"
       }
     ]
   },
   "type": {
-    "OnDestroyCallback": {
-      "class": "Identifier",
-      "name": "OnDestroyCallback",
-      "moduleUrl": "asset:angular2/lib/src/core/linker/app_view_utils.dart",
-      "prefix": null,
-      "value": null
-    },
-    "MAX_INTERPOLATION_VALUES": {
-      "class": "Identifier",
-      "name": "MAX_INTERPOLATION_VALUES",
-      "moduleUrl": "asset:angular2/lib/src/core/linker/app_view_utils.dart",
-      "prefix": null,
-      "value": null
-    },
-    "EMPTY_ARRAY": {
-      "class": "Identifier",
-      "name": "EMPTY_ARRAY",
-      "moduleUrl": "asset:angular2/lib/src/core/linker/app_view_utils.dart",
-      "prefix": null,
-      "value": []
-    },
-    "EMPTY_MAP": {
-      "class": "Identifier",
-      "name": "EMPTY_MAP",
-      "moduleUrl": "asset:angular2/lib/src/core/linker/app_view_utils.dart",
-      "prefix": null,
-      "value": null
-    },
-    "NAMESPACE_URIS": {
-      "class": "Identifier",
-      "name": "NAMESPACE_URIS",
-      "moduleUrl": "asset:angular2/lib/src/core/linker/app_view_utils.dart",
-      "prefix": null,
-      "value": null
-    },
     "AppViewUtils": {
       "class": "Type",
       "name": "AppViewUtils",
@@ -257,9 +210,65 @@
         }
       ]
     },
-    "ensureSlotCount": {
+    "EMPTY_ARRAY": {
       "class": "Identifier",
-      "name": "ensureSlotCount",
+      "name": "EMPTY_ARRAY",
+      "moduleUrl": "asset:angular2/lib/src/core/linker/app_view_utils.dart",
+      "prefix": null,
+      "value": []
+    },
+    "EMPTY_MAP": {
+      "class": "Identifier",
+      "name": "EMPTY_MAP",
+      "moduleUrl": "asset:angular2/lib/src/core/linker/app_view_utils.dart",
+      "prefix": null,
+      "value": null
+    },
+    "MAX_INTERPOLATION_VALUES": {
+      "class": "Identifier",
+      "name": "MAX_INTERPOLATION_VALUES",
+      "moduleUrl": "asset:angular2/lib/src/core/linker/app_view_utils.dart",
+      "prefix": null,
+      "value": null
+    },
+    "NAMESPACE_URIS": {
+      "class": "Identifier",
+      "name": "NAMESPACE_URIS",
+      "moduleUrl": "asset:angular2/lib/src/core/linker/app_view_utils.dart",
+      "prefix": null,
+      "value": null
+    },
+    "OnDestroyCallback": {
+      "class": "Identifier",
+      "name": "OnDestroyCallback",
+      "moduleUrl": "asset:angular2/lib/src/core/linker/app_view_utils.dart",
+      "prefix": null,
+      "value": null
+    },
+    "_toStringWithNull": {
+      "class": "Identifier",
+      "name": "_toStringWithNull",
+      "moduleUrl": "asset:angular2/lib/src/core/linker/app_view_utils.dart",
+      "prefix": null,
+      "value": null
+    },
+    "arrayLooseIdentical": {
+      "class": "Identifier",
+      "name": "arrayLooseIdentical",
+      "moduleUrl": "asset:angular2/lib/src/core/linker/app_view_utils.dart",
+      "prefix": null,
+      "value": null
+    },
+    "castByValue": {
+      "class": "Identifier",
+      "name": "castByValue",
+      "moduleUrl": "asset:angular2/lib/src/core/linker/app_view_utils.dart",
+      "prefix": null,
+      "value": null
+    },
+    "checkBinding": {
+      "class": "Identifier",
+      "name": "checkBinding",
       "moduleUrl": "asset:angular2/lib/src/core/linker/app_view_utils.dart",
       "prefix": null,
       "value": null
@@ -285,30 +294,51 @@
       "prefix": null,
       "value": null
     },
-    "interpolate": {
+    "interpolate3": {
       "class": "Identifier",
-      "name": "interpolate",
+      "name": "interpolate3",
       "moduleUrl": "asset:angular2/lib/src/core/linker/app_view_utils.dart",
       "prefix": null,
       "value": null
     },
-    "_toStringWithNull": {
+    "interpolate4": {
       "class": "Identifier",
-      "name": "_toStringWithNull",
+      "name": "interpolate4",
       "moduleUrl": "asset:angular2/lib/src/core/linker/app_view_utils.dart",
       "prefix": null,
       "value": null
     },
-    "checkBinding": {
+    "interpolate5": {
       "class": "Identifier",
-      "name": "checkBinding",
+      "name": "interpolate5",
       "moduleUrl": "asset:angular2/lib/src/core/linker/app_view_utils.dart",
       "prefix": null,
       "value": null
     },
-    "arrayLooseIdentical": {
+    "interpolate6": {
       "class": "Identifier",
-      "name": "arrayLooseIdentical",
+      "name": "interpolate6",
+      "moduleUrl": "asset:angular2/lib/src/core/linker/app_view_utils.dart",
+      "prefix": null,
+      "value": null
+    },
+    "interpolate7": {
+      "class": "Identifier",
+      "name": "interpolate7",
+      "moduleUrl": "asset:angular2/lib/src/core/linker/app_view_utils.dart",
+      "prefix": null,
+      "value": null
+    },
+    "interpolate8": {
+      "class": "Identifier",
+      "name": "interpolate8",
+      "moduleUrl": "asset:angular2/lib/src/core/linker/app_view_utils.dart",
+      "prefix": null,
+      "value": null
+    },
+    "interpolate9": {
+      "class": "Identifier",
+      "name": "interpolate9",
       "moduleUrl": "asset:angular2/lib/src/core/linker/app_view_utils.dart",
       "prefix": null,
       "value": null
@@ -320,16 +350,16 @@
       "prefix": null,
       "value": null
     },
-    "castByValue": {
+    "pureProxy1": {
       "class": "Identifier",
-      "name": "castByValue",
+      "name": "pureProxy1",
       "moduleUrl": "asset:angular2/lib/src/core/linker/app_view_utils.dart",
       "prefix": null,
       "value": null
     },
-    "pureProxy1": {
+    "pureProxy10": {
       "class": "Identifier",
-      "name": "pureProxy1",
+      "name": "pureProxy10",
       "moduleUrl": "asset:angular2/lib/src/core/linker/app_view_utils.dart",
       "prefix": null,
       "value": null
@@ -386,13 +416,6 @@
     "pureProxy9": {
       "class": "Identifier",
       "name": "pureProxy9",
-      "moduleUrl": "asset:angular2/lib/src/core/linker/app_view_utils.dart",
-      "prefix": null,
-      "value": null
-    },
-    "pureProxy10": {
-      "class": "Identifier",
-      "name": "pureProxy10",
       "moduleUrl": "asset:angular2/lib/src/core/linker/app_view_utils.dart",
       "prefix": null,
       "value": null

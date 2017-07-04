@@ -1,7 +1,5 @@
 import "dart:async";
 
-import "package:angular2/src/compiler/url_resolver.dart" show UrlResolver;
-import "package:angular2/src/compiler/xhr.dart" show XHR;
 import "package:angular2/src/core/di.dart" show Injectable;
 import "package:angular2/src/core/metadata/view.dart" show ViewEncapsulation;
 import "package:angular2/src/facade/exceptions.dart" show BaseException;
@@ -12,12 +10,14 @@ import "html_ast.dart";
 import "html_parser.dart" show HtmlParser;
 import "style_url_resolver.dart" show extractStyleUrls, isStyleUrlResolvable;
 import "template_preparser.dart" show preparseElement, PreparsedElementType;
+import "url_resolver.dart" show UrlResolver;
+import "xhr.dart" show XHR;
 
 @Injectable()
 class DirectiveNormalizer {
-  XHR _xhr;
-  UrlResolver _urlResolver;
-  HtmlParser _htmlParser;
+  final XHR _xhr;
+  final UrlResolver _urlResolver;
+  final HtmlParser _htmlParser;
   DirectiveNormalizer(this._xhr, this._urlResolver, this._htmlParser);
   Future<CompileDirectiveMetadata> normalizeDirective(
       CompileDirectiveMetadata directive) {
@@ -48,7 +48,12 @@ class DirectiveNormalizer {
   }
 
   Future<CompileTemplateMetadata> normalizeTemplate(
-      CompileTypeMetadata directiveType, CompileTemplateMetadata template) {
+    CompileTypeMetadata directiveType,
+    CompileTemplateMetadata template,
+  ) {
+    // This emulates the same behavior for interpreted mode, that is, that
+    // omitting either template: or templateUrl: results in an empty template.
+    template ??= new CompileTemplateMetadata(template: '');
     if (template.template != null) {
       return new Future.value(this.normalizeLoadedTemplate(
           directiveType,
@@ -65,7 +70,7 @@ class DirectiveNormalizer {
               sourceAbsUrl, template.preserveWhitespace));
     } else {
       throw new BaseException(
-          '''No template specified for component ${ directiveType . name}''');
+          'No template specified for component ${directiveType.name}');
     }
   }
 
@@ -77,10 +82,9 @@ class DirectiveNormalizer {
       bool preserveWhitespace) {
     var rootNodesAndErrors =
         this._htmlParser.parse(template, directiveType.name);
-    if (rootNodesAndErrors.errors.length > 0) {
-      var errorString = rootNodesAndErrors.errors.join("\n");
-      throw new BaseException('Template parse errors: '
-          '${ errorString}');
+    if (rootNodesAndErrors.errors.isNotEmpty) {
+      var errorString = rootNodesAndErrors.errors.join('\n');
+      throw new BaseException('Template parse errors: $errorString');
     }
     var visitor = new TemplatePreparseVisitor();
     htmlVisitAll(visitor, rootNodesAndErrors.rootNodes);

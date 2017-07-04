@@ -12,13 +12,13 @@
 import 'xhr_impl.dart';
 import 'dart:async';
 import 'package:angular2/src/compiler/xhr.dart' show XHR;
-import 'package:angular2/src/transform/common/asset_reader.dart';
-import 'package:angular2/src/transform/common/logging.dart';
-import 'package:angular2/src/transform/common/url_resolver.dart';
+import 'asset_reader.dart';
+import 'logging.dart';
+import 'url_resolver.dart';
 import 'package:angular2/src/compiler/xhr.template.dart' as i0;
-import 'package:angular2/src/transform/common/asset_reader.template.dart' as i1;
-import 'package:angular2/src/transform/common/logging.template.dart' as i2;
-import 'package:angular2/src/transform/common/url_resolver.template.dart' as i3;
+import 'asset_reader.template.dart' as i1;
+import 'logging.template.dart' as i2;
+import 'url_resolver.template.dart' as i3;
 export 'xhr_impl.dart';
 
 var _visited = false;

@@ -1,7 +1,7 @@
-import "package:angular2/src/facade/exceptions.dart" show BaseException;
+import 'dart:collection';
 
-import "platform_reflection_capabilities.dart";
-import "types.dart";
+import 'platform_reflection_capabilities.dart';
+import 'types.dart';
 
 export "platform_reflection_capabilities.dart";
 export "types.dart";
@@ -26,37 +26,16 @@ class ReflectionInfo {
 ///
 /// Used internally by Angular to power dependency injection and compilation.
 class Reflector {
-  var _injectableInfo = new Map<dynamic, ReflectionInfo>();
-  var _getters = new Map<String, GetterFn>();
-  var _setters = new Map<String, SetterFn>();
-  var _methods = new Map<String, MethodFn>();
-  Set<dynamic> _usedKeys;
+  final _injectableInfo = new HashMap<dynamic, ReflectionInfo>();
+  final _getters = new HashMap<String, GetterFn>();
+  final _setters = new HashMap<String, SetterFn>();
+  final _methods = new HashMap<String, MethodFn>();
+
   PlatformReflectionCapabilities reflectionCapabilities;
-  Reflector(PlatformReflectionCapabilities reflectionCapabilities) : super() {
-    this._usedKeys = null;
-    this.reflectionCapabilities = reflectionCapabilities;
-  }
 
-  bool isReflectionEnabled() => reflectionCapabilities.isReflectionEnabled();
+  Reflector(this.reflectionCapabilities);
 
-  /// Causes this reflector to track keys used to access [ReflectionInfo]
-  /// objects.
-  void trackUsage() {
-    _usedKeys = new Set();
-  }
-
-  /// Lists types for which reflection information was not requested since
-  /// [#trackUsage] was called. This list could later be audited as
-  /// potential dead code.
-  List listUnusedKeys() {
-    if (this._usedKeys == null) {
-      throw new BaseException("Usage tracking is disabled");
-    }
-    var allTypes = _injectableInfo.keys;
-    return allTypes
-        .where((key) => _usedKeys == null || !_usedKeys.contains(key))
-        .toList();
-  }
+  bool get reflectionEnabled => reflectionCapabilities.reflectionEnabled;
 
   void registerFunction(Function func, ReflectionInfo funcInfo) {
     _injectableInfo[func] = funcInfo;
@@ -64,18 +43,28 @@ class Reflector {
 
   void registerType(Type type, ReflectionInfo typeInfo) {
     _injectableInfo[type] = typeInfo;
+    // Workaround since package expect/@NoInline not available outside sdk.
+    return null; // ignore: dead_code
+    return null; // ignore: dead_code
+  }
+
+  void registerSimpleType(Type type, Function factory) {
+    registerType(type, new ReflectionInfo(const [], const [], factory));
+    // Workaround since package expect/@NoInline not available outside sdk.
+    return null; // ignore: dead_code
+    return null; // ignore: dead_code
   }
 
   void registerGetters(Map<String, GetterFn> getters) {
-    _mergeMaps(this._getters, getters);
+    _mergeMaps(_getters, getters);
   }
 
   void registerSetters(Map<String, SetterFn> setters) {
-    _mergeMaps(this._setters, setters);
+    _mergeMaps(_setters, setters);
   }
 
   void registerMethods(Map<String, MethodFn> methods) {
-    _mergeMaps(this._methods, methods);
+    _mergeMaps(_methods, methods);
   }
 
   Function factory(Type type) {
@@ -87,67 +76,60 @@ class Reflector {
   }
 
   List<List<dynamic>> parameters(dynamic typeOrFunc) {
-    if (this._injectableInfo.containsKey(typeOrFunc)) {
-      var res = this._getReflectionInfo(typeOrFunc).parameters;
-      return res ?? [];
+    var res = _injectableInfo[typeOrFunc];
+    if (res != null) {
+      return res.parameters ?? const [];
     } else {
-      return this.reflectionCapabilities.parameters(typeOrFunc);
+      return reflectionCapabilities.parameters(typeOrFunc);
     }
   }
 
   List<dynamic> annotations(dynamic typeOrFunc) {
-    if (this._injectableInfo.containsKey(typeOrFunc)) {
+    if (_injectableInfo.containsKey(typeOrFunc)) {
       var res = this._getReflectionInfo(typeOrFunc).annotations;
       return res ?? [];
     } else {
-      return this.reflectionCapabilities.annotations(typeOrFunc);
+      return reflectionCapabilities.annotations(typeOrFunc);
     }
   }
 
   Map<String, List<dynamic>> propMetadata(dynamic typeOrFunc) {
-    if (this._injectableInfo.containsKey(typeOrFunc)) {
+    if (_injectableInfo.containsKey(typeOrFunc)) {
       var res = this._getReflectionInfo(typeOrFunc).propMetadata;
       return res ?? {};
     } else {
-      return this.reflectionCapabilities.propMetadata(typeOrFunc);
+      return reflectionCapabilities.propMetadata(typeOrFunc);
     }
   }
 
   List<dynamic> interfaces(Type type) {
-    if (this._injectableInfo.containsKey(type)) {
+    if (_injectableInfo.containsKey(type)) {
       var res = this._getReflectionInfo(type).interfaces;
       return res ?? [];
     } else {
-      return this.reflectionCapabilities.interfaces(type);
+      return reflectionCapabilities.interfaces(type);
     }
   }
 
   GetterFn getter(String name) {
-    if (this._getters.containsKey(name)) {
-      return this._getters[name];
-    } else {
-      return this.reflectionCapabilities.getter(name);
-    }
+    var res = _getters[name];
+    if (res != null) return res;
+    return reflectionCapabilities.getter(name);
   }
 
   SetterFn setter(String name) {
-    if (this._setters.containsKey(name)) {
-      return this._setters[name];
-    } else {
-      return this.reflectionCapabilities.setter(name);
-    }
+    var res = _setters[name];
+    if (res != null) return res;
+    return reflectionCapabilities.setter(name);
   }
 
   MethodFn method(String name) {
-    if (this._methods.containsKey(name)) {
-      return this._methods[name];
-    } else {
-      return this.reflectionCapabilities.method(name);
-    }
+    var m = _methods[name];
+    if (m != null) return m;
+    return reflectionCapabilities.method(name);
   }
 
   ReflectionInfo _getReflectionInfo(dynamic typeOrFunc) {
-    _usedKeys?.add(typeOrFunc);
     return _injectableInfo[typeOrFunc];
   }
 

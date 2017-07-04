@@ -10,6 +10,7 @@
 // @ignoreProblemForFile UNUSED_SHOWN_NAME
 // @ignoreProblemForFile UNUSED_LOCAL_VARIABLE
 import 'ng_meta.dart';
+import 'dart:collection';
 import 'package:angular2/src/compiler/compile_metadata.dart';
 import 'logging.dart';
 import 'model/ng_deps_model.pb.dart';

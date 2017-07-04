@@ -21,4 +21,3 @@ void main() {
 
   bootstrapStatic(AppComponent, [provide(Client, useClass: BrowserDataService), Environment, EventBus], () { ngStaticInit.initReflector(); });
 }
-

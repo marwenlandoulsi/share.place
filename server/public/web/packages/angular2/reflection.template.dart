@@ -10,15 +10,18 @@
 // @ignoreProblemForFile UNUSED_SHOWN_NAME
 // @ignoreProblemForFile UNUSED_LOCAL_VARIABLE
 import 'reflection.dart';
-import 'src/core/reflection/reflection_capabilities.dart';
 import 'src/core/reflection/reflection.dart';
-import 'src/core/reflection/reflection_capabilities.template.dart' as i0;
-import 'src/core/reflection/reflection.template.dart' as i1;
+import 'src/core/reflection/reflection_capabilities.dart';
+import 'src/core/reflection/reflection.template.dart' as i0;
+import 'src/core/reflection/reflection_capabilities.template.dart' as i1;
+import 'src/compiler/xhr.template.dart' as i2;
 export 'reflection.dart';
+export 'src/compiler/xhr.dart' show XHR;
 
 var _visited = false;
 void initReflector() {
 if (_visited) return; _visited = true;
 i0.initReflector();
 i1.initReflector();
+i2.initReflector();
 }

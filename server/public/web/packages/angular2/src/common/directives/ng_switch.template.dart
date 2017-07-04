@@ -11,8 +11,12 @@
 // @ignoreProblemForFile UNUSED_LOCAL_VARIABLE
 import 'ng_switch.dart';
 import 'package:angular2/src/core/reflection/reflection.dart' as _ngRef;
-import 'package:angular2/core.dart' show Directive, Host, ViewContainerRef, TemplateRef;
+import 'package:angular2/core.dart';
+import 'package:angular2/src/core/di/decorators.dart' show Host;
+import 'package:angular2/src/facade/lang.dart';
 import 'package:angular2/core.template.dart' as i0;
+import 'package:angular2/src/core/di/decorators.template.dart' as i1;
+import 'package:angular2/src/facade/lang.template.dart' as i2;
 export 'ng_switch.dart';
 
 var _visited = false;
@@ -32,8 +36,10 @@ const [const <dynamic>[ViewContainerRef], const <dynamic>[TemplateRef], const <d
 ..registerType(NgSwitchDefault, new _ngRef.ReflectionInfo(
 const <dynamic>[],
 const [const <dynamic>[ViewContainerRef], const <dynamic>[TemplateRef], const <dynamic>[NgSwitch, const Host()]],
-(ViewContainerRef viewContainer, TemplateRef templateRef, NgSwitch sswitch) => new NgSwitchDefault(viewContainer, templateRef, sswitch))
+(ViewContainerRef viewContainer, TemplateRef templateRef, NgSwitch switchDirective) => new NgSwitchDefault(viewContainer, templateRef, switchDirective))
 )
 ;
 i0.initReflector();
+i1.initReflector();
+i2.initReflector();
 }

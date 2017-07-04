@@ -12,10 +12,12 @@
 import 'async_pipe.dart';
 import 'package:angular2/src/core/reflection/reflection.dart' as _ngRef;
 import 'dart:async';
-import 'package:angular2/core.dart' show Pipe, Injectable, ChangeDetectorRef, OnDestroy, WrappedValue;
+import 'package:angular2/core.dart' show Pipe, ChangeDetectorRef, OnDestroy, WrappedValue;
+import 'package:angular2/di.dart' show Injectable;
 import 'invalid_pipe_argument_exception.dart' show InvalidPipeArgumentException;
 import 'package:angular2/core.template.dart' as i0;
-import 'invalid_pipe_argument_exception.template.dart' as i1;
+import 'package:angular2/di.template.dart' as i1;
+import 'invalid_pipe_argument_exception.template.dart' as i2;
 export 'async_pipe.dart';
 
 var _visited = false;
@@ -23,7 +25,7 @@ void initReflector() {
 if (_visited) return; _visited = true;
 _ngRef.reflector
 ..registerType(AsyncPipe, new _ngRef.ReflectionInfo(
-const <dynamic>[const Pipe(name: "async", pure: false), const Injectable()],
+const <dynamic>[const Pipe("async", pure: false), const Injectable()],
 const [const <dynamic>[ChangeDetectorRef]],
 (ChangeDetectorRef _ref) => new AsyncPipe(_ref),
 const <dynamic>[OnDestroy])
@@ -31,4 +33,5 @@ const <dynamic>[OnDestroy])
 ;
 i0.initReflector();
 i1.initReflector();
+i2.initReflector();
 }

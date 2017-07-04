@@ -72,7 +72,7 @@ class _AstToIrVisitor implements compiler_ast.AstVisitor {
   final NameResolver _nameResolver;
   final o.Expression _implicitReceiver;
   final bool preserveWhitespace;
-  o.ReadVarExpr _valueUnwrapper;
+  final o.ReadVarExpr _valueUnwrapper;
   bool needsValueUnwrapper = false;
   _AstToIrVisitor(this._nameResolver, this._implicitReceiver,
       this._valueUnwrapper, this.preserveWhitespace);
@@ -155,7 +155,7 @@ class _AstToIrVisitor implements compiler_ast.AstVisitor {
     var input = ast.exp.visit(this, _Mode.Expression);
     var args =
         this.visitAll(ast.args as List<compiler_ast.AST>, _Mode.Expression)
-        as List<o.Expression>;
+            as List<o.Expression>;
     var value = this._nameResolver.callPipe(ast.name, input, args);
     this.needsValueUnwrapper = true;
     return convertToStatementIfNeeded(
@@ -199,38 +199,33 @@ class _AstToIrVisitor implements compiler_ast.AstVisitor {
     ensureExpressionMode(mode, ast);
 
     /// Handle most common case where prefix and postfix are empty.
-    if (ast.expressions.length == 1 &&
-        ast.strings[0].isEmpty &&
-        ast.strings[1].isEmpty) {
-      var args = <o.Expression>[
-        ast.expressions[0].visit(this, _Mode.Expression)
-      ];
-      return o.importExpr(Identifiers.interpolate0).callFn(args);
-    } else if (ast.expressions.length <= 2) {
-      var args = <o.Expression>[];
-      for (var i = 0, len = ast.strings.length - 1; i < len; i++) {
-        String literalStr = compressWhitespace(replaceNgSpace(ast.strings[i]));
-        args.add(o.literal(literalStr));
-        args.add(ast.expressions[i].visit(this, _Mode.Expression));
+    if (ast.expressions.length == 1) {
+      String firstArg = compressWhitespace(ast.strings[0]);
+      String secondArg = compressWhitespace(ast.strings[1]);
+      if (firstArg.isEmpty && secondArg.isEmpty) {
+        var args = <o.Expression>[
+          ast.expressions[0].visit(this, _Mode.Expression)
+        ];
+        return o.importExpr(Identifiers.interpolate[0]).callFn(args);
+      } else {
+        var args = <o.Expression>[
+          o.literal(firstArg),
+          ast.expressions[0].visit(this, _Mode.Expression),
+          o.literal(secondArg),
+        ];
+        return o.importExpr(Identifiers.interpolate[1]).callFn(args);
       }
-      args.add(
-          o.literal(compressWhitespace(ast.strings[ast.strings.length - 1])));
-      if (ast.expressions.length == 1)
-        return o.importExpr(Identifiers.interpolate1).callFn(args);
-      else
-        return o.importExpr(Identifiers.interpolate2).callFn(args);
     } else {
-      var args = [o.literal(ast.expressions.length)];
+      var args = <o.Expression>[];
       for (var i = 0; i < ast.strings.length - 1; i++) {
-        String literalStr = i == 0
-            ? compressWhitespace(ast.strings[i])
-            : replaceNgSpace(ast.strings[i]);
-        args.add(o.literal(literalStr));
+        args.add(o.literal(compressWhitespace(ast.strings[i])));
         args.add(ast.expressions[i].visit(this, _Mode.Expression));
       }
       args.add(
           o.literal(compressWhitespace(ast.strings[ast.strings.length - 1])));
-      return o.importExpr(Identifiers.interpolate).callFn(args);
+      return o
+          .importExpr(Identifiers.interpolate[ast.expressions.length])
+          .callFn(args);
     }
   }
 
@@ -257,7 +252,7 @@ class _AstToIrVisitor implements compiler_ast.AstVisitor {
         mode,
         _nameResolver.createLiteralArray(
             this.visitAll(ast.expressions as List<compiler_ast.AST>, mode)
-            as List<o.Expression>));
+                as List<o.Expression>));
   }
 
   dynamic visitLiteralMap(compiler_ast.LiteralMap ast, dynamic context) {
@@ -280,7 +275,7 @@ class _AstToIrVisitor implements compiler_ast.AstVisitor {
     _Mode mode = context;
     var args =
         this.visitAll(ast.args as List<compiler_ast.AST>, _Mode.Expression)
-        as List<o.Expression>;
+            as List<o.Expression>;
     var result;
     var receiver = ast.receiver.visit(this, _Mode.Expression);
     if (identical(receiver, IMPLICIT_RECEIVER)) {
@@ -291,9 +286,8 @@ class _AstToIrVisitor implements compiler_ast.AstVisitor {
         receiver = this._implicitReceiver;
       }
     }
-    if (result == null) {
-      result = receiver.callMethod(ast.name, args);
-    }
+    result ??= receiver.callMethod(ast.name, args);
+
     return convertToStatementIfNeeded(mode, result);
   }
 
@@ -313,9 +307,7 @@ class _AstToIrVisitor implements compiler_ast.AstVisitor {
         receiver = this._implicitReceiver;
       }
     }
-    if (result == null) {
-      result = receiver.prop(ast.name);
-    }
+    result ??= receiver.prop(ast.name);
     return convertToStatementIfNeeded(mode, result);
   }
 
@@ -357,10 +349,6 @@ class _AstToIrVisitor implements compiler_ast.AstVisitor {
   dynamic visitAll(List<compiler_ast.AST> asts, dynamic context) {
     _Mode mode = context;
     return asts.map((ast) => ast.visit(this, mode)).toList();
-  }
-
-  dynamic visitQuote(compiler_ast.Quote ast, dynamic context) {
-    throw new BaseException("Quotes are not supported for evaluation!");
   }
 }
 

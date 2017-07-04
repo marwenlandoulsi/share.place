@@ -11,7 +11,9 @@
 // @ignoreProblemForFile UNUSED_LOCAL_VARIABLE
 import 'annotation_matcher.dart';
 import 'package:analyzer/dart/element/element.dart';
+import 'package:analyzer/src/dart/element/element.dart';
 import 'package:angular2/src/core/metadata.dart';
+import 'package:logging/logging.dart';
 import 'package:source_gen/src/annotation.dart' as source_gen;
 import 'package:angular2/src/core/metadata.template.dart' as i0;
 export 'annotation_matcher.dart';

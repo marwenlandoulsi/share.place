@@ -1,34 +1,36 @@
-import 'package:angular2/src/source_gen/common/annotation_model.dart';
-import 'package:angular2/src/source_gen/common/parameter_model.dart';
 import 'package:angular2/src/transform/common/names.dart';
 import 'package:code_builder/code_builder.dart';
 import 'package:code_builder/dart/core.dart';
 import 'package:quiver/strings.dart' as strings;
 
+import 'annotation_model.dart';
+import 'parameter_model.dart';
+
 /// Reflective information about a symbol, including annotations, interfaces,
 /// and other metadata.
 class ReflectionInfoModel {
-  final String name;
+  final ReferenceBuilder _type;
   final String ctorName;
   final bool isFunction;
 
-  final List<AnnotationModel> _annotations;
-  final List<ParameterModel> _parameters;
-  final List<String> _interfaces;
+  final Iterable<AnnotationModel> _annotations;
+  final Iterable<ParameterModel> _parameters;
+  final Iterable<ReferenceBuilder> _interfaces;
 
   ReflectionInfoModel(
-      {this.name,
+      {ReferenceBuilder type,
       this.ctorName,
       this.isFunction: false,
-      List<AnnotationModel> annotations: const [],
-      List<ParameterModel> parameters: const [],
-      List<String> interfaces: const []})
-      : _annotations = annotations,
+      Iterable<AnnotationModel> annotations: const [],
+      Iterable<ParameterModel> parameters: const [],
+      Iterable<ReferenceBuilder> interfaces: const []})
+      : this._type = type,
+        _annotations = annotations,
         _parameters = parameters,
         _interfaces = interfaces;
 
   List<ExpressionBuilder> get localMetadataEntry => [
-        reference(name),
+        _type,
         _annotationList(_annotations
             .where((AnnotationModel am) => !am.name.endsWith('NgFactory')))
       ];
@@ -36,10 +38,22 @@ class ReflectionInfoModel {
   StatementBuilder get asRegistration {
     var reflectionInfo = reference('ReflectionInfo', REFLECTOR_IMPORT)
         .newInstance(_reflectionInfoParams);
-    return reference(REFLECTOR_VAR_NAME, REFLECTOR_IMPORT).invoke(
-        isFunction ? 'registerFunction' : 'registerType',
-        [reference(name), reflectionInfo]);
+
+    var reflector = reference(REFLECTOR_VAR_NAME, REFLECTOR_IMPORT);
+    if (isFunction) {
+      return reflector.invoke('registerFunction', [_type, reflectionInfo]);
+    } else if (_isSimpleType) {
+      return reflector.invoke('registerSimpleType', [_type, _factoryClosure]);
+    } else {
+      return reflector.invoke('registerType', [_type, reflectionInfo]);
+    }
   }
+
+  bool get _isSimpleType =>
+      !isFunction &&
+      _annotations.isEmpty &&
+      _parameters.isEmpty &&
+      _interfaces.isEmpty;
 
   List<ExpressionBuilder> get _reflectionInfoParams {
     var reflectionInfoParams = <ExpressionBuilder>[
@@ -68,7 +82,7 @@ class ReflectionInfoModel {
           asConst: true);
 
   ExpressionBuilder get _interfaceList =>
-      list(_interfaces.map(reference), type: lib$core.$dynamic, asConst: true);
+      list(_interfaces, type: lib$core.$dynamic, asConst: true);
 
   ExpressionBuilder get _factoryClosure {
     var closure = new MethodBuilder.closure(returns: _constructorExpression);
@@ -79,10 +93,10 @@ class ReflectionInfoModel {
   }
 
   NewInstanceBuilder get _constructorExpression {
-    var modelRef = reference(name);
+    var modelRef = _type;
     var params = _parameters.map((param) => reference(param.paramName));
     return strings.isNotEmpty(ctorName)
-        ? modelRef.namedNewInstance(ctorName, params)
+        ? modelRef.newInstance(params, constructor: ctorName)
         : modelRef.newInstance(params);
   }
 }

@@ -10,19 +10,19 @@
 // @ignoreProblemForFile UNUSED_SHOWN_NAME
 // @ignoreProblemForFile UNUSED_LOCAL_VARIABLE
 import 'compile_metadata.dart';
-import 'package:angular2/src/compiler/selector.dart' show CssSelector;
 import 'package:angular2/src/core/change_detection/change_detection.dart' show ChangeDetectionStrategy;
 import 'package:angular2/src/core/metadata/lifecycle_hooks.dart' show LifecycleHooks, LIFECYCLE_HOOKS_VALUES;
-import 'package:angular2/src/core/metadata/view.dart' show ViewEncapsulation, VIEW_ENCAPSULATION_VALUES;
+import 'package:angular2/src/core/metadata/view.dart' show ViewEncapsulation;
 import 'package:angular2/src/facade/exceptions.dart' show BaseException;
 import 'compiler_utils.dart';
+import 'selector.dart' show CssSelector;
 import 'url_resolver.dart' show getUrlScheme;
-import 'package:angular2/src/compiler/selector.template.dart' as i0;
-import 'package:angular2/src/core/change_detection/change_detection.template.dart' as i1;
-import 'package:angular2/src/core/metadata/lifecycle_hooks.template.dart' as i2;
-import 'package:angular2/src/core/metadata/view.template.dart' as i3;
-import 'package:angular2/src/facade/exceptions.template.dart' as i4;
-import 'compiler_utils.template.dart' as i5;
+import 'package:angular2/src/core/change_detection/change_detection.template.dart' as i0;
+import 'package:angular2/src/core/metadata/lifecycle_hooks.template.dart' as i1;
+import 'package:angular2/src/core/metadata/view.template.dart' as i2;
+import 'package:angular2/src/facade/exceptions.template.dart' as i3;
+import 'compiler_utils.template.dart' as i4;
+import 'selector.template.dart' as i5;
 import 'url_resolver.template.dart' as i6;
 export 'compile_metadata.dart';
 

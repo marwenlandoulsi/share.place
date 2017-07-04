@@ -10,6 +10,7 @@
 // @ignoreProblemForFile UNUSED_SHOWN_NAME
 // @ignoreProblemForFile UNUSED_LOCAL_VARIABLE
 import 'url_resolver.dart';
+import 'package:analyzer/dart/element/element.dart';
 import 'package:build/build.dart';
 export 'url_resolver.dart';
 

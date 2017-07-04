@@ -10,17 +10,19 @@
 // @ignoreProblemForFile UNUSED_SHOWN_NAME
 // @ignoreProblemForFile UNUSED_LOCAL_VARIABLE
 import 'parameter_model.dart';
+import 'package:analyzer/analyzer.dart';
 import 'package:analyzer/dart/element/element.dart';
-import 'package:analyzer/dart/element/type.dart';
-import 'package:angular2/src/source_gen/common/annotation_model.dart';
 import 'package:code_builder/code_builder.dart';
 import 'package:code_builder/dart/core.dart';
-import 'package:quiver/strings.dart' as strings;
-import 'package:angular2/src/source_gen/common/annotation_model.template.dart' as i0;
+import 'annotation_model.dart';
+import 'references.dart' as references;
+import 'annotation_model.template.dart' as i0;
+import 'references.template.dart' as i1;
 export 'parameter_model.dart';
 
 var _visited = false;
 void initReflector() {
 if (_visited) return; _visited = true;
 i0.initReflector();
+i1.initReflector();
 }

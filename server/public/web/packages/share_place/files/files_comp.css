@@ -212,10 +212,9 @@ a {
   -moz-border-radius: 0 0 3px 3px;
   border-radius: 0 0 3px 3px;
   margin-right: -0.5em;
-  /*position: relative;*/
+  /*width: calc(100% - 0.5em);*/
   z-index: 2;
 }
-
 
 .versionTitle:hover {
   cursor: pointer;
@@ -302,12 +301,12 @@ a {
   opacity: 0.7;
   font-family: 'Material-Design-Iconic-Font';
 }
-.uploadStatus:after{
+
+.uploadStatus:after {
   font-size: 2.1em;
-  color:#252C3F;
+  color: #252C3F;
   content: '\f21e';
 }
-
 
 .bubble {
   position: relative;
@@ -793,9 +792,9 @@ li.more {
 }
 
 /*.uploading {*/
-  /*opacity: 0.5;*/
-  /*!*border: 2px dashed #00aced;*!*/
-  /*background-color: #00e4e4;*/
+/*opacity: 0.5;*/
+/*!*border: 2px dashed #00aced;*!*/
+/*background-color: #00e4e4;*/
 
 /*}*/
 
@@ -814,7 +813,8 @@ li.more {
 .headerPopVersion .fileInfo {
   font-size: 0.9em;
 }
-.addTopicBtn{
+
+.addTopicBtn {
   position: relative;
   cursor: pointer;
   overflow: hidden;
@@ -824,8 +824,38 @@ li.more {
   opacity: 1;
   position: absolute;
   left: 0;
-  top:0;
+  top: 0;
   cursor: pointer;
+}
+
+.mailInfo {
+  margin: 2em;
+  margin-bottom: 0.5em;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  /* background-color: rgba(255, 255, 255, 0.1); */
+  padding: 1em;
+  background-color: rgba(99, 199, 254, 0.11);
+}
+
+.mailInfo .account:before {
+  font-family: 'Material-Design-Iconic-Font';
+  color: #63C7FE;
+  content: '\f159';
+  font-size: 1.7em;
+  vertical-align: middle;
+  margin-right: 0.3em;
+}
+
+.mailInfo .account {
+
+}
+
+.mailInfo .subject {
+  color: rgba(125, 146, 162, 0.78);
+}
+
+.mailInfo .body {
+  color: lightslategray;
 }
 
 

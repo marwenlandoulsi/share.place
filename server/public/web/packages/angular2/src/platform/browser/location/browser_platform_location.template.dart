@@ -13,13 +13,11 @@ import 'browser_platform_location.dart';
 import 'package:angular2/src/core/reflection/reflection.dart' as _ngRef;
 import 'dart:html';
 import 'package:angular2/src/core/di/decorators.dart' show Injectable;
-import 'package:angular2/src/facade/browser.dart' show History, Location;
-import 'package:angular2/src/platform/dom/dom_adapter.dart' show DOM;
-import 'platform_location.dart' show PlatformLocation;
+import 'base_href.dart' as base_href;
+import 'platform_location.dart';
 import 'package:angular2/src/core/di/decorators.template.dart' as i0;
-import 'package:angular2/src/facade/browser.template.dart' as i1;
-import 'package:angular2/src/platform/dom/dom_adapter.template.dart' as i2;
-import 'platform_location.template.dart' as i3;
+import 'base_href.template.dart' as i1;
+import 'platform_location.template.dart' as i2;
 export 'browser_platform_location.dart';
 
 var _visited = false;
@@ -35,5 +33,4 @@ const [],
 i0.initReflector();
 i1.initReflector();
 i2.initReflector();
-i3.initReflector();
 }

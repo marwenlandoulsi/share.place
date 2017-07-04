@@ -1,130 +1,113 @@
-import "package:angular2/src/facade/base_wrapped_exception.dart"
-    show BaseWrappedException;
+import 'package:logging/logging.dart';
 
-class _ArrayLogger {
-  List res = [];
-  void log(dynamic s) {
-    this.res.add(s);
-  }
-
-  void logError(dynamic s) {
-    this.res.add(s);
-  }
-
-  void logGroup(dynamic s) {
-    this.res.add(s);
-  }
-
-  void logGroupEnd() {}
-}
+import 'exceptions.dart' show WrappedException;
 
 /// Provides a hook for centralized exception handling.
 ///
-/// The default implementation of `ExceptionHandler` prints error messages to the `Console`. To
-/// intercept error handling,
-/// write a custom exception handler that replaces this default as appropriate for your app.
+/// The default implementation of `ExceptionHandler` when use AngularDart is
+/// actually `BrowserExceptionHandler`, which prints error message directly to
+/// the console.
 ///
-/// ### Example
+/// It's possible to instead write a _custom exception handler_:
+/// ```
+/// import 'package:angular2/angular2.dart';
+/// import 'package:angular2/platform/browser.dart';
 ///
-/// ```javascript
-///
+/// @Injectable()
 /// class MyExceptionHandler implements ExceptionHandler {
-///   call(error, stackTrace = null, reason = null) {
-///     // do something with the exception
+///   @override
+///   void call(exception, [stackTrace, String reason]) {
+///     // Do something with this exception, like send to an online service.
 ///   }
 /// }
 ///
-/// bootstrap(MyApp, [provide(ExceptionHandler, {useClass: MyExceptionHandler})])
-///
+/// void main() {
+///   bootstrap(MyApp, [
+///     provide(ExceptionHandler, useClass: MyExceptionHandler),
+///   ]);
+/// }
 /// ```
 class ExceptionHandler {
-  dynamic _logger;
-  bool _rethrowException;
-  ExceptionHandler(this._logger, [this._rethrowException = true]);
-  static String exceptionToString(dynamic exception,
-      [dynamic stackTrace = null, String reason = null]) {
-    var l = new _ArrayLogger();
-    var e = new ExceptionHandler(l, false);
-    e.call(exception, stackTrace, reason);
-    return l.res.join("\n");
-  }
+  static String _extractMessage(exception) => exception is WrappedException
+      ? exception.wrapperMessage
+      : exception.toString();
 
-  void call(dynamic exception,
-      [dynamic stackTrace = null, String reason = null]) {
-    var originalException = this._findOriginalException(exception);
-    var originalStack = this._findOriginalStack(exception);
-    var context = this._findContext(exception);
-    this
-        ._logger
-        .logGroup('''EXCEPTION: ${ this . _extractMessage ( exception )}''');
-    if (stackTrace != null && originalStack == null) {
-      this._logger.logError("STACKTRACE:");
-      this._logger.logError(this._longStackTrace(stackTrace));
-    }
-    if (reason != null) {
-      this._logger.logError('''REASON: ${ reason}''');
-    }
-    if (originalException != null) {
-      this._logger.logError(
-          '''ORIGINAL EXCEPTION: ${ this . _extractMessage ( originalException )}''');
-    }
-    if (originalStack != null) {
-      this._logger.logError("ORIGINAL STACKTRACE:");
-      this._logger.logError(this._longStackTrace(originalStack));
-    }
-    if (context != null) {
-      this._logger.logError("ERROR CONTEXT:");
-      this._logger.logError(context);
-    }
-    this._logger.logGroupEnd();
-    // We rethrow exceptions, so operations like 'bootstrap' will result in an error
-
-    // when an exception happens. If we do not rethrow, bootstrap will always succeed.
-    if (this._rethrowException) throw exception;
-  }
-
-  String _extractMessage(dynamic exception) {
-    return exception is BaseWrappedException
-        ? exception.wrapperMessage
-        : exception.toString();
-  }
-
-  dynamic _longStackTrace(dynamic stackTrace) {
-    return stackTrace is Iterable
-        ? ((stackTrace as List<dynamic>)).join("\n\n-----async gap-----\n")
-        : stackTrace.toString();
-  }
-
-  dynamic _findContext(dynamic exception) {
+  static _findContext(exception) {
     try {
-      if (!(exception is BaseWrappedException)) return null;
-      return exception.context ??
-          this._findContext(exception.originalException);
-    } catch (e) {
-      // exception.context can throw an exception. if it happens, we ignore the context.
+      return exception is WrappedException
+          ? exception.context ?? _findContext(exception.originalException)
+          : null;
+    } catch (_) {
       return null;
     }
   }
 
-  dynamic _findOriginalException(dynamic exception) {
-    if (!(exception is BaseWrappedException)) return null;
-    var e = exception.originalException;
-    while (e is BaseWrappedException && e.originalException != null) {
-      e = e.originalException;
+  static _findOriginalException(exception) {
+    while (exception is WrappedException) {
+      exception = exception.originalException;
     }
-    return e;
+    return exception;
   }
 
-  dynamic _findOriginalStack(dynamic exception) {
-    if (!(exception is BaseWrappedException)) return null;
-    var e = exception;
-    var stack = exception.originalStack;
-    while (e is BaseWrappedException && e.originalException != null) {
-      e = e.originalException;
-      if (e is BaseWrappedException && e.originalException != null) {
-        stack = e.originalStack;
-      }
+  static _findOriginalStackTrace(exception) {
+    var stackTrace;
+    while (exception is WrappedException) {
+      stackTrace = exception.originalStack;
+      exception = exception.originalException;
     }
-    return stack;
+    return stackTrace;
+  }
+
+  static String _longStackTrace(stackTrace) => stackTrace is Iterable
+      ? stackTrace.join('\n\n-----async gap-----\n')
+      : stackTrace.toString();
+
+  /// Internal use only: Converts a caught angular exception into a string.
+  static String exceptionToString(
+    exception, [
+    stackTrace,
+    String reason,
+  ]) {
+    final originalStackTrace = _findOriginalStackTrace(exception);
+    final originalException = _findOriginalException(exception);
+    final context = _findContext(exception);
+    final buffer = new StringBuffer();
+    buffer.writeln('EXCEPTION: ${_extractMessage(exception)}');
+    if (stackTrace != null) {
+      buffer.writeln('STACKTRACE: ');
+      buffer.writeln(_longStackTrace(stackTrace));
+    }
+    if (reason != null) {
+      buffer.writeln('REASON: $reason');
+    }
+    if (originalException != null) {
+      buffer.writeln(
+        'ORIGINAL EXCEPTION: ${_extractMessage(originalException)}',
+      );
+    }
+    if (originalStackTrace != null) {
+      buffer.writeln('ORIGINAL STACKTRACE:');
+      buffer.writeln(_longStackTrace(originalStackTrace));
+    }
+    if (context != null) {
+      buffer.writeln('ERROR CONTEXT:');
+      buffer.writeln(context);
+    }
+    return buffer.toString();
+  }
+
+  final Logger _logger;
+
+  const ExceptionHandler(
+    this._logger, [
+    @Deprecated('Not supported') bool _rethrow,
+  ]);
+
+  /// Handles an exception caught at runtime.
+  ///
+  /// Can be overridden by clients for different behavior other than printing to
+  /// the console (such as backend reporting, other forms of logging, etc).
+  void call(exception, [stackTrace, String reason]) {
+    _logger.severe(exceptionToString(exception, stackTrace, reason));
   }
 }

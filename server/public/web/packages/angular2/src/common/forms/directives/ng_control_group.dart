@@ -1,21 +1,12 @@
-import "package:angular2/core.dart"
-    show
-        OnInit,
-        OnDestroy,
-        Directive,
-        Optional,
-        Inject,
-        SkipSelf,
-        Provider,
-        Self;
+import 'package:angular2/core.dart' show OnInit, OnDestroy, Directive, Provider;
+import 'package:angular2/di.dart' show Optional, Inject, SkipSelf, Self;
 
-import "../model.dart" show ControlGroup;
-import "../validators.dart" show NG_VALIDATORS, NG_ASYNC_VALIDATORS;
-import "control_container.dart" show ControlContainer;
-import "form_interface.dart" show Form;
-import "shared.dart"
-    show controlPath, composeValidators, composeAsyncValidators;
-import "validators.dart" show AsyncValidatorFn, ValidatorFn;
+import '../model.dart' show ControlGroup;
+import '../validators.dart' show NG_VALIDATORS;
+import 'control_container.dart' show ControlContainer;
+import 'form_interface.dart' show Form;
+import 'shared.dart' show controlPath, composeValidators;
+import 'validators.dart' show ValidatorFn;
 
 const controlGroupProvider =
     const Provider(ControlContainer, useExisting: NgControlGroup);
@@ -65,52 +56,37 @@ const controlGroupProvider =
 /// validation state of this group can be accessed separately from the overall
 /// form.
 @Directive(
-    selector: "[ngControlGroup]",
+    selector: '[ngControlGroup]',
     providers: const [controlGroupProvider],
-    inputs: const ["name: ngControlGroup"],
-    exportAs: "ngForm")
+    inputs: const ['name: ngControlGroup'],
+    exportAs: 'ngForm')
 class NgControlGroup extends ControlContainer implements OnInit, OnDestroy {
   final List<dynamic> _validators;
-  final List<dynamic> _asyncValidators;
   final ControlContainer _parent;
-  NgControlGroup(
-      @SkipSelf() this._parent,
-      @Optional() @Self() @Inject(NG_VALIDATORS) this._validators,
-      @Optional() @Self() @Inject(NG_ASYNC_VALIDATORS) this._asyncValidators);
+  NgControlGroup(@SkipSelf() this._parent,
+      @Optional() @Self() @Inject(NG_VALIDATORS) this._validators);
 
   @override
   void ngOnInit() {
-    this.formDirective.addControlGroup(this);
+    formDirective.addControlGroup(this);
   }
 
   @override
   void ngOnDestroy() {
-    this.formDirective.removeControlGroup(this);
+    formDirective.removeControlGroup(this);
   }
 
   /// Get the [ControlGroup] backing this binding.
   @override
-  ControlGroup get control {
-    return this.formDirective.getControlGroup(this);
-  }
+  ControlGroup get control => formDirective.getControlGroup(this);
 
   /// Get the path to this control group.
   @override
-  List<String> get path {
-    return controlPath(this.name, this._parent);
-  }
+  List<String> get path => controlPath(name, _parent);
 
   /// Get the [Form] to which this group belongs.
   @override
-  Form get formDirective {
-    return this._parent.formDirective;
-  }
+  Form get formDirective => _parent.formDirective;
 
-  ValidatorFn get validator {
-    return composeValidators(this._validators);
-  }
-
-  AsyncValidatorFn get asyncValidator {
-    return composeAsyncValidators(this._asyncValidators);
-  }
+  ValidatorFn get validator => composeValidators(_validators);
 }

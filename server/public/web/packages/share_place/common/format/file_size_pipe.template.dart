@@ -20,7 +20,7 @@ void initReflector() {
 if (_visited) return; _visited = true;
 _ngRef.reflector
 ..registerType(FileSizePipe, new _ngRef.ReflectionInfo(
-const <dynamic>[const Pipe(name: 'fileSizeFormat')],
+const <dynamic>[const Pipe('fileSizeFormat')],
 const [],
 () => new FileSizePipe())
 )

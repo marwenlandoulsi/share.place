@@ -10,7 +10,7 @@ var constants = require('../../app_config');
 var ctrlLoginApi = require('../routes/login_api');
 var configAuth = constants.oauth; // load the auth variables
 const {session} = require('electron')
-
+let _ = require('underscore')
 
 //var request = require('request-promise').defaults({ simple: false });
 var request = require('request');
@@ -67,6 +67,7 @@ module.exports = function (passport) {
       session.defaultSession.cookies.get({url: 'http://127.0.0.1', name: "connect.sid"}, (error, cookies) => {
         if (error)
           log.error("can't get cookie:", error);
+
         var cookie = cookies[0];
         cookie.cookierFromServer = global.cookieReceived;
         jsonfile.writeFile(lastLoginUserFIle, cookie);
@@ -189,8 +190,11 @@ module.exports = function (passport) {
             var name = req.body.name;
             var skype = req.body.skype;
 
+            let profilePicture = req.body.data
 
-            signUpFromServer(req, email, password, name, skype, (err, user) => {
+
+
+            signUpFromServer(req, email, password, name, skype, profilePicture, (err, user) => {
               if (err)
                 return done(err);
 
@@ -297,6 +301,13 @@ var loginFromServer = function (req, email, password, cb) {
 
 // Configure the request
   var url = '/login/proxy';
+  if (global.isProxy) {
+    if (global.userProxy) {
+      var proxyUrl = "http://" + global.userProxy + ":" + global.pswProxy + "@" + global.proxyUrl;
+      var proxiedRequest = request.defaults({'proxy': proxyUrl});
+      request = proxiedRequest;
+    }
+  }
   var options = {
     url: constants.urlLoginProxy + url,
     method: constants.optionsPost.method,
@@ -337,13 +348,20 @@ var loginFromServer = function (req, email, password, cb) {
 };
 
 
-var signUpFromServer = function (req, email, password, name, skype, cb) {
+var signUpFromServer = function (req, email, password, name, skype, profilePicture, cb) {
 
 
   // Configure the request
   var url = req.url;
   var pathToFile = null;
 
+  if (global.isProxy) {
+    if (global.userProxy) {
+      var proxyUrl = "http://" + global.userProxy + ":" + global.pswProxy + "@" + global.proxyUrl;
+      var proxiedRequest = request.defaults({'proxy': proxyUrl});
+      request = proxiedRequest;
+    }
+  }
 
   // Start the request
   var r = request.post(constants.urlLoginProxy + url, function (error, response, body) {
@@ -380,18 +398,29 @@ var signUpFromServer = function (req, email, password, name, skype, cb) {
     }
   });
   var form = r.form();
-  if (req.file) {
+  /*if (req.file) {
     var pathToFile = path.join(__dirname, '..', '..', 'tmp', 'upload', req.file.filename);
     form.append('filename', fs.createReadStream(path.join(__dirname, '..', '..', 'tmp', 'upload', req.file.filename)),
         {
           filename: req.file.originalname,
           contentType: req.file.mimeType
         });
+  }*/
+
+  if(!_.isEmpty(profilePicture)){
+    form.append('data', profilePicture);
   }
-  form.append('email', email);
-  form.append('password', password);
-  form.append('name', name);
-  form.append('skype', skype);
+  if (email)
+    form.append('email', email);
+
+  if (password)
+    form.append('password', password);
+
+  if (name)
+    form.append('name', name);
+
+  if (skype)
+    form.append('skype', skype);
 
 
 }

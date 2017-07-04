@@ -18,7 +18,9 @@ import 'package:angular2/src/core/application_ref.template.dart' as i0;
 import 'package:angular2/src/core/di.template.dart' as i1;
 import 'package:angular2/src/core/render/api.template.dart' as i2;
 import 'package:angular2/src/core/zone/ng_zone.template.dart' as i3;
+import 'by.template.dart' as i4;
 export 'debug_node.dart';
+export 'by.dart';
 
 var _visited = false;
 void initReflector() {
@@ -27,4 +29,5 @@ i0.initReflector();
 i1.initReflector();
 i2.initReflector();
 i3.initReflector();
+i4.initReflector();
 }

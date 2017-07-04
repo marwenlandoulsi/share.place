@@ -11,8 +11,8 @@
 // @ignoreProblemForFile UNUSED_LOCAL_VARIABLE
 import 'application_tokens.dart';
 import 'dart:math' as math;
-import 'package:angular2/src/core/di.dart' show OpaqueToken, Provider;
-import 'package:angular2/src/core/di.template.dart' as i0;
+import 'di.dart' show OpaqueToken, Provider;
+import 'di.template.dart' as i0;
 export 'application_tokens.dart';
 
 var _visited = false;

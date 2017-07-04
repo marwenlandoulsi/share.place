@@ -12,16 +12,12 @@
 library angular2_components.template.dart;
 
 import 'angular2_components.dart';
-import 'package:angular2/angular2.dart' show Provider;
-import 'src/all_components.dart';
-import 'package:angular2/angular2.template.dart' as i0;
-import 'src/all_components.template.dart' as i1;
+import 'package:angular_components/angular_components.template.dart' as i0;
 export 'angular2_components.dart';
-export 'src/all_components.dart';
+export 'package:angular_components/angular_components.dart';
 
 var _visited = false;
 void initReflector() {
 if (_visited) return; _visited = true;
 i0.initReflector();
-i1.initReflector();
 }

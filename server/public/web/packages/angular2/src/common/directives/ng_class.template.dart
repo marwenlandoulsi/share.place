@@ -11,8 +11,12 @@
 // @ignoreProblemForFile UNUSED_LOCAL_VARIABLE
 import 'ng_class.dart';
 import 'package:angular2/src/core/reflection/reflection.dart' as _ngRef;
-import 'package:angular2/core.dart' show DoCheck, OnDestroy, Directive, ElementRef, IterableDiffers, KeyValueDiffers, IterableDiffer, KeyValueDiffer, CollectionChangeRecord, KeyValueChangeRecord;
+import 'package:angular2/core.dart' show DoCheck, OnDestroy, Directive, ElementRef;
+import 'package:angular2/src/core/change_detection/differs/default_iterable_differ.dart';
+import 'package:angular2/src/core/change_detection/differs/default_keyvalue_differ.dart';
 import 'package:angular2/core.template.dart' as i0;
+import 'package:angular2/src/core/change_detection/differs/default_iterable_differ.template.dart' as i1;
+import 'package:angular2/src/core/change_detection/differs/default_keyvalue_differ.template.dart' as i2;
 export 'ng_class.dart';
 
 var _visited = false;
@@ -21,10 +25,12 @@ if (_visited) return; _visited = true;
 _ngRef.reflector
 ..registerType(NgClass, new _ngRef.ReflectionInfo(
 const <dynamic>[],
-const [const <dynamic>[IterableDiffers], const <dynamic>[KeyValueDiffers], const <dynamic>[ElementRef]],
-(IterableDiffers _iterableDiffers, KeyValueDiffers _keyValueDiffers, ElementRef _ngEl) => new NgClass(_iterableDiffers, _keyValueDiffers, _ngEl),
+const [const <dynamic>[ElementRef]],
+(ElementRef _ngEl) => new NgClass(_ngEl),
 const <dynamic>[DoCheck, OnDestroy])
 )
 ;
 i0.initReflector();
+i1.initReflector();
+i2.initReflector();
 }

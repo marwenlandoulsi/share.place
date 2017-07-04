@@ -26,6 +26,14 @@ module.exports = Object.freeze({
     url: 'https://app.share.place/sp',
     method: 'DELETE',
   },
+  optionsGetReq: {
+    url: 'https://app.share.place/sp',
+    method: 'GET',
+  },
+  optionsGetFromAuthReq: {
+    url: 'https://app.share.place/auth',
+    method: 'GET',
+  },
   optionsGet: {
     host: "app.share.place",
     port: 443,

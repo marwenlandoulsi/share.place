@@ -5,18 +5,19 @@ class FileInfo {
   String fileId;
   String placeId;
   String folderId;
-  String dataType;
   String name;
+  String dataType;
   String v;
-  String fullPath;
   String status;
   String thumbId;
+  String mimeType;
   List<SubjectUser> users;
   Approved approved;
-  LockOwner lockOwner;
-
+  LockOwnerInfo lockOwner;
+  Map<String,String>  lastIntervention ;
   FileInfo(this._id, this.fileId, this.placeId, this.folderId, this.name,
-      this.dataType, this.v, this.status, this.thumbId, this.users, this.approved, this.lockOwner);
+      this.dataType, this.v, this.status, this.thumbId,this.mimeType, this.users,
+      this.approved, this.lockOwner ,this.lastIntervention);
 
   factory FileInfo.fromJson(Map<String, dynamic> fileInfo) =>
       new FileInfo(
@@ -29,10 +30,12 @@ class FileInfo {
           fileInfo['v'],
           fileInfo['status'],
           fileInfo['thumbId'],
+          fileInfo['mimeType'],
           fileInfo['users']?.map((version) =>
           new SubjectUser.fromJson(version))?.toList(),
           new Approved.fromJson(fileInfo['approved']),
-          new LockOwner.fromJson(fileInfo['lockOwner'])
+          new LockOwnerInfo.fromJson(fileInfo['lockOwner']),
+          fileInfo['lastIntervention'],
       );
 
   Map toJson() =>
@@ -46,9 +49,11 @@ class FileInfo {
         'v': v,
         'status': status,
         'thumbId': thumbId,
+        'mimeType': mimeType,
         "users": users.toString(),
         "approved": approved?.toJson(),
-        "lockOwner": lockOwner?.toJson()
+        "lockOwner": lockOwner?.toJson(),
+        "lastIntervention" : lastIntervention?.toString()
       };
 
   String get id => _id;
@@ -80,17 +85,17 @@ class SubjectUser {
       };
 }
 
-class LockOwner {
+class LockOwnerInfo {
   String userId;
   String userName;
   String photoId;
 
-  LockOwner(this.userId, this.userName, this.photoId);
+  LockOwnerInfo(this.userId, this.userName, this.photoId);
 
-  factory LockOwner.fromJson(Map<String, dynamic> lockOwner) {
+  factory LockOwnerInfo.fromJson(Map<String, dynamic> lockOwner) {
     if (lockOwner == null)
       return null;
-    return new LockOwner (
+    return new LockOwnerInfo (
         lockOwner['userId'], lockOwner['userName'], lockOwner['photoId']);
   }
 

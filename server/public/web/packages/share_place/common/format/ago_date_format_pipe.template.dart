@@ -20,7 +20,7 @@ void initReflector() {
 if (_visited) return; _visited = true;
 _ngRef.reflector
 ..registerType(AgoDateFormatPipe, new _ngRef.ReflectionInfo(
-const <dynamic>[const Pipe(name: 'agoDateFormat')],
+const <dynamic>[const Pipe('agoDateFormat')],
 const [],
 () => new AgoDateFormatPipe())
 )

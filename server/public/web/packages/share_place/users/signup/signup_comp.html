@@ -10,13 +10,13 @@
           (drop)="drop = true">
       <label id="labelfileuploadprf" for="filename">
         <!--?refreshHack=... obliges the browser to refresh the image if it changes-->
-        <div class="spinAnim"><img id="imgPrev" src="../images/img_profile.png" title=""/>
-          <div class="spinAnimCircle"></div>
+        <div  #signupPhotoDiv class="uploadImgprofil" id="signupPhotoDiv">
+          <img    id="cropping" id="imgPrev" src="../images/img_profile.png" title=""/>
         </div>
         <span class="spprof">Change</span>
       </label>
-      <input type="file" id="filename" class="uploadFile" name="filename"
-             (change)="imgChange($event)" style="opacity: 0"/>
+      <input #filename type="file" id="filename" class="uploadFile" name="filename"
+             (change)="imgChange()" style="opacity: 0"/>
 
     </form>
   </div>

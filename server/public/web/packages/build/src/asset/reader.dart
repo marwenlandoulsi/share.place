@@ -4,20 +4,31 @@
 import 'dart:async';
 import 'dart:convert';
 
-import '../generate/input_set.dart';
+import 'package:glob/glob.dart';
+
 import 'id.dart';
 
-/// Abstract interface for reading assets.
+/// Standard interface for reading an asset within in a package.
+///
+/// An [AssetReader] is required when calling the `runBuilder` method.
 abstract class AssetReader {
-  /// Asynchronously reads [id], and returns it as a [String].
+  /// Returns a [Future] that completes with the bytes of a binary asset.
+  ///
+  /// * Throws a `PackageNotFoundException` if `id.package` is not found.
+  /// * Throws a `AssetNotFoundException` if `id.path` is not found.
+  Future<List<int>> readAsBytes(AssetId id);
+
+  /// Returns a [Future] that completes with the contents of a text asset.
+  ///
+  /// When decoding as text uses [encoding], or [UTF8] is not specified.
+  ///
+  /// * Throws a `PackageNotFoundException` if `id.package` is not found.
+  /// * Throws a `AssetNotFoundException` if `id.path` is not found.
   Future<String> readAsString(AssetId id, {Encoding encoding: UTF8});
 
-  /// Asynchronously checks if [id] exists.
-  Future<bool> hasInput(AssetId id);
+  /// Indicates whether asset at [id] is readable.
+  FutureOr<bool> canRead(AssetId id);
 
-  /// Gets a [Stream<AssetId>] of all assets available matching [inputSets].
-  Stream<AssetId> listAssetIds(Iterable<InputSet> inputSets);
-
-  /// Asynchronously gets the last modified [DateTime] of [id].
-  Future<DateTime> lastModified(AssetId id);
+  /// Returns all readable assets matching [glob] under the root package.
+  Iterable<AssetId> findAssets(Glob glob);
 }

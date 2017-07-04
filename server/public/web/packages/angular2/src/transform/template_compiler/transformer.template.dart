@@ -11,20 +11,20 @@
 // @ignoreProblemForFile UNUSED_LOCAL_VARIABLE
 import 'transformer.dart';
 import 'dart:async';
-import 'package:angular2/src/platform/server/html_adapter.dart';
+import 'package:angular2/src/transform/common/model/ng_deps_model.pb.dart';
+import 'package:angular2/src/compiler/source_module.dart';
 import 'package:angular2/src/transform/common/asset_reader.dart';
 import 'package:angular2/src/transform/common/code/ng_deps_code.dart';
-import 'package:angular2/src/transform/common/code/source_module.dart';
 import 'package:angular2/src/transform/common/formatter.dart';
 import 'package:angular2/src/transform/common/names.dart';
 import 'package:angular2/src/transform/common/options.dart';
 import 'package:angular2/src/transform/common/zone.dart' as zone;
 import 'package:barback/barback.dart';
 import 'generator.dart';
-import 'package:angular2/src/platform/server/html_adapter.template.dart' as i0;
-import 'package:angular2/src/transform/common/asset_reader.template.dart' as i1;
-import 'package:angular2/src/transform/common/code/ng_deps_code.template.dart' as i2;
-import 'package:angular2/src/transform/common/code/source_module.template.dart' as i3;
+import 'package:angular2/src/transform/common/model/ng_deps_model.pb.template.dart' as i0;
+import 'package:angular2/src/compiler/source_module.template.dart' as i1;
+import 'package:angular2/src/transform/common/asset_reader.template.dart' as i2;
+import 'package:angular2/src/transform/common/code/ng_deps_code.template.dart' as i3;
 import 'package:angular2/src/transform/common/formatter.template.dart' as i4;
 import 'package:angular2/src/transform/common/names.template.dart' as i5;
 import 'package:angular2/src/transform/common/options.template.dart' as i6;

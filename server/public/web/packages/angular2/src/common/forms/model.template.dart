@@ -12,7 +12,8 @@
 import 'model.dart';
 import 'dart:async';
 import 'package:angular2/src/facade/async.dart' show EventEmitter;
-import 'directives/validators.dart' show ValidatorFn, AsyncValidatorFn;
+import 'package:meta/meta.dart';
+import 'directives/validators.dart' show ValidatorFn;
 import 'package:angular2/src/facade/async.template.dart' as i0;
 import 'directives/validators.template.dart' as i1;
 export 'model.dart';

@@ -10,9 +10,8 @@
 // @ignoreProblemForFile UNUSED_SHOWN_NAME
 // @ignoreProblemForFile UNUSED_LOCAL_VARIABLE
 import 'validators.dart';
-import 'dart:async';
 import 'package:angular2/di.dart' show OpaqueToken;
-import 'directives/validators.dart' show ValidatorFn, AsyncValidatorFn;
+import 'directives/validators.dart' show ValidatorFn;
 import 'model.dart' as model_module;
 import 'package:angular2/di.template.dart' as i0;
 import 'directives/validators.template.dart' as i1;

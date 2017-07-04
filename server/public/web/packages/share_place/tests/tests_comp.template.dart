@@ -24,154 +24,160 @@ import 'package:angular2/router.template.dart' as i3;
 import 'package:share_place/place.template.dart' as i4;
 import 'package:share_place/environment.template.dart' as i5;
 export 'tests_comp.dart';
-import 'package:angular2/src/core/render/api.dart';
 import 'package:angular2/src/core/linker/app_view.dart';
-import 'tests_comp.dart' as import2;
+import 'tests_comp.dart' as import1;
 import 'dart:html';
-import 'package:angular2/src/core/linker/view_container.dart';
-import '../users/invite/invite_dialog_comp.dart' as import5;
-import 'package:angular2/src/core/di/injector.dart' as import6;
-import 'package:angular2/src/core/linker/view_type.dart' as import7;
+import '../users/invite/invite_dialog_comp.template.dart' as import3;
+import '../users/invite/invite_dialog_comp.dart' as import4;
+import 'package:angular2/src/core/render/api.dart';
+import 'package:angular2/src/core/linker/view_type.dart' as import6;
 import 'package:angular2/src/core/change_detection/change_detection.dart';
-import '../users/invite/invite_dialog_comp.template.dart' as import9;
+import 'package:angular2/src/core/linker/app_view_utils.dart' as import8;
+import 'package:angular2/angular2.dart';
 import '../place_service.dart' as import10;
 import 'package:angular2/src/router/router.dart' as import11;
 import '../environment.dart' as import12;
 import '../users/user_list_provider.dart' as import13;
-import 'package:angular2/src/core/linker/app_view_utils.dart' as import14;
-import 'package:angular2/src/core/metadata/view.dart' as import15;
-import 'package:angular2/src/router/route_registry.dart' as import16;
-import 'package:angular2/src/platform/browser/location/browser_platform_location.dart' as import17;
-import 'package:angular2/src/platform/browser/location/path_location_strategy.dart' as import18;
-import 'package:angular2/src/platform/browser/location/location.dart' as import19;
-import '../event_bus.dart' as import20;
-import 'package:http/http.dart' as import21;
-import 'package:angular2/src/router/router_providers_common.dart' as import22;
-import 'package:angular2/src/core/application_ref.dart' as import23;
-import 'package:angular2/src/platform/browser/location/location_strategy.dart' as import24;
-import 'package:angular2/src/platform/browser/location/platform_location.dart' as import25;
-import 'package:angular2/src/core/linker/component_factory.dart' as import26;
+import 'package:angular2/src/router/route_registry.dart' as import14;
+import 'package:angular2/src/platform/browser/location/browser_platform_location.dart' as import15;
+import 'package:angular2/src/platform/browser/location/path_location_strategy.dart' as import16;
+import 'package:angular2/src/platform/browser/location/location.dart' as import17;
+import '../event_bus.dart' as import18;
+import 'package:http/http.dart' as import19;
+import 'package:angular2/src/router/router_providers_common.dart' as import20;
+import 'package:angular2/src/core/application_ref.dart' as import21;
+import 'package:angular2/src/platform/browser/location/location_strategy.dart' as import22;
+import 'package:angular2/src/platform/browser/location/platform_location.dart' as import23;
 const List<dynamic> styles_TestsComp = const [];
-RenderComponentType renderType_TestsComp;
-class ViewTestsComp0 extends AppView<import2.TestsComp> {
-  Element _el_0;
+class ViewTestsComp0 extends AppView<import1.TestsComp> {
+  DivElement _el_0;
   Element _el_2;
-  ViewContainer _appEl_2;
-  import5.InviteUsersDialogComp _InviteUsersDialogComp_2_3;
-  ViewTestsComp0(import6.Injector parentInjector,ViewContainer declarationEl): super(ViewTestsComp0,renderType_TestsComp,import7.ViewType.COMPONENT,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
-  ViewContainer createInternal(dynamic rootSelector) {
-    final Node parentRenderNode = initViewRoot(this.declarationViewContainer.nativeElement);
+  import3.ViewInviteUsersDialogComp0 _compView_2;
+  import4.InviteUsersDialogComp _InviteUsersDialogComp_2_2;
+  static RenderComponentType renderType;
+  ViewTestsComp0(AppView<dynamic> parentView,num parentIndex): super(import6.ViewType.COMPONENT,{},parentView,parentIndex,ChangeDetectionStrategy.CheckAlways) {
+    rootEl = document.createElement('test-app');
+    renderType ??= import8.appViewUtils.createRenderType('',ViewEncapsulation.None,styles_TestsComp);
+    setupComponentType(renderType);
+  }
+  ComponentRef build() {
+    final import1.TestsComp _ctx = ctx;
+    final HtmlElement parentRenderNode = initViewRoot(rootEl);
     var doc = document;
-    _el_0 = doc.createElement('div');
-    parentRenderNode.append(_el_0);
+    _el_0 = createAndAppend(doc,'div',parentRenderNode);
     _el_0.className = 'container';
     Text _text_1 = new Text('\n  ');
     _el_0.append(_text_1);
-    _el_2 = doc.createElement('invite-users-dialog');
+    _compView_2 = new import3.ViewInviteUsersDialogComp0(this,2);
+    _el_2 = _compView_2.rootEl;
     _el_0.append(_el_2);
     _el_2.className = 'dialog';
-    _appEl_2 = new ViewContainer(2,0,this,_el_2);
-    var compView_2 = import9.viewFactory_InviteUsersDialogComp0(this.injector(2),_appEl_2);
-    _InviteUsersDialogComp_2_3 = new import5.InviteUsersDialogComp(this.parentInjector.get(import10.PlaceService),this.parentInjector.get(import11.Router),this.parentInjector.get(import12.Environment),this.parentInjector.get(import13.UserListProvider));
-    _appEl_2.initComponent(_InviteUsersDialogComp_2_3,compView_2);
-    compView_2.createComp([],null);
+    _InviteUsersDialogComp_2_2 = new import4.InviteUsersDialogComp(parentView.injectorGet(import10.PlaceService,parentIndex),parentView.injectorGet(import11.Router,parentIndex),parentView.injectorGet(import12.Environment,parentIndex),parentView.injectorGet(import13.UserListProvider,parentIndex));
+    _compView_2.create(_InviteUsersDialogComp_2_2,[]);
     Text _text_3 = new Text('\n');
     _el_0.append(_text_3);
-    init([],[
-      _el_0,_text_1,_el_2,_text_3
-    ]
-    ,[]);
+    init(const [],const []);
     return null;
   }
-  dynamic injectorGetInternal(dynamic token,int requestNodeIndex,dynamic notFoundResult) {
-    if ((identical(token, import5.InviteUsersDialogComp) && (2 == requestNodeIndex))) { return _InviteUsersDialogComp_2_3; }
+  dynamic injectorGetInternal(dynamic token,int nodeIndex,dynamic notFoundResult) {
+    if ((identical(token, import4.InviteUsersDialogComp) && (2 == nodeIndex))) { return _InviteUsersDialogComp_2_2; }
     return notFoundResult;
   }
   void detectChangesInternal() {
-    if ((identical(this.cdState, ChangeDetectorState.NeverChecked) && !import14.AppViewUtils.throwOnChanges)) { _InviteUsersDialogComp_2_3.ngOnInit(); }
-    this.detectContentChildrenChanges();
-    this.detectViewChildrenChanges();
+    bool firstCheck = identical(this.cdState, ChangeDetectorState.NeverChecked);
+    final import1.TestsComp _ctx = ctx;
+    if (firstCheck) { _InviteUsersDialogComp_2_2.ngOnInit(); }
+    _compView_2.detectChanges();
+  }
+  void destroyInternal() {
+    _compView_2.destroy();
   }
 }
-AppView viewFactory_TestsComp0(import6.Injector parentInjector,ViewContainer declarationEl) {
-  if (identical(renderType_TestsComp, null)) { (renderType_TestsComp = import14.appViewUtils.createRenderComponentType('',0,import15.ViewEncapsulation.None,styles_TestsComp)); }
-  return new ViewTestsComp0(parentInjector,declarationEl);
+AppView<import1.TestsComp> viewFactory_TestsComp0(AppView<dynamic> parentView,num parentIndex) {
+  return new ViewTestsComp0(parentView,parentIndex);
 }
 const List<dynamic> styles_TestsCompHost = const [];
-RenderComponentType renderType_TestsCompHost;
 class ViewTestsCompHost0 extends AppView<dynamic> {
-  Element _el_0;
-  ViewContainer _appEl_0;
-  import2.TestsComp _TestsComp_0_3;
-  import12.Environment __Environment_0_4;
-  import10.PlaceService __PlaceService_0_5;
-  dynamic __ROUTER_PRIMARY_COMPONENT_0_6;
-  import16.RouteRegistry __RouteRegistry_0_7;
-  import17.BrowserPlatformLocation __PlatformLocation_0_8;
-  import18.PathLocationStrategy __LocationStrategy_0_9;
-  import19.Location __Location_0_10;
-  dynamic __Router_0_11;
-  ViewTestsCompHost0(import6.Injector parentInjector,ViewContainer declarationEl): super(ViewTestsCompHost0,renderType_TestsCompHost,import7.ViewType.HOST,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
-  import12.Environment get _Environment_0_4 {
-    if ((this.__Environment_0_4 == null)) { (__Environment_0_4 = new import12.Environment(this.parentInjector.get(import20.EventBus))); }
-    return this.__Environment_0_4;
+  ViewTestsComp0 _compView_0;
+  import1.TestsComp _TestsComp_0_2;
+  import12.Environment __Environment_0_3;
+  import10.PlaceService __PlaceService_0_4;
+  dynamic __ROUTER_PRIMARY_COMPONENT_0_5;
+  import14.RouteRegistry __RouteRegistry_0_6;
+  import15.BrowserPlatformLocation __PlatformLocation_0_7;
+  import16.PathLocationStrategy __LocationStrategy_0_8;
+  import17.Location __Location_0_9;
+  dynamic __Router_0_10;
+  static RenderComponentType renderType;
+  ViewTestsCompHost0(AppView<dynamic> parentView,num parentIndex): super(import6.ViewType.HOST,{},parentView,parentIndex,ChangeDetectionStrategy.CheckAlways) {
+    renderType ??= import8.appViewUtils.createRenderType('',ViewEncapsulation.Emulated,styles_TestsCompHost);
+    setupComponentType(renderType);
   }
-  import10.PlaceService get _PlaceService_0_5 {
-    if ((this.__PlaceService_0_5 == null)) { (__PlaceService_0_5 = new import10.PlaceService(this.parentInjector.get(import21.Client),this._Environment_0_4)); }
-    return this.__PlaceService_0_5;
+  import12.Environment get _Environment_0_3 {
+    if ((this.__Environment_0_3 == null)) { (__Environment_0_3 = new import12.Environment(this.injectorGet(import18.EventBus,this.parentIndex))); }
+    return this.__Environment_0_3;
   }
-  dynamic get _ROUTER_PRIMARY_COMPONENT_0_6 {
-    if ((this.__ROUTER_PRIMARY_COMPONENT_0_6 == null)) { (__ROUTER_PRIMARY_COMPONENT_0_6 = import22.routerPrimaryComponentFactory(this.parentInjector.get(import23.ApplicationRef))); }
-    return this.__ROUTER_PRIMARY_COMPONENT_0_6;
+  import10.PlaceService get _PlaceService_0_4 {
+    if ((this.__PlaceService_0_4 == null)) { (__PlaceService_0_4 = new import10.PlaceService(this.injectorGet(import19.Client,this.parentIndex),this._Environment_0_3)); }
+    return this.__PlaceService_0_4;
   }
-  import16.RouteRegistry get _RouteRegistry_0_7 {
-    if ((this.__RouteRegistry_0_7 == null)) { (__RouteRegistry_0_7 = new import16.RouteRegistry(this._ROUTER_PRIMARY_COMPONENT_0_6)); }
-    return this.__RouteRegistry_0_7;
+  dynamic get _ROUTER_PRIMARY_COMPONENT_0_5 {
+    if ((this.__ROUTER_PRIMARY_COMPONENT_0_5 == null)) { (__ROUTER_PRIMARY_COMPONENT_0_5 = import20.routerPrimaryComponentFactory(this.injectorGet(import21.ApplicationRef,this.parentIndex))); }
+    return this.__ROUTER_PRIMARY_COMPONENT_0_5;
   }
-  import17.BrowserPlatformLocation get _PlatformLocation_0_8 {
-    if ((this.__PlatformLocation_0_8 == null)) { (__PlatformLocation_0_8 = new import17.BrowserPlatformLocation()); }
-    return this.__PlatformLocation_0_8;
+  import14.RouteRegistry get _RouteRegistry_0_6 {
+    if ((this.__RouteRegistry_0_6 == null)) { (__RouteRegistry_0_6 = new import14.RouteRegistry(this._ROUTER_PRIMARY_COMPONENT_0_5)); }
+    return this.__RouteRegistry_0_6;
   }
-  import18.PathLocationStrategy get _LocationStrategy_0_9 {
-    if ((this.__LocationStrategy_0_9 == null)) { (__LocationStrategy_0_9 = new import18.PathLocationStrategy(this._PlatformLocation_0_8,this.parentInjector.get(import24.APP_BASE_HREF,null))); }
-    return this.__LocationStrategy_0_9;
+  import15.BrowserPlatformLocation get _PlatformLocation_0_7 {
+    if ((this.__PlatformLocation_0_7 == null)) { (__PlatformLocation_0_7 = new import15.BrowserPlatformLocation()); }
+    return this.__PlatformLocation_0_7;
   }
-  import19.Location get _Location_0_10 {
-    if ((this.__Location_0_10 == null)) { (__Location_0_10 = new import19.Location(this._LocationStrategy_0_9)); }
-    return this.__Location_0_10;
+  import16.PathLocationStrategy get _LocationStrategy_0_8 {
+    if ((this.__LocationStrategy_0_8 == null)) { (__LocationStrategy_0_8 = new import16.PathLocationStrategy(this._PlatformLocation_0_7,this.injectorGet(import22.APP_BASE_HREF,this.parentIndex,null))); }
+    return this.__LocationStrategy_0_8;
   }
-  dynamic get _Router_0_11 {
-    if ((this.__Router_0_11 == null)) { (__Router_0_11 = import22.routerFactory(this._RouteRegistry_0_7,this._Location_0_10,this._ROUTER_PRIMARY_COMPONENT_0_6,this.parentInjector.get(import23.ApplicationRef))); }
-    return this.__Router_0_11;
+  import17.Location get _Location_0_9 {
+    if ((this.__Location_0_9 == null)) { (__Location_0_9 = new import17.Location(this._LocationStrategy_0_8)); }
+    return this.__Location_0_9;
   }
-  ViewContainer createInternal(dynamic rootSelector) {
-    _el_0 = selectOrCreateHostElement('test-app',rootSelector,null);
-    _appEl_0 = new ViewContainer(0,null,this,_el_0);
-    var compView_0 = viewFactory_TestsComp0(this.injector(0),_appEl_0);
-    _TestsComp_0_3 = new import2.TestsComp();
-    _appEl_0.initComponent(_TestsComp_0_3,compView_0);
-    compView_0.createComp(projectableNodes,null);
-    init([_el_0],[_el_0],[]);
-    return _appEl_0;
+  dynamic get _Router_0_10 {
+    if ((this.__Router_0_10 == null)) { (__Router_0_10 = import20.routerFactory(this._RouteRegistry_0_6,this._Location_0_9,this._ROUTER_PRIMARY_COMPONENT_0_5,this.injectorGet(import21.ApplicationRef,this.parentIndex))); }
+    return this.__Router_0_10;
   }
-  dynamic injectorGetInternal(dynamic token,int requestNodeIndex,dynamic notFoundResult) {
-    if ((identical(token, import2.TestsComp) && (0 == requestNodeIndex))) { return _TestsComp_0_3; }
-    if ((identical(token, import12.Environment) && (0 == requestNodeIndex))) { return _Environment_0_4; }
-    if ((identical(token, import10.PlaceService) && (0 == requestNodeIndex))) { return _PlaceService_0_5; }
-    if ((identical(token, import16.ROUTER_PRIMARY_COMPONENT) && (0 == requestNodeIndex))) { return _ROUTER_PRIMARY_COMPONENT_0_6; }
-    if ((identical(token, import16.RouteRegistry) && (0 == requestNodeIndex))) { return _RouteRegistry_0_7; }
-    if ((identical(token, import25.PlatformLocation) && (0 == requestNodeIndex))) { return _PlatformLocation_0_8; }
-    if ((identical(token, import24.LocationStrategy) && (0 == requestNodeIndex))) { return _LocationStrategy_0_9; }
-    if ((identical(token, import19.Location) && (0 == requestNodeIndex))) { return _Location_0_10; }
-    if ((identical(token, import11.Router) && (0 == requestNodeIndex))) { return _Router_0_11; }
+  ComponentRef build() {
+    final _ctx = ctx;
+    _compView_0 = new ViewTestsComp0(this,0);
+    rootEl = _compView_0.rootEl;
+    _TestsComp_0_2 = new import1.TestsComp();
+    _compView_0.create(_TestsComp_0_2,projectableNodes);
+    init([rootEl],const []);
+    return new ComponentRef(0,this,rootEl,_TestsComp_0_2);
+  }
+  dynamic injectorGetInternal(dynamic token,int nodeIndex,dynamic notFoundResult) {
+    if ((identical(token, import1.TestsComp) && (0 == nodeIndex))) { return _TestsComp_0_2; }
+    if ((identical(token, import12.Environment) && (0 == nodeIndex))) { return _Environment_0_3; }
+    if ((identical(token, import10.PlaceService) && (0 == nodeIndex))) { return _PlaceService_0_4; }
+    if ((identical(token, import14.ROUTER_PRIMARY_COMPONENT) && (0 == nodeIndex))) { return _ROUTER_PRIMARY_COMPONENT_0_5; }
+    if ((identical(token, import14.RouteRegistry) && (0 == nodeIndex))) { return _RouteRegistry_0_6; }
+    if ((identical(token, import23.PlatformLocation) && (0 == nodeIndex))) { return _PlatformLocation_0_7; }
+    if ((identical(token, import22.LocationStrategy) && (0 == nodeIndex))) { return _LocationStrategy_0_8; }
+    if ((identical(token, import17.Location) && (0 == nodeIndex))) { return _Location_0_9; }
+    if ((identical(token, import11.Router) && (0 == nodeIndex))) { return _Router_0_10; }
     return notFoundResult;
   }
+  void detectChangesInternal() {
+    final _ctx = ctx;
+    _compView_0.detectChanges();
+  }
+  void destroyInternal() {
+    _compView_0.destroy();
+  }
 }
-AppView viewFactory_TestsCompHost0(import6.Injector parentInjector,ViewContainer declarationEl) {
-  if (identical(renderType_TestsCompHost, null)) { (renderType_TestsCompHost = import14.appViewUtils.createRenderComponentType('',0,import15.ViewEncapsulation.Emulated,styles_TestsCompHost)); }
-  return new ViewTestsCompHost0(parentInjector,declarationEl);
+AppView viewFactory_TestsCompHost0(AppView<dynamic> parentView,num parentIndex) {
+  return new ViewTestsCompHost0(parentView,parentIndex);
 }
-const import26.ComponentFactory TestsCompNgFactory = const import26.ComponentFactory('test-app',viewFactory_TestsCompHost0,import2.TestsComp,_METADATA);
+const ComponentFactory TestsCompNgFactory = const ComponentFactory('test-app',viewFactory_TestsCompHost0,import1.TestsComp,_METADATA);
 const _METADATA = const <dynamic>[TestsComp, const <dynamic>[]];
 var _visited = false;
 void initReflector() {

@@ -1,4 +1,17 @@
+import 'package:analyzer/dart/element/element.dart';
 import 'package:build/build.dart';
+
+/// Finds the url of the library that declares the element.
+///
+/// Note that this needs to check librarySource instead of just source to handle
+/// part files correctly.
+String moduleUrl(Element element) {
+  var source = element.librarySource ?? element.source;
+  var uri = source?.uri?.toString();
+  if (uri == null) return null;
+  if (Uri.parse(uri).scheme == 'dart') return uri;
+  return toAssetUri(fromUri(uri));
+}
 
 String toAssetUri(AssetId assetId) {
   if (assetId == null) throw new ArgumentError.notNull('assetId');

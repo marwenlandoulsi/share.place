@@ -37,6 +37,13 @@
       "isHost": false,
       "value": null,
       "diDeps": []
+    },
+    "SubscriptionRemover": {
+      "class": "Identifier",
+      "name": "SubscriptionRemover",
+      "moduleUrl": "asset:share_place/lib/event_bus.dart",
+      "prefix": null,
+      "value": null
     }
   },
   "alias": {}

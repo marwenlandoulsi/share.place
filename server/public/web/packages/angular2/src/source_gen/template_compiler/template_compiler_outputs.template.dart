@@ -10,9 +10,9 @@
 // @ignoreProblemForFile UNUSED_SHOWN_NAME
 // @ignoreProblemForFile UNUSED_LOCAL_VARIABLE
 import 'template_compiler_outputs.dart';
-import 'package:angular2/src/compiler/offline_compiler.dart';
+import 'package:angular2/src/compiler/source_module.dart';
 import 'package:angular2/src/source_gen/common/ng_deps_model.dart';
-import 'package:angular2/src/compiler/offline_compiler.template.dart' as i0;
+import 'package:angular2/src/compiler/source_module.template.dart' as i0;
 import 'package:angular2/src/source_gen/common/ng_deps_model.template.dart' as i1;
 export 'template_compiler_outputs.dart';
 

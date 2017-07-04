@@ -9,13 +9,13 @@ import 'package:angular2/src/compiler/schema/dom_element_schema_registry.dart';
 import 'package:angular2/src/compiler/style_compiler.dart';
 import 'package:angular2/src/compiler/template_parser.dart';
 import 'package:angular2/src/compiler/view_compiler/view_compiler.dart';
-import 'package:angular2/src/transform/common/asset_reader.dart';
 
+import 'asset_reader.dart';
 import 'url_resolver.dart';
 import 'xhr_impl.dart';
 
-OfflineCompiler createTemplateCompiler(AssetReader reader,
-    {CompilerConfig compilerConfig}) {
+OfflineCompiler createTemplateCompiler(
+    AssetReader reader, CompilerConfig compilerConfig) {
   var xhr = new XhrImpl(reader);
   var urlResolver = createOfflineCompileUrlResolver();
 
@@ -29,7 +29,7 @@ OfflineCompiler createTemplateCompiler(AssetReader reader,
   return new OfflineCompiler(
       new DirectiveNormalizer(xhr, urlResolver, htmlParser),
       templateParser,
-      new StyleCompiler(urlResolver),
-      new ViewCompiler(compilerConfig),
-      new DartEmitter());
+      new StyleCompiler(compilerConfig, urlResolver),
+      new ViewCompiler(compilerConfig, parser),
+      new DartEmitter(), {});
 }

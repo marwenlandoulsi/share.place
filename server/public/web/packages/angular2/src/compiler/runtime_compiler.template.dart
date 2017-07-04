@@ -12,8 +12,9 @@
 import 'runtime_compiler.dart';
 import 'package:angular2/src/core/reflection/reflection.dart' as _ngRef;
 import 'dart:async';
-import 'package:angular2/src/core/di.dart' show Injectable, Injector;
-import 'package:angular2/src/core/linker/view_container.dart';
+import 'dart:html';
+import 'package:angular2/src/core/di.dart' show Injectable;
+import 'package:angular2/src/core/linker/app_view.dart';
 import 'package:angular2/src/core/linker/component_factory.dart' show ComponentFactory, NgViewFactory;
 import 'package:angular2/src/core/linker/component_resolver.dart' show ComponentResolver;
 import 'package:angular2/src/facade/exceptions.dart' show BaseException;
@@ -27,9 +28,10 @@ import 'style_compiler.dart' show StyleCompiler, StylesCompileDependency, Styles
 import 'template_ast.dart' show TemplateAst;
 import 'template_parser.dart' show TemplateParser;
 import 'view_compiler/view_compiler.dart' show ViewCompiler;
+import 'view_compiler/view_compiler_utils.dart' show getViewFactoryName;
 import 'xhr.dart' show XHR;
 import 'package:angular2/src/core/di.template.dart' as i0;
-import 'package:angular2/src/core/linker/view_container.template.dart' as i1;
+import 'package:angular2/src/core/linker/app_view.template.dart' as i1;
 import 'package:angular2/src/core/linker/component_factory.template.dart' as i2;
 import 'package:angular2/src/core/linker/component_resolver.template.dart' as i3;
 import 'package:angular2/src/facade/exceptions.template.dart' as i4;
@@ -43,7 +45,8 @@ import 'style_compiler.template.dart' as i11;
 import 'template_ast.template.dart' as i12;
 import 'template_parser.template.dart' as i13;
 import 'view_compiler/view_compiler.template.dart' as i14;
-import 'xhr.template.dart' as i15;
+import 'view_compiler/view_compiler_utils.template.dart' as i15;
+import 'xhr.template.dart' as i16;
 export 'runtime_compiler.dart';
 
 var _visited = false;
@@ -73,4 +76,5 @@ i12.initReflector();
 i13.initReflector();
 i14.initReflector();
 i15.initReflector();
+i16.initReflector();
 }

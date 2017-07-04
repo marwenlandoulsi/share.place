@@ -1,21 +1,17 @@
 import 'dart:async';
 import 'dart:html';
+
 import 'package:angular2/core.dart';
 import 'package:angular2/router.dart';
 import 'package:angular2/security.dart';
-
-import 'package:share_place/place.dart';
-import 'package:share_place/environment.dart';
-import 'package:share_place/place_service.dart';
-
-import 'package:share_place/users/user.dart';
+import 'package:angular_components/angular_components.dart';
+import 'package:croppie_dart/croppie_dart.dart';
 import 'package:share_place/common/ui/button_comp.dart';
 import 'package:share_place/common/ui/text_comp.dart';
+import 'package:share_place/environment.dart';
+import 'package:share_place/place_service.dart';
 import 'package:share_place/users/login/login_comp.dart';
-
-import 'package:angular2_components/angular2_components.dart';
-
-import 'dart:js';
+import 'package:share_place/users/user.dart';
 
 @Component(
     selector: 'signup-comp',
@@ -32,10 +28,16 @@ class SignupComp implements OnInit {
 
   User user = new User.empty();
   String passVerif;
-  bool _checkPasswords;
+  bool _checkPasswords = false;
 
   bool dragEnter;
   bool drop;
+  Croppie croppie;
+
+  @ViewChild("filename")
+  ElementRef filename;
+  @ViewChild("signupPhotoDiv")
+  ElementRef signupPhotoDiv;
 
   SignupComp(this._placeService, this._router, this._environment,
       this.urlSanitizer, this._loginComp);
@@ -49,27 +51,43 @@ class SignupComp implements OnInit {
 
   User get connectedUser => _environment.connectedUser;
 
-  String get photoId => connectedUser?.photoIdMap == null ? null : connectedUser
-      .photoIdMap["photoIdM"];
+  String get photoId =>
+      connectedUser?.photoIdMap == null ? null : connectedUser
+          .photoIdMap["photoIdM"];
 
   Future<Null> signup() async {
-    uploading = true;
-    var fileForm = querySelector("#signupForm");
-    _environment.connectedUser = await _placeService.postImage(
-        new FormData(fileForm)
-          ..append("email", user.email)..append("password", user.pass)..append(
-            "password ", user.pass)..append('name', user.name)..append("skype" , user.skype));
-    fileForm.style.border = "none";
-
+    _environment.showScrollBar();
+    String result;
+    if (croppie!=null)
+    result = await croppie.resultBase64();
+    _environment.connectedUser = await _placeService.signup(user ,result);
     //FIXME this shouldn't be called since the return value of the post should be up to date (on profile image update)
     _environment.connectedUser = await _placeService.loadConnectedUser();
-    uploading = false;
   }
 
 
-  Future<Null> imgChange(event){
-    JsObject Url = context['URL'];
-    querySelector("#imgPrev").setAttribute('src', Url.callMethod('createObjectURL',[event.target.files[0]]));
+  Future<Null> imgChange() async {
+    if (filename.nativeElement.files == null ||
+        filename.nativeElement.files.length == 0)
+      return;
+
+    ImageElement croppieContainer = new Element.img();
+    croppieContainer.id = "cropping";
+    croppieContainer.src = "/auth/gridfs/file/${photoId}/picture.x";
+    signupPhotoDiv.nativeElement.children.clear();
+    signupPhotoDiv.nativeElement.children.add(croppieContainer);
+    Element CroppieDiv = querySelector('#signupPhotoDiv ');
+    CroppieDiv.addEventListener('click',
+            (event) =>  event.preventDefault(), false);
+    FileReader reader = new FileReader();
+    reader.onLoad.listen((e) async {
+      croppieContainer.setAttribute("src", e.target.result);
+      croppie = new Croppie(croppieContainer,
+          new Options(boundary: new Boundary(width: 95, height: 95),
+              viewport: new ViewPort(width: 85, height: 85, type: 'circle')));
+      await croppie.bind(new BindConfiguration(url: e.target.result));
+    });
+    reader.readAsDataUrl(filename.nativeElement.files[0]);
   }
 
 

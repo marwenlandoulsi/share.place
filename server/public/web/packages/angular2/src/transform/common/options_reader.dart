@@ -20,12 +20,17 @@ TransformerOptions parseBarbackSettings(BarbackSettings settings) {
   var errorOnMissingIdentifiers =
       _readBool(config, ERROR_ON_MISSING_IDENTIFIERS, defaultValue: true);
   var formatCode = _readBool(config, FORMAT_CODE_PARAM, defaultValue: false);
+  var useLegacyStyleEncapsulation =
+      _readBool(config, USE_LEGACY_STYLE_ENCAPSULATION, defaultValue: false);
+  var useAnalyzer = _readBool(config, USE_ANALYZER, defaultValue: false);
   String mirrorModeVal =
       config.containsKey(MIRROR_MODE_PARAM) ? config[MIRROR_MODE_PARAM] : '';
   var mirrorMode = MirrorMode.none;
   var codegenMode;
   if (settings.mode == BarbackMode.DEBUG) {
     codegenMode = CODEGEN_DEBUG_MODE;
+  } else if (settings.mode.toString() == 'profile') {
+    codegenMode = settings.mode.toString();
   } else {
     codegenMode = config[CODEGEN_MODE_PARAM];
   }
@@ -40,22 +45,25 @@ TransformerOptions parseBarbackSettings(BarbackSettings settings) {
       mirrorMode = MirrorMode.none;
       break;
   }
-  var transformerOptions = new TransformerOptions(entryPoints,
-      modeName: settings.mode.name,
-      mirrorMode: mirrorMode,
-      initReflector: initReflector,
-      codegenMode: codegenMode,
-      customAnnotationDescriptors: _readCustomAnnotations(config),
-      reflectPropertiesAsAttributes: reflectPropertiesAsAttributes,
-      platformDirectives: platformDirectives,
-      platformPipes: platformPipes,
-      resolvedIdentifiers: resolvedIdentifiers,
-      errorOnMissingIdentifiers: errorOnMissingIdentifiers,
-      inlineViews: _readBool(config, INLINE_VIEWS_PARAM, defaultValue: false),
-      lazyTransformers:
-          _readBool(config, LAZY_TRANSFORMERS, defaultValue: false),
-      translations: _readAssetId(config, TRANSLATIONS),
-      formatCode: formatCode);
+  var transformerOptions = new TransformerOptions(
+    entryPoints,
+    modeName: settings.mode.name,
+    mirrorMode: mirrorMode,
+    initReflector: initReflector,
+    codegenMode: codegenMode,
+    customAnnotationDescriptors: _readCustomAnnotations(config),
+    reflectPropertiesAsAttributes: reflectPropertiesAsAttributes,
+    platformDirectives: platformDirectives,
+    platformPipes: platformPipes,
+    resolvedIdentifiers: resolvedIdentifiers,
+    errorOnMissingIdentifiers: errorOnMissingIdentifiers,
+    inlineViews: _readBool(config, INLINE_VIEWS_PARAM, defaultValue: false),
+    lazyTransformers: _readBool(config, LAZY_TRANSFORMERS, defaultValue: false),
+    translations: _readAssetId(config, TRANSLATIONS),
+    formatCode: formatCode,
+    useLegacyStyleEncapsulation: useLegacyStyleEncapsulation,
+    useAnalyzer: useAnalyzer,
+  );
 
   _checkEntryPointsExist(transformerOptions);
   return transformerOptions;

@@ -1,23 +1,26 @@
 import 'dart:html';
 
-import "package:angular2/src/compiler/identifiers.dart";
-import "package:angular2/src/core/linker.dart" show QueryList;
-import "package:angular2/src/core/linker/view_container.dart";
-import "package:angular2/src/core/linker/app_view.dart";
-import "package:angular2/src/core/linker/app_view_utils.dart";
-import "package:angular2/src/core/linker/component_factory.dart";
-import "package:angular2/src/core/linker/template_ref.dart";
-import "package:angular2/src/core/linker/view_container_ref.dart"
+import 'package:angular2/src/common/directives/ng_for.dart';
+import 'package:angular2/src/common/directives/ng_if.dart';
+import 'package:angular2/src/compiler/identifiers.dart';
+import 'package:angular2/src/core/linker.dart' show QueryList;
+import 'package:angular2/src/core/linker/app_view.dart';
+import 'package:angular2/src/core/linker/app_view_utils.dart';
+import "package:angular2/src/core/linker/app_view_utils.dart" as appviewutils;
+import 'package:angular2/src/core/linker/component_factory.dart';
+import 'package:angular2/src/core/linker/template_ref.dart';
+import 'package:angular2/src/core/linker/view_container.dart';
+import 'package:angular2/src/core/linker/view_container_ref.dart'
     show ViewContainerRef;
-import "package:angular2/src/core/reflection/reflection.dart" show reflector;
-import "package:angular2/src/debug/debug_app_view.dart";
-import "package:angular2/src/debug/debug_context.dart"
+import 'package:angular2/src/core/reflection/reflection.dart' show reflector;
+import 'package:angular2/src/debug/debug_app_view.dart';
+import 'package:angular2/src/debug/debug_context.dart'
     show StaticNodeDebugInfo, DebugContext;
-import "package:angular2/src/facade/exceptions.dart" show BaseException;
+import 'package:angular2/src/facade/exceptions.dart' show BaseException;
 
-import "dart_emitter.dart" show debugOutputAstAsDart;
-import "dynamic_instance.dart";
-import "output_ast.dart" as o;
+import 'dart_emitter.dart' show debugOutputAstAsDart;
+import 'dynamic_instance.dart';
+import 'output_ast.dart' as o;
 
 bool _interpreterInitialized = false;
 
@@ -34,6 +37,8 @@ dynamic interpretStatements(List<o.Statement> statements, String resultVar,
       null,
       null,
       null,
+      null,
+      new Map<String, dynamic>(),
       new Map<String, dynamic>(),
       new Map<String, dynamic>(),
       new Map<String, Function>(),
@@ -50,7 +55,7 @@ dynamic _executeFunctionStatements(
     List<o.Statement> statements,
     _ExecutionContext ctx,
     StatementInterpreter visitor) {
-  var childCtx = ctx.createChildWihtLocalVars();
+  var childCtx = ctx.createChildWithLocalVars();
   for (var i = 0; i < varNames.length; i++) {
     childCtx.vars[varNames[i]] = varValues[i];
   }
@@ -62,29 +67,37 @@ class _ExecutionContext {
   _ExecutionContext parent;
   dynamic superClass;
   dynamic superInstance;
+  _DynamicClass clazz;
   String className;
   Map<String, dynamic> vars;
+  Map<String, dynamic> staticVars;
   Map<String, dynamic> props;
   Map<String, Function> getters;
   Map<String, Function> methods;
   InstanceFactory instanceFactory;
   _ExecutionContext(
+      this.clazz,
       this.parent,
       this.superClass,
       this.superInstance,
       this.className,
       this.vars,
+      Map<String, dynamic> staticVars,
       this.props,
       this.getters,
       this.methods,
-      this.instanceFactory);
-  _ExecutionContext createChildWihtLocalVars() {
+      this.instanceFactory) {
+    this.staticVars = staticVars ?? <String, dynamic>{};
+  }
+  _ExecutionContext createChildWithLocalVars() {
     return new _ExecutionContext(
+        clazz,
         this,
         this.superClass,
         this.superInstance,
         this.className,
         new Map<String, dynamic>(),
+        this.staticVars,
         this.props,
         this.getters,
         this.methods,
@@ -101,6 +114,7 @@ class _DynamicClass {
   o.ClassStmt _classStmt;
   _ExecutionContext _ctx;
   StatementInterpreter _visitor;
+  static Map<String, dynamic> staticVars = {};
   _DynamicClass(this._classStmt, this._ctx, this._visitor);
   DynamicInstance instantiate(List<dynamic> args) {
     var props = new Map<String, dynamic>();
@@ -109,18 +123,26 @@ class _DynamicClass {
     var superClass =
         this._classStmt.parent.visitExpression(this._visitor, this._ctx);
     var instanceCtx = new _ExecutionContext(
+        this,
         this._ctx,
         superClass,
         null,
         this._classStmt.name,
         this._ctx.vars,
+        staticVars,
         props,
         getters,
         methods,
         this._ctx.instanceFactory);
     this._classStmt.fields.forEach((o.ClassField field) {
-      props[field.name] =
-          field.initializer?.visitExpression(this._visitor, _ctx);
+      if (field.hasModifier(o.StmtModifier.Static)) {
+        String fullName = '${_classStmt.name}.${field.name}';
+        staticVars[fullName] ??=
+            field.initializer?.visitExpression(this._visitor, _ctx);
+      } else {
+        props[field.name] =
+            field.initializer?.visitExpression(this._visitor, _ctx);
+      }
     });
     this._classStmt.getters.forEach((o.ClassGetter getter) {
       getters[getter.name] = () => _executeFunctionStatements(
@@ -160,18 +182,38 @@ class StatementInterpreter implements o.StatementVisitor, o.ExpressionVisitor {
   }
 
   @override
-  dynamic visitWriteVarExpr(o.WriteVarExpr expr, dynamic context) {
+  dynamic visitWriteVarExpr(o.WriteVarExpr expr, dynamic context,
+      {bool checkForNull: false}) {
     _ExecutionContext ctx = context;
-    var value = expr.value.visitExpression(this, ctx);
     var currCtx = ctx;
     while (currCtx != null) {
       if (currCtx.vars.containsKey(expr.name)) {
-        currCtx.vars[expr.name] = value;
-        return value;
+        if (checkForNull == false || (currCtx.vars[expr.name] == null)) {
+          var value = expr.value.visitExpression(this, ctx);
+          currCtx.vars[expr.name] = value;
+          return value;
+        }
+        return currCtx.vars[expr.name];
       }
       currCtx = currCtx.parent;
     }
     throw new BaseException('Not declared variable ${expr.name}');
+  }
+
+  @override
+  dynamic visitWriteStaticMemberExpr(
+      o.WriteStaticMemberExpr expr, dynamic context) {
+    _ExecutionContext ctx = context;
+    String varName = '${ctx.className}.${expr.name}';
+    if (!ctx.staticVars.containsKey(varName)) {
+      throw new BaseException('No declared static member ${expr.name}');
+    }
+    if (expr.checkIfNull == false || ctx.staticVars[varName] == null) {
+      var value = expr.value.visitExpression(this, ctx);
+      ctx.staticVars[varName] = value;
+      return value;
+    }
+    return ctx.staticVars[varName];
   }
 
   @override
@@ -203,6 +245,20 @@ class StatementInterpreter implements o.StatementVisitor, o.ExpressionVisitor {
       currCtx = currCtx.parent;
     }
     throw new BaseException('Not declared variable ${varName}');
+  }
+
+  @override
+  dynamic visitReadStaticMemberExpr(
+      o.ReadStaticMemberExpr ast, dynamic context) {
+    _ExecutionContext ctx = context;
+    o.ExternalType t = ast.sourceClass;
+    String varName = (t == null)
+        ? '${ctx.className}.${ast.name}'
+        : '${t.value.name}.${ast.name}';
+    if (ctx != null && ctx.staticVars.containsKey(varName)) {
+      return ctx.staticVars[varName];
+    }
+    throw new BaseException('No declared static member $varName');
   }
 
   @override
@@ -271,9 +327,6 @@ class StatementInterpreter implements o.StatementVisitor, o.ExpressionVisitor {
         case o.BuiltinMethod.SubscribeObservable:
           result = receiver.listen(args[0]);
           break;
-        case o.BuiltinMethod.bind:
-          result = receiver;
-          break;
         default:
           throw new BaseException('Unknown builtin method ${expr.builtin}');
       }
@@ -287,7 +340,11 @@ class StatementInterpreter implements o.StatementVisitor, o.ExpressionVisitor {
       if (expr.checked && (receiver == null || receiver == o.NULL_EXPR)) {
         return null;
       }
-      result = reflector.method(expr.name)(receiver, args);
+      var methodName = expr.name;
+      if (receiver is ViewContainer && methodName == 'mapNestedViews') {
+        methodName = 'mapNestedViewsDynamic';
+      }
+      result = reflector.method(methodName)(receiver, args);
     }
     return result;
   }
@@ -320,8 +377,14 @@ class StatementInterpreter implements o.StatementVisitor, o.ExpressionVisitor {
     var fnExpr = stmt.fn;
     if (fnExpr is o.ReadVarExpr &&
         identical(fnExpr.builtin, o.BuiltinVar.Super)) {
-      ctx.superInstance = ctx.instanceFactory.createInstance(ctx.superClass,
-          ctx.className, args, ctx.props, ctx.getters, ctx.methods);
+      ctx.superInstance = ctx.instanceFactory.createInstance(
+        ctx.superClass,
+        ctx.clazz,
+        args,
+        ctx.props,
+        ctx.getters,
+        ctx.methods,
+      );
       ctx.parent.superInstance = ctx.superInstance;
       return null;
     } else {
@@ -368,7 +431,7 @@ class StatementInterpreter implements o.StatementVisitor, o.ExpressionVisitor {
     try {
       return this.visitAllStatements(stmt.bodyStmts, ctx);
     } catch (e, e_stack) {
-      var childCtx = ctx.createChildWihtLocalVars();
+      var childCtx = ctx.createChildWithLocalVars();
       childCtx.vars[CATCH_ERROR_VAR] = e;
       childCtx.vars[CATCH_STACK_VAR] = e_stack;
       return this.visitAllStatements(stmt.catchStmts, childCtx);
@@ -392,7 +455,11 @@ class StatementInterpreter implements o.StatementVisitor, o.ExpressionVisitor {
     if (clazz is _DynamicClass) {
       return clazz.instantiate(args);
     } else {
-      return Function.apply(reflector.factory(clazz), args);
+      if (clazz is Type) {
+        return Function.apply(reflector.factory(clazz), args);
+      } else {
+        return Function.apply(clazz, args);
+      }
     }
   }
 
@@ -606,13 +673,13 @@ Function _declareFn(List<String> varNames, List<o.Statement> statements,
               ctx,
               visitor);
     default:
-      throw new BaseException(
-          "Declaring functions with more than 10 arguments is not supported right now");
+      throw new BaseException('Declaring functions with more than 10 arguments '
+          'is not supported right now');
   }
 }
 
-var CATCH_ERROR_VAR = "error";
-var CATCH_STACK_VAR = "stack";
+var CATCH_ERROR_VAR = 'error';
+var CATCH_STACK_VAR = 'stack';
 
 /// Initialize external identifiers that need to be interpreted.
 ///
@@ -623,6 +690,7 @@ var CATCH_STACK_VAR = "stack";
 /// them dynamically.
 void _initializeInterpreter() {
   Identifiers.DebugAppView.runtime = DebugAppView;
+  Identifiers.ngAnchor.runtime = ngAnchor;
   Identifiers.AppView.runtime = AppView;
   Identifiers.ViewContainer.runtime = ViewContainer;
   Identifiers.StaticNodeDebugInfo.runtime = StaticNodeDebugInfo;
@@ -635,4 +703,45 @@ void _initializeInterpreter() {
   Identifiers.HTML_TEXT_NODE.runtime = Text;
   Identifiers.HTML_DOCUMENT.runtime = document;
   Identifiers.appViewUtils.runtime = appViewUtils;
+  Identifiers.ComponentRef.runtime = ComponentRef;
+  Identifiers.NG_IF_DIRECTIVE.runtime = NgIf;
+  Identifiers.NG_FOR_DIRECTIVE.runtime = NgFor;
+
+  Identifiers.interpolate[0].runtime = appviewutils.interpolate0;
+  Identifiers.interpolate[1].runtime = appviewutils.interpolate1;
+  Identifiers.interpolate[2].runtime = appviewutils.interpolate2;
+  Identifiers.interpolate[3].runtime = appviewutils.interpolate3;
+  Identifiers.interpolate[4].runtime = appviewutils.interpolate4;
+  Identifiers.interpolate[5].runtime = appviewutils.interpolate5;
+  Identifiers.interpolate[6].runtime = appviewutils.interpolate6;
+  Identifiers.interpolate[7].runtime = appviewutils.interpolate7;
+  Identifiers.interpolate[8].runtime = appviewutils.interpolate8;
+  Identifiers.interpolate[9].runtime = appviewutils.interpolate9;
+  Identifiers.throwOnChanges.runtimeCallback =
+      () => appviewutils.AppViewUtils.throwOnChanges;
+  Identifiers.checkBinding.runtime = appviewutils.checkBinding;
+  Identifiers.castByValue.runtime = appviewutils.castByValue;
+  Identifiers.dbgElm.runtime = dbgElm;
+  Identifiers.EMPTY_ARRAY.runtime = appviewutils.EMPTY_ARRAY;
+  Identifiers.EMPTY_MAP.runtime = appviewutils.EMPTY_MAP;
+  Identifiers.pureProxies[1].runtime = (f(p0)) => pureProxy1(f);
+  Identifiers.pureProxies[2].runtime = (f(p0, p1)) => pureProxy2(f);
+  Identifiers.pureProxies[3].runtime = (f(p0, p1, p2)) => pureProxy3(f);
+  Identifiers.pureProxies[4].runtime = (f(p0, p1, p2, p3)) => pureProxy4(f);
+  Identifiers.pureProxies[5].runtime = (f(p0, p1, p2, p3, p4)) => pureProxy5(f);
+  Identifiers.pureProxies[6].runtime =
+      (f(p0, p1, p2, p3, p4, p5)) => pureProxy6(f);
+  Identifiers.pureProxies[7].runtime =
+      (f(p0, p1, p2, p3, p4, p5, p6)) => pureProxy7(f);
+  Identifiers.pureProxies[8].runtime =
+      (f(p0, p1, p2, p3, p4, p5, p6, p7)) => pureProxy8(f);
+  Identifiers.pureProxies[9].runtime =
+      (f(p0, p1, p2, p3, p4, p5, p6, p7, p8)) => pureProxy9(f);
+  Identifiers.pureProxies[10].runtime =
+      (f(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9)) => pureProxy10(f);
+  Identifiers.createAndAppend.runtime = createAndAppend;
+  Identifiers.createAndAppendDbg.runtime = createAndAppendDbg;
+  Identifiers.createAndAppendToShadowRoot.runtime = createAndAppendToShadowRoot;
+  Identifiers.createAndAppendToShadowRootDbg.runtime =
+      createAndAppendToShadowRootDbg;
 }

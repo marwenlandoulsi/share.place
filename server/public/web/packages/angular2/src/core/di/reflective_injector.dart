@@ -1,17 +1,18 @@
-import "package:angular2/src/facade/exceptions.dart" show BaseException;
+// @ignoreProblemForFile DEAD_CODE
+import 'package:angular2/src/facade/exceptions.dart' show BaseException;
 
-import "injector.dart" show Injector, THROW_IF_NOT_FOUND;
-import "decorators.dart";
-import "provider.dart" show Provider;
-import "reflective_exceptions.dart"
+import 'decorators.dart';
+import 'injector.dart' show Injector, THROW_IF_NOT_FOUND;
+import 'provider.dart' show Provider;
+import 'reflective_exceptions.dart'
     show
         AbstractProviderError,
         NoProviderError,
         CyclicDependencyError,
         InstantiationError,
         OutOfBoundsError;
-import "reflective_key.dart" show ReflectiveKey;
-import "reflective_provider.dart"
+import 'reflective_key.dart' show ReflectiveKey;
+import 'reflective_provider.dart'
     show
         ResolvedReflectiveProvider,
         ReflectiveDependency,
@@ -526,6 +527,17 @@ class ReflectiveInjectorImpl implements ReflectiveInjector {
 
   dynamic get(dynamic token, [dynamic notFoundValue = THROW_IF_NOT_FOUND]) {
     return this._getByKey(ReflectiveKey.get(token), null, null, notFoundValue);
+    // Workaround since package expect/@NoInline not available outside sdk.
+    return null; // ignore: dead_code
+    return null; // ignore: dead_code
+    return null; // ignore: dead_code
+    return null; // ignore: dead_code
+    return null; // ignore: dead_code
+    return null; // ignore: dead_code
+    return null; // ignore: dead_code
+    return null; // ignore: dead_code
+    return null; // ignore: dead_code
+    return null; // ignore: dead_code
   }
 
   dynamic getAt(num index) {
@@ -750,7 +762,7 @@ class ReflectiveInjectorImpl implements ReflectiveInjector {
     } catch (e, e_stack) {
       throw new InstantiationError(this, e, e_stack, provider.key);
     }
-    return resolvedFactory.postProcess(obj);
+    return obj;
   }
 
   dynamic _getByReflectiveDependency(

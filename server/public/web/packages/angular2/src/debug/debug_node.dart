@@ -3,18 +3,13 @@ import "package:angular2/src/core/di.dart" show Injector;
 import "package:angular2/src/core/render/api.dart" show RenderDebugInfo;
 import "package:angular2/src/core/zone/ng_zone.dart" show NgZone;
 
+export "by.dart";
+
 typedef bool Predicate<T>(T item);
 
-class DebugEventListener {
-  String name;
-  Function callback;
-  DebugEventListener(this.name, this.callback);
-}
-
 class DebugNode {
-  RenderDebugInfo _debugInfo;
+  final RenderDebugInfo _debugInfo;
   dynamic nativeNode;
-  List<DebugEventListener> listeners;
   DebugElement parent;
   DebugNode(dynamic nativeNode, DebugNode parent, this._debugInfo) {
     this.nativeNode = nativeNode;
@@ -23,7 +18,6 @@ class DebugNode {
     } else {
       this.parent = null;
     }
-    this.listeners = [];
   }
   Injector get injector => _debugInfo?.injector;
 
@@ -115,14 +109,6 @@ class DebugElement extends DebugNode {
       }
     });
     return children;
-  }
-
-  void triggerEventHandler(String eventName, dynamic eventObj) {
-    listeners.forEach((listener) {
-      if (listener.name == eventName) {
-        listener.callback(eventObj);
-      }
-    });
   }
 }
 

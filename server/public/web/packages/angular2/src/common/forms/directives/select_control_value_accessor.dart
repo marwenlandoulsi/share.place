@@ -1,16 +1,19 @@
 import 'dart:html';
-import "package:angular2/core.dart"
-    show Directive, Provider, ElementRef, Input, Host, OnDestroy, Optional;
-import "package:angular2/src/facade/lang.dart" show isPrimitive, looseIdentical;
 
-import "control_value_accessor.dart"
+import 'package:angular2/core.dart'
+    show Directive, Provider, ElementRef, Input, OnDestroy;
+import 'package:angular2/di.dart' show Host, Optional;
+import 'package:angular2/src/facade/lang.dart' show isPrimitive, looseIdentical;
+import 'package:func/func.dart' show Func0, VoidFunc1;
+
+import 'control_value_accessor.dart'
     show NG_VALUE_ACCESSOR, ControlValueAccessor;
 
 const SELECT_VALUE_ACCESSOR = const Provider(NG_VALUE_ACCESSOR,
     useExisting: SelectControlValueAccessor, multi: true);
 String _buildValueString(String id, dynamic value) {
   if (id == null) return '${value}';
-  if (!isPrimitive(value)) value = "Object";
+  if (!isPrimitive(value)) value = 'Object';
   var s = '${id}: ${value}';
   // TODO: Fix this magic maximum 50 characters (from TS-transpile).
   if (s.length > 50) {
@@ -19,9 +22,7 @@ String _buildValueString(String id, dynamic value) {
   return s;
 }
 
-String _extractId(String valueString) {
-  return valueString.split(":")[0];
-}
+String _extractId(String valueString) => valueString.split(':')[0];
 
 /// The accessor for writing a value and listening to changes on a select
 /// element.
@@ -31,56 +32,59 @@ String _extractId(String valueString) {
 /// https://bugzilla.mozilla.org/show_bug.cgi?id=1024350
 /// https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/4660045
 @Directive(
-    selector: "select[ngControl],select[ngFormControl],select[ngModel]",
+    selector: 'select[ngControl],select[ngFormControl],select[ngModel]',
     host: const {
-      "(change)": "onChange(\$event.target.value)",
-      "(blur)": "onTouched()"
+      '(change)': 'onChange(\$event.target.value)',
+      '(blur)': 'touchHandler()'
     },
     providers: const [
       SELECT_VALUE_ACCESSOR
     ])
 class SelectControlValueAccessor implements ControlValueAccessor {
-  ElementRef _elementRef;
+  final ElementRef _elementRef;
   dynamic value;
-  Map<String, dynamic> _optionMap = new Map<String, dynamic>();
+  final Map<String, dynamic> _optionMap = new Map<String, dynamic>();
   num _idCounter = 0;
-  var onChange = (dynamic _) {};
-  var onTouched = () {};
+  VoidFunc1 onChange = (dynamic _) {};
+
+  void touchHandler() {
+    onTouched();
+  }
+
+  Func0 onTouched = () {};
   SelectControlValueAccessor(this._elementRef);
 
   @override
   void writeValue(dynamic value) {
     this.value = value;
-    var valueString = _buildValueString(this._getOptionId(value), value);
+    var valueString = _buildValueString(_getOptionId(value), value);
     SelectElement elm = _elementRef.nativeElement;
     elm.value = valueString;
   }
 
   @override
   void registerOnChange(dynamic fn(dynamic value)) {
-    this.onChange = (String valueString) {
-      fn(this._getOptionValue(valueString));
+    onChange = (String valueString) {
+      fn(_getOptionValue(valueString));
     };
   }
 
   @override
   void registerOnTouched(dynamic fn()) {
-    this.onTouched = fn;
+    onTouched = fn;
   }
 
-  String _registerOption() {
-    return (this._idCounter++).toString();
-  }
+  String _registerOption() => (_idCounter++).toString();
 
   String _getOptionId(dynamic value) {
     for (var id in _optionMap.keys) {
-      if (looseIdentical(this._optionMap[id], value)) return id;
+      if (looseIdentical(_optionMap[id], value)) return id;
     }
     return null;
   }
 
   dynamic _getOptionValue(String valueString) {
-    var value = this._optionMap[_extractId(valueString)];
+    var value = _optionMap[_extractId(valueString)];
     return value ?? valueString;
   }
 }
@@ -92,26 +96,27 @@ class SelectControlValueAccessor implements ControlValueAccessor {
 ///     <select ngControl="city">
 ///       <option *ngFor="let c of cities" [value]="c"></option>
 ///     </select>
-@Directive(selector: "option")
+@Directive(selector: 'option')
 class NgSelectOption implements OnDestroy {
-  ElementRef _element;
+  final ElementRef _element;
   SelectControlValueAccessor _select;
   String id;
   NgSelectOption(this._element, @Optional() @Host() this._select) {
-    if (_select != null) this.id = this._select._registerOption();
-  }
-  @Input("ngValue")
-  set ngValue(dynamic value) {
-    if (this._select == null) return;
-    this._select._optionMap[this.id] = value;
-    this._setElementValue(_buildValueString(this.id, value));
-    this._select.writeValue(this._select.value);
+    if (_select != null) id = _select._registerOption();
   }
 
-  @Input("value")
+  @Input('ngValue')
+  set ngValue(dynamic value) {
+    if (_select == null) return;
+    _select._optionMap[id] = value;
+    _setElementValue(_buildValueString(id, value));
+    _select.writeValue(_select.value);
+  }
+
+  @Input('value')
   set value(dynamic value) {
-    this._setElementValue(value);
-    if (_select != null) this._select.writeValue(this._select.value);
+    _setElementValue(value);
+    if (_select != null) _select.writeValue(_select.value);
   }
 
   void _setElementValue(String value) {
@@ -122,9 +127,9 @@ class NgSelectOption implements OnDestroy {
   @override
   void ngOnDestroy() {
     if (_select != null) {
-      (this._select._optionMap.containsKey(this.id) &&
-          (this._select._optionMap.remove(this.id) != null || true));
-      this._select.writeValue(this._select.value);
+      (_select._optionMap.containsKey(id) &&
+          (_select._optionMap.remove(id) != null || true));
+      _select.writeValue(_select.value);
     }
   }
 }

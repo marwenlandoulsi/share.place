@@ -24,7 +24,7 @@ class BuiltinType extends OutputType {
 
   @override
   dynamic visitType(TypeVisitor visitor, dynamic context) =>
-      visitor.visitBuiltintType(this, context);
+      visitor.visitBuiltinType(this, context);
 }
 
 class ExternalType extends OutputType {
@@ -65,7 +65,7 @@ const STRING_TYPE = const BuiltinType(BuiltinTypeName.String);
 const FUNCTION_TYPE = const BuiltinType(BuiltinTypeName.Function);
 
 abstract class TypeVisitor {
-  dynamic visitBuiltintType(BuiltinType type, dynamic context);
+  dynamic visitBuiltinType(BuiltinType type, dynamic context);
   dynamic visitExternalType(ExternalType type, dynamic context);
   dynamic visitArrayType(ArrayType type, dynamic context);
   dynamic visitMapType(MapType type, dynamic context);
@@ -229,6 +229,18 @@ class ReadVarExpr extends Expression {
   }
 }
 
+class ReadStaticMemberExpr extends Expression {
+  final String name;
+  final OutputType sourceClass;
+  ReadStaticMemberExpr(this.name, {OutputType type, this.sourceClass})
+      : super(type);
+
+  @override
+  dynamic visitExpression(ExpressionVisitor visitor, dynamic context) {
+    return visitor.visitReadStaticMemberExpr(this, context);
+  }
+}
+
 class ReadClassMemberExpr extends Expression {
   final String name;
   ReadClassMemberExpr(this.name, [OutputType type = null]) : super(type);
@@ -271,6 +283,31 @@ class WriteVarExpr extends Expression {
   }
 }
 
+class WriteIfNullExpr extends WriteVarExpr {
+  WriteIfNullExpr(String name, Expression value, [OutputType type = null])
+      : super(name, value, type ?? value.type);
+  @override
+  dynamic visitExpression(ExpressionVisitor visitor, dynamic context) {
+    return visitor.visitWriteVarExpr(this, context, checkForNull: true);
+  }
+}
+
+class WriteStaticMemberExpr extends Expression {
+  final String name;
+  final Expression value;
+  final bool checkIfNull;
+
+  WriteStaticMemberExpr(this.name, Expression value,
+      {OutputType type, this.checkIfNull: false})
+      : this.value = value,
+        super(type ?? value.type);
+
+  @override
+  dynamic visitExpression(ExpressionVisitor visitor, dynamic context) {
+    return visitor.visitWriteStaticMemberExpr(this, context);
+  }
+}
+
 class WriteKeyExpr extends Expression {
   final Expression receiver;
   final Expression index;
@@ -300,7 +337,7 @@ class WritePropExpr extends Expression {
   }
 }
 
-enum BuiltinMethod { ConcatArray, SubscribeObservable, bind }
+enum BuiltinMethod { ConcatArray, SubscribeObservable }
 
 class InvokeMethodExpr extends Expression {
   final Expression receiver;
@@ -376,7 +413,9 @@ class LiteralExpr extends Expression {
 class ExternalExpr extends Expression {
   final CompileIdentifierMetadata value;
   final List<OutputType> typeParams;
-  ExternalExpr(this.value, [OutputType type, this.typeParams]) : super(type);
+  final bool deferred;
+  ExternalExpr(this.value, {OutputType type, this.typeParams, this.deferred})
+      : super(type);
 
   @override
   dynamic visitExpression(ExpressionVisitor visitor, dynamic context) {
@@ -537,7 +576,11 @@ abstract class ExpressionVisitor {
   dynamic visitReadVarExpr(ReadVarExpr ast, dynamic context);
   dynamic visitReadClassMemberExpr(ReadClassMemberExpr ast, dynamic context);
   dynamic visitWriteClassMemberExpr(WriteClassMemberExpr ast, dynamic context);
-  dynamic visitWriteVarExpr(WriteVarExpr expr, dynamic context);
+  dynamic visitWriteVarExpr(WriteVarExpr expr, dynamic context,
+      {bool checkForNull: false});
+  dynamic visitReadStaticMemberExpr(ReadStaticMemberExpr ast, dynamic context);
+  dynamic visitWriteStaticMemberExpr(
+      WriteStaticMemberExpr expr, dynamic context);
   dynamic visitWriteKeyExpr(WriteKeyExpr expr, dynamic context);
   dynamic visitWritePropExpr(WritePropExpr expr, dynamic context);
   dynamic visitInvokeMethodExpr(InvokeMethodExpr ast, dynamic context);
@@ -566,7 +609,7 @@ var CATCH_STACK_VAR = new ReadVarExpr(BuiltinVar.CatchStack);
 var METADATA_MAP = new ReadVarExpr(BuiltinVar.MetadataMap);
 var NULL_EXPR = new LiteralExpr(null, null);
 //// Statements
-enum StmtModifier { Final, Private }
+enum StmtModifier { Final, Private, Static }
 
 abstract class Statement {
   List<StmtModifier> modifiers;
@@ -764,9 +807,27 @@ class ExpressionTransformer implements StatementVisitor, ExpressionVisitor {
   }
 
   @override
-  dynamic visitWriteVarExpr(WriteVarExpr expr, dynamic context) {
+  dynamic visitWriteVarExpr(WriteVarExpr expr, dynamic context,
+      {bool checkForNull: false}) {
+    if (checkForNull) {
+      return new WriteIfNullExpr(
+          expr.name, expr.value.visitExpression(this, context));
+    }
     return new WriteVarExpr(
         expr.name, expr.value.visitExpression(this, context));
+  }
+
+  @override
+  dynamic visitWriteStaticMemberExpr(
+      WriteStaticMemberExpr expr, dynamic context) {
+    return new WriteStaticMemberExpr(
+        expr.name, expr.value.visitExpression(this, context),
+        type: expr.type, checkIfNull: expr.checkIfNull);
+  }
+
+  @override
+  dynamic visitReadStaticMemberExpr(ReadStaticMemberExpr ast, dynamic context) {
+    return ast;
   }
 
   @override
@@ -973,7 +1034,20 @@ class RecursiveExpressionVisitor
   }
 
   @override
-  dynamic visitWriteVarExpr(WriteVarExpr expr, dynamic context) {
+  dynamic visitWriteVarExpr(WriteVarExpr expr, dynamic context,
+      {bool checkForNull: false}) {
+    expr.value.visitExpression(this, context);
+    return expr;
+  }
+
+  @override
+  dynamic visitReadStaticMemberExpr(ReadStaticMemberExpr ast, dynamic context) {
+    return ast;
+  }
+
+  @override
+  dynamic visitWriteStaticMemberExpr(
+      WriteStaticMemberExpr expr, dynamic context) {
     expr.value.visitExpression(this, context);
     return expr;
   }
@@ -1176,7 +1250,7 @@ Expression replaceReadClassMemberInExpression(
 }
 
 class _ReplaceReadClassMemberTransformer extends ExpressionTransformer {
-  Expression _newValue;
+  final Expression _newValue;
   _ReplaceReadClassMemberTransformer(this._newValue);
 
   @override
@@ -1190,6 +1264,12 @@ Expression replaceVarInExpression(
   return expression.visitExpression(transformer, null);
 }
 
+Statement replaceVarInStatement(
+    String varName, Expression newValue, Statement statement) {
+  var transformer = new _ReplaceVariableTransformer(varName, newValue);
+  return statement.visitStatement(transformer, null);
+}
+
 class _ReplaceVariableTransformer extends ExpressionTransformer {
   final String _varName;
   final Expression _newValue;
@@ -1197,6 +1277,10 @@ class _ReplaceVariableTransformer extends ExpressionTransformer {
 
   @override
   dynamic visitReadVarExpr(ReadVarExpr ast, dynamic context) =>
+      ast.name == this._varName ? this._newValue : ast;
+
+  @override
+  dynamic visitReadClassMemberExpr(ReadClassMemberExpr ast, dynamic context) =>
       ast.name == this._varName ? this._newValue : ast;
 }
 
@@ -1222,7 +1306,12 @@ ReadVarExpr variable(String name, [OutputType type = null]) {
 
 ExternalExpr importExpr(CompileIdentifierMetadata id,
     [List<OutputType> typeParams = null]) {
-  return new ExternalExpr(id, null, typeParams);
+  return new ExternalExpr(id, typeParams: typeParams);
+}
+
+ExternalExpr importDeferred(CompileIdentifierMetadata id,
+    [List<OutputType> typeParams = null]) {
+  return new ExternalExpr(id, typeParams: typeParams, deferred: true);
 }
 
 ExternalType importType(CompileIdentifierMetadata id,

@@ -11,8 +11,8 @@
 // @ignoreProblemForFile UNUSED_LOCAL_VARIABLE
 import 'mirror_matcher.dart';
 import 'package:analyzer/dart/ast/ast.dart';
-import 'package:angular2/src/transform/common/names.dart';
-import 'package:angular2/src/transform/common/names.template.dart' as i0;
+import 'names.dart';
+import 'names.template.dart' as i0;
 export 'mirror_matcher.dart';
 
 var _visited = false;

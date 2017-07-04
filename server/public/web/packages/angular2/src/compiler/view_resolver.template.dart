@@ -16,12 +16,10 @@ import 'package:angular2/src/core/metadata.dart' show Component;
 import 'package:angular2/src/core/metadata.dart' show View;
 import 'package:angular2/src/core/reflection/reflection.dart' show Reflector, reflector;
 import 'package:angular2/src/facade/exceptions.dart' show BaseException;
-import 'package:angular2/src/facade/lang.dart' show stringify;
 import 'package:angular2/src/core/di.template.dart' as i0;
 import 'package:angular2/src/core/metadata.template.dart' as i1;
 import 'package:angular2/src/core/reflection/reflection.template.dart' as i2;
 import 'package:angular2/src/facade/exceptions.template.dart' as i3;
-import 'package:angular2/src/facade/lang.template.dart' as i4;
 export 'view_resolver.dart';
 
 var _visited = false;
@@ -38,5 +36,4 @@ i0.initReflector();
 i1.initReflector();
 i2.initReflector();
 i3.initReflector();
-i4.initReflector();
 }

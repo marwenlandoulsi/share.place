@@ -15,9 +15,9 @@ import 'package:share_place/environment.dart';
 import 'package:share_place/common/ui/text_comp.dart';
 import 'package:share_place/common/format/ago_date_format_pipe.dart';
 import 'package:share_place/common/format/file_size_pipe.dart';
-
+import 'package:share_place/app_config.dart' as conf;
 import 'cloud_file.dart';
-import 'package:angular2_components/angular2_components.dart';
+import 'package:angular_components/angular_components.dart';
 import 'package:share_place/postit/postit_component.dart';
 import 'package:share_place/users/info_popup/info_popup.dart';
 import 'package:share_place/users/info_popup/popup_parent.dart';
@@ -62,14 +62,14 @@ class FilesComp implements OnInit, PopupParent {
     if (fileInfoId != null) {
       hideMenu();
       popupUserInfoId = null;
+      print('_environment.selectedFolder.id ${_environment.selectedFolder.id}');
       await getFile
         (
           _environment.selectedPlace.id, _environment.selectedFolder.id,
           _environment.selectedSubject.fileId);
     } else if (params[PlaceParam.placeId] != null) {
       selectedFile = null;
-    } else
-      if (params.containsKey(PlaceParam.ioFileActionCreated) ||
+    } else if (params.containsKey(PlaceParam.ioFileActionCreated) ||
         params.containsKey(PlaceParam.ioSubjectCreated) ||
         params.containsKey(PlaceParam.ioSubjectChanged)) {
       await reloadFile();
@@ -97,6 +97,11 @@ class FilesComp implements OnInit, PopupParent {
     _environment.fireEvent(PlaceParam.addButtonPressed, "comment");
     await _placeService.addComment(comment, fileVersionIndex);
     await reloadFile();
+    _environment.track("comment", data: {
+      "fileId": selectedFile,
+      "version": fileVersionIndex,
+      "comment": comment
+    });
   }
 
   Future<CloudFile> reloadFile() async {
@@ -110,8 +115,11 @@ class FilesComp implements OnInit, PopupParent {
 
   void detectLastLockAction() {
     activeLockActionIndex = -1;
-    List<FileAction> lastVersionActions = selectedFile.versions.last.actions
-        .reversed.toList();
+    List<FileAction> lastVersionActions = selectedFile.versions.last.actions;
+    if (lastVersionActions == null)
+      return;
+
+    lastVersionActions = lastVersionActions.reversed.toList();
     for (int i = 0; i < lastVersionActions.length; i++) {
       FileAction fileAction = lastVersionActions[i];
       //print( "action ${i+1}/${lastVersionActions.length}: ${fileAction.action.actionType} : ${fileAction.action.value} ");
@@ -149,10 +157,10 @@ class FilesComp implements OnInit, PopupParent {
   User get connectedUser => _environment.connectedUser;
 
   Iterable<FileAction> getActionsForVersionIndex(int index) =>
-      selectedFile.orderedVersions[index].actions.reversed;
+      selectedFile.orderedVersions[index].actions?.reversed;
 
   Iterable<FileAction> getActionsForVersion(FileVersion version) =>
-      version.actions.reversed;
+      version.actions?.reversed;
 
   void set selectedFile(CloudFile file) {
     _environment.selectedFile = file;
@@ -168,6 +176,11 @@ class FilesComp implements OnInit, PopupParent {
   bool switchCommentOpen(String fileId, int version) {
     FileVersionAttributes attr = getFileVersionAttributes(
         fileId, version, createIfNull: true);
+    _environment.track("fileVersionExpand", data: {
+      "fileId": fileId,
+      "version": version,
+      "open": !attr.commentPaneOpen
+    });
     return attr.switchCommentOpen();
   }
 
@@ -254,6 +267,8 @@ class FilesComp implements OnInit, PopupParent {
         selectedPlace.id, selectedSubject.folderId, selectedFile.id, version.v,
         true);
     _environment.fireEvent(PlaceParam.approvalStateChange, selectedFile.id);
+    _environment.track(
+        "approve", data: {"file": selectedFile.id, "version": version.v});
   }
 
   Future<Null> unapprove(FileVersion version) async {
@@ -262,6 +277,8 @@ class FilesComp implements OnInit, PopupParent {
         selectedPlace.id, selectedSubject.folderId, selectedFile.id, version.v,
         false);
     _environment.fireEvent(PlaceParam.approvalStateChange, selectedFile.id);
+    _environment.track(
+        "unapprove", data: {"file": selectedFile.id, "version": version.v});
   }
 
   Future<Null> lock() async {
@@ -269,6 +286,7 @@ class FilesComp implements OnInit, PopupParent {
     selectedFile = await _placeService.lockFile(
         selectedPlace.id, selectedSubject.folderId, selectedFile.id, true);
     _environment.fireEvent(PlaceParam.lockStateChange, selectedFile.id);
+    _environment.track("lock", data: {"file": selectedFile.id});
   }
 
   Future<Null> unlock() async {
@@ -276,10 +294,14 @@ class FilesComp implements OnInit, PopupParent {
     selectedFile = await _placeService.lockFile(
         selectedPlace.id, selectedSubject.folderId, selectedFile.id, false);
     _environment.fireEvent(PlaceParam.lockStateChange, selectedFile.id);
+    _environment.track("unlock", data: {"file": selectedFile.id});
   }
 
-  void delete() {
+  Future<Null> delete(FileVersion version)async {
     hideMenu();
+    selectedFile = await _placeService.removeFileVersion(
+        selectedPlace.id, selectedSubject.folderId, selectedFile.id, version.v);
+
   }
 
   String formatDesc(FileVersion version) {
@@ -304,10 +326,11 @@ class FilesComp implements OnInit, PopupParent {
   }
 
   bool isFile(int version) {
-    if(selectedFile == null)
+    if (selectedFile == null)
       return false;
 
-    return selectedFile.versions[version-1].mimeType != "application/quickNote";
+    return selectedFile.versions[version - 1].mimeType !=
+        "application/quickNote";
   }
 
   bool get isWriter =>
@@ -368,6 +391,8 @@ class FilesComp implements OnInit, PopupParent {
     window.location.assign(
         "/sp/place/${selectedPlace?.id}/folder/${selectedFolder
             ?.id}/file/${selectedFile?.id}/version/${version}/download");
+    _environment.track(
+        "download", data: {"file": selectedFile.id, "version": version});
   }
 
   bool isActionAuthor(FileAction action) {
@@ -425,6 +450,7 @@ class FilesComp implements OnInit, PopupParent {
   bool shouldShowApproveMenu(FileVersion version) =>
       isFile(version.v) && isOwner && version.approved == null;
 
+
   bool shouldShowUnApproveMenu(FileVersion version) =>
       isFile(version.v) && isOwner && version.approved != null &&
           connectedUser.id == version.approved.userId;
@@ -442,8 +468,9 @@ class FilesComp implements OnInit, PopupParent {
 
   Future<FileInfo> uploadVersion(String fileName) async {
     var form = querySelector("#uploadVersion");
-    FileInfo createdFileInfo = await _placeService.prePostFile({"name":_environment.selectedFile.name});
-
+    FileInfo createdFileInfo = await _placeService.prePostFile(
+        {"name": _environment.selectedFile.name});
+    _environment.track("fileVersion", data: {"fileInfo": createdFileInfo});
     FileInfo updatedFileInfo = await _placeService.postFile(
         new FormData(form), asNewVersion: true);
     return updatedFileInfo;
@@ -462,9 +489,97 @@ class FilesComp implements OnInit, PopupParent {
     dropZone.classes.add("uploading");
   }
 
+  String thumbSrc(FileVersion version, Folder selectedFolder,
+      CloudFile selectedFile) {
+//TODO get info from server
+    String mimeType = version.mimeType;
+    if (mimeType == null)
+      return null;
+    switch (mimeType) {
+      case 'image/png' :
+      case 'image/jpeg' :
+      case 'image/bpm' :
+        return "/sp/place/${selectedPlace?.id}/folder/${selectedFolder?.id}/file/${selectedFile?.id}/version/${version.v}/thumb.x";
+        break;
+      case 'application/quickNote' :
+        return conf.quickNoteIcon;
+        break;
+      case 'text/plain':
+        return conf.txtIcon;
+        break;
+      case 'application/x-pdf':
+        return conf.pdfIcon;
+        break;
+      case 'application/pdf':
+        return conf.pdfIcon;
+        break;
+      case 'application/msword':
+        return conf.wordIcon;
+        break;
+      case 'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
+        return conf.wordIcon;
+        break;
+      case 'application/vnd.ms-word.document.macroEnabled.12':
+        return conf.wordIcon;
+        break;
+      case 'application/vnd.ms-word.template.macroEnabled.12':
+        return conf.wordIcon;
+        break;
+      case 'application/vnd.ms-powerpoint':
+        return conf.pptIcon;
+        break;
+      case 'application/vnd.openxmlformats-officedocument.presentationml.presentation':
+        return conf.pptIcon;
+        break;
+      case 'application/vnd.openxmlformats-officedocument.presentationml.template':
+        return conf.pptIcon;
+        break;
+      case '  application/vnd.openxmlformats-officedocument.presentationml.slideshow':
+        return conf.pptIcon;
+        break;
+      case '  application/vnd.ms-powerpoint.addin.macroEnabled.12':
+        return conf.pptIcon;
+        break;
+      case 'application/vnd.ms-powerpoint.presentation.macroEnabled.12':
+        return conf.pptIcon;
+        break;
+      case 'application/vnd.ms-powerpoint.addin.macroEnabled.12':
+        return conf.pptIcon;
+        break;
+      case 'application/vnd.ms-excel':
+        return conf.excelIcon;
+        break;
+      case 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet':
+        return conf.excelIcon;
+        break;
+      case 'application/vnd.openxmlformats-officedocument.spreadsheetml.template':
+        return conf.excelIcon;
+        break;
+      case 'application/vnd.ms-excel.sheet.macroEnabled.12':
+        return conf.excelIcon;
+        break;
+      case 'application/vnd.ms-excel.template.macroEnabled.12':
+        return conf.excelIcon;
+        break;
+      case 'application/vnd.ms-excel.addin.macroEnabled.12':
+        return conf.excelIcon;
+        break;
+      case 'application/vnd.ms-excel.sheet.binary.macroEnabled.12':
+        return conf.excelIcon;
+        break;
+
+      default:
+        return conf.defaultIcon;
+    }
+
+
+  }
+
 
   @override
-  bool get allowRoleChange => _environment.selectedFolder != null ? _environment.selectedFolder.type != "support" ? true : false : false;
+  bool get allowRoleChange =>
+      _environment.selectedFolder != null ? _environment.selectedFolder.type !=
+          "support" ? true : false : false;
 }
 
 class FileVersionAttributes {
@@ -499,6 +614,5 @@ class FileVersionsMap {
   }
 
 }
-
 
 

@@ -1,14 +1,13 @@
-// Copyright (c) 2016, the Dart project authors.  Please see the AUTHORS file
+// Copyright (c) 2017, the Dart project authors.  Please see the AUTHORS file
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 import 'dart:async';
-import 'dart:collection';
 import 'dart:convert';
 
-import 'package:logging/logging.dart';
+import 'package:analyzer/dart/element/element.dart';
+import 'package:glob/glob.dart';
 
 import '../analyzer/resolver.dart';
-import '../asset/asset.dart';
 import '../asset/exceptions.dart';
 import '../asset/id.dart';
 import '../asset/reader.dart';
@@ -16,39 +15,27 @@ import '../asset/writer.dart';
 import 'build_step.dart';
 import 'exceptions.dart';
 
-/// A single step in the build processes. This represents a single input and
-/// its expected and real outputs. It also handles tracking of dependencies.
+/// A single step in the build processes.
+///
+/// This represents a single input and its expected and real outputs. It also
+/// handles tracking of dependencies.
 class BuildStepImpl implements BuildStep {
   final Resolvers _resolvers;
 
-  /// The primary input for this build step.
+  /// The primary input id for this build step.
   @override
-  final Asset input;
+  final AssetId inputId;
+
+  @override
+  Future<LibraryElement> get inputLibrary async =>
+      (await resolver).getLibrary(inputId);
 
   /// The list of all outputs which are expected/allowed to be output from this
   /// step.
-  final List<AssetId> expectedOutputs;
-
-  /// The [Logger] for this [BuildStep].
-  @override
-  Logger get logger {
-    _logger ??= new Logger(input.id.toString());
-    return _logger;
-  }
-
-  Logger _logger;
-
-  /// The actual outputs of this build step.
-  UnmodifiableListView<Asset> get outputs => new UnmodifiableListView(_outputs);
-  final List<Asset> _outputs = [];
+  final List<AssetId> _expectedOutputs;
 
   /// A future that completes once all outputs current are done writing.
   Future _outputsCompleted = new Future(() {});
-
-  /// The dependencies read in during this build step.
-  UnmodifiableListView<AssetId> get dependencies =>
-      new UnmodifiableListView(_dependencies);
-  final Set<AssetId> _dependencies = new Set<AssetId>();
 
   /// Used internally for reading files.
   final AssetReader _reader;
@@ -59,55 +46,71 @@ class BuildStepImpl implements BuildStep {
   /// The current root package, used for input/output validation.
   final String _rootPackage;
 
-  BuildStepImpl(this.input, Iterable<AssetId> expectedOutputs, this._reader,
+  BuildStepImpl(this.inputId, Iterable<AssetId> expectedOutputs, this._reader,
       this._writer, this._rootPackage, this._resolvers)
-      : expectedOutputs = new List.unmodifiable(expectedOutputs) {
-    /// The [input] is always a dependency.
-    _dependencies.add(input.id);
-  }
+      : _expectedOutputs = expectedOutputs.toList();
 
-  /// Checks if an [Asset] by [id] exists as an input for this [BuildStep].
+  @override
+  Future<Resolver> get resolver => _resolver ??= _resolvers.get(this);
+
+  Future<ReleasableResolver> _resolver;
+
   @override
   Future<bool> hasInput(AssetId id) {
-    _checkInput(id);
-    _dependencies.add(id);
-    return _reader.hasInput(id);
+    var result = canRead(id);
+    return new Future.value(result);
   }
 
-  /// Reads an [Asset] by [id] as a [String] using [encoding].
+  @override
+  FutureOr<bool> canRead(AssetId id) {
+    _checkInput(id);
+    return new Future.value(_reader.canRead(id));
+  }
+
+  @override
+  Future<List<int>> readAsBytes(AssetId id) {
+    _checkInput(id);
+    return _reader.readAsBytes(id);
+  }
+
   @override
   Future<String> readAsString(AssetId id, {Encoding encoding: UTF8}) {
     _checkInput(id);
-    _dependencies.add(id);
     return _reader.readAsString(id, encoding: encoding);
   }
 
-  /// Outputs an [Asset] using the current [AssetWriter], and adds [asset] to
-  /// [outputs].
-  ///
-  /// Throws an [UnexpectedOutputException] if [asset] is not in
-  /// [expectedOutputs].
   @override
-  void writeAsString(Asset asset, {Encoding encoding: UTF8}) {
-    _checkOutput(asset);
-    _outputs.add(asset);
-    var done = _writer.writeAsString(asset, encoding: encoding);
+  Iterable<AssetId> findAssets(Glob glob) => _reader.findAssets(glob);
+
+  @override
+  Future writeAsBytes(AssetId id, FutureOr<List<int>> bytes) {
+    _checkOutput(id);
+    var done = _futureOrWrite(bytes, (b) => _writer.writeAsBytes(id, b));
     _outputsCompleted = _outputsCompleted.then((_) => done);
+    return done;
   }
 
-  /// Resolves [id] and returns a [Future<Resolver>] once that is done.
   @override
-  Future<Resolver> resolve(AssetId id,
-      {bool resolveAllConstants, List<AssetId> entryPoints}) async {
-    entryPoints ??= [];
-    if (!entryPoints.contains(id)) entryPoints.add(id);
-    return _resolvers.get(this, entryPoints, resolveAllConstants);
+  Future writeAsString(AssetId id, FutureOr<String> content,
+      {Encoding encoding: UTF8}) {
+    _checkOutput(id);
+    var done = _futureOrWrite(
+        content, (c) => _writer.writeAsString(id, c, encoding: encoding));
+    _outputsCompleted = _outputsCompleted.then((_) => done);
+    return done;
   }
 
-  /// Should be called after `build` has completed. This will wait until for
-  /// [_outputsCompleted].
+  Future _futureOrWrite<T>(FutureOr<T> content, Future write(T content)) =>
+      (content is Future<T>) ? content.then(write) : write(content);
+
+  /// Waits for work to finish and cleans up resources.
+  ///
+  /// This method should be called after a build has completed. After the
+  /// returned [Future] completes then all outputs have been written and the
+  /// [Resolver] for this build step - if any - has been released.
   Future complete() async {
     await _outputsCompleted;
+    (await _resolver)?.release();
   }
 
   /// Checks that [id] is a valid input, and throws an [InvalidInputException]
@@ -118,15 +121,18 @@ class BuildStepImpl implements BuildStep {
     }
   }
 
-  /// Checks that [asset] is a valid output, and throws an
+  /// Checks that [id] is a valid output, and throws an
   /// [InvalidOutputException] or [UnexpectedOutputException] if it's not.
-  void _checkOutput(Asset asset) {
-    if (asset.id.package != _rootPackage) {
+  void _checkOutput(AssetId id) {
+    if (id.package != _rootPackage) {
       throw new InvalidOutputException(
-          asset, 'Files may only be output in the root (application) package.');
+          id,
+          'Files may only be output in the root (application) package. '
+          'Attempted to output "$id" but the root package is '
+          '"$_rootPackage".');
     }
-    if (!expectedOutputs.any((id) => id == asset.id)) {
-      throw new UnexpectedOutputException(asset);
+    if (!_expectedOutputs.any((check) => check == id)) {
+      throw new UnexpectedOutputException(id);
     }
   }
 }

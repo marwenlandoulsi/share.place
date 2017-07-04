@@ -1,15 +1,7 @@
-import "package:angular2/core.dart"
-    show
-        DoCheck,
-        OnDestroy,
-        Directive,
-        ElementRef,
-        IterableDiffers,
-        KeyValueDiffers,
-        IterableDiffer,
-        KeyValueDiffer,
-        CollectionChangeRecord,
-        KeyValueChangeRecord;
+import 'package:angular2/core.dart'
+    show DoCheck, OnDestroy, Directive, ElementRef;
+import 'package:angular2/src/core/change_detection/differs/default_iterable_differ.dart';
+import 'package:angular2/src/core/change_detection/differs/default_keyvalue_differ.dart';
 
 /// The [NgClass] directive conditionally adds and removes CSS classes on an
 /// HTML element based on an expression's evaluation result.
@@ -31,34 +23,46 @@ import "package:angular2/core.dart"
 ///
 /// ### Examples
 ///
-/// {@example docs/template-syntax/lib/app_component.html region=NgClass-1}
+/// <?code-excerpt "docs/template-syntax/lib/app_component.html (NgClass-1)"?>
+/// ```html
+/// <div [ngClass]="currentClasses">This div is initially saveable, unchanged, and special</div>
+/// ```
 ///
-/// {@example docs/template-syntax/lib/app_component.dart region=setClasses}
+/// <?code-excerpt "docs/template-syntax/lib/app_component.dart (setClasses)"?>
+/// ```dart
+/// Map<String, bool> currentClasses = <String, bool>{};
+/// void setCurrentClasses() {
+///   currentClasses = <String, bool>{
+///     'saveable': canSave,
+///     'modified': !isUnchanged,
+///     'special': isSpecial
+///   };
+/// }
+/// ```
 ///
 /// Try the [live example][ex].
-/// See the [Template Syntax section on `ngClass`][guide] for more details.
+/// For details, see the [`ngClass` discussion in the Template Syntax][guide]
+/// page.
 ///
-/// [ex]: examples/template-syntax/#ngClass
-/// [guide]: docs/guide/template-syntax.html#ngClass
+/// [ex]: http://angular-examples.github.io/template-syntax/#ngClass
+/// [guide]: https://webdev.dartlang.org/angular/guide/template-syntax.html#ngClass
 @Directive(
-    selector: "[ngClass]",
-    inputs: const ["rawClass: ngClass", "initialClasses: class"])
+    selector: '[ngClass]',
+    inputs: const ['rawClass: ngClass', 'initialClasses: class'])
 class NgClass implements DoCheck, OnDestroy {
   // Separator used to split string to parts - can be any number of
   // whitespaces, new lines or tabs.
   static RegExp _separator;
-  IterableDiffers _iterableDiffers;
-  KeyValueDiffers _keyValueDiffers;
   ElementRef _ngEl;
-  IterableDiffer _iterableDiffer;
-  KeyValueDiffer _keyValueDiffer;
+  DefaultIterableDiffer _iterableDiffer;
+  DefaultKeyValueDiffer _keyValueDiffer;
   List<String> _initialClasses = [];
   dynamic /* List < String > | Set< String > */ _rawClass;
-  NgClass(this._iterableDiffers, this._keyValueDiffers, this._ngEl);
+  NgClass(this._ngEl);
 
   set initialClasses(String v) {
     this._applyInitialClasses(true);
-    this._initialClasses = v is String ? v.split(" ") : [];
+    this._initialClasses = v is String ? v.split(' ') : [];
     this._applyInitialClasses(false);
     this._applyClasses(this._rawClass, false);
   }
@@ -74,9 +78,9 @@ class NgClass implements DoCheck, OnDestroy {
     this._keyValueDiffer = null;
     if (v != null) {
       if (v is Iterable) {
-        _iterableDiffer = _iterableDiffers.find(v).create(null);
+        _iterableDiffer = new DefaultIterableDiffer();
       } else {
-        _keyValueDiffer = _keyValueDiffers.find(v).create(null);
+        _keyValueDiffer = new DefaultKeyValueDiffer();
       }
     }
   }
@@ -132,7 +136,9 @@ class NgClass implements DoCheck, OnDestroy {
   }
 
   void _applyInitialClasses(bool isCleanup) {
-    _initialClasses.forEach((className) => _toggleClass(className, !isCleanup));
+    for (var className in _initialClasses) {
+      _toggleClass(className, !isCleanup);
+    }
   }
 
   void _applyClasses(
@@ -140,8 +146,9 @@ class NgClass implements DoCheck, OnDestroy {
       bool isCleanup) {
     if (rawClassVal != null) {
       if (rawClassVal is Iterable) {
-        ((rawClassVal as Iterable<String>))
-            .forEach((className) => _toggleClass(className, !isCleanup));
+        for (var className in (rawClassVal as Iterable<String>)) {
+          _toggleClass(className, !isCleanup);
+        }
       } else {
         (rawClassVal as Map<String, dynamic>).forEach((className, expVal) {
           if (expVal != null) {
@@ -155,7 +162,7 @@ class NgClass implements DoCheck, OnDestroy {
   void _toggleClass(String className, bool enabled) {
     className = className.trim();
     if (className.length > 0) {
-      if (className.indexOf(" ") > -1) {
+      if (className.indexOf(' ') > -1) {
         _separator ??= new RegExp(r'\s+');
         var classes = className.split(_separator);
         for (var i = 0, len = classes.length; i < len; i++) {

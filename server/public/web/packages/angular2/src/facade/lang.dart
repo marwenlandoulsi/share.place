@@ -1,24 +1,3 @@
-import 'dart:convert' as convert;
-
-export 'dart:core' show RegExp, print, DateTime, Uri;
-
-RegExp _fromFuncExp;
-
-String stringify(obj) {
-  _fromFuncExp ??= new RegExp(r"from Function '(\w+)'");
-  final str = obj.toString();
-  if (_fromFuncExp.firstMatch(str) != null) {
-    return _fromFuncExp.firstMatch(str).group(1);
-  } else {
-    return str;
-  }
-}
-
-String resolveEnumToken(enumValue, val) {
-  // turn Enum.Token -> Token
-  return val.toString().replaceFirst(new RegExp('^.+\\.'), '');
-}
-
 /// A [String.split] implementation that is like JS' implementation.
 ///
 /// See https://dartpad.dartlang.org/37a53b0d5d4cced6c7312b2b965ed7fd.
@@ -48,9 +27,8 @@ List<String> jsSplit(String s, RegExp regExp) {
 // evaluate the conditional during compilation and inline the entire function.
 //
 // See: dartbug.com/22496, dartbug.com/25270
-const _IS_DART_VM = !identical(1.0, 1); // a hack
-bool looseIdentical(a, b) =>
-    _IS_DART_VM ? _looseIdentical(a, b) : identical(a, b);
+const isDartVM = !identical(1.0, 1); // a hack
+bool looseIdentical(a, b) => isDartVM ? _looseIdentical(a, b) : identical(a, b);
 
 // This function is intentionally separated from `looseIdentical` to keep the
 // number of AST nodes low enough for `dart2js` to inline the code.
@@ -78,24 +56,5 @@ bool assertionsEnabled() {
   return k;
 }
 
-// Can't be all uppercase as our transpiler would think it is a special directive...
-class Json {
-  static dynamic parse(String s) => convert.JSON.decode(s);
-  static String stringify(data) {
-    var encoder = new convert.JsonEncoder.withIndent("  ");
-    return encoder.convert(data);
-  }
-}
-
 bool isPrimitive(Object obj) =>
     obj is num || obj is bool || obj == null || obj is String;
-
-num bitWiseOr(List values) {
-  var val = values.reduce((num a, num b) => (a as int) | (b as int));
-  return val as num;
-}
-
-num bitWiseAnd(List values) {
-  var val = values.reduce((num a, num b) => (a as int) & (b as int));
-  return val as num;
-}

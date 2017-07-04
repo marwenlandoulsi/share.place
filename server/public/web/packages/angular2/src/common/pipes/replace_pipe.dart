@@ -26,9 +26,11 @@ import "invalid_pipe_argument_exception.dart" show InvalidPipeArgumentException;
 /// --Note--: The 'pattern' parameter will be converted to a RegExp instance.
 /// Make sure to escape the string properly if you are matching for regular
 /// expression special characters like parenthesis, brackets etc.
-@Pipe(name: "replace")
+@Pipe("replace")
 @Injectable()
 class ReplacePipe implements PipeTransform {
+  const ReplacePipe();
+
   dynamic transform(dynamic value, dynamic /* String | RegExp */ pattern,
       dynamic /* Function | String */ replacement) {
     if (value == null) {

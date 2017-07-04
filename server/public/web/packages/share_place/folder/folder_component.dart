@@ -12,7 +12,7 @@ import 'package:share_place/place_service.dart';
 import 'package:share_place/common/ui/button_comp.dart';
 import 'package:share_place/common/ui/text_comp.dart';
 
-import 'package:angular2_components/angular2_components.dart';
+import 'package:angular_components/angular_components.dart';
 import 'package:share_place/postit/postit_component.dart';
 
 import 'package:share_place/folder/node/tree_node_component.dart';
@@ -38,11 +38,12 @@ class FolderComponent
   final PlaceService _placeService;
   final Router _router;
   final Environment _environment;
+  List<Folder> rawFolderList;
   List<String> openTreeNodes = [];
   Map<String, Folder> foldersById = {};
 
   List<Folder> folders;
-  bool adding;
+  Folder addingChildOf ;
   Folder renaming;
   final StreamController<
       Map<PlaceParam, dynamic>> _treeEventBus = new StreamController<
@@ -53,8 +54,8 @@ class FolderComponent
   Future<Null> ngOnInit() async {
     _environment.eventBus.getBus().listen((params) => show(params));
 
-    if (_environment.selectedPlace != null)
-      await getFolders(_environment.selectedPlace.id);
+    if (selectedPlace != null)
+      await loadFolders(selectedPlace.id);
 
   }
 
@@ -65,34 +66,51 @@ class FolderComponent
   Stream<Map<PlaceParam, dynamic>> get treeEventBus => _treeEventBus.stream;
 
   show(Map<PlaceParam, dynamic> params) async {
+   var requestedFolderIdChange = params[PlaceParam.folderIdRequested];
+    //print("folder change required to folderId : $requestedFolderIdChange");
+    if( requestedFolderIdChange != null) {
+      for( Folder folder in rawFolderList ) {
+        if(folder.id == requestedFolderIdChange) {
+          openHierarchy(folder);
+          selectedFolder = folder;
+          return;
+        }
+      }
+    }
+
     var placeId = params[PlaceParam.placeId];
     if (placeId != null) {
-      await getFolders(placeId);
+      await loadFolders(placeId);
     } else if (params.containsKey(PlaceParam.treatFolderChanged) ||
+        params.containsKey(PlaceParam.treatFolderDeleted) ||
         params.containsKey(PlaceParam.treatFolderCreated)
     ) {
-      placeId = _environment.selectedPlace.id;
-      await getFolders(placeId);
+      placeId = selectedPlace.id;
+      await loadFolders(placeId);
     } else if (params.containsKey(PlaceParam.treatFileChanged) ) {
-      placeId = _environment.selectedPlace.id;
-      await getFolders(placeId);
+      placeId = selectedPlace.id;
+      await loadFolders(placeId);
     } else if (params.containsKey(PlaceParam.treatUserInvite)) {
       print("User invite received : ${params[PlaceParam.treatUserInvite]}");
       dynamic inviteDetails = params[PlaceParam.treatUserInvite];
       var placeId = inviteDetails['placeId'];
       var emitterId = inviteDetails['emitterId'];
       if( connectedUser.id != emitterId && selectedFolder?.placeId == placeId ) {
-        await getFolders(placeId);
+        await loadFolders(placeId);
         _environment.addMessage("You were just invited to the folder ${foldersById[inviteDetails['folderId']]}");
 
       }
     }
 
-    if (renaming != null || adding) {
+
+
+
+    //TODO check if is needed
+    if (renaming != null || addingChildOf != null) {
       KeyEvent keyup = params[PlaceParam.keyPressed];
       if (keyup != null && keyup.keyCode == 27) {
         renaming = null;
-        adding = false;
+        addingChildOf = null;
       }
 
       MouseEvent click = params[PlaceParam.pageClick];
@@ -115,11 +133,12 @@ class FolderComponent
     refreshNotificationsInTreeThread(parent);
   }*/
 
-  Future getFolders(String placeId) async {
+  Future loadFolders(String placeId) async {
     if (placeId != null) {
-      List<Folder> folderList = await _placeService.getFolders(placeId);
-      folders = asTree(folderList, notifications);
+      rawFolderList = await _placeService.getFolders(placeId);
+      folders = asTree(rawFolderList, notifications);
       _environment.showScrollBar();
+      _environment.fireEvent(PlaceParam.folderListLoaded, placeId);
     }
   }
 
@@ -180,12 +199,9 @@ class FolderComponent
 
   void set selectedFolder(Folder folder) {
     _environment.selectedFolder = folder;
+    _environment.track("folder", data:{"folder":folder});
   }
 
-  void add() {
-    adding = !adding;
-    _environment.fireEvent(PlaceParam.addButtonPressed, "folders");
-  }
 
   void rename() {
     if (renaming != null)
@@ -203,26 +219,14 @@ class FolderComponent
       openTreeNodes.remove(node.id);
     else
       openTreeNodes.add(node.id);
+    _environment.track("folderExpanded", data:{"folder":node, "open":isExpanded(node)});
   }
 
   Future<Folder> doRename(String folderName) async {
     Folder toRename = renaming;
     renaming = null;
     Folder toSelect = await _placeService.renameFolder(toRename, folderName);
-    await getFolders(selectedPlace.id);
-    onSelect(toSelect);
-  }
-
-
-  Future<Folder> saveNewFolder(String folderName) async {
-    adding = false;
-    if (isEmpty(folderName, trim: true))
-      return null;
-
-    Folder toSelect = await _placeService.createFolder(folderName);
-    await getFolders(selectedPlace.id);
-    await _placeService.loadConnectedUser();
-    openHierarchy(toSelect);
+    await loadFolders(selectedPlace.id);
     onSelect(toSelect);
   }
 
@@ -253,5 +257,6 @@ class FolderComponent
         RoleEnum.writer, _environment.selectedFolder);
   }
 
+  Folder getFolder(String id) => foldersById[id];
 
 }

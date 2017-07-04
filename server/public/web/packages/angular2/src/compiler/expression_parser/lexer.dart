@@ -339,7 +339,7 @@ class _Scanner {
     String input = this.input;
     while (this.peek != quote) {
       if (this.peek == $BACKSLASH) {
-        if (buffer == null) buffer = <String>[];
+        buffer ??= <String>[];
         buffer.add(input.substring(marker, this.index));
         this.advance();
         num unescapedCode;
@@ -448,7 +448,7 @@ num unescape(num code) {
   }
 }
 
-var OPERATORS = new Set.from([
+var OPERATORS = new Set<String>.from(const [
   "+",
   "-",
   "*",
@@ -472,7 +472,15 @@ var OPERATORS = new Set.from([
   "?",
   "#",
   "?.",
-  "??"
+  "??",
 ]);
-var KEYWORDS = new Set.from(
-    ["var", "let", "null", "undefined", "true", "false", "if", "else"]);
+var KEYWORDS = new Set<String>.from(const [
+  "var",
+  "let",
+  "null",
+  "undefined",
+  "true",
+  "false",
+  "if",
+  "else",
+]);

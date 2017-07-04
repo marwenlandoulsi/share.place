@@ -11,6 +11,7 @@
 // @ignoreProblemForFile UNUSED_LOCAL_VARIABLE
 import 'event_binder.dart';
 import '../compile_metadata.dart' show CompileDirectiveMetadata;
+import '../identifiers.dart' show Identifiers;
 import '../output/output_ast.dart' as o;
 import '../template_ast.dart' show BoundEventAst, DirectiveAst;
 import 'compile_binding.dart' show CompileBinding;
@@ -18,14 +19,17 @@ import 'compile_element.dart' show CompileElement;
 import 'compile_method.dart' show CompileMethod;
 import 'constants.dart' show EventHandlerVars;
 import 'expression_converter.dart' show convertCdStatementToIr;
+import 'parse_utils.dart';
 import '../compile_metadata.template.dart' as i0;
-import '../output/output_ast.template.dart' as i1;
-import '../template_ast.template.dart' as i2;
-import 'compile_binding.template.dart' as i3;
-import 'compile_element.template.dart' as i4;
-import 'compile_method.template.dart' as i5;
-import 'constants.template.dart' as i6;
-import 'expression_converter.template.dart' as i7;
+import '../identifiers.template.dart' as i1;
+import '../output/output_ast.template.dart' as i2;
+import '../template_ast.template.dart' as i3;
+import 'compile_binding.template.dart' as i4;
+import 'compile_element.template.dart' as i5;
+import 'compile_method.template.dart' as i6;
+import 'constants.template.dart' as i7;
+import 'expression_converter.template.dart' as i8;
+import 'parse_utils.template.dart' as i9;
 export 'event_binder.dart';
 
 var _visited = false;
@@ -39,4 +43,6 @@ i4.initReflector();
 i5.initReflector();
 i6.initReflector();
 i7.initReflector();
+i8.initReflector();
+i9.initReflector();
 }

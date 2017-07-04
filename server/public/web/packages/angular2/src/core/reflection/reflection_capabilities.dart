@@ -1,7 +1,6 @@
 import 'dart:mirrors';
 
 import 'package:angular2/src/core/metadata/lifecycle_hooks.dart';
-import 'package:angular2/src/facade/lang.dart';
 
 import 'platform_reflection_capabilities.dart';
 import 'types.dart';
@@ -11,9 +10,7 @@ var DOT_REGEX = new RegExp('\\.');
 class ReflectionCapabilities implements PlatformReflectionCapabilities {
   ReflectionCapabilities([metadataReader]);
 
-  bool isReflectionEnabled() {
-    return true;
-  }
+  bool get reflectionEnabled => true;
 
   Function factory(Type type) {
     ClassMirror classMirror = reflectType(type);
@@ -231,7 +228,7 @@ class ReflectionCapabilities implements PlatformReflectionCapabilities {
             ]).reflectee;
     }
 
-    throw "Cannot create a factory for '${stringify(type)}' because its constructor has more than 20 arguments";
+    throw "Cannot create a factory for '$type' because its constructor has more than 20 arguments";
   }
 
   List<List> parameters(typeOrFunc) {

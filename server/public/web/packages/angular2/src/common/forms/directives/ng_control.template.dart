@@ -12,7 +12,7 @@
 import 'ng_control.dart';
 import 'abstract_control_directive.dart' show AbstractControlDirective;
 import 'control_value_accessor.dart' show ControlValueAccessor;
-import 'validators.dart' show AsyncValidatorFn, ValidatorFn;
+import 'validators.dart' show ValidatorFn;
 import 'abstract_control_directive.template.dart' as i0;
 import 'control_value_accessor.template.dart' as i1;
 import 'validators.template.dart' as i2;

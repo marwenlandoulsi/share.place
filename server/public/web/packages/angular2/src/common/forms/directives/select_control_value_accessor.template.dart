@@ -12,12 +12,15 @@
 import 'select_control_value_accessor.dart';
 import 'package:angular2/src/core/reflection/reflection.dart' as _ngRef;
 import 'dart:html';
-import 'package:angular2/core.dart' show Directive, Provider, ElementRef, Input, Host, OnDestroy, Optional;
+import 'package:angular2/core.dart' show Directive, Provider, ElementRef, Input, OnDestroy;
+import 'package:angular2/di.dart' show Host, Optional;
 import 'package:angular2/src/facade/lang.dart' show isPrimitive, looseIdentical;
+import 'package:func/func.dart' show Func0, VoidFunc1;
 import 'control_value_accessor.dart' show NG_VALUE_ACCESSOR, ControlValueAccessor;
 import 'package:angular2/core.template.dart' as i0;
-import 'package:angular2/src/facade/lang.template.dart' as i1;
-import 'control_value_accessor.template.dart' as i2;
+import 'package:angular2/di.template.dart' as i1;
+import 'package:angular2/src/facade/lang.template.dart' as i2;
+import 'control_value_accessor.template.dart' as i3;
 export 'select_control_value_accessor.dart';
 
 var _visited = false;
@@ -40,4 +43,5 @@ const <dynamic>[OnDestroy])
 i0.initReflector();
 i1.initReflector();
 i2.initReflector();
+i3.initReflector();
 }

@@ -10,18 +10,20 @@
 // @ignoreProblemForFile UNUSED_SHOWN_NAME
 // @ignoreProblemForFile UNUSED_LOCAL_VARIABLE
 import 'reflective_provider.dart';
-import 'package:angular2/src/core/reflection/reflection.dart' show reflector;
+import 'package:angular2/src/core/reflection/reflection.dart' show reflector, NoReflectionCapabilitiesError;
+import 'package:angular2/src/facade/lang.dart' show assertionsEnabled;
 import '../metadata.dart';
 import 'decorators.dart';
-import 'provider.dart' show Provider, provide, noValueProvided;
+import 'provider.dart' show Provider, noValueProvided;
 import 'reflective_exceptions.dart' show NoAnnotationError, MixingMultiProvidersWithRegularProvidersError, InvalidProviderError;
 import 'reflective_key.dart';
 import 'package:angular2/src/core/reflection/reflection.template.dart' as i0;
-import '../metadata.template.dart' as i1;
-import 'decorators.template.dart' as i2;
-import 'provider.template.dart' as i3;
-import 'reflective_exceptions.template.dart' as i4;
-import 'reflective_key.template.dart' as i5;
+import 'package:angular2/src/facade/lang.template.dart' as i1;
+import '../metadata.template.dart' as i2;
+import 'decorators.template.dart' as i3;
+import 'provider.template.dart' as i4;
+import 'reflective_exceptions.template.dart' as i5;
+import 'reflective_key.template.dart' as i6;
 export 'reflective_provider.dart';
 
 var _visited = false;
@@ -33,4 +35,5 @@ i2.initReflector();
 i3.initReflector();
 i4.initReflector();
 i5.initReflector();
+i6.initReflector();
 }

@@ -11,13 +11,13 @@
 // @ignoreProblemForFile UNUSED_LOCAL_VARIABLE
 import 'view_ref.dart';
 import 'package:angular2/src/core/change_detection/constants.dart' show ChangeDetectionStrategy;
-import 'package:angular2/src/core/linker/app_view_utils.dart';
 import '../change_detection/change_detector_ref.dart' show ChangeDetectorRef;
 import 'app_view.dart' show AppView;
+import 'app_view_utils.dart';
 import 'package:angular2/src/core/change_detection/constants.template.dart' as i0;
-import 'package:angular2/src/core/linker/app_view_utils.template.dart' as i1;
-import '../change_detection/change_detector_ref.template.dart' as i2;
-import 'app_view.template.dart' as i3;
+import '../change_detection/change_detector_ref.template.dart' as i1;
+import 'app_view.template.dart' as i2;
+import 'app_view_utils.template.dart' as i3;
 export 'view_ref.dart';
 
 var _visited = false;

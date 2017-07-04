@@ -4,8 +4,8 @@ import 'package:angular2/src/core/render/api.dart';
 
 /// Implementation of DomSharedStyleHost for DOM.
 class DomSharedStylesHost implements SharedStylesHost {
-  List<String> _styles = [];
-  var _stylesSet = new Set<String>();
+  final List<String> _styles = <String>[];
+  final _stylesSet = new Set<String>();
   // Native ShadowDOM hosts.
   List _nativeHosts;
   final HeadElement _rootHost;
@@ -63,8 +63,8 @@ class DomSharedStylesHost implements SharedStylesHost {
 
   void onStylesAdded(List<String> additions) {
     if (_nativeHosts == null) return;
-    _nativeHosts.forEach((hostNode) {
+    for (var hostNode in _nativeHosts) {
       _addStylesToHost(additions, hostNode);
-    });
+    }
   }
 }

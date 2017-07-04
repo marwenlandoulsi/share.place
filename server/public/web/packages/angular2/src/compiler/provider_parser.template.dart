@@ -10,17 +10,15 @@
 // @ignoreProblemForFile UNUSED_SHOWN_NAME
 // @ignoreProblemForFile UNUSED_LOCAL_VARIABLE
 import 'provider_parser.dart';
-import 'package:angular2/src/facade/exceptions.dart' show BaseException;
 import 'package:source_span/source_span.dart';
 import 'compile_metadata.dart' show CompileTypeMetadata, CompileTokenMap, CompileQueryMetadata, CompileTokenMetadata, CompileProviderMetadata, CompileDirectiveMetadata, CompileDiDependencyMetadata;
 import 'identifiers.dart' show Identifiers, identifierToken;
 import 'parse_util.dart' show ParseError;
-import 'template_ast.dart' show ReferenceAst, AttrAst, DirectiveAst, ProviderAst, ProviderAstType;
-import 'package:angular2/src/facade/exceptions.template.dart' as i0;
-import 'compile_metadata.template.dart' as i1;
-import 'identifiers.template.dart' as i2;
-import 'parse_util.template.dart' as i3;
-import 'template_ast.template.dart' as i4;
+import 'template_ast.dart' show ReferenceAst, AttrAst, DirectiveAst, ProviderAst, ProviderAstType, ElementProviderUsage;
+import 'compile_metadata.template.dart' as i0;
+import 'identifiers.template.dart' as i1;
+import 'parse_util.template.dart' as i2;
+import 'template_ast.template.dart' as i3;
 export 'provider_parser.dart';
 
 var _visited = false;
@@ -30,5 +28,4 @@ i0.initReflector();
 i1.initReflector();
 i2.initReflector();
 i3.initReflector();
-i4.initReflector();
 }

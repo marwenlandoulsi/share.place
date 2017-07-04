@@ -185,12 +185,14 @@ material-input.themeable {
 
 }
 
-material-button.submitbottom.btn_login.is-raised {
+material-button.submitbottom {
   margin: 0 auto !important;
   width: auto !important;
   padding-left: 20px;
   padding-right: 40px;
   background: #00adef url("../images/arrow-white.png") no-repeat 84% 49%;
+  text-transform: none !important;
+  color: #fff !important;
 }
 
 .blueadd {

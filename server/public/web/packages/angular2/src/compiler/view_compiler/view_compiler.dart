@@ -1,18 +1,20 @@
 import 'package:angular2/src/core/change_detection/change_detection.dart'
     show ChangeDetectionStrategy;
-import "package:angular2/src/core/di.dart" show Injectable;
+import 'package:angular2/src/core/di.dart' show Injectable;
+import 'package:logging/logging.dart';
 
-import "../compile_metadata.dart"
+import '../compile_metadata.dart'
     show CompileDirectiveMetadata, CompilePipeMetadata;
-import "../config.dart" show CompilerConfig;
-import "../identifiers.dart";
-import "../output/output_ast.dart" as o;
-import "../style_compiler.dart" show StylesCompileResult;
-import "../template_ast.dart" show TemplateAst, templateVisitAll;
-import "compile_element.dart" show CompileElement;
-import "compile_view.dart" show CompileView;
-import "view_binder.dart" show bindView;
-import "view_builder.dart";
+import '../config.dart' show CompilerConfig;
+import '../expression_parser/parser.dart';
+import '../identifiers.dart';
+import '../output/output_ast.dart' as o;
+import '../style_compiler.dart' show StylesCompileResult;
+import '../template_ast.dart' show TemplateAst, templateVisitAll;
+import 'compile_element.dart' show CompileElement;
+import 'compile_view.dart' show CompileView;
+import 'view_binder.dart' show bindView;
+import 'view_builder.dart';
 
 class ViewCompileResult {
   List<o.Statement> statements;
@@ -21,21 +23,32 @@ class ViewCompileResult {
   ViewCompileResult(this.statements, this.viewFactoryVar, this.dependencies);
 }
 
+/// Compiles a single component to a set of CompileView(s) and generates top
+/// level statements to support debugging and view factories.
+///
+/// - Creates main CompileView
+/// - Runs ViewBuilderVisitor over template ast nodes
+///     - For each embedded template creates a child CompileView and recurses.
+/// - Builds a tree of CompileNode/Element(s)
 @Injectable()
 class ViewCompiler {
-  CompilerConfig _genConfig;
-  ViewCompiler(this._genConfig);
+  final CompilerConfig _genConfig;
+  Parser parser;
+  Logger _logger;
+
+  ViewCompiler(this._genConfig, this.parser);
 
   ViewCompileResult compileComponent(
       CompileDirectiveMetadata component,
       List<TemplateAst> template,
       StylesCompileResult stylesCompileResult,
       o.Expression styles,
-      List<CompilePipeMetadata> pipes) {
+      List<CompilePipeMetadata> pipes,
+      Map<String, String> deferredModules) {
     var statements = <o.Statement>[];
     var dependencies = <ViewCompileDependency>[];
-    var view = new CompileView(component, this._genConfig, pipes, styles, 0,
-        new CompileElement.root(), []);
+    var view = new CompileView(component, _genConfig, pipes, styles, 0,
+        new CompileElement.root(), [], deferredModules);
     buildView(view, template, stylesCompileResult, dependencies);
     // Need to separate binding from creation to be able to refer to
     // variables that have been declared after usage.
@@ -45,20 +58,18 @@ class ViewCompiler {
         statements, view.viewFactory.name, dependencies);
   }
 
+  Logger get logger => _logger ??= new Logger('View Compiler');
+
   /// Builds the view and returns number of nested views generated.
   int buildView(
       CompileView view,
       List<TemplateAst> template,
       StylesCompileResult stylesCompileResult,
       List<ViewCompileDependency> targetDependencies) {
-    var builderVisitor =
-        new ViewBuilderVisitor(view, targetDependencies, stylesCompileResult);
-    templateVisitAll(
-        builderVisitor,
-        template,
-        view.declarationElement.hasRenderNode
-            ? view.declarationElement.parent
-            : view.declarationElement);
+    var builderVisitor = new ViewBuilderVisitor(
+        view, parser, targetDependencies, stylesCompileResult);
+    templateVisitAll(builderVisitor, template,
+        view.declarationElement.parent ?? view.declarationElement);
     return builderVisitor.nestedViewCount;
   }
 
@@ -82,19 +93,16 @@ class ViewCompiler {
     o.Expression nodeDebugInfosVar =
         createStaticNodeDebugInfos(view, targetStatements);
 
-    // Create renderType global to hold RenderComponentType instance.
-    String renderTypeVarName = 'renderType_${view.component.type.name}';
-    o.ReadVarExpr renderCompTypeVar = o.variable(renderTypeVarName);
     // If we are compiling root view, create a render type for the component.
     // Example: RenderComponentType renderType_MaterialButtonComponent;
     bool creatingMainView = view.viewIndex == 0;
-    if (creatingMainView) {
-      targetStatements.add(new o.DeclareVarStmt(renderTypeVarName, null,
-          o.importType(Identifiers.RenderComponentType)));
-    }
-    var viewClass = createViewClass(view, renderCompTypeVar, nodeDebugInfosVar);
+
+    o.ClassStmt viewClass =
+        createViewClass(view, nodeDebugInfosVar, parser, logger);
     targetStatements.add(viewClass);
-    targetStatements.add(createViewFactory(view, viewClass, renderCompTypeVar));
+
+    targetStatements.add(createViewFactory(view, viewClass));
+
     if (creatingMainView &&
         view.component.inputs != null &&
         view.component.changeDetection == ChangeDetectionStrategy.Stateful) {
@@ -124,9 +132,8 @@ class ViewCompiler {
           .set(o.literalArr(
               view.nodes.map(createStaticNodeDebugInfo).toList(),
               new o.ArrayType(
-                  new o.ExternalType(Identifiers.StaticNodeDebugInfo),
-                  [o.TypeModifier.Const])))
-          .toDeclStmt(null, [o.StmtModifier.Final]));
+                  new o.ExternalType(Identifiers.StaticNodeDebugInfo))))
+          .toDeclStmt());
     }
     return nodeDebugInfosVar;
   }

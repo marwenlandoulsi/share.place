@@ -10,11 +10,12 @@ import 'package:angular2/src/compiler/style_compiler.dart';
 import 'package:angular2/src/compiler/template_parser.dart';
 import 'package:angular2/src/compiler/url_resolver.dart';
 import 'package:angular2/src/compiler/view_compiler/view_compiler.dart';
-import 'package:angular2/src/source_gen/common/xhr_impl.dart';
 import 'package:build/build.dart';
 
-OfflineCompiler createTemplateCompiler(BuildStep buildStep,
-    {CompilerConfig compilerConfig}) {
+import 'xhr_impl.dart';
+
+OfflineCompiler createTemplateCompiler(
+    BuildStep buildStep, CompilerConfig compilerConfig) {
   var xhr = new XhrImpl(buildStep);
   var urlResolver = createOfflineCompileUrlResolver();
 
@@ -27,7 +28,7 @@ OfflineCompiler createTemplateCompiler(BuildStep buildStep,
   return new OfflineCompiler(
       new DirectiveNormalizer(xhr, urlResolver, htmlParser),
       templateParser,
-      new StyleCompiler(urlResolver),
-      new ViewCompiler(compilerConfig),
-      new DartEmitter());
+      new StyleCompiler(compilerConfig, urlResolver),
+      new ViewCompiler(compilerConfig, parser),
+      new DartEmitter(), {});
 }

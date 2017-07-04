@@ -15,7 +15,7 @@ import 'package:share_place/users/signup/signup_comp.dart';
 import 'package:share_place/users/forgot_pass/forgot_pass_comp.dart';
 import 'package:share_place/app_config.dart' as conf;
 
-import 'package:angular2_components/angular2_components.dart';
+import 'package:angular_components/angular_components.dart';
 
 import 'dart:html';
 
@@ -61,6 +61,9 @@ class LoginComp implements OnInit {
   }
 
   Future<Null> login() async{
+    _environment.showScrollBar();
+    _environment.condPopupVisible = true;
+
     var connectedUser = await _placeService.login(user);
     _environment.connectedUser = connectedUser;
     var connected = connectedUser != null;
@@ -88,6 +91,7 @@ class LoginComp implements OnInit {
       return;
     fbClicked = true;
     window.location.assign(loginFacebookUrl);
+    _environment.condPopupVisible =true;
   }
   /**
    * We must force the user to click only once on  google link : otherwise we can't handle the callback

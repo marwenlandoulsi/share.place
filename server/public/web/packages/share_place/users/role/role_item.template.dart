@@ -23,120 +23,121 @@ import 'package:share_place/place_service.template.dart' as i3;
 import 'package:share_place/common/ui/button_comp.template.dart' as i4;
 export 'role_item.dart';
 import 'role_item.css.shim.dart' as import0;
-import 'package:angular2/src/core/render/api.dart';
 import 'package:angular2/src/core/linker/app_view.dart';
-import 'role_item.dart' as import3;
-import 'package:angular2/src/core/linker/query_list.dart' as import4;
+import 'role_item.dart' as import2;
+import 'package:angular2/src/core/linker/query_list.dart' as import3;
 import 'dart:html';
-import 'package:angular2/src/core/linker/view_container.dart';
-import '../../common/ui/button_comp.dart' as import7;
+import '../../common/ui/button_comp.template.dart' as import5;
+import '../../common/ui/button_comp.dart' as import6;
+import 'package:angular2/src/core/render/api.dart';
+import 'package:angular2/src/core/linker/view_type.dart' as import8;
 import 'package:angular2/src/core/change_detection/change_detection.dart';
-import 'package:angular2/src/core/di/injector.dart' as import9;
-import 'package:angular2/src/core/linker/view_type.dart' as import10;
-import '../../common/ui/button_comp.template.dart' as import11;
-import 'package:angular2/src/core/linker/app_view_utils.dart' as import12;
-import 'package:angular2/src/core/metadata/view.dart' as import13;
-import '../../place_service.dart' as import14;
-import 'package:angular2/src/router/router.dart' as import15;
-import '../../environment.dart' as import16;
-import 'package:angular2/src/core/linker/component_factory.dart' as import17;
+import 'package:angular2/src/core/linker/app_view_utils.dart' as import10;
+import 'package:angular2/angular2.dart';
+import 'package:angular2/src/facade/lang.dart' as import12;
+import '../../place_service.dart' as import13;
+import 'package:angular2/src/router/router.dart' as import14;
+import '../../environment.dart' as import15;
 const List<dynamic> styles_RoleItem = const [import0.styles];
-RenderComponentType renderType_RoleItem;
-class ViewRoleItem0 extends AppView<import3.RoleItem> {
-  import4.QueryList _viewQuery_icon_0;
-  Element _el_0;
+class ViewRoleItem0 extends AppView<import2.RoleItem> {
+  import3.QueryList _viewQuery_icon_0;
+  DivElement _el_0;
   Element _el_2;
-  ViewContainer _appEl_2;
-  import7.ButtonComp _ButtonComp_2_3;
-  var _expr_1 = uninitialized;
-  var _expr_2 = uninitialized;
-  ViewRoleItem0(import9.Injector parentInjector,ViewContainer declarationEl): super(ViewRoleItem0,renderType_RoleItem,import10.ViewType.COMPONENT,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
-  ViewContainer createInternal(dynamic rootSelector) {
-    final Node parentRenderNode = initViewRoot(this.declarationViewContainer.nativeElement);
-    _viewQuery_icon_0 = new import4.QueryList();
+  import5.ViewButtonComp0 _compView_2;
+  import6.ButtonComp _ButtonComp_2_2;
+  bool _expr_1;
+  var _expr_2;
+  static RenderComponentType renderType;
+  ViewRoleItem0(AppView<dynamic> parentView,num parentIndex): super(import8.ViewType.COMPONENT,{},parentView,parentIndex,ChangeDetectionStrategy.CheckAlways) {
+    rootEl = document.createElement('role-item');
+    renderType ??= import10.appViewUtils.createRenderType('',ViewEncapsulation.Emulated,styles_RoleItem);
+    setupComponentType(renderType);
+  }
+  ComponentRef build() {
+    final import2.RoleItem _ctx = ctx;
+    final HtmlElement parentRenderNode = initViewRoot(rootEl);
+    _viewQuery_icon_0 = new import3.QueryList();
     var doc = document;
-    _el_0 = doc.createElement('div');
-    _el_0.setAttribute(shimCAttr,'');
-    parentRenderNode.append(_el_0);
+    _el_0 = createAndAppend(doc,'div',parentRenderNode);
     _el_0.className = 'role';
+    addShimC(_el_0);
     Text _text_1 = new Text('\n  ');
     _el_0.append(_text_1);
-    _el_2 = doc.createElement('btn');
-    _el_2.setAttribute(shimCAttr,'');
+    _compView_2 = new import5.ViewButtonComp0(this,2);
+    _el_2 = _compView_2.rootEl;
     _el_0.append(_el_2);
-    _appEl_2 = new ViewContainer(2,0,this,_el_2);
-    var compView_2 = import11.viewFactory_ButtonComp0(this.injector(2),_appEl_2);
-    _ButtonComp_2_3 = new import7.ButtonComp();
-    _appEl_2.initComponent(_ButtonComp_2_3,compView_2);
-    compView_2.createComp([],null);
+    addShimC(_el_2);
+    _ButtonComp_2_2 = new import6.ButtonComp();
+    _compView_2.create(_ButtonComp_2_2,[]);
     Text _text_3 = new Text('\n');
     _el_0.append(_text_3);
     Text _text_4 = new Text('\n');
     parentRenderNode.append(_text_4);
-    listen(_el_0,'click',evt(_handle_click_0_0));
-    _viewQuery_icon_0.reset([_ButtonComp_2_3]);
+    _el_0.addEventListener('click',eventHandler0(ctx.clicked));
+    _viewQuery_icon_0.reset([_ButtonComp_2_2]);
     ctx.icon = _viewQuery_icon_0.first;
-    init([],[
-      _el_0,_text_1,_el_2,_text_3,_text_4
-    ]
-    ,[]);
+    init(const [],const []);
     return null;
   }
-  dynamic injectorGetInternal(dynamic token,int requestNodeIndex,dynamic notFoundResult) {
-    if ((identical(token, import7.ButtonComp) && (2 == requestNodeIndex))) { return _ButtonComp_2_3; }
+  dynamic injectorGetInternal(dynamic token,int nodeIndex,dynamic notFoundResult) {
+    if ((identical(token, import6.ButtonComp) && (2 == nodeIndex))) { return _ButtonComp_2_2; }
     return notFoundResult;
   }
   void detectChangesInternal() {
-    final currVal_2 = ctx.images;
-    if (import12.checkBinding(_expr_2,currVal_2)) {
-      _ButtonComp_2_3.sources = currVal_2;
+    final import2.RoleItem _ctx = ctx;
+    final currVal_2 = _ctx.images;
+    if (!import12.looseIdentical(_expr_2,currVal_2)) {
+      _ButtonComp_2_2.sources = currVal_2;
       _expr_2 = currVal_2;
     }
-    this.detectContentChildrenChanges();
-    final currVal_1 = ctx.selected;
-    if (import12.checkBinding(_expr_1,currVal_1)) {
+    final currVal_1 = _ctx.selected;
+    if (!import12.looseIdentical(_expr_1,currVal_1)) {
       updateClass(_el_0,'selected',currVal_1);
       _expr_1 = currVal_1;
     }
-    this.detectViewChildrenChanges();
+    _compView_2.detectChanges();
   }
-  bool _handle_click_0_0($event) {
-    this.markPathToRootAsCheckOnce();
-    final dynamic pd_0 = !identical((ctx.clicked() as dynamic), false);
-    return (true && pd_0);
+  void destroyInternal() {
+    _compView_2.destroy();
   }
 }
-AppView viewFactory_RoleItem0(import9.Injector parentInjector,ViewContainer declarationEl) {
-  if (identical(renderType_RoleItem, null)) { (renderType_RoleItem = import12.appViewUtils.createRenderComponentType('',0,import13.ViewEncapsulation.Emulated,styles_RoleItem)); }
-  return new ViewRoleItem0(parentInjector,declarationEl);
+AppView<import2.RoleItem> viewFactory_RoleItem0(AppView<dynamic> parentView,num parentIndex) {
+  return new ViewRoleItem0(parentView,parentIndex);
 }
 const List<dynamic> styles_RoleItemHost = const [];
-RenderComponentType renderType_RoleItemHost;
 class ViewRoleItemHost0 extends AppView<dynamic> {
-  Element _el_0;
-  ViewContainer _appEl_0;
-  import3.RoleItem _RoleItem_0_3;
-  ViewRoleItemHost0(import9.Injector parentInjector,ViewContainer declarationEl): super(ViewRoleItemHost0,renderType_RoleItemHost,import10.ViewType.HOST,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
-  ViewContainer createInternal(dynamic rootSelector) {
-    _el_0 = selectOrCreateHostElement('role-item',rootSelector,null);
-    _appEl_0 = new ViewContainer(0,null,this,_el_0);
-    var compView_0 = viewFactory_RoleItem0(this.injector(0),_appEl_0);
-    _RoleItem_0_3 = new import3.RoleItem(this.parentInjector.get(import14.PlaceService),this.parentInjector.get(import15.Router),this.parentInjector.get(import16.Environment));
-    _appEl_0.initComponent(_RoleItem_0_3,compView_0);
-    compView_0.createComp(projectableNodes,null);
-    init([_el_0],[_el_0],[]);
-    return _appEl_0;
+  ViewRoleItem0 _compView_0;
+  import2.RoleItem _RoleItem_0_2;
+  static RenderComponentType renderType;
+  ViewRoleItemHost0(AppView<dynamic> parentView,num parentIndex): super(import8.ViewType.HOST,{},parentView,parentIndex,ChangeDetectionStrategy.CheckAlways) {
+    renderType ??= import10.appViewUtils.createRenderType('',ViewEncapsulation.Emulated,styles_RoleItemHost);
+    setupComponentType(renderType);
   }
-  dynamic injectorGetInternal(dynamic token,int requestNodeIndex,dynamic notFoundResult) {
-    if ((identical(token, import3.RoleItem) && (0 == requestNodeIndex))) { return _RoleItem_0_3; }
+  ComponentRef build() {
+    final _ctx = ctx;
+    _compView_0 = new ViewRoleItem0(this,0);
+    rootEl = _compView_0.rootEl;
+    _RoleItem_0_2 = new import2.RoleItem(this.injectorGet(import13.PlaceService,parentIndex),this.injectorGet(import14.Router,parentIndex),this.injectorGet(import15.Environment,parentIndex));
+    _compView_0.create(_RoleItem_0_2,projectableNodes);
+    init([rootEl],const []);
+    return new ComponentRef(0,this,rootEl,_RoleItem_0_2);
+  }
+  dynamic injectorGetInternal(dynamic token,int nodeIndex,dynamic notFoundResult) {
+    if ((identical(token, import2.RoleItem) && (0 == nodeIndex))) { return _RoleItem_0_2; }
     return notFoundResult;
   }
+  void detectChangesInternal() {
+    final _ctx = ctx;
+    _compView_0.detectChanges();
+  }
+  void destroyInternal() {
+    _compView_0.destroy();
+  }
 }
-AppView viewFactory_RoleItemHost0(import9.Injector parentInjector,ViewContainer declarationEl) {
-  if (identical(renderType_RoleItemHost, null)) { (renderType_RoleItemHost = import12.appViewUtils.createRenderComponentType('',0,import13.ViewEncapsulation.Emulated,styles_RoleItemHost)); }
-  return new ViewRoleItemHost0(parentInjector,declarationEl);
+AppView viewFactory_RoleItemHost0(AppView<dynamic> parentView,num parentIndex) {
+  return new ViewRoleItemHost0(parentView,parentIndex);
 }
-const import17.ComponentFactory RoleItemNgFactory = const import17.ComponentFactory('role-item',viewFactory_RoleItemHost0,import3.RoleItem,_METADATA);
+const ComponentFactory RoleItemNgFactory = const ComponentFactory('role-item',viewFactory_RoleItemHost0,import2.RoleItem,_METADATA);
 const _METADATA = const <dynamic>[RoleItem, const <dynamic>[]];
 var _visited = false;
 void initReflector() {

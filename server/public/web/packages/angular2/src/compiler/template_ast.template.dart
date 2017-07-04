@@ -10,13 +10,15 @@
 // @ignoreProblemForFile UNUSED_SHOWN_NAME
 // @ignoreProblemForFile UNUSED_LOCAL_VARIABLE
 import 'template_ast.dart';
+import 'package:angular2/src/compiler/view_compiler/parse_utils.dart' show handlerTypeFromExpression, HandlerType;
 import 'package:source_span/source_span.dart';
 import '../core/security.dart';
 import 'compile_metadata.dart' show CompileDirectiveMetadata, CompileTokenMetadata, CompileProviderMetadata;
 import 'expression_parser/ast.dart' show AST;
-import '../core/security.template.dart' as i0;
-import 'compile_metadata.template.dart' as i1;
-import 'expression_parser/ast.template.dart' as i2;
+import 'package:angular2/src/compiler/view_compiler/parse_utils.template.dart' as i0;
+import '../core/security.template.dart' as i1;
+import 'compile_metadata.template.dart' as i2;
+import 'expression_parser/ast.template.dart' as i3;
 export 'template_ast.dart';
 
 var _visited = false;
@@ -25,4 +27,5 @@ if (_visited) return; _visited = true;
 i0.initReflector();
 i1.initReflector();
 i2.initReflector();
+i3.initReflector();
 }

@@ -63,11 +63,16 @@
         "5": false
       },
       {
+        "1": "package:share_place/app_config.dart",
+        "4": "conf",
+        "5": false
+      },
+      {
         "1": "cloud_file.dart",
         "5": false
       },
       {
-        "1": "package:angular2_components/angular2_components.dart",
+        "1": "package:angular_components/angular_components.dart",
         "5": false
       },
       {
@@ -186,24 +191,28 @@
         "4": "i12"
       },
       {
-        "1": "cloud_file.template.dart",
+        "1": "package:share_place/app_config.template.dart",
         "4": "i13"
       },
       {
-        "1": "package:angular2_components/angular2_components.template.dart",
+        "1": "cloud_file.template.dart",
         "4": "i14"
       },
       {
-        "1": "package:share_place/postit/postit_component.template.dart",
+        "1": "package:angular_components/angular_components.template.dart",
         "4": "i15"
       },
       {
-        "1": "package:share_place/users/info_popup/info_popup.template.dart",
+        "1": "package:share_place/postit/postit_component.template.dart",
         "4": "i16"
       },
       {
-        "1": "package:share_place/users/info_popup/popup_parent.template.dart",
+        "1": "package:share_place/users/info_popup/info_popup.template.dart",
         "4": "i17"
+      },
+      {
+        "1": "package:share_place/users/info_popup/popup_parent.template.dart",
+        "4": "i18"
       }
     ]
   },
@@ -309,7 +318,7 @@
       ],
       "template": {
         "encapsulation": 0,
-        "template": "<div class=\"files\">\r\n  <div *ngIf=\"selectedFile != null\" class=\"content\">\r\n\r\n    <div class=\"title\" title=\"{{selectedFile.name}}\"> {{selectedFile.name}}\r\n      <div class=\"icons\"></div>\r\n    </div>\r\n    <!--<div *ngIf=\"isUploading\" class=\"isUploading\">-->\r\n    <!--<div class=\"progress\"></div>-->\r\n    <!--</div>-->\r\n\r\n    <div class=\"newTopic\">\r\n      <div class=\"newComment newTopicBlock\">\r\n        <img src=\"/auth/user/photo/s/{{connectedUser.id}}\" class=\"profileImg\">\r\n        <div class=\"arowmenow\"><input #comment class=\"comment\" placeholder=\"Write your comment here\"\r\n                                      (keyup.enter)=\"addComment(comment.value, selectedFile.versions.last.v);comment.value='';\"\r\n                                      class=\"txt\"/>\r\n\r\n          <div (click)=\"addComment(comment.value, selectedFile.versions.last.v);comment.value='';\"\r\n               class=\"btn_valid\"></div>\r\n        </div>\r\n        <div class=\"addTopicBtn\"  (click)=\"fileInput.click()\"></div>\r\n        <postit-comp [name]=\"'comment'\" [body]=\"'To talk to the team, type a comment here...'\"\r\n                     class=\"commentPostit\"></postit-comp>\r\n      </div>\r\n    </div>\r\n    <div #dropZone class=\"versionsListScroll\" (dragenter)=\"dragEnter(dropZone)\">\r\n\r\n      <form id=\"uploadVersion\">\r\n        <input #fileInput  type=\"file\" name=\"toUpload\" (change)=\"uploadVersion($event.target.files[0].name)\" class=\"fileDropZone\"\r\n               (drop)=\"fileDropped(dropZone)\" (dragleave)=\"dragLeave(dropZone)\">\r\n        <!--onclick=\"event.preventDefault();\"-->\r\n      </form>\r\n\r\n      <div class=\"scrollbar-macosx\">\r\n        <div class=\"spinnerInner\">\r\n          <material-spinner class=\"spinner\" *ngIf=\"selectedFile == null\"></material-spinner>\r\n        </div>\r\n        <ul class=\"list\">\r\n          <li class=\"file\">\r\n            <div class=\"fileDesc\">\r\n              <div class=\"latestVersionComments\">\r\n                <div class=\"versions\">\r\n                  <ul>\r\n                    <li *ngFor=\"let versionItem of selectedFile.orderedVersions; let versionIndex = index\"\r\n                        class=\"liVersion\" [class.closeIt]=\"!isCommentsOpen(selectedFile.id, versionItem.v)\">\r\n                        <!--*ngIf=\"actionBlock has class draft\"-->\r\n\r\n                      <div class=\"versionTitle\" (click)=\"switchCommentOpen(selectedFile.id, versionItem.v)\">\r\n                        <!--*ngIf=\"selectedFile.dataType != 'quickNote'\"-->\r\n                        <div class=\"versionTitleNumber\">Version {{versionItem?.v}}</div>\r\n                        <div class=\"toggleVersion fa\"\r\n                             [ngClass]=\"{'fa-angle-down': isCommentsOpen(selectedFile.id, versionItem.v), 'fa-angle-up': !isCommentsOpen(selectedFile.id, versionItem.v)}\"\r\n                        >\r\n                        </div>\r\n                      </div>\r\n                      <div class=\"version\">\r\n                        <!-- new uplo -->\r\n                        <div *ngIf=\"selectedFile.orderedVersions.length == versionItem.v \">\r\n                          <div *ngIf=\"isUploading\" class=\"isUploading\">\r\n                            <div class=\"progress\"></div>\r\n                          </div>\r\n                        </div>\r\n                        <!-- end new uplo -->\r\n                        <div *ngIf=\"isCommentsOpen(selectedFile.id, versionItem.v)\"\r\n                             class=\"versionComment \">\r\n\r\n                          <ul class=\"actionList\">\r\n\r\n                            <li *ngFor=\"let actionItem of getActionsForVersion(versionItem); let actionIndex = index\"\r\n                                class=\"actionLiElem\"\r\n                                [class.ownAction]=\"isActionAuthor( actionItem )\"\r\n                                [class.isActionOn]=\"isActionOn( actionItem )\">\r\n\r\n\r\n                              <!--comment-->\r\n                              <div *ngIf=\"actionItem.action.actionType == 'comment'\"\r\n                                   class=\"actionBlock commentBlock\">\r\n\r\n                                <div (click)=\"showUserInfoPopup( versionItem, actionIndex )\"\r\n                                     class=\"actionPropsBlock\"\r\n                                     popupSource alignPositionX=\"before\"\r\n                                     alignPositionY=\"start\" #commentAuthor=\"popupSource\">\r\n                              <span class=\"author\"><img src=\"/auth/user/photo/s/{{actionItem.user.userId}}\"\r\n                                                        class=\"profileImg\"></span>\r\n                                  <span class=\"comm-ts\">{{actionItem?.ts | agoDateFormat}}</span>\r\n                                  <info-popup *ngIf=\"isUserInfoPopup(versionItem, actionIndex)\"\r\n                                              [userId]=\"popupUserInfoId\"\r\n                                              [source]=\"commentAuthor\" [parent]=\"self\" [offsetY]=\"-10\"\r\n                                              [arrowCss]=\"'arrowRight'\"></info-popup>\r\n                                </div>\r\n\r\n                                <div class=\"bubble\">\r\n                                  <div class=\"bubbleContent\"> {{actionItem.text}}</div>\r\n                                </div>\r\n                              </div>\r\n                              <!--fileApprove-->\r\n                              <div *ngIf=\"actionItem.action.actionType == 'fileApprove'\"\r\n                                   class=\"actionBlock etatBlock approveBlock\">\r\n\r\n                                <div (click)=\"showUserInfoPopup( versionItem, actionIndex )\"\r\n                                     class=\"actionPropsBlock\"\r\n                                     popupSource alignPositionX=\"before\"\r\n                                     alignPositionY=\"start\" #approveAuthor=\"popupSource\">\r\n                              <span class=\"author\"><img src=\"/auth/user/photo/s/{{actionItem.user.userId}}\"\r\n                                                        class=\"profileImg\"></span>\r\n                                  <span class=\"comm-ts\">{{actionItem?.ts | agoDateFormat}}</span>\r\n                                  <info-popup *ngIf=\"isUserInfoPopup(versionItem, actionIndex)\"\r\n                                              [userId]=\"popupUserInfoId\"\r\n                                              [offsetY]=\"-10\" [source]=\"approveAuthor\" [parent]=\"self\"\r\n                                              [arrowCss]=\"'arrowRight'\"></info-popup>\r\n                                </div>\r\n\r\n                                <div class=\"bubble\">\r\n                                  <div class=\"bubbleContent\">\r\n                                <span class=\"constructText\">{{constructText(versionItem, actionItem)}}\r\n                                </span>\r\n                                    <div class=\"approveIcon bgWhiteIcon\"></div>\r\n                                  </div>\r\n                                </div>\r\n                              </div>\r\n\r\n\r\n                              <!--fileLock-->\r\n                              <div *ngIf=\"actionItem.action.actionType == 'fileLock'\"\r\n                                   class=\"actionBlock etatBlock lockBlock\">\r\n                                <div (click)=\"showUserInfoPopup( versionItem, actionIndex )\"\r\n                                     class=\"actionPropsBlock\"\r\n                                     popupSource alignPositionX=\"before\"\r\n                                     alignPositionY=\"start\" #lockAuthor=\"popupSource\">\r\n                              <span class=\"author\"><img src=\"/auth/user/photo/s/{{actionItem.user.userId}}\"\r\n                                                        class=\"profileImg\"></span>\r\n                                  <span class=\"comm-ts\">{{actionItem?.ts| agoDateFormat}}</span>\r\n                                  <info-popup *ngIf=\"isUserInfoPopup(versionItem, actionIndex)\"\r\n                                              [userId]=\"popupUserInfoId\"\r\n                                              [offsetY]=\"-10\" [source]=\"lockAuthor\" [parent]=\"self\"\r\n                                              [arrowCss]=\"'arrowRight'\"></info-popup>\r\n                                </div>\r\n\r\n                                <div class=\"bubble\">\r\n                                  <div class=\"bubbleContent\">\r\n                                    <material-button\r\n                                        *ngIf=\"showReleaseButton(actionItem, actionIndex, versionIndex)\"\r\n                                        class=\"release\" (click)=\"unlock()\">\r\n                                      Release\r\n                                    </material-button>\r\n                                    <span class=\"constructText\">{{constructText(versionItem, actionItem)}}</span>\r\n                                    <div class=\"lockIcon\"></div>\r\n                                  </div>\r\n\r\n                                </div>\r\n                              </div>\r\n                            </li>\r\n                            <!--connectedUser-->\r\n                            <li class=\"actionLiElem\" [class.ownAction]=\"connectedUser.id == versionItem.userId\">\r\n                              <div class=\"actionBlock {{versionItem.approved == null ? 'draft' : 'approved'}}\">\r\n                                <div class=\"actionPropsBlock\" (click)=\"showUserInfoPopup( versionItem, -1 )\"\r\n                                     popupSource\r\n                                     alignPositionX=\"before\"\r\n                                     alignPositionY=\"start\" #fileAuthor=\"popupSource\">\r\n                              <span class=\"author\"><img src=\"/auth/user/photo/s/{{versionItem.userId}}\"\r\n                                                        class=\"profileImg\"></span>\r\n                                  <span class=\"comm-ts\">{{versionItem?.ts | agoDateFormat}}</span>\r\n                                  <info-popup *ngIf=\"isUserInfoPopup(versionItem, -1)\" [userId]=\"popupUserInfoId\"\r\n                                              [offsetY]=\"-10\" [source]=\"fileAuthor\" [parent]=\"self\"\r\n                                              [arrowCss]=\"'arrowRight'\"></info-popup>\r\n                                </div>\r\n\r\n                                <div class=\"bubble\">\r\n\r\n                                  <div class=\"bubbleContent\">\r\n                                    <div class=\"pLeft\" [class.noClick]=\"!isFile\"\r\n                                         (click)=\"openFileDialog(versionItem.v)\">\r\n                                      <div class=\"fileThumb\">\r\n                                        <div class=\"fileThumb_bg\">\r\n                                          <div *ngIf=\"versionItem.status == 'waiting'\" class=\"spinnerInner\">\r\n                                            <material-spinner class=\"spinner\"></material-spinner>\r\n                                          </div>\r\n                                          <img *ngIf=\"versionItem.status != 'waiting'\"\r\n                                              src=\"/sp/place/{{selectedPlace?.id}}/folder/{{selectedFolder?.id}}/file/{{selectedFile?.id}}/version/{{versionItem.v}}/thumb\"\r\n                                              class=\"thumbnail\">\r\n                                          <div *ngIf=\"versionItem.status!='uploaded' && versionItem?.mimeType != 'application/quickNote'\"\r\n                                              class=\"uploadStatus\"></div>\r\n                                        </div>\r\n                                      </div>\r\n                                      <div class=\"rightDetails\">\r\n                                        <!--version +actions more>-->\r\n                                        <div class=\"fileProps\">\r\n                                          <div class=\"line\">\r\n                                            <div class=\"fileLink\">\r\n                                              <div class=\"fileName\" title=\"{{versionItem?.name}}\">{{versionItem?.name}}</div>\r\n                                            </div>\r\n                                            <div class=\"linerow\"\r\n                                                 *ngIf=\"versionItem?.mimeType != 'application/quickNote'\">\r\n                                              <span class=\"filetypedoc\">{{formatDesc( versionItem )}}</span>\r\n                                              <span class=\"fileSize\">\r\n                                            {{selectedFile.orderedVersions[0].size | fileSizeFormat}}\r\n                                          </span>\r\n                                            </div>\r\n                                          </div>\r\n                                        </div>\r\n                                      </div>\r\n                                    </div>\r\n\r\n                                    <div class=\"fileMoreActions\">\r\n                                      <span class=\"fileversion\"\r\n                                            *ngIf=\"versionItem?.mimeType != 'application/quickNote'\">v. {{versionItem.v}}</span>\r\n                                      <span class=\"moreActions\" popupSource\r\n                                            #fileMenu=\"popupSource\" alignPositionY=\"after\" alignPositionX=\"end\"\r\n                                            (click)=\"switchMenuState(versionItem.v)\"></span>\r\n                                    </div>\r\n\r\n                                    <material-popup *ngIf=\"fileMenuVisible == versionItem.v\" class=\"popVersion\"\r\n                                                    defaultPopupSizeProvider\r\n                                                    [source]=\"fileMenu\"\r\n                                                    [visible]=\"fileMenuVisible == versionItem.v\"\r\n                                                    (close)=\"fileMenuVisible = -1\">\r\n                                      <div header class=\"headerPopVersion\">\r\n                                        <div class=\"fileName\">{{versionItem.name}}</div>\r\n                                        <div class=\"fileInfo\">\r\n                                          <!--*ngIf=\"selectedFile.dataType != 'quickNote'\"-->\r\n                                          <span>Version {{versionItem.v}},</span> {{versionItem.ts | agoDateFormat}}\r\n                                        </div>\r\n                                      </div>\r\n                                      <div class=\"popupContent popinVersion\">\r\n                                        <div group>\r\n                                          <material-button (click)=\"approve(versionItem)\"\r\n                                                           *ngIf=\"shouldShowApproveMenu(versionItem)\"\r\n                                                           class=\"menuItemVers\">\r\n                                            <span class=\"spanVers\"> <i\r\n                                                class=\"zmdi zmdi-check-circle approve\"></i> </span>\r\n                                            Approve\r\n                                          </material-button>\r\n                                          <material-button (click)=\"unapprove(versionItem)\"\r\n                                                           *ngIf=\"shouldShowUnApproveMenu(versionItem)\"\r\n                                                           class=\"menuItemVers\">\r\n                                          <span class=\"spanVers\"><i\r\n                                              class=\"zmdi zmdi-check-circle nnApprove\"></i> </span>\r\n                                            Unapprove\r\n                                          </material-button>\r\n                                        </div>\r\n                                        <material-button class=\"menuItemVers\" *ngIf=\"false\">\r\n                                              <span class=\"spanVers\"><i\r\n                                                  class=\"zmdi zmdi-comment commentVers\"></i> </span>Comment\r\n\r\n                                        </material-button>\r\n                                        <material-button (click)=\"delete()\" class=\"menuItemVers\" *ngIf=\"false\">\r\n                                          <span class=\"spanVers\"><i class=\"zmdi zmdi-delete delete\"></i> </span>\r\n                                          Delete\r\n                                        </material-button>\r\n                                      </div>\r\n                                    </material-popup>\r\n                                  </div>\r\n\r\n                                </div>\r\n                              </div>\r\n\r\n\r\n                            </li>\r\n                          </ul>\r\n                        </div>\r\n\r\n                      </div>\r\n\r\n\r\n                      <modal *ngIf=\"openFileVersion != -1\" [visible]=\"openFileVersion != -1\">\r\n                        <material-dialog class=\"basic-dialog fileOpen\" hideHeader=\"true\" hideFooter=\"true\">\r\n                          <div class=\"popupHeader\">\r\n                            <div class=\"fileName\">{{selectedFile.name}}</div>\r\n                            <div class=\"close\" (click)=\"cancelFileOpen()\"></div>\r\n                          </div>\r\n                          <div class=\"content\">\r\n                            <div class=\"explanation\">Do you want to lock and modify or just take a look at the document?\r\n                            </div>\r\n                            <div class=\"fileActions\">\r\n                              <div class=\"fileActions_btn\">\r\n                                <div class=\"btn material-icons lock\" (click)=\"lockAndOpen(openFileVersion)\"><span>Lock & Modify</span>\r\n                                </div>\r\n                              </div>\r\n                              <div class=\"fileActions_btn posRight\">\r\n                                <div class=\"btn material-icons openOnly\" (click)=\"openFileLink(openFileVersion)\">\r\n                                  <span>View (read only)</span></div>\r\n                              </div>\r\n                            </div>\r\n                          </div>\r\n                        </material-dialog>\r\n                      </modal>\r\n                    </li>\r\n                  </ul>\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </li>\r\n        </ul>\r\n\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>",
+        "template": "<div class=\"files\">\r\n  <div *ngIf=\"selectedFile != null\" class=\"content\">\r\n\r\n    <div class=\"title\" title=\"{{selectedFile.name}}\"> {{selectedFile.name}}\r\n      <div class=\"icons\"></div>\r\n    </div>\r\n    <!--<div *ngIf=\"isUploading\" class=\"isUploading\">-->\r\n    <!--<div class=\"progress\"></div>-->\r\n    <!--</div>-->\r\n\r\n    <div class=\"newTopic\">\r\n      <div class=\"newComment newTopicBlock\">\r\n\r\n        <img *ngIf =\"connectedUser.photoIdMap != null\" src=\"/auth/gridfs/file/{{connectedUser?.photoIdMap['photoIdS']}}/picture.x\" class=\"profileImg\">\r\n        <img  *ngIf =\"connectedUser.photoIdMap == null\" src=\"../images/img_profile.png\" class=\"profileImg\">\r\n        <div class=\"arowmenow\">\r\n          <input #comment class=\"comment\" placeholder=\"Write your comment here\"\r\n                                      (keyup.enter)=\"addComment(comment.value, selectedFile.versions.last.v);comment.value='';\"\r\n                                      class=\"txt\"/>\r\n          <!--<textarea #comment class=\"comment\"  id=\"commentArea\" placeholder=\"ffffff your comment here\"-->\r\n                 <!--(keyup.enter)=\"addComment(comment.value, selectedFile.versions.last.v);comment.value='';\"-->\r\n                 <!--class=\"txt\"></textarea>-->\r\n\r\n\r\n          <div (click)=\"addComment(comment.value, selectedFile.versions.last.v);comment.value='';\"\r\n               class=\"btn_valid\"></div>\r\n\r\n        </div>\r\n        <div class=\"addTopicBtn\"  (click)=\"fileInput.click()\"></div>\r\n        <postit-comp [name]=\"'comment'\" [body]=\"'To talk to the team, type a comment here...'\"\r\n                     class=\"commentPostit\"></postit-comp>\r\n      </div>\r\n    </div>\r\n    <div #dropZone class=\"versionsListScroll scrollIe\" (dragenter)=\"dragEnter(dropZone)\">\r\n\r\n      <form id=\"uploadVersion\">\r\n        <input #fileInput  type=\"file\" name=\"toUpload\" (change)=\"uploadVersion($event.target.files[0].name)\" class=\"fileDropZone\"\r\n               (drop)=\"fileDropped(dropZone)\" (dragleave)=\"dragLeave(dropZone)\">\r\n        <!--onclick=\"event.preventDefault();\"-->\r\n      </form>\r\n\r\n      <div class=\"scrollbar-macosx\">\r\n        <div class=\"spinnerInner\">\r\n          <material-spinner class=\"spinner\" *ngIf=\"selectedFile == null\"></material-spinner>\r\n        </div>\r\n        <ul class=\"list\">\r\n          <li class=\"file\">\r\n            <div class=\"fileDesc\">\r\n              <div class=\"latestVersionComments\">\r\n                <div class=\"versions\">\r\n                  <ul>\r\n                    <li *ngFor=\"let versionItem of selectedFile.orderedVersions; let versionIndex = index\"\r\n                        class=\"liVersion\" [class.closeIt]=\"!isCommentsOpen(selectedFile.id, versionItem.v)\">\r\n                        <!--*ngIf=\"actionBlock has class draft\"-->\r\n\r\n                      <div class=\"versionTitle\" (click)=\"switchCommentOpen(selectedFile.id, versionItem.v)\">\r\n                        <!--*ngIf=\"selectedFile.dataType != 'quickNote'\"-->\r\n                        <div class=\"versionTitleNumber\">Version {{versionItem?.v}}</div>\r\n                        <div class=\"toggleVersion fa\"\r\n                             [ngClass]=\"{'fa-angle-down': isCommentsOpen(selectedFile.id, versionItem.v), 'fa-angle-up': !isCommentsOpen(selectedFile.id, versionItem.v)}\"\r\n                        >\r\n                        </div>\r\n                      </div>\r\n                      <div class=\"version\">\r\n                        <div *ngIf=\"versionItem.mailInfo != null\" class=\"mailInfo\">\r\n                          <div class=\"account\">{{versionItem.mailInfo.account}}</div>\r\n                          <div class=\"subject\">{{versionItem.mailInfo.subject}}</div>\r\n                          <div class=\"body\">{{versionItem.mailInfo.body}}</div>\r\n                        </div>\r\n                        <!-- new uplo -->\r\n                        <div *ngIf=\"selectedFile.orderedVersions.length == versionItem.v \">\r\n                          <div *ngIf=\"isUploading\" class=\"isUploading\">\r\n                            <div class=\"progress\"></div>\r\n                          </div>\r\n                        </div>\r\n                        <!-- end new uplo -->\r\n                        <div *ngIf=\"isCommentsOpen(selectedFile.id, versionItem.v)\"\r\n                             class=\"versionComment \">\r\n\r\n                          <ul class=\"actionList\">\r\n\r\n                            <li *ngFor=\"let actionItem of getActionsForVersion(versionItem); let actionIndex = index\"\r\n                                class=\"actionLiElem\"\r\n                                [class.ownAction]=\"isActionAuthor( actionItem )\"\r\n                                [class.isActionOn]=\"isActionOn( actionItem )\">\r\n\r\n\r\n                              <!--comment-->\r\n                              <div *ngIf=\"actionItem.action.actionType == 'comment'\"\r\n                                   class=\"actionBlock commentBlock\">\r\n\r\n                                <div (click)=\"showUserInfoPopup( versionItem, actionIndex )\"\r\n                                     class=\"actionPropsBlock\"\r\n                                     popupSource alignPositionX=\"before\"\r\n                                     alignPositionY=\"start\" #commentAuthor=\"popupSource\">\r\n                              <span class=\"author\"><img src=\"/auth/user/photo/s/{{actionItem.user.userId}}\"\r\n                                                        class=\"profileImg\"></span>\r\n                                  <span class=\"comm-ts\">{{actionItem?.ts | agoDateFormat}}</span>\r\n                                  <info-popup *ngIf=\"isUserInfoPopup(versionItem, actionIndex)\"\r\n                                              [userId]=\"popupUserInfoId\"\r\n                                              [source]=\"commentAuthor\" [parent]=\"self\" [offsetY]=\"-10\"\r\n                                              [arrowCss]=\"'arrowRight'\"></info-popup>\r\n                                </div>\r\n\r\n                                <div class=\"bubble\">\r\n                                  <div class=\"bubbleContent\"> {{actionItem.text}}</div>\r\n                                </div>\r\n                              </div>\r\n                              <!--fileApprove-->\r\n                              <div *ngIf=\"actionItem.action.actionType == 'fileApprove'\"\r\n                                   class=\"actionBlock etatBlock approveBlock\">\r\n\r\n                                <div (click)=\"showUserInfoPopup( versionItem, actionIndex )\"\r\n                                     class=\"actionPropsBlock\"\r\n                                     popupSource alignPositionX=\"before\"\r\n                                     alignPositionY=\"start\" #approveAuthor=\"popupSource\">\r\n                              <span class=\"author\"><img src=\"/auth/user/photo/s/{{actionItem.user.userId}}\"\r\n                                                        class=\"profileImg\"></span>\r\n                                  <span class=\"comm-ts\">{{actionItem?.ts | agoDateFormat}}</span>\r\n                                  <info-popup *ngIf=\"isUserInfoPopup(versionItem, actionIndex)\"\r\n                                              [userId]=\"popupUserInfoId\"\r\n                                              [offsetY]=\"-10\" [source]=\"approveAuthor\" [parent]=\"self\"\r\n                                              [arrowCss]=\"'arrowRight'\"></info-popup>\r\n                                </div>\r\n\r\n                                <div class=\"bubble\">\r\n                                  <div class=\"bubbleContent\">\r\n                                <span class=\"constructText\">{{constructText(versionItem, actionItem)}}\r\n                                </span>\r\n                                    <div class=\"approveIcon bgWhiteIcon\"></div>\r\n                                  </div>\r\n                                </div>\r\n                              </div>\r\n\r\n\r\n                              <!--fileLock-->\r\n                              <div *ngIf=\"actionItem.action.actionType == 'fileLock'\"\r\n                                   class=\"actionBlock etatBlock lockBlock\">\r\n                                <div (click)=\"showUserInfoPopup( versionItem, actionIndex )\"\r\n                                     class=\"actionPropsBlock\"\r\n                                     popupSource alignPositionX=\"before\"\r\n                                     alignPositionY=\"start\" #lockAuthor=\"popupSource\">\r\n                              <span class=\"author\"><img src=\"/auth/user/photo/s/{{actionItem.user.userId}}\"\r\n                                                        class=\"profileImg\"></span>\r\n                                  <span class=\"comm-ts\">{{actionItem?.ts| agoDateFormat}}</span>\r\n                                  <info-popup *ngIf=\"isUserInfoPopup(versionItem, actionIndex)\"\r\n                                              [userId]=\"popupUserInfoId\"\r\n                                              [offsetY]=\"-10\" [source]=\"lockAuthor\" [parent]=\"self\"\r\n                                              [arrowCss]=\"'arrowRight'\"></info-popup>\r\n                                </div>\r\n\r\n                                <div class=\"bubble\">\r\n                                  <div class=\"bubbleContent\">\r\n                                    <material-button\r\n                                        *ngIf=\"showReleaseButton(actionItem, actionIndex, versionIndex)\"\r\n                                        class=\"release\" (click)=\"unlock()\">\r\n                                      Release\r\n                                    </material-button>\r\n                                    <span class=\"constructText\">{{constructText(versionItem, actionItem)}}</span>\r\n                                    <div class=\"lockIcon\"></div>\r\n                                  </div>\r\n\r\n                                </div>\r\n                              </div>\r\n                            </li>\r\n                            <!--connectedUser-->\r\n                            <li class=\"actionLiElem\" [class.ownAction]=\"connectedUser.id == versionItem.userId\">\r\n                              <div class=\"actionBlock {{versionItem.approved == null ? 'draft' : 'approved'}}\">\r\n                                <div class=\"actionPropsBlock\" (click)=\"showUserInfoPopup( versionItem, -1 )\"\r\n                                     popupSource\r\n                                     alignPositionX=\"before\"\r\n                                     alignPositionY=\"start\" #fileAuthor=\"popupSource\">\r\n                              <span class=\"author\"><img src=\"/auth/user/photo/s/{{versionItem.userId}}\"\r\n                                                        class=\"profileImg\"></span>\r\n                                  <span class=\"comm-ts\">{{versionItem?.ts | agoDateFormat}}</span>\r\n                                  <info-popup *ngIf=\"isUserInfoPopup(versionItem, -1)\" [userId]=\"popupUserInfoId\"\r\n                                              [offsetY]=\"-10\" [source]=\"fileAuthor\" [parent]=\"self\"\r\n                                              [arrowCss]=\"'arrowRight'\"></info-popup>\r\n                                </div>\r\n\r\n                                <div class=\"bubble\">\r\n\r\n                                  <div class=\"bubbleContent\">\r\n                                    <div class=\"pLeft\" [class.noClick]=\"!isFile\"\r\n                                         (click)=\"openFileDialog(versionItem.v)\">\r\n                                      <div class=\"fileThumb\">\r\n                                        <div class=\"fileThumb_bg\">\r\n                                          <div *ngIf=\"versionItem.status == 'waiting'\" class=\"spinnerInner\">\r\n                                            <material-spinner class=\"spinner\"></material-spinner>\r\n                                          </div>\r\n                                          <img *ngIf=\"versionItem.status != 'waiting'\"\r\n                                              src=\"{{thumbSrc(versionItem,selectedFolder,selectedFile )}}\"\r\n                                              class=\"thumbnail\">\r\n\r\n                                          <div *ngIf=\"versionItem.status!='uploaded' && versionItem?.mimeType != 'application/quickNote'\"\r\n                                              class=\"uploadStatus\">\r\n\r\n                                          </div>\r\n                                        </div>\r\n                                      </div>\r\n                                      <div class=\"rightDetails\">\r\n                                        <!--version +actions more>-->\r\n                                        <div class=\"fileProps\">\r\n                                          <div class=\"line\">\r\n                                            <div class=\"fileLink\">\r\n                                              <div class=\"fileName\" title=\"{{versionItem?.name}}\">{{versionItem?.name}}</div>\r\n                                            </div>\r\n                                            <div class=\"linerow\"\r\n                                                 *ngIf=\"versionItem?.mimeType != 'application/quickNote'\">\r\n                                              <span class=\"filetypedoc\">{{formatDesc( versionItem )}}</span>\r\n                                              <span class=\"fileSize\">\r\n                                            {{selectedFile.orderedVersions[0].size | fileSizeFormat}}\r\n                                          </span>\r\n                                            </div>\r\n                                          </div>\r\n                                        </div>\r\n                                      </div>\r\n                                    </div>\r\n\r\n                                    <div class=\"fileMoreActions\">\r\n                                      <span class=\"fileversion\"\r\n                                            *ngIf=\"versionItem?.mimeType != 'application/quickNote'\">v. {{versionItem.v}}</span>\r\n                                      <span class=\"moreActions\" popupSource\r\n                                            #fileMenu=\"popupSource\" alignPositionY=\"after\" alignPositionX=\"end\"\r\n                                            (click)=\"switchMenuState(versionItem.v)\"></span>\r\n                                    </div>\r\n\r\n                                    <material-popup *ngIf=\"fileMenuVisible == versionItem.v\" class=\"popVersion\"\r\n                                                    defaultPopupSizeProvider\r\n                                                    [source]=\"fileMenu\"\r\n                                                    [visible]=\"fileMenuVisible == versionItem.v\"\r\n                                                    (close)=\"fileMenuVisible = -1\">\r\n                                      <div header class=\"headerPopVersion\">\r\n                                        <div class=\"fileName\">{{versionItem.name}}</div>\r\n                                        <div class=\"fileInfo\">\r\n                                          <!--*ngIf=\"selectedFile.dataType != 'quickNote'\"-->\r\n                                          <span>Version {{versionItem.v}},</span> {{versionItem.ts | agoDateFormat}}\r\n                                        </div>\r\n                                      </div>\r\n                                      <div class=\"popupContent popinVersion\">\r\n                                        <div group>\r\n                                          <material-button (click)=\"approve(versionItem)\"\r\n                                                           *ngIf=\"shouldShowApproveMenu(versionItem)\"\r\n                                                           class=\"menuItemVers\">\r\n                                            <span class=\"spanVers\"> <i\r\n                                                class=\"zmdi zmdi-check-circle approve\"></i> </span>\r\n                                            Approve\r\n                                          </material-button>\r\n                                          <material-button (click)=\"unapprove(versionItem)\"\r\n                                                           *ngIf=\"shouldShowUnApproveMenu(versionItem)\"\r\n                                                           class=\"menuItemVers\">\r\n                                          <span class=\"spanVers\"><i\r\n                                              class=\"zmdi zmdi-check-circle nnApprove\"></i> </span>\r\n                                            Unapprove\r\n                                          </material-button>\r\n                                        </div>\r\n                                        <material-button class=\"menuItemVers\" *ngIf=\"false\">\r\n                                              <span class=\"spanVers\"><i\r\n                                                  class=\"zmdi zmdi-comment commentVers\"></i> </span>Comment\r\n\r\n                                        </material-button>\r\n                                        <material-button (click)=\"delete(versionItem)\" class=\"menuItemVers\" >\r\n                                          <span class=\"spanVers\"><i class=\"zmdi zmdi-delete delete\"></i> </span>\r\n                                          Delete\r\n                                        </material-button>\r\n                                      </div>\r\n                                    </material-popup>\r\n                                  </div>\r\n\r\n                                </div>\r\n                              </div>\r\n\r\n\r\n                            </li>\r\n                          </ul>\r\n                        </div>\r\n\r\n                      </div>\r\n\r\n\r\n                      <modal *ngIf=\"openFileVersion != -1\" [visible]=\"openFileVersion != -1\">\r\n                        <material-dialog class=\"basic-dialog fileOpen\" hideHeader=\"true\" hideFooter=\"true\">\r\n                          <div class=\"popupHeader\">\r\n                            <div class=\"fileName\">{{selectedFile.name}}</div>\r\n                            <div class=\"close\" (click)=\"cancelFileOpen()\"></div>\r\n                          </div>\r\n                          <div class=\"content\">\r\n                            <div class=\"explanation\">Do you want to lock and modify or just take a look at the document?\r\n                            </div>\r\n                            <div class=\"fileActions\">\r\n                              <div class=\"fileActions_btn\">\r\n                                <div class=\"btn material-icons lock\" (click)=\"lockAndOpen(openFileVersion)\"><span>Lock & Modify</span>\r\n                                </div>\r\n                              </div>\r\n                              <div class=\"fileActions_btn posRight\">\r\n                                <div class=\"btn material-icons openOnly\" (click)=\"openFileLink(openFileVersion)\">\r\n                                  <span>View (read only)</span></div>\r\n                              </div>\r\n                            </div>\r\n                          </div>\r\n                        </material-dialog>\r\n                      </modal>\r\n                    </li>\r\n                  </ul>\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </li>\r\n        </ul>\r\n\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>",
         "templateUrl": "asset:share_place/lib/files/files_comp.html",
         "styles": [],
         "styleUrls": [
@@ -325,7 +334,7 @@
             "identifier": {
               "class": "Identifier",
               "name": "defaultPopupPositions",
-              "moduleUrl": "asset:angular2_components/lib/src/laminate/popup/src/popup_service.dart",
+              "moduleUrl": "asset:angular_components/lib/src/laminate/popup/src/popup_service.dart",
               "prefix": null,
               "value": null
             },
@@ -336,12 +345,11 @@
           "useValue": {
             "class": "Identifier",
             "name": "inlinePositions",
-            "moduleUrl": "asset:angular2_components/lib/src/laminate/popup/module.dart",
+            "moduleUrl": "asset:angular_components/lib/src/laminate/popup/module.dart",
             "prefix": null,
             "value": null
           },
           "useFactory": null,
-          "useProperty": null,
           "multi": false,
           "deps": null
         },
@@ -352,7 +360,7 @@
             "identifier": {
               "class": "Identifier",
               "name": "AcxImperativeViewUtils",
-              "moduleUrl": "asset:angular2_components/lib/src/utils/angular/imperative_view/imperative_view.dart",
+              "moduleUrl": "asset:angular_components/lib/src/utils/angular/imperative_view/imperative_view.dart",
               "prefix": null,
               "value": null
             },
@@ -361,7 +369,7 @@
           "useClass": {
             "class": "Type",
             "name": "AcxImperativeViewUtils",
-            "moduleUrl": "asset:angular2_components/lib/src/utils/angular/imperative_view/imperative_view.dart",
+            "moduleUrl": "asset:angular_components/lib/src/utils/angular/imperative_view/imperative_view.dart",
             "prefix": null,
             "isHost": false,
             "value": null,
@@ -392,7 +400,7 @@
                   "identifier": {
                     "class": "Identifier",
                     "name": "DomService",
-                    "moduleUrl": "asset:angular2_components/lib/src/utils/browser/dom_service/dom_service.dart",
+                    "moduleUrl": "asset:angular_components/lib/src/utils/browser/dom_service/dom_service.dart",
                     "prefix": null,
                     "value": null
                   },
@@ -411,7 +419,6 @@
           "useExisting": null,
           "useValue": null,
           "useFactory": null,
-          "useProperty": null,
           "multi": false,
           "deps": null
         },
@@ -422,7 +429,7 @@
             "identifier": {
               "class": "Identifier",
               "name": "DomRuler",
-              "moduleUrl": "asset:angular2_components/lib/src/laminate/ruler/dom_ruler.dart",
+              "moduleUrl": "asset:angular_components/lib/src/laminate/ruler/dom_ruler.dart",
               "prefix": null,
               "value": null
             },
@@ -431,7 +438,7 @@
           "useClass": {
             "class": "Type",
             "name": "DomRuler",
-            "moduleUrl": "asset:angular2_components/lib/src/laminate/ruler/dom_ruler.dart",
+            "moduleUrl": "asset:angular_components/lib/src/laminate/ruler/dom_ruler.dart",
             "prefix": null,
             "isHost": false,
             "value": null,
@@ -462,7 +469,7 @@
                   "identifier": {
                     "class": "Identifier",
                     "name": "DomService",
-                    "moduleUrl": "asset:angular2_components/lib/src/utils/browser/dom_service/dom_service.dart",
+                    "moduleUrl": "asset:angular_components/lib/src/utils/browser/dom_service/dom_service.dart",
                     "prefix": null,
                     "value": null
                   },
@@ -481,7 +488,6 @@
           "useExisting": null,
           "useValue": null,
           "useFactory": null,
-          "useProperty": null,
           "multi": false,
           "deps": null
         },
@@ -492,7 +498,7 @@
             "identifier": {
               "class": "Identifier",
               "name": "DomService",
-              "moduleUrl": "asset:angular2_components/lib/src/utils/browser/dom_service/dom_service.dart",
+              "moduleUrl": "asset:angular_components/lib/src/utils/browser/dom_service/dom_service.dart",
               "prefix": null,
               "value": null
             },
@@ -505,7 +511,7 @@
             "class": "Factory",
             "name": "createDomService",
             "prefix": null,
-            "moduleUrl": "asset:angular2_components/lib/src/utils/browser/dom_service/angular_2.dart",
+            "moduleUrl": "asset:angular_components/lib/src/utils/browser/dom_service/angular_2.dart",
             "value": null,
             "diDeps": [
               {
@@ -514,7 +520,7 @@
                   "identifier": {
                     "class": "Identifier",
                     "name": "DomService",
-                    "moduleUrl": "asset:angular2_components/lib/src/utils/browser/dom_service/dom_service.dart",
+                    "moduleUrl": "asset:angular_components/lib/src/utils/browser/dom_service/dom_service.dart",
                     "prefix": null,
                     "value": null
                   },
@@ -534,7 +540,7 @@
                   "identifier": {
                     "class": "Identifier",
                     "name": "Disposer",
-                    "moduleUrl": "asset:angular2_components/lib/src/utils/disposer/disposer.dart",
+                    "moduleUrl": "asset:angular_components/lib/src/utils/disposer/disposer.dart",
                     "prefix": null,
                     "value": null
                   },
@@ -554,7 +560,7 @@
                   "identifier": {
                     "class": "Identifier",
                     "name": "ManagedZone",
-                    "moduleUrl": "asset:angular2_components/lib/src/utils/angular/managed_zone/src/managed_zone.dart",
+                    "moduleUrl": "asset:angular_components/lib/src/utils/angular/managed_zone/src/managed_zone.dart",
                     "prefix": null,
                     "value": null
                   },
@@ -590,7 +596,6 @@
               }
             ]
           },
-          "useProperty": null,
           "multi": false,
           "deps": [
             {
@@ -599,7 +604,7 @@
                 "identifier": {
                   "class": "Identifier",
                   "name": "DomService",
-                  "moduleUrl": "asset:angular2_components/lib/src/utils/browser/dom_service/dom_service.dart",
+                  "moduleUrl": "asset:angular_components/lib/src/utils/browser/dom_service/dom_service.dart",
                   "prefix": null,
                   "value": null
                 },
@@ -619,7 +624,7 @@
                 "identifier": {
                   "class": "Identifier",
                   "name": "Disposer",
-                  "moduleUrl": "asset:angular2_components/lib/src/utils/disposer/disposer.dart",
+                  "moduleUrl": "asset:angular_components/lib/src/utils/disposer/disposer.dart",
                   "prefix": null,
                   "value": null
                 },
@@ -639,7 +644,7 @@
                 "identifier": {
                   "class": "Identifier",
                   "name": "ManagedZone",
-                  "moduleUrl": "asset:angular2_components/lib/src/utils/angular/managed_zone/src/managed_zone.dart",
+                  "moduleUrl": "asset:angular_components/lib/src/utils/angular/managed_zone/src/managed_zone.dart",
                   "prefix": null,
                   "value": null
                 },
@@ -682,7 +687,7 @@
             "identifier": {
               "class": "Identifier",
               "name": "ManagedZone",
-              "moduleUrl": "asset:angular2_components/lib/src/utils/angular/managed_zone/src/managed_zone.dart",
+              "moduleUrl": "asset:angular_components/lib/src/utils/angular/managed_zone/src/managed_zone.dart",
               "prefix": null,
               "value": null
             },
@@ -691,7 +696,7 @@
           "useClass": {
             "class": "Type",
             "name": "Angular2ManagedZone",
-            "moduleUrl": "asset:angular2_components/lib/src/utils/angular/managed_zone/angular_2.dart",
+            "moduleUrl": "asset:angular_components/lib/src/utils/angular/managed_zone/angular_2.dart",
             "prefix": null,
             "isHost": false,
             "value": null,
@@ -721,7 +726,6 @@
           "useExisting": null,
           "useValue": null,
           "useFactory": null,
-          "useProperty": null,
           "multi": false,
           "deps": null
         },
@@ -732,7 +736,7 @@
             "identifier": {
               "class": "Identifier",
               "name": "overlayContainerName",
-              "moduleUrl": "asset:angular2_components/lib/src/laminate/overlay/src/render/overlay_dom_render_service.dart",
+              "moduleUrl": "asset:angular_components/lib/src/laminate/overlay/src/render/overlay_dom_render_service.dart",
               "prefix": null,
               "value": null
             },
@@ -740,9 +744,36 @@
           },
           "useClass": null,
           "useExisting": null,
-          "useValue": "default",
-          "useFactory": null,
-          "useProperty": null,
+          "useValue": null,
+          "useFactory": {
+            "class": "Factory",
+            "name": "getDefaultContainerName",
+            "prefix": null,
+            "moduleUrl": "asset:angular_components/lib/src/laminate/overlay/module.dart",
+            "value": null,
+            "diDeps": [
+              {
+                "token": {
+                  "value": null,
+                  "identifier": {
+                    "class": "Identifier",
+                    "name": "overlayContainerName",
+                    "moduleUrl": "asset:angular_components/lib/src/laminate/overlay/src/render/overlay_dom_render_service.dart",
+                    "prefix": null,
+                    "value": null
+                  },
+                  "identifierIsInstance": false
+                },
+                "value": null,
+                "isAttribute": false,
+                "isSelf": false,
+                "isHost": false,
+                "isSkipSelf": true,
+                "isOptional": true,
+                "isValue": false
+              }
+            ]
+          },
           "multi": false,
           "deps": null
         },
@@ -753,7 +784,7 @@
             "identifier": {
               "class": "Identifier",
               "name": "overlayContainerToken",
-              "moduleUrl": "asset:angular2_components/lib/src/laminate/overlay/src/render/overlay_dom_render_service.dart",
+              "moduleUrl": "asset:angular_components/lib/src/laminate/overlay/src/render/overlay_dom_render_service.dart",
               "prefix": null,
               "value": null
             },
@@ -766,7 +797,7 @@
             "class": "Factory",
             "name": "getDefaultContainer",
             "prefix": null,
-            "moduleUrl": "asset:angular2_components/lib/src/laminate/overlay/module.dart",
+            "moduleUrl": "asset:angular_components/lib/src/laminate/overlay/module.dart",
             "value": null,
             "diDeps": [
               {
@@ -775,7 +806,7 @@
                   "identifier": {
                     "class": "Identifier",
                     "name": "overlayContainerName",
-                    "moduleUrl": "asset:angular2_components/lib/src/laminate/overlay/src/render/overlay_dom_render_service.dart",
+                    "moduleUrl": "asset:angular_components/lib/src/laminate/overlay/src/render/overlay_dom_render_service.dart",
                     "prefix": null,
                     "value": null
                   },
@@ -795,124 +826,7 @@
                   "identifier": {
                     "class": "Identifier",
                     "name": "overlayContainerParent",
-                    "moduleUrl": "asset:angular2_components/lib/src/laminate/overlay/src/render/overlay_dom_render_service.dart",
-                    "prefix": null,
-                    "value": null
-                  },
-                  "identifierIsInstance": false
-                },
-                "value": null,
-                "isAttribute": false,
-                "isSelf": false,
-                "isHost": false,
-                "isSkipSelf": false,
-                "isOptional": false,
-                "isValue": false
-              }
-            ]
-          },
-          "useProperty": null,
-          "multi": false,
-          "deps": null
-        },
-        {
-          "class": "Provider",
-          "token": {
-            "value": null,
-            "identifier": {
-              "class": "Identifier",
-              "name": "overlayContainerParent",
-              "moduleUrl": "asset:angular2_components/lib/src/laminate/overlay/src/render/overlay_dom_render_service.dart",
-              "prefix": null,
-              "value": null
-            },
-            "identifierIsInstance": false
-          },
-          "useClass": null,
-          "useExisting": null,
-          "useValue": null,
-          "useFactory": {
-            "class": "Factory",
-            "name": "getOverlayContainerParent",
-            "prefix": null,
-            "moduleUrl": "asset:angular2_components/lib/src/laminate/overlay/module.dart",
-            "value": null,
-            "diDeps": [
-              {
-                "token": {
-                  "value": null,
-                  "identifier": {
-                    "class": "Identifier",
-                    "name": "Document",
-                    "moduleUrl": "dart:html",
-                    "prefix": null,
-                    "value": null
-                  },
-                  "identifierIsInstance": false
-                },
-                "value": null,
-                "isAttribute": false,
-                "isSelf": false,
-                "isHost": false,
-                "isSkipSelf": false,
-                "isOptional": false,
-                "isValue": false
-              }
-            ]
-          },
-          "useProperty": null,
-          "multi": false,
-          "deps": null
-        },
-        {
-          "class": "Provider",
-          "token": {
-            "value": null,
-            "identifier": {
-              "class": "Identifier",
-              "name": "overlaySyncDom",
-              "moduleUrl": "asset:angular2_components/lib/src/laminate/overlay/src/render/overlay_dom_render_service.dart",
-              "prefix": null,
-              "value": null
-            },
-            "identifierIsInstance": false
-          },
-          "useClass": null,
-          "useExisting": null,
-          "useValue": true,
-          "useFactory": null,
-          "useProperty": null,
-          "multi": false,
-          "deps": null
-        },
-        {
-          "class": "Provider",
-          "token": {
-            "value": null,
-            "identifier": {
-              "class": "Identifier",
-              "name": "OverlayDomRenderService",
-              "moduleUrl": "asset:angular2_components/lib/src/laminate/overlay/src/render/overlay_dom_render_service.dart",
-              "prefix": null,
-              "value": null
-            },
-            "identifierIsInstance": false
-          },
-          "useClass": {
-            "class": "Type",
-            "name": "OverlayDomRenderService",
-            "moduleUrl": "asset:angular2_components/lib/src/laminate/overlay/src/render/overlay_dom_render_service.dart",
-            "prefix": null,
-            "isHost": false,
-            "value": null,
-            "diDeps": [
-              {
-                "token": {
-                  "value": null,
-                  "identifier": {
-                    "class": "Identifier",
-                    "name": "OverlayStyleConfig",
-                    "moduleUrl": "asset:angular2_components/lib/src/laminate/overlay/src/render/overlay_style_config.dart",
+                    "moduleUrl": "asset:angular_components/lib/src/laminate/overlay/src/render/overlay_dom_render_service.dart",
                     "prefix": null,
                     "value": null
                   },
@@ -932,7 +846,161 @@
                   "identifier": {
                     "class": "Identifier",
                     "name": "overlayContainerToken",
-                    "moduleUrl": "asset:angular2_components/lib/src/laminate/overlay/src/render/overlay_dom_render_service.dart",
+                    "moduleUrl": "asset:angular_components/lib/src/laminate/overlay/src/render/overlay_dom_render_service.dart",
+                    "prefix": null,
+                    "value": null
+                  },
+                  "identifierIsInstance": false
+                },
+                "value": null,
+                "isAttribute": false,
+                "isSelf": false,
+                "isHost": false,
+                "isSkipSelf": true,
+                "isOptional": true,
+                "isValue": false
+              }
+            ]
+          },
+          "multi": false,
+          "deps": null
+        },
+        {
+          "class": "Provider",
+          "token": {
+            "value": null,
+            "identifier": {
+              "class": "Identifier",
+              "name": "overlayContainerParent",
+              "moduleUrl": "asset:angular_components/lib/src/laminate/overlay/src/render/overlay_dom_render_service.dart",
+              "prefix": null,
+              "value": null
+            },
+            "identifierIsInstance": false
+          },
+          "useClass": null,
+          "useExisting": null,
+          "useValue": null,
+          "useFactory": {
+            "class": "Factory",
+            "name": "getOverlayContainerParent",
+            "prefix": null,
+            "moduleUrl": "asset:angular_components/lib/src/laminate/overlay/module.dart",
+            "value": null,
+            "diDeps": [
+              {
+                "token": {
+                  "value": null,
+                  "identifier": {
+                    "class": "Identifier",
+                    "name": "Document",
+                    "moduleUrl": "dart:html",
+                    "prefix": null,
+                    "value": null
+                  },
+                  "identifierIsInstance": false
+                },
+                "value": null,
+                "isAttribute": false,
+                "isSelf": false,
+                "isHost": false,
+                "isSkipSelf": false,
+                "isOptional": false,
+                "isValue": false
+              },
+              {
+                "token": {
+                  "value": null,
+                  "identifier": {
+                    "class": "Identifier",
+                    "name": "overlayContainerParent",
+                    "moduleUrl": "asset:angular_components/lib/src/laminate/overlay/src/render/overlay_dom_render_service.dart",
+                    "prefix": null,
+                    "value": null
+                  },
+                  "identifierIsInstance": false
+                },
+                "value": null,
+                "isAttribute": false,
+                "isSelf": false,
+                "isHost": false,
+                "isSkipSelf": true,
+                "isOptional": true,
+                "isValue": false
+              }
+            ]
+          },
+          "multi": false,
+          "deps": null
+        },
+        {
+          "class": "Provider",
+          "token": {
+            "value": null,
+            "identifier": {
+              "class": "Identifier",
+              "name": "overlaySyncDom",
+              "moduleUrl": "asset:angular_components/lib/src/laminate/overlay/src/render/overlay_dom_render_service.dart",
+              "prefix": null,
+              "value": null
+            },
+            "identifierIsInstance": false
+          },
+          "useClass": null,
+          "useExisting": null,
+          "useValue": true,
+          "useFactory": null,
+          "multi": false,
+          "deps": null
+        },
+        {
+          "class": "Provider",
+          "token": {
+            "value": null,
+            "identifier": {
+              "class": "Identifier",
+              "name": "OverlayDomRenderService",
+              "moduleUrl": "asset:angular_components/lib/src/laminate/overlay/src/render/overlay_dom_render_service.dart",
+              "prefix": null,
+              "value": null
+            },
+            "identifierIsInstance": false
+          },
+          "useClass": {
+            "class": "Type",
+            "name": "OverlayDomRenderService",
+            "moduleUrl": "asset:angular_components/lib/src/laminate/overlay/src/render/overlay_dom_render_service.dart",
+            "prefix": null,
+            "isHost": false,
+            "value": null,
+            "diDeps": [
+              {
+                "token": {
+                  "value": null,
+                  "identifier": {
+                    "class": "Identifier",
+                    "name": "OverlayStyleConfig",
+                    "moduleUrl": "asset:angular_components/lib/src/laminate/overlay/src/render/overlay_style_config.dart",
+                    "prefix": null,
+                    "value": null
+                  },
+                  "identifierIsInstance": false
+                },
+                "value": null,
+                "isAttribute": false,
+                "isSelf": false,
+                "isHost": false,
+                "isSkipSelf": false,
+                "isOptional": false,
+                "isValue": false
+              },
+              {
+                "token": {
+                  "value": null,
+                  "identifier": {
+                    "class": "Identifier",
+                    "name": "overlayContainerToken",
+                    "moduleUrl": "asset:angular_components/lib/src/laminate/overlay/src/render/overlay_dom_render_service.dart",
                     "prefix": null,
                     "value": null
                   },
@@ -952,7 +1020,7 @@
                   "identifier": {
                     "class": "Identifier",
                     "name": "overlayContainerName",
-                    "moduleUrl": "asset:angular2_components/lib/src/laminate/overlay/src/render/overlay_dom_render_service.dart",
+                    "moduleUrl": "asset:angular_components/lib/src/laminate/overlay/src/render/overlay_dom_render_service.dart",
                     "prefix": null,
                     "value": null
                   },
@@ -972,7 +1040,7 @@
                   "identifier": {
                     "class": "Identifier",
                     "name": "DomRuler",
-                    "moduleUrl": "asset:angular2_components/lib/src/laminate/ruler/dom_ruler.dart",
+                    "moduleUrl": "asset:angular_components/lib/src/laminate/ruler/dom_ruler.dart",
                     "prefix": null,
                     "value": null
                   },
@@ -992,7 +1060,7 @@
                   "identifier": {
                     "class": "Identifier",
                     "name": "DomService",
-                    "moduleUrl": "asset:angular2_components/lib/src/utils/browser/dom_service/dom_service.dart",
+                    "moduleUrl": "asset:angular_components/lib/src/utils/browser/dom_service/dom_service.dart",
                     "prefix": null,
                     "value": null
                   },
@@ -1012,7 +1080,7 @@
                   "identifier": {
                     "class": "Identifier",
                     "name": "AcxImperativeViewUtils",
-                    "moduleUrl": "asset:angular2_components/lib/src/utils/angular/imperative_view/imperative_view.dart",
+                    "moduleUrl": "asset:angular_components/lib/src/utils/angular/imperative_view/imperative_view.dart",
                     "prefix": null,
                     "value": null
                   },
@@ -1032,7 +1100,7 @@
                   "identifier": {
                     "class": "Identifier",
                     "name": "overlaySyncDom",
-                    "moduleUrl": "asset:angular2_components/lib/src/laminate/overlay/src/render/overlay_dom_render_service.dart",
+                    "moduleUrl": "asset:angular_components/lib/src/laminate/overlay/src/render/overlay_dom_render_service.dart",
                     "prefix": null,
                     "value": null
                   },
@@ -1052,7 +1120,7 @@
                   "identifier": {
                     "class": "Identifier",
                     "name": "ZIndexer",
-                    "moduleUrl": "asset:angular2_components/lib/src/css/acux/zindexer.dart",
+                    "moduleUrl": "asset:angular_components/lib/src/css/acux/zindexer.dart",
                     "prefix": null,
                     "value": null
                   },
@@ -1071,7 +1139,6 @@
           "useExisting": null,
           "useValue": null,
           "useFactory": null,
-          "useProperty": null,
           "multi": false,
           "deps": null
         },
@@ -1082,7 +1149,7 @@
             "identifier": {
               "class": "Identifier",
               "name": "OverlayStyleConfig",
-              "moduleUrl": "asset:angular2_components/lib/src/laminate/overlay/src/render/overlay_style_config.dart",
+              "moduleUrl": "asset:angular_components/lib/src/laminate/overlay/src/render/overlay_style_config.dart",
               "prefix": null,
               "value": null
             },
@@ -1091,7 +1158,7 @@
           "useClass": {
             "class": "Type",
             "name": "OverlayStyleConfig",
-            "moduleUrl": "asset:angular2_components/lib/src/laminate/overlay/src/render/overlay_style_config.dart",
+            "moduleUrl": "asset:angular_components/lib/src/laminate/overlay/src/render/overlay_style_config.dart",
             "prefix": null,
             "isHost": false,
             "value": null,
@@ -1121,7 +1188,6 @@
           "useExisting": null,
           "useValue": null,
           "useFactory": null,
-          "useProperty": null,
           "multi": false,
           "deps": null
         },
@@ -1132,7 +1198,7 @@
             "identifier": {
               "class": "Identifier",
               "name": "OverlayService",
-              "moduleUrl": "asset:angular2_components/lib/src/laminate/overlay/src/overlay_service.dart",
+              "moduleUrl": "asset:angular_components/lib/src/laminate/overlay/src/overlay_service.dart",
               "prefix": null,
               "value": null
             },
@@ -1141,7 +1207,7 @@
           "useClass": {
             "class": "Type",
             "name": "OverlayDomService",
-            "moduleUrl": "asset:angular2_components/lib/src/laminate/overlay/src/overlay_dom_service.dart",
+            "moduleUrl": "asset:angular_components/lib/src/laminate/overlay/src/overlay_dom_service.dart",
             "prefix": null,
             "isHost": false,
             "value": null,
@@ -1172,7 +1238,7 @@
                   "identifier": {
                     "class": "Identifier",
                     "name": "overlaySyncDom",
-                    "moduleUrl": "asset:angular2_components/lib/src/laminate/overlay/src/render/overlay_dom_render_service.dart",
+                    "moduleUrl": "asset:angular_components/lib/src/laminate/overlay/src/render/overlay_dom_render_service.dart",
                     "prefix": null,
                     "value": null
                   },
@@ -1192,7 +1258,7 @@
                   "identifier": {
                     "class": "Identifier",
                     "name": "OverlayDomRenderService",
-                    "moduleUrl": "asset:angular2_components/lib/src/laminate/overlay/src/render/overlay_dom_render_service.dart",
+                    "moduleUrl": "asset:angular_components/lib/src/laminate/overlay/src/render/overlay_dom_render_service.dart",
                     "prefix": null,
                     "value": null
                   },
@@ -1212,7 +1278,7 @@
                   "identifier": {
                     "class": "Identifier",
                     "name": "OverlayService",
-                    "moduleUrl": "asset:angular2_components/lib/src/laminate/overlay/src/overlay_service.dart",
+                    "moduleUrl": "asset:angular_components/lib/src/laminate/overlay/src/overlay_service.dart",
                     "prefix": null,
                     "value": null
                   },
@@ -1231,7 +1297,6 @@
           "useExisting": null,
           "useValue": null,
           "useFactory": null,
-          "useProperty": null,
           "multi": false,
           "deps": null
         },
@@ -1255,11 +1320,10 @@
             "class": "Factory",
             "name": "getDocument",
             "prefix": null,
-            "moduleUrl": "asset:angular2_components/lib/src/utils/browser/window/module.dart",
+            "moduleUrl": "asset:angular_components/lib/src/utils/browser/window/module.dart",
             "value": null,
             "diDeps": []
           },
-          "useProperty": null,
           "multi": false,
           "deps": null
         },
@@ -1283,11 +1347,10 @@
             "class": "Factory",
             "name": "getWindow",
             "prefix": null,
-            "moduleUrl": "asset:angular2_components/lib/src/utils/browser/window/module.dart",
+            "moduleUrl": "asset:angular_components/lib/src/utils/browser/window/module.dart",
             "value": null,
             "diDeps": []
           },
-          "useProperty": null,
           "multi": false,
           "deps": null
         },
@@ -1298,7 +1361,7 @@
             "identifier": {
               "class": "Identifier",
               "name": "ZIndexer",
-              "moduleUrl": "asset:angular2_components/lib/src/css/acux/zindexer.dart",
+              "moduleUrl": "asset:angular_components/lib/src/css/acux/zindexer.dart",
               "prefix": null,
               "value": null
             },
@@ -1307,7 +1370,7 @@
           "useClass": {
             "class": "Type",
             "name": "ZIndexer",
-            "moduleUrl": "asset:angular2_components/lib/src/css/acux/zindexer.dart",
+            "moduleUrl": "asset:angular_components/lib/src/css/acux/zindexer.dart",
             "prefix": null,
             "isHost": false,
             "value": null,
@@ -1316,7 +1379,6 @@
           "useExisting": null,
           "useValue": null,
           "useFactory": null,
-          "useProperty": null,
           "multi": false,
           "deps": null
         },
@@ -1327,7 +1389,7 @@
             "identifier": {
               "class": "Identifier",
               "name": "DomPopupSourceFactory",
-              "moduleUrl": "asset:angular2_components/lib/src/laminate/popup/src/dom_popup_source.dart",
+              "moduleUrl": "asset:angular_components/lib/src/laminate/popup/src/dom_popup_source.dart",
               "prefix": null,
               "value": null
             },
@@ -1336,7 +1398,7 @@
           "useClass": {
             "class": "Type",
             "name": "DomPopupSourceFactory",
-            "moduleUrl": "asset:angular2_components/lib/src/laminate/popup/src/dom_popup_source.dart",
+            "moduleUrl": "asset:angular_components/lib/src/laminate/popup/src/dom_popup_source.dart",
             "prefix": null,
             "isHost": false,
             "value": null,
@@ -1367,7 +1429,7 @@
                   "identifier": {
                     "class": "Identifier",
                     "name": "DomRuler",
-                    "moduleUrl": "asset:angular2_components/lib/src/laminate/ruler/dom_ruler.dart",
+                    "moduleUrl": "asset:angular_components/lib/src/laminate/ruler/dom_ruler.dart",
                     "prefix": null,
                     "value": null
                   },
@@ -1386,7 +1448,6 @@
           "useExisting": null,
           "useValue": null,
           "useFactory": null,
-          "useProperty": null,
           "multi": false,
           "deps": null
         },
@@ -1397,7 +1458,7 @@
             "identifier": {
               "class": "Identifier",
               "name": "PopupService",
-              "moduleUrl": "asset:angular2_components/lib/src/laminate/popup/src/popup_service.dart",
+              "moduleUrl": "asset:angular_components/lib/src/laminate/popup/src/popup_service.dart",
               "prefix": null,
               "value": null
             },
@@ -1406,7 +1467,7 @@
           "useClass": {
             "class": "Type",
             "name": "PopupService",
-            "moduleUrl": "asset:angular2_components/lib/src/laminate/popup/src/popup_service.dart",
+            "moduleUrl": "asset:angular_components/lib/src/laminate/popup/src/popup_service.dart",
             "prefix": null,
             "isHost": false,
             "value": null,
@@ -1417,7 +1478,7 @@
                   "identifier": {
                     "class": "Identifier",
                     "name": "defaultPopupPositions",
-                    "moduleUrl": "asset:angular2_components/lib/src/laminate/popup/src/popup_service.dart",
+                    "moduleUrl": "asset:angular_components/lib/src/laminate/popup/src/popup_service.dart",
                     "prefix": null,
                     "value": null
                   },
@@ -1437,7 +1498,7 @@
                   "identifier": {
                     "class": "Identifier",
                     "name": "OverlayService",
-                    "moduleUrl": "asset:angular2_components/lib/src/laminate/overlay/src/overlay_service.dart",
+                    "moduleUrl": "asset:angular_components/lib/src/laminate/overlay/src/overlay_service.dart",
                     "prefix": null,
                     "value": null
                   },
@@ -1457,7 +1518,7 @@
                   "identifier": {
                     "class": "Identifier",
                     "name": "ZIndexer",
-                    "moduleUrl": "asset:angular2_components/lib/src/css/acux/zindexer.dart",
+                    "moduleUrl": "asset:angular_components/lib/src/css/acux/zindexer.dart",
                     "prefix": null,
                     "value": null
                   },
@@ -1476,303 +1537,6 @@
           "useExisting": null,
           "useValue": null,
           "useFactory": null,
-          "useProperty": null,
-          "multi": false,
-          "deps": null
-        },
-        {
-          "class": "Provider",
-          "token": {
-            "value": null,
-            "identifier": {
-              "class": "Identifier",
-              "name": "Document",
-              "moduleUrl": "dart:html",
-              "prefix": null,
-              "value": null
-            },
-            "identifierIsInstance": false
-          },
-          "useClass": null,
-          "useExisting": null,
-          "useValue": null,
-          "useFactory": {
-            "class": "Factory",
-            "name": "getDocument",
-            "prefix": null,
-            "moduleUrl": "asset:angular2_components/lib/src/utils/browser/window/module.dart",
-            "value": null,
-            "diDeps": []
-          },
-          "useProperty": null,
-          "multi": false,
-          "deps": null
-        },
-        {
-          "class": "Provider",
-          "token": {
-            "value": null,
-            "identifier": {
-              "class": "Identifier",
-              "name": "Window",
-              "moduleUrl": "dart:html",
-              "prefix": null,
-              "value": null
-            },
-            "identifierIsInstance": false
-          },
-          "useClass": null,
-          "useExisting": null,
-          "useValue": null,
-          "useFactory": {
-            "class": "Factory",
-            "name": "getWindow",
-            "prefix": null,
-            "moduleUrl": "asset:angular2_components/lib/src/utils/browser/window/module.dart",
-            "value": null,
-            "diDeps": []
-          },
-          "useProperty": null,
-          "multi": false,
-          "deps": null
-        },
-        {
-          "class": "Provider",
-          "token": {
-            "value": null,
-            "identifier": {
-              "class": "Identifier",
-              "name": "DomService",
-              "moduleUrl": "asset:angular2_components/lib/src/utils/browser/dom_service/dom_service.dart",
-              "prefix": null,
-              "value": null
-            },
-            "identifierIsInstance": false
-          },
-          "useClass": null,
-          "useExisting": null,
-          "useValue": null,
-          "useFactory": {
-            "class": "Factory",
-            "name": "createDomService",
-            "prefix": null,
-            "moduleUrl": "asset:angular2_components/lib/src/utils/browser/dom_service/angular_2.dart",
-            "value": null,
-            "diDeps": [
-              {
-                "token": {
-                  "value": null,
-                  "identifier": {
-                    "class": "Identifier",
-                    "name": "DomService",
-                    "moduleUrl": "asset:angular2_components/lib/src/utils/browser/dom_service/dom_service.dart",
-                    "prefix": null,
-                    "value": null
-                  },
-                  "identifierIsInstance": false
-                },
-                "value": null,
-                "isAttribute": false,
-                "isSelf": false,
-                "isHost": false,
-                "isSkipSelf": true,
-                "isOptional": true,
-                "isValue": false
-              },
-              {
-                "token": {
-                  "value": null,
-                  "identifier": {
-                    "class": "Identifier",
-                    "name": "Disposer",
-                    "moduleUrl": "asset:angular2_components/lib/src/utils/disposer/disposer.dart",
-                    "prefix": null,
-                    "value": null
-                  },
-                  "identifierIsInstance": false
-                },
-                "value": null,
-                "isAttribute": false,
-                "isSelf": false,
-                "isHost": false,
-                "isSkipSelf": false,
-                "isOptional": true,
-                "isValue": false
-              },
-              {
-                "token": {
-                  "value": null,
-                  "identifier": {
-                    "class": "Identifier",
-                    "name": "ManagedZone",
-                    "moduleUrl": "asset:angular2_components/lib/src/utils/angular/managed_zone/src/managed_zone.dart",
-                    "prefix": null,
-                    "value": null
-                  },
-                  "identifierIsInstance": false
-                },
-                "value": null,
-                "isAttribute": false,
-                "isSelf": false,
-                "isHost": false,
-                "isSkipSelf": false,
-                "isOptional": false,
-                "isValue": false
-              },
-              {
-                "token": {
-                  "value": null,
-                  "identifier": {
-                    "class": "Identifier",
-                    "name": "Window",
-                    "moduleUrl": "dart:html",
-                    "prefix": null,
-                    "value": null
-                  },
-                  "identifierIsInstance": false
-                },
-                "value": null,
-                "isAttribute": false,
-                "isSelf": false,
-                "isHost": false,
-                "isSkipSelf": false,
-                "isOptional": false,
-                "isValue": false
-              }
-            ]
-          },
-          "useProperty": null,
-          "multi": false,
-          "deps": [
-            {
-              "token": {
-                "value": null,
-                "identifier": {
-                  "class": "Identifier",
-                  "name": "DomService",
-                  "moduleUrl": "asset:angular2_components/lib/src/utils/browser/dom_service/dom_service.dart",
-                  "prefix": null,
-                  "value": null
-                },
-                "identifierIsInstance": false
-              },
-              "value": null,
-              "isAttribute": false,
-              "isSelf": false,
-              "isHost": false,
-              "isSkipSelf": true,
-              "isOptional": true,
-              "isValue": false
-            },
-            {
-              "token": {
-                "value": null,
-                "identifier": {
-                  "class": "Identifier",
-                  "name": "Disposer",
-                  "moduleUrl": "asset:angular2_components/lib/src/utils/disposer/disposer.dart",
-                  "prefix": null,
-                  "value": null
-                },
-                "identifierIsInstance": false
-              },
-              "value": null,
-              "isAttribute": false,
-              "isSelf": false,
-              "isHost": false,
-              "isSkipSelf": false,
-              "isOptional": true,
-              "isValue": false
-            },
-            {
-              "token": {
-                "value": null,
-                "identifier": {
-                  "class": "Identifier",
-                  "name": "ManagedZone",
-                  "moduleUrl": "asset:angular2_components/lib/src/utils/angular/managed_zone/src/managed_zone.dart",
-                  "prefix": null,
-                  "value": null
-                },
-                "identifierIsInstance": false
-              },
-              "value": null,
-              "isAttribute": false,
-              "isSelf": false,
-              "isHost": false,
-              "isSkipSelf": false,
-              "isOptional": false,
-              "isValue": false
-            },
-            {
-              "token": {
-                "value": null,
-                "identifier": {
-                  "class": "Identifier",
-                  "name": "Window",
-                  "moduleUrl": "dart:html",
-                  "prefix": null,
-                  "value": null
-                },
-                "identifierIsInstance": false
-              },
-              "value": null,
-              "isAttribute": false,
-              "isSelf": false,
-              "isHost": false,
-              "isSkipSelf": false,
-              "isOptional": false,
-              "isValue": false
-            }
-          ]
-        },
-        {
-          "class": "Provider",
-          "token": {
-            "value": null,
-            "identifier": {
-              "class": "Identifier",
-              "name": "ManagedZone",
-              "moduleUrl": "asset:angular2_components/lib/src/utils/angular/managed_zone/src/managed_zone.dart",
-              "prefix": null,
-              "value": null
-            },
-            "identifierIsInstance": false
-          },
-          "useClass": {
-            "class": "Type",
-            "name": "Angular2ManagedZone",
-            "moduleUrl": "asset:angular2_components/lib/src/utils/angular/managed_zone/angular_2.dart",
-            "prefix": null,
-            "isHost": false,
-            "value": null,
-            "diDeps": [
-              {
-                "token": {
-                  "value": null,
-                  "identifier": {
-                    "class": "Identifier",
-                    "name": "NgZone",
-                    "moduleUrl": "asset:angular2/lib/src/core/zone/ng_zone.dart",
-                    "prefix": null,
-                    "value": null
-                  },
-                  "identifierIsInstance": false
-                },
-                "value": null,
-                "isAttribute": false,
-                "isSelf": false,
-                "isHost": false,
-                "isSkipSelf": false,
-                "isOptional": false,
-                "isValue": false
-              }
-            ]
-          },
-          "useExisting": null,
-          "useValue": null,
-          "useFactory": null,
-          "useProperty": null,
           "multi": false,
           "deps": null
         }

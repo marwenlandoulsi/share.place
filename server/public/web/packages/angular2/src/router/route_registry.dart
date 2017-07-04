@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'dart:math' as math;
 
-import "package:angular2/core.dart"
-    show Injectable, Inject, OpaqueToken, ComponentFactory;
+import "package:angular2/core.dart" show OpaqueToken, ComponentFactory;
+import "package:angular2/di.dart" show Injectable, Inject;
 import "package:angular2/src/facade/exceptions.dart" show BaseException;
 
 import "instruction.dart"
@@ -12,7 +12,7 @@ import "instruction.dart"
         RedirectInstruction,
         UnresolvedInstruction,
         DefaultInstruction;
-import "route_config/route_config_impl.dart"
+import "route_config/route_config_decorator.dart"
     show RouteConfig, Route, AuxRoute, RouteDefinition;
 import "route_config/route_config_normalizer.dart"
     show normalizeRouteConfig, assertComponentExists;
@@ -22,7 +22,7 @@ import "rules/rules.dart" show PathMatch, RedirectMatch, RouteMatch;
 import "url_parser.dart" show parser, Url, convertUrlParamsToArray;
 import "utils.dart" show getComponentAnnotations, getComponentType;
 
-var _resolveToNull = new Future.value();
+var _resolveToNull = new Future<Null>.value(null);
 // A LinkItemArray is an array, which describes a set of routes
 
 // The items in the array are found in groups:
@@ -73,7 +73,7 @@ const OpaqueToken ROUTER_PRIMARY_COMPONENT =
 @Injectable()
 class RouteRegistry {
   dynamic /* Type | ComponentFactory */ _rootComponent;
-  var _rules = new Map<dynamic, RuleSet>();
+  final _rules = new Map<dynamic, RuleSet>();
   RouteRegistry(@Inject(ROUTER_PRIMARY_COMPONENT) this._rootComponent);
 
   /// Given a component and a configuration object, add the route to this registry
@@ -197,7 +197,7 @@ class RouteRegistry {
         possibleMatches.length == 0) {
       return new Future.value(this.generateDefault(parentComponent));
     }
-    return Future.wait/*< Instruction >*/(matchPromises).then(mostSpecific);
+    return Future.wait<Instruction>(matchPromises).then(mostSpecific);
   }
 
   Map<String, Instruction> _auxRoutesToUnresolved(

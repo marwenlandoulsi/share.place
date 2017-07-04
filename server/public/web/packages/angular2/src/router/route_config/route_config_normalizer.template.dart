@@ -12,15 +12,13 @@
 import 'route_config_normalizer.dart';
 import 'dart:async';
 import 'package:angular2/src/facade/exceptions.dart' show BaseException;
-import 'package:angular2/src/facade/lang.dart';
 import '../route_definition.dart';
 import '../route_registry.dart';
 import 'route_config_decorator.dart';
 import 'package:angular2/src/facade/exceptions.template.dart' as i0;
-import 'package:angular2/src/facade/lang.template.dart' as i1;
-import '../route_definition.template.dart' as i2;
-import '../route_registry.template.dart' as i3;
-import 'route_config_decorator.template.dart' as i4;
+import '../route_definition.template.dart' as i1;
+import '../route_registry.template.dart' as i2;
+import 'route_config_decorator.template.dart' as i3;
 export 'route_config_normalizer.dart';
 
 var _visited = false;
@@ -30,5 +28,4 @@ i0.initReflector();
 i1.initReflector();
 i2.initReflector();
 i3.initReflector();
-i4.initReflector();
 }

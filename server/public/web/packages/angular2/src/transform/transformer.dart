@@ -1,4 +1,6 @@
+import 'package:angular2/source_gen.dart';
 import 'package:barback/barback.dart';
+import 'package:build_barback/build_barback.dart';
 import 'package:dart_style/dart_style.dart';
 
 import 'common/eager_transformer_wrapper.dart';
@@ -26,7 +28,26 @@ class AngularTransformerGroup extends TransformerGroup {
 
   factory AngularTransformerGroup(TransformerOptions options) {
     Iterable<Iterable> phases;
-    if (options.inlineViews) {
+    if (options.useAnalyzer) {
+      if (options.platformDirectives?.isNotEmpty == true ||
+          options.platformPipes?.isNotEmpty == true) {
+        throw new UnsupportedError(''
+            'Transformer option "${USE_ANALYZER}" cannot be used alongside '
+            '"${PLATFORM_DIRECTIVES}" or "${PLATFORM_PIPES}", as the new '
+            'compiler needs to be able to resolve all directives and pipes '
+            'using the Dart analyzer. See https://goo.gl/68VhMa for details.');
+      }
+      phases = [
+        [
+          new BuilderTransformer(createSourceGenTemplateCompiler(
+              new GeneratorOptions(
+                  codegenMode: options.codegenMode,
+                  useLegacyStyleEncapsulation:
+                      options.useLegacyStyleEncapsulation,
+                  collectAssets: false)))
+        ]
+      ];
+    } else if (options.inlineViews) {
       phases = [
         [new InlinerForTest(options)]
       ];
@@ -37,7 +58,7 @@ class AngularTransformerGroup extends TransformerGroup {
         [new ReflectionRemover(options)],
         [
           new DeferredRewriter(),
-          new StylesheetCompiler(),
+          new StylesheetCompiler(options),
           new TemplateCompiler(options)
         ],
       ];

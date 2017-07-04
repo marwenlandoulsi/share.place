@@ -1,7 +1,6 @@
-import 'dart:html' as html;
-
 import 'dart:async';
 import 'dart:convert';
+import 'dart:html' as html;
 
 import 'package:angular2/core.dart';
 import 'package:http/http.dart';
@@ -10,21 +9,24 @@ import 'package:logging/logging.dart';
 import 'app_config.dart' as conf;
 import 'place.dart';
 import 'folder.dart';
+import 'package:share_place/common/util.dart';
 import 'package:share_place/environment.dart';
 import 'package:share_place/file_info.dart';
 import 'package:share_place/files/cloud_file.dart';
 import 'package:share_place/files/file_action.dart';
 import 'package:share_place/news/news_event.dart';
 import 'package:share_place/users/user.dart';
-import 'package:share_place/common/util.dart';
+
 import 'app_context_manager.dart';
+import 'package:share_place/search/search_item.dart';
 
 
 @Injectable()
 class PlaceService {
   final Logger log = new Logger("PlaceService");
   static const USER_PROFILE_URL = "/sp/user/connected";
-  static final _headers = {'Content-Type': 'application/json'};
+  static final _headers = {'Content-Type': 'application/json' ,'Cache-control': 'no-cache' ,'HTTP-EQUIV':'Pragma' ,};
+  static final _elasticHeaders = {'Content-Type': 'application/json'};
   static const _placesUrl = '/sp/place'; // URL to web API
   static const _newsEventUrl = '/sp/news'; // URL to web API
 
@@ -60,7 +62,7 @@ class PlaceService {
       return null;
     } else if (statusCode == 403) {
       _environment.serverError = respBody['error'];
-      return null;
+      return [];
     } else if (statusCode > 400 && statusCode < 500) {
       _environment.serverError = respBody['error'];
       throw _environment.serverError;
@@ -106,29 +108,42 @@ class PlaceService {
     return new FileInfo.fromJson(_extractData(response));
   }
 
+
   Future<FileInfo> prePostFile(Map<String, String> body) async {
     var postUrl = "/sp/place/" +
         _environment.selectedPlace.id +
         "/folder/" +
         _environment.selectedFolder.id +
         "/file";
-    var response = await post(postUrl, headers: _headers, body: JSON.encode(body));
-    return response == null ? null : new FileInfo.fromJson(_extractData( response) );
+    var response = await post(
+        postUrl, headers: _headers, body: JSON.encode(body));
+    return response == null ? null : new FileInfo.fromJson(
+        _extractData(response));
   }
 
-  Future<FileInfo> postFile(html.FormData form, {bool asNewVersion:false, String fileId}) async {
+  Future<FileInfo> postFile(html.FormData form,
+      {bool asNewVersion: false, String fileId}) async {
     var postUrl = "/sp/place/" +
         _environment.selectedPlace.id +
         "/folder/" +
         _environment.selectedFolder.id +
         "/file";
-    if( fileId != null )
-      postUrl += "/"+fileId;
-    else if( asNewVersion )
-      postUrl += "/"+_environment.selectedFile.id;
+    if (fileId != null)
+      postUrl += "/" + fileId;
+    else if (asNewVersion)
+      postUrl += "/" + _environment.selectedFile.id;
 
     Map<String, dynamic> response = await postFileForm(form, postUrl);
     return response == null ? null : new FileInfo.fromJson(response);
+  }
+
+  Future<User> postProfileImageBase64(String data) async {
+    var postUrl = "/auth/profile/uploadImageBase64";
+    Response response = await post(postUrl, body: {"data": data});
+    var user = JSON.decode(response.body)['data'];
+    if (user == null)
+      throw 'failed to upload image';
+    return new User.fromJson(user);
   }
 
   Future<User> postProfileImage(html.FormData form) async {
@@ -143,6 +158,7 @@ class PlaceService {
     return new User.fromJson(response);
   }
 
+
   Future<Map<String, dynamic>> postFileForm(html.FormData form,
       String postUrl) async {
     html.HttpRequest response = await html.HttpRequest
@@ -155,9 +171,12 @@ class PlaceService {
       _environment.serverError = '';
       if (status == 401) {
         html.window.location.assign(conf.baseUrl);
-      } else {
+      } else if (!isEmpty(errorResponse.responseText)) {
         dynamic errorMessage = JSON.decode(errorResponse.responseText)['error'];
         _environment.serverError = errorMessage;
+      } else {
+        _environment.serverError = "An error occured";
+        log.severe(errorResponse.toString());
       }
       return null;
     });
@@ -537,11 +556,29 @@ class PlaceService {
     //final response = await get("/auth/logout");
   }
 
+  Future<User> signup(User user, String croppieData) async {
+    var userBody = {};
+    setIfNotEmpty(userBody, "name", user.name);
+    setIfNotEmpty(userBody, "password", user.pass);
+    setIfNotEmpty(userBody, "skype", user.skype);
+    setIfNotEmpty(userBody, "email", user.email);
+    setIfNotEmpty(userBody, "data", croppieData);
+
+    final response = await post(
+        "/auth/signup", body: userBody);
+
+    var data = _extractData(response);
+    if (data == null)
+      return null;
+    return new User.fromJson(data);
+  }
+
   Future<User> saveProfile(User user, {bool mailChanged,
-  String newPass }) async {
+    String newPass ,String croppieData }) async {
     var userBody = {};
     setIfNotEmpty(userBody, "name", user.name);
     setIfNotEmpty(userBody, "skype", user.skype);
+    setIfNotEmpty(userBody, "data", croppieData);
     if (mailChanged || newPass != null) {
       setIfNotEmpty(userBody, "password", user.pass);
       setIfNotEmpty(userBody, "email", user.email);
@@ -559,23 +596,6 @@ class PlaceService {
     return new User.fromJson(data);
   }
 
-  Future<User> signup(User user) async {
-    var userBody = {"email": user.email, "password": user.pass};
-    log.finest("calling signup ");
-    if (user.name != null)
-      userBody["name"] = user.name;
-    if (user.skype != null)
-      userBody["skype"] = user.skype;
-
-    final response = await post(
-        "/auth/signup", body: userBody);
-
-    var data = _extractData(response);
-    if (data == null)
-      return null;
-
-    return new User.fromJson(data);
-  }
 
   @deprecated
   Future<Null> facebook() async {
@@ -590,7 +610,7 @@ class PlaceService {
     if (_environment.connectedUser?.googleAccount == null)
       await get("/auth/connect/google", headers: _headers);
     else
-      await get("/auth//unlink/google", headers: _headers);
+      await get("/auth/unlink/google", headers: _headers);
   }
 
   Future<bool> closePostit(String name) async {
@@ -622,10 +642,30 @@ class PlaceService {
 
   Future<Null> changeRoles(List<User> userRoles) async {
     await put
-    ('/sp/place/${_environment.selectedPlace.id}/folder/${_environment
+      ('/sp/place/${_environment.selectedPlace.id}/folder/${_environment
         .selectedFolder.id}/user/role/list', headers: _headers,
-    body: JSON.encode({'userList':userRoles})
+        body: JSON.encode({'userList': userRoles})
     );
+  }
+
+  Future<Null> removeTopic(FileInfo subject) async {
+    try {
+      await del(
+          '/sp/place/${_environment.selectedPlace.id}/folder/${_environment
+              .selectedFolder.id}/file/${subject.fileId}');
+    } catch (e) {
+      throw _handleError(e);
+    }
+  }
+
+  Future<Null> removeFileVersion(String placeId, String folderId, String fileId
+      ,int fileVersion) async {
+    try {
+      await del(
+          '/sp/place/${placeId}/folder/${folderId}/file/${fileId}/version/${fileVersion}');
+    } catch (e) {
+      throw _handleError(e);
+    }
   }
 
   Future<Null> moveSubject(subjectId, folderId) async {
@@ -635,5 +675,80 @@ class PlaceService {
         headers: _headers,
         body: JSON.encode({'empty': 'yes'})
     );
+  }
+
+
+  Future<List<SearchItem>> search(String dataToSearch) async {
+    //List<FileInfo>
+    Map query = {
+      "query": {
+        "constant_score": {
+          "filter": {
+            "bool": {
+              "must": {
+                "term": {
+                  "users.userId": _environment.connectedUser.id
+                }
+              },
+              "should": {
+                "has_child": {
+                  "type": "fileversion",
+                  "query": {
+                    "query_string": {
+                      "query": "$dataToSearch*",
+                      "fields": [ "name^4", "attachment.content"],
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+/*
+      "highlight": {
+        "fields": {
+          "name": {},
+          "attachment.content": {}
+        }
+      }
+*/
+    };
+
+    Response response = await
+    _http.post("${conf.elasticUrl}/file/_search", headers: _elasticHeaders,
+        body: JSON.encode(query));
+
+    return _extractElasticSearchData(response).map((searchItem) =>
+    new SearchItem.fromJson(searchItem))
+        .toList();
+  }
+
+  List _extractElasticSearchData(Response resp) {
+    _environment.serverError = '';
+
+    if (resp == null)
+      return null;
+    var statusCode = resp.statusCode;
+    var respBody = JSON.decode(resp.body);
+    log.finest("elastic search : ${resp.body}");
+
+    if (statusCode >= 200 && statusCode < 300) {
+      //how to map
+      dynamic hitsList = respBody['hits']['hits'];
+      List searchItemList = new List();
+      if (hitsList == null)
+        return new List(0);
+      for (var i = 0; i < hitsList.length; i++) {
+        dynamic dataToSearch = hitsList[i]['_source']['fileInfo'];
+        if (dataToSearch == null)
+          return new List(0);
+        searchItemList.add(dataToSearch);
+      }
+      return searchItemList;
+    } else {
+      _environment.serverError = "error executing search";
+      throw _environment.serverError;
+    }
   }
 }

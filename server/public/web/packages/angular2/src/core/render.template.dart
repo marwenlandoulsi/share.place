@@ -12,7 +12,7 @@
 import 'render.dart';
 import 'render/api.template.dart' as i0;
 export 'render.dart';
-export 'render/api.dart' show RootRenderer, RenderComponentType;
+export 'render/api.dart' show RenderComponentType;
 
 var _visited = false;
 void initReflector() {

@@ -2,24 +2,33 @@ import 'dart:async';
 import 'dart:io' show stderr;
 
 import 'package:barback/barback.dart';
+import 'package:logging/logging.dart';
 import 'package:source_span/source_span.dart';
 
 import 'zone.dart' as zone show log;
 
 /// The [TransformLogger] for the current {@link Zone}.
-TransformLogger get log {
-  var log = zone.log;
-  return log != null ? log : new PrintLogger();
+TransformLogger get log => zone.log ?? new PrintLogger();
+
+/// A [LoggerHandler] which forwards records to [log].
+void forwardLogRecord(LogRecord record) {
+  if (record.level >= Level.SEVERE) {
+    log.error(record.message);
+  } else if (record.level >= Level.WARNING) {
+    log.warning(record.message);
+  } else if (record.level >= Level.INFO) {
+    log.info(record.message);
+  } else {
+    log.fine(record.message);
+  }
 }
 
 /// Writes a log entry at `LogLevel.FINE` granularity with the time taken by
 /// `asyncOperation`.
 ///
 /// Returns the result of executing `asyncOperation`.
-Future<dynamic/*=T*/ > logElapsedAsync/*<T>*/(
-    Future<dynamic/*=T*/ > asyncOperation(),
-    {String operationName: 'unknown',
-    AssetId assetId}) async {
+Future<T> logElapsedAsync<T>(Future<T> asyncOperation(),
+    {String operationName: 'unknown', AssetId assetId}) async {
   final timer = new Stopwatch()..start();
   final result = await asyncOperation();
   timer.stop();
@@ -31,7 +40,7 @@ Future<dynamic/*=T*/ > logElapsedAsync/*<T>*/(
 /// `operation`.
 ///
 /// Returns the result of executing `operation`.
-/*=T*/ logElapsedSync/*<T>*/(/*=T*/ operation(),
+T logElapsedSync<T>(T operation(),
     {String operationName: 'unknown', AssetId assetId}) {
   final timer = new Stopwatch()..start();
   final result = operation();

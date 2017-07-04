@@ -12,7 +12,8 @@
         <div class="userLine" [class.popupOpen]="clickedUserId == userItem.id"  (click)="clickedUserId = userItem.id"
              popupSource alignPositionX="after"
              alignPositionY="start" #userElem="popupSource">
-          <img src="/auth/user/photo/s/{{userItem.id}}" class="profileImg">
+          <img *ngIf ="userItem.photoIdMap != null" src="/auth/gridfs/file/{{userItem?.photoIdMap['photoIdS']}}/picture.x" class="profileImg">
+          <img  *ngIf ="userItem.photoIdMap == null" src="../images/img_profile.png" class="profileImg">
           <div class="userName" title="{{userItem?.displayName}}">{{userItem?.displayName}}</div>
         </div>
         <info-popup *ngIf="clickedUserId == userItem.id"

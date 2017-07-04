@@ -33,10 +33,8 @@ class NgDepsModel extends GeneratedMessage {
   BuilderInfo get info_ => _i;
   static NgDepsModel create() => new NgDepsModel();
   static PbList<NgDepsModel> createRepeated() => new PbList<NgDepsModel>();
-  static NgDepsModel getDefault() {
-    if (_defaultInstance == null) _defaultInstance = new _ReadonlyNgDepsModel();
-    return _defaultInstance;
-  }
+  static NgDepsModel getDefault() =>
+      _defaultInstance ??= new _ReadonlyNgDepsModel();
 
   static NgDepsModel _defaultInstance;
   static void $checkItem(NgDepsModel v) {
@@ -70,7 +68,7 @@ class NgDepsModel extends GeneratedMessage {
   List<ImportModel> get depImports => $_get(6, 7, null);
 }
 
-class _ReadonlyNgDepsModel extends NgDepsModel with ReadonlyMessageMixin {}
+class _ReadonlyNgDepsModel extends NgDepsModel {}
 
 const NgDepsModel$json = const {
   '1': 'NgDepsModel',

@@ -74,7 +74,7 @@ app.set('view engine', 'ejs'); // set up ejs for templating
 //app.use(log4js.connectLogger(log4js.getLogger("http"), { level: 'auto' }));
 app.use(cookieParser()); // read cookies (needed for auth)
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({limit: '6mb', extended: false}));
 
 app.use(express.static(path.join(__dirname, 'static')));
 //app.use(express.static(path.join(__dirname, 'static')));
@@ -276,6 +276,5 @@ if (constants.debugServer) {
   var server = http.createServer(app);
   server.listen(3001);
 }
-
 
 module.exports = app;

@@ -10,14 +10,14 @@
 // @ignoreProblemForFile UNUSED_SHOWN_NAME
 // @ignoreProblemForFile UNUSED_LOCAL_VARIABLE
 import 'platform_common_providers.dart';
-import 'package:angular2/src/core/di.dart' show Provider;
-import 'package:angular2/src/core/testability/testability.dart' show TestabilityRegistry;
 import 'application_ref.dart' show PLATFORM_CORE_PROVIDERS;
+import 'di.dart' show Provider;
 import 'reflection/reflection.dart' show Reflector, reflector;
-import 'package:angular2/src/core/di.template.dart' as i0;
-import 'package:angular2/src/core/testability/testability.template.dart' as i1;
-import 'application_ref.template.dart' as i2;
-import 'reflection/reflection.template.dart' as i3;
+import 'testability/testability.dart' show TestabilityRegistry;
+import 'application_ref.template.dart' as i0;
+import 'di.template.dart' as i1;
+import 'reflection/reflection.template.dart' as i2;
+import 'testability/testability.template.dart' as i3;
 export 'platform_common_providers.dart';
 
 var _visited = false;

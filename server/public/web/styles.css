@@ -20,7 +20,7 @@ html, body, my-app, my-app > div, .leftP, my-place, .folders {
 .leftP {
   width: 17%;
   height: calc(100vh - 2.2em);
-  position: relative;
+  /*position: relative;*/
   z-index: 2;
 }
 
@@ -58,15 +58,10 @@ body {
   background: #fff;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: 500;
-  font-size: 0.75em;
+  /*font-size: 0.75em;*/
   margin: 0;
   padding: 0;
   overflow: hidden;
-}
-
-body, input[text], button {
-  color: rgba(0, 0, 0, 0.68);
-  font-size: initial;
 }
 
 .hidden {
@@ -77,11 +72,15 @@ body, input[text], button {
   float: left
 }
 
+.rightP {
+  float: right;
+}
+
 .rightPanelinside {
   width: 83%;
   padding: 0 !important;
   background-color: #fff;
-  height: calc(100vh - 2.2em);
+  height: calc(100vh - 3.8em);
 }
 
 .centerP {
@@ -341,18 +340,13 @@ TODO see what font to use
 
 .header.headerplaces {
   padding: 0.7em 0 .7em 0.4em;
+  font-size: 1em;
 }
 
 .panel.open > header {
   min-height: 2em !important;
   padding-top: 0.5em !important;
   padding-left: 0.3em !important;
-}
-
-.rightPanelinside_header {
-  background: #8792A0;
-  height: 2.5em;
-  display: none;
 }
 
 header.closed:hover,
@@ -531,8 +525,19 @@ textarea {
   font-size: 16px !important;
 }
 
-.btn_login.is-raised {
-  background: #00adef;
+.blue {
+  text-transform: none !important;
+  color: white !important;
+  font-size: 16px !important;
+  margin: 0 auto !important;
+  padding-left: 1em !important;
+  padding-right: 1em !important;
+}
+
+/****************/
+
+.btn_login.is-raised, .blue {
+  background: #00adef !important;
 }
 
 .roleChooser .imgBtn {
@@ -764,12 +769,21 @@ form#fileForm {
 }
 
 .commentPostit .postit {
-  right: 0!important;
+  right: 0 !important;
   top: -4px !important;
 }
 
 material-ripple {
   font-size: .8em !important;
+}
+
+material-button.btn_login {
+  background-color: #00adef;
+}
+
+material-button.btn_login .content {
+  color: #fff;
+  line-height: 0.9;
 }
 
 .basic-dialog.fileOpen {
@@ -959,7 +973,7 @@ ul {
 }
 
 header.closed {
-  background-color: #263a53 !important;
+  background-color: #262D40 !important;
   color: #9ca2ab !important;
   padding-left: 0.3em !important;
 }
@@ -1061,6 +1075,17 @@ header.closed .primary-text:before {
 
 /*_________Animation adit profile______________*/
 
+.croppie-container .cr-boundary, .croppie-container .cr-viewport {
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -o-border-radius: 50%;
+}
+
+.croppie-container .cr-slider-wrap {
+  margin: 1px auto !important;
+}
+
 #labelfileuploadprf {
   cursor: pointer;
   z-index: 1;
@@ -1073,6 +1098,19 @@ header.closed .primary-text:before {
   color: #bebebe;
   text-decoration: underline;
 }
+
+/*#labelfileuploadprf img {*/
+/*max-width: 100%;*/
+/*width: 80px;*/
+/*height: 80px;*/
+/*-webkit-border-radius: 100%;*/
+/*-moz-border-radius: 100%;*/
+/*border-radius: 100%;*/
+/*z-index: 3;*/
+/*position: absolute;*/
+/*left: 3px;*/
+/*top: 3px;*/
+/*}*/
 
 .spinAnim {
   width: 86px;
@@ -1097,19 +1135,6 @@ header.closed .primary-text:before {
   left: 0;
   top: 0;
   height: 86px;
-}
-
-#labelfileuploadprf img {
-  max-width: 100%;
-  width: 80px;
-  height: 80px;
-  -webkit-border-radius: 100%;
-  -moz-border-radius: 100%;
-  border-radius: 100%;
-  z-index: 3;
-  position: absolute;
-  left: 3px;
-  top: 3px;
 }
 
 .uploading .spinAnimCircle {
@@ -1399,6 +1424,38 @@ material-button.menuItem.profile .content, material-button.menuItem.logout .cont
   padding-right: 7px !important;
 }
 
+.termsConditions .header {
+  background-color: #262D40 !important;
+  padding: 0.5em 1em !important;
+}
+
+.termsConditions .popupContent {
+  padding: 1em 1.5em;
+}
+
+.termsConditions .header .txtt {
+  margin-left: 0.5em;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+.termsConditions .close {
+  top: 2.9px;
+  right: 0.5em;
+}
+
+.termsConditions .header .logo_intro, .termsConditions .header .txtt {
+  display: inline-block;
+  vertical-align: middle;
+  color: #fff;
+}
+
+.termsConditions {
+  max-width: 40%;
+  background-color: #ECECEC !important;
+  z-index: 999;
+}
+
 /*@media only screen and (max-width: 992px) {*/
 /*.leftP, .rightPanelinside {*/
 /*width: 100%;*/
@@ -1452,13 +1509,15 @@ input {
   white-space: nowrap;
 }
 
-
+/* arrow folders */
 .folders .scrollbar-macosx {
-  width: calc(100% + 10px);
+  width: 100%;
+  /*width: calc(100% + 10px);*/
 }
 
 .folders .scrollContent {
-  width:calc(100% - 10px);
+  /*width: 95%;*/
+  width: 100%;
 }
 
 /**********/
@@ -1597,6 +1656,129 @@ input {
 .u-userBackgroundColor:not(disabled),
 .u-userBackgroundColor:not(disabled) {
   background-color: red !important;
+}
+
+material-dialog.proxyCredentials {
+  max-width: 28em;
+  min-width: 20em;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+material-dialog.proxyCredentials .top-section {
+  width: calc(100% - 10px) !important;
+  padding: 4px 2px 7px 8px !important;
+}
+
+#signupPhotoDiv .croppie-container .cr-viewport, #labelProfileComp .croppie-container .cr-viewport {
+  box-shadow: 0 0 0 10px rgba(38, 45, 64, 0.57) !important;
+  border: 0 !important;
+}
+
+#signupPhotoDiv .croppie-container .cr-slider-wrap, #labelProfileComp .croppie-container .cr-slider-wrap {
+  margin: -3px auto !important;
+}
+
+/*__________________*/
+
+#commentArea {
+  background-color: yellow !important;
+  color: red !important;
+  display: inline !important;
+  padding: 1.4em !important;
+  width: calc(100% - 4em) !important;
+  color: rgba(0, 0, 0, 0.85);
+  margin: 0px;
+  margin-left: 10px;
+  min-height: 1em;
+  overflow: hidden;
+  position: relative;
+
+}
+
+/****************new 03-07-**********************/
+
+.rename_subject, .validRename_subject, .delete_subject {
+  font: normal normal normal 1.3em/ 1 'Material-Design-Iconic-Font';
+  vertical-align: middle;
+  display: inline-block;
+  opacity: 0;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -o-border-radius: 50%;
+  width: 1em;
+  height: 1em;
+  padding: 0;
+  margin-left: 0.4em;
+  line-height: 0.9em;
+  text-align: center;
+}
+
+/*li.subjectItem.selected .validRename_subject {*/
+/*display: block;*/
+/*}*/
+
+.rename_subject:after {
+  content: "\f158";
+  font-size: 0.8em;
+}
+
+.delete_subject:after {
+  content: "\f154";
+  font-size: 0.8em;
+}
+
+li.subjectItem:hover .rename_subject,
+li.subjectItem:hover .delete_subject {
+  opacity: 1;
+  color: #3471AA;
+}
+
+.editSubject {
+  width: 100%;
+}
+
+.editSubject input {
+  border: 0;
+  background-color: transparent !important;
+  height: 1em;
+  padding: 0.1em 0.55em 0.2em 0.7em;
+  color: whitesmoke;
+  width: calc(100% - 4.05em);
+  border-bottom: 1px solid white;
+  margin: 0.4em 0 0.3em 0;
+}
+
+.validRename_subject {
+  background-color: #fff;
+  color: #3471AA;
+  font-family: Arial;
+  font-size: 13px;
+  opacity: 1;
+  width: 1.8em;
+  height: 1.7em;
+  line-height: 1.6em;
+}
+
+.rename_subject:hover,
+.delete_subject:hover {
+  background-color: #fff;
+}
+
+.delete_subject {
+  margin: 0;
+}
+
+.rename_subject:hover:after,
+.delete_subject:hover:after {
+  color: #3471AA;
+}
+
+li.subjectItem.selected .rename_subject,
+li.subjectItem.selected .delete_subject {
+  /*opacity: 0;*/
+  color: #fff;
 }
 
 /*__________________*/

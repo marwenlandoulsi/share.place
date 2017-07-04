@@ -11,16 +11,18 @@
 // @ignoreProblemForFile UNUSED_LOCAL_VARIABLE
 import 'code_builder.dart';
 import 'package:analyzer/dart/ast/ast.dart';
+import 'package:analyzer/dart/ast/standard_ast_factory.dart';
 import 'package:angular2/src/source_gen/common/namespace_model.dart';
 import 'package:angular2/src/source_gen/common/ng_deps_model.dart';
-import 'package:angular2/src/source_gen/template_compiler/template_compiler_outputs.dart';
 import 'package:angular2/src/transform/common/names.dart';
 import 'package:code_builder/code_builder.dart';
+import 'package:code_builder/src/tokens.dart';
 import 'package:quiver/strings.dart' as strings;
+import 'template_compiler_outputs.dart';
 import 'package:angular2/src/source_gen/common/namespace_model.template.dart' as i0;
 import 'package:angular2/src/source_gen/common/ng_deps_model.template.dart' as i1;
-import 'package:angular2/src/source_gen/template_compiler/template_compiler_outputs.template.dart' as i2;
-import 'package:angular2/src/transform/common/names.template.dart' as i3;
+import 'package:angular2/src/transform/common/names.template.dart' as i2;
+import 'template_compiler_outputs.template.dart' as i3;
 export 'code_builder.dart';
 
 var _visited = false;

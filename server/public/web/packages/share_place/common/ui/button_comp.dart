@@ -9,7 +9,7 @@ class ButtonComp {
   String src;
   List<String> _srcList;
   bool enabled = true;
-  bool selected;
+  bool selected = false;
 
   @Input()
   void set sources(List<String> srcList) {

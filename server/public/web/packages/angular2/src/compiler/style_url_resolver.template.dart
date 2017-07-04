@@ -10,8 +10,8 @@
 // @ignoreProblemForFile UNUSED_SHOWN_NAME
 // @ignoreProblemForFile UNUSED_LOCAL_VARIABLE
 import 'style_url_resolver.dart';
-import 'package:angular2/src/compiler/url_resolver.dart' show UrlResolver;
-import 'package:angular2/src/compiler/url_resolver.template.dart' as i0;
+import 'url_resolver.dart' show UrlResolver;
+import 'url_resolver.template.dart' as i0;
 export 'style_url_resolver.dart';
 
 var _visited = false;

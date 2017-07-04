@@ -1,5 +1,3 @@
-import 'package:angular2/src/facade/lang.dart';
-
 import 'platform_reflection_capabilities.dart';
 import 'reflector.dart';
 import 'types.dart';
@@ -19,7 +17,7 @@ class NoReflectionCapabilities implements PlatformReflectionCapabilities {
   const NoReflectionCapabilities._();
 
   @override
-  bool isReflectionEnabled() => true;
+  bool get reflectionEnabled => true;
 
   @override
   Function factory(Type type) =>
@@ -35,7 +33,7 @@ class NoReflectionCapabilities implements PlatformReflectionCapabilities {
 
   @override
   List annotations(dynamic type) => throw new NoReflectionCapabilitiesError._(
-      "Cannot find reflection information on ${stringify(type)}");
+      "Cannot find reflection information on $type");
 
   @override
   Map<String, List> propMetadata(dynamic type) =>
@@ -66,11 +64,14 @@ final Reflector reflector = new Reflector(const NoReflectionCapabilities._());
 class NoReflectionCapabilitiesError extends Error {
   final String message;
 
+  // Only to be used in assertions enabled mode.
+  NoReflectionCapabilitiesError.debug(this.message);
+
   NoReflectionCapabilitiesError._(this.message);
 
   factory NoReflectionCapabilitiesError._noInfo(dynamic type) =>
       new NoReflectionCapabilitiesError._(
-          "Cannot find reflection information on ${stringify(type)}");
+          "Cannot find reflection information on $type");
 
   @override
   String toString() => message;

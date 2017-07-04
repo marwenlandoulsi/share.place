@@ -1,173 +1,188 @@
-import 'dart:html';
+// @ignoreProblemForFile DEAD_CODE
 import 'dart:convert';
+import 'dart:html';
+import 'dart:js_util' as js_util;
 
 import 'package:angular2/src/core/change_detection/change_detection.dart'
     show ChangeDetectionStrategy, ChangeDetectorState;
 import 'package:angular2/src/core/di.dart' show Injector;
-import 'package:angular2/src/core/render/api.dart';
-import 'package:angular2/src/core/linker/view_container.dart';
+import 'package:angular2/src/core/di/injector.dart' show THROW_IF_NOT_FOUND;
 import 'package:angular2/src/core/linker/app_view.dart';
+import 'package:angular2/src/core/linker/component_factory.dart';
 import 'package:angular2/src/core/linker/exceptions.dart'
     show ExpressionChangedAfterItHasBeenCheckedException, ViewWrappedException;
+import 'package:angular2/src/core/linker/view_container.dart';
 import 'package:angular2/src/core/linker/view_type.dart';
-import 'package:angular2/src/core/profile/profile.dart'
-    show wtfCreateScope, wtfLeave, WtfScopeFn;
-import 'package:angular2/src/core/render/api.dart' show RenderComponentType;
-import 'package:angular2/src/debug/debug_context.dart'
-    show StaticNodeDebugInfo, DebugContext;
-import 'package:angular2/src/debug/debug_node.dart'
+import 'package:angular2/src/core/render/api.dart';
+import 'package:func/func.dart';
+import 'package:js/js.dart' as js;
+import 'package:meta/meta.dart';
+
+import 'debug_context.dart' show StaticNodeDebugInfo, DebugContext;
+import 'debug_node.dart'
     show
         DebugElement,
         DebugNode,
         getDebugNode,
         indexDebugNode,
-        DebugEventListener,
+        inspectNativeElement,
         removeDebugNodeFromIndex;
-import "package:angular2/src/debug/debug_node.dart" show inspectNativeElement;
-import 'package:angular2/src/platform/dom/dom_adapter.dart' show DOM;
 
 export 'package:angular2/src/core/linker/app_view.dart';
-export 'package:angular2/src/debug/debug_context.dart'
-    show StaticNodeDebugInfo, DebugContext;
 
-WtfScopeFn _scope_check = wtfCreateScope('AppView#check(ascii id)');
+export 'debug_context.dart' show StaticNodeDebugInfo, DebugContext;
 
 // RegExp to match anchor comment when logging bindings for debugging.
 final RegExp _templateBindingsExp = new RegExp(r'^template bindings=(.*)$');
 final RegExp _matchNewLine = new RegExp(r'\n');
 const _templateCommentText = 'template bindings={}';
 const INSPECT_GLOBAL_NAME = "ng.probe";
+DebugContext _currentDebugContext;
 
 class DebugAppView<T> extends AppView<T> {
-  static bool profilingEnabled = false;
   static bool _ngProbeInitialized = false;
 
   final List<StaticNodeDebugInfo> staticNodeDebugInfos;
-  DebugContext _currentDebugContext;
+
+  /// References to all internal nodes/elements, for debugging purposes only.
+  ///
+  /// See [DebugAppView.init].
+  @visibleForTesting
+  List allNodes;
+
   DebugAppView(
-      dynamic clazz,
-      RenderComponentType componentType,
       ViewType type,
       Map<String, dynamic> locals,
-      Injector parentInjector,
-      ViewContainer declarationViewContainer,
+      AppView parentView,
+      int parentIndex,
       ChangeDetectionStrategy cdMode,
       this.staticNodeDebugInfos)
-      : super(clazz, componentType, type, locals, parentInjector,
-            declarationViewContainer, cdMode) {
+      : super(type, locals, parentView, parentIndex, cdMode) {
+    this.cdMode = cdMode;
     if (!_ngProbeInitialized) {
       _ngProbeInitialized = true;
-      DOM.setGlobalVar(INSPECT_GLOBAL_NAME, inspectNativeElement);
+      _setGlobalVar(INSPECT_GLOBAL_NAME, inspectNativeElement);
     }
   }
 
   @override
-  ViewContainer create(
-      List<dynamic /* dynamic | List < dynamic > */ > givenProjectableNodes,
-      selectorOrNode) {
-    this._resetDebug();
+  ComponentRef create(T context,
+      List<dynamic /* dynamic | List < dynamic > */ > givenProjectableNodes) {
+    _resetDebug();
     try {
-      return super.create(givenProjectableNodes, selectorOrNode);
-    } catch (e, e_stack) {
-      this._rethrowWithContext(e, e_stack);
+      return super.create(context, givenProjectableNodes);
+    } catch (e, s) {
+      _rethrowWithContext(e, s);
+      rethrow;
+    }
+  }
+
+  /// Builds host level view.
+  @override
+  ComponentRef createHostView(Injector hostInjector,
+      List<dynamic /* dynamic | List < dynamic > */ > givenProjectableNodes) {
+    _resetDebug();
+    try {
+      return super.createHostView(hostInjector, givenProjectableNodes);
+    } catch (e, s) {
+      this._rethrowWithContext(e, s);
       rethrow;
     }
   }
 
   @override
-  ViewContainer createComp(
-      List<dynamic /* dynamic | List < dynamic > */ > givenProjectableNodes,
-      selectorOrNode) {
-    this._resetDebug();
-    try {
-      return super.createComp(givenProjectableNodes, selectorOrNode);
-    } catch (e, e_stack) {
-      this._rethrowWithContext(e, e_stack);
-      rethrow;
-    }
-  }
-
-  @override
-  ViewContainer createHost(
-      List<dynamic /* dynamic | List < dynamic > */ > givenProjectableNodes,
-      selectorOrNode) {
-    this._resetDebug();
-    try {
-      return super.createHost(givenProjectableNodes, selectorOrNode);
-    } catch (e, e_stack) {
-      this._rethrowWithContext(e, e_stack);
-      rethrow;
-    }
-  }
-
-  dynamic injectorGet(dynamic token, int nodeIndex, dynamic notFoundResult) {
-    this._resetDebug();
+  dynamic injectorGet(dynamic token, int nodeIndex,
+      [dynamic notFoundResult = THROW_IF_NOT_FOUND]) {
+    _resetDebug();
     try {
       return super.injectorGet(token, nodeIndex, notFoundResult);
-    } catch (e, e_stack) {
-      this._rethrowWithContext(e, e_stack);
+    } catch (e, s) {
+      _rethrowWithContext(e, s, stopChangeDetection: false);
       rethrow;
     }
   }
 
-  void destroyLocal() {
-    this._resetDebug();
+  @override
+  void init(
+    List rootNodesOrViewContainers,
+    List subscriptions, [
+    List allNodesForDebug = const [],
+  ]) {
+    super.init(rootNodesOrViewContainers, subscriptions);
+    allNodes = allNodesForDebug;
+  }
+
+  @override
+  void destroy() {
+    _resetDebug();
     try {
-      super.destroyLocal();
-    } catch (e, e_stack) {
-      this._rethrowWithContext(e, e_stack);
+      super.destroy();
+    } catch (e, s) {
+      _rethrowWithContext(e, s);
       rethrow;
     }
   }
 
+  @override
   void detectChanges() {
-    this._resetDebug();
-    if (profilingEnabled) {
-      var s;
-      try {
-        var s = _scope_check(this.clazz);
-        super.detectChanges();
-        wtfLeave(s);
-      } catch (e, e_stack) {
-        wtfLeave(s);
-        this._rethrowWithContext(e, e_stack);
-        rethrow;
-      }
-    } else {
-      try {
-        super.detectChanges();
-      } catch (e) {
-        if (e is! ExpressionChangedAfterItHasBeenCheckedException) {
-          cdState = ChangeDetectorState.Errored;
-        }
-        rethrow;
-      }
-    }
+    _resetDebug();
+    super.detectChanges();
   }
 
   void _resetDebug() {
-    this._currentDebugContext = null;
+    _currentDebugContext = null;
   }
 
-  /*<R>*/ evt/*<E,R>*/(/*<R>*/ cb(/*<E>*/ e)) {
-    var superHandler = super.evt(cb);
-    return (/*<E>*/ event) {
-      this._resetDebug();
+  @override
+  VoidFunc1<Event> eventHandler0(Function handler) {
+    return (event) {
+      _resetDebug();
       try {
-        return superHandler(event);
-      } catch (e, e_stack) {
-        this._rethrowWithContext(e, e_stack);
+        return super.eventHandler0(handler)(event);
+      } catch (exception, stack) {
+        _rethrowWithContext(exception, stack);
         rethrow;
       }
     };
   }
 
-  Function listen(dynamic renderElement, String name, Function callback) {
-    var debugEl = getDebugNode(renderElement);
-    if (debugEl != null) {
-      debugEl.listeners.add(new DebugEventListener(name, callback));
-    }
-    return super.listen(renderElement, name, callback);
+  @override
+  VoidFunc1<Event> eventHandler1(Function handler) {
+    return (event) {
+      _resetDebug();
+      try {
+        return super.eventHandler1(handler)(event);
+      } catch (exception, stack) {
+        _rethrowWithContext(exception, stack);
+        rethrow;
+      }
+    };
+  }
+
+  @override
+  VoidFunc1<dynamic> streamHandler0(Function handler) {
+    return (data) {
+      _resetDebug();
+      try {
+        return super.streamHandler0(handler)(data);
+      } catch (exception, stack) {
+        _rethrowWithContext(exception, stack);
+        rethrow;
+      }
+    };
+  }
+
+  @override
+  VoidFunc1<dynamic> streamHandler1(Function handler) {
+    return (data) {
+      _resetDebug();
+      try {
+        return super.streamHandler1(handler)(data);
+      } catch (exception, stack) {
+        _rethrowWithContext(exception, stack);
+        rethrow;
+      }
+    };
   }
 
   /// Used only in debug mode to serialize property changes to dom nodes as
@@ -192,9 +207,9 @@ class DebugAppView<T> extends AppView<T> {
   DebugContext dbg(num nodeIndex, num rowNum, num colNum) =>
       _currentDebugContext = new DebugContext(this, nodeIndex, rowNum, colNum);
 
-  /// Registers dom node in global debug index.
-  void dbgElm(element, num nodeIndex, num rowNum, num colNum) {
-    var debugInfo = new DebugContext<T>(this, nodeIndex, rowNum, colNum);
+  /// Creates DebugElement for root element of a component.
+  void dbgIdx(element, num nodeIndex) {
+    var debugInfo = new DebugContext<T>(this, nodeIndex, 0, 0);
     if (element is Text) return;
     var debugEl;
     if (element is Comment) {
@@ -207,7 +222,6 @@ class DebugAppView<T> extends AppView<T> {
           debugInfo);
 
       debugEl.name = element is Text ? 'text' : element.tagName.toLowerCase();
-
       _currentDebugContext = debugInfo;
     }
     indexDebugNode(debugEl);
@@ -216,7 +230,8 @@ class DebugAppView<T> extends AppView<T> {
   /// Projects projectableNodes at specified index. We don't use helper
   /// functions to flatten the tree since it allocates list that are not
   /// required in most cases.
-  void project(Element parentElement, int index) {
+  @override
+  void project(Node parentElement, int index) {
     DebugElement debugParent = getDebugNode(parentElement);
     if (debugParent == null || debugParent is! DebugElement) {
       super.project(parentElement, index);
@@ -224,7 +239,9 @@ class DebugAppView<T> extends AppView<T> {
     }
     // Optimization for projectables that doesn't include ViewContainer(s).
     // If the projectable is ViewContainer we fall back to building up a list.
+    if (projectableNodes == null || index >= projectableNodes.length) return;
     List projectables = projectableNodes[index];
+    if (projectables == null) return;
     int projectableCount = projectables.length;
     for (var i = 0; i < projectableCount; i++) {
       var projectable = projectables[i];
@@ -237,6 +254,12 @@ class DebugAppView<T> extends AppView<T> {
           _appendDebugNestedViewRenderNodes(
               debugParent, parentElement, projectable);
         }
+      } else if (projectable is List) {
+        for (int n = 0, len = projectable.length; n < len; n++) {
+          Node node = projectable[n];
+          parentElement.append(node);
+          debugParent.addChild(getDebugNode(node));
+        }
       } else {
         Node child = projectable;
         parentElement.append(child);
@@ -246,6 +269,7 @@ class DebugAppView<T> extends AppView<T> {
     domRootRendererIsDirty = true;
   }
 
+  @override
   void detachViewNodes(List<dynamic> viewRootNodes) {
     viewRootNodes.forEach((node) {
       var debugNode = getDebugNode(node);
@@ -254,15 +278,6 @@ class DebugAppView<T> extends AppView<T> {
       }
     });
     super.detachViewNodes(viewRootNodes);
-  }
-
-  @override
-  dynamic selectRootElement(dynamic /* String | dynamic */ selectorOrNode,
-      RenderDebugInfo debugInfo) {
-    var nativeEl = super.selectRootElement(selectorOrNode, debugInfo);
-    var debugEl = new DebugElement(nativeEl, null, debugInfo);
-    indexDebugNode(debugEl);
-    return nativeEl;
   }
 
   @override
@@ -296,23 +311,25 @@ class DebugAppView<T> extends AppView<T> {
   }
 
   @override
-  void destroyViewNodes(dynamic hostElement, List<dynamic> viewAllNodes) {
-    int nodeCount = viewAllNodes.length;
+  void destroyViewNodes(hostElement) {
+    int nodeCount = allNodes.length;
     for (int i = 0; i < nodeCount; i++) {
-      var debugNode = getDebugNode(viewAllNodes[i]);
+      var debugNode = getDebugNode(allNodes[i]);
       if (debugNode == null) continue;
       removeDebugNodeFromIndex(debugNode);
     }
-    super.destroyViewNodes(hostElement, viewAllNodes);
+    super.destroyViewNodes(hostElement);
   }
 
-  void _rethrowWithContext(dynamic e, dynamic stack) {
+  void _rethrowWithContext(dynamic e, dynamic stack,
+      {bool stopChangeDetection: true}) {
     if (!(e is ViewWrappedException)) {
-      if (!(e is ExpressionChangedAfterItHasBeenCheckedException)) {
-        this.cdState = ChangeDetectorState.Errored;
+      if (stopChangeDetection &&
+          !(e is ExpressionChangedAfterItHasBeenCheckedException)) {
+        cdState = ChangeDetectorState.Errored;
       }
-      if (this._currentDebugContext != null) {
-        throw new ViewWrappedException(e, stack, this._currentDebugContext);
+      if (_currentDebugContext != null) {
+        throw new ViewWrappedException(e, stack, _currentDebugContext);
       }
     }
   }
@@ -320,7 +337,7 @@ class DebugAppView<T> extends AppView<T> {
 
 /// Recursively appends app element and nested view nodes to target element.
 void _appendDebugNestedViewRenderNodes(
-    DebugElement debugParent, Element targetElement, ViewContainer appElement) {
+    DebugElement debugParent, Node targetElement, ViewContainer appElement) {
   targetElement.append(appElement.nativeElement as Node);
   var nestedViews = appElement.nestedViews;
   if (nestedViews == null || nestedViews.isEmpty) return;
@@ -340,4 +357,68 @@ void _appendDebugNestedViewRenderNodes(
       }
     }
   }
+}
+
+void _setGlobalVar(String path, value) {
+  var parts = path.split('.');
+  Object obj = window;
+  for (var i = 0; i < parts.length - 1; i++) {
+    var name = parts[i];
+    if (!js_util.callMethod(obj, 'hasOwnProperty', [name])) {
+      js_util.setProperty(obj, name, js_util.newObject());
+    }
+    obj = js_util.getProperty(obj, name);
+  }
+  js_util.setProperty(obj, parts[parts.length - 1],
+      (value is Function) ? js.allowInterop(value) : value);
+}
+
+/// Registers dom node in global debug index.
+void dbgElm(DebugAppView view, element, num nodeIndex, num rowNum, num colNum) {
+  var debugInfo = new DebugContext(view, nodeIndex, rowNum, colNum);
+  if (element is Text) return;
+  var debugEl;
+  if (element is Comment) {
+    debugEl =
+        new DebugNode(element, getDebugNode(element.parentNode), debugInfo);
+  } else {
+    debugEl = new DebugElement(
+        element,
+        element.parentNode == null ? null : getDebugNode(element.parentNode),
+        debugInfo);
+
+    debugEl.name = element is Text ? 'text' : element.tagName.toLowerCase();
+
+    _currentDebugContext = debugInfo;
+  }
+  indexDebugNode(debugEl);
+}
+
+/// Helper function called by DebugAppView.build to reduce code size.
+Element createAndAppendDbg(AppView view, Document doc, String tagName,
+    Element parent, int nodeIndex, int line, int column) {
+  var elm = doc.createElement(tagName);
+  parent.append(elm);
+  dbgElm(view, elm, nodeIndex, line, column);
+  return elm;
+  // Workaround since package expect/@NoInline not available outside sdk.
+  return null; // ignore: dead_code
+  return null; // ignore: dead_code
+  return null; // ignore: dead_code
+  return null; // ignore: dead_code
+  return null; // ignore: dead_code
+  return null; // ignore: dead_code
+  return null; // ignore: dead_code
+  return null; // ignore: dead_code
+  return null; // ignore: dead_code
+  return null; // ignore: dead_code
+}
+
+/// Helper function called by DebugAppView.build to reduce code size.
+Element createAndAppendToShadowRootDbg(AppView view, Document doc,
+    String tagName, ShadowRoot parent, int nodeIndex, int line, int column) {
+  var elm = doc.createElement(tagName);
+  dbgElm(view, elm, nodeIndex, line, column);
+  parent.append(elm);
+  return elm;
 }

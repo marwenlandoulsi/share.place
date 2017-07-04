@@ -1,98 +1,127 @@
 <div>
-  <modal *ngIf="connectedUser == null" [visible]="true">
-    <material-dialog class="basic-dialog login_pop">
-      <login-comp></login-comp>
-    </material-dialog>
-  </modal>
+    <modal *ngIf="connectedUser == null && electronProxyCredentials == null" [visible]="true">
+        <material-dialog class="basic-dialog login_pop">
+            <login-comp></login-comp>
+        </material-dialog>
+    </modal>
 
-  <modal *ngIf="profilePopinVisible != null" [visible]="profilePopinVisible">
-    <material-dialog class="basic-dialog profile_pop">
-      <profile-comp></profile-comp>
-    </material-dialog>
-  </modal>
+    <modal *ngIf="profilePopinVisible != null" [visible]="profilePopinVisible">
+        <material-dialog class="basic-dialog profile_pop">
+            <profile-comp *ngIf="connectedUser != null"></profile-comp>
+        </material-dialog>
+    </modal>
 
-  <modal *ngIf="editingRole" [visible]="editingRole">
-    <material-dialog defaultPopupSizeProvider
-                     enforceSpaceConstraints
-                     class="profilemenuvisible">
-      <change-roles-dialog></change-roles-dialog>
-    </material-dialog>
-  </modal>
+    <modal *ngIf="editingRole" [visible]="editingRole">
+        <material-dialog defaultPopupSizeProvider
+                         enforceSpaceConstraints
+                         class="profilemenuvisible">
+            <change-roles-dialog></change-roles-dialog>
+        </material-dialog>
+    </modal>
+
+    <modal *ngIf="termsAndConditionsVisible != null" [visible]="termsAndConditionsVisible">
+        <material-dialog defaultPopupSizeProvider
+                         enforceSpaceConstraints
+                         headered info class="termsConditions">
+            <termsConditions-comp [name]="'termsAndConditions'"></termsConditions-comp>
+        </material-dialog>
+    </modal>
+
+    <modal *ngIf="electronProxyCredentials != null" [visible]="electronProxyCredentials != null">
+        <material-dialog class="proxyCredentials">
+            <proxy-credentials></proxy-credentials>
+        </material-dialog>
+    </modal>
 
 
-  <div class="header header-top">
-    <div class="logo_header"><img src="../images/logo0.png" class="logo"></div>
-    <label class="desktopVersion">V0.1.14</label>
-    <div class="alertInner">
-      <notification [msg]="error" class="notif error" [duration]="-1"></notification>
-      <div *ngIf="messages != null && messages.length > 0">
-        <div *ngFor="let messageItem of messages">
-          <notification [msg]="messageItem" class="notif message" [duration]="-1"></notification>
+    <div class="header header-top">
+        <div class="logo_header"><img src="../images/logo0.png" class="logo"></div>
+        <label class="desktopVersion">QA V0.1.16</label>
+        <div class="alertInner">
+            <notification [msg]="error" class="notif error" [duration]="-1"></notification>
+            <div *ngIf="messages != null && messages.length > 0">
+                <div *ngFor="let messageItem of messages">
+                    <notification [msg]="messageItem" class="notif message" [duration]="-1"></notification>
+                </div>
+            </div>
         </div>
-      </div>
+        <div class="rightMenu">
+
+
+            <div class="imgProfil">
+
+                <img popupSource #profileMenu="popupSource" alignPositionX="end"
+                     alignPositionY="after"
+                     src="{{userPictureUrl}}"
+                     class="profileImg"
+                     (click)="profileMenuVisible = !profileMenuVisible"/>
+            </div>
+            <material-popup defaultPopupSizeProvider
+                            enforceSpaceConstraints
+                            [source]="profileMenu"
+                            [(visible)]="profileMenuVisible"
+                            class="profilemenuvisible" *ngIf="connectedUser != null ">
+                <div header class="popupHeader connectUsername">
+                    <span>{{connectedUser?.displayName}}</span>
+                </div>
+                <div class="popupContent">
+                    <material-button (click)="profile()" class="menuItem profile">
+                        <div class="profile_chmp">Edit profile</div>
+                    </material-button>
+                    <material-button (click)="logout()" class="menuItem logout">
+                        <div class="logout_chmp">Logout</div>
+                    </material-button>
+                </div>
+
+            </material-popup>
+
+            <div class="btnsWindow" *ngIf="!isWebApp">
+                <div class="btnHeader minus" aria-hidden="true" (click)="sendWindowEvent('minimizeWindow')"></div>
+                <div class="btnHeader window-maximize" aria-hidden="true"
+                     (click)="sendWindowEvent('maximizeWindow')"></div>
+                <div class="btnHeader closeWind" aria-hidden="true" (click)="sendWindowEvent('closeWindow')"></div>
+            </div>
+        </div>
     </div>
-    <div class="rightMenu">
-      <div class="imgProfil">
-        <img popupSource #profileMenu="popupSource" alignPositionX="end"
-             alignPositionY="after"
-             src="/auth/user/photo/s/{{connectedUser?.id}}" class="profileImg"
-             (click)="profileMenuVisible = !profileMenuVisible">
-      </div>
 
-      <material-popup defaultPopupSizeProvider
-                      enforceSpaceConstraints
-                      [source]="profileMenu"
-                      [(visible)]="profileMenuVisible"
-                      class="profilemenuvisible" *ngIf="connectedUser != null ">
-        <div header class="popupHeader connectUsername">
-          <span>{{connectedUser?.displayName}}</span>
+
+    <div class="resizable leftP">
+        <div class="inner">
+            <postit-comp [name]="'places'" [header]="'Welcome!'"
+                         [body]="'You can create your place on clicking on the + icon'"
+                         class="placesPostit"></postit-comp>
+            <postit-comp *ngIf="folder != null" [name]="'folders'" [header]="'Create a folder'"
+                         [body]="'To start, create a folder clicking on the + icon'"
+                         class="foldersPostit"></postit-comp>
+            <places></places>
         </div>
-        <div class="popupContent">
-          <material-button (click)="profile()" class="menuItem profile">
-            <div class="profile_chmp">Edit profile</div>
-          </material-button>
-          <material-button (click)="logout()" class="menuItem logout">
-            <div class="logout_chmp">Logout</div>
-          </material-button>
-        </div>
-
-      </material-popup>
-
-      <div class="btnsWindow" *ngIf="!isWebApp">
-        <div class="btnHeader minus" aria-hidden="true" (click)="sendWindowEvent('minimizeWindow')"></div>
-        <div class="btnHeader window-maximize" aria-hidden="true" (click)="sendWindowEvent('maximizeWindow')"></div>
-        <div class="btnHeader closeWind" aria-hidden="true" (click)="sendWindowEvent('closeWindow')"></div>
-      </div>
     </div>
-  </div>
+    <div class="resizable rightPanelinside">
 
-  <div class="leftP">
-    <postit-comp [name]="'places'" [header]="'Welcome!'" [body]="'You can create your place on clicking on the + icon'"
-                 class="placesPostit"></postit-comp>
-
-
-    <postit-comp *ngIf="folder != null" [name]="'folders'" [header]="'Create a folder'"
-                 [body]="'To start, create a folder clicking on the + icon'"
-                 class="foldersPostit"></postit-comp>
-
-
-    <places></places>
-  </div>
-  <div class="rightPanelinside">
-    <div class="rightPanelinside_header"></div>
-    <div class="row">
-      <div class="centerP">
-        <subjects></subjects>
-      </div>
-
-      <div class="rightP">
-        <div class="rightPinside">
-          <div class="files">
-            <files-comp></files-comp>
-          </div>
+        <div class="rightPanelinside_header">
+            <div class="searchTop"><input class='open' type="text" #text placeholder="Search a topic"
+                                          (keyup.enter)="search(text.value)" [(ngModel)]="searchText"/>
+                <div class="closeSearch" (click)="close()"></div>
+            </div>
         </div>
-      </div>
+        <search-comp *ngIf="searchText != null"></search-comp>
+
+        <div class="row">
+            <div class="resizable centerP">
+                <!--ng-if when it  is  search  it  will not be visible-->
+                <subjects></subjects>
+
+
+            </div>
+
+            <div class="resizable rightP">
+                <div class="rightPinside">
+                    <div class="files">
+                        <files-comp></files-comp>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
-  </div>
-  <!--<button onclick="dispatchWindowEvent('data of event')">Test event</button>-->
 </div>

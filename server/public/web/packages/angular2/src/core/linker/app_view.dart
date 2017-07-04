@@ -1,48 +1,107 @@
+// @ignoreProblemForFile DEAD_CODE
+import 'dart:async';
 import 'dart:html';
+import 'dart:js_util' as js_util;
 
 import 'package:angular2/src/core/change_detection/change_detection.dart'
     show ChangeDetectorRef, ChangeDetectionStrategy, ChangeDetectorState;
 import 'package:angular2/src/core/di.dart' show Injector;
+import 'package:angular2/src/core/di/injector.dart' show THROW_IF_NOT_FOUND;
 import 'package:angular2/src/core/metadata/view.dart' show ViewEncapsulation;
 import 'package:angular2/src/core/render/api.dart';
 import 'package:angular2/src/platform/dom/shared_styles_host.dart';
 
-import 'view_container.dart';
+import 'package:func/func.dart';
+import 'package:meta/meta.dart';
+import '../zone/ng_zone.dart';
 import 'app_view_utils.dart';
+import 'component_factory.dart';
 import 'element_injector.dart' show ElementInjector;
 import 'exceptions.dart' show ViewDestroyedException;
+import 'template_ref.dart';
+import 'view_container.dart';
 import 'view_ref.dart' show ViewRefImpl;
 import 'view_type.dart' show ViewType;
-import 'dart:js_util' as js_util;
 
 export 'package:angular2/src/core/change_detection/component_state.dart';
 
-const EMPTY_CONTEXT = const Object();
+/// **INTERNAL ONLY**: Will be made private once the reflective compiler is out.
+///
+/// Template anchor `<!-- template bindings={}` for cloning.
+@visibleForTesting
+final ngAnchor = new Comment('template bindings={}');
 
+/// ***INTERNAL ONLY**: Whether a crash was detected in change detection.
+///
+/// When non-null, change detection is re-run (synchronously), in a slow-mode
+/// that individually checks components, and disables change detection for them
+/// if there is a failure detected.
+@visibleForTesting
+AppView lastGuardedView;
+
+/// Exception caught for [lastGuardedView].
+@visibleForTesting
+dynamic caughtException;
+
+/// Stack trace caught for [lastGuardedView].
+@visibleForTesting
+dynamic caughtStack;
+
+/// Set to `true` when Angular modified the DOM.
+///
+/// May be used in order to optimize polling techniques that attempt to only
+/// process events after a significant change detection cycle (i.e. one that
+/// modified the DOM versus a no-op).
 bool domRootRendererIsDirty = false;
 
-/// Cost of making objects: http://jsperf.com/instantiate-size-of-object
+const _UndefinedInjectorResult = const Object();
+
+/// Base class for a generated templates for a given [Component] type [T].
 abstract class AppView<T> {
-  dynamic clazz;
+  /// The type of view (host element, complete template, embedded template).
+  final ViewType type;
+
+  /// Local values scoped to this view.
+  final Map<String, dynamic> locals;
+
+  /// Parent generated view.
+  final AppView parentView;
+
+  /// Index of this view within the [parentView].
+  final int parentIndex;
+
+  /// View reference interface (user-visible API).
+  ViewRefImpl ref;
+
+  /// A representation of how the component will be rendered in the DOM.
+  ///
+  /// This is _lazily_ set via [setupComponentType] in a generated constructor.
   RenderComponentType componentType;
-  ViewType type;
-  Map<String, dynamic> locals;
-  Injector parentInjector;
-  ViewContainer declarationViewContainer;
+
+  /// The root element.
+  ///
+  /// This is _lazily_ initialized in a generated constructor.
+  HtmlElement rootEl;
+
+  /// What type of change detection the view is using.
   ChangeDetectionStrategy _cdMode;
+
   // Improves change detection tree traversal by caching change detection mode
   // and change detection state checks. When set to true, this view doesn't need
   // to be change detected.
   bool _skipChangeDetection = false;
-  ViewRefImpl ref;
+
+  /// Tracks the root DOM elements or view containers (for `<template>`).
+  ///
+  /// **INTERNAL ONLY**: Not part of the supported public API.
+  @visibleForTesting
   List rootNodesOrViewContainers;
-  List allNodes;
-  final List<OnDestroyCallback> _onDestroyCallbacks = <OnDestroyCallback>[];
+
+  final _onDestroyCallbacks = <OnDestroyCallback>[];
   List subscriptions;
-  List<AppView> contentChildren = [];
-  List<AppView> viewChildren = [];
-  AppView renderParent;
-  ViewContainer viewContainerElement;
+
+  /// Container that is set when this view is attached to a container.
+  ViewContainer _viewContainerElement;
 
   // The names of the below fields must be kept in sync with codegen_name_util.ts or
   // change detection will fail.
@@ -53,17 +112,31 @@ abstract class AppView<T> {
   ///
   /// This is always a component instance.
   T ctx;
+
   List<dynamic /* dynamic | List < dynamic > */ > projectableNodes;
+
+  /// Whether the view has been destroyed.
   bool destroyed = false;
-  bool _hasExternalHostElement;
-  AppView(this.clazz, this.componentType, this.type, this.locals,
-      this.parentInjector, this.declarationViewContainer, this._cdMode) {
+
+  /// Host DI interface.
+  Injector _hostInjector;
+
+  AppView(
+    this.type,
+    this.locals,
+    this.parentView,
+    this.parentIndex,
+    this._cdMode,
+  ) {
     ref = new ViewRefImpl(this);
-    sharedStylesHost ??= new DomSharedStylesHost(document);
-    if (!componentType.stylesShimmed) {
-      componentType.shimStyles(sharedStylesHost);
-      componentType.stylesShimmed = true;
+  }
+
+  void setupComponentType(RenderComponentType renderType) {
+    if (!renderType.stylesShimmed) {
+      renderType.shimStyles(sharedStylesHost);
+      renderType.stylesShimmed = true;
     }
+    componentType = renderType;
   }
 
   /// Sets change detection mode for this view and caches flag to skip
@@ -100,117 +173,33 @@ abstract class AppView<T> {
             identical(_cdState, ChangeDetectorState.Errored);
   }
 
-  ViewContainer create(
-      List<dynamic /* dynamic | List < dynamic > */ > givenProjectableNodes,
-      dynamic /* String | Node */ rootSelectorOrNode) {
-    T context;
-    var projectableNodes;
-    switch (this.type) {
-      case ViewType.COMPONENT:
-        context = declarationViewContainer.component as T;
-        projectableNodes = ensureSlotCount(
-            givenProjectableNodes, this.componentType.slotCount);
-        break;
-      case ViewType.EMBEDDED:
-        return createEmbedded(givenProjectableNodes, rootSelectorOrNode);
-      case ViewType.HOST:
-        return createHost(givenProjectableNodes, rootSelectorOrNode);
-    }
-    this._hasExternalHostElement = rootSelectorOrNode != null;
-    this.ctx = context;
-    this.projectableNodes = projectableNodes;
-    return this.createInternal(rootSelectorOrNode);
-  }
-
-  /// Builds a host view.
-  ViewContainer createHost(
-      List<dynamic /* dynamic | List < dynamic > */ > givenProjectableNodes,
-      dynamic /* String | Node */ rootSelectorOrNode) {
-    assert(type == ViewType.HOST);
-    ctx = null;
-    // Note: Don't ensure the slot count for the projectableNodes as
-    // we store them only for the contained component view (which will
-    // later check the slot count...)
+  ComponentRef create(T context,
+      List<dynamic /* dynamic | List < dynamic > */ > givenProjectableNodes) {
+    ctx = context;
     projectableNodes = givenProjectableNodes;
-    _hasExternalHostElement = rootSelectorOrNode != null;
-    return createInternal(rootSelectorOrNode);
+    return build();
   }
 
-  /// Builds a nested embedded view.
-  ViewContainer createEmbedded(
-      List<dynamic /* dynamic | List < dynamic > */ > givenProjectableNodes,
-      dynamic /* String | Node */ rootSelectorOrNode) {
-    projectableNodes = declarationViewContainer.parentView.projectableNodes;
-    _hasExternalHostElement = rootSelectorOrNode != null;
-    ctx = declarationViewContainer.parentView.ctx as T;
-    return createInternal(rootSelectorOrNode);
+  /// Builds host level view.
+  ComponentRef createHostView(Injector hostInjector,
+      List<dynamic /* dynamic | List < dynamic > */ > givenProjectableNodes) {
+    _hostInjector = hostInjector;
+    projectableNodes = givenProjectableNodes;
+    return build();
   }
 
-  /// Builds a component view.
-  ViewContainer createComp(
-      List<dynamic /* dynamic | List < dynamic > */ > givenProjectableNodes,
-      dynamic /* String | Node */ rootSelectorOrNode) {
-    projectableNodes =
-        ensureSlotCount(givenProjectableNodes, componentType.slotCount);
-    _hasExternalHostElement = rootSelectorOrNode != null;
-    ctx = declarationViewContainer.component as T;
-    return createInternal(rootSelectorOrNode);
-  }
-
-  /// Returns the ViewContainer for the host element for ViewType.HOST.
+  /// Returns the ComponentRef for the host element for ViewType.HOST.
   ///
   /// Overwritten by implementations.
-  ViewContainer createInternal(
-          dynamic /* String | Node */ rootSelectorOrNode) =>
-      null;
+  ComponentRef build() => null;
 
-  /// Called by createInternal once all dom nodes are available.
-  void init(List rootNodesOrViewContainers, List allNodes, List subscriptions) {
+  /// Called by build once all dom nodes are available.
+  void init(List rootNodesOrViewContainers, List subscriptions) {
     this.rootNodesOrViewContainers = rootNodesOrViewContainers;
-    this.allNodes = allNodes;
     this.subscriptions = subscriptions;
     if (type == ViewType.COMPONENT) {
-      // Note: the render nodes have been attached to their host element
-      // in the ViewFactory already.
-      declarationViewContainer.parentView.viewChildren.add(this);
       dirtyParentQueriesInternal();
     }
-  }
-
-  dynamic selectOrCreateHostElement(String elementName,
-      dynamic /* String | Node */ rootSelectorOrNode, debugCtx) {
-    var hostElement;
-    if (type == ViewType.COMPONENT || type == ViewType.HOST) {
-      if (rootSelectorOrNode != null) {
-        hostElement = selectRootElement(rootSelectorOrNode, debugCtx);
-      } else {
-        hostElement = createElement(null, elementName, debugCtx);
-      }
-    } else {
-      var target = declarationViewContainer.parentView;
-      if (rootSelectorOrNode != null) {
-        hostElement = target.selectRootElement(rootSelectorOrNode, debugCtx);
-      } else {
-        hostElement = target.createElement(null, elementName, debugCtx);
-      }
-    }
-    return hostElement;
-  }
-
-  dynamic selectRootElement(
-      dynamic /* String | Node */ selectorOrNode, RenderDebugInfo debugInfo) {
-    Node el;
-    if (selectorOrNode is String) {
-      el = querySelector(selectorOrNode);
-      if (el == null) {
-        throw new Exception(
-            'The selector "${selectorOrNode}" did not match any elements');
-      }
-    } else {
-      el = selectorOrNode;
-    }
-    el.nodes = [];
-    return el;
   }
 
   dynamic createElement(
@@ -233,8 +222,23 @@ abstract class AppView<T> {
     domRootRendererIsDirty = true;
   }
 
-  dynamic injectorGet(dynamic token, int nodeIndex, dynamic notFoundResult) {
-    return this.injectorGetInternal(token, nodeIndex, notFoundResult);
+  dynamic injectorGet(token, int nodeIndex,
+      [notFoundValue = THROW_IF_NOT_FOUND]) {
+    var result = _UndefinedInjectorResult;
+    AppView view = this;
+    while (identical(result, _UndefinedInjectorResult)) {
+      if (nodeIndex != null) {
+        result = view.injectorGetInternal(
+            token, nodeIndex, _UndefinedInjectorResult);
+      }
+      if (identical(result, _UndefinedInjectorResult) &&
+          view._hostInjector != null) {
+        result = view._hostInjector.get(token, notFoundValue);
+      }
+      nodeIndex = view.parentIndex;
+      view = view.parentView;
+    }
+    return result;
   }
 
   /// Overwritten by implementations
@@ -243,21 +247,12 @@ abstract class AppView<T> {
     return notFoundResult;
   }
 
-  Injector injector(int nodeIndex) {
-    if (nodeIndex == null) {
-      return parentInjector;
-    }
-    return new ElementInjector(this, nodeIndex);
-  }
+  Injector injector(int nodeIndex) => new ElementInjector(this, nodeIndex);
 
-  void destroy() {
-    if (_hasExternalHostElement) {
-      detachViewNodes(flatRootNodes);
-    } else {
-      viewContainerElement
-          ?.detachView(viewContainerElement.nestedViews.indexOf(this));
-    }
-    _destroyRecurse();
+  void detachAndDestroy() {
+    _viewContainerElement
+        ?.detachView(_viewContainerElement.nestedViews.indexOf(this));
+    destroy();
   }
 
   void detachViewNodes(List<dynamic> viewRootNodes) {
@@ -269,40 +264,23 @@ abstract class AppView<T> {
     }
   }
 
-  void _destroyRecurse() {
-    if (destroyed) {
-      return;
-    }
-    var children = contentChildren;
-    int length = children.length;
-    for (var i = 0; i < length; i++) {
-      children[i]._destroyRecurse();
-    }
-    children = viewChildren;
-    int viewChildCount = viewChildren.length;
-    for (var i = 0; i < viewChildCount; i++) {
-      children[i]._destroyRecurse();
-    }
-    destroyLocal();
+  void destroy() {
+    if (destroyed) return;
     destroyed = true;
-  }
 
-  void destroyLocal() {
-    var hostElement = type == ViewType.COMPONENT
-        ? declarationViewContainer.nativeElement
-        : null;
+    var hostElement = type == ViewType.COMPONENT ? rootEl : null;
     for (int i = 0, len = _onDestroyCallbacks.length; i < len; i++) {
       _onDestroyCallbacks[i]();
     }
     for (var i = 0, len = subscriptions.length; i < len; i++) {
-      this.subscriptions[i].cancel();
+      subscriptions[i].cancel();
     }
     destroyInternal();
     dirtyParentQueriesInternal();
-    destroyViewNodes(hostElement, allNodes);
+    destroyViewNodes(hostElement);
   }
 
-  void destroyViewNodes(dynamic hostElement, List<dynamic> viewAllNodes) {
+  void destroyViewNodes(hostElement) {
     if (componentType.encapsulation == ViewEncapsulation.Native &&
         hostElement != null) {
       sharedStylesHost.removeHost(hostElement.shadowRoot);
@@ -319,8 +297,6 @@ abstract class AppView<T> {
 
   ChangeDetectorRef get changeDetectorRef => ref;
 
-  AppView<dynamic> get parent => declarationViewContainer?.parentView;
-
   List<Node> get flatRootNodes =>
       _flattenNestedViews(rootNodesOrViewContainers);
 
@@ -331,9 +307,6 @@ abstract class AppView<T> {
     return _findLastRenderNode(lastNode);
   }
 
-  // TODO: remove when all tests use codegen=debug.
-  void dbgElm(element, num nodeIndex, num rowNum, num colNum) {}
-
   bool hasLocal(String contextName) => locals.containsKey(contextName);
 
   void setLocal(String contextName, dynamic value) {
@@ -343,50 +316,72 @@ abstract class AppView<T> {
   /// Overwritten by implementations
   void dirtyParentQueriesInternal() {}
 
+  /// Framework-visible implementation of change detection for the view.
+  @mustCallSuper
   void detectChanges() {
-    if (_skipChangeDetection) return;
-    if (destroyed) throwDestroyedError('detectChanges');
+    // Whether the CD state means change detection should be skipped.
+    // Cases: ERRORED (Crash), CHECKED (Already-run), DETACHED (inactive).
+    if (_skipChangeDetection) {
+      return;
+    }
 
-    detectChangesInternal();
+    // Sanity check in dev-mode that a destroyed view is not checked again.
+    assert(() {
+      if (destroyed) {
+        throw new ViewDestroyedException('detectChanges');
+      }
+      return true;
+    });
+
+    if (lastGuardedView != null) {
+      // Run change detection in "slow-mode" to catch thrown exceptions.
+      detectCrash();
+    } else {
+      // Normally run change detection.
+      detectChangesInternal();
+    }
+
+    // If we are a 'CheckOnce' component, we are done being checked.
     if (_cdMode == ChangeDetectionStrategy.CheckOnce) {
       _cdMode = ChangeDetectionStrategy.Checked;
       _skipChangeDetection = true;
     }
+
+    // Set the state to already checked at least once.
     cdState = ChangeDetectorState.CheckedBefore;
   }
 
-  /// Overwritten by implementations
-  void detectChangesInternal() {
-    detectContentChildrenChanges();
-    detectViewChildrenChanges();
-  }
-
-  void detectContentChildrenChanges() {
-    for (var i = 0, length = contentChildren.length; i < length; ++i) {
-      contentChildren[i].detectChanges();
+  /// Runs change detection with a `try { ... } catch { ...}`.
+  ///
+  /// This only is run when the framework has detected a crash previously.
+  @mustCallSuper
+  @protected
+  void detectCrash() {
+    try {
+      detectChangesInternal();
+    } catch (e, s) {
+      lastGuardedView = this;
+      caughtException = e;
+      caughtStack = s;
     }
   }
 
-  void detectViewChildrenChanges() {
-    for (var i = 0, len = viewChildren.length; i < len; ++i) {
-      viewChildren[i].detectChanges();
-    }
-  }
+  /// Generated code that is called internally by [detectChanges].
+  @protected
+  void detectChangesInternal() {}
 
   void markContentChildAsMoved(ViewContainer renderViewContainer) {
     dirtyParentQueriesInternal();
   }
 
   void addToContentChildren(ViewContainer renderViewContainer) {
-    renderViewContainer.parentView.contentChildren.add(this);
-    viewContainerElement = renderViewContainer;
+    _viewContainerElement = renderViewContainer;
     dirtyParentQueriesInternal();
   }
 
   void removeFromContentChildren(ViewContainer renderViewContainer) {
-    renderViewContainer.parentView.contentChildren.remove(this);
     dirtyParentQueriesInternal();
-    viewContainerElement = null;
+    _viewContainerElement = null;
   }
 
   void markAsCheckOnce() {
@@ -407,36 +402,21 @@ abstract class AppView<T> {
       if (cdMode == ChangeDetectionStrategy.Checked) {
         view.cdMode = ChangeDetectionStrategy.CheckOnce;
       }
-      var parentEl = view.type == ViewType.COMPONENT
-          ? view.declarationViewContainer
-          : view.viewContainerElement;
-      view = parentEl?.parentView;
+      view = view.type == ViewType.COMPONENT
+          ? view.parentView
+          : view._viewContainerElement?.parentView;
     }
-  }
-
-  // Used to get around strong mode error due to loosely typed
-  // subscription handlers.
-  /*<R>*/ evt/*<E,R>*/(/*<R>*/ cb(/*<E>*/ e)) {
-    return cb;
-  }
-
-  void throwDestroyedError(String details) {
-    throw new ViewDestroyedException(details);
   }
 
   static void initializeSharedStyleHost(document) {
     sharedStylesHost ??= new DomSharedStylesHost(document);
   }
 
-  // Returns content attribute to add to elements for css encapsulation.
-  String get shimCAttr => componentType.contentAttr;
-
   /// Initializes styling to enable css shim for host element.
-  Element initViewRoot(dynamic hostElement) {
+  HtmlElement initViewRoot(HtmlElement hostElement) {
     assert(componentType.encapsulation != ViewEncapsulation.Native);
     if (componentType.hostAttr != null) {
-      Element host = hostElement;
-      host.attributes[componentType.hostAttr] = '';
+      hostElement.classes.add(componentType.hostAttr);
     }
     return hostElement;
   }
@@ -500,6 +480,24 @@ abstract class AppView<T> {
     domRootRendererIsDirty = true;
   }
 
+  /// Adds content shim class to HtmlElement.
+  void addShimC(HtmlElement element) {
+    String contentClass = componentType.contentAttr;
+    if (contentClass != null) element.classes.add(contentClass);
+  }
+
+  /// Adds content shim class to Svg or unknown tag type.
+  void addShimE(Element element) {
+    String contentClass = componentType.contentAttr;
+    if (contentClass != null) element.classes.add(contentClass);
+  }
+
+  /// Adds host shim class.
+  void addShimH(Element element) {
+    String hostClass = componentType.hostAttr;
+    if (hostClass != null) element.classes.add(hostClass);
+  }
+
   // Marks DOM dirty so that end of zone turn we can detect if DOM was updated
   // for sharded apps support.
   void setDomDirty() {
@@ -509,11 +507,13 @@ abstract class AppView<T> {
   /// Projects projectableNodes at specified index. We don't use helper
   /// functions to flatten the tree since it allocates list that are not
   /// required in most cases.
-  void project(Element parentElement, int index) {
+  void project(Node parentElement, int index) {
     if (parentElement == null) return;
     // Optimization for projectables that doesn't include ViewContainer(s).
     // If the projectable is ViewContainer we fall back to building up a list.
+    if (projectableNodes == null || index >= projectableNodes.length) return;
     List projectables = projectableNodes[index];
+    if (projectables == null) return;
     int projectableCount = projectables.length;
     for (var i = 0; i < projectableCount; i++) {
       var projectable = projectables[i];
@@ -523,6 +523,10 @@ abstract class AppView<T> {
         } else {
           _appendNestedViewRenderNodes(parentElement, projectable);
         }
+      } else if (projectable is List) {
+        for (int n = 0, len = projectable.length; n < len; n++) {
+          parentElement.append(projectable[n]);
+        }
       } else {
         Node child = projectable;
         parentElement.append(child);
@@ -531,18 +535,72 @@ abstract class AppView<T> {
     domRootRendererIsDirty = true;
   }
 
-  Function listen(dynamic renderElement, String name, Function callback) {
-    return appViewUtils.eventManager.addEventListener(renderElement, name,
-        (Event event) {
-      var result = callback(event);
-      if (identical(result, false)) {
-        event.preventDefault();
+  VoidFunc1<Event> eventHandler0(Function handler) {
+    return (event) {
+      markPathToRootAsCheckOnce();
+      if (NgZone.isInAngularZone()) {
+        var result = handler();
+        if (identical(result, false)) {
+          event.preventDefault();
+        }
+      } else {
+        appViewUtils.eventManager.getZone().runGuarded(() {
+          var result = handler();
+          if (identical(result, false)) {
+            event.preventDefault();
+          }
+        });
       }
-    });
+    };
+  }
+
+  VoidFunc1<Event> eventHandler1(Function handler) {
+    return (event) {
+      markPathToRootAsCheckOnce();
+      if (NgZone.isInAngularZone()) {
+        var result = handler(event);
+        if (identical(result, false)) {
+          event.preventDefault();
+        }
+      } else {
+        appViewUtils.eventManager.getZone().runGuarded(() {
+          var result = handler(event);
+          if (identical(result, false)) {
+            event.preventDefault();
+          }
+        });
+      }
+    };
+  }
+
+  VoidFunc1<dynamic> streamHandler0(Function handler) {
+    return (_) {
+      markPathToRootAsCheckOnce();
+      handler();
+    };
+  }
+
+  VoidFunc1<dynamic> streamHandler1(Function handler) {
+    return (data) {
+      markPathToRootAsCheckOnce();
+      handler(data);
+    };
   }
 
   void setProp(Element element, String name, Object value) {
     js_util.setProperty(element, name, value);
+  }
+
+  void loadDeferred(
+      Future loadComponentFunction(),
+      Future loadTemplateLibFunction(),
+      ViewContainer viewContainer,
+      TemplateRef templateRef,
+      void initializer()) {
+    Future.wait([loadComponentFunction(), loadTemplateLibFunction()]).then((_) {
+      initializer();
+      viewContainer.createEmbeddedView(templateRef);
+    });
   }
 }
 
@@ -631,6 +689,28 @@ void moveNodesAfterSibling(Node sibling, List<Node> nodes) {
       }
     }
   }
+}
+
+/// Helper function called by AppView.build to reduce code size.
+Element createAndAppend(Document doc, String tagName, Element parent) {
+  return parent.append(doc.createElement(tagName));
+  // Workaround since package expect/@NoInline not available outside sdk.
+  return null; // ignore: dead_code
+  return null; // ignore: dead_code
+  return null; // ignore: dead_code
+  return null; // ignore: dead_code
+  return null; // ignore: dead_code
+  return null; // ignore: dead_code
+  return null; // ignore: dead_code
+  return null; // ignore: dead_code
+  return null; // ignore: dead_code
+  return null; // ignore: dead_code
+}
+
+/// Helper function called by AppView.build to reduce code size.
+Element createAndAppendToShadowRoot(
+    Document doc, String tagName, ShadowRoot parent) {
+  return parent.append(doc.createElement(tagName));
 }
 
 /// TODO(ferhat): Remove once dynamic(s) are changed in codegen and class.

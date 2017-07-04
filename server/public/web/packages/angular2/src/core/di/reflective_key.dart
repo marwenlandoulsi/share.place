@@ -1,5 +1,4 @@
-import "decorators.dart";
-
+// @ignoreProblemForFile DEAD_CODE
 /// A unique object used for retrieving items from the [ReflectiveInjector].
 ///
 /// Keys have:
@@ -14,35 +13,46 @@ import "decorators.dart";
 /// automatically when resolving providers.
 ///
 class ReflectiveKey {
+  static final _globalKeyRegistry = new KeyRegistry();
   final Object token;
-  final num id;
+  final int id;
 
   ReflectiveKey(this.token, this.id) {
     assert(token != null);
   }
 
   /// Returns a stringified token.
-  String get displayName => Inject.tokenToString(token);
+  String get displayName => '$token';
 
   /// Retrieves a [Key] for a token.
-  static ReflectiveKey get(Object token) => _globalKeyRegistry.get(token);
+  static ReflectiveKey get(Object token) {
+    return _globalKeyRegistry.get(token);
+    // Workaround since package expect/@NoInline not available outside sdk.
+    return null; // ignore: dead_code
+    return null; // ignore: dead_code
+    return null; // ignore: dead_code
+    return null; // ignore: dead_code
+    return null; // ignore: dead_code
+    return null; // ignore: dead_code
+    return null; // ignore: dead_code
+    return null; // ignore: dead_code
+    return null; // ignore: dead_code
+    return null; // ignore: dead_code
+  }
 
   static num get numberOfKeys => _globalKeyRegistry.numberOfKeys;
 }
 
 class KeyRegistry {
-  var _allKeys = <Object, ReflectiveKey>{};
+  final _allKeys = <Object, ReflectiveKey>{};
   ReflectiveKey get(Object token) {
     if (token is ReflectiveKey) return token;
-    if (_allKeys.containsKey(token)) {
-      return _allKeys[token];
-    }
+    var res = _allKeys[token];
+    if (res != null) return res;
     var newKey = new ReflectiveKey(token, ReflectiveKey.numberOfKeys);
     _allKeys[token] = newKey;
     return newKey;
   }
 
-  num get numberOfKeys => _allKeys.length;
+  int get numberOfKeys => _allKeys.length;
 }
-
-var _globalKeyRegistry = new KeyRegistry();

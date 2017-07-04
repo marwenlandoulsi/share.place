@@ -21,13 +21,6 @@
       "prefix": null,
       "value": null
     },
-    "remoteUrl": {
-      "class": "Identifier",
-      "name": "remoteUrl",
-      "moduleUrl": "asset:share_place/lib/app_config.dart",
-      "prefix": null,
-      "value": null
-    },
     "cookieSessionId": {
       "class": "Identifier",
       "name": "cookieSessionId",
@@ -35,9 +28,9 @@
       "prefix": null,
       "value": null
     },
-    "port": {
+    "elasticUrl": {
       "class": "Identifier",
-      "name": "port",
+      "name": "elasticUrl",
       "moduleUrl": "asset:share_place/lib/app_config.dart",
       "prefix": null,
       "value": null
@@ -49,9 +42,23 @@
       "prefix": null,
       "value": null
     },
+    "port": {
+      "class": "Identifier",
+      "name": "port",
+      "moduleUrl": "asset:share_place/lib/app_config.dart",
+      "prefix": null,
+      "value": null
+    },
     "readConf": {
       "class": "Identifier",
       "name": "readConf",
+      "moduleUrl": "asset:share_place/lib/app_config.dart",
+      "prefix": null,
+      "value": null
+    },
+    "remoteUrl": {
+      "class": "Identifier",
+      "name": "remoteUrl",
       "moduleUrl": "asset:share_place/lib/app_config.dart",
       "prefix": null,
       "value": null

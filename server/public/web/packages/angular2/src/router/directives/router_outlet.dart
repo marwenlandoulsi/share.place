@@ -10,7 +10,7 @@ import "package:angular2/core.dart"
         ViewContainerRef,
         OnDestroy,
         Output,
-        MapInjector;
+        Injector;
 import "package:angular2/src/facade/async.dart" show EventEmitter;
 import "package:collection/collection.dart" show MapEquality;
 
@@ -21,7 +21,7 @@ import "../lifecycle/lifecycle_annotations.dart" as hook_mod;
 import "../lifecycle/route_lifecycle_reflector.dart" show hasLifecycleHook;
 import "../router.dart" as router_mod;
 
-var _resolveToTrue = new Future.value(true);
+var _resolveToTrue = new Future<bool>.value(true);
 
 /// A router outlet is a placeholder that Angular dynamically fills based on the application's route.
 ///
@@ -29,9 +29,18 @@ var _resolveToTrue = new Future.value(true);
 ///
 /// Here is an example from the [tutorial on routing][routing]:
 ///
-/// {@example docs/toh-5/lib/app_component.dart region=template}
+/// <?code-excerpt "docs/toh-5/lib/app_component.dart (template)"?>
+/// ```dart
+/// template: '''
+///   <h1>{{title}}</h1>
+///   <nav>
+///     <a [routerLink]="['Dashboard']">Dashboard</a>
+///     <a [routerLink]="['Heroes']">Heroes</a>
+///   </nav>
+///   <router-outlet></router-outlet>''',
+/// ```
 ///
-/// [routing]: docs/tutorial/toh-pt5.html#router-outlet
+/// [routing]: https://webdev.dartlang.org/angular/tutorial/toh-pt5.html#router-outlet
 @Directive(selector: "router-outlet")
 class RouterOutlet implements OnDestroy {
   ViewContainerRef _viewContainerRef;
@@ -64,7 +73,7 @@ class RouterOutlet implements OnDestroy {
     providers[RouteParams] = new RouteParams(nextInstruction.params);
     providers[router_mod.Router] = childRouter;
     var injector =
-        new MapInjector(this._viewContainerRef.parentInjector, providers);
+        new Injector.map(providers, _viewContainerRef.parentInjector);
     Future<ComponentFactory> componentFactoryPromise;
     if (componentType is ComponentFactory) {
       componentFactoryPromise = new Future.value(componentType);

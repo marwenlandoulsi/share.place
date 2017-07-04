@@ -11,10 +11,9 @@
 // @ignoreProblemForFile UNUSED_LOCAL_VARIABLE
 import 'utils.dart';
 import 'package:angular2/src/core/reflection/reflection.dart' as _ngRef;
+import 'dart:html';
 import 'package:angular2/di.dart' show Injectable;
-import 'package:angular2/src/platform/dom/dom_adapter.dart' show DOM;
 import 'package:angular2/di.template.dart' as i0;
-import 'package:angular2/src/platform/dom/dom_adapter.template.dart' as i1;
 export 'utils.dart';
 
 var _visited = false;
@@ -28,5 +27,4 @@ const [],
 )
 ;
 i0.initReflector();
-i1.initReflector();
 }

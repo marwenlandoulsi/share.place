@@ -13,11 +13,8 @@
         "4": [
           {
             "1": "Pipe",
-            "3": [
-              {
-                "1": "name",
-                "2": "'fileSizeFormat'"
-              }
+            "2": [
+              "'fileSizeFormat'"
             ],
             "4": false
           }
@@ -30,34 +27,6 @@
     "BYTE": {
       "class": "Identifier",
       "name": "BYTE",
-      "moduleUrl": "asset:share_place/lib/common/format/file_size_pipe.dart",
-      "prefix": null,
-      "value": null
-    },
-    "KBYTE": {
-      "class": "Identifier",
-      "name": "KBYTE",
-      "moduleUrl": "asset:share_place/lib/common/format/file_size_pipe.dart",
-      "prefix": null,
-      "value": null
-    },
-    "MBYTE": {
-      "class": "Identifier",
-      "name": "MBYTE",
-      "moduleUrl": "asset:share_place/lib/common/format/file_size_pipe.dart",
-      "prefix": null,
-      "value": null
-    },
-    "GBYTE": {
-      "class": "Identifier",
-      "name": "GBYTE",
-      "moduleUrl": "asset:share_place/lib/common/format/file_size_pipe.dart",
-      "prefix": null,
-      "value": null
-    },
-    "TBYTE": {
-      "class": "Identifier",
-      "name": "TBYTE",
       "moduleUrl": "asset:share_place/lib/common/format/file_size_pipe.dart",
       "prefix": null,
       "value": null
@@ -76,6 +45,34 @@
       "name": "fileSizeFormat",
       "pure": true
     },
+    "GBYTE": {
+      "class": "Identifier",
+      "name": "GBYTE",
+      "moduleUrl": "asset:share_place/lib/common/format/file_size_pipe.dart",
+      "prefix": null,
+      "value": null
+    },
+    "KBYTE": {
+      "class": "Identifier",
+      "name": "KBYTE",
+      "moduleUrl": "asset:share_place/lib/common/format/file_size_pipe.dart",
+      "prefix": null,
+      "value": null
+    },
+    "MBYTE": {
+      "class": "Identifier",
+      "name": "MBYTE",
+      "moduleUrl": "asset:share_place/lib/common/format/file_size_pipe.dart",
+      "prefix": null,
+      "value": null
+    },
+    "TBYTE": {
+      "class": "Identifier",
+      "name": "TBYTE",
+      "moduleUrl": "asset:share_place/lib/common/format/file_size_pipe.dart",
+      "prefix": null,
+      "value": null
+    },
     "main": {
       "class": "Identifier",
       "name": "main",
@@ -86,11 +83,11 @@
   },
   "alias": {
     "units": [
-      "TBYTE",
+      "BYTE",
       "GBYTE",
-      "MBYTE",
       "KBYTE",
-      "BYTE"
+      "MBYTE",
+      "TBYTE"
     ]
   }
 }

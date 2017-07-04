@@ -10,15 +10,15 @@
 // @ignoreProblemForFile UNUSED_SHOWN_NAME
 // @ignoreProblemForFile UNUSED_LOCAL_VARIABLE
 import 'ng_deps_model.dart';
-import 'package:angular2/src/source_gen/common/namespace_model.dart';
-import 'package:angular2/src/source_gen/common/reflection_info_model.dart';
 import 'package:angular2/src/transform/common/names.dart';
 import 'package:code_builder/code_builder.dart';
 import 'package:code_builder/dart/core.dart';
 import 'package:quiver/iterables.dart';
-import 'package:angular2/src/source_gen/common/namespace_model.template.dart' as i0;
-import 'package:angular2/src/source_gen/common/reflection_info_model.template.dart' as i1;
-import 'package:angular2/src/transform/common/names.template.dart' as i2;
+import 'namespace_model.dart';
+import 'reflection_info_model.dart';
+import 'package:angular2/src/transform/common/names.template.dart' as i0;
+import 'namespace_model.template.dart' as i1;
+import 'reflection_info_model.template.dart' as i2;
 export 'ng_deps_model.dart';
 
 var _visited = false;

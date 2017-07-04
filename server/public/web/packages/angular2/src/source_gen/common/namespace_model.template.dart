@@ -10,7 +10,9 @@
 // @ignoreProblemForFile UNUSED_SHOWN_NAME
 // @ignoreProblemForFile UNUSED_LOCAL_VARIABLE
 import 'namespace_model.dart';
+import 'package:analyzer/dart/element/element.dart';
 import 'package:code_builder/code_builder.dart';
+import 'package:quiver/iterables.dart';
 export 'namespace_model.dart';
 
 void initReflector() {

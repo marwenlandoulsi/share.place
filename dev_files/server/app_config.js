@@ -56,6 +56,14 @@ module.exports = Object.freeze({
     url: 'http://127.0.0.1:3000/sp',
     method: 'POST',
   },
+  optionsGetReq: {
+    url: 'http://127.0.0.1:3000/sp',
+    method: 'GET',
+  },
+  optionsGetFromAuthReq: {
+    url: 'http://127.0.0.1:3000/auth',
+    method: 'GET',
+  },
   optionsPut: {
     url: 'http://127.0.0.1:3000/sp',
     method: 'PUT',

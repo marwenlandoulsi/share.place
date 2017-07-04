@@ -1,29 +1,15 @@
 import 'dart:async';
 
-import "package:angular2/src/facade/async.dart" show EventEmitter;
+import 'package:angular2/src/facade/async.dart' show EventEmitter;
+import 'package:meta/meta.dart';
 
-import "directives/validators.dart" show ValidatorFn, AsyncValidatorFn;
-
-/// Indicates that a Control is valid, i.e. that no errors exist in the input
-/// value.
-const VALID = "VALID";
-
-/// Indicates that a Control is invalid, i.e. that an error exists in the input
-/// value.
-const INVALID = "INVALID";
-
-/// Indicates that a Control is pending, i.e. that async validation is occurring
-/// and errors are not yet available for the input value.
-const PENDING = "PENDING";
-bool isControl(Object control) {
-  return control is AbstractControl;
-}
+import 'directives/validators.dart' show ValidatorFn;
 
 AbstractControl _find(AbstractControl control,
     dynamic /* List< dynamic /* String | num */ > | String */ path) {
   if (path == null) return null;
   if (!(path is List)) {
-    path = ((path as String)).split("/");
+    path = ((path as String)).split('/');
   }
   if (path is List && path.isEmpty) return null;
   return ((path as List<dynamic /* String | num */ >)).fold(control, (v, name) {
@@ -38,13 +24,20 @@ AbstractControl _find(AbstractControl control,
   });
 }
 
-Stream<dynamic> _toStream(futureOrStream) {
-  return futureOrStream is Future ? futureOrStream.asStream() : futureOrStream;
-}
-
 abstract class AbstractControl {
+  /// Indicates that a Control is valid, i.e. that no errors exist in the input
+  /// value.
+  static const VALID = 'VALID';
+
+  /// Indicates that a Control is invalid, i.e. that an error exists in the
+  /// input value.
+  static const INVALID = 'INVALID';
+
+  /// Indicates that a Control is pending, i.e. that async validation is
+  /// occurring and errors are not yet available for the input value.
+  static const PENDING = 'PENDING';
+
   ValidatorFn validator;
-  AsyncValidatorFn asyncValidator;
   dynamic _value;
   EventEmitter<dynamic> _valueChanges;
   EventEmitter<dynamic> _statusChanges;
@@ -53,89 +46,68 @@ abstract class AbstractControl {
   bool _pristine = true;
   bool _touched = false;
   dynamic /* ControlGroup | ControlArray */ _parent;
-  dynamic _asyncValidationSubscription;
-  AbstractControl(this.validator, this.asyncValidator);
-  dynamic get value {
-    return this._value;
-  }
+  AbstractControl(this.validator);
+  dynamic get value => _value;
 
-  String get status {
-    return this._status;
-  }
+  /// The validation status of the control.
+  ///
+  /// One of [VALID], or [INVALID].
+  String get status => _status;
 
-  bool get valid {
-    return identical(this._status, VALID);
-  }
+  bool get valid => identical(_status, VALID);
 
   /// Returns the errors of this control.
-  Map<String, dynamic> get errors {
-    return this._errors;
-  }
+  Map<String, dynamic> get errors => _errors;
 
-  bool get pristine {
-    return this._pristine;
-  }
+  bool get pristine => _pristine;
 
-  bool get dirty {
-    return !this.pristine;
-  }
+  bool get dirty => !pristine;
 
-  bool get touched {
-    return this._touched;
-  }
+  bool get touched => _touched;
 
-  bool get untouched {
-    return !this._touched;
-  }
+  bool get untouched => !_touched;
 
-  Stream<dynamic> get valueChanges {
-    return this._valueChanges;
-  }
+  Stream<dynamic> get valueChanges => _valueChanges;
 
-  Stream<dynamic> get statusChanges {
-    return this._statusChanges;
-  }
+  Stream<dynamic> get statusChanges => _statusChanges;
 
-  bool get pending {
-    return this._status == PENDING;
-  }
+  bool get pending => _status == PENDING;
 
   void markAsTouched() {
-    this._touched = true;
+    _touched = true;
   }
 
-  void markAsDirty({bool onlySelf}) {
+  void markAsDirty({bool onlySelf, bool emitEvent}) {
     onlySelf = onlySelf == true;
-    this._pristine = false;
+    emitEvent = emitEvent ?? true;
+    _pristine = false;
+    if (emitEvent) _statusChanges.add(_status);
     if (_parent != null && !onlySelf) {
-      this._parent.markAsDirty(onlySelf: onlySelf);
+      _parent.markAsDirty(onlySelf: onlySelf);
     }
   }
 
   void markAsPending({bool onlySelf}) {
     onlySelf = onlySelf == true;
-    this._status = PENDING;
+    _status = PENDING;
     if (_parent != null && !onlySelf) {
-      this._parent.markAsPending(onlySelf: onlySelf);
+      _parent.markAsPending(onlySelf: onlySelf);
     }
   }
 
   void setParent(dynamic /* ControlGroup | ControlArray */ parent) {
-    this._parent = parent;
+    _parent = parent;
   }
 
   void updateValueAndValidity({bool onlySelf, bool emitEvent}) {
     onlySelf = onlySelf == true;
     emitEvent = emitEvent ?? true;
-    this._updateValue();
-    this._errors = this._runValidator();
-    this._status = this._calculateStatus();
-    if (this._status == VALID || this._status == PENDING) {
-      this._runAsyncValidator(emitEvent);
-    }
+    onUpdate();
+    _errors = _runValidator();
+    _status = _calculateStatus();
     if (emitEvent) {
-      this._valueChanges.add(this._value);
-      this._statusChanges.add(this._status);
+      _valueChanges.add(_value);
+      _statusChanges.add(_status);
     }
     if (_parent != null && !onlySelf) {
       this
@@ -144,24 +116,8 @@ abstract class AbstractControl {
     }
   }
 
-  Map<String, dynamic> _runValidator() {
-    return validator != null ? validator(this) : null;
-  }
-
-  void _runAsyncValidator(bool emitEvent) {
-    if (asyncValidator != null) {
-      this._status = PENDING;
-      this._cancelExistingSubscription();
-      var obs = _toStream(this.asyncValidator(this));
-      this._asyncValidationSubscription = obs.listen(
-          (Map<String, dynamic> res) =>
-              this.setErrors(res, emitEvent: emitEvent));
-    }
-  }
-
-  void _cancelExistingSubscription() {
-    _asyncValidationSubscription?.cancel();
-  }
+  Map<String, dynamic> _runValidator() =>
+      validator != null ? validator(this) : null;
 
   /// Sets errors on a control.
   ///
@@ -187,21 +143,20 @@ abstract class AbstractControl {
   /// ```
   void setErrors(Map<String, dynamic> errors, {bool emitEvent}) {
     emitEvent = emitEvent ?? true;
-    this._errors = errors;
-    this._status = this._calculateStatus();
+    _errors = errors;
+    _status = _calculateStatus();
     if (emitEvent) {
-      this._statusChanges.add(this._status);
+      _statusChanges.add(_status);
     }
     _parent?._updateControlsErrors();
     // If a control's errors were specifically set then mark the control as
     // changed.
-    markAsDirty();
+    markAsDirty(emitEvent: false);
   }
 
   AbstractControl find(
-      dynamic /* List< dynamic /* String | num */ > | String */ path) {
-    return _find(this, path);
-  }
+          dynamic /* List< dynamic /* String | num */ > | String */ path) =>
+      _find(this, path);
 
   getError(String errorCode, [List<String> path]) {
     AbstractControl control = this;
@@ -214,9 +169,8 @@ abstract class AbstractControl {
     return control._errors[errorCode];
   }
 
-  bool hasError(String errorCode, [List<String> path = null]) {
-    return this.getError(errorCode, path) != null;
-  }
+  bool hasError(String errorCode, [List<String> path = null]) =>
+      getError(errorCode, path) != null;
 
   AbstractControl get root {
     AbstractControl x = this;
@@ -227,23 +181,28 @@ abstract class AbstractControl {
   }
 
   void _updateControlsErrors() {
-    _status = this._calculateStatus();
+    _status = _calculateStatus();
     _parent?._updateControlsErrors();
   }
 
   void _initObservables() {
-    this._valueChanges = new EventEmitter();
-    this._statusChanges = new EventEmitter();
+    _valueChanges = new EventEmitter();
+    _statusChanges = new EventEmitter();
   }
 
   String _calculateStatus() {
     if (_errors != null) return INVALID;
-    if (this._anyControlsHaveStatus(PENDING)) return PENDING;
-    if (this._anyControlsHaveStatus(INVALID)) return INVALID;
+    if (_anyControlsHaveStatus(PENDING)) return PENDING;
+    if (_anyControlsHaveStatus(INVALID)) return INVALID;
     return VALID;
   }
 
-  void _updateValue();
+  /// Callback when control is asked to update it's value.
+  ///
+  /// Allows controls to calculate their value. For example control groups
+  /// to calculate it's value based on their children.
+  @protected
+  void onUpdate();
   bool _anyControlsHaveStatus(String status);
 }
 
@@ -263,15 +222,13 @@ abstract class AbstractControl {
 /// custom validation function.
 class Control extends AbstractControl {
   Function _onChange;
-  Control(
-      [dynamic value = null,
-      ValidatorFn validator = null,
-      AsyncValidatorFn asyncValidator = null])
-      : super(validator, asyncValidator) {
+  String _rawValue;
+  Control([dynamic value = null, ValidatorFn validator = null])
+      : super(validator) {
     //// super call moved to initializer */;
-    this._value = value;
-    this.updateValueAndValidity(onlySelf: true, emitEvent: false);
-    this._initObservables();
+    _value = value;
+    updateValueAndValidity(onlySelf: true, emitEvent: false);
+    _initObservables();
   }
 
   /// Set the value of the control to `value`.
@@ -285,24 +242,38 @@ class Control extends AbstractControl {
   /// new value via an `onChange` event. This is the default behavior if
   /// `emitModelToViewChange` is not specified.
   void updateValue(dynamic value,
-      {bool onlySelf, bool emitEvent, bool emitModelToViewChange}) {
+      {bool onlySelf,
+      bool emitEvent,
+      bool emitModelToViewChange,
+      String rawValue}) {
     emitModelToViewChange = emitModelToViewChange ?? true;
-    this._value = value;
-    if (_onChange != null && emitModelToViewChange) this._onChange(this._value);
-    this.updateValueAndValidity(onlySelf: onlySelf, emitEvent: emitEvent);
+    _value = value;
+    _rawValue = rawValue;
+    if (_onChange != null && emitModelToViewChange) _onChange(_value);
+    updateValueAndValidity(onlySelf: onlySelf, emitEvent: emitEvent);
   }
 
-  @override
-  void _updateValue() {}
+  /// If [value] was coerced from a HTML element this is the original value from
+  /// that element.
+  ///
+  /// This allows validators to validate either the raw value which was provided
+  /// by HTML, or the coerced value that was provided by the accessor.
+  String get rawValue => _rawValue;
 
   @override
-  bool _anyControlsHaveStatus(String status) {
-    return false;
-  }
+  void onUpdate() {}
+
+  @override
+  bool _anyControlsHaveStatus(String status) => false;
 
   /// Register a listener for change events.
+  ///
+  /// Used internally to connect the model with the [ValueAccessor] which will
+  /// write the model value to the View.
+  /// NOTE: Should only be called internally by angular. Use [valueChanges] or
+  /// [statusChanges] to get updates on the [Control].
   void registerOnChange(Function fn) {
-    this._onChange = fn;
+    _onChange = fn;
   }
 }
 
@@ -317,22 +288,20 @@ class Control extends AbstractControl {
 /// define forms in Angular, along with [Control] and [ControlArray].
 /// [ControlArray] can also contain other controls, but is of variable length.
 class ControlGroup extends AbstractControl {
-  Map<String, AbstractControl> controls;
-  Map<String, bool> _optionals;
+  final Map<String, AbstractControl> controls;
+  final Map<String, bool> _optionals;
   ControlGroup(this.controls,
-      [Map<String, bool> optionals = null,
-      ValidatorFn validator = null,
-      AsyncValidatorFn asyncValidator = null])
-      : super(validator, asyncValidator) {
-    this._optionals = optionals ?? {};
-    this._initObservables();
-    this._setParentForControls();
-    this.updateValueAndValidity(onlySelf: true, emitEvent: false);
+      [Map<String, bool> optionals, ValidatorFn validator])
+      : _optionals = optionals ?? {},
+        super(validator) {
+    _initObservables();
+    _setParentForControls();
+    updateValueAndValidity(onlySelf: true, emitEvent: false);
   }
 
   /// Add a control to this group.
   void addControl(String name, AbstractControl control) {
-    this.controls[name] = control;
+    controls[name] = control;
     control.setParent(this);
   }
 
@@ -364,8 +333,8 @@ class ControlGroup extends AbstractControl {
   }
 
   @override
-  void _updateValue() {
-    this._value = this._reduceValue();
+  void onUpdate() {
+    _value = _reduceValue();
   }
 
   @override
@@ -376,7 +345,7 @@ class ControlGroup extends AbstractControl {
   }
 
   Map<String, dynamic> _reduceValue() {
-    return this._reduceChildren(<String, dynamic>{},
+    return _reduceChildren(<String, dynamic>{},
         (Map<String, dynamic> acc, AbstractControl control, String name) {
       acc[name] = control.value;
       return acc;
@@ -421,56 +390,50 @@ class ControlGroup extends AbstractControl {
 /// detection.
 class ControlArray extends AbstractControl {
   List<AbstractControl> controls;
-  ControlArray(this.controls,
-      [ValidatorFn validator = null, AsyncValidatorFn asyncValidator = null])
-      : super(validator, asyncValidator) {
-    this._initObservables();
-    this._setParentForControls();
-    this.updateValueAndValidity(onlySelf: true, emitEvent: false);
+  ControlArray(this.controls, [ValidatorFn validator = null])
+      : super(validator) {
+    _initObservables();
+    _setParentForControls();
+    updateValueAndValidity(onlySelf: true, emitEvent: false);
   }
 
   /// Get the [AbstractControl] at the given `index` in the list.
-  AbstractControl at(num index) {
-    return this.controls[index];
-  }
+  AbstractControl at(num index) => controls[index];
 
   /// Insert a new [AbstractControl] at the end of the array.
   void push(AbstractControl control) {
-    this.controls.add(control);
+    controls.add(control);
     control.setParent(this);
-    this.updateValueAndValidity();
+    updateValueAndValidity();
   }
 
   /// Insert a new [AbstractControl] at the given `index` in the array.
   void insert(num index, AbstractControl control) {
     controls.insert(index, control);
     control.setParent(this);
-    this.updateValueAndValidity();
+    updateValueAndValidity();
   }
 
   /// Remove the control at the given `index` in the array.
   void removeAt(num index) {
     controls.removeAt(index);
-    this.updateValueAndValidity();
+    updateValueAndValidity();
   }
 
   /// Length of the control array.
-  num get length {
-    return this.controls.length;
+  num get length => controls.length;
+
+  @override
+  void onUpdate() {
+    _value = controls.map((control) => control.value).toList();
   }
 
   @override
-  void _updateValue() {
-    this._value = this.controls.map((control) => control.value).toList();
-  }
-
-  @override
-  bool _anyControlsHaveStatus(String status) {
-    return this.controls.any((c) => c.status == status);
-  }
+  bool _anyControlsHaveStatus(String status) =>
+      controls.any((c) => c.status == status);
 
   void _setParentForControls() {
-    this.controls.forEach((control) {
+    controls.forEach((control) {
       control.setParent(this);
     });
   }

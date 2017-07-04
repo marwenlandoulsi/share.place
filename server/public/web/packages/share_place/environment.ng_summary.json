@@ -3,35 +3,23 @@
     "1": "",
     "3": [
       {
-        "1": "package:angular2/core.dart",
-        "5": false
-      },
-      {
         "1": "dart:async",
         "5": false
       },
       {
-        "1": "event_bus.dart",
+        "1": "dart:html",
         "5": false
       },
       {
-        "1": "folder.dart",
+        "1": "package:angular2/core.dart",
         "5": false
       },
       {
-        "1": "place.dart",
+        "1": "package:logging/logging.dart",
         "5": false
       },
       {
-        "1": "package:share_place/users/user.dart",
-        "5": false
-      },
-      {
-        "1": "files/cloud_file.dart",
-        "5": false
-      },
-      {
-        "1": "file_info.dart",
+        "1": "package:share_place/common/net/mix_panel.dart",
         "5": false
       },
       {
@@ -39,7 +27,7 @@
         "5": false
       },
       {
-        "1": "dart:async",
+        "1": "package:share_place/users/user.dart",
         "5": false
       },
       {
@@ -48,11 +36,23 @@
         "5": false
       },
       {
-        "1": "dart:html",
+        "1": "event_bus.dart",
         "5": false
       },
       {
-        "1": "package:logging/logging.dart",
+        "1": "file_info.dart",
+        "5": false
+      },
+      {
+        "1": "files/cloud_file.dart",
+        "5": false
+      },
+      {
+        "1": "folder.dart",
+        "5": false
+      },
+      {
+        "1": "place.dart",
         "5": false
       }
     ],
@@ -76,9 +76,9 @@
     "6": "environment.dart"
   },
   "type": {
-    "PlaceParam": {
+    "ElectronProxyCredentials": {
       "class": "Identifier",
-      "name": "PlaceParam",
+      "name": "ElectronProxyCredentials",
       "moduleUrl": "asset:share_place/lib/environment.dart",
       "prefix": null,
       "value": null
@@ -112,6 +112,13 @@
           "isValue": false
         }
       ]
+    },
+    "PlaceParam": {
+      "class": "Identifier",
+      "name": "PlaceParam",
+      "moduleUrl": "asset:share_place/lib/environment.dart",
+      "prefix": null,
+      "value": null
     }
   },
   "alias": {}

@@ -20,7 +20,7 @@
 
       <material-expansionpanel-set>
         <material-expansionpanel flat *ngFor="let place of places" name="{{place.name}}" class="placePanel"
-                                 showSaveCancel="false" (open)="selectedPlace = place">
+                                 showSaveCancel="false" (open)="selectedPlace = place" [expanded]="selectedPlace?.id == place.id">
           <div *ngIf="place?.id == selectedPlace?.id">
             <folders></folders>
             <users-comp></users-comp>

@@ -1,1 +1,0 @@
-electron-packager . --all --electron-version=1.4.13 --overwrite

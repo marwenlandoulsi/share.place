@@ -10,9 +10,16 @@
 // @ignoreProblemForFile UNUSED_SHOWN_NAME
 // @ignoreProblemForFile UNUSED_LOCAL_VARIABLE
 import 'annotation_model.dart';
+import 'package:analyzer/dart/ast/ast.dart';
 import 'package:analyzer/dart/element/element.dart';
+import 'package:analyzer/src/dart/element/element.dart';
 import 'package:code_builder/code_builder.dart';
+import 'references.dart';
+import 'references.template.dart' as i0;
 export 'annotation_model.dart';
 
+var _visited = false;
 void initReflector() {
+if (_visited) return; _visited = true;
+i0.initReflector();
 }

@@ -11,1653 +11,1900 @@
 // @ignoreProblemForFile UNUSED_LOCAL_VARIABLE
 import 'app_component.dart';
 import 'package:angular2/src/core/reflection/reflection.dart' as _ngRef;
+import 'dart:async';
 import 'package:angular2/core.dart';
 import 'package:angular2/router.dart';
-import 'dart:async';
-import 'package:angular2_components/angular2_components.dart';
+import 'package:angular_components/angular_components.dart';
 import 'app_config.dart' as conf;
 import 'environment.dart';
+import 'package:share_place/file_info.dart';
 import 'package:share_place/places_component.dart';
 import 'package:share_place/place_service.dart';
+import 'package:share_place/common/ui/notification.dart' as notif;
 import 'package:share_place/dashboard_component.dart';
-import 'package:share_place/place_detail_component.dart';
-import 'package:share_place/news/news_comp.dart';
 import 'package:share_place/files/files_comp.dart';
+import 'package:share_place/news/news_comp.dart';
+import 'package:share_place/place_detail_component.dart';
+import 'package:share_place/postit/postit_component.dart';
 import 'package:share_place/subject/subject_list_comp.dart';
+import 'package:share_place/users/change_roles/change_roles_dialog_comp.dart';
 import 'package:share_place/users/login/login_comp.dart';
 import 'package:share_place/users/profile/profile_comp.dart';
+import 'package:share_place/users/terms_andconditions/terms_andconditions.dart';
 import 'package:share_place/users/user.dart';
-import 'package:share_place/postit/postit_component.dart';
-import 'package:share_place/common/ui/notification.dart' as notif;
-import 'package:share_place/users/change_roles/change_roles_dialog_comp.dart';
+import 'package:share_place/search/search_comp.dart';
+import 'package:share_place/electron/proxy_credentials.dart';
 import 'package:angular2/core.template.dart' as i0;
 import 'package:angular2/router.template.dart' as i1;
-import 'package:angular2_components/angular2_components.template.dart' as i2;
+import 'package:angular_components/angular_components.template.dart' as i2;
 import 'app_config.template.dart' as i3;
 import 'environment.template.dart' as i4;
-import 'package:share_place/places_component.template.dart' as i5;
-import 'package:share_place/place_service.template.dart' as i6;
-import 'package:share_place/dashboard_component.template.dart' as i7;
-import 'package:share_place/place_detail_component.template.dart' as i8;
-import 'package:share_place/news/news_comp.template.dart' as i9;
+import 'package:share_place/file_info.template.dart' as i5;
+import 'package:share_place/places_component.template.dart' as i6;
+import 'package:share_place/place_service.template.dart' as i7;
+import 'package:share_place/common/ui/notification.template.dart' as i8;
+import 'package:share_place/dashboard_component.template.dart' as i9;
 import 'package:share_place/files/files_comp.template.dart' as i10;
-import 'package:share_place/subject/subject_list_comp.template.dart' as i11;
-import 'package:share_place/users/login/login_comp.template.dart' as i12;
-import 'package:share_place/users/profile/profile_comp.template.dart' as i13;
-import 'package:share_place/users/user.template.dart' as i14;
-import 'package:share_place/postit/postit_component.template.dart' as i15;
-import 'package:share_place/common/ui/notification.template.dart' as i16;
-import 'package:share_place/users/change_roles/change_roles_dialog_comp.template.dart' as i17;
+import 'package:share_place/news/news_comp.template.dart' as i11;
+import 'package:share_place/place_detail_component.template.dart' as i12;
+import 'package:share_place/postit/postit_component.template.dart' as i13;
+import 'package:share_place/subject/subject_list_comp.template.dart' as i14;
+import 'package:share_place/users/change_roles/change_roles_dialog_comp.template.dart' as i15;
+import 'package:share_place/users/login/login_comp.template.dart' as i16;
+import 'package:share_place/users/profile/profile_comp.template.dart' as i17;
+import 'package:share_place/users/terms_andconditions/terms_andconditions.template.dart' as i18;
+import 'package:share_place/users/user.template.dart' as i19;
+import 'package:share_place/search/search_comp.template.dart' as i20;
+import 'package:share_place/electron/proxy_credentials.template.dart' as i21;
 export 'app_component.dart';
 import 'app_component.css.shim.dart' as import0;
-import 'package:angular2/src/core/render/api.dart';
 import 'package:angular2/src/core/linker/app_view.dart';
-import 'app_component.dart' as import3;
+import 'app_component.dart' as import2;
 import 'dart:html';
 import 'package:angular2/src/core/linker/view_container.dart';
 import 'package:angular2/src/common/directives/ng_if.dart';
+import 'common/ui/notification.template.dart' as import6;
 import 'common/ui/notification.dart' as import7;
-import 'package:angular2_components/src/laminate/popup/src/popup_source_directive.dart' as import8;
-import 'postit/postit_component.dart' as import9;
-import 'places_component.dart' as import10;
-import 'users/user_list_provider.dart' as import11;
-import 'subject/subject_list_comp.dart' as import12;
-import 'files/files_comp.dart' as import13;
-import 'package:angular2_components/src/utils/angular/managed_zone/angular_2.dart' as import14;
-import 'package:angular2_components/src/utils/angular/imperative_view/imperative_view.dart' as import15;
-import 'package:angular2_components/src/laminate/ruler/dom_ruler.dart' as import16;
-import 'package:angular2_components/src/laminate/overlay/src/render/overlay_style_config.dart' as import17;
-import 'package:angular2_components/src/css/acux/zindexer.dart' as import18;
-import 'package:angular2_components/src/laminate/overlay/src/render/overlay_dom_render_service.dart' as import19;
-import 'package:angular2_components/src/laminate/overlay/src/overlay_dom_service.dart' as import20;
-import 'package:angular2_components/src/laminate/popup/src/dom_popup_source.dart' as import21;
-import 'package:angular2_components/src/laminate/popup/src/popup_service.dart' as import22;
+import 'package:angular_components/src/laminate/popup/src/popup_source_directive.dart' as import8;
+import 'postit/postit_component.template.dart' as import9;
+import 'postit/postit_component.dart' as import10;
+import 'places_component.template.dart' as import11;
+import 'places_component.dart' as import12;
+import 'package:angular2/src/common/forms/directives/default_value_accessor.dart' as import13;
+import 'package:angular2/src/common/forms/directives/ng_model.dart' as import14;
+import 'subject/subject_list_comp.template.dart' as import15;
+import 'users/user_list_provider.dart' as import16;
+import 'subject/subject_list_comp.dart' as import17;
+import 'files/files_comp.template.dart' as import18;
+import 'files/files_comp.dart' as import19;
+import 'package:angular_components/src/utils/angular/managed_zone/angular_2.dart' as import20;
+import 'package:angular_components/src/utils/angular/imperative_view/imperative_view.dart' as import21;
+import 'package:angular_components/src/laminate/ruler/dom_ruler.dart' as import22;
+import 'package:angular_components/src/laminate/overlay/src/render/overlay_style_config.dart' as import23;
+import 'package:angular_components/src/css/acux/zindexer.dart' as import24;
+import 'package:angular_components/src/laminate/overlay/src/render/overlay_dom_render_service.dart' as import25;
+import 'package:angular_components/src/laminate/overlay/src/overlay_dom_service.dart' as import26;
+import 'package:angular_components/src/laminate/popup/src/dom_popup_source.dart' as import27;
+import 'package:angular_components/src/laminate/popup/src/popup_service.dart' as import28;
+import 'package:angular2/src/core/render/api.dart';
+import 'package:angular2/src/core/linker/view_type.dart' as import30;
 import 'package:angular2/src/core/change_detection/change_detection.dart';
-import 'package:angular2/src/core/di/injector.dart' as import24;
-import 'package:angular2/src/core/linker/view_type.dart' as import25;
-import 'package:angular2_components/src/laminate/popup/module.dart' as import26;
-import 'package:angular2/src/core/zone/ng_zone.dart' as import27;
-import 'package:angular2_components/src/utils/browser/window/module.dart' as import28;
-import 'package:angular2_components/src/utils/browser/dom_service/angular_2.dart' as import29;
-import 'package:angular2_components/src/utils/browser/dom_service/dom_service.dart' as import30;
-import 'package:angular2_components/src/utils/disposer/disposer.dart' as import31;
-import 'package:angular2/src/core/linker/dynamic_component_loader.dart' as import32;
-import 'package:angular2_components/src/laminate/overlay/module.dart' as import33;
-import 'package:angular2_components/src/laminate/overlay/src/overlay_service.dart' as import34;
+import 'package:angular2/src/core/linker/app_view_utils.dart' as import32;
+import 'package:angular2/angular2.dart';
+import 'package:angular_components/src/laminate/popup/module.dart' as import34;
+import 'package:angular2/src/core/zone/ng_zone.dart' as import35;
+import 'package:angular_components/src/utils/browser/window/module.dart' as import36;
+import 'package:angular_components/src/utils/browser/dom_service/angular_2.dart' as import37;
+import 'package:angular_components/src/utils/browser/dom_service/dom_service.dart' as import38;
+import 'package:angular_components/src/utils/disposer/disposer.dart' as import39;
+import 'package:angular2/src/core/linker/dynamic_component_loader.dart' as import40;
+import 'package:angular_components/src/laminate/overlay/module.dart' as import41;
+import 'package:angular_components/src/laminate/overlay/src/overlay_service.dart' as import42;
 import 'package:angular2/src/core/linker/template_ref.dart';
-import 'common/ui/notification.template.dart' as import36;
 import 'package:angular2/src/core/linker/element_ref.dart';
-import 'package:angular2_components/src/utils/angular/reference/reference.dart' as import38;
-import 'postit/postit_component.template.dart' as import39;
-import 'place_service.dart' as import40;
-import 'package:angular2/src/router/router.dart' as import41;
-import 'environment.dart' as import42;
-import 'places_component.template.dart' as import43;
-import 'subject/subject_list_comp.template.dart' as import44;
-import 'package:angular2/src/security/dom_sanitization_service.dart' as import45;
-import 'files/files_comp.template.dart' as import46;
-import 'package:angular2_components/src/utils/angular/managed_zone/src/managed_zone.dart' as import47;
-import 'package:angular2/src/core/linker/app_view_utils.dart' as import48;
-import 'package:angular2/src/core/metadata/view.dart' as import49;
-import 'package:angular2_components/src/laminate/components/modal/modal.dart' as import50;
-import 'package:angular2_components/src/components/material_dialog/material_dialog.dart' as import51;
-import 'users/login/login_comp.dart' as import52;
-import 'package:angular2_components/src/laminate/components/modal/modal.template.dart' as import53;
-import 'package:angular2_components/src/components/material_dialog/material_dialog.template.dart' as import54;
-import 'users/login/login_comp.template.dart' as import55;
-import 'package:angular2_components/src/components/content/deferred_content_aware.dart' as import56;
-import 'users/profile/profile_comp.dart' as import57;
-import 'users/profile/profile_comp.template.dart' as import58;
-import 'users/change_roles/change_roles_dialog_comp.dart' as import59;
-import 'users/change_roles/change_roles_dialog_comp.template.dart' as import60;
-import 'package:angular2/src/common/directives/ng_for.dart' as import61;
-import 'package:angular2/src/core/change_detection/differs/iterable_differs.dart' as import62;
-import 'package:angular2_components/src/components/material_popup/material_popup.dart' as import63;
-import 'package:angular2_components/src/components/theme/dark_theme.dart' as import64;
-import 'package:angular2_components/src/components/material_button/material_button.dart' as import65;
-import 'package:angular2_components/src/components/material_popup/material_popup.template.dart' as import66;
-import 'package:angular2_components/src/laminate/components/popup/hierarchy.dart' as import67;
-import 'package:angular2_components/src/laminate/popup/src/popup_ref.dart' as import68;
-import 'package:angular2_components/src/laminate/popup/src/popup_size_provider.dart' as import69;
-import 'package:angular2_components/src/components/annotations/rtl_annotation.dart' as import70;
-import 'package:angular2_components/src/components/material_button/material_button.template.dart' as import71;
-import 'package:angular2_components/src/components/theme/module.dart' as import72;
-import 'package:angular2_components/src/components/button_decorator/button_decorator.dart' as import73;
-import 'package:angular2_components/src/laminate/components/popup/popup.dart' as import74;
-import 'package:angular2_components/src/components/mixins/material_dropdown_base.dart' as import75;
-import 'package:angular2/src/router/route_registry.dart' as import76;
-import 'package:angular2/src/platform/browser/location/browser_platform_location.dart' as import77;
-import 'package:angular2/src/platform/browser/location/path_location_strategy.dart' as import78;
-import 'package:angular2/src/platform/browser/location/location.dart' as import79;
-import 'package:angular2/src/router/router_providers_common.dart' as import80;
-import 'package:angular2/src/core/application_ref.dart' as import81;
-import 'package:angular2/src/platform/browser/location/location_strategy.dart' as import82;
-import 'package:http/http.dart' as import83;
-import 'package:angular2/src/platform/browser/location/platform_location.dart' as import84;
-import 'package:angular2/src/core/linker/component_factory.dart' as import85;
+import 'package:angular_components/src/utils/angular/reference/reference.dart' as import45;
+import 'place_service.dart' as import46;
+import 'package:angular2/src/router/router.dart' as import47;
+import 'environment.dart' as import48;
+import 'package:angular2/src/security/dom_sanitization_service.dart' as import49;
+import 'package:angular2/src/common/forms/directives/control_value_accessor.dart' as import50;
+import 'package:angular2/src/common/forms/directives/ng_control.dart' as import51;
+import 'package:angular_components/src/utils/angular/managed_zone/src/managed_zone.dart' as import52;
+import 'package:angular2/src/facade/lang.dart' as import53;
+import 'package:angular_components/src/laminate/components/modal/modal.template.dart' as import54;
+import 'package:angular_components/src/laminate/components/modal/modal.dart' as import55;
+import 'package:angular_components/src/components/material_dialog/material_dialog.template.dart' as import56;
+import 'package:angular_components/src/components/material_dialog/material_dialog.dart' as import57;
+import 'users/login/login_comp.template.dart' as import58;
+import 'users/login/login_comp.dart' as import59;
+import 'package:angular_components/src/components/content/deferred_content_aware.dart' as import60;
+import 'users/profile/profile_comp.template.dart' as import61;
+import 'users/profile/profile_comp.dart' as import62;
+import 'users/change_roles/change_roles_dialog_comp.template.dart' as import63;
+import 'users/change_roles/change_roles_dialog_comp.dart' as import64;
+import 'users/terms_andconditions/terms_andconditions.template.dart' as import65;
+import 'users/terms_andconditions/terms_andconditions.dart' as import66;
+import 'electron/proxy_credentials.template.dart' as import67;
+import 'electron/proxy_credentials.dart' as import68;
+import 'package:angular2/src/common/directives/ng_for.dart' as import69;
+import 'package:angular_components/src/components/material_popup/material_popup.template.dart' as import70;
+import 'package:angular_components/src/components/material_popup/material_popup.dart' as import71;
+import 'package:angular_components/src/components/material_button/material_button.template.dart' as import72;
+import 'package:angular_components/src/components/theme/dark_theme.dart' as import73;
+import 'package:angular_components/src/components/material_button/material_button.dart' as import74;
+import 'package:angular_components/src/laminate/components/popup/popup.dart' as import75;
+import 'package:angular_components/src/laminate/components/popup/hierarchy.dart' as import76;
+import 'package:angular_components/src/laminate/popup/src/popup_ref.dart' as import77;
+import 'package:angular_components/src/laminate/popup/src/popup_size_provider.dart' as import78;
+import 'package:angular_components/src/components/theme/module.dart' as import79;
+import 'package:angular_components/src/components/button_decorator/button_decorator.dart' as import80;
+import 'package:angular_components/src/components/mixins/material_dropdown_base.dart' as import81;
+import 'search/search_comp.template.dart' as import82;
+import 'search/search_comp.dart' as import83;
+import 'package:angular2/src/router/route_registry.dart' as import84;
+import 'package:angular2/src/platform/browser/location/browser_platform_location.dart' as import85;
+import 'package:angular2/src/platform/browser/location/path_location_strategy.dart' as import86;
+import 'package:angular2/src/platform/browser/location/location.dart' as import87;
+import 'package:angular2/src/router/router_providers_common.dart' as import88;
+import 'package:angular2/src/core/application_ref.dart' as import89;
+import 'package:angular2/src/platform/browser/location/location_strategy.dart' as import90;
+import 'package:http/http.dart' as import91;
+import 'package:angular2/src/platform/browser/location/platform_location.dart' as import92;
 const List<dynamic> styles_AppComponent = const [import0.styles];
-RenderComponentType renderType_AppComponent;
-class ViewAppComponent0 extends AppView<import3.AppComponent> {
-  Element _el_0;
+class ViewAppComponent0 extends AppView<import2.AppComponent> {
+  DivElement _el_0;
   ViewContainer _appEl_2;
-  dynamic _TemplateRef_2_4;
   NgIf _NgIf_2_5;
   ViewContainer _appEl_4;
-  dynamic _TemplateRef_4_4;
   NgIf _NgIf_4_5;
   ViewContainer _appEl_6;
-  dynamic _TemplateRef_6_4;
   NgIf _NgIf_6_5;
-  Element _el_8;
-  Element _el_10;
-  Element _el_11;
-  Element _el_13;
-  Element _el_16;
-  Element _el_18;
-  ViewContainer _appEl_18;
-  import7.Notification _Notification_18_3;
-  ViewContainer _appEl_20;
-  dynamic _TemplateRef_20_4;
-  NgIf _NgIf_20_5;
-  Element _el_23;
-  Element _el_25;
-  Element _el_27;
-  import8.PopupSourceDirective _PopupSourceDirective_27_2;
-  ViewContainer _appEl_30;
-  dynamic _TemplateRef_30_4;
-  NgIf _NgIf_30_5;
-  ViewContainer _appEl_32;
-  dynamic _TemplateRef_32_4;
-  NgIf _NgIf_32_5;
-  Element _el_36;
-  Element _el_38;
-  ViewContainer _appEl_38;
-  import9.PostitComponent _PostitComponent_38_3;
-  ViewContainer _appEl_40;
-  dynamic _TemplateRef_40_4;
-  NgIf _NgIf_40_5;
-  Element _el_42;
-  ViewContainer _appEl_42;
-  import10.PlacesComponent _PlacesComponent_42_3;
-  Element _el_45;
-  Element _el_47;
-  Element _el_49;
-  Element _el_51;
-  Element _el_53;
-  ViewContainer _appEl_53;
-  import11.UserListProvider _UserListProvider_53_3;
-  import12.SubjectListComponent _SubjectListComponent_53_4;
-  Element _el_56;
-  Element _el_58;
-  Element _el_60;
-  Element _el_62;
-  ViewContainer _appEl_62;
-  import13.FilesComp _FilesComp_62_3;
-  dynamic __defaultPopupPositions_62_4;
-  import14.Angular2ManagedZone __ManagedZone_62_5;
-  dynamic __Window_62_6;
-  dynamic __DomService_62_7;
-  import15.AcxImperativeViewUtils __AcxImperativeViewUtils_62_8;
-  dynamic __Document_62_9;
-  import16.DomRuler __DomRuler_62_10;
-  dynamic __overlayContainerName_62_11;
-  dynamic __overlayContainerParent_62_12;
-  dynamic __overlayContainerToken_62_13;
-  dynamic __overlaySyncDom_62_14;
-  import17.OverlayStyleConfig __OverlayStyleConfig_62_15;
-  import18.ZIndexer __ZIndexer_62_16;
-  import19.OverlayDomRenderService __OverlayDomRenderService_62_17;
-  import20.OverlayDomService __OverlayService_62_18;
-  import21.DomPopupSourceFactory __DomPopupSourceFactory_62_19;
-  import22.PopupService __PopupService_62_20;
-  var _expr_3 = uninitialized;
-  var _expr_4 = uninitialized;
-  var _expr_7 = uninitialized;
-  var _expr_8 = uninitialized;
-  var _expr_9 = uninitialized;
-  var _expr_12 = uninitialized;
-  var _expr_13 = uninitialized;
-  var _expr_14 = uninitialized;
-  ViewAppComponent0(import24.Injector parentInjector,ViewContainer declarationEl): super(ViewAppComponent0,renderType_AppComponent,import25.ViewType.COMPONENT,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
-  dynamic get _defaultPopupPositions_62_4 {
-    if ((this.__defaultPopupPositions_62_4 == null)) { (__defaultPopupPositions_62_4 = import26.inlinePositions); }
-    return this.__defaultPopupPositions_62_4;
+  ViewContainer _appEl_8;
+  NgIf _NgIf_8_5;
+  ViewContainer _appEl_10;
+  NgIf _NgIf_10_5;
+  DivElement _el_12;
+  DivElement _el_14;
+  Element _el_15;
+  Element _el_17;
+  DivElement _el_20;
+  Element _el_22;
+  import6.ViewNotification0 _compView_22;
+  import7.Notification _Notification_22_2;
+  ViewContainer _appEl_24;
+  NgIf _NgIf_24_5;
+  DivElement _el_27;
+  DivElement _el_29;
+  Element _el_31;
+  import8.PopupSourceDirective _PopupSourceDirective_31_2;
+  ViewContainer _appEl_34;
+  NgIf _NgIf_34_5;
+  ViewContainer _appEl_36;
+  NgIf _NgIf_36_5;
+  DivElement _el_40;
+  DivElement _el_42;
+  Element _el_44;
+  import9.ViewPostitComponent0 _compView_44;
+  import10.PostitComponent _PostitComponent_44_2;
+  ViewContainer _appEl_46;
+  NgIf _NgIf_46_5;
+  Element _el_48;
+  import11.ViewPlacesComponent0 _compView_48;
+  import12.PlacesComponent _PlacesComponent_48_2;
+  DivElement _el_52;
+  DivElement _el_54;
+  DivElement _el_56;
+  InputElement _el_57;
+  import13.DefaultValueAccessor _DefaultValueAccessor_57_2;
+  List<dynamic> _NG_VALUE_ACCESSOR_57_3;
+  import14.NgModel _NgModel_57_4;
+  DivElement _el_59;
+  ViewContainer _appEl_63;
+  NgIf _NgIf_63_5;
+  DivElement _el_65;
+  DivElement _el_67;
+  Element _el_70;
+  import15.ViewSubjectListComponent0 _compView_70;
+  import16.UserListProvider _UserListProvider_70_2;
+  import17.SubjectListComponent _SubjectListComponent_70_3;
+  DivElement _el_73;
+  DivElement _el_75;
+  DivElement _el_77;
+  Element _el_79;
+  import18.ViewFilesComp0 _compView_79;
+  import19.FilesComp _FilesComp_79_2;
+  dynamic __defaultPopupPositions_79_3;
+  import20.Angular2ManagedZone __ManagedZone_79_4;
+  dynamic __Window_79_5;
+  dynamic __DomService_79_6;
+  import21.AcxImperativeViewUtils __AcxImperativeViewUtils_79_7;
+  dynamic __Document_79_8;
+  import22.DomRuler __DomRuler_79_9;
+  dynamic __overlayContainerName_79_10;
+  dynamic __overlayContainerParent_79_11;
+  dynamic __overlayContainerToken_79_12;
+  dynamic __overlaySyncDom_79_13;
+  import23.OverlayStyleConfig __OverlayStyleConfig_79_14;
+  import24.ZIndexer __ZIndexer_79_15;
+  import25.OverlayDomRenderService __OverlayDomRenderService_79_16;
+  import26.OverlayDomService __OverlayService_79_17;
+  import27.DomPopupSourceFactory __DomPopupSourceFactory_79_18;
+  import28.PopupService __PopupService_79_19;
+   int _expr_5;
+   String _expr_6;
+  var _expr_9;
+  var _expr_22;
+  static RenderComponentType renderType;
+  ViewAppComponent0(AppView<dynamic> parentView,num parentIndex): super(import30.ViewType.COMPONENT,{},parentView,parentIndex,ChangeDetectionStrategy.CheckAlways) {
+    rootEl = document.createElement('my-app');
+    renderType ??= import32.appViewUtils.createRenderType('',ViewEncapsulation.Emulated,styles_AppComponent);
+    setupComponentType(renderType);
   }
-  import14.Angular2ManagedZone get _ManagedZone_62_5 {
-    if ((this.__ManagedZone_62_5 == null)) { (__ManagedZone_62_5 = new import14.Angular2ManagedZone(this.parentInjector.get(import27.NgZone))); }
-    return this.__ManagedZone_62_5;
+  dynamic get _defaultPopupPositions_79_3 {
+    if ((this.__defaultPopupPositions_79_3 == null)) { (__defaultPopupPositions_79_3 = import34.inlinePositions); }
+    return this.__defaultPopupPositions_79_3;
   }
-  dynamic get _Window_62_6 {
-    if ((this.__Window_62_6 == null)) { (__Window_62_6 = import28.getWindow()); }
-    return this.__Window_62_6;
+  import20.Angular2ManagedZone get _ManagedZone_79_4 {
+    if ((this.__ManagedZone_79_4 == null)) { (__ManagedZone_79_4 = new import20.Angular2ManagedZone(this.parentView.injectorGet(import35.NgZone,this.parentIndex))); }
+    return this.__ManagedZone_79_4;
   }
-  dynamic get _DomService_62_7 {
-    if ((this.__DomService_62_7 == null)) { (__DomService_62_7 = import29.createDomService(this.parentInjector.get(import30.DomService,null),this.parentInjector.get(import31.Disposer,null),this._ManagedZone_62_5,this._Window_62_6)); }
-    return this.__DomService_62_7;
+  dynamic get _Window_79_5 {
+    if ((this.__Window_79_5 == null)) { (__Window_79_5 = import36.getWindow()); }
+    return this.__Window_79_5;
   }
-  import15.AcxImperativeViewUtils get _AcxImperativeViewUtils_62_8 {
-    if ((this.__AcxImperativeViewUtils_62_8 == null)) { (__AcxImperativeViewUtils_62_8 = new import15.AcxImperativeViewUtils(this.parentInjector.get(import32.DynamicComponentLoader),this._DomService_62_7)); }
-    return this.__AcxImperativeViewUtils_62_8;
+  dynamic get _DomService_79_6 {
+    if ((this.__DomService_79_6 == null)) { (__DomService_79_6 = import37.createDomService(this.parentView.injectorGet(import38.DomService,this.parentIndex,null),this.parentView.injectorGet(import39.Disposer,this.parentIndex,null),this._ManagedZone_79_4,this._Window_79_5)); }
+    return this.__DomService_79_6;
   }
-  dynamic get _Document_62_9 {
-    if ((this.__Document_62_9 == null)) { (__Document_62_9 = import28.getDocument()); }
-    return this.__Document_62_9;
+  import21.AcxImperativeViewUtils get _AcxImperativeViewUtils_79_7 {
+    if ((this.__AcxImperativeViewUtils_79_7 == null)) { (__AcxImperativeViewUtils_79_7 = new import21.AcxImperativeViewUtils(this.parentView.injectorGet(import40.DynamicComponentLoader,this.parentIndex),this._DomService_79_6)); }
+    return this.__AcxImperativeViewUtils_79_7;
   }
-  import16.DomRuler get _DomRuler_62_10 {
-    if ((this.__DomRuler_62_10 == null)) { (__DomRuler_62_10 = new import16.DomRuler(this._Document_62_9,this._DomService_62_7)); }
-    return this.__DomRuler_62_10;
+  dynamic get _Document_79_8 {
+    if ((this.__Document_79_8 == null)) { (__Document_79_8 = import36.getDocument()); }
+    return this.__Document_79_8;
   }
-  dynamic get _overlayContainerName_62_11 {
-    if ((this.__overlayContainerName_62_11 == null)) { (__overlayContainerName_62_11 = 'default'); }
-    return this.__overlayContainerName_62_11;
+  import22.DomRuler get _DomRuler_79_9 {
+    if ((this.__DomRuler_79_9 == null)) { (__DomRuler_79_9 = new import22.DomRuler(this._Document_79_8,this._DomService_79_6)); }
+    return this.__DomRuler_79_9;
   }
-  dynamic get _overlayContainerParent_62_12 {
-    if ((this.__overlayContainerParent_62_12 == null)) { (__overlayContainerParent_62_12 = import33.getOverlayContainerParent(this._Document_62_9)); }
-    return this.__overlayContainerParent_62_12;
+  dynamic get _overlayContainerName_79_10 {
+    if ((this.__overlayContainerName_79_10 == null)) { (__overlayContainerName_79_10 = import41.getDefaultContainerName(this.parentView.injectorGet(import25.overlayContainerName,this.parentIndex,null))); }
+    return this.__overlayContainerName_79_10;
   }
-  dynamic get _overlayContainerToken_62_13 {
-    if ((this.__overlayContainerToken_62_13 == null)) { (__overlayContainerToken_62_13 = import33.getDefaultContainer(this._overlayContainerName_62_11,this._overlayContainerParent_62_12)); }
-    return this.__overlayContainerToken_62_13;
+  dynamic get _overlayContainerParent_79_11 {
+    if ((this.__overlayContainerParent_79_11 == null)) { (__overlayContainerParent_79_11 = import41.getOverlayContainerParent(this._Document_79_8,this.parentView.injectorGet(import25.overlayContainerParent,this.parentIndex,null))); }
+    return this.__overlayContainerParent_79_11;
   }
-  dynamic get _overlaySyncDom_62_14 {
-    if ((this.__overlaySyncDom_62_14 == null)) { (__overlaySyncDom_62_14 = true); }
-    return this.__overlaySyncDom_62_14;
+  dynamic get _overlayContainerToken_79_12 {
+    if ((this.__overlayContainerToken_79_12 == null)) { (__overlayContainerToken_79_12 = import41.getDefaultContainer(this._overlayContainerName_79_10,this._overlayContainerParent_79_11,this.parentView.injectorGet(import25.overlayContainerToken,this.parentIndex,null))); }
+    return this.__overlayContainerToken_79_12;
   }
-  import17.OverlayStyleConfig get _OverlayStyleConfig_62_15 {
-    if ((this.__OverlayStyleConfig_62_15 == null)) { (__OverlayStyleConfig_62_15 = new import17.OverlayStyleConfig(this._Document_62_9)); }
-    return this.__OverlayStyleConfig_62_15;
+  dynamic get _overlaySyncDom_79_13 {
+    if ((this.__overlaySyncDom_79_13 == null)) { (__overlaySyncDom_79_13 = true); }
+    return this.__overlaySyncDom_79_13;
   }
-  import18.ZIndexer get _ZIndexer_62_16 {
-    if ((this.__ZIndexer_62_16 == null)) { (__ZIndexer_62_16 = new import18.ZIndexer()); }
-    return this.__ZIndexer_62_16;
+  import23.OverlayStyleConfig get _OverlayStyleConfig_79_14 {
+    if ((this.__OverlayStyleConfig_79_14 == null)) { (__OverlayStyleConfig_79_14 = new import23.OverlayStyleConfig(this._Document_79_8)); }
+    return this.__OverlayStyleConfig_79_14;
   }
-  import19.OverlayDomRenderService get _OverlayDomRenderService_62_17 {
-    if ((this.__OverlayDomRenderService_62_17 == null)) { (__OverlayDomRenderService_62_17 = new import19.OverlayDomRenderService(this._OverlayStyleConfig_62_15,this._overlayContainerToken_62_13,this._overlayContainerName_62_11,this._DomRuler_62_10,this._DomService_62_7,this._AcxImperativeViewUtils_62_8,this._overlaySyncDom_62_14,this._ZIndexer_62_16)); }
-    return this.__OverlayDomRenderService_62_17;
+  import24.ZIndexer get _ZIndexer_79_15 {
+    if ((this.__ZIndexer_79_15 == null)) { (__ZIndexer_79_15 = new import24.ZIndexer()); }
+    return this.__ZIndexer_79_15;
   }
-  import20.OverlayDomService get _OverlayService_62_18 {
-    if ((this.__OverlayService_62_18 == null)) { (__OverlayService_62_18 = new import20.OverlayDomService(this.parentInjector.get(import27.NgZone),this._overlaySyncDom_62_14,this._OverlayDomRenderService_62_17,this.parentInjector.get(import34.OverlayService,null))); }
-    return this.__OverlayService_62_18;
+  import25.OverlayDomRenderService get _OverlayDomRenderService_79_16 {
+    if ((this.__OverlayDomRenderService_79_16 == null)) { (__OverlayDomRenderService_79_16 = new import25.OverlayDomRenderService(this._OverlayStyleConfig_79_14,this._overlayContainerToken_79_12,this._overlayContainerName_79_10,this._DomRuler_79_9,this._DomService_79_6,this._AcxImperativeViewUtils_79_7,this._overlaySyncDom_79_13,this._ZIndexer_79_15)); }
+    return this.__OverlayDomRenderService_79_16;
   }
-  import21.DomPopupSourceFactory get _DomPopupSourceFactory_62_19 {
-    if ((this.__DomPopupSourceFactory_62_19 == null)) { (__DomPopupSourceFactory_62_19 = new import21.DomPopupSourceFactory(this._Window_62_6,this._DomRuler_62_10)); }
-    return this.__DomPopupSourceFactory_62_19;
+  import26.OverlayDomService get _OverlayService_79_17 {
+    if ((this.__OverlayService_79_17 == null)) { (__OverlayService_79_17 = new import26.OverlayDomService(this.parentView.injectorGet(import35.NgZone,this.parentIndex),this._overlaySyncDom_79_13,this._OverlayDomRenderService_79_16,this.parentView.injectorGet(import42.OverlayService,this.parentIndex,null))); }
+    return this.__OverlayService_79_17;
   }
-  import22.PopupService get _PopupService_62_20 {
-    if ((this.__PopupService_62_20 == null)) { (__PopupService_62_20 = new import22.PopupService(this._defaultPopupPositions_62_4,this._OverlayService_62_18,this._ZIndexer_62_16)); }
-    return this.__PopupService_62_20;
+  import27.DomPopupSourceFactory get _DomPopupSourceFactory_79_18 {
+    if ((this.__DomPopupSourceFactory_79_18 == null)) { (__DomPopupSourceFactory_79_18 = new import27.DomPopupSourceFactory(this._Window_79_5,this._DomRuler_79_9)); }
+    return this.__DomPopupSourceFactory_79_18;
   }
-  ViewContainer createInternal(dynamic rootSelector) {
-    final Node parentRenderNode = initViewRoot(this.declarationViewContainer.nativeElement);
+  import28.PopupService get _PopupService_79_19 {
+    if ((this.__PopupService_79_19 == null)) { (__PopupService_79_19 = new import28.PopupService(this._defaultPopupPositions_79_3,this._OverlayService_79_17,this._ZIndexer_79_15)); }
+    return this.__PopupService_79_19;
+  }
+  ComponentRef build() {
+    final import2.AppComponent _ctx = ctx;
+    final HtmlElement parentRenderNode = initViewRoot(rootEl);
     var doc = document;
-    _el_0 = doc.createElement('div');
-    _el_0.setAttribute(shimCAttr,'');
-    parentRenderNode.append(_el_0);
-    Text _text_1 = new Text('\n  ');
+    _el_0 = createAndAppend(doc,'div',parentRenderNode);
+    addShimC(_el_0);
+    Text _text_1 = new Text('\n    ');
     _el_0.append(_text_1);
-    var _anchor_2 = new Comment('template bindings={}');
-    _el_0?.append(_anchor_2);
+    var _anchor_2 = ngAnchor.clone(false);
+    _el_0.append(_anchor_2);
     _appEl_2 = new ViewContainer(2,0,this,_anchor_2);
-    _TemplateRef_2_4 = new TemplateRef(_appEl_2,viewFactory_AppComponent1);
+    TemplateRef _TemplateRef_2_4 = new TemplateRef(_appEl_2,viewFactory_AppComponent1);
     _NgIf_2_5 = new NgIf(_appEl_2,_TemplateRef_2_4);
-    Text _text_3 = new Text('\n\n  ');
+    Text _text_3 = new Text('\n\n    ');
     _el_0.append(_text_3);
-    var _anchor_4 = new Comment('template bindings={}');
-    _el_0?.append(_anchor_4);
+    var _anchor_4 = ngAnchor.clone(false);
+    _el_0.append(_anchor_4);
     _appEl_4 = new ViewContainer(4,0,this,_anchor_4);
-    _TemplateRef_4_4 = new TemplateRef(_appEl_4,viewFactory_AppComponent2);
+    TemplateRef _TemplateRef_4_4 = new TemplateRef(_appEl_4,viewFactory_AppComponent2);
     _NgIf_4_5 = new NgIf(_appEl_4,_TemplateRef_4_4);
-    Text _text_5 = new Text('\n\n  ');
+    Text _text_5 = new Text('\n\n    ');
     _el_0.append(_text_5);
-    var _anchor_6 = new Comment('template bindings={}');
-    _el_0?.append(_anchor_6);
+    var _anchor_6 = ngAnchor.clone(false);
+    _el_0.append(_anchor_6);
     _appEl_6 = new ViewContainer(6,0,this,_anchor_6);
-    _TemplateRef_6_4 = new TemplateRef(_appEl_6,viewFactory_AppComponent3);
+    TemplateRef _TemplateRef_6_4 = new TemplateRef(_appEl_6,viewFactory_AppComponent4);
     _NgIf_6_5 = new NgIf(_appEl_6,_TemplateRef_6_4);
-    Text _text_7 = new Text('\n\n\n  ');
+    Text _text_7 = new Text('\n\n    ');
     _el_0.append(_text_7);
-    _el_8 = doc.createElement('div');
-    _el_8.setAttribute(shimCAttr,'');
-    _el_0.append(_el_8);
-    _el_8.className = 'header header-top';
-    Text _text_9 = new Text('\n    ');
-    _el_8.append(_text_9);
-    _el_10 = doc.createElement('div');
-    _el_10.setAttribute(shimCAttr,'');
-    _el_8.append(_el_10);
-    _el_10.className = 'logo_header';
-    _el_11 = doc.createElement('img');
-    _el_11.setAttribute(shimCAttr,'');
-    _el_10.append(_el_11);
-    _el_11.className = 'logo';
-    createAttr(_el_11,'src','../images/logo0.png');
-    Text _text_12 = new Text('\n    ');
-    _el_8.append(_text_12);
-    _el_13 = doc.createElement('label');
-    _el_13.setAttribute(shimCAttr,'');
-    _el_8.append(_el_13);
-    _el_13.className = 'desktopVersion';
-    Text _text_14 = new Text('V0.1.14');
-    _el_13.append(_text_14);
-    Text _text_15 = new Text('\n    ');
-    _el_8.append(_text_15);
-    _el_16 = doc.createElement('div');
-    _el_16.setAttribute(shimCAttr,'');
-    _el_8.append(_el_16);
-    _el_16.className = 'alertInner';
-    Text _text_17 = new Text('\n      ');
-    _el_16.append(_text_17);
-    _el_18 = doc.createElement('notification');
-    _el_18.setAttribute(shimCAttr,'');
-    _el_16.append(_el_18);
-    _el_18.className = 'notif error';
-    _appEl_18 = new ViewContainer(18,16,this,_el_18);
-    var compView_18 = import36.viewFactory_Notification0(this.injector(18),_appEl_18);
-    _Notification_18_3 = new import7.Notification();
-    _appEl_18.initComponent(_Notification_18_3,compView_18);
-    compView_18.createComp([],null);
-    Text _text_19 = new Text('\n      ');
-    _el_16.append(_text_19);
-    var _anchor_20 = new Comment('template bindings={}');
-    _el_16?.append(_anchor_20);
-    _appEl_20 = new ViewContainer(20,16,this,_anchor_20);
-    _TemplateRef_20_4 = new TemplateRef(_appEl_20,viewFactory_AppComponent4);
-    _NgIf_20_5 = new NgIf(_appEl_20,_TemplateRef_20_4);
-    Text _text_21 = new Text('\n    ');
-    _el_16.append(_text_21);
-    Text _text_22 = new Text('\n    ');
-    _el_8.append(_text_22);
-    _el_23 = doc.createElement('div');
-    _el_23.setAttribute(shimCAttr,'');
-    _el_8.append(_el_23);
-    _el_23.className = 'rightMenu';
-    Text _text_24 = new Text('\n      ');
-    _el_23.append(_text_24);
-    _el_25 = doc.createElement('div');
-    _el_25.setAttribute(shimCAttr,'');
-    _el_23.append(_el_25);
-    _el_25.className = 'imgProfil';
+    var _anchor_8 = ngAnchor.clone(false);
+    _el_0.append(_anchor_8);
+    _appEl_8 = new ViewContainer(8,0,this,_anchor_8);
+    TemplateRef _TemplateRef_8_4 = new TemplateRef(_appEl_8,viewFactory_AppComponent5);
+    _NgIf_8_5 = new NgIf(_appEl_8,_TemplateRef_8_4);
+    Text _text_9 = new Text('\n\n    ');
+    _el_0.append(_text_9);
+    var _anchor_10 = ngAnchor.clone(false);
+    _el_0.append(_anchor_10);
+    _appEl_10 = new ViewContainer(10,0,this,_anchor_10);
+    TemplateRef _TemplateRef_10_4 = new TemplateRef(_appEl_10,viewFactory_AppComponent6);
+    _NgIf_10_5 = new NgIf(_appEl_10,_TemplateRef_10_4);
+    Text _text_11 = new Text('\n\n\n    ');
+    _el_0.append(_text_11);
+    _el_12 = createAndAppend(doc,'div',_el_0);
+    _el_12.className = 'header header-top';
+    addShimC(_el_12);
+    Text _text_13 = new Text('\n        ');
+    _el_12.append(_text_13);
+    _el_14 = createAndAppend(doc,'div',_el_12);
+    _el_14.className = 'logo_header';
+    addShimC(_el_14);
+    _el_15 = createAndAppend(doc,'img',_el_14);
+    _el_15.className = 'logo';
+    createAttr(_el_15,'src','../images/logo0.png');
+    addShimE(_el_15);
+    Text _text_16 = new Text('\n        ');
+    _el_12.append(_text_16);
+    _el_17 = createAndAppend(doc,'label',_el_12);
+    _el_17.className = 'desktopVersion';
+    addShimE(_el_17);
+    Text _text_18 = new Text('QA V0.1.16');
+    _el_17.append(_text_18);
+    Text _text_19 = new Text('\n        ');
+    _el_12.append(_text_19);
+    _el_20 = createAndAppend(doc,'div',_el_12);
+    _el_20.className = 'alertInner';
+    addShimC(_el_20);
+    Text _text_21 = new Text('\n            ');
+    _el_20.append(_text_21);
+    _compView_22 = new import6.ViewNotification0(this,22);
+    _el_22 = _compView_22.rootEl;
+    _el_20.append(_el_22);
+    _el_22.className = 'notif error';
+    addShimC(_el_22);
+    _Notification_22_2 = new import7.Notification();
+    _compView_22.create(_Notification_22_2,[]);
+    Text _text_23 = new Text('\n            ');
+    _el_20.append(_text_23);
+    var _anchor_24 = ngAnchor.clone(false);
+    _el_20.append(_anchor_24);
+    _appEl_24 = new ViewContainer(24,20,this,_anchor_24);
+    TemplateRef _TemplateRef_24_4 = new TemplateRef(_appEl_24,viewFactory_AppComponent7);
+    _NgIf_24_5 = new NgIf(_appEl_24,_TemplateRef_24_4);
+    Text _text_25 = new Text('\n        ');
+    _el_20.append(_text_25);
     Text _text_26 = new Text('\n        ');
-    _el_25.append(_text_26);
-    _el_27 = doc.createElement('img');
-    _el_27.setAttribute(shimCAttr,'');
-    _el_25.append(_el_27);
-    createAttr(_el_27,'alignPositionX','end');
-    createAttr(_el_27,'alignPositionY','after');
-    _el_27.className = 'profileImg';
-    createAttr(_el_27,'popupSource','');
-    _PopupSourceDirective_27_2 = new import8.PopupSourceDirective(this.parentInjector.get(import21.DomPopupSourceFactory),new ElementRef(_el_27),this.parentInjector.get(import38.ReferenceDirective,null));
-    Text _text_28 = new Text('\n      ');
-    _el_25.append(_text_28);
-    Text _text_29 = new Text('\n\n      ');
-    _el_23.append(_text_29);
-    var _anchor_30 = new Comment('template bindings={}');
-    _el_23?.append(_anchor_30);
-    _appEl_30 = new ViewContainer(30,23,this,_anchor_30);
-    _TemplateRef_30_4 = new TemplateRef(_appEl_30,viewFactory_AppComponent6);
-    _NgIf_30_5 = new NgIf(_appEl_30,_TemplateRef_30_4);
-    Text _text_31 = new Text('\n\n      ');
-    _el_23.append(_text_31);
-    var _anchor_32 = new Comment('template bindings={}');
-    _el_23?.append(_anchor_32);
-    _appEl_32 = new ViewContainer(32,23,this,_anchor_32);
-    _TemplateRef_32_4 = new TemplateRef(_appEl_32,viewFactory_AppComponent7);
-    _NgIf_32_5 = new NgIf(_appEl_32,_TemplateRef_32_4);
-    Text _text_33 = new Text('\n    ');
-    _el_23.append(_text_33);
-    Text _text_34 = new Text('\n  ');
-    _el_8.append(_text_34);
-    Text _text_35 = new Text('\n\n  ');
-    _el_0.append(_text_35);
-    _el_36 = doc.createElement('div');
-    _el_36.setAttribute(shimCAttr,'');
-    _el_0.append(_el_36);
-    _el_36.className = 'leftP';
-    Text _text_37 = new Text('\n    ');
-    _el_36.append(_text_37);
-    _el_38 = doc.createElement('postit-comp');
-    _el_38.setAttribute(shimCAttr,'');
-    _el_36.append(_el_38);
-    _el_38.className = 'placesPostit';
-    _appEl_38 = new ViewContainer(38,36,this,_el_38);
-    var compView_38 = import39.viewFactory_PostitComponent0(this.injector(38),_appEl_38);
-    _PostitComponent_38_3 = new import9.PostitComponent(this.parentInjector.get(import40.PlaceService),this.parentInjector.get(import41.Router),this.parentInjector.get(import42.Environment));
-    _appEl_38.initComponent(_PostitComponent_38_3,compView_38);
-    compView_38.createComp([],null);
+    _el_12.append(_text_26);
+    _el_27 = createAndAppend(doc,'div',_el_12);
+    _el_27.className = 'rightMenu';
+    addShimC(_el_27);
+    Text _text_28 = new Text('\n\n\n            ');
+    _el_27.append(_text_28);
+    _el_29 = createAndAppend(doc,'div',_el_27);
+    _el_29.className = 'imgProfil';
+    addShimC(_el_29);
+    Text _text_30 = new Text('\n\n                ');
+    _el_29.append(_text_30);
+    _el_31 = createAndAppend(doc,'img',_el_29);
+    createAttr(_el_31,'alignPositionX','end');
+    createAttr(_el_31,'alignPositionY','after');
+    _el_31.className = 'profileImg';
+    createAttr(_el_31,'popupSource','');
+    addShimE(_el_31);
+    _PopupSourceDirective_31_2 = new import8.PopupSourceDirective(parentView.injectorGet(import27.DomPopupSourceFactory,parentIndex),new ElementRef(_el_31),parentView.injectorGet(import45.ReferenceDirective,parentIndex,null));
+    Text _text_32 = new Text('\n            ');
+    _el_29.append(_text_32);
+    Text _text_33 = new Text('\n            ');
+    _el_27.append(_text_33);
+    var _anchor_34 = ngAnchor.clone(false);
+    _el_27.append(_anchor_34);
+    _appEl_34 = new ViewContainer(34,27,this,_anchor_34);
+    TemplateRef _TemplateRef_34_4 = new TemplateRef(_appEl_34,viewFactory_AppComponent9);
+    _NgIf_34_5 = new NgIf(_appEl_34,_TemplateRef_34_4);
+    Text _text_35 = new Text('\n\n            ');
+    _el_27.append(_text_35);
+    var _anchor_36 = ngAnchor.clone(false);
+    _el_27.append(_anchor_36);
+    _appEl_36 = new ViewContainer(36,27,this,_anchor_36);
+    TemplateRef _TemplateRef_36_4 = new TemplateRef(_appEl_36,viewFactory_AppComponent10);
+    _NgIf_36_5 = new NgIf(_appEl_36,_TemplateRef_36_4);
+    Text _text_37 = new Text('\n        ');
+    _el_27.append(_text_37);
+    Text _text_38 = new Text('\n    ');
+    _el_12.append(_text_38);
     Text _text_39 = new Text('\n\n\n    ');
-    _el_36.append(_text_39);
-    var _anchor_40 = new Comment('template bindings={}');
-    _el_36?.append(_anchor_40);
-    _appEl_40 = new ViewContainer(40,36,this,_anchor_40);
-    _TemplateRef_40_4 = new TemplateRef(_appEl_40,viewFactory_AppComponent8);
-    _NgIf_40_5 = new NgIf(_appEl_40,_TemplateRef_40_4);
-    Text _text_41 = new Text('\n\n\n    ');
-    _el_36.append(_text_41);
-    _el_42 = doc.createElement('places');
-    _el_42.setAttribute(shimCAttr,'');
-    _el_36.append(_el_42);
-    _appEl_42 = new ViewContainer(42,36,this,_el_42);
-    var compView_42 = import43.viewFactory_PlacesComponent0(this.injector(42),_appEl_42);
-    _PlacesComponent_42_3 = new import10.PlacesComponent(this.parentInjector.get(import40.PlaceService),this.parentInjector.get(import41.Router),this.parentInjector.get(import42.Environment));
-    _appEl_42.initComponent(_PlacesComponent_42_3,compView_42);
-    compView_42.createComp([],null);
-    Text _text_43 = new Text('\n  ');
-    _el_36.append(_text_43);
-    Text _text_44 = new Text('\n  ');
-    _el_0.append(_text_44);
-    _el_45 = doc.createElement('div');
-    _el_45.setAttribute(shimCAttr,'');
-    _el_0.append(_el_45);
-    _el_45.className = 'rightPanelinside';
-    Text _text_46 = new Text('\n    ');
-    _el_45.append(_text_46);
-    _el_47 = doc.createElement('div');
-    _el_47.setAttribute(shimCAttr,'');
-    _el_45.append(_el_47);
-    _el_47.className = 'rightPanelinside_header';
-    Text _text_48 = new Text('\n    ');
-    _el_45.append(_text_48);
-    _el_49 = doc.createElement('div');
-    _el_49.setAttribute(shimCAttr,'');
-    _el_45.append(_el_49);
-    _el_49.className = 'row';
-    Text _text_50 = new Text('\n      ');
-    _el_49.append(_text_50);
-    _el_51 = doc.createElement('div');
-    _el_51.setAttribute(shimCAttr,'');
-    _el_49.append(_el_51);
-    _el_51.className = 'centerP';
-    Text _text_52 = new Text('\n        ');
-    _el_51.append(_text_52);
-    _el_53 = doc.createElement('subjects');
-    _el_53.setAttribute(shimCAttr,'');
-    _el_51.append(_el_53);
-    _appEl_53 = new ViewContainer(53,51,this,_el_53);
-    var compView_53 = import44.viewFactory_SubjectListComponent0(this.injector(53),_appEl_53);
-    _UserListProvider_53_3 = new import11.UserListProvider(this.parentInjector.get(import42.Environment),this.parentInjector.get(import40.PlaceService));
-    _SubjectListComponent_53_4 = new import12.SubjectListComponent(this.parentInjector.get(import40.PlaceService),this.parentInjector.get(import41.Router),this.parentInjector.get(import42.Environment),_UserListProvider_53_3,this.parentInjector.get(import45.DomSanitizationService));
-    _appEl_53.initComponent(_SubjectListComponent_53_4,compView_53);
-    compView_53.createComp([],null);
-    Text _text_54 = new Text('\n      ');
-    _el_51.append(_text_54);
-    Text _text_55 = new Text('\n\n      ');
-    _el_49.append(_text_55);
-    _el_56 = doc.createElement('div');
-    _el_56.setAttribute(shimCAttr,'');
-    _el_49.append(_el_56);
-    _el_56.className = 'rightP';
-    Text _text_57 = new Text('\n        ');
-    _el_56.append(_text_57);
-    _el_58 = doc.createElement('div');
-    _el_58.setAttribute(shimCAttr,'');
-    _el_56.append(_el_58);
-    _el_58.className = 'rightPinside';
-    Text _text_59 = new Text('\n          ');
-    _el_58.append(_text_59);
-    _el_60 = doc.createElement('div');
-    _el_60.setAttribute(shimCAttr,'');
-    _el_58.append(_el_60);
-    _el_60.className = 'files';
-    Text _text_61 = new Text('\n            ');
-    _el_60.append(_text_61);
-    _el_62 = doc.createElement('files-comp');
-    _el_62.setAttribute(shimCAttr,'');
-    _el_60.append(_el_62);
-    _appEl_62 = new ViewContainer(62,60,this,_el_62);
-    var compView_62 = import46.viewFactory_FilesComp0(this.injector(62),_appEl_62);
-    _FilesComp_62_3 = new import13.FilesComp(this.parentInjector.get(import40.PlaceService),this.parentInjector.get(import41.Router),this.parentInjector.get(import42.Environment));
-    _appEl_62.initComponent(_FilesComp_62_3,compView_62);
-    compView_62.createComp([],null);
-    Text _text_63 = new Text('\n          ');
-    _el_60.append(_text_63);
-    Text _text_64 = new Text('\n        ');
-    _el_58.append(_text_64);
-    Text _text_65 = new Text('\n      ');
-    _el_56.append(_text_65);
-    Text _text_66 = new Text('\n    ');
-    _el_49.append(_text_66);
-    Text _text_67 = new Text('\n  ');
-    _el_45.append(_text_67);
-    Text _text_68 = new Text('\n  ');
-    _el_0.append(_text_68);
-    Text _text_69 = new Text('\n');
-    _el_0.append(_text_69);
-    listen(_el_27,'click',evt(_handle_click_27_0));
-    init([],[
-      _el_0,_text_1,_anchor_2,_text_3,_anchor_4,_text_5,_anchor_6,_text_7,_el_8,_text_9,
-      _el_10,_el_11,_text_12,_el_13,_text_14,_text_15,_el_16,_text_17,_el_18,_text_19,
-      _anchor_20,_text_21,_text_22,_el_23,_text_24,_el_25,_text_26,_el_27,_text_28,_text_29,
-      _anchor_30,_text_31,_anchor_32,_text_33,_text_34,_text_35,_el_36,_text_37,_el_38,
-      _text_39,_anchor_40,_text_41,_el_42,_text_43,_text_44,_el_45,_text_46,_el_47,_text_48,
-      _el_49,_text_50,_el_51,_text_52,_el_53,_text_54,_text_55,_el_56,_text_57,_el_58,
-      _text_59,_el_60,_text_61,_el_62,_text_63,_text_64,_text_65,_text_66,_text_67,_text_68,
-      _text_69
-    ]
-    ,[]);
+    _el_0.append(_text_39);
+    _el_40 = createAndAppend(doc,'div',_el_0);
+    _el_40.className = 'resizable leftP';
+    addShimC(_el_40);
+    Text _text_41 = new Text('\n        ');
+    _el_40.append(_text_41);
+    _el_42 = createAndAppend(doc,'div',_el_40);
+    _el_42.className = 'inner';
+    addShimC(_el_42);
+    Text _text_43 = new Text('\n            ');
+    _el_42.append(_text_43);
+    _compView_44 = new import9.ViewPostitComponent0(this,44);
+    _el_44 = _compView_44.rootEl;
+    _el_42.append(_el_44);
+    _el_44.className = 'placesPostit';
+    addShimC(_el_44);
+    _PostitComponent_44_2 = new import10.PostitComponent(parentView.injectorGet(import46.PlaceService,parentIndex),parentView.injectorGet(import47.Router,parentIndex),parentView.injectorGet(import48.Environment,parentIndex));
+    _compView_44.create(_PostitComponent_44_2,[]);
+    Text _text_45 = new Text('\n            ');
+    _el_42.append(_text_45);
+    var _anchor_46 = ngAnchor.clone(false);
+    _el_42.append(_anchor_46);
+    _appEl_46 = new ViewContainer(46,42,this,_anchor_46);
+    TemplateRef _TemplateRef_46_4 = new TemplateRef(_appEl_46,viewFactory_AppComponent11);
+    _NgIf_46_5 = new NgIf(_appEl_46,_TemplateRef_46_4);
+    Text _text_47 = new Text('\n            ');
+    _el_42.append(_text_47);
+    _compView_48 = new import11.ViewPlacesComponent0(this,48);
+    _el_48 = _compView_48.rootEl;
+    _el_42.append(_el_48);
+    addShimC(_el_48);
+    _PlacesComponent_48_2 = new import12.PlacesComponent(parentView.injectorGet(import46.PlaceService,parentIndex),parentView.injectorGet(import47.Router,parentIndex),parentView.injectorGet(import48.Environment,parentIndex));
+    _compView_48.create(_PlacesComponent_48_2,[]);
+    Text _text_49 = new Text('\n        ');
+    _el_42.append(_text_49);
+    Text _text_50 = new Text('\n    ');
+    _el_40.append(_text_50);
+    Text _text_51 = new Text('\n    ');
+    _el_0.append(_text_51);
+    _el_52 = createAndAppend(doc,'div',_el_0);
+    _el_52.className = 'resizable rightPanelinside';
+    addShimC(_el_52);
+    Text _text_53 = new Text('\n\n        ');
+    _el_52.append(_text_53);
+    _el_54 = createAndAppend(doc,'div',_el_52);
+    _el_54.className = 'rightPanelinside_header';
+    addShimC(_el_54);
+    Text _text_55 = new Text('\n            ');
+    _el_54.append(_text_55);
+    _el_56 = createAndAppend(doc,'div',_el_54);
+    _el_56.className = 'searchTop';
+    addShimC(_el_56);
+    _el_57 = createAndAppend(doc,'input',_el_56);
+    _el_57.className = 'open';
+    createAttr(_el_57,'placeholder','Search a topic');
+    createAttr(_el_57,'type','text');
+    addShimC(_el_57);
+    _DefaultValueAccessor_57_2 = new import13.DefaultValueAccessor(new ElementRef(_el_57));
+    _NG_VALUE_ACCESSOR_57_3 = [_DefaultValueAccessor_57_2];
+    _NgModel_57_4 = new import14.NgModel(null,_NG_VALUE_ACCESSOR_57_3);
+    Text _text_58 = new Text('\n                ');
+    _el_56.append(_text_58);
+    _el_59 = createAndAppend(doc,'div',_el_56);
+    _el_59.className = 'closeSearch';
+    addShimC(_el_59);
+    Text _text_60 = new Text('\n            ');
+    _el_56.append(_text_60);
+    Text _text_61 = new Text('\n        ');
+    _el_54.append(_text_61);
+    Text _text_62 = new Text('\n        ');
+    _el_52.append(_text_62);
+    var _anchor_63 = ngAnchor.clone(false);
+    _el_52.append(_anchor_63);
+    _appEl_63 = new ViewContainer(63,52,this,_anchor_63);
+    TemplateRef _TemplateRef_63_4 = new TemplateRef(_appEl_63,viewFactory_AppComponent12);
+    _NgIf_63_5 = new NgIf(_appEl_63,_TemplateRef_63_4);
+    Text _text_64 = new Text('\n\n        ');
+    _el_52.append(_text_64);
+    _el_65 = createAndAppend(doc,'div',_el_52);
+    _el_65.className = 'row';
+    addShimC(_el_65);
+    Text _text_66 = new Text('\n            ');
+    _el_65.append(_text_66);
+    _el_67 = createAndAppend(doc,'div',_el_65);
+    _el_67.className = 'resizable centerP';
+    addShimC(_el_67);
+    Text _text_68 = new Text('\n                ');
+    _el_67.append(_text_68);
+    Text _text_69 = new Text('\n                ');
+    _el_67.append(_text_69);
+    _compView_70 = new import15.ViewSubjectListComponent0(this,70);
+    _el_70 = _compView_70.rootEl;
+    _el_67.append(_el_70);
+    addShimC(_el_70);
+    _UserListProvider_70_2 = new import16.UserListProvider(parentView.injectorGet(import48.Environment,parentIndex),parentView.injectorGet(import46.PlaceService,parentIndex));
+    _SubjectListComponent_70_3 = new import17.SubjectListComponent(parentView.injectorGet(import46.PlaceService,parentIndex),parentView.injectorGet(import47.Router,parentIndex),parentView.injectorGet(import48.Environment,parentIndex),_UserListProvider_70_2,parentView.injectorGet(import49.DomSanitizationService,parentIndex));
+    _compView_70.create(_SubjectListComponent_70_3,[]);
+    Text _text_71 = new Text('\n\n\n            ');
+    _el_67.append(_text_71);
+    Text _text_72 = new Text('\n\n            ');
+    _el_65.append(_text_72);
+    _el_73 = createAndAppend(doc,'div',_el_65);
+    _el_73.className = 'resizable rightP';
+    addShimC(_el_73);
+    Text _text_74 = new Text('\n                ');
+    _el_73.append(_text_74);
+    _el_75 = createAndAppend(doc,'div',_el_73);
+    _el_75.className = 'rightPinside';
+    addShimC(_el_75);
+    Text _text_76 = new Text('\n                    ');
+    _el_75.append(_text_76);
+    _el_77 = createAndAppend(doc,'div',_el_75);
+    _el_77.className = 'files';
+    addShimC(_el_77);
+    Text _text_78 = new Text('\n                        ');
+    _el_77.append(_text_78);
+    _compView_79 = new import18.ViewFilesComp0(this,79);
+    _el_79 = _compView_79.rootEl;
+    _el_77.append(_el_79);
+    addShimC(_el_79);
+    _FilesComp_79_2 = new import19.FilesComp(parentView.injectorGet(import46.PlaceService,parentIndex),parentView.injectorGet(import47.Router,parentIndex),parentView.injectorGet(import48.Environment,parentIndex));
+    _compView_79.create(_FilesComp_79_2,[]);
+    Text _text_80 = new Text('\n                    ');
+    _el_77.append(_text_80);
+    Text _text_81 = new Text('\n                ');
+    _el_75.append(_text_81);
+    Text _text_82 = new Text('\n            ');
+    _el_73.append(_text_82);
+    Text _text_83 = new Text('\n        ');
+    _el_65.append(_text_83);
+    Text _text_84 = new Text('\n\n    ');
+    _el_52.append(_text_84);
+    Text _text_85 = new Text('\n');
+    _el_0.append(_text_85);
+    _el_31.addEventListener('click',eventHandler1(_handle_click_31_0));
+    import32.appViewUtils.eventManager.addEventListener(_el_57,'keyup.enter',eventHandler1(_handle_keyup_enter_57_0));
+    _el_57.addEventListener('input',eventHandler1(_handle_input_57_2));
+    _el_57.addEventListener('blur',eventHandler0(_DefaultValueAccessor_57_2.touchHandler));
+    final subscription_0 = _NgModel_57_4.update.listen(streamHandler1(_handle_ngModelChange_57_1));
+    _el_59.addEventListener('click',eventHandler0(ctx.close));
+    init(const [],[subscription_0]);
     return null;
   }
-  dynamic injectorGetInternal(dynamic token,int requestNodeIndex,dynamic notFoundResult) {
-    if ((identical(token, TemplateRef) && (2 == requestNodeIndex))) { return _TemplateRef_2_4; }
-    if ((identical(token, NgIf) && (2 == requestNodeIndex))) { return _NgIf_2_5; }
-    if ((identical(token, TemplateRef) && (4 == requestNodeIndex))) { return _TemplateRef_4_4; }
-    if ((identical(token, NgIf) && (4 == requestNodeIndex))) { return _NgIf_4_5; }
-    if ((identical(token, TemplateRef) && (6 == requestNodeIndex))) { return _TemplateRef_6_4; }
-    if ((identical(token, NgIf) && (6 == requestNodeIndex))) { return _NgIf_6_5; }
-    if ((identical(token, import7.Notification) && (18 == requestNodeIndex))) { return _Notification_18_3; }
-    if ((identical(token, TemplateRef) && (20 == requestNodeIndex))) { return _TemplateRef_20_4; }
-    if ((identical(token, NgIf) && (20 == requestNodeIndex))) { return _NgIf_20_5; }
-    if ((identical(token, import8.PopupSourceDirective) && (27 == requestNodeIndex))) { return _PopupSourceDirective_27_2; }
-    if ((identical(token, TemplateRef) && (30 == requestNodeIndex))) { return _TemplateRef_30_4; }
-    if ((identical(token, NgIf) && (30 == requestNodeIndex))) { return _NgIf_30_5; }
-    if ((identical(token, TemplateRef) && (32 == requestNodeIndex))) { return _TemplateRef_32_4; }
-    if ((identical(token, NgIf) && (32 == requestNodeIndex))) { return _NgIf_32_5; }
-    if ((identical(token, import9.PostitComponent) && (38 == requestNodeIndex))) { return _PostitComponent_38_3; }
-    if ((identical(token, TemplateRef) && (40 == requestNodeIndex))) { return _TemplateRef_40_4; }
-    if ((identical(token, NgIf) && (40 == requestNodeIndex))) { return _NgIf_40_5; }
-    if ((identical(token, import10.PlacesComponent) && (42 == requestNodeIndex))) { return _PlacesComponent_42_3; }
-    if ((identical(token, import11.UserListProvider) && (53 == requestNodeIndex))) { return _UserListProvider_53_3; }
-    if ((identical(token, import12.SubjectListComponent) && (53 == requestNodeIndex))) { return _SubjectListComponent_53_4; }
-    if ((identical(token, import13.FilesComp) && (62 == requestNodeIndex))) { return _FilesComp_62_3; }
-    if ((identical(token, import22.defaultPopupPositions) && (62 == requestNodeIndex))) { return _defaultPopupPositions_62_4; }
-    if ((identical(token, import47.ManagedZone) && (62 == requestNodeIndex))) { return _ManagedZone_62_5; }
-    if ((identical(token, Window) && (62 == requestNodeIndex))) { return _Window_62_6; }
-    if ((identical(token, import30.DomService) && (62 == requestNodeIndex))) { return _DomService_62_7; }
-    if ((identical(token, import15.AcxImperativeViewUtils) && (62 == requestNodeIndex))) { return _AcxImperativeViewUtils_62_8; }
-    if ((identical(token, Document) && (62 == requestNodeIndex))) { return _Document_62_9; }
-    if ((identical(token, import16.DomRuler) && (62 == requestNodeIndex))) { return _DomRuler_62_10; }
-    if ((identical(token, import19.overlayContainerName) && (62 == requestNodeIndex))) { return _overlayContainerName_62_11; }
-    if ((identical(token, import19.overlayContainerParent) && (62 == requestNodeIndex))) { return _overlayContainerParent_62_12; }
-    if ((identical(token, import19.overlayContainerToken) && (62 == requestNodeIndex))) { return _overlayContainerToken_62_13; }
-    if ((identical(token, import19.overlaySyncDom) && (62 == requestNodeIndex))) { return _overlaySyncDom_62_14; }
-    if ((identical(token, import17.OverlayStyleConfig) && (62 == requestNodeIndex))) { return _OverlayStyleConfig_62_15; }
-    if ((identical(token, import18.ZIndexer) && (62 == requestNodeIndex))) { return _ZIndexer_62_16; }
-    if ((identical(token, import19.OverlayDomRenderService) && (62 == requestNodeIndex))) { return _OverlayDomRenderService_62_17; }
-    if ((identical(token, import34.OverlayService) && (62 == requestNodeIndex))) { return _OverlayService_62_18; }
-    if ((identical(token, import21.DomPopupSourceFactory) && (62 == requestNodeIndex))) { return _DomPopupSourceFactory_62_19; }
-    if ((identical(token, import22.PopupService) && (62 == requestNodeIndex))) { return _PopupService_62_20; }
+  dynamic injectorGetInternal(dynamic token,int nodeIndex,dynamic notFoundResult) {
+    if ((identical(token, import7.Notification) && (22 == nodeIndex))) { return _Notification_22_2; }
+    if ((identical(token, import8.PopupSourceDirective) && (31 == nodeIndex))) { return _PopupSourceDirective_31_2; }
+    if ((identical(token, import10.PostitComponent) && (44 == nodeIndex))) { return _PostitComponent_44_2; }
+    if ((identical(token, import12.PlacesComponent) && (48 == nodeIndex))) { return _PlacesComponent_48_2; }
+    if ((identical(token, import13.DefaultValueAccessor) && (57 == nodeIndex))) { return _DefaultValueAccessor_57_2; }
+    if ((identical(token, import50.NG_VALUE_ACCESSOR) && (57 == nodeIndex))) { return _NG_VALUE_ACCESSOR_57_3; }
+    if (((identical(token, import14.NgModel) || identical(token, import51.NgControl)) && (57 == nodeIndex))) { return _NgModel_57_4; }
+    if ((identical(token, import16.UserListProvider) && (70 == nodeIndex))) { return _UserListProvider_70_2; }
+    if ((identical(token, import17.SubjectListComponent) && (70 == nodeIndex))) { return _SubjectListComponent_70_3; }
+    if ((identical(token, import19.FilesComp) && (79 == nodeIndex))) { return _FilesComp_79_2; }
+    if ((identical(token, import28.defaultPopupPositions) && (79 == nodeIndex))) { return _defaultPopupPositions_79_3; }
+    if ((identical(token, import52.ManagedZone) && (79 == nodeIndex))) { return _ManagedZone_79_4; }
+    if ((identical(token, Window) && (79 == nodeIndex))) { return _Window_79_5; }
+    if ((identical(token, import38.DomService) && (79 == nodeIndex))) { return _DomService_79_6; }
+    if ((identical(token, import21.AcxImperativeViewUtils) && (79 == nodeIndex))) { return _AcxImperativeViewUtils_79_7; }
+    if ((identical(token, Document) && (79 == nodeIndex))) { return _Document_79_8; }
+    if ((identical(token, import22.DomRuler) && (79 == nodeIndex))) { return _DomRuler_79_9; }
+    if ((identical(token, import25.overlayContainerName) && (79 == nodeIndex))) { return _overlayContainerName_79_10; }
+    if ((identical(token, import25.overlayContainerParent) && (79 == nodeIndex))) { return _overlayContainerParent_79_11; }
+    if ((identical(token, import25.overlayContainerToken) && (79 == nodeIndex))) { return _overlayContainerToken_79_12; }
+    if ((identical(token, import25.overlaySyncDom) && (79 == nodeIndex))) { return _overlaySyncDom_79_13; }
+    if ((identical(token, import23.OverlayStyleConfig) && (79 == nodeIndex))) { return _OverlayStyleConfig_79_14; }
+    if ((identical(token, import24.ZIndexer) && (79 == nodeIndex))) { return _ZIndexer_79_15; }
+    if ((identical(token, import25.OverlayDomRenderService) && (79 == nodeIndex))) { return _OverlayDomRenderService_79_16; }
+    if ((identical(token, import42.OverlayService) && (79 == nodeIndex))) { return _OverlayService_79_17; }
+    if ((identical(token, import27.DomPopupSourceFactory) && (79 == nodeIndex))) { return _DomPopupSourceFactory_79_18; }
+    if ((identical(token, import28.PopupService) && (79 == nodeIndex))) { return _PopupService_79_19; }
     return notFoundResult;
   }
   void detectChangesInternal() {
-    _NgIf_2_5.ngIf = (ctx.connectedUser == null);
-    _NgIf_4_5.ngIf = (ctx.profilePopinVisible != null);
-    _NgIf_6_5.ngIf = ctx.editingRole;
-    final currVal_3 = (0 - 1);
-    if (import48.checkBinding(_expr_3,currVal_3)) {
-      _Notification_18_3.duration = currVal_3;
-      _expr_3 = currVal_3;
+    Map<String, SimpleChange> changes;
+    bool firstCheck = identical(this.cdState, ChangeDetectorState.NeverChecked);
+    final import2.AppComponent _ctx = ctx;
+    _NgIf_2_5.ngIf = ((_ctx.connectedUser == null) && (_ctx.electronProxyCredentials == null));
+    _NgIf_4_5.ngIf = (_ctx.profilePopinVisible != null);
+    _NgIf_6_5.ngIf = _ctx.editingRole;
+    _NgIf_8_5.ngIf = (_ctx.termsAndConditionsVisible != null);
+    _NgIf_10_5.ngIf = (_ctx.electronProxyCredentials != null);
+    final currVal_5 = (0 - 1);
+    if (!import53.looseIdentical(_expr_5,currVal_5)) {
+      _Notification_22_2.duration = currVal_5;
+      _expr_5 = currVal_5;
     }
-    final currVal_4 = ctx.error;
-    if (import48.checkBinding(_expr_4,currVal_4)) {
-      _Notification_18_3.msg = currVal_4;
-      _expr_4 = currVal_4;
+    final currVal_6 = _ctx.error;
+    if (!import53.looseIdentical(_expr_6,currVal_6)) {
+      _Notification_22_2.msg = currVal_6;
+      _expr_6 = currVal_6;
     }
-    _NgIf_20_5.ngIf = ((ctx.messages != null) && (ctx.messages.length > 0));
-    final currVal_8 = 'end';
-    if (import48.checkBinding(_expr_8,currVal_8)) {
-      _PopupSourceDirective_27_2.alignX = currVal_8;
-      _expr_8 = currVal_8;
+    _NgIf_24_5.ngIf = ((_ctx.messages != null) && (_ctx.messages.length > 0));
+    if (firstCheck) {
+      _PopupSourceDirective_31_2.alignX = 'end';
+      _PopupSourceDirective_31_2.alignY = 'after';
     }
-    final currVal_9 = 'after';
-    if (import48.checkBinding(_expr_9,currVal_9)) {
-      _PopupSourceDirective_27_2.alignY = currVal_9;
+    _NgIf_34_5.ngIf = (_ctx.connectedUser != null);
+    _NgIf_36_5.ngIf = !_ctx.isWebApp;
+    if (firstCheck) {
+      _PostitComponent_44_2.name = 'places';
+      _PostitComponent_44_2.header = 'Welcome!';
+      _PostitComponent_44_2.body = 'You can create your place on clicking on the + icon';
+    }
+    if (firstCheck) { _PostitComponent_44_2.ngOnInit(); }
+    _NgIf_46_5.ngIf = (_ctx.folder != null);
+    if (firstCheck) { _PlacesComponent_48_2.ngOnInit(); }
+    changes = null;
+    final currVal_22 = _ctx.searchText;
+    if (!import53.looseIdentical(_expr_22,currVal_22)) {
+      _NgModel_57_4.model = currVal_22;
+      if (identical(changes, null)) { (changes = <String, SimpleChange>{}); }
+      changes['model'] = new SimpleChange(_expr_22,currVal_22);
+      _expr_22 = currVal_22;
+    }
+    if (!identical(changes, null)) { _NgModel_57_4.ngOnChanges(changes); }
+    if (firstCheck) { _NgModel_57_4.ngOnInit(); }
+    _NgIf_63_5.ngIf = (_ctx.searchText != null);
+    if (firstCheck) { _SubjectListComponent_70_3.ngOnInit(); }
+    if (firstCheck) { _FilesComp_79_2.ngOnInit(); }
+    _appEl_2.detectChangesInNestedViews();
+    _appEl_4.detectChangesInNestedViews();
+    _appEl_6.detectChangesInNestedViews();
+    _appEl_8.detectChangesInNestedViews();
+    _appEl_10.detectChangesInNestedViews();
+    _appEl_24.detectChangesInNestedViews();
+    _appEl_34.detectChangesInNestedViews();
+    _appEl_36.detectChangesInNestedViews();
+    _appEl_46.detectChangesInNestedViews();
+    _appEl_63.detectChangesInNestedViews();
+    final currVal_9 = import32.interpolate0(_ctx.userPictureUrl);
+    if (!import53.looseIdentical(_expr_9,currVal_9)) {
+      setProp(_el_31,'src',import32.appViewUtils.sanitizer.sanitizeUrl(currVal_9));
       _expr_9 = currVal_9;
     }
-    _NgIf_30_5.ngIf = (ctx.connectedUser != null);
-    _NgIf_32_5.ngIf = !ctx.isWebApp;
-    final currVal_12 = 'places';
-    if (import48.checkBinding(_expr_12,currVal_12)) {
-      _PostitComponent_38_3.name = currVal_12;
-      _expr_12 = currVal_12;
-    }
-    final currVal_13 = 'Welcome!';
-    if (import48.checkBinding(_expr_13,currVal_13)) {
-      _PostitComponent_38_3.header = currVal_13;
-      _expr_13 = currVal_13;
-    }
-    final currVal_14 = 'You can create your place on clicking on the + icon';
-    if (import48.checkBinding(_expr_14,currVal_14)) {
-      _PostitComponent_38_3.body = currVal_14;
-      _expr_14 = currVal_14;
-    }
-    if ((identical(this.cdState, ChangeDetectorState.NeverChecked) && !import48.AppViewUtils.throwOnChanges)) { _PostitComponent_38_3.ngOnInit(); }
-    _NgIf_40_5.ngIf = (ctx.folder != null);
-    if ((identical(this.cdState, ChangeDetectorState.NeverChecked) && !import48.AppViewUtils.throwOnChanges)) { _PlacesComponent_42_3.ngOnInit(); }
-    if ((identical(this.cdState, ChangeDetectorState.NeverChecked) && !import48.AppViewUtils.throwOnChanges)) { _SubjectListComponent_53_4.ngOnInit(); }
-    if ((identical(this.cdState, ChangeDetectorState.NeverChecked) && !import48.AppViewUtils.throwOnChanges)) { _FilesComp_62_3.ngOnInit(); }
-    this.detectContentChildrenChanges();
-    final currVal_7 = import48.interpolate1('/auth/user/photo/s/',((ctx.connectedUser == null)? null: ctx.connectedUser.id),'');
-    if (import48.checkBinding(_expr_7,currVal_7)) {
-      setProp(_el_27,'src',import48.appViewUtils.sanitizer.sanitizeUrl(currVal_7));
-      _expr_7 = currVal_7;
-    }
-    this.detectViewChildrenChanges();
-    if (identical(this.cdState, ChangeDetectorState.NeverChecked)) { _PopupSourceDirective_27_2.ngAfterViewInit(); }
+    _compView_22.detectChanges();
+    _compView_44.detectChanges();
+    _compView_48.detectChanges();
+    _compView_70.detectChanges();
+    _compView_79.detectChanges();
+    if (firstCheck) { _PopupSourceDirective_31_2.ngAfterViewInit(); }
   }
   void destroyInternal() {
-    _PopupSourceDirective_27_2.ngOnDestroy();
+    _appEl_2.destroyNestedViews();
+    _appEl_4.destroyNestedViews();
+    _appEl_6.destroyNestedViews();
+    _appEl_8.destroyNestedViews();
+    _appEl_10.destroyNestedViews();
+    _appEl_24.destroyNestedViews();
+    _appEl_34.destroyNestedViews();
+    _appEl_36.destroyNestedViews();
+    _appEl_46.destroyNestedViews();
+    _appEl_63.destroyNestedViews();
+    _compView_22.destroy();
+    _compView_44.destroy();
+    _compView_48.destroy();
+    _compView_70.destroy();
+    _compView_79.destroy();
+    _PopupSourceDirective_31_2.ngOnDestroy();
   }
-  bool _handle_click_27_0($event) {
-    this.markPathToRootAsCheckOnce();
+  bool _handle_click_31_0($event) {
     final dynamic pd_0 = !identical(((ctx.profileMenuVisible = !ctx.profileMenuVisible) as dynamic), false);
     return (true && pd_0);
   }
+  bool _handle_keyup_enter_57_0($event) {
+    final dynamic pd_0 = !identical((ctx.search(_el_57.value) as dynamic), false);
+    return (true && pd_0);
+  }
+  bool _handle_ngModelChange_57_1($event) {
+    final dynamic pd_0 = !identical(((ctx.searchText = $event) as dynamic), false);
+    return (true && pd_0);
+  }
+  bool _handle_input_57_2($event) {
+    final dynamic pd_0 = !identical((_DefaultValueAccessor_57_2.onChange($event.target.value) as dynamic), false);
+    return (true && pd_0);
+  }
 }
-AppView viewFactory_AppComponent0(import24.Injector parentInjector,ViewContainer declarationEl) {
-  if (identical(renderType_AppComponent, null)) { (renderType_AppComponent = import48.appViewUtils.createRenderComponentType('',0,import49.ViewEncapsulation.Emulated,styles_AppComponent)); }
-  return new ViewAppComponent0(parentInjector,declarationEl);
+AppView<import2.AppComponent> viewFactory_AppComponent0(AppView<dynamic> parentView,num parentIndex) {
+  return new ViewAppComponent0(parentView,parentIndex);
 }
-class ViewAppComponent1 extends AppView<import3.AppComponent> {
+class ViewAppComponent1 extends AppView<import2.AppComponent> {
   Element _el_0;
-  ViewContainer _appEl_0;
-  import50.ModalComponent _ModalComponent_0_3;
-  dynamic __DeferredContentAware_0_4;
-  dynamic __Modal_0_5;
+  import54.ViewModalComponent0 _compView_0;
+  import55.ModalComponent _ModalComponent_0_2;
   Element _el_2;
-  ViewContainer _appEl_2;
-  import51.MaterialDialogComponent _MaterialDialogComponent_2_3;
+  import56.ViewMaterialDialogComponent0 _compView_2;
+  import57.MaterialDialogComponent _MaterialDialogComponent_2_2;
   Element _el_4;
-  ViewContainer _appEl_4;
-  import52.LoginComp _LoginComp_4_3;
-  var _expr_0 = uninitialized;
-  var _expr_1 = uninitialized;
-  ViewAppComponent1(import24.Injector parentInjector,ViewContainer declarationEl): super(ViewAppComponent1,renderType_AppComponent,import25.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
-  dynamic get _DeferredContentAware_0_4 {
-    if ((this.__DeferredContentAware_0_4 == null)) { (__DeferredContentAware_0_4 = this._ModalComponent_0_3); }
-    return this.__DeferredContentAware_0_4;
+  import58.ViewLoginComp0 _compView_4;
+  import59.LoginComp _LoginComp_4_2;
+  var _expr_1;
+  ViewAppComponent1(AppView<dynamic> parentView,num parentIndex): super(import30.ViewType.EMBEDDED,{},parentView,parentIndex,ChangeDetectionStrategy.CheckAlways) {
+    componentType = ViewAppComponent0.renderType;
   }
-  dynamic get _Modal_0_5 {
-    if ((this.__Modal_0_5 == null)) { (__Modal_0_5 = this._ModalComponent_0_3); }
-    return this.__Modal_0_5;
-  }
-  ViewContainer createInternal(dynamic rootSelector) {
-    var doc = document;
-    _el_0 = doc.createElement('modal');
-    _el_0.setAttribute(shimCAttr,'');
-    _appEl_0 = new ViewContainer(0,null,this,_el_0);
-    var compView_0 = import53.viewFactory_ModalComponent0(this.injector(0),_appEl_0);
-    _ModalComponent_0_3 = new import50.ModalComponent(this.parentInjector.get(import34.OverlayService),this.parentInjector.get(import50.Modal,null),this.parentInjector.get(import50.GlobalModalStack,null));
-    _appEl_0.initComponent(_ModalComponent_0_3,compView_0);
-    Text _text_1 = new Text('\n    ');
-    _el_2 = doc.createElement('material-dialog');
-    _el_2.setAttribute(shimCAttr,'');
+  ComponentRef build() {
+    final import2.AppComponent _ctx = ctx;
+    _compView_0 = new import54.ViewModalComponent0(this,0);
+    _el_0 = _compView_0.rootEl;
+    addShimC(_el_0);
+    _ModalComponent_0_2 = new import55.ModalComponent(parentView.parentView.injectorGet(import42.OverlayService,parentView.parentIndex),parentView.parentView.injectorGet(import55.Modal,parentView.parentIndex,null),parentView.parentView.injectorGet(import55.GlobalModalStack,parentView.parentIndex,null));
+    Text _text_1 = new Text('\n        ');
+    _compView_2 = new import56.ViewMaterialDialogComponent0(this,2);
+    _el_2 = _compView_2.rootEl;
     _el_2.className = 'basic-dialog login_pop';
-    _appEl_2 = new ViewContainer(2,0,this,_el_2);
-    var compView_2 = import54.viewFactory_MaterialDialogComponent0(this.injector(2),_appEl_2);
-    _MaterialDialogComponent_2_3 = new import51.MaterialDialogComponent(this.parentInjector.get(import30.DomService),compView_2.ref,_ModalComponent_0_3);
-    _appEl_2.initComponent(_MaterialDialogComponent_2_3,compView_2);
-    Text _text_3 = new Text('\n      ');
-    _el_4 = doc.createElement('login-comp');
-    _el_4.setAttribute(shimCAttr,'');
-    _appEl_4 = new ViewContainer(4,2,this,_el_4);
-    var compView_4 = import55.viewFactory_LoginComp0(this.injector(4),_appEl_4);
-    _LoginComp_4_3 = new import52.LoginComp(this.parentInjector.get(import40.PlaceService),this.parentInjector.get(import41.Router),this.parentInjector.get(import42.Environment),this.parentInjector.get(import45.DomSanitizationService));
-    _appEl_4.initComponent(_LoginComp_4_3,compView_4);
-    compView_4.createComp([],null);
-    Text _text_5 = new Text('\n    ');
-    compView_2.createComp([
-      [],[
+    addShimC(_el_2);
+    _MaterialDialogComponent_2_2 = new import57.MaterialDialogComponent(parentView.parentView.injectorGet(import38.DomService,parentView.parentIndex),_compView_2.ref,_ModalComponent_0_2);
+    Text _text_3 = new Text('\n            ');
+    _compView_4 = new import58.ViewLoginComp0(this,4);
+    _el_4 = _compView_4.rootEl;
+    addShimC(_el_4);
+    _LoginComp_4_2 = new import59.LoginComp(parentView.parentView.injectorGet(import46.PlaceService,parentView.parentIndex),parentView.parentView.injectorGet(import47.Router,parentView.parentIndex),parentView.parentView.injectorGet(import48.Environment,parentView.parentIndex),parentView.parentView.injectorGet(import49.DomSanitizationService,parentView.parentIndex));
+    _compView_4.create(_LoginComp_4_2,[]);
+    Text _text_5 = new Text('\n        ');
+    _compView_2.create(_MaterialDialogComponent_2_2,[
+      const [],[
         _text_3,_el_4,_text_5
       ]
-      ,[]
+      ,const []
     ]
-    ,null);
-    Text _text_6 = new Text('\n  ');
-      compView_0.createComp([[
+    );
+    Text _text_6 = new Text('\n    ');
+      _compView_0.create(_ModalComponent_0_2,[[
         _text_1,_el_2,_text_6
       ]
-    ],null);
-    init([_el_0],[
-      _el_0,_text_1,_el_2,_text_3,_el_4,_text_5,_text_6
-    ]
-    ,[]);
+    ]);
+    init([_el_0],const []);
     return null;
   }
-  dynamic injectorGetInternal(dynamic token,int requestNodeIndex,dynamic notFoundResult) {
-    if ((identical(token, import52.LoginComp) && (4 == requestNodeIndex))) { return _LoginComp_4_3; }
-    if ((identical(token, import51.MaterialDialogComponent) && ((2 <= requestNodeIndex) && (requestNodeIndex <= 5)))) { return _MaterialDialogComponent_2_3; }
-    if ((identical(token, import50.ModalComponent) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 6)))) { return _ModalComponent_0_3; }
-    if ((identical(token, import56.DeferredContentAware) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 6)))) { return _DeferredContentAware_0_4; }
-    if ((identical(token, import50.Modal) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 6)))) { return _Modal_0_5; }
+  dynamic injectorGetInternal(dynamic token,int nodeIndex,dynamic notFoundResult) {
+    if ((identical(token, import59.LoginComp) && (4 == nodeIndex))) { return _LoginComp_4_2; }
+    if ((identical(token, import57.MaterialDialogComponent) && ((2 <= nodeIndex) && (nodeIndex <= 5)))) { return _MaterialDialogComponent_2_2; }
+    if ((((identical(token, import55.ModalComponent) || identical(token, import60.DeferredContentAware)) || identical(token, import55.Modal)) && ((0 <= nodeIndex) && (nodeIndex <= 6)))) { return _ModalComponent_0_2; }
     return notFoundResult;
   }
   void detectChangesInternal() {
-    final currVal_0 = true;
-    if (import48.checkBinding(_expr_0,currVal_0)) {
-      _ModalComponent_0_3.visible = currVal_0;
-      _expr_0 = currVal_0;
-    }
-    if ((identical(this.cdState, ChangeDetectorState.NeverChecked) && !import48.AppViewUtils.throwOnChanges)) { _LoginComp_4_3.ngOnInit(); }
-    this.detectContentChildrenChanges();
-    _MaterialDialogComponent_2_3.ngAfterContentChecked();
-    final currVal_1 = _ModalComponent_0_3.uniquePaneId;
-    if (import48.checkBinding(_expr_1,currVal_1)) {
-      setAttr(_el_0,'pane-id',((currVal_1 == null)? null: currVal_1.toString()));
+    bool firstCheck = identical(this.cdState, ChangeDetectorState.NeverChecked);
+    final import2.AppComponent _ctx = ctx;
+    if (firstCheck) { (_ModalComponent_0_2.visible = true); }
+    if (firstCheck) { _LoginComp_4_2.ngOnInit(); }
+    _MaterialDialogComponent_2_2.ngAfterContentChecked();
+    final currVal_1 = _ModalComponent_0_2.uniquePaneId;
+    if (!import53.looseIdentical(_expr_1,currVal_1)) {
+      setAttr(_el_0,'pane-id',currVal_1?.toString());
       _expr_1 = currVal_1;
     }
-    this.detectViewChildrenChanges();
+    _compView_0.detectChanges();
+    _compView_2.detectChanges();
+    _compView_4.detectChanges();
   }
   void destroyInternal() {
-    _MaterialDialogComponent_2_3.ngOnDestroy();
-    _ModalComponent_0_3.ngOnDestroy();
+    _compView_0.destroy();
+    _compView_2.destroy();
+    _compView_4.destroy();
+    _MaterialDialogComponent_2_2.ngOnDestroy();
+    _ModalComponent_0_2.ngOnDestroy();
   }
 }
-AppView viewFactory_AppComponent1(import24.Injector parentInjector,ViewContainer declarationEl) {
-  return new ViewAppComponent1(parentInjector,declarationEl);
+AppView<import2.AppComponent> viewFactory_AppComponent1(AppView<dynamic> parentView,num parentIndex) {
+  return new ViewAppComponent1(parentView,parentIndex);
 }
-class ViewAppComponent2 extends AppView<import3.AppComponent> {
+class ViewAppComponent2 extends AppView<import2.AppComponent> {
   Element _el_0;
-  ViewContainer _appEl_0;
-  import50.ModalComponent _ModalComponent_0_3;
-  dynamic __DeferredContentAware_0_4;
-  dynamic __Modal_0_5;
+  import54.ViewModalComponent0 _compView_0;
+  import55.ModalComponent _ModalComponent_0_2;
   Element _el_2;
-  ViewContainer _appEl_2;
-  import51.MaterialDialogComponent _MaterialDialogComponent_2_3;
-  Element _el_4;
+  import56.ViewMaterialDialogComponent0 _compView_2;
+  import57.MaterialDialogComponent _MaterialDialogComponent_2_2;
   ViewContainer _appEl_4;
-  import57.ProfileComp _ProfileComp_4_3;
-  var _expr_0 = uninitialized;
-  var _expr_1 = uninitialized;
-  ViewAppComponent2(import24.Injector parentInjector,ViewContainer declarationEl): super(ViewAppComponent2,renderType_AppComponent,import25.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
-  dynamic get _DeferredContentAware_0_4 {
-    if ((this.__DeferredContentAware_0_4 == null)) { (__DeferredContentAware_0_4 = this._ModalComponent_0_3); }
-    return this.__DeferredContentAware_0_4;
+  NgIf _NgIf_4_5;
+  var _expr_0;
+  var _expr_1;
+  ViewAppComponent2(AppView<dynamic> parentView,num parentIndex): super(import30.ViewType.EMBEDDED,{},parentView,parentIndex,ChangeDetectionStrategy.CheckAlways) {
+    componentType = ViewAppComponent0.renderType;
   }
-  dynamic get _Modal_0_5 {
-    if ((this.__Modal_0_5 == null)) { (__Modal_0_5 = this._ModalComponent_0_3); }
-    return this.__Modal_0_5;
-  }
-  ViewContainer createInternal(dynamic rootSelector) {
-    var doc = document;
-    _el_0 = doc.createElement('modal');
-    _el_0.setAttribute(shimCAttr,'');
-    _appEl_0 = new ViewContainer(0,null,this,_el_0);
-    var compView_0 = import53.viewFactory_ModalComponent0(this.injector(0),_appEl_0);
-    _ModalComponent_0_3 = new import50.ModalComponent(this.parentInjector.get(import34.OverlayService),this.parentInjector.get(import50.Modal,null),this.parentInjector.get(import50.GlobalModalStack,null));
-    _appEl_0.initComponent(_ModalComponent_0_3,compView_0);
-    Text _text_1 = new Text('\n    ');
-    _el_2 = doc.createElement('material-dialog');
-    _el_2.setAttribute(shimCAttr,'');
+  ComponentRef build() {
+    final import2.AppComponent _ctx = ctx;
+    _compView_0 = new import54.ViewModalComponent0(this,0);
+    _el_0 = _compView_0.rootEl;
+    addShimC(_el_0);
+    _ModalComponent_0_2 = new import55.ModalComponent(parentView.parentView.injectorGet(import42.OverlayService,parentView.parentIndex),parentView.parentView.injectorGet(import55.Modal,parentView.parentIndex,null),parentView.parentView.injectorGet(import55.GlobalModalStack,parentView.parentIndex,null));
+    Text _text_1 = new Text('\n        ');
+    _compView_2 = new import56.ViewMaterialDialogComponent0(this,2);
+    _el_2 = _compView_2.rootEl;
     _el_2.className = 'basic-dialog profile_pop';
-    _appEl_2 = new ViewContainer(2,0,this,_el_2);
-    var compView_2 = import54.viewFactory_MaterialDialogComponent0(this.injector(2),_appEl_2);
-    _MaterialDialogComponent_2_3 = new import51.MaterialDialogComponent(this.parentInjector.get(import30.DomService),compView_2.ref,_ModalComponent_0_3);
-    _appEl_2.initComponent(_MaterialDialogComponent_2_3,compView_2);
-    Text _text_3 = new Text('\n      ');
-    _el_4 = doc.createElement('profile-comp');
-    _el_4.setAttribute(shimCAttr,'');
-    _appEl_4 = new ViewContainer(4,2,this,_el_4);
-    var compView_4 = import58.viewFactory_ProfileComp0(this.injector(4),_appEl_4);
-    _ProfileComp_4_3 = new import57.ProfileComp(this.parentInjector.get(import40.PlaceService),this.parentInjector.get(import41.Router),this.parentInjector.get(import42.Environment),this.parentInjector.get(import3.AppComponent));
-    _appEl_4.initComponent(_ProfileComp_4_3,compView_4);
-    compView_4.createComp([],null);
-    Text _text_5 = new Text('\n    ');
-    compView_2.createComp([
-      [],[
-        _text_3,_el_4,_text_5
+    addShimC(_el_2);
+    _MaterialDialogComponent_2_2 = new import57.MaterialDialogComponent(parentView.parentView.injectorGet(import38.DomService,parentView.parentIndex),_compView_2.ref,_ModalComponent_0_2);
+    Text _text_3 = new Text('\n            ');
+    var _anchor_4 = ngAnchor.clone(false);
+    _appEl_4 = new ViewContainer(4,2,this,_anchor_4);
+    TemplateRef _TemplateRef_4_4 = new TemplateRef(_appEl_4,viewFactory_AppComponent3);
+    _NgIf_4_5 = new NgIf(_appEl_4,_TemplateRef_4_4);
+    Text _text_5 = new Text('\n        ');
+    _compView_2.create(_MaterialDialogComponent_2_2,[
+      const [],[
+        _text_3,_appEl_4,_text_5
       ]
-      ,[]
+      ,const []
     ]
-    ,null);
-    Text _text_6 = new Text('\n  ');
-      compView_0.createComp([[
+    );
+    Text _text_6 = new Text('\n    ');
+      _compView_0.create(_ModalComponent_0_2,[[
         _text_1,_el_2,_text_6
       ]
-    ],null);
-    init([_el_0],[
-      _el_0,_text_1,_el_2,_text_3,_el_4,_text_5,_text_6
-    ]
-    ,[]);
+    ]);
+    init([_el_0],const []);
     return null;
   }
-  dynamic injectorGetInternal(dynamic token,int requestNodeIndex,dynamic notFoundResult) {
-    if ((identical(token, import57.ProfileComp) && (4 == requestNodeIndex))) { return _ProfileComp_4_3; }
-    if ((identical(token, import51.MaterialDialogComponent) && ((2 <= requestNodeIndex) && (requestNodeIndex <= 5)))) { return _MaterialDialogComponent_2_3; }
-    if ((identical(token, import50.ModalComponent) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 6)))) { return _ModalComponent_0_3; }
-    if ((identical(token, import56.DeferredContentAware) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 6)))) { return _DeferredContentAware_0_4; }
-    if ((identical(token, import50.Modal) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 6)))) { return _Modal_0_5; }
+  dynamic injectorGetInternal(dynamic token,int nodeIndex,dynamic notFoundResult) {
+    if ((identical(token, import57.MaterialDialogComponent) && ((2 <= nodeIndex) && (nodeIndex <= 5)))) { return _MaterialDialogComponent_2_2; }
+    if ((((identical(token, import55.ModalComponent) || identical(token, import60.DeferredContentAware)) || identical(token, import55.Modal)) && ((0 <= nodeIndex) && (nodeIndex <= 6)))) { return _ModalComponent_0_2; }
     return notFoundResult;
   }
   void detectChangesInternal() {
-    final currVal_0 = ctx.profilePopinVisible;
-    if (import48.checkBinding(_expr_0,currVal_0)) {
-      _ModalComponent_0_3.visible = currVal_0;
+    final import2.AppComponent _ctx = ctx;
+    final currVal_0 = _ctx.profilePopinVisible;
+    if (!import53.looseIdentical(_expr_0,currVal_0)) {
+      _ModalComponent_0_2.visible = currVal_0;
       _expr_0 = currVal_0;
     }
-    if ((identical(this.cdState, ChangeDetectorState.NeverChecked) && !import48.AppViewUtils.throwOnChanges)) { _ProfileComp_4_3.ngOnInit(); }
-    this.detectContentChildrenChanges();
-    _MaterialDialogComponent_2_3.ngAfterContentChecked();
-    final currVal_1 = _ModalComponent_0_3.uniquePaneId;
-    if (import48.checkBinding(_expr_1,currVal_1)) {
-      setAttr(_el_0,'pane-id',((currVal_1 == null)? null: currVal_1.toString()));
+    _NgIf_4_5.ngIf = (_ctx.connectedUser != null);
+    _appEl_4.detectChangesInNestedViews();
+    _MaterialDialogComponent_2_2.ngAfterContentChecked();
+    final currVal_1 = _ModalComponent_0_2.uniquePaneId;
+    if (!import53.looseIdentical(_expr_1,currVal_1)) {
+      setAttr(_el_0,'pane-id',currVal_1?.toString());
       _expr_1 = currVal_1;
     }
-    this.detectViewChildrenChanges();
+    _compView_0.detectChanges();
+    _compView_2.detectChanges();
   }
   void destroyInternal() {
-    _MaterialDialogComponent_2_3.ngOnDestroy();
-    _ModalComponent_0_3.ngOnDestroy();
+    _appEl_4.destroyNestedViews();
+    _compView_0.destroy();
+    _compView_2.destroy();
+    _MaterialDialogComponent_2_2.ngOnDestroy();
+    _ModalComponent_0_2.ngOnDestroy();
   }
 }
-AppView viewFactory_AppComponent2(import24.Injector parentInjector,ViewContainer declarationEl) {
-  return new ViewAppComponent2(parentInjector,declarationEl);
+AppView<import2.AppComponent> viewFactory_AppComponent2(AppView<dynamic> parentView,num parentIndex) {
+  return new ViewAppComponent2(parentView,parentIndex);
 }
-class ViewAppComponent3 extends AppView<import3.AppComponent> {
+class ViewAppComponent3 extends AppView<import2.AppComponent> {
   Element _el_0;
-  ViewContainer _appEl_0;
-  import50.ModalComponent _ModalComponent_0_3;
-  dynamic __DeferredContentAware_0_4;
-  dynamic __Modal_0_5;
+  import61.ViewProfileComp0 _compView_0;
+  import62.ProfileComp _ProfileComp_0_2;
+  ViewAppComponent3(AppView<dynamic> parentView,num parentIndex): super(import30.ViewType.EMBEDDED,{},parentView,parentIndex,ChangeDetectionStrategy.CheckAlways) {
+    componentType = ViewAppComponent0.renderType;
+  }
+  ComponentRef build() {
+    final import2.AppComponent _ctx = ctx;
+    _compView_0 = new import61.ViewProfileComp0(this,0);
+    _el_0 = _compView_0.rootEl;
+    addShimC(_el_0);
+    _ProfileComp_0_2 = new import62.ProfileComp(parentView.parentView.parentView.injectorGet(import46.PlaceService,parentView.parentView.parentIndex),parentView.parentView.parentView.injectorGet(import47.Router,parentView.parentView.parentIndex),parentView.parentView.parentView.injectorGet(import48.Environment,parentView.parentView.parentIndex),parentView.parentView.parentView.injectorGet(import2.AppComponent,parentView.parentView.parentIndex));
+    _compView_0.create(_ProfileComp_0_2,[]);
+    init([_el_0],const []);
+    return null;
+  }
+  dynamic injectorGetInternal(dynamic token,int nodeIndex,dynamic notFoundResult) {
+    if ((identical(token, import62.ProfileComp) && (0 == nodeIndex))) { return _ProfileComp_0_2; }
+    return notFoundResult;
+  }
+  void detectChangesInternal() {
+    bool firstCheck = identical(this.cdState, ChangeDetectorState.NeverChecked);
+    final import2.AppComponent _ctx = ctx;
+    if (firstCheck) { _ProfileComp_0_2.ngOnInit(); }
+    _compView_0.detectChanges();
+  }
+  void destroyInternal() {
+    _compView_0.destroy();
+  }
+}
+AppView<import2.AppComponent> viewFactory_AppComponent3(AppView<dynamic> parentView,num parentIndex) {
+  return new ViewAppComponent3(parentView,parentIndex);
+}
+class ViewAppComponent4 extends AppView<import2.AppComponent> {
+  Element _el_0;
+  import54.ViewModalComponent0 _compView_0;
+  import55.ModalComponent _ModalComponent_0_2;
   Element _el_2;
-  ViewContainer _appEl_2;
-  import51.MaterialDialogComponent _MaterialDialogComponent_2_3;
+  import56.ViewMaterialDialogComponent0 _compView_2;
+  import57.MaterialDialogComponent _MaterialDialogComponent_2_2;
   Element _el_4;
-  ViewContainer _appEl_4;
-  import59.ChangeRolesDialogComp _ChangeRolesDialogComp_4_3;
-  import11.UserListProvider __UserListProvider_4_4;
-  var _expr_0 = uninitialized;
-  var _expr_1 = uninitialized;
-  ViewAppComponent3(import24.Injector parentInjector,ViewContainer declarationEl): super(ViewAppComponent3,renderType_AppComponent,import25.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
-  dynamic get _DeferredContentAware_0_4 {
-    if ((this.__DeferredContentAware_0_4 == null)) { (__DeferredContentAware_0_4 = this._ModalComponent_0_3); }
-    return this.__DeferredContentAware_0_4;
+  import63.ViewChangeRolesDialogComp0 _compView_4;
+  import64.ChangeRolesDialogComp _ChangeRolesDialogComp_4_2;
+  import16.UserListProvider __UserListProvider_4_3;
+  var _expr_0;
+  var _expr_1;
+  ViewAppComponent4(AppView<dynamic> parentView,num parentIndex): super(import30.ViewType.EMBEDDED,{},parentView,parentIndex,ChangeDetectionStrategy.CheckAlways) {
+    componentType = ViewAppComponent0.renderType;
   }
-  dynamic get _Modal_0_5 {
-    if ((this.__Modal_0_5 == null)) { (__Modal_0_5 = this._ModalComponent_0_3); }
-    return this.__Modal_0_5;
+  import16.UserListProvider get _UserListProvider_4_3 {
+    if ((this.__UserListProvider_4_3 == null)) { (__UserListProvider_4_3 = new import16.UserListProvider(this.parentView.parentView.injectorGet(import48.Environment,this.parentView.parentIndex),this.parentView.parentView.injectorGet(import46.PlaceService,this.parentView.parentIndex))); }
+    return this.__UserListProvider_4_3;
   }
-  import11.UserListProvider get _UserListProvider_4_4 {
-    if ((this.__UserListProvider_4_4 == null)) { (__UserListProvider_4_4 = new import11.UserListProvider(this.parentInjector.get(import42.Environment),this.parentInjector.get(import40.PlaceService))); }
-    return this.__UserListProvider_4_4;
-  }
-  ViewContainer createInternal(dynamic rootSelector) {
-    var doc = document;
-    _el_0 = doc.createElement('modal');
-    _el_0.setAttribute(shimCAttr,'');
-    _appEl_0 = new ViewContainer(0,null,this,_el_0);
-    var compView_0 = import53.viewFactory_ModalComponent0(this.injector(0),_appEl_0);
-    _ModalComponent_0_3 = new import50.ModalComponent(this.parentInjector.get(import34.OverlayService),this.parentInjector.get(import50.Modal,null),this.parentInjector.get(import50.GlobalModalStack,null));
-    _appEl_0.initComponent(_ModalComponent_0_3,compView_0);
-    Text _text_1 = new Text('\n    ');
-    _el_2 = doc.createElement('material-dialog');
-    _el_2.setAttribute(shimCAttr,'');
+  ComponentRef build() {
+    final import2.AppComponent _ctx = ctx;
+    _compView_0 = new import54.ViewModalComponent0(this,0);
+    _el_0 = _compView_0.rootEl;
+    addShimC(_el_0);
+    _ModalComponent_0_2 = new import55.ModalComponent(parentView.parentView.injectorGet(import42.OverlayService,parentView.parentIndex),parentView.parentView.injectorGet(import55.Modal,parentView.parentIndex,null),parentView.parentView.injectorGet(import55.GlobalModalStack,parentView.parentIndex,null));
+    Text _text_1 = new Text('\n        ');
+    _compView_2 = new import56.ViewMaterialDialogComponent0(this,2);
+    _el_2 = _compView_2.rootEl;
     _el_2.className = 'profilemenuvisible';
     createAttr(_el_2,'defaultPopupSizeProvider','');
     createAttr(_el_2,'enforceSpaceConstraints','');
-    _appEl_2 = new ViewContainer(2,0,this,_el_2);
-    var compView_2 = import54.viewFactory_MaterialDialogComponent0(this.injector(2),_appEl_2);
-    _MaterialDialogComponent_2_3 = new import51.MaterialDialogComponent(this.parentInjector.get(import30.DomService),compView_2.ref,_ModalComponent_0_3);
-    _appEl_2.initComponent(_MaterialDialogComponent_2_3,compView_2);
-    Text _text_3 = new Text('\n      ');
-    _el_4 = doc.createElement('change-roles-dialog');
-    _el_4.setAttribute(shimCAttr,'');
-    _appEl_4 = new ViewContainer(4,2,this,_el_4);
-    var compView_4 = import60.viewFactory_ChangeRolesDialogComp0(this.injector(4),_appEl_4);
-    _ChangeRolesDialogComp_4_3 = new import59.ChangeRolesDialogComp(this.parentInjector.get(import40.PlaceService),this.parentInjector.get(import41.Router),this.parentInjector.get(import42.Environment));
-    _appEl_4.initComponent(_ChangeRolesDialogComp_4_3,compView_4);
-    compView_4.createComp([],null);
-    Text _text_5 = new Text('\n    ');
-    compView_2.createComp([
-      [],[
+    addShimC(_el_2);
+    _MaterialDialogComponent_2_2 = new import57.MaterialDialogComponent(parentView.parentView.injectorGet(import38.DomService,parentView.parentIndex),_compView_2.ref,_ModalComponent_0_2);
+    Text _text_3 = new Text('\n            ');
+    _compView_4 = new import63.ViewChangeRolesDialogComp0(this,4);
+    _el_4 = _compView_4.rootEl;
+    addShimC(_el_4);
+    _ChangeRolesDialogComp_4_2 = new import64.ChangeRolesDialogComp(parentView.parentView.injectorGet(import46.PlaceService,parentView.parentIndex),parentView.parentView.injectorGet(import47.Router,parentView.parentIndex),parentView.parentView.injectorGet(import48.Environment,parentView.parentIndex));
+    _compView_4.create(_ChangeRolesDialogComp_4_2,[]);
+    Text _text_5 = new Text('\n        ');
+    _compView_2.create(_MaterialDialogComponent_2_2,[
+      const [],[
         _text_3,_el_4,_text_5
       ]
-      ,[]
+      ,const []
     ]
-    ,null);
-    Text _text_6 = new Text('\n  ');
-      compView_0.createComp([[
+    );
+    Text _text_6 = new Text('\n    ');
+      _compView_0.create(_ModalComponent_0_2,[[
         _text_1,_el_2,_text_6
       ]
-    ],null);
-    init([_el_0],[
-      _el_0,_text_1,_el_2,_text_3,_el_4,_text_5,_text_6
-    ]
-    ,[]);
+    ]);
+    init([_el_0],const []);
     return null;
   }
-  dynamic injectorGetInternal(dynamic token,int requestNodeIndex,dynamic notFoundResult) {
-    if ((identical(token, import59.ChangeRolesDialogComp) && (4 == requestNodeIndex))) { return _ChangeRolesDialogComp_4_3; }
-    if ((identical(token, import11.UserListProvider) && (4 == requestNodeIndex))) { return _UserListProvider_4_4; }
-    if ((identical(token, import51.MaterialDialogComponent) && ((2 <= requestNodeIndex) && (requestNodeIndex <= 5)))) { return _MaterialDialogComponent_2_3; }
-    if ((identical(token, import50.ModalComponent) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 6)))) { return _ModalComponent_0_3; }
-    if ((identical(token, import56.DeferredContentAware) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 6)))) { return _DeferredContentAware_0_4; }
-    if ((identical(token, import50.Modal) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 6)))) { return _Modal_0_5; }
+  dynamic injectorGetInternal(dynamic token,int nodeIndex,dynamic notFoundResult) {
+    if ((identical(token, import64.ChangeRolesDialogComp) && (4 == nodeIndex))) { return _ChangeRolesDialogComp_4_2; }
+    if ((identical(token, import16.UserListProvider) && (4 == nodeIndex))) { return _UserListProvider_4_3; }
+    if ((identical(token, import57.MaterialDialogComponent) && ((2 <= nodeIndex) && (nodeIndex <= 5)))) { return _MaterialDialogComponent_2_2; }
+    if ((((identical(token, import55.ModalComponent) || identical(token, import60.DeferredContentAware)) || identical(token, import55.Modal)) && ((0 <= nodeIndex) && (nodeIndex <= 6)))) { return _ModalComponent_0_2; }
     return notFoundResult;
   }
   void detectChangesInternal() {
-    final currVal_0 = ctx.editingRole;
-    if (import48.checkBinding(_expr_0,currVal_0)) {
-      _ModalComponent_0_3.visible = currVal_0;
+    bool firstCheck = identical(this.cdState, ChangeDetectorState.NeverChecked);
+    final import2.AppComponent _ctx = ctx;
+    final currVal_0 = _ctx.editingRole;
+    if (!import53.looseIdentical(_expr_0,currVal_0)) {
+      _ModalComponent_0_2.visible = currVal_0;
       _expr_0 = currVal_0;
     }
-    if ((identical(this.cdState, ChangeDetectorState.NeverChecked) && !import48.AppViewUtils.throwOnChanges)) { _ChangeRolesDialogComp_4_3.ngOnInit(); }
-    this.detectContentChildrenChanges();
-    _MaterialDialogComponent_2_3.ngAfterContentChecked();
-    final currVal_1 = _ModalComponent_0_3.uniquePaneId;
-    if (import48.checkBinding(_expr_1,currVal_1)) {
-      setAttr(_el_0,'pane-id',((currVal_1 == null)? null: currVal_1.toString()));
+    if (firstCheck) { _ChangeRolesDialogComp_4_2.ngOnInit(); }
+    _MaterialDialogComponent_2_2.ngAfterContentChecked();
+    final currVal_1 = _ModalComponent_0_2.uniquePaneId;
+    if (!import53.looseIdentical(_expr_1,currVal_1)) {
+      setAttr(_el_0,'pane-id',currVal_1?.toString());
       _expr_1 = currVal_1;
     }
-    this.detectViewChildrenChanges();
+    _compView_0.detectChanges();
+    _compView_2.detectChanges();
+    _compView_4.detectChanges();
   }
   void destroyInternal() {
-    _MaterialDialogComponent_2_3.ngOnDestroy();
-    _ModalComponent_0_3.ngOnDestroy();
+    _compView_0.destroy();
+    _compView_2.destroy();
+    _compView_4.destroy();
+    _MaterialDialogComponent_2_2.ngOnDestroy();
+    _ModalComponent_0_2.ngOnDestroy();
   }
 }
-AppView viewFactory_AppComponent3(import24.Injector parentInjector,ViewContainer declarationEl) {
-  return new ViewAppComponent3(parentInjector,declarationEl);
+AppView<import2.AppComponent> viewFactory_AppComponent4(AppView<dynamic> parentView,num parentIndex) {
+  return new ViewAppComponent4(parentView,parentIndex);
 }
-class ViewAppComponent4 extends AppView<import3.AppComponent> {
+class ViewAppComponent5 extends AppView<import2.AppComponent> {
   Element _el_0;
-  ViewContainer _appEl_2;
-  dynamic _TemplateRef_2_4;
-  import61.NgFor _NgFor_2_5;
-  var _expr_0 = uninitialized;
-  ViewAppComponent4(import24.Injector parentInjector,ViewContainer declarationEl): super(ViewAppComponent4,renderType_AppComponent,import25.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
-  ViewContainer createInternal(dynamic rootSelector) {
-    var doc = document;
-    _el_0 = doc.createElement('div');
-    _el_0.setAttribute(shimCAttr,'');
+  import54.ViewModalComponent0 _compView_0;
+  import55.ModalComponent _ModalComponent_0_2;
+  Element _el_2;
+  import56.ViewMaterialDialogComponent0 _compView_2;
+  import57.MaterialDialogComponent _MaterialDialogComponent_2_2;
+  Element _el_4;
+  import65.ViewTermsAndconditions0 _compView_4;
+  import66.TermsAndconditions _TermsAndconditions_4_2;
+  var _expr_0;
+  var _expr_1;
+  ViewAppComponent5(AppView<dynamic> parentView,num parentIndex): super(import30.ViewType.EMBEDDED,{},parentView,parentIndex,ChangeDetectionStrategy.CheckAlways) {
+    componentType = ViewAppComponent0.renderType;
+  }
+  ComponentRef build() {
+    final import2.AppComponent _ctx = ctx;
+    _compView_0 = new import54.ViewModalComponent0(this,0);
+    _el_0 = _compView_0.rootEl;
+    addShimC(_el_0);
+    _ModalComponent_0_2 = new import55.ModalComponent(parentView.parentView.injectorGet(import42.OverlayService,parentView.parentIndex),parentView.parentView.injectorGet(import55.Modal,parentView.parentIndex,null),parentView.parentView.injectorGet(import55.GlobalModalStack,parentView.parentIndex,null));
     Text _text_1 = new Text('\n        ');
-    _el_0.append(_text_1);
-    var _anchor_2 = new Comment('template bindings={}');
-    _el_0?.append(_anchor_2);
-    _appEl_2 = new ViewContainer(2,0,this,_anchor_2);
-    _TemplateRef_2_4 = new TemplateRef(_appEl_2,viewFactory_AppComponent5);
-    _NgFor_2_5 = new import61.NgFor(_appEl_2,_TemplateRef_2_4,this.parentInjector.get(import62.IterableDiffers),ref);
-    Text _text_3 = new Text('\n      ');
-    _el_0.append(_text_3);
-    init([_el_0],[
-      _el_0,_text_1,_anchor_2,_text_3
+    _compView_2 = new import56.ViewMaterialDialogComponent0(this,2);
+    _el_2 = _compView_2.rootEl;
+    _el_2.className = 'termsConditions';
+    createAttr(_el_2,'defaultPopupSizeProvider','');
+    createAttr(_el_2,'enforceSpaceConstraints','');
+    createAttr(_el_2,'headered','');
+    createAttr(_el_2,'info','');
+    addShimC(_el_2);
+    _MaterialDialogComponent_2_2 = new import57.MaterialDialogComponent(parentView.parentView.injectorGet(import38.DomService,parentView.parentIndex),_compView_2.ref,_ModalComponent_0_2);
+    Text _text_3 = new Text('\n            ');
+    _compView_4 = new import65.ViewTermsAndconditions0(this,4);
+    _el_4 = _compView_4.rootEl;
+    addShimC(_el_4);
+    _TermsAndconditions_4_2 = new import66.TermsAndconditions(parentView.parentView.injectorGet(import46.PlaceService,parentView.parentIndex),parentView.parentView.injectorGet(import47.Router,parentView.parentIndex),parentView.parentView.injectorGet(import48.Environment,parentView.parentIndex),parentView.parentView.injectorGet(import2.AppComponent,parentView.parentIndex));
+    _compView_4.create(_TermsAndconditions_4_2,[]);
+    Text _text_5 = new Text('\n        ');
+    _compView_2.create(_MaterialDialogComponent_2_2,[
+      const [],[
+        _text_3,_el_4,_text_5
+      ]
+      ,const []
     ]
-    ,[]);
+    );
+    Text _text_6 = new Text('\n    ');
+      _compView_0.create(_ModalComponent_0_2,[[
+        _text_1,_el_2,_text_6
+      ]
+    ]);
+    init([_el_0],const []);
     return null;
   }
-  dynamic injectorGetInternal(dynamic token,int requestNodeIndex,dynamic notFoundResult) {
-    if ((identical(token, TemplateRef) && (2 == requestNodeIndex))) { return _TemplateRef_2_4; }
-    if ((identical(token, import61.NgFor) && (2 == requestNodeIndex))) { return _NgFor_2_5; }
+  dynamic injectorGetInternal(dynamic token,int nodeIndex,dynamic notFoundResult) {
+    if ((identical(token, import66.TermsAndconditions) && (4 == nodeIndex))) { return _TermsAndconditions_4_2; }
+    if ((identical(token, import57.MaterialDialogComponent) && ((2 <= nodeIndex) && (nodeIndex <= 5)))) { return _MaterialDialogComponent_2_2; }
+    if ((((identical(token, import55.ModalComponent) || identical(token, import60.DeferredContentAware)) || identical(token, import55.Modal)) && ((0 <= nodeIndex) && (nodeIndex <= 6)))) { return _ModalComponent_0_2; }
     return notFoundResult;
   }
   void detectChangesInternal() {
-    final currVal_0 = ctx.messages;
-    if (import48.checkBinding(_expr_0,currVal_0)) {
+    bool firstCheck = identical(this.cdState, ChangeDetectorState.NeverChecked);
+    final import2.AppComponent _ctx = ctx;
+    final currVal_0 = _ctx.termsAndConditionsVisible;
+    if (!import53.looseIdentical(_expr_0,currVal_0)) {
+      _ModalComponent_0_2.visible = currVal_0;
+      _expr_0 = currVal_0;
+    }
+    if (firstCheck) { (_TermsAndconditions_4_2.name = 'termsAndConditions'); }
+    if (firstCheck) { _TermsAndconditions_4_2.ngOnInit(); }
+    _MaterialDialogComponent_2_2.ngAfterContentChecked();
+    final currVal_1 = _ModalComponent_0_2.uniquePaneId;
+    if (!import53.looseIdentical(_expr_1,currVal_1)) {
+      setAttr(_el_0,'pane-id',currVal_1?.toString());
+      _expr_1 = currVal_1;
+    }
+    _compView_0.detectChanges();
+    _compView_2.detectChanges();
+    _compView_4.detectChanges();
+  }
+  void destroyInternal() {
+    _compView_0.destroy();
+    _compView_2.destroy();
+    _compView_4.destroy();
+    _MaterialDialogComponent_2_2.ngOnDestroy();
+    _ModalComponent_0_2.ngOnDestroy();
+  }
+}
+AppView<import2.AppComponent> viewFactory_AppComponent5(AppView<dynamic> parentView,num parentIndex) {
+  return new ViewAppComponent5(parentView,parentIndex);
+}
+class ViewAppComponent6 extends AppView<import2.AppComponent> {
+  Element _el_0;
+  import54.ViewModalComponent0 _compView_0;
+  import55.ModalComponent _ModalComponent_0_2;
+  Element _el_2;
+  import56.ViewMaterialDialogComponent0 _compView_2;
+  import57.MaterialDialogComponent _MaterialDialogComponent_2_2;
+  Element _el_4;
+  import67.ViewProxyCredentials0 _compView_4;
+  import68.ProxyCredentials _ProxyCredentials_4_2;
+  var _expr_0;
+  var _expr_1;
+  ViewAppComponent6(AppView<dynamic> parentView,num parentIndex): super(import30.ViewType.EMBEDDED,{},parentView,parentIndex,ChangeDetectionStrategy.CheckAlways) {
+    componentType = ViewAppComponent0.renderType;
+  }
+  ComponentRef build() {
+    final import2.AppComponent _ctx = ctx;
+    _compView_0 = new import54.ViewModalComponent0(this,0);
+    _el_0 = _compView_0.rootEl;
+    addShimC(_el_0);
+    _ModalComponent_0_2 = new import55.ModalComponent(parentView.parentView.injectorGet(import42.OverlayService,parentView.parentIndex),parentView.parentView.injectorGet(import55.Modal,parentView.parentIndex,null),parentView.parentView.injectorGet(import55.GlobalModalStack,parentView.parentIndex,null));
+    Text _text_1 = new Text('\n        ');
+    _compView_2 = new import56.ViewMaterialDialogComponent0(this,2);
+    _el_2 = _compView_2.rootEl;
+    _el_2.className = 'proxyCredentials';
+    addShimC(_el_2);
+    _MaterialDialogComponent_2_2 = new import57.MaterialDialogComponent(parentView.parentView.injectorGet(import38.DomService,parentView.parentIndex),_compView_2.ref,_ModalComponent_0_2);
+    Text _text_3 = new Text('\n            ');
+    _compView_4 = new import67.ViewProxyCredentials0(this,4);
+    _el_4 = _compView_4.rootEl;
+    addShimC(_el_4);
+    _ProxyCredentials_4_2 = new import68.ProxyCredentials(parentView.parentView.injectorGet(import48.Environment,parentView.parentIndex));
+    _compView_4.create(_ProxyCredentials_4_2,[]);
+    Text _text_5 = new Text('\n        ');
+    _compView_2.create(_MaterialDialogComponent_2_2,[
+      const [],[
+        _text_3,_el_4,_text_5
+      ]
+      ,const []
+    ]
+    );
+    Text _text_6 = new Text('\n    ');
+      _compView_0.create(_ModalComponent_0_2,[[
+        _text_1,_el_2,_text_6
+      ]
+    ]);
+    init([_el_0],const []);
+    return null;
+  }
+  dynamic injectorGetInternal(dynamic token,int nodeIndex,dynamic notFoundResult) {
+    if ((identical(token, import68.ProxyCredentials) && (4 == nodeIndex))) { return _ProxyCredentials_4_2; }
+    if ((identical(token, import57.MaterialDialogComponent) && ((2 <= nodeIndex) && (nodeIndex <= 5)))) { return _MaterialDialogComponent_2_2; }
+    if ((((identical(token, import55.ModalComponent) || identical(token, import60.DeferredContentAware)) || identical(token, import55.Modal)) && ((0 <= nodeIndex) && (nodeIndex <= 6)))) { return _ModalComponent_0_2; }
+    return notFoundResult;
+  }
+  void detectChangesInternal() {
+    bool firstCheck = identical(this.cdState, ChangeDetectorState.NeverChecked);
+    final import2.AppComponent _ctx = ctx;
+    final currVal_0 = (_ctx.electronProxyCredentials != null);
+    if (!import53.looseIdentical(_expr_0,currVal_0)) {
+      _ModalComponent_0_2.visible = currVal_0;
+      _expr_0 = currVal_0;
+    }
+    if (firstCheck) { _ProxyCredentials_4_2.ngOnInit(); }
+    _MaterialDialogComponent_2_2.ngAfterContentChecked();
+    final currVal_1 = _ModalComponent_0_2.uniquePaneId;
+    if (!import53.looseIdentical(_expr_1,currVal_1)) {
+      setAttr(_el_0,'pane-id',currVal_1?.toString());
+      _expr_1 = currVal_1;
+    }
+    _compView_0.detectChanges();
+    _compView_2.detectChanges();
+    _compView_4.detectChanges();
+  }
+  void destroyInternal() {
+    _compView_0.destroy();
+    _compView_2.destroy();
+    _compView_4.destroy();
+    _MaterialDialogComponent_2_2.ngOnDestroy();
+    _ModalComponent_0_2.ngOnDestroy();
+  }
+}
+AppView<import2.AppComponent> viewFactory_AppComponent6(AppView<dynamic> parentView,num parentIndex) {
+  return new ViewAppComponent6(parentView,parentIndex);
+}
+class ViewAppComponent7 extends AppView<import2.AppComponent> {
+  DivElement _el_0;
+  ViewContainer _appEl_2;
+  import69.NgFor _NgFor_2_5;
+  var _expr_0;
+  ViewAppComponent7(AppView<dynamic> parentView,num parentIndex): super(import30.ViewType.EMBEDDED,{},parentView,parentIndex,ChangeDetectionStrategy.CheckAlways) {
+    componentType = ViewAppComponent0.renderType;
+  }
+  ComponentRef build() {
+    final import2.AppComponent _ctx = ctx;
+    var doc = document;
+    _el_0 = doc.createElement('div');
+    addShimC(_el_0);
+    Text _text_1 = new Text('\n                ');
+    _el_0.append(_text_1);
+    var _anchor_2 = ngAnchor.clone(false);
+    _el_0.append(_anchor_2);
+    _appEl_2 = new ViewContainer(2,0,this,_anchor_2);
+    TemplateRef _TemplateRef_2_4 = new TemplateRef(_appEl_2,viewFactory_AppComponent8);
+    _NgFor_2_5 = new import69.NgFor(_appEl_2,_TemplateRef_2_4);
+    Text _text_3 = new Text('\n            ');
+    _el_0.append(_text_3);
+    init([_el_0],const []);
+    return null;
+  }
+  void detectChangesInternal() {
+    final import2.AppComponent _ctx = ctx;
+    final currVal_0 = _ctx.messages;
+    if (!import53.looseIdentical(_expr_0,currVal_0)) {
       _NgFor_2_5.ngForOf = currVal_0;
       _expr_0 = currVal_0;
     }
-    if (!import48.AppViewUtils.throwOnChanges) { _NgFor_2_5.ngDoCheck(); }
-    this.detectContentChildrenChanges();
-    this.detectViewChildrenChanges();
+    _NgFor_2_5.ngDoCheck();
+    _appEl_2.detectChangesInNestedViews();
+  }
+  void destroyInternal() {
+    _appEl_2.destroyNestedViews();
   }
 }
-AppView viewFactory_AppComponent4(import24.Injector parentInjector,ViewContainer declarationEl) {
-  return new ViewAppComponent4(parentInjector,declarationEl);
+AppView<import2.AppComponent> viewFactory_AppComponent7(AppView<dynamic> parentView,num parentIndex) {
+  return new ViewAppComponent7(parentView,parentIndex);
 }
-class ViewAppComponent5 extends AppView<import3.AppComponent> {
-  Element _el_0;
+class ViewAppComponent8 extends AppView<import2.AppComponent> {
+  DivElement _el_0;
   Element _el_2;
-  ViewContainer _appEl_2;
-  import7.Notification _Notification_2_3;
-  var _expr_0 = uninitialized;
-  var _expr_1 = uninitialized;
-  ViewAppComponent5(import24.Injector parentInjector,ViewContainer declarationEl): super(ViewAppComponent5,renderType_AppComponent,import25.ViewType.EMBEDDED,{'\$implicit': null},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
-  ViewContainer createInternal(dynamic rootSelector) {
+  import6.ViewNotification0 _compView_2;
+  import7.Notification _Notification_2_2;
+   int _expr_0;
+   String _expr_1;
+  ViewAppComponent8(AppView<dynamic> parentView,num parentIndex): super(import30.ViewType.EMBEDDED,{'\$implicit': null},parentView,parentIndex,ChangeDetectionStrategy.CheckAlways) {
+    componentType = ViewAppComponent0.renderType;
+  }
+  ComponentRef build() {
+    final import2.AppComponent _ctx = ctx;
     var doc = document;
     _el_0 = doc.createElement('div');
-    _el_0.setAttribute(shimCAttr,'');
-    Text _text_1 = new Text('\n          ');
+    addShimC(_el_0);
+    Text _text_1 = new Text('\n                    ');
     _el_0.append(_text_1);
-    _el_2 = doc.createElement('notification');
-    _el_2.setAttribute(shimCAttr,'');
+    _compView_2 = new import6.ViewNotification0(this,2);
+    _el_2 = _compView_2.rootEl;
     _el_0.append(_el_2);
     _el_2.className = 'notif message';
-    _appEl_2 = new ViewContainer(2,0,this,_el_2);
-    var compView_2 = import36.viewFactory_Notification0(this.injector(2),_appEl_2);
-    _Notification_2_3 = new import7.Notification();
-    _appEl_2.initComponent(_Notification_2_3,compView_2);
-    compView_2.createComp([],null);
-    Text _text_3 = new Text('\n        ');
+    addShimC(_el_2);
+    _Notification_2_2 = new import7.Notification();
+    _compView_2.create(_Notification_2_2,[]);
+    Text _text_3 = new Text('\n                ');
     _el_0.append(_text_3);
-    init([_el_0],[
-      _el_0,_text_1,_el_2,_text_3
-    ]
-    ,[]);
+    init([_el_0],const []);
     return null;
   }
-  dynamic injectorGetInternal(dynamic token,int requestNodeIndex,dynamic notFoundResult) {
-    if ((identical(token, import7.Notification) && (2 == requestNodeIndex))) { return _Notification_2_3; }
+  dynamic injectorGetInternal(dynamic token,int nodeIndex,dynamic notFoundResult) {
+    if ((identical(token, import7.Notification) && (2 == nodeIndex))) { return _Notification_2_2; }
     return notFoundResult;
   }
   void detectChangesInternal() {
+    final import2.AppComponent _ctx = ctx;
     final currVal_0 = (0 - 1);
-    if (import48.checkBinding(_expr_0,currVal_0)) {
-      _Notification_2_3.duration = currVal_0;
+    if (!import53.looseIdentical(_expr_0,currVal_0)) {
+      _Notification_2_2.duration = currVal_0;
       _expr_0 = currVal_0;
     }
     final currVal_1 = locals['\$implicit'];
-    if (import48.checkBinding(_expr_1,currVal_1)) {
-      _Notification_2_3.msg = currVal_1;
+    if (!import53.looseIdentical(_expr_1,currVal_1)) {
+      _Notification_2_2.msg = currVal_1;
       _expr_1 = currVal_1;
     }
-    this.detectContentChildrenChanges();
-    this.detectViewChildrenChanges();
+    _compView_2.detectChanges();
+  }
+  void destroyInternal() {
+    _compView_2.destroy();
   }
 }
-AppView viewFactory_AppComponent5(import24.Injector parentInjector,ViewContainer declarationEl) {
-  return new ViewAppComponent5(parentInjector,declarationEl);
+AppView<import2.AppComponent> viewFactory_AppComponent8(AppView<dynamic> parentView,num parentIndex) {
+  return new ViewAppComponent8(parentView,parentIndex);
 }
-class ViewAppComponent6 extends AppView<import3.AppComponent> {
+class ViewAppComponent9 extends AppView<import2.AppComponent> {
   Element _el_0;
-  ViewContainer _appEl_0;
-  import63.MaterialPopupComponent _MaterialPopupComponent_0_3;
-  dynamic __PopupComponent_0_4;
-  dynamic __DropdownHandle_0_5;
-  dynamic __DeferredContentAware_0_6;
-  dynamic __PopupHierarchy_0_7;
-  dynamic __PopupRef_0_8;
-  Element _el_2;
+  import70.ViewMaterialPopupComponent0 _compView_0;
+  import71.MaterialPopupComponent _MaterialPopupComponent_0_2;
+  dynamic __PopupHierarchy_0_6;
+  dynamic __PopupRef_0_7;
+  DivElement _el_2;
   Element _el_4;
   Text _text_5;
-  Element _el_8;
+  DivElement _el_8;
   Element _el_10;
-  ViewContainer _appEl_10;
-  import64.AcxDarkTheme _AcxDarkTheme_10_3;
-  import65.MaterialButtonComponent _MaterialButtonComponent_10_4;
-  dynamic __ButtonDirective_10_5;
-  Element _el_12;
+  import72.ViewMaterialButtonComponent0 _compView_10;
+  import73.AcxDarkTheme _AcxDarkTheme_10_2;
+  import74.MaterialButtonComponent _MaterialButtonComponent_10_3;
+  DivElement _el_12;
   Element _el_16;
-  ViewContainer _appEl_16;
-  import64.AcxDarkTheme _AcxDarkTheme_16_3;
-  import65.MaterialButtonComponent _MaterialButtonComponent_16_4;
-  dynamic __ButtonDirective_16_5;
-  Element _el_18;
-  var _expr_1 = uninitialized;
-  var _expr_2 = uninitialized;
-  var _expr_3 = uninitialized;
-  var _expr_4 = uninitialized;
-  var _expr_5 = uninitialized;
-  var _expr_13 = uninitialized;
-  var _expr_14 = uninitialized;
-  var _expr_15 = uninitialized;
-  var _expr_16 = uninitialized;
-  var _expr_17 = uninitialized;
-  var _expr_25 = uninitialized;
-  var _expr_26 = uninitialized;
-  var _expr_27 = uninitialized;
-  var _expr_28 = uninitialized;
-  var _expr_29 = uninitialized;
-  ViewAppComponent6(import24.Injector parentInjector,ViewContainer declarationEl): super(ViewAppComponent6,renderType_AppComponent,import25.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
-  dynamic get _PopupComponent_0_4 {
-    if ((this.__PopupComponent_0_4 == null)) { (__PopupComponent_0_4 = this._MaterialPopupComponent_0_3); }
-    return this.__PopupComponent_0_4;
+  import72.ViewMaterialButtonComponent0 _compView_16;
+  import73.AcxDarkTheme _AcxDarkTheme_16_2;
+  import74.MaterialButtonComponent _MaterialButtonComponent_16_3;
+  DivElement _el_18;
+  var _expr_2;
+  var _expr_3;
+  var _expr_4;
+  var _expr_5;
+  var _expr_7;
+  var _expr_8;
+  var _expr_9;
+  var _expr_10;
+  bool _expr_11;
+  var _expr_12;
+  var _expr_14;
+  var _expr_15;
+  var _expr_16;
+  var _expr_17;
+  bool _expr_18;
+  var _expr_19;
+  ViewAppComponent9(AppView<dynamic> parentView,num parentIndex): super(import30.ViewType.EMBEDDED,{},parentView,parentIndex,ChangeDetectionStrategy.CheckAlways) {
+    componentType = ViewAppComponent0.renderType;
   }
-  dynamic get _DropdownHandle_0_5 {
-    if ((this.__DropdownHandle_0_5 == null)) { (__DropdownHandle_0_5 = this._MaterialPopupComponent_0_3); }
-    return this.__DropdownHandle_0_5;
+  dynamic get _PopupHierarchy_0_6 {
+    if ((this.__PopupHierarchy_0_6 == null)) { (__PopupHierarchy_0_6 = import75.getHierarchy(this._MaterialPopupComponent_0_2)); }
+    return this.__PopupHierarchy_0_6;
   }
-  dynamic get _DeferredContentAware_0_6 {
-    if ((this.__DeferredContentAware_0_6 == null)) { (__DeferredContentAware_0_6 = this._PopupComponent_0_4); }
-    return this.__DeferredContentAware_0_6;
+  dynamic get _PopupRef_0_7 {
+    if ((this.__PopupRef_0_7 == null)) { (__PopupRef_0_7 = import75.getResolvedPopupRef(this._MaterialPopupComponent_0_2)); }
+    return this.__PopupRef_0_7;
   }
-  dynamic get _PopupHierarchy_0_7 {
-    if ((this.__PopupHierarchy_0_7 == null)) { (__PopupHierarchy_0_7 = import63.MaterialPopupComponent_getHierarchy(this._PopupComponent_0_4)); }
-    return this.__PopupHierarchy_0_7;
-  }
-  dynamic get _PopupRef_0_8 {
-    if ((this.__PopupRef_0_8 == null)) { (__PopupRef_0_8 = import63.MaterialPopupComponent_getResolvedPopupRef(this._PopupComponent_0_4)); }
-    return this.__PopupRef_0_8;
-  }
-  dynamic get _ButtonDirective_10_5 {
-    if ((this.__ButtonDirective_10_5 == null)) { (__ButtonDirective_10_5 = this._MaterialButtonComponent_10_4); }
-    return this.__ButtonDirective_10_5;
-  }
-  dynamic get _ButtonDirective_16_5 {
-    if ((this.__ButtonDirective_16_5 == null)) { (__ButtonDirective_16_5 = this._MaterialButtonComponent_16_4); }
-    return this.__ButtonDirective_16_5;
-  }
-  ViewContainer createInternal(dynamic rootSelector) {
-    var doc = document;
-    _el_0 = doc.createElement('material-popup');
-    _el_0.setAttribute(shimCAttr,'');
+  ComponentRef build() {
+    final import2.AppComponent _ctx = ctx;
+    _compView_0 = new import70.ViewMaterialPopupComponent0(this,0);
+    _el_0 = _compView_0.rootEl;
     _el_0.className = 'profilemenuvisible';
     createAttr(_el_0,'defaultPopupSizeProvider','');
     createAttr(_el_0,'enforceSpaceConstraints','');
-    _appEl_0 = new ViewContainer(0,null,this,_el_0);
-    var compView_0 = import66.viewFactory_MaterialPopupComponent0(this.injector(0),_appEl_0);
-    _MaterialPopupComponent_0_3 = new import63.MaterialPopupComponent(this.parentInjector.get(import30.DomService),this.parentInjector.get(import67.PopupHierarchy,null),this.parentInjector.get(import68.PopupRef,null),this.parentInjector.get(import27.NgZone),this.parentInjector.get(import22.PopupService),this.parentInjector.get(import34.OverlayService),this.parentInjector.get(import69.PopupSizeProvider,null),this.parentInjector.get(import70.rtlToken,null),compView_0.ref);
-    _appEl_0.initComponent(_MaterialPopupComponent_0_3,compView_0);
-    Text _text_1 = new Text('\n        ');
+    addShimC(_el_0);
+    _MaterialPopupComponent_0_2 = new import71.MaterialPopupComponent(parentView.parentView.injectorGet(import38.DomService,parentView.parentIndex),parentView.parentView.injectorGet(import76.PopupHierarchy,parentView.parentIndex,null),parentView.parentView.injectorGet(import77.PopupRef,parentView.parentIndex,null),parentView.parentView.injectorGet(import35.NgZone,parentView.parentIndex),parentView.parentView.injectorGet(import28.PopupService,parentView.parentIndex),parentView.parentView.injectorGet(import42.OverlayService,parentView.parentIndex),parentView.parentView.injectorGet(import78.PopupSizeProvider,parentView.parentIndex,null),_compView_0.ref,new ElementRef(_el_0));
+    Text _text_1 = new Text('\n                ');
+    var doc = document;
     _el_2 = doc.createElement('div');
-    _el_2.setAttribute(shimCAttr,'');
     _el_2.className = 'popupHeader connectUsername';
     createAttr(_el_2,'header','');
-    Text _text_3 = new Text('\n          ');
+    addShimC(_el_2);
+    Text _text_3 = new Text('\n                    ');
     _el_2.append(_text_3);
-    _el_4 = doc.createElement('span');
-    _el_4.setAttribute(shimCAttr,'');
-    _el_2.append(_el_4);
+    _el_4 = createAndAppend(doc,'span',_el_2);
+    addShimE(_el_4);
     _text_5 = new Text('');
     _el_4.append(_text_5);
-    Text _text_6 = new Text('\n        ');
+    Text _text_6 = new Text('\n                ');
     _el_2.append(_text_6);
-    Text _text_7 = new Text('\n        ');
+    Text _text_7 = new Text('\n                ');
     _el_8 = doc.createElement('div');
-    _el_8.setAttribute(shimCAttr,'');
     _el_8.className = 'popupContent';
-    Text _text_9 = new Text('\n          ');
+    addShimC(_el_8);
+    Text _text_9 = new Text('\n                    ');
     _el_8.append(_text_9);
-    _el_10 = doc.createElement('material-button');
-    _el_10.setAttribute(shimCAttr,'');
+    _compView_10 = new import72.ViewMaterialButtonComponent0(this,10);
+    _el_10 = _compView_10.rootEl;
     _el_8.append(_el_10);
-    createAttr(_el_10,'animated','true');
     _el_10.className = 'menuItem profile';
-    createAttr(_el_10,'role','button');
-    _appEl_10 = new ViewContainer(10,8,this,_el_10);
-    var compView_10 = import71.viewFactory_MaterialButtonComponent0(this.injector(10),_appEl_10);
-    _AcxDarkTheme_10_3 = new import64.AcxDarkTheme(this.parentInjector.get(import72.darkThemeToken,null));
-    _MaterialButtonComponent_10_4 = new import65.MaterialButtonComponent(new ElementRef(_el_10),_AcxDarkTheme_10_3,compView_10.ref);
-    _appEl_10.initComponent(_MaterialButtonComponent_10_4,compView_10);
-    Text _text_11 = new Text('\n            ');
+    addShimC(_el_10);
+    _AcxDarkTheme_10_2 = new import73.AcxDarkTheme(parentView.parentView.injectorGet(import79.darkThemeToken,parentView.parentIndex,null));
+    _MaterialButtonComponent_10_3 = new import74.MaterialButtonComponent(new ElementRef(_el_10),_AcxDarkTheme_10_2,_compView_10.ref);
+    Text _text_11 = new Text('\n                        ');
     _el_12 = doc.createElement('div');
-    _el_12.setAttribute(shimCAttr,'');
     _el_12.className = 'profile_chmp';
+    addShimC(_el_12);
     Text _text_13 = new Text('Edit profile');
     _el_12.append(_text_13);
-    Text _text_14 = new Text('\n          ');
-      compView_10.createComp([[
+    Text _text_14 = new Text('\n                    ');
+      _compView_10.create(_MaterialButtonComponent_10_3,[[
         _text_11,_el_12,_text_14
       ]
-    ],null);
-    Text _text_15 = new Text('\n          ');
+    ]);
+    Text _text_15 = new Text('\n                    ');
     _el_8.append(_text_15);
-    _el_16 = doc.createElement('material-button');
-    _el_16.setAttribute(shimCAttr,'');
+    _compView_16 = new import72.ViewMaterialButtonComponent0(this,16);
+    _el_16 = _compView_16.rootEl;
     _el_8.append(_el_16);
-    createAttr(_el_16,'animated','true');
     _el_16.className = 'menuItem logout';
-    createAttr(_el_16,'role','button');
-    _appEl_16 = new ViewContainer(16,8,this,_el_16);
-    var compView_16 = import71.viewFactory_MaterialButtonComponent0(this.injector(16),_appEl_16);
-    _AcxDarkTheme_16_3 = new import64.AcxDarkTheme(this.parentInjector.get(import72.darkThemeToken,null));
-    _MaterialButtonComponent_16_4 = new import65.MaterialButtonComponent(new ElementRef(_el_16),_AcxDarkTheme_16_3,compView_16.ref);
-    _appEl_16.initComponent(_MaterialButtonComponent_16_4,compView_16);
-    Text _text_17 = new Text('\n            ');
+    addShimC(_el_16);
+    _AcxDarkTheme_16_2 = new import73.AcxDarkTheme(parentView.parentView.injectorGet(import79.darkThemeToken,parentView.parentIndex,null));
+    _MaterialButtonComponent_16_3 = new import74.MaterialButtonComponent(new ElementRef(_el_16),_AcxDarkTheme_16_2,_compView_16.ref);
+    Text _text_17 = new Text('\n                        ');
     _el_18 = doc.createElement('div');
-    _el_18.setAttribute(shimCAttr,'');
     _el_18.className = 'logout_chmp';
+    addShimC(_el_18);
     Text _text_19 = new Text('Logout');
     _el_18.append(_text_19);
-    Text _text_20 = new Text('\n          ');
-      compView_16.createComp([[
+    Text _text_20 = new Text('\n                    ');
+      _compView_16.create(_MaterialButtonComponent_16_3,[[
         _text_17,_el_18,_text_20
       ]
-    ],null);
-    Text _text_21 = new Text('\n        ');
+    ]);
+    Text _text_21 = new Text('\n                ');
     _el_8.append(_text_21);
-    Text _text_22 = new Text('\n\n      ');
-    compView_0.createComp([
+    Text _text_22 = new Text('\n\n            ');
+    _compView_0.create(_MaterialPopupComponent_0_2,[
       [_el_2],[
         _text_1,_text_7,_el_8,_text_22
       ]
-      ,[]
+      ,const []
     ]
-    ,null);
-    listen(_el_0,'visibleChange',evt(_handle_visibleChange_0_0));
-    final subscription_0 = _MaterialPopupComponent_0_3.visibleChange.listen(evt(_handle_visibleChange_0_0));
-    listen(_el_10,'click',evt(_handle_click_10_0));
-    listen(_el_10,'blur',evt(_handle_blur_10_1));
-    listen(_el_10,'mouseup',evt(_handle_mouseup_10_2));
-    listen(_el_10,'keypress',evt(_handle_keypress_10_3));
-    listen(_el_10,'focus',evt(_handle_focus_10_4));
-    listen(_el_10,'mousedown',evt(_handle_mousedown_10_5));
-    listen(_el_16,'click',evt(_handle_click_16_0));
-    listen(_el_16,'blur',evt(_handle_blur_16_1));
-    listen(_el_16,'mouseup',evt(_handle_mouseup_16_2));
-    listen(_el_16,'keypress',evt(_handle_keypress_16_3));
-    listen(_el_16,'focus',evt(_handle_focus_16_4));
-    listen(_el_16,'mousedown',evt(_handle_mousedown_16_5));
-    init([_el_0],[
-      _el_0,_text_1,_el_2,_text_3,_el_4,_text_5,_text_6,_text_7,_el_8,_text_9,_el_10,
-      _text_11,_el_12,_text_13,_text_14,_text_15,_el_16,_text_17,_el_18,_text_19,_text_20,
-      _text_21,_text_22
-    ]
-    ,[subscription_0]);
+    );
+    final subscription_0 = _MaterialPopupComponent_0_2.visibleChange.listen(streamHandler1(_handle_visibleChange_0_0));
+    _el_10.addEventListener('click',eventHandler0(ctx.profile));
+    _el_16.addEventListener('click',eventHandler0(ctx.logout));
+    init([_el_0],[subscription_0]);
     return null;
   }
-  dynamic injectorGetInternal(dynamic token,int requestNodeIndex,dynamic notFoundResult) {
-    if ((identical(token, import64.AcxDarkTheme) && ((10 <= requestNodeIndex) && (requestNodeIndex <= 14)))) { return _AcxDarkTheme_10_3; }
-    if ((identical(token, import65.MaterialButtonComponent) && ((10 <= requestNodeIndex) && (requestNodeIndex <= 14)))) { return _MaterialButtonComponent_10_4; }
-    if ((identical(token, import73.ButtonDirective) && ((10 <= requestNodeIndex) && (requestNodeIndex <= 14)))) { return _ButtonDirective_10_5; }
-    if ((identical(token, import64.AcxDarkTheme) && ((16 <= requestNodeIndex) && (requestNodeIndex <= 20)))) { return _AcxDarkTheme_16_3; }
-    if ((identical(token, import65.MaterialButtonComponent) && ((16 <= requestNodeIndex) && (requestNodeIndex <= 20)))) { return _MaterialButtonComponent_16_4; }
-    if ((identical(token, import73.ButtonDirective) && ((16 <= requestNodeIndex) && (requestNodeIndex <= 20)))) { return _ButtonDirective_16_5; }
-    if ((identical(token, import63.MaterialPopupComponent) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 22)))) { return _MaterialPopupComponent_0_3; }
-    if ((identical(token, import74.PopupComponent) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 22)))) { return _PopupComponent_0_4; }
-    if ((identical(token, import75.DropdownHandle) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 22)))) { return _DropdownHandle_0_5; }
-    if ((identical(token, import56.DeferredContentAware) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 22)))) { return _DeferredContentAware_0_6; }
-    if ((identical(token, import67.PopupHierarchy) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 22)))) { return _PopupHierarchy_0_7; }
-    if ((identical(token, import68.PopupRef) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 22)))) { return _PopupRef_0_8; }
+  dynamic injectorGetInternal(dynamic token,int nodeIndex,dynamic notFoundResult) {
+    if ((identical(token, import73.AcxDarkTheme) && ((10 <= nodeIndex) && (nodeIndex <= 14)))) { return _AcxDarkTheme_10_2; }
+    if (((identical(token, import74.MaterialButtonComponent) || identical(token, import80.ButtonDirective)) && ((10 <= nodeIndex) && (nodeIndex <= 14)))) { return _MaterialButtonComponent_10_3; }
+    if ((identical(token, import73.AcxDarkTheme) && ((16 <= nodeIndex) && (nodeIndex <= 20)))) { return _AcxDarkTheme_16_2; }
+    if (((identical(token, import74.MaterialButtonComponent) || identical(token, import80.ButtonDirective)) && ((16 <= nodeIndex) && (nodeIndex <= 20)))) { return _MaterialButtonComponent_16_3; }
+    if (((((identical(token, import71.MaterialPopupComponent) || identical(token, import75.PopupComponent)) || identical(token, import81.DropdownHandle)) || identical(token, import60.DeferredContentAware)) && ((0 <= nodeIndex) && (nodeIndex <= 22)))) { return _MaterialPopupComponent_0_2; }
+    if ((identical(token, import76.PopupHierarchy) && ((0 <= nodeIndex) && (nodeIndex <= 22)))) { return _PopupHierarchy_0_6; }
+    if ((identical(token, import77.PopupRef) && ((0 <= nodeIndex) && (nodeIndex <= 22)))) { return _PopupRef_0_7; }
     return notFoundResult;
   }
   void detectChangesInternal() {
-    final currVal_1 = '';
-    if (import48.checkBinding(_expr_1,currVal_1)) {
-      _MaterialPopupComponent_0_3.enforceSpaceConstraints = currVal_1;
-      _expr_1 = currVal_1;
-    }
-    final currVal_2 = (parent as ViewAppComponent0)._PopupSourceDirective_27_2;
-    if (import48.checkBinding(_expr_2,currVal_2)) {
-      _MaterialPopupComponent_0_3.source = currVal_2;
+    bool firstCheck = identical(this.cdState, ChangeDetectorState.NeverChecked);
+    final import2.AppComponent _ctx = ctx;
+    if (firstCheck) { (_MaterialPopupComponent_0_2.enforceSpaceConstraints = ''); }
+    final currVal_2 = (parentView as ViewAppComponent0)._PopupSourceDirective_31_2;
+    if (!import53.looseIdentical(_expr_2,currVal_2)) {
+      _MaterialPopupComponent_0_2.source = currVal_2;
       _expr_2 = currVal_2;
     }
-    final currVal_3 = ctx.profileMenuVisible;
-    if (import48.checkBinding(_expr_3,currVal_3)) {
-      _MaterialPopupComponent_0_3.visible = currVal_3;
+    final currVal_3 = _ctx.profileMenuVisible;
+    if (!import53.looseIdentical(_expr_3,currVal_3)) {
+      _MaterialPopupComponent_0_2.visible = currVal_3;
       _expr_3 = currVal_3;
     }
-    this.detectContentChildrenChanges();
-    final currVal_4 = _MaterialPopupComponent_0_3.uniqueId;
-    if (import48.checkBinding(_expr_4,currVal_4)) {
-      setAttr(_el_0,'pane-id',((currVal_4 == null)? null: currVal_4.toString()));
+    final currVal_4 = _MaterialPopupComponent_0_2.uniqueId;
+    if (!import53.looseIdentical(_expr_4,currVal_4)) {
+      setAttr(_el_0,'pane-id',currVal_4?.toString());
       _expr_4 = currVal_4;
     }
-    final currVal_5 = import48.interpolate0(((ctx.connectedUser == null)? null: ctx.connectedUser.displayName));
-    if (import48.checkBinding(_expr_5,currVal_5)) {
+    final currVal_5 = import32.interpolate0(((_ctx.connectedUser == null)? null: _ctx.connectedUser.displayName));
+    if (!import53.looseIdentical(_expr_5,currVal_5)) {
       _text_5.text = currVal_5;
       _expr_5 = currVal_5;
     }
-    final currVal_13 = _MaterialButtonComponent_10_4.raised;
-    if (import48.checkBinding(_expr_13,currVal_13)) {
-      updateElemClass(_el_10,'is-raised',currVal_13);
-      _expr_13 = currVal_13;
+    final currVal_7 = _MaterialButtonComponent_10_3.disabledStr;
+    if (!import53.looseIdentical(_expr_7,currVal_7)) {
+      setAttr(_el_10,'aria-disabled',currVal_7?.toString());
+      _expr_7 = currVal_7;
     }
-    final currVal_14 = _MaterialButtonComponent_10_4.disabledStr;
-    if (import48.checkBinding(_expr_14,currVal_14)) {
-      setAttr(_el_10,'aria-disabled',((currVal_14 == null)? null: currVal_14.toString()));
+    final currVal_8 = (_MaterialButtonComponent_10_3.raised? '': null);
+    if (!import53.looseIdentical(_expr_8,currVal_8)) {
+      setAttr(_el_10,'raised',currVal_8?.toString());
+      _expr_8 = currVal_8;
+    }
+    final currVal_9 = _MaterialButtonComponent_10_3.tabIndex;
+    if (!import53.looseIdentical(_expr_9,currVal_9)) {
+      setAttr(_el_10,'tabindex',currVal_9?.toString());
+      _expr_9 = currVal_9;
+    }
+    final currVal_10 = _MaterialButtonComponent_10_3.zElevation;
+    if (!import53.looseIdentical(_expr_10,currVal_10)) {
+      setAttr(_el_10,'elevation',currVal_10?.toString());
+      _expr_10 = currVal_10;
+    }
+    final currVal_11 = _MaterialButtonComponent_10_3.visualFocus;
+    if (!import53.looseIdentical(_expr_11,currVal_11)) {
+      updateElemClass(_el_10,'is-focused',currVal_11);
+      _expr_11 = currVal_11;
+    }
+    final currVal_12 = (_MaterialButtonComponent_10_3.disabled? '': null);
+    if (!import53.looseIdentical(_expr_12,currVal_12)) {
+      setAttr(_el_10,'disabled',currVal_12?.toString());
+      _expr_12 = currVal_12;
+    }
+    final currVal_14 = _MaterialButtonComponent_16_3.disabledStr;
+    if (!import53.looseIdentical(_expr_14,currVal_14)) {
+      setAttr(_el_16,'aria-disabled',currVal_14?.toString());
       _expr_14 = currVal_14;
     }
-    final currVal_15 = _MaterialButtonComponent_10_4.tabIndex;
-    if (import48.checkBinding(_expr_15,currVal_15)) {
-      setAttr(_el_10,'tabindex',((currVal_15 == null)? null: currVal_15.toString()));
+    final currVal_15 = (_MaterialButtonComponent_16_3.raised? '': null);
+    if (!import53.looseIdentical(_expr_15,currVal_15)) {
+      setAttr(_el_16,'raised',currVal_15?.toString());
       _expr_15 = currVal_15;
     }
-    final currVal_16 = _MaterialButtonComponent_10_4.disabled;
-    if (import48.checkBinding(_expr_16,currVal_16)) {
-      updateElemClass(_el_10,'is-disabled',currVal_16);
+    final currVal_16 = _MaterialButtonComponent_16_3.tabIndex;
+    if (!import53.looseIdentical(_expr_16,currVal_16)) {
+      setAttr(_el_16,'tabindex',currVal_16?.toString());
       _expr_16 = currVal_16;
     }
-    final currVal_17 = _MaterialButtonComponent_10_4.zElevation;
-    if (import48.checkBinding(_expr_17,currVal_17)) {
-      setAttr(_el_10,'elevation',((currVal_17 == null)? null: currVal_17.toString()));
+    final currVal_17 = _MaterialButtonComponent_16_3.zElevation;
+    if (!import53.looseIdentical(_expr_17,currVal_17)) {
+      setAttr(_el_16,'elevation',currVal_17?.toString());
       _expr_17 = currVal_17;
     }
-    final currVal_25 = _MaterialButtonComponent_16_4.raised;
-    if (import48.checkBinding(_expr_25,currVal_25)) {
-      updateElemClass(_el_16,'is-raised',currVal_25);
-      _expr_25 = currVal_25;
+    final currVal_18 = _MaterialButtonComponent_16_3.visualFocus;
+    if (!import53.looseIdentical(_expr_18,currVal_18)) {
+      updateElemClass(_el_16,'is-focused',currVal_18);
+      _expr_18 = currVal_18;
     }
-    final currVal_26 = _MaterialButtonComponent_16_4.disabledStr;
-    if (import48.checkBinding(_expr_26,currVal_26)) {
-      setAttr(_el_16,'aria-disabled',((currVal_26 == null)? null: currVal_26.toString()));
-      _expr_26 = currVal_26;
+    final currVal_19 = (_MaterialButtonComponent_16_3.disabled? '': null);
+    if (!import53.looseIdentical(_expr_19,currVal_19)) {
+      setAttr(_el_16,'disabled',currVal_19?.toString());
+      _expr_19 = currVal_19;
     }
-    final currVal_27 = _MaterialButtonComponent_16_4.tabIndex;
-    if (import48.checkBinding(_expr_27,currVal_27)) {
-      setAttr(_el_16,'tabindex',((currVal_27 == null)? null: currVal_27.toString()));
-      _expr_27 = currVal_27;
-    }
-    final currVal_28 = _MaterialButtonComponent_16_4.disabled;
-    if (import48.checkBinding(_expr_28,currVal_28)) {
-      updateElemClass(_el_16,'is-disabled',currVal_28);
-      _expr_28 = currVal_28;
-    }
-    final currVal_29 = _MaterialButtonComponent_16_4.zElevation;
-    if (import48.checkBinding(_expr_29,currVal_29)) {
-      setAttr(_el_16,'elevation',((currVal_29 == null)? null: currVal_29.toString()));
-      _expr_29 = currVal_29;
-    }
-    this.detectViewChildrenChanges();
+    _compView_0.detectChanges();
+    _compView_10.detectChanges();
+    _compView_16.detectChanges();
   }
   void destroyInternal() {
-    _MaterialPopupComponent_0_3.ngOnDestroy();
+    _compView_0.destroy();
+    _compView_10.destroy();
+    _compView_16.destroy();
+    _MaterialPopupComponent_0_2.ngOnDestroy();
   }
   bool _handle_visibleChange_0_0($event) {
-    this.markPathToRootAsCheckOnce();
     final dynamic pd_0 = !identical(((ctx.profileMenuVisible = $event) as dynamic), false);
     return (true && pd_0);
   }
-  bool _handle_click_10_0($event) {
-    _appEl_10.componentView.markPathToRootAsCheckOnce();
-    final dynamic pd_0 = !identical((ctx.profile() as dynamic), false);
-    final dynamic pd_1 = !identical((_MaterialButtonComponent_10_4.handleClick($event) as dynamic), false);
-    return ((true && pd_0) && pd_1);
-  }
-  bool _handle_blur_10_1($event) {
-    _appEl_10.componentView.markPathToRootAsCheckOnce();
-    final dynamic pd_0 = !identical((_MaterialButtonComponent_10_4.onBlur($event) as dynamic), false);
-    return (true && pd_0);
-  }
-  bool _handle_mouseup_10_2($event) {
-    _appEl_10.componentView.markPathToRootAsCheckOnce();
-    final dynamic pd_0 = !identical((_MaterialButtonComponent_10_4.onMouseUp($event) as dynamic), false);
-    return (true && pd_0);
-  }
-  bool _handle_keypress_10_3($event) {
-    _appEl_10.componentView.markPathToRootAsCheckOnce();
-    final dynamic pd_0 = !identical((_MaterialButtonComponent_10_4.handleKeyPress($event) as dynamic), false);
-    return (true && pd_0);
-  }
-  bool _handle_focus_10_4($event) {
-    _appEl_10.componentView.markPathToRootAsCheckOnce();
-    final dynamic pd_0 = !identical((_MaterialButtonComponent_10_4.onFocus($event) as dynamic), false);
-    return (true && pd_0);
-  }
-  bool _handle_mousedown_10_5($event) {
-    _appEl_10.componentView.markPathToRootAsCheckOnce();
-    final dynamic pd_0 = !identical((_MaterialButtonComponent_10_4.onMouseDown($event) as dynamic), false);
-    return (true && pd_0);
-  }
-  bool _handle_click_16_0($event) {
-    _appEl_16.componentView.markPathToRootAsCheckOnce();
-    final dynamic pd_0 = !identical((ctx.logout() as dynamic), false);
-    final dynamic pd_1 = !identical((_MaterialButtonComponent_16_4.handleClick($event) as dynamic), false);
-    return ((true && pd_0) && pd_1);
-  }
-  bool _handle_blur_16_1($event) {
-    _appEl_16.componentView.markPathToRootAsCheckOnce();
-    final dynamic pd_0 = !identical((_MaterialButtonComponent_16_4.onBlur($event) as dynamic), false);
-    return (true && pd_0);
-  }
-  bool _handle_mouseup_16_2($event) {
-    _appEl_16.componentView.markPathToRootAsCheckOnce();
-    final dynamic pd_0 = !identical((_MaterialButtonComponent_16_4.onMouseUp($event) as dynamic), false);
-    return (true && pd_0);
-  }
-  bool _handle_keypress_16_3($event) {
-    _appEl_16.componentView.markPathToRootAsCheckOnce();
-    final dynamic pd_0 = !identical((_MaterialButtonComponent_16_4.handleKeyPress($event) as dynamic), false);
-    return (true && pd_0);
-  }
-  bool _handle_focus_16_4($event) {
-    _appEl_16.componentView.markPathToRootAsCheckOnce();
-    final dynamic pd_0 = !identical((_MaterialButtonComponent_16_4.onFocus($event) as dynamic), false);
-    return (true && pd_0);
-  }
-  bool _handle_mousedown_16_5($event) {
-    _appEl_16.componentView.markPathToRootAsCheckOnce();
-    final dynamic pd_0 = !identical((_MaterialButtonComponent_16_4.onMouseDown($event) as dynamic), false);
-    return (true && pd_0);
-  }
 }
-AppView viewFactory_AppComponent6(import24.Injector parentInjector,ViewContainer declarationEl) {
-  return new ViewAppComponent6(parentInjector,declarationEl);
+AppView<import2.AppComponent> viewFactory_AppComponent9(AppView<dynamic> parentView,num parentIndex) {
+  return new ViewAppComponent9(parentView,parentIndex);
 }
-class ViewAppComponent7 extends AppView<import3.AppComponent> {
-  Element _el_0;
-  Element _el_2;
-  Element _el_4;
-  Element _el_6;
-  ViewAppComponent7(import24.Injector parentInjector,ViewContainer declarationEl): super(ViewAppComponent7,renderType_AppComponent,import25.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
-  ViewContainer createInternal(dynamic rootSelector) {
+class ViewAppComponent10 extends AppView<import2.AppComponent> {
+  DivElement _el_0;
+  DivElement _el_2;
+  DivElement _el_4;
+  DivElement _el_6;
+  ViewAppComponent10(AppView<dynamic> parentView,num parentIndex): super(import30.ViewType.EMBEDDED,{},parentView,parentIndex,ChangeDetectionStrategy.CheckAlways) {
+    componentType = ViewAppComponent0.renderType;
+  }
+  ComponentRef build() {
+    final import2.AppComponent _ctx = ctx;
     var doc = document;
     _el_0 = doc.createElement('div');
-    _el_0.setAttribute(shimCAttr,'');
     _el_0.className = 'btnsWindow';
-    Text _text_1 = new Text('\n        ');
+    addShimC(_el_0);
+    Text _text_1 = new Text('\n                ');
     _el_0.append(_text_1);
-    _el_2 = doc.createElement('div');
-    _el_2.setAttribute(shimCAttr,'');
-    _el_0.append(_el_2);
+    _el_2 = createAndAppend(doc,'div',_el_0);
     createAttr(_el_2,'aria-hidden','true');
     _el_2.className = 'btnHeader minus';
-    Text _text_3 = new Text('\n        ');
+    addShimC(_el_2);
+    Text _text_3 = new Text('\n                ');
     _el_0.append(_text_3);
-    _el_4 = doc.createElement('div');
-    _el_4.setAttribute(shimCAttr,'');
-    _el_0.append(_el_4);
+    _el_4 = createAndAppend(doc,'div',_el_0);
     createAttr(_el_4,'aria-hidden','true');
     _el_4.className = 'btnHeader window-maximize';
-    Text _text_5 = new Text('\n        ');
+    addShimC(_el_4);
+    Text _text_5 = new Text('\n                ');
     _el_0.append(_text_5);
-    _el_6 = doc.createElement('div');
-    _el_6.setAttribute(shimCAttr,'');
-    _el_0.append(_el_6);
+    _el_6 = createAndAppend(doc,'div',_el_0);
     createAttr(_el_6,'aria-hidden','true');
     _el_6.className = 'btnHeader closeWind';
-    Text _text_7 = new Text('\n      ');
+    addShimC(_el_6);
+    Text _text_7 = new Text('\n            ');
     _el_0.append(_text_7);
-    listen(_el_2,'click',evt(_handle_click_2_0));
-    listen(_el_4,'click',evt(_handle_click_4_0));
-    listen(_el_6,'click',evt(_handle_click_6_0));
-    init([_el_0],[
-      _el_0,_text_1,_el_2,_text_3,_el_4,_text_5,_el_6,_text_7
-    ]
-    ,[]);
+    _el_2.addEventListener('click',eventHandler1(_handle_click_2_0));
+    _el_4.addEventListener('click',eventHandler1(_handle_click_4_0));
+    _el_6.addEventListener('click',eventHandler1(_handle_click_6_0));
+    init([_el_0],const []);
     return null;
   }
   bool _handle_click_2_0($event) {
-    this.markPathToRootAsCheckOnce();
     final dynamic pd_0 = !identical((ctx.sendWindowEvent('minimizeWindow') as dynamic), false);
     return (true && pd_0);
   }
   bool _handle_click_4_0($event) {
-    this.markPathToRootAsCheckOnce();
     final dynamic pd_0 = !identical((ctx.sendWindowEvent('maximizeWindow') as dynamic), false);
     return (true && pd_0);
   }
   bool _handle_click_6_0($event) {
-    this.markPathToRootAsCheckOnce();
     final dynamic pd_0 = !identical((ctx.sendWindowEvent('closeWindow') as dynamic), false);
     return (true && pd_0);
   }
 }
-AppView viewFactory_AppComponent7(import24.Injector parentInjector,ViewContainer declarationEl) {
-  return new ViewAppComponent7(parentInjector,declarationEl);
+AppView<import2.AppComponent> viewFactory_AppComponent10(AppView<dynamic> parentView,num parentIndex) {
+  return new ViewAppComponent10(parentView,parentIndex);
 }
-class ViewAppComponent8 extends AppView<import3.AppComponent> {
+class ViewAppComponent11 extends AppView<import2.AppComponent> {
   Element _el_0;
-  ViewContainer _appEl_0;
-  import9.PostitComponent _PostitComponent_0_3;
-  var _expr_0 = uninitialized;
-  var _expr_1 = uninitialized;
-  var _expr_2 = uninitialized;
-  ViewAppComponent8(import24.Injector parentInjector,ViewContainer declarationEl): super(ViewAppComponent8,renderType_AppComponent,import25.ViewType.EMBEDDED,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
-  ViewContainer createInternal(dynamic rootSelector) {
-    var doc = document;
-    _el_0 = doc.createElement('postit-comp');
-    _el_0.setAttribute(shimCAttr,'');
+  import9.ViewPostitComponent0 _compView_0;
+  import10.PostitComponent _PostitComponent_0_2;
+  ViewAppComponent11(AppView<dynamic> parentView,num parentIndex): super(import30.ViewType.EMBEDDED,{},parentView,parentIndex,ChangeDetectionStrategy.CheckAlways) {
+    componentType = ViewAppComponent0.renderType;
+  }
+  ComponentRef build() {
+    final import2.AppComponent _ctx = ctx;
+    _compView_0 = new import9.ViewPostitComponent0(this,0);
+    _el_0 = _compView_0.rootEl;
     _el_0.className = 'foldersPostit';
-    _appEl_0 = new ViewContainer(0,null,this,_el_0);
-    var compView_0 = import39.viewFactory_PostitComponent0(this.injector(0),_appEl_0);
-    _PostitComponent_0_3 = new import9.PostitComponent(this.parentInjector.get(import40.PlaceService),this.parentInjector.get(import41.Router),this.parentInjector.get(import42.Environment));
-    _appEl_0.initComponent(_PostitComponent_0_3,compView_0);
-    compView_0.createComp([],null);
-    init([_el_0],[_el_0],[]);
+    addShimC(_el_0);
+    _PostitComponent_0_2 = new import10.PostitComponent(parentView.parentView.injectorGet(import46.PlaceService,parentView.parentIndex),parentView.parentView.injectorGet(import47.Router,parentView.parentIndex),parentView.parentView.injectorGet(import48.Environment,parentView.parentIndex));
+    _compView_0.create(_PostitComponent_0_2,[]);
+    init([_el_0],const []);
     return null;
   }
-  dynamic injectorGetInternal(dynamic token,int requestNodeIndex,dynamic notFoundResult) {
-    if ((identical(token, import9.PostitComponent) && (0 == requestNodeIndex))) { return _PostitComponent_0_3; }
+  dynamic injectorGetInternal(dynamic token,int nodeIndex,dynamic notFoundResult) {
+    if ((identical(token, import10.PostitComponent) && (0 == nodeIndex))) { return _PostitComponent_0_2; }
     return notFoundResult;
   }
   void detectChangesInternal() {
-    final currVal_0 = 'folders';
-    if (import48.checkBinding(_expr_0,currVal_0)) {
-      _PostitComponent_0_3.name = currVal_0;
-      _expr_0 = currVal_0;
+    bool firstCheck = identical(this.cdState, ChangeDetectorState.NeverChecked);
+    final import2.AppComponent _ctx = ctx;
+    if (firstCheck) {
+      _PostitComponent_0_2.name = 'folders';
+      _PostitComponent_0_2.header = 'Create a folder';
+      _PostitComponent_0_2.body = 'To start, create a folder clicking on the + icon';
     }
-    final currVal_1 = 'Create a folder';
-    if (import48.checkBinding(_expr_1,currVal_1)) {
-      _PostitComponent_0_3.header = currVal_1;
-      _expr_1 = currVal_1;
-    }
-    final currVal_2 = 'To start, create a folder clicking on the + icon';
-    if (import48.checkBinding(_expr_2,currVal_2)) {
-      _PostitComponent_0_3.body = currVal_2;
-      _expr_2 = currVal_2;
-    }
-    if ((identical(this.cdState, ChangeDetectorState.NeverChecked) && !import48.AppViewUtils.throwOnChanges)) { _PostitComponent_0_3.ngOnInit(); }
-    this.detectContentChildrenChanges();
-    this.detectViewChildrenChanges();
+    if (firstCheck) { _PostitComponent_0_2.ngOnInit(); }
+    _compView_0.detectChanges();
+  }
+  void destroyInternal() {
+    _compView_0.destroy();
   }
 }
-AppView viewFactory_AppComponent8(import24.Injector parentInjector,ViewContainer declarationEl) {
-  return new ViewAppComponent8(parentInjector,declarationEl);
+AppView<import2.AppComponent> viewFactory_AppComponent11(AppView<dynamic> parentView,num parentIndex) {
+  return new ViewAppComponent11(parentView,parentIndex);
+}
+class ViewAppComponent12 extends AppView<import2.AppComponent> {
+  Element _el_0;
+  import82.ViewElasticSearchComponent0 _compView_0;
+  import83.ElasticSearchComponent _ElasticSearchComponent_0_2;
+  dynamic __defaultPopupPositions_0_3;
+  import20.Angular2ManagedZone __ManagedZone_0_4;
+  dynamic __Window_0_5;
+  dynamic __DomService_0_6;
+  import21.AcxImperativeViewUtils __AcxImperativeViewUtils_0_7;
+  dynamic __Document_0_8;
+  import22.DomRuler __DomRuler_0_9;
+  dynamic __overlayContainerName_0_10;
+  dynamic __overlayContainerParent_0_11;
+  dynamic __overlayContainerToken_0_12;
+  dynamic __overlaySyncDom_0_13;
+  import23.OverlayStyleConfig __OverlayStyleConfig_0_14;
+  import24.ZIndexer __ZIndexer_0_15;
+  import25.OverlayDomRenderService __OverlayDomRenderService_0_16;
+  import26.OverlayDomService __OverlayService_0_17;
+  import27.DomPopupSourceFactory __DomPopupSourceFactory_0_18;
+  import28.PopupService __PopupService_0_19;
+  ViewAppComponent12(AppView<dynamic> parentView,num parentIndex): super(import30.ViewType.EMBEDDED,{},parentView,parentIndex,ChangeDetectionStrategy.CheckAlways) {
+    componentType = ViewAppComponent0.renderType;
+  }
+  dynamic get _defaultPopupPositions_0_3 {
+    if ((this.__defaultPopupPositions_0_3 == null)) { (__defaultPopupPositions_0_3 = import34.inlinePositions); }
+    return this.__defaultPopupPositions_0_3;
+  }
+  import20.Angular2ManagedZone get _ManagedZone_0_4 {
+    if ((this.__ManagedZone_0_4 == null)) { (__ManagedZone_0_4 = new import20.Angular2ManagedZone(this.parentView.parentView.injectorGet(import35.NgZone,this.parentView.parentIndex))); }
+    return this.__ManagedZone_0_4;
+  }
+  dynamic get _Window_0_5 {
+    if ((this.__Window_0_5 == null)) { (__Window_0_5 = import36.getWindow()); }
+    return this.__Window_0_5;
+  }
+  dynamic get _DomService_0_6 {
+    if ((this.__DomService_0_6 == null)) { (__DomService_0_6 = import37.createDomService(this.parentView.parentView.injectorGet(import38.DomService,this.parentView.parentIndex,null),this.parentView.parentView.injectorGet(import39.Disposer,this.parentView.parentIndex,null),this._ManagedZone_0_4,this._Window_0_5)); }
+    return this.__DomService_0_6;
+  }
+  import21.AcxImperativeViewUtils get _AcxImperativeViewUtils_0_7 {
+    if ((this.__AcxImperativeViewUtils_0_7 == null)) { (__AcxImperativeViewUtils_0_7 = new import21.AcxImperativeViewUtils(this.parentView.parentView.injectorGet(import40.DynamicComponentLoader,this.parentView.parentIndex),this._DomService_0_6)); }
+    return this.__AcxImperativeViewUtils_0_7;
+  }
+  dynamic get _Document_0_8 {
+    if ((this.__Document_0_8 == null)) { (__Document_0_8 = import36.getDocument()); }
+    return this.__Document_0_8;
+  }
+  import22.DomRuler get _DomRuler_0_9 {
+    if ((this.__DomRuler_0_9 == null)) { (__DomRuler_0_9 = new import22.DomRuler(this._Document_0_8,this._DomService_0_6)); }
+    return this.__DomRuler_0_9;
+  }
+  dynamic get _overlayContainerName_0_10 {
+    if ((this.__overlayContainerName_0_10 == null)) { (__overlayContainerName_0_10 = import41.getDefaultContainerName(this.parentView.parentView.injectorGet(import25.overlayContainerName,this.parentView.parentIndex,null))); }
+    return this.__overlayContainerName_0_10;
+  }
+  dynamic get _overlayContainerParent_0_11 {
+    if ((this.__overlayContainerParent_0_11 == null)) { (__overlayContainerParent_0_11 = import41.getOverlayContainerParent(this._Document_0_8,this.parentView.parentView.injectorGet(import25.overlayContainerParent,this.parentView.parentIndex,null))); }
+    return this.__overlayContainerParent_0_11;
+  }
+  dynamic get _overlayContainerToken_0_12 {
+    if ((this.__overlayContainerToken_0_12 == null)) { (__overlayContainerToken_0_12 = import41.getDefaultContainer(this._overlayContainerName_0_10,this._overlayContainerParent_0_11,this.parentView.parentView.injectorGet(import25.overlayContainerToken,this.parentView.parentIndex,null))); }
+    return this.__overlayContainerToken_0_12;
+  }
+  dynamic get _overlaySyncDom_0_13 {
+    if ((this.__overlaySyncDom_0_13 == null)) { (__overlaySyncDom_0_13 = true); }
+    return this.__overlaySyncDom_0_13;
+  }
+  import23.OverlayStyleConfig get _OverlayStyleConfig_0_14 {
+    if ((this.__OverlayStyleConfig_0_14 == null)) { (__OverlayStyleConfig_0_14 = new import23.OverlayStyleConfig(this._Document_0_8)); }
+    return this.__OverlayStyleConfig_0_14;
+  }
+  import24.ZIndexer get _ZIndexer_0_15 {
+    if ((this.__ZIndexer_0_15 == null)) { (__ZIndexer_0_15 = new import24.ZIndexer()); }
+    return this.__ZIndexer_0_15;
+  }
+  import25.OverlayDomRenderService get _OverlayDomRenderService_0_16 {
+    if ((this.__OverlayDomRenderService_0_16 == null)) { (__OverlayDomRenderService_0_16 = new import25.OverlayDomRenderService(this._OverlayStyleConfig_0_14,this._overlayContainerToken_0_12,this._overlayContainerName_0_10,this._DomRuler_0_9,this._DomService_0_6,this._AcxImperativeViewUtils_0_7,this._overlaySyncDom_0_13,this._ZIndexer_0_15)); }
+    return this.__OverlayDomRenderService_0_16;
+  }
+  import26.OverlayDomService get _OverlayService_0_17 {
+    if ((this.__OverlayService_0_17 == null)) { (__OverlayService_0_17 = new import26.OverlayDomService(this.parentView.parentView.injectorGet(import35.NgZone,this.parentView.parentIndex),this._overlaySyncDom_0_13,this._OverlayDomRenderService_0_16,this.parentView.parentView.injectorGet(import42.OverlayService,this.parentView.parentIndex,null))); }
+    return this.__OverlayService_0_17;
+  }
+  import27.DomPopupSourceFactory get _DomPopupSourceFactory_0_18 {
+    if ((this.__DomPopupSourceFactory_0_18 == null)) { (__DomPopupSourceFactory_0_18 = new import27.DomPopupSourceFactory(this._Window_0_5,this._DomRuler_0_9)); }
+    return this.__DomPopupSourceFactory_0_18;
+  }
+  import28.PopupService get _PopupService_0_19 {
+    if ((this.__PopupService_0_19 == null)) { (__PopupService_0_19 = new import28.PopupService(this._defaultPopupPositions_0_3,this._OverlayService_0_17,this._ZIndexer_0_15)); }
+    return this.__PopupService_0_19;
+  }
+  ComponentRef build() {
+    final import2.AppComponent _ctx = ctx;
+    _compView_0 = new import82.ViewElasticSearchComponent0(this,0);
+    _el_0 = _compView_0.rootEl;
+    addShimC(_el_0);
+    _ElasticSearchComponent_0_2 = new import83.ElasticSearchComponent(parentView.parentView.injectorGet(import46.PlaceService,parentView.parentIndex),parentView.parentView.injectorGet(import47.Router,parentView.parentIndex),parentView.parentView.injectorGet(import48.Environment,parentView.parentIndex));
+    _compView_0.create(_ElasticSearchComponent_0_2,[]);
+    init([_el_0],const []);
+    return null;
+  }
+  dynamic injectorGetInternal(dynamic token,int nodeIndex,dynamic notFoundResult) {
+    if ((identical(token, import83.ElasticSearchComponent) && (0 == nodeIndex))) { return _ElasticSearchComponent_0_2; }
+    if ((identical(token, import28.defaultPopupPositions) && (0 == nodeIndex))) { return _defaultPopupPositions_0_3; }
+    if ((identical(token, import52.ManagedZone) && (0 == nodeIndex))) { return _ManagedZone_0_4; }
+    if ((identical(token, Window) && (0 == nodeIndex))) { return _Window_0_5; }
+    if ((identical(token, import38.DomService) && (0 == nodeIndex))) { return _DomService_0_6; }
+    if ((identical(token, import21.AcxImperativeViewUtils) && (0 == nodeIndex))) { return _AcxImperativeViewUtils_0_7; }
+    if ((identical(token, Document) && (0 == nodeIndex))) { return _Document_0_8; }
+    if ((identical(token, import22.DomRuler) && (0 == nodeIndex))) { return _DomRuler_0_9; }
+    if ((identical(token, import25.overlayContainerName) && (0 == nodeIndex))) { return _overlayContainerName_0_10; }
+    if ((identical(token, import25.overlayContainerParent) && (0 == nodeIndex))) { return _overlayContainerParent_0_11; }
+    if ((identical(token, import25.overlayContainerToken) && (0 == nodeIndex))) { return _overlayContainerToken_0_12; }
+    if ((identical(token, import25.overlaySyncDom) && (0 == nodeIndex))) { return _overlaySyncDom_0_13; }
+    if ((identical(token, import23.OverlayStyleConfig) && (0 == nodeIndex))) { return _OverlayStyleConfig_0_14; }
+    if ((identical(token, import24.ZIndexer) && (0 == nodeIndex))) { return _ZIndexer_0_15; }
+    if ((identical(token, import25.OverlayDomRenderService) && (0 == nodeIndex))) { return _OverlayDomRenderService_0_16; }
+    if ((identical(token, import42.OverlayService) && (0 == nodeIndex))) { return _OverlayService_0_17; }
+    if ((identical(token, import27.DomPopupSourceFactory) && (0 == nodeIndex))) { return _DomPopupSourceFactory_0_18; }
+    if ((identical(token, import28.PopupService) && (0 == nodeIndex))) { return _PopupService_0_19; }
+    return notFoundResult;
+  }
+  void detectChangesInternal() {
+    bool firstCheck = identical(this.cdState, ChangeDetectorState.NeverChecked);
+    final import2.AppComponent _ctx = ctx;
+    if (firstCheck) { _ElasticSearchComponent_0_2.ngOnInit(); }
+    _compView_0.detectChanges();
+  }
+  void destroyInternal() {
+    _compView_0.destroy();
+  }
+}
+AppView<import2.AppComponent> viewFactory_AppComponent12(AppView<dynamic> parentView,num parentIndex) {
+  return new ViewAppComponent12(parentView,parentIndex);
 }
 const List<dynamic> styles_AppComponentHost = const [];
-RenderComponentType renderType_AppComponentHost;
 class ViewAppComponentHost0 extends AppView<dynamic> {
-  Element _el_0;
-  ViewContainer _appEl_0;
-  dynamic _ROUTER_PRIMARY_COMPONENT_0_3;
-  import76.RouteRegistry _RouteRegistry_0_4;
-  import77.BrowserPlatformLocation _PlatformLocation_0_5;
-  import78.PathLocationStrategy _LocationStrategy_0_6;
-  import79.Location _Location_0_7;
-  dynamic _Router_0_8;
-  import40.PlaceService _PlaceService_0_9;
-  import3.AppComponent _AppComponent_0_10;
-  dynamic __defaultPopupPositions_0_11;
-  import14.Angular2ManagedZone __ManagedZone_0_12;
-  dynamic __Window_0_13;
-  dynamic __DomService_0_14;
-  import15.AcxImperativeViewUtils __AcxImperativeViewUtils_0_15;
-  dynamic __Document_0_16;
-  import16.DomRuler __DomRuler_0_17;
-  dynamic __overlayContainerName_0_18;
-  dynamic __overlayContainerParent_0_19;
-  dynamic __overlayContainerToken_0_20;
-  dynamic __overlaySyncDom_0_21;
-  import17.OverlayStyleConfig __OverlayStyleConfig_0_22;
-  import18.ZIndexer __ZIndexer_0_23;
-  import19.OverlayDomRenderService __OverlayDomRenderService_0_24;
-  import20.OverlayDomService __OverlayService_0_25;
-  import21.DomPopupSourceFactory __DomPopupSourceFactory_0_26;
-  import22.PopupService __PopupService_0_27;
-  ViewAppComponentHost0(import24.Injector parentInjector,ViewContainer declarationEl): super(ViewAppComponentHost0,renderType_AppComponentHost,import25.ViewType.HOST,{},parentInjector,declarationEl,ChangeDetectionStrategy.CheckAlways);
-  dynamic get _defaultPopupPositions_0_11 {
-    if ((this.__defaultPopupPositions_0_11 == null)) { (__defaultPopupPositions_0_11 = import26.inlinePositions); }
-    return this.__defaultPopupPositions_0_11;
+  ViewAppComponent0 _compView_0;
+  dynamic _ROUTER_PRIMARY_COMPONENT_0_2;
+  import84.RouteRegistry _RouteRegistry_0_3;
+  import85.BrowserPlatformLocation _PlatformLocation_0_4;
+  import86.PathLocationStrategy _LocationStrategy_0_5;
+  import87.Location _Location_0_6;
+  dynamic _Router_0_7;
+  import46.PlaceService _PlaceService_0_8;
+  import2.AppComponent _AppComponent_0_9;
+  dynamic __defaultPopupPositions_0_10;
+  import20.Angular2ManagedZone __ManagedZone_0_11;
+  dynamic __Window_0_12;
+  dynamic __DomService_0_13;
+  import21.AcxImperativeViewUtils __AcxImperativeViewUtils_0_14;
+  dynamic __Document_0_15;
+  import22.DomRuler __DomRuler_0_16;
+  dynamic __overlayContainerName_0_17;
+  dynamic __overlayContainerParent_0_18;
+  dynamic __overlayContainerToken_0_19;
+  dynamic __overlaySyncDom_0_20;
+  import23.OverlayStyleConfig __OverlayStyleConfig_0_21;
+  import24.ZIndexer __ZIndexer_0_22;
+  import25.OverlayDomRenderService __OverlayDomRenderService_0_23;
+  import26.OverlayDomService __OverlayService_0_24;
+  import27.DomPopupSourceFactory __DomPopupSourceFactory_0_25;
+  import28.PopupService __PopupService_0_26;
+  static RenderComponentType renderType;
+  ViewAppComponentHost0(AppView<dynamic> parentView,num parentIndex): super(import30.ViewType.HOST,{},parentView,parentIndex,ChangeDetectionStrategy.CheckAlways) {
+    renderType ??= import32.appViewUtils.createRenderType('',ViewEncapsulation.Emulated,styles_AppComponentHost);
+    setupComponentType(renderType);
   }
-  import14.Angular2ManagedZone get _ManagedZone_0_12 {
-    if ((this.__ManagedZone_0_12 == null)) { (__ManagedZone_0_12 = new import14.Angular2ManagedZone(this.parentInjector.get(import27.NgZone))); }
-    return this.__ManagedZone_0_12;
+  dynamic get _defaultPopupPositions_0_10 {
+    if ((this.__defaultPopupPositions_0_10 == null)) { (__defaultPopupPositions_0_10 = import34.inlinePositions); }
+    return this.__defaultPopupPositions_0_10;
   }
-  dynamic get _Window_0_13 {
-    if ((this.__Window_0_13 == null)) { (__Window_0_13 = import28.getWindow()); }
-    return this.__Window_0_13;
+  import20.Angular2ManagedZone get _ManagedZone_0_11 {
+    if ((this.__ManagedZone_0_11 == null)) { (__ManagedZone_0_11 = new import20.Angular2ManagedZone(this.injectorGet(import35.NgZone,this.parentIndex))); }
+    return this.__ManagedZone_0_11;
   }
-  dynamic get _DomService_0_14 {
-    if ((this.__DomService_0_14 == null)) { (__DomService_0_14 = import29.createDomService(this.parentInjector.get(import30.DomService,null),this.parentInjector.get(import31.Disposer,null),this._ManagedZone_0_12,this._Window_0_13)); }
-    return this.__DomService_0_14;
+  dynamic get _Window_0_12 {
+    if ((this.__Window_0_12 == null)) { (__Window_0_12 = import36.getWindow()); }
+    return this.__Window_0_12;
   }
-  import15.AcxImperativeViewUtils get _AcxImperativeViewUtils_0_15 {
-    if ((this.__AcxImperativeViewUtils_0_15 == null)) { (__AcxImperativeViewUtils_0_15 = new import15.AcxImperativeViewUtils(this.parentInjector.get(import32.DynamicComponentLoader),this._DomService_0_14)); }
-    return this.__AcxImperativeViewUtils_0_15;
+  dynamic get _DomService_0_13 {
+    if ((this.__DomService_0_13 == null)) { (__DomService_0_13 = import37.createDomService(this.injectorGet(import38.DomService,this.parentIndex,null),this.injectorGet(import39.Disposer,this.parentIndex,null),this._ManagedZone_0_11,this._Window_0_12)); }
+    return this.__DomService_0_13;
   }
-  dynamic get _Document_0_16 {
-    if ((this.__Document_0_16 == null)) { (__Document_0_16 = import28.getDocument()); }
-    return this.__Document_0_16;
+  import21.AcxImperativeViewUtils get _AcxImperativeViewUtils_0_14 {
+    if ((this.__AcxImperativeViewUtils_0_14 == null)) { (__AcxImperativeViewUtils_0_14 = new import21.AcxImperativeViewUtils(this.injectorGet(import40.DynamicComponentLoader,this.parentIndex),this._DomService_0_13)); }
+    return this.__AcxImperativeViewUtils_0_14;
   }
-  import16.DomRuler get _DomRuler_0_17 {
-    if ((this.__DomRuler_0_17 == null)) { (__DomRuler_0_17 = new import16.DomRuler(this._Document_0_16,this._DomService_0_14)); }
-    return this.__DomRuler_0_17;
+  dynamic get _Document_0_15 {
+    if ((this.__Document_0_15 == null)) { (__Document_0_15 = import36.getDocument()); }
+    return this.__Document_0_15;
   }
-  dynamic get _overlayContainerName_0_18 {
-    if ((this.__overlayContainerName_0_18 == null)) { (__overlayContainerName_0_18 = 'default'); }
-    return this.__overlayContainerName_0_18;
+  import22.DomRuler get _DomRuler_0_16 {
+    if ((this.__DomRuler_0_16 == null)) { (__DomRuler_0_16 = new import22.DomRuler(this._Document_0_15,this._DomService_0_13)); }
+    return this.__DomRuler_0_16;
   }
-  dynamic get _overlayContainerParent_0_19 {
-    if ((this.__overlayContainerParent_0_19 == null)) { (__overlayContainerParent_0_19 = import33.getOverlayContainerParent(this._Document_0_16)); }
-    return this.__overlayContainerParent_0_19;
+  dynamic get _overlayContainerName_0_17 {
+    if ((this.__overlayContainerName_0_17 == null)) { (__overlayContainerName_0_17 = import41.getDefaultContainerName(this.injectorGet(import25.overlayContainerName,this.parentIndex,null))); }
+    return this.__overlayContainerName_0_17;
   }
-  dynamic get _overlayContainerToken_0_20 {
-    if ((this.__overlayContainerToken_0_20 == null)) { (__overlayContainerToken_0_20 = import33.getDefaultContainer(this._overlayContainerName_0_18,this._overlayContainerParent_0_19)); }
-    return this.__overlayContainerToken_0_20;
+  dynamic get _overlayContainerParent_0_18 {
+    if ((this.__overlayContainerParent_0_18 == null)) { (__overlayContainerParent_0_18 = import41.getOverlayContainerParent(this._Document_0_15,this.injectorGet(import25.overlayContainerParent,this.parentIndex,null))); }
+    return this.__overlayContainerParent_0_18;
   }
-  dynamic get _overlaySyncDom_0_21 {
-    if ((this.__overlaySyncDom_0_21 == null)) { (__overlaySyncDom_0_21 = true); }
-    return this.__overlaySyncDom_0_21;
+  dynamic get _overlayContainerToken_0_19 {
+    if ((this.__overlayContainerToken_0_19 == null)) { (__overlayContainerToken_0_19 = import41.getDefaultContainer(this._overlayContainerName_0_17,this._overlayContainerParent_0_18,this.injectorGet(import25.overlayContainerToken,this.parentIndex,null))); }
+    return this.__overlayContainerToken_0_19;
   }
-  import17.OverlayStyleConfig get _OverlayStyleConfig_0_22 {
-    if ((this.__OverlayStyleConfig_0_22 == null)) { (__OverlayStyleConfig_0_22 = new import17.OverlayStyleConfig(this._Document_0_16)); }
-    return this.__OverlayStyleConfig_0_22;
+  dynamic get _overlaySyncDom_0_20 {
+    if ((this.__overlaySyncDom_0_20 == null)) { (__overlaySyncDom_0_20 = true); }
+    return this.__overlaySyncDom_0_20;
   }
-  import18.ZIndexer get _ZIndexer_0_23 {
-    if ((this.__ZIndexer_0_23 == null)) { (__ZIndexer_0_23 = new import18.ZIndexer()); }
-    return this.__ZIndexer_0_23;
+  import23.OverlayStyleConfig get _OverlayStyleConfig_0_21 {
+    if ((this.__OverlayStyleConfig_0_21 == null)) { (__OverlayStyleConfig_0_21 = new import23.OverlayStyleConfig(this._Document_0_15)); }
+    return this.__OverlayStyleConfig_0_21;
   }
-  import19.OverlayDomRenderService get _OverlayDomRenderService_0_24 {
-    if ((this.__OverlayDomRenderService_0_24 == null)) { (__OverlayDomRenderService_0_24 = new import19.OverlayDomRenderService(this._OverlayStyleConfig_0_22,this._overlayContainerToken_0_20,this._overlayContainerName_0_18,this._DomRuler_0_17,this._DomService_0_14,this._AcxImperativeViewUtils_0_15,this._overlaySyncDom_0_21,this._ZIndexer_0_23)); }
-    return this.__OverlayDomRenderService_0_24;
+  import24.ZIndexer get _ZIndexer_0_22 {
+    if ((this.__ZIndexer_0_22 == null)) { (__ZIndexer_0_22 = new import24.ZIndexer()); }
+    return this.__ZIndexer_0_22;
   }
-  import20.OverlayDomService get _OverlayService_0_25 {
-    if ((this.__OverlayService_0_25 == null)) { (__OverlayService_0_25 = new import20.OverlayDomService(this.parentInjector.get(import27.NgZone),this._overlaySyncDom_0_21,this._OverlayDomRenderService_0_24,this.parentInjector.get(import34.OverlayService,null))); }
-    return this.__OverlayService_0_25;
+  import25.OverlayDomRenderService get _OverlayDomRenderService_0_23 {
+    if ((this.__OverlayDomRenderService_0_23 == null)) { (__OverlayDomRenderService_0_23 = new import25.OverlayDomRenderService(this._OverlayStyleConfig_0_21,this._overlayContainerToken_0_19,this._overlayContainerName_0_17,this._DomRuler_0_16,this._DomService_0_13,this._AcxImperativeViewUtils_0_14,this._overlaySyncDom_0_20,this._ZIndexer_0_22)); }
+    return this.__OverlayDomRenderService_0_23;
   }
-  import21.DomPopupSourceFactory get _DomPopupSourceFactory_0_26 {
-    if ((this.__DomPopupSourceFactory_0_26 == null)) { (__DomPopupSourceFactory_0_26 = new import21.DomPopupSourceFactory(this._Window_0_13,this._DomRuler_0_17)); }
-    return this.__DomPopupSourceFactory_0_26;
+  import26.OverlayDomService get _OverlayService_0_24 {
+    if ((this.__OverlayService_0_24 == null)) { (__OverlayService_0_24 = new import26.OverlayDomService(this.injectorGet(import35.NgZone,this.parentIndex),this._overlaySyncDom_0_20,this._OverlayDomRenderService_0_23,this.injectorGet(import42.OverlayService,this.parentIndex,null))); }
+    return this.__OverlayService_0_24;
   }
-  import22.PopupService get _PopupService_0_27 {
-    if ((this.__PopupService_0_27 == null)) { (__PopupService_0_27 = new import22.PopupService(this._defaultPopupPositions_0_11,this._OverlayService_0_25,this._ZIndexer_0_23)); }
-    return this.__PopupService_0_27;
+  import27.DomPopupSourceFactory get _DomPopupSourceFactory_0_25 {
+    if ((this.__DomPopupSourceFactory_0_25 == null)) { (__DomPopupSourceFactory_0_25 = new import27.DomPopupSourceFactory(this._Window_0_12,this._DomRuler_0_16)); }
+    return this.__DomPopupSourceFactory_0_25;
   }
-  ViewContainer createInternal(dynamic rootSelector) {
-    _el_0 = selectOrCreateHostElement('my-app',rootSelector,null);
-    _appEl_0 = new ViewContainer(0,null,this,_el_0);
-    var compView_0 = viewFactory_AppComponent0(this.injector(0),_appEl_0);
-    _ROUTER_PRIMARY_COMPONENT_0_3 = import80.routerPrimaryComponentFactory(this.parentInjector.get(import81.ApplicationRef));
-    _RouteRegistry_0_4 = new import76.RouteRegistry(_ROUTER_PRIMARY_COMPONENT_0_3);
-    _PlatformLocation_0_5 = new import77.BrowserPlatformLocation();
-    _LocationStrategy_0_6 = new import78.PathLocationStrategy(_PlatformLocation_0_5,this.parentInjector.get(import82.APP_BASE_HREF,null));
-    _Location_0_7 = new import79.Location(_LocationStrategy_0_6);
-    _Router_0_8 = import80.routerFactory(_RouteRegistry_0_4,_Location_0_7,_ROUTER_PRIMARY_COMPONENT_0_3,this.parentInjector.get(import81.ApplicationRef));
-    _PlaceService_0_9 = new import40.PlaceService(this.parentInjector.get(import83.Client),this.parentInjector.get(import42.Environment));
-    _AppComponent_0_10 = new import3.AppComponent(_Router_0_8,this.parentInjector.get(import42.Environment),_PlaceService_0_9);
-    _appEl_0.initComponent(_AppComponent_0_10,compView_0);
-    compView_0.createComp(projectableNodes,null);
-    init([_el_0],[_el_0],[]);
-    return _appEl_0;
+  import28.PopupService get _PopupService_0_26 {
+    if ((this.__PopupService_0_26 == null)) { (__PopupService_0_26 = new import28.PopupService(this._defaultPopupPositions_0_10,this._OverlayService_0_24,this._ZIndexer_0_22)); }
+    return this.__PopupService_0_26;
   }
-  dynamic injectorGetInternal(dynamic token,int requestNodeIndex,dynamic notFoundResult) {
-    if ((identical(token, import76.ROUTER_PRIMARY_COMPONENT) && (0 == requestNodeIndex))) { return _ROUTER_PRIMARY_COMPONENT_0_3; }
-    if ((identical(token, import76.RouteRegistry) && (0 == requestNodeIndex))) { return _RouteRegistry_0_4; }
-    if ((identical(token, import84.PlatformLocation) && (0 == requestNodeIndex))) { return _PlatformLocation_0_5; }
-    if ((identical(token, import82.LocationStrategy) && (0 == requestNodeIndex))) { return _LocationStrategy_0_6; }
-    if ((identical(token, import79.Location) && (0 == requestNodeIndex))) { return _Location_0_7; }
-    if ((identical(token, import41.Router) && (0 == requestNodeIndex))) { return _Router_0_8; }
-    if ((identical(token, import40.PlaceService) && (0 == requestNodeIndex))) { return _PlaceService_0_9; }
-    if ((identical(token, import3.AppComponent) && (0 == requestNodeIndex))) { return _AppComponent_0_10; }
-    if ((identical(token, import22.defaultPopupPositions) && (0 == requestNodeIndex))) { return _defaultPopupPositions_0_11; }
-    if ((identical(token, import47.ManagedZone) && (0 == requestNodeIndex))) { return _ManagedZone_0_12; }
-    if ((identical(token, Window) && (0 == requestNodeIndex))) { return _Window_0_13; }
-    if ((identical(token, import30.DomService) && (0 == requestNodeIndex))) { return _DomService_0_14; }
-    if ((identical(token, import15.AcxImperativeViewUtils) && (0 == requestNodeIndex))) { return _AcxImperativeViewUtils_0_15; }
-    if ((identical(token, Document) && (0 == requestNodeIndex))) { return _Document_0_16; }
-    if ((identical(token, import16.DomRuler) && (0 == requestNodeIndex))) { return _DomRuler_0_17; }
-    if ((identical(token, import19.overlayContainerName) && (0 == requestNodeIndex))) { return _overlayContainerName_0_18; }
-    if ((identical(token, import19.overlayContainerParent) && (0 == requestNodeIndex))) { return _overlayContainerParent_0_19; }
-    if ((identical(token, import19.overlayContainerToken) && (0 == requestNodeIndex))) { return _overlayContainerToken_0_20; }
-    if ((identical(token, import19.overlaySyncDom) && (0 == requestNodeIndex))) { return _overlaySyncDom_0_21; }
-    if ((identical(token, import17.OverlayStyleConfig) && (0 == requestNodeIndex))) { return _OverlayStyleConfig_0_22; }
-    if ((identical(token, import18.ZIndexer) && (0 == requestNodeIndex))) { return _ZIndexer_0_23; }
-    if ((identical(token, import19.OverlayDomRenderService) && (0 == requestNodeIndex))) { return _OverlayDomRenderService_0_24; }
-    if ((identical(token, import34.OverlayService) && (0 == requestNodeIndex))) { return _OverlayService_0_25; }
-    if ((identical(token, import21.DomPopupSourceFactory) && (0 == requestNodeIndex))) { return _DomPopupSourceFactory_0_26; }
-    if ((identical(token, import22.PopupService) && (0 == requestNodeIndex))) { return _PopupService_0_27; }
+  ComponentRef build() {
+    final _ctx = ctx;
+    _compView_0 = new ViewAppComponent0(this,0);
+    rootEl = _compView_0.rootEl;
+    _ROUTER_PRIMARY_COMPONENT_0_2 = import88.routerPrimaryComponentFactory(this.injectorGet(import89.ApplicationRef,parentIndex));
+    _RouteRegistry_0_3 = new import84.RouteRegistry(_ROUTER_PRIMARY_COMPONENT_0_2);
+    _PlatformLocation_0_4 = new import85.BrowserPlatformLocation();
+    _LocationStrategy_0_5 = new import86.PathLocationStrategy(_PlatformLocation_0_4,this.injectorGet(import90.APP_BASE_HREF,parentIndex,null));
+    _Location_0_6 = new import87.Location(_LocationStrategy_0_5);
+    _Router_0_7 = import88.routerFactory(_RouteRegistry_0_3,_Location_0_6,_ROUTER_PRIMARY_COMPONENT_0_2,this.injectorGet(import89.ApplicationRef,parentIndex));
+    _PlaceService_0_8 = new import46.PlaceService(this.injectorGet(import91.Client,parentIndex),this.injectorGet(import48.Environment,parentIndex));
+    _AppComponent_0_9 = new import2.AppComponent(_Router_0_7,this.injectorGet(import48.Environment,parentIndex),_PlaceService_0_8);
+    _compView_0.create(_AppComponent_0_9,projectableNodes);
+    init([rootEl],const []);
+    return new ComponentRef(0,this,rootEl,_AppComponent_0_9);
+  }
+  dynamic injectorGetInternal(dynamic token,int nodeIndex,dynamic notFoundResult) {
+    if ((identical(token, import84.ROUTER_PRIMARY_COMPONENT) && (0 == nodeIndex))) { return _ROUTER_PRIMARY_COMPONENT_0_2; }
+    if ((identical(token, import84.RouteRegistry) && (0 == nodeIndex))) { return _RouteRegistry_0_3; }
+    if ((identical(token, import92.PlatformLocation) && (0 == nodeIndex))) { return _PlatformLocation_0_4; }
+    if ((identical(token, import90.LocationStrategy) && (0 == nodeIndex))) { return _LocationStrategy_0_5; }
+    if ((identical(token, import87.Location) && (0 == nodeIndex))) { return _Location_0_6; }
+    if ((identical(token, import47.Router) && (0 == nodeIndex))) { return _Router_0_7; }
+    if ((identical(token, import46.PlaceService) && (0 == nodeIndex))) { return _PlaceService_0_8; }
+    if ((identical(token, import2.AppComponent) && (0 == nodeIndex))) { return _AppComponent_0_9; }
+    if ((identical(token, import28.defaultPopupPositions) && (0 == nodeIndex))) { return _defaultPopupPositions_0_10; }
+    if ((identical(token, import52.ManagedZone) && (0 == nodeIndex))) { return _ManagedZone_0_11; }
+    if ((identical(token, Window) && (0 == nodeIndex))) { return _Window_0_12; }
+    if ((identical(token, import38.DomService) && (0 == nodeIndex))) { return _DomService_0_13; }
+    if ((identical(token, import21.AcxImperativeViewUtils) && (0 == nodeIndex))) { return _AcxImperativeViewUtils_0_14; }
+    if ((identical(token, Document) && (0 == nodeIndex))) { return _Document_0_15; }
+    if ((identical(token, import22.DomRuler) && (0 == nodeIndex))) { return _DomRuler_0_16; }
+    if ((identical(token, import25.overlayContainerName) && (0 == nodeIndex))) { return _overlayContainerName_0_17; }
+    if ((identical(token, import25.overlayContainerParent) && (0 == nodeIndex))) { return _overlayContainerParent_0_18; }
+    if ((identical(token, import25.overlayContainerToken) && (0 == nodeIndex))) { return _overlayContainerToken_0_19; }
+    if ((identical(token, import25.overlaySyncDom) && (0 == nodeIndex))) { return _overlaySyncDom_0_20; }
+    if ((identical(token, import23.OverlayStyleConfig) && (0 == nodeIndex))) { return _OverlayStyleConfig_0_21; }
+    if ((identical(token, import24.ZIndexer) && (0 == nodeIndex))) { return _ZIndexer_0_22; }
+    if ((identical(token, import25.OverlayDomRenderService) && (0 == nodeIndex))) { return _OverlayDomRenderService_0_23; }
+    if ((identical(token, import42.OverlayService) && (0 == nodeIndex))) { return _OverlayService_0_24; }
+    if ((identical(token, import27.DomPopupSourceFactory) && (0 == nodeIndex))) { return _DomPopupSourceFactory_0_25; }
+    if ((identical(token, import28.PopupService) && (0 == nodeIndex))) { return _PopupService_0_26; }
     return notFoundResult;
   }
   void detectChangesInternal() {
-    if ((identical(this.cdState, ChangeDetectorState.NeverChecked) && !import48.AppViewUtils.throwOnChanges)) { _AppComponent_0_10.ngOnInit(); }
-    this.detectContentChildrenChanges();
-    this.detectViewChildrenChanges();
+    bool firstCheck = identical(this.cdState, ChangeDetectorState.NeverChecked);
+    final _ctx = ctx;
+    if (firstCheck) { _AppComponent_0_9.ngOnInit(); }
+    _compView_0.detectChanges();
+  }
+  void destroyInternal() {
+    _compView_0.destroy();
   }
 }
-AppView viewFactory_AppComponentHost0(import24.Injector parentInjector,ViewContainer declarationEl) {
-  if (identical(renderType_AppComponentHost, null)) { (renderType_AppComponentHost = import48.appViewUtils.createRenderComponentType('',0,import49.ViewEncapsulation.Emulated,styles_AppComponentHost)); }
-  return new ViewAppComponentHost0(parentInjector,declarationEl);
+AppView viewFactory_AppComponentHost0(AppView<dynamic> parentView,num parentIndex) {
+  return new ViewAppComponentHost0(parentView,parentIndex);
 }
-const import85.ComponentFactory AppComponentNgFactory = const import85.ComponentFactory('my-app',viewFactory_AppComponentHost0,import3.AppComponent,_METADATA);
+const ComponentFactory AppComponentNgFactory = const ComponentFactory('my-app',viewFactory_AppComponentHost0,import2.AppComponent,_METADATA);
 const _METADATA = const <dynamic>[AppComponent, const <dynamic>[const RouteConfig(const [const Route(path: '/', name: 'Dashboard', component: DashboardComponent), const Route(path: '/folder/:id', name: 'Folder', component: PlaceDetailComponent), const Route(path: '/place', name: 'PlaceList', component: PlacesComponent)])]];
 var _visited = false;
 void initReflector() {
@@ -1688,4 +1935,8 @@ i14.initReflector();
 i15.initReflector();
 i16.initReflector();
 i17.initReflector();
+i18.initReflector();
+i19.initReflector();
+i20.initReflector();
+i21.initReflector();
 }

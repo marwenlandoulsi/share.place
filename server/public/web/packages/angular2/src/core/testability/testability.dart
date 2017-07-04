@@ -1,8 +1,8 @@
-import "dart:async";
+import 'dart:async';
 
-import "package:angular2/src/core/di.dart" show Injectable;
+import 'package:angular2/src/core/di.dart' show Injectable;
 
-import "../zone/ng_zone.dart";
+import '../zone/ng_zone.dart';
 
 /// The Testability service provides testing hooks that can be accessed from
 /// the browser and by services such as Protractor. Each bootstrapped Angular
@@ -18,18 +18,18 @@ class Testability {
   /// component while it is stabilizing.
   bool _didWork = false;
 
-  List<Function> _callbacks = [];
+  final List<Function> _callbacks = <Function>[];
   Testability(this._ngZone) {
     _watchAngularEvents();
   }
 
   void _watchAngularEvents() {
-    _ngZone.onUnstable.listen((_) {
+    _ngZone.onTurnStart.listen((_) {
       _didWork = true;
       _isZoneStable = false;
     });
     _ngZone.runOutsideAngular(() {
-      _ngZone.onStable.listen((_) {
+      _ngZone.onTurnDone.listen((_) {
         NgZone.assertNotInAngularZone();
         scheduleMicrotask(() {
           _isZoneStable = true;
@@ -95,7 +95,7 @@ class Testability {
 /// A global registry of [Testability] instances for specific elements.
 @Injectable()
 class TestabilityRegistry {
-  var _applications = new Map<dynamic, Testability>();
+  final _applications = new Map<dynamic, Testability>();
   GetTestability _testabilityGetter = new _NoopGetTestability();
 
   /// Set the [GetTestability] implementation used by the Angular testing

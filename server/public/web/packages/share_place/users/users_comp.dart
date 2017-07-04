@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:angular2/core.dart';
 import 'package:angular2/router.dart';
 import 'package:angular2/security.dart';
-import 'package:angular2_components/angular2_components.dart';
+import 'package:angular_components/angular_components.dart';
 
 import 'package:share_place/place.dart';
 import 'package:share_place/environment.dart';
@@ -71,6 +71,9 @@ class UsersComp implements OnInit, PopupParent {
   }
 
   List<User> get users => _userListProvider.users;
+
+
+
 
   void popupClosed(User user) {
     clickedUserId = null;

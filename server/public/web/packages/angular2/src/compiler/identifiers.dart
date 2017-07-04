@@ -1,6 +1,5 @@
 import "package:angular2/src/core/change_detection/change_detection.dart"
     show
-        uninitialized,
         devModeEqual,
         SimpleChange,
         ValueUnwrapper,
@@ -8,34 +7,12 @@ import "package:angular2/src/core/change_detection/change_detection.dart"
         ChangeDetectorState,
         ChangeDetectionStrategy;
 import "package:angular2/src/core/di/injector.dart" show Injector;
-import "package:angular2/src/core/linker/app_view_utils.dart"
-    show
-        AppViewUtils,
-        interpolate,
-        interpolate0,
-        interpolate1,
-        interpolate2,
-        checkBinding,
-        castByValue,
-        EMPTY_ARRAY,
-        EMPTY_MAP,
-        pureProxy1,
-        pureProxy2,
-        pureProxy3,
-        pureProxy4,
-        pureProxy5,
-        pureProxy6,
-        pureProxy7,
-        pureProxy8,
-        pureProxy9,
-        pureProxy10;
 import "package:angular2/src/core/linker/element_ref.dart" show ElementRef;
-import "package:angular2/src/core/linker/injector_factory.dart"
-    show CodegenInjector, CodegenInjectorFactory;
 import "package:angular2/src/core/linker/view_type.dart" show ViewType;
 import "package:angular2/src/core/metadata/view.dart" show ViewEncapsulation;
 import "package:angular2/src/core/render/api.dart" show RenderComponentType;
 import "package:angular2/src/core/security.dart" show TemplateSecurityContext;
+import "package:angular2/src/facade/lang.dart" show looseIdentical;
 
 import "compile_metadata.dart"
     show CompileIdentifierMetadata, CompileTokenMetadata;
@@ -47,6 +24,11 @@ var APP_VIEW_UTILS_MODULE_URL =
     "asset:angular2/lib/src/core/linker/app_view_utils.dart";
 var CD_MODULE_URL =
     "asset:angular2/lib/src/core/change_detection/change_detection.dart";
+var ANGULAR_ROOT_URL = "package:angular2/angular2.dart";
+var NG_IF_URL = "asset:angular2/lib/src/common/directives/ng_if.dart";
+var NG_FOR_URL = "asset:angular2/lib/src/common/directives/ng_for.dart";
+var PROFILE_RUNTIME_MODULE_URL =
+    "asset:angular2/lib/src/debug/profile_runtime.dart";
 
 // Reassign the imports to different variables so we can
 // define static variables with the name of the import.
@@ -56,247 +38,238 @@ var impChangeDetectorRef = ChangeDetectorRef;
 var impRenderComponentType = RenderComponentType;
 var impValueUnwrapper = ValueUnwrapper;
 var impInjector = Injector;
-var impCodegenInjector = CodegenInjector;
-var impCodegenInjectorFactory = CodegenInjectorFactory;
 var impViewEncapsulation = ViewEncapsulation;
 var impViewType = ViewType;
 var impChangeDetectionStrategy = ChangeDetectionStrategy;
 var impSimpleChange = SimpleChange;
-var impUninitialized = uninitialized;
 var impChangeDetectorState = ChangeDetectorState;
 var impDevModeEqual = devModeEqual;
-var impInterpolate0 = interpolate0;
-var impInterpolate1 = interpolate1;
-var impInterpolate2 = interpolate2;
-var impThrowOnChanges = () => AppViewUtils.throwOnChanges;
-var impInterpolate = interpolate;
-var impCheckBinding = checkBinding;
-var impCastByValue = castByValue;
+var impLooseIdentical = looseIdentical;
 var impTemplateSecurityContext = TemplateSecurityContext;
-var impEMPTY_ARRAY = EMPTY_ARRAY;
-var impEMPTY_MAP = EMPTY_MAP;
 
 class Identifiers {
-  static final appViewUtils = new CompileIdentifierMetadata(
-      name: "appViewUtils",
-      moduleUrl: 'asset:angular2/lib/src/core/linker/app_view_utils.dart');
-  static final AppView = new CompileIdentifierMetadata(
+  static final appViewUtils = new CompileIdentifierMetadata<dynamic>(
+      name: "appViewUtils", moduleUrl: APP_VIEW_UTILS_MODULE_URL);
+  static final ngAnchor = new CompileIdentifierMetadata<dynamic>(
+      name: 'ngAnchor', moduleUrl: APP_VIEW_MODULE_URL);
+  static final AppView = new CompileIdentifierMetadata<dynamic>(
       name: "AppView", moduleUrl: APP_VIEW_MODULE_URL);
-  static final DebugAppView = new CompileIdentifierMetadata(
+  static final DebugAppView = new CompileIdentifierMetadata<dynamic>(
       name: "DebugAppView", moduleUrl: DEBUG_APP_VIEW_MODULE_URL);
-  static final ViewContainer = new CompileIdentifierMetadata(
+  static final ViewContainer = new CompileIdentifierMetadata<dynamic>(
       name: "ViewContainer",
       moduleUrl: "asset:angular2/lib/src/core/linker/view_container.dart");
-  static final ElementRef = new CompileIdentifierMetadata(
+  static final ElementRef = new CompileIdentifierMetadata<dynamic>(
       name: "ElementRef",
       moduleUrl: "asset:angular2/lib/src/core/linker/element_ref.dart",
       runtime: impElementRef);
-  static final ViewContainerRef = new CompileIdentifierMetadata(
+  static final ViewContainerRef = new CompileIdentifierMetadata<dynamic>(
       name: "ViewContainerRef",
       moduleUrl: "asset:angular2/lib/src/core/linker/view_container_ref.dart");
-  static final ChangeDetectorRef = new CompileIdentifierMetadata(
+  static final ChangeDetectorRef = new CompileIdentifierMetadata<dynamic>(
       name: "ChangeDetectorRef",
       moduleUrl: 'asset:angular2/lib/src/core/change_detection/'
           'change_detector_ref.dart',
       runtime: impChangeDetectorRef);
-  static final ComponentFactory = new CompileIdentifierMetadata(
-      name: 'ComponentFactory',
-      moduleUrl: 'asset:angular2/lib/src/core/linker/component_factory.dart');
-  static final RenderComponentType = new CompileIdentifierMetadata(
+  static final ComponentFactory = new CompileIdentifierMetadata<dynamic>(
+      name: 'ComponentFactory', moduleUrl: ANGULAR_ROOT_URL);
+  static final RenderComponentType = new CompileIdentifierMetadata<dynamic>(
       name: "RenderComponentType",
       moduleUrl: "asset:angular2/lib/src/core/render/api.dart",
       runtime: impRenderComponentType);
-  static final QueryList = new CompileIdentifierMetadata(
+  static final ComponentRef = new CompileIdentifierMetadata<dynamic>(
+      name: "ComponentRef", moduleUrl: ANGULAR_ROOT_URL);
+  static final QueryList = new CompileIdentifierMetadata<dynamic>(
       name: "QueryList",
       moduleUrl: "asset:angular2/lib/src/core/linker/query_list.dart");
-  static final TemplateRef = new CompileIdentifierMetadata(
+  static final TemplateRef = new CompileIdentifierMetadata<dynamic>(
       name: "TemplateRef",
       moduleUrl: "asset:angular2/lib/src/core/linker/template_ref.dart");
-  static final ValueUnwrapper = new CompileIdentifierMetadata(
+  static final ValueUnwrapper = new CompileIdentifierMetadata<dynamic>(
       name: "ValueUnwrapper",
       moduleUrl: CD_MODULE_URL,
       runtime: impValueUnwrapper);
-  static final Injector = new CompileIdentifierMetadata(
+  static final Injector = new CompileIdentifierMetadata<dynamic>(
       name: "Injector",
       moduleUrl: 'asset:angular2/lib/src/core/di/injector.dart',
       runtime: impInjector);
-  static final InjectorFactory = new CompileIdentifierMetadata(
-      name: "CodegenInjectorFactory",
-      moduleUrl: 'asset:angular2/lib/src/core/linker/'
-          'injector_factory.dart',
-      runtime: impCodegenInjectorFactory);
-  static final CodegenInjector = new CompileIdentifierMetadata(
-      name: "CodegenInjector",
-      moduleUrl: '''asset:angular2/lib/src/core/linker/injector_factory.dart''',
-      runtime: impCodegenInjector);
-  static final ViewEncapsulation = new CompileIdentifierMetadata(
+  static final ViewEncapsulation = new CompileIdentifierMetadata<dynamic>(
       name: "ViewEncapsulation",
-      moduleUrl: "asset:angular2/lib/src/core/metadata/view.dart",
+      moduleUrl: ANGULAR_ROOT_URL,
       runtime: impViewEncapsulation);
-  static final ViewType = new CompileIdentifierMetadata(
+  static final ViewType = new CompileIdentifierMetadata<dynamic>(
       name: "ViewType",
       moduleUrl: 'asset:angular2/lib/src/core/linker/view_type.dart',
       runtime: impViewType);
-  static final ChangeDetectionStrategy = new CompileIdentifierMetadata(
+  static final ChangeDetectionStrategy = new CompileIdentifierMetadata<dynamic>(
       name: "ChangeDetectionStrategy",
       moduleUrl: CD_MODULE_URL,
       runtime: impChangeDetectionStrategy);
-  static final StaticNodeDebugInfo = new CompileIdentifierMetadata(
+  static final StaticNodeDebugInfo = new CompileIdentifierMetadata<dynamic>(
       name: "StaticNodeDebugInfo",
       moduleUrl: 'asset:angular2/lib/src/debug/debug_context.dart');
-  static final DebugContext = new CompileIdentifierMetadata(
+  static final DebugContext = new CompileIdentifierMetadata<dynamic>(
       name: "DebugContext",
       moduleUrl: 'asset:angular2/lib/src/debug/debug_context.dart');
-  static final TemplateSecurityContext = new CompileIdentifierMetadata(
+  static final TemplateSecurityContext = new CompileIdentifierMetadata<dynamic>(
       name: 'TemplateSecurityContext',
       moduleUrl: 'asset:angular2/lib/src/core/security.dart',
       runtime: impTemplateSecurityContext);
-  static final SimpleChange = new CompileIdentifierMetadata(
+  static final SimpleChange = new CompileIdentifierMetadata<dynamic>(
       name: "SimpleChange", moduleUrl: CD_MODULE_URL, runtime: impSimpleChange);
-  static final uninitialized = new CompileIdentifierMetadata(
-      name: "uninitialized",
-      moduleUrl: CD_MODULE_URL,
-      runtime: impUninitialized);
-  static final ChangeDetectorState = new CompileIdentifierMetadata(
+  static final ChangeDetectorState = new CompileIdentifierMetadata<dynamic>(
       name: "ChangeDetectorState",
       moduleUrl: CD_MODULE_URL,
       runtime: impChangeDetectorState);
-  static final checkBinding = new CompileIdentifierMetadata(
-      name: "checkBinding",
-      moduleUrl: APP_VIEW_UTILS_MODULE_URL,
-      runtime: impCheckBinding);
-  static final devModeEqual = new CompileIdentifierMetadata(
+  static final checkBinding = new CompileIdentifierMetadata<dynamic>(
+      name: "checkBinding", moduleUrl: APP_VIEW_UTILS_MODULE_URL);
+  static final createAndAppend = new CompileIdentifierMetadata<dynamic>(
+      name: "createAndAppend", moduleUrl: APP_VIEW_MODULE_URL);
+  static final createAndAppendDbg = new CompileIdentifierMetadata<dynamic>(
+      name: "createAndAppendDbg", moduleUrl: DEBUG_APP_VIEW_MODULE_URL);
+  static final createAndAppendToShadowRoot =
+      new CompileIdentifierMetadata<dynamic>(
+          name: "createAndAppendToShadowRoot", moduleUrl: APP_VIEW_MODULE_URL);
+  static final createAndAppendToShadowRootDbg =
+      new CompileIdentifierMetadata<dynamic>(
+          name: "createAndAppendToShadowRootDbg",
+          moduleUrl: DEBUG_APP_VIEW_MODULE_URL);
+  static final dbgElm = new CompileIdentifierMetadata<dynamic>(
+      name: "dbgElm", moduleUrl: DEBUG_APP_VIEW_MODULE_URL);
+  static final devModeEqual = new CompileIdentifierMetadata<dynamic>(
       name: "devModeEqual", moduleUrl: CD_MODULE_URL, runtime: impDevModeEqual);
+  static final looseIdentical = new CompileIdentifierMetadata<dynamic>(
+      name: "looseIdentical",
+      moduleUrl: 'asset:angular2/lib/src/facade/lang.dart',
+      runtime: impLooseIdentical);
+  static final profileSetup = new CompileIdentifierMetadata<dynamic>(
+      name: "profileSetup", moduleUrl: PROFILE_RUNTIME_MODULE_URL);
+  static final profileMarkStart = new CompileIdentifierMetadata<dynamic>(
+      name: "profileMarkStart", moduleUrl: PROFILE_RUNTIME_MODULE_URL);
+  static final profileMarkEnd = new CompileIdentifierMetadata<dynamic>(
+      name: "profileMarkEnd", moduleUrl: PROFILE_RUNTIME_MODULE_URL);
 
   /// String interpolation where prefix,suffix are empty
   /// (most common case).
-  static final throwOnChanges = new CompileIdentifierMetadata(
+  static final throwOnChanges = new CompileIdentifierMetadata<dynamic>(
       name: "AppViewUtils.throwOnChanges",
-      moduleUrl: APP_VIEW_UTILS_MODULE_URL,
-      runtimeCallback: impThrowOnChanges);
-  static final interpolate0 = new CompileIdentifierMetadata(
-      name: "interpolate0",
-      moduleUrl: APP_VIEW_UTILS_MODULE_URL,
-      runtime: impInterpolate0);
-  static final interpolate1 = new CompileIdentifierMetadata(
-      name: "interpolate1",
-      moduleUrl: APP_VIEW_UTILS_MODULE_URL,
-      runtime: impInterpolate1);
-  static final interpolate2 = new CompileIdentifierMetadata(
-      name: "interpolate2",
-      moduleUrl: APP_VIEW_UTILS_MODULE_URL,
-      runtime: impInterpolate2);
-  static final interpolate = new CompileIdentifierMetadata(
-      name: "interpolate",
-      moduleUrl: APP_VIEW_UTILS_MODULE_URL,
-      runtime: impInterpolate);
-  static final castByValue = new CompileIdentifierMetadata(
-      name: "castByValue",
-      moduleUrl: APP_VIEW_UTILS_MODULE_URL,
-      runtime: impCastByValue);
-  static final EMPTY_ARRAY = new CompileIdentifierMetadata(
-      name: "EMPTY_ARRAY",
-      moduleUrl: APP_VIEW_UTILS_MODULE_URL,
-      runtime: impEMPTY_ARRAY);
-  static final EMPTY_MAP = new CompileIdentifierMetadata(
-      name: "EMPTY_MAP",
-      moduleUrl: APP_VIEW_UTILS_MODULE_URL,
-      runtime: impEMPTY_MAP);
+      moduleUrl: APP_VIEW_UTILS_MODULE_URL);
+  static final interpolate = <CompileIdentifierMetadata>[
+    new CompileIdentifierMetadata<dynamic>(
+        name: "interpolate0", moduleUrl: APP_VIEW_UTILS_MODULE_URL),
+    new CompileIdentifierMetadata<dynamic>(
+        name: "interpolate1", moduleUrl: APP_VIEW_UTILS_MODULE_URL),
+    new CompileIdentifierMetadata<dynamic>(
+        name: "interpolate2", moduleUrl: APP_VIEW_UTILS_MODULE_URL),
+    new CompileIdentifierMetadata<dynamic>(
+        name: "interpolate3", moduleUrl: APP_VIEW_UTILS_MODULE_URL),
+    new CompileIdentifierMetadata<dynamic>(
+        name: "interpolate4", moduleUrl: APP_VIEW_UTILS_MODULE_URL),
+    new CompileIdentifierMetadata<dynamic>(
+        name: "interpolate5", moduleUrl: APP_VIEW_UTILS_MODULE_URL),
+    new CompileIdentifierMetadata<dynamic>(
+        name: "interpolate6", moduleUrl: APP_VIEW_UTILS_MODULE_URL),
+    new CompileIdentifierMetadata<dynamic>(
+        name: "interpolate7", moduleUrl: APP_VIEW_UTILS_MODULE_URL),
+    new CompileIdentifierMetadata<dynamic>(
+        name: "interpolate8", moduleUrl: APP_VIEW_UTILS_MODULE_URL),
+    new CompileIdentifierMetadata<dynamic>(
+        name: "interpolate9", moduleUrl: APP_VIEW_UTILS_MODULE_URL),
+  ];
+  static final castByValue = new CompileIdentifierMetadata<dynamic>(
+      name: "castByValue", moduleUrl: APP_VIEW_UTILS_MODULE_URL);
+  static final EMPTY_ARRAY = new CompileIdentifierMetadata<dynamic>(
+      name: "EMPTY_ARRAY", moduleUrl: APP_VIEW_UTILS_MODULE_URL);
+  static final EMPTY_MAP = new CompileIdentifierMetadata<dynamic>(
+      name: "EMPTY_MAP", moduleUrl: APP_VIEW_UTILS_MODULE_URL);
+  static final NG_IF_DIRECTIVE = new CompileIdentifierMetadata<dynamic>(
+      name: "NgIf", moduleUrl: NG_IF_URL);
+  static final NG_FOR_DIRECTIVE = new CompileIdentifierMetadata<dynamic>(
+      name: "NgFor", moduleUrl: NG_FOR_URL);
   static final pureProxies = [
     null,
-    new CompileIdentifierMetadata(
-        name: "pureProxy1",
-        moduleUrl: APP_VIEW_UTILS_MODULE_URL,
-        runtime: pureProxy1),
-    new CompileIdentifierMetadata(
-        name: "pureProxy2",
-        moduleUrl: APP_VIEW_UTILS_MODULE_URL,
-        runtime: pureProxy2),
-    new CompileIdentifierMetadata(
-        name: "pureProxy3",
-        moduleUrl: APP_VIEW_UTILS_MODULE_URL,
-        runtime: pureProxy3),
-    new CompileIdentifierMetadata(
-        name: "pureProxy4",
-        moduleUrl: APP_VIEW_UTILS_MODULE_URL,
-        runtime: pureProxy4),
-    new CompileIdentifierMetadata(
-        name: "pureProxy5",
-        moduleUrl: APP_VIEW_UTILS_MODULE_URL,
-        runtime: pureProxy5),
-    new CompileIdentifierMetadata(
-        name: "pureProxy6",
-        moduleUrl: APP_VIEW_UTILS_MODULE_URL,
-        runtime: pureProxy6),
-    new CompileIdentifierMetadata(
-        name: "pureProxy7",
-        moduleUrl: APP_VIEW_UTILS_MODULE_URL,
-        runtime: pureProxy7),
-    new CompileIdentifierMetadata(
-        name: "pureProxy8",
-        moduleUrl: APP_VIEW_UTILS_MODULE_URL,
-        runtime: pureProxy8),
-    new CompileIdentifierMetadata(
-        name: "pureProxy9",
-        moduleUrl: APP_VIEW_UTILS_MODULE_URL,
-        runtime: pureProxy9),
-    new CompileIdentifierMetadata(
-        name: "pureProxy10",
-        moduleUrl: APP_VIEW_UTILS_MODULE_URL,
-        runtime: pureProxy10)
+    new CompileIdentifierMetadata<dynamic>(
+        name: "pureProxy1", moduleUrl: APP_VIEW_UTILS_MODULE_URL),
+    new CompileIdentifierMetadata<dynamic>(
+        name: "pureProxy2", moduleUrl: APP_VIEW_UTILS_MODULE_URL),
+    new CompileIdentifierMetadata<dynamic>(
+        name: "pureProxy3", moduleUrl: APP_VIEW_UTILS_MODULE_URL),
+    new CompileIdentifierMetadata<dynamic>(
+        name: "pureProxy4", moduleUrl: APP_VIEW_UTILS_MODULE_URL),
+    new CompileIdentifierMetadata<dynamic>(
+        name: "pureProxy5", moduleUrl: APP_VIEW_UTILS_MODULE_URL),
+    new CompileIdentifierMetadata<dynamic>(
+        name: "pureProxy6", moduleUrl: APP_VIEW_UTILS_MODULE_URL),
+    new CompileIdentifierMetadata<dynamic>(
+        name: "pureProxy7", moduleUrl: APP_VIEW_UTILS_MODULE_URL),
+    new CompileIdentifierMetadata<dynamic>(
+        name: "pureProxy8", moduleUrl: APP_VIEW_UTILS_MODULE_URL),
+    new CompileIdentifierMetadata<dynamic>(
+        name: "pureProxy9", moduleUrl: APP_VIEW_UTILS_MODULE_URL),
+    new CompileIdentifierMetadata<dynamic>(
+        name: "pureProxy10", moduleUrl: APP_VIEW_UTILS_MODULE_URL)
   ];
   // Runtime is initialized by output interpreter. Compiler executes in VM and
   // can't import dart:html to initialize here.
-  static var HTML_COMMENT_NODE =
-      new CompileIdentifierMetadata(name: "Comment", moduleUrl: "dart:html");
-  static var HTML_TEXT_NODE =
-      new CompileIdentifierMetadata(name: "Text", moduleUrl: "dart:html");
-  static var HTML_DOCUMENT =
-      new CompileIdentifierMetadata(name: "document", moduleUrl: "dart:html");
-  static final HTML_ELEMENT =
-      new CompileIdentifierMetadata(name: "Element", moduleUrl: "dart:html");
-  static final HTML_ANCHOR_ELEMENT = new CompileIdentifierMetadata(
+  static var HTML_COMMENT_NODE = new CompileIdentifierMetadata<dynamic>(
+      name: "Comment", moduleUrl: "dart:html");
+  static var HTML_TEXT_NODE = new CompileIdentifierMetadata<dynamic>(
+      name: "Text", moduleUrl: "dart:html");
+  static var HTML_DOCUMENT = new CompileIdentifierMetadata<dynamic>(
+      name: "document", moduleUrl: "dart:html");
+  static final HTML_ELEMENT = new CompileIdentifierMetadata<dynamic>(
+      name: "Element", moduleUrl: "dart:html");
+  static final HTML_HTML_ELEMENT = new CompileIdentifierMetadata<dynamic>(
+      name: "HtmlElement", moduleUrl: "dart:html");
+  static final HTML_SHADOW_ROOT_ELEMENT =
+      new CompileIdentifierMetadata<dynamic>(
+          name: "ShadowRoot", moduleUrl: "dart:html");
+  static final SVG_ELEMENT = new CompileIdentifierMetadata<dynamic>(
+      name: "SvgElement", moduleUrl: "dart:svg");
+  static final HTML_ANCHOR_ELEMENT = new CompileIdentifierMetadata<dynamic>(
       name: "AnchorElement", moduleUrl: "dart:html");
-  static final HTML_AREA_ELEMENT = new CompileIdentifierMetadata(
+  static final HTML_DIV_ELEMENT = new CompileIdentifierMetadata<dynamic>(
+      name: "DivElement", moduleUrl: "dart:html");
+  static final HTML_AREA_ELEMENT = new CompileIdentifierMetadata<dynamic>(
       name: "AreaElement", moduleUrl: "dart:html");
-  static final HTML_AUDIO_ELEMENT = new CompileIdentifierMetadata(
+  static final HTML_AUDIO_ELEMENT = new CompileIdentifierMetadata<dynamic>(
       name: "AudioElement", moduleUrl: "dart:html");
-  static final HTML_BUTTON_ELEMENT = new CompileIdentifierMetadata(
+  static final HTML_BUTTON_ELEMENT = new CompileIdentifierMetadata<dynamic>(
       name: "ButtonElement", moduleUrl: "dart:html");
-  static final HTML_CANVAS_ELEMENT = new CompileIdentifierMetadata(
+  static final HTML_CANVAS_ELEMENT = new CompileIdentifierMetadata<dynamic>(
       name: "CanvasElement", moduleUrl: "dart:html");
-  static final HTML_FORM_ELEMENT = new CompileIdentifierMetadata(
+  static final HTML_FORM_ELEMENT = new CompileIdentifierMetadata<dynamic>(
       name: "FormElement", moduleUrl: "dart:html");
-  static final HTML_IFRAME_ELEMENT = new CompileIdentifierMetadata(
+  static final HTML_IFRAME_ELEMENT = new CompileIdentifierMetadata<dynamic>(
       name: "IFrameElement", moduleUrl: "dart:html");
-  static final HTML_IMAGE_ELEMENT = new CompileIdentifierMetadata(
+  static final HTML_IMAGE_ELEMENT = new CompileIdentifierMetadata<dynamic>(
       name: "ImageElement", moduleUrl: "dart:html");
-  static final HTML_INPUT_ELEMENT = new CompileIdentifierMetadata(
+  static final HTML_INPUT_ELEMENT = new CompileIdentifierMetadata<dynamic>(
       name: "InputElement", moduleUrl: "dart:html");
-  static final HTML_TEXTAREA_ELEMENT = new CompileIdentifierMetadata(
+  static final HTML_TEXTAREA_ELEMENT = new CompileIdentifierMetadata<dynamic>(
       name: "TextAreaElement", moduleUrl: "dart:html");
-  static final HTML_MEDIA_ELEMENT = new CompileIdentifierMetadata(
+  static final HTML_MEDIA_ELEMENT = new CompileIdentifierMetadata<dynamic>(
       name: "MediaElement", moduleUrl: "dart:html");
-  static final HTML_MENU_ELEMENT = new CompileIdentifierMetadata(
+  static final HTML_MENU_ELEMENT = new CompileIdentifierMetadata<dynamic>(
       name: "MenuElement", moduleUrl: "dart:html");
-  static final HTML_OPTION_ELEMENT = new CompileIdentifierMetadata(
+  static final HTML_OPTION_ELEMENT = new CompileIdentifierMetadata<dynamic>(
       name: "OptionElement", moduleUrl: "dart:html");
-  static final HTML_OLIST_ELEMENT = new CompileIdentifierMetadata(
+  static final HTML_OLIST_ELEMENT = new CompileIdentifierMetadata<dynamic>(
       name: "OListElement", moduleUrl: "dart:html");
-  static final HTML_SELECT_ELEMENT = new CompileIdentifierMetadata(
+  static final HTML_SELECT_ELEMENT = new CompileIdentifierMetadata<dynamic>(
       name: "SelectElement", moduleUrl: "dart:html");
-  static final HTML_TABLE_ELEMENT = new CompileIdentifierMetadata(
+  static final HTML_TABLE_ELEMENT = new CompileIdentifierMetadata<dynamic>(
       name: "TableElement", moduleUrl: "dart:html");
-  static final HTML_TABLE_ROW_ELEMENT = new CompileIdentifierMetadata(
+  static final HTML_TABLE_ROW_ELEMENT = new CompileIdentifierMetadata<dynamic>(
       name: "TableRowElement", moduleUrl: "dart:html");
-  static final HTML_TABLE_COL_ELEMENT = new CompileIdentifierMetadata(
+  static final HTML_TABLE_COL_ELEMENT = new CompileIdentifierMetadata<dynamic>(
       name: "TableColElement", moduleUrl: "dart:html");
-  static final HTML_ULIST_ELEMENT = new CompileIdentifierMetadata(
+  static final HTML_ULIST_ELEMENT = new CompileIdentifierMetadata<dynamic>(
       name: "UListElement", moduleUrl: "dart:html");
-  static final HTML_EVENT =
-      new CompileIdentifierMetadata(name: "Event", moduleUrl: "dart:html");
-  static final HTML_NODE =
-      new CompileIdentifierMetadata(name: "Node", moduleUrl: "dart:html");
+  static final HTML_EVENT = new CompileIdentifierMetadata<dynamic>(
+      name: "Event", moduleUrl: "dart:html");
+  static final HTML_NODE = new CompileIdentifierMetadata<dynamic>(
+      name: "Node", moduleUrl: "dart:html");
 }
 
 CompileTokenMetadata identifierToken(CompileIdentifierMetadata identifier) {

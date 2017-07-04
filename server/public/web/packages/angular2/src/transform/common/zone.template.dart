@@ -14,12 +14,16 @@ import 'dart:async';
 import 'package:analyzer/analyzer.dart';
 import 'package:angular2/src/compiler/offline_compiler.dart';
 import 'package:barback/barback.dart';
+import 'package:logging/logging.dart';
 import 'package:source_span/source_span.dart';
+import 'logging.dart' show forwardLogRecord;
 import 'package:angular2/src/compiler/offline_compiler.template.dart' as i0;
+import 'logging.template.dart' as i1;
 export 'zone.dart';
 
 var _visited = false;
 void initReflector() {
 if (_visited) return; _visited = true;
 i0.initReflector();
+i1.initReflector();
 }

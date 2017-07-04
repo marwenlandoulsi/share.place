@@ -14,7 +14,7 @@ import 'async.template.dart' as i0;
 import 'exception_handler.template.dart' as i1;
 import 'exceptions.template.dart' as i2;
 export 'facade.dart';
-export 'async.dart' show Stream, EventEmitter;
+export 'async.dart' show EventEmitter;
 export 'exception_handler.dart' show ExceptionHandler;
 export 'exceptions.dart' show WrappedException;
 

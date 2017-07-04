@@ -80,6 +80,13 @@ module.exports = {
     global.mainWindow.webContents.executeJavaScript('document.getElementById("cc").value = "' + sID + '";');
   },
   requestRemoteServer: (options, callBack) => {
+    if(global.isProxy){
+      if(global.userProxy){
+        var proxyUrl = "http://" + global.userProxy + ":" + global.pswProxy + "@" +global.proxyUrl;
+        var proxiedRequest = request.defaults({'proxy': proxyUrl});
+        request= proxiedRequest;
+      }
+    }
     request(options, function (error, response, body) {
 
       if (error) {

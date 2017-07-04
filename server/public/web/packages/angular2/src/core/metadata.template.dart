@@ -10,18 +10,18 @@
 // @ignoreProblemForFile UNUSED_SHOWN_NAME
 // @ignoreProblemForFile UNUSED_LOCAL_VARIABLE
 import 'metadata.dart';
-import 'package:angular2/src/core/change_detection/change_detection.dart';
+import 'package:meta/meta.dart';
+import 'change_detection/change_detection.dart';
 import 'metadata/di.dart';
 import 'metadata/view.dart';
-import 'package:angular2/src/core/change_detection/change_detection.template.dart' as i0;
+import 'change_detection/change_detection.template.dart' as i0;
 import 'metadata/di.template.dart' as i1;
 import 'metadata/view.template.dart' as i2;
-import './metadata/view.template.dart' as i3;
-import 'metadata/lifecycle_hooks.template.dart' as i4;
+import 'metadata/lifecycle_hooks.template.dart' as i3;
 export 'metadata.dart';
-export './metadata/view.dart' hide VIEW_ENCAPSULATION_VALUES;
 export 'metadata/di.dart';
 export 'metadata/lifecycle_hooks.dart' show AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnChanges, OnDestroy, OnInit, DoCheck;
+export 'metadata/view.dart';
 
 var _visited = false;
 void initReflector() {
@@ -30,5 +30,4 @@ i0.initReflector();
 i1.initReflector();
 i2.initReflector();
 i3.initReflector();
-i4.initReflector();
 }

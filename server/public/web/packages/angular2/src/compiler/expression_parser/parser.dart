@@ -27,13 +27,11 @@ import "ast.dart"
         FunctionCall,
         TemplateBinding,
         ASTWithSource,
-        AstVisitor,
-        Quote;
+        AstVisitor;
 import "lexer.dart"
     show
         Lexer,
         EOF,
-        isIdentifier,
         isQuote,
         Token,
         $PERIOD,
@@ -50,7 +48,7 @@ import "lexer.dart"
 
 var _implicitReceiver = new ImplicitReceiver();
 // TODO(tbosch): Cannot make this const/final right now because of the transpiler...
-var INTERPOLATION_REGEXP = new RegExp(r'\{\{([\s\S]*?)\}\}');
+final INTERPOLATION_REGEXP = new RegExp(r'\{\{([\s\S]*?)\}\}');
 
 class ParseException extends BaseException {
   ParseException(String message, String input, String errLocation,
@@ -73,11 +71,13 @@ class TemplateBindingParseResult {
 
 @Injectable()
 class Parser {
-  Lexer _lexer;
+  final Lexer _lexer;
+
   Parser(this._lexer);
+
   ASTWithSource parseAction(String input, dynamic location) {
     this._checkNoInterpolation(input, location);
-    var tokens = this._lexer.tokenize(this._stripComments(input));
+    var tokens = _lexer.tokenize(this._stripComments(input));
     var ast = new _ParseAST(input, location, tokens, true).parseChain();
     return new ASTWithSource(ast, input, location);
   }
@@ -99,26 +99,9 @@ class Parser {
   }
 
   AST _parseBindingAst(String input, String location) {
-    // Quotes expressions use 3rd-party expression language. We don't want to use
-
-    // our lexer or parser for that, so we check for that ahead of time.
-    var quote = this._parseQuote(input, location);
-    if (quote != null) {
-      return quote;
-    }
     this._checkNoInterpolation(input, location);
     var tokens = this._lexer.tokenize(this._stripComments(input));
     return new _ParseAST(input, location, tokens, false).parseChain();
-  }
-
-  AST _parseQuote(String input, dynamic location) {
-    if (input == null) return null;
-    var prefixSeparatorIndex = input.indexOf(":");
-    if (prefixSeparatorIndex == -1) return null;
-    var prefix = input.substring(0, prefixSeparatorIndex).trim();
-    if (!isIdentifier(prefix)) return null;
-    var uninterpretedExpression = input.substring(prefixSeparatorIndex + 1);
-    return new Quote(prefix, uninterpretedExpression, location);
   }
 
   TemplateBindingParseResult parseTemplateBindings(
@@ -158,9 +141,9 @@ class Parser {
         expressions.add(part);
       } else {
         throw new ParseException(
-            "Blank expressions are not allowed in interpolated strings",
+            'Blank expressions are not allowed in interpolated strings',
             input,
-            '''at column ${ this . _findInterpolationErrorColumn ( parts , i )} in''',
+            'at column ${_findInterpolationErrorColumn(parts, i)} in',
             location);
       }
     }
@@ -670,7 +653,7 @@ class _ParseAST {
   }
 
   void error(String message, [num index = null]) {
-    if (index == null) index = this.index;
+    index ??= this.index;
     var location = (index < this.tokens.length)
         ? '''at column ${ this . tokens [ index ] . index + 1} in'''
         : '''at the end of the expression''';
@@ -769,11 +752,6 @@ class SimpleExpressionChecker implements AstVisitor {
 
   @override
   void visitChain(Chain ast, dynamic context) {
-    this.simple = false;
-  }
-
-  @override
-  void visitQuote(Quote ast, dynamic context) {
     this.simple = false;
   }
 

@@ -18,10 +18,17 @@ class Folder {
 
   factory Folder.fromJson(Map<String, dynamic> place) =>
       new Folder(
-          place['_id'], place['parentId'], place['placeId'], place['name'], place['folderType']);
+          place['_id'], place['parentId'], place['placeId'], place['name'],
+          place['folderType']);
 
   Map toJson() =>
-      {'_id': id, 'parentId': parentId, 'placeId': placeId, 'name': name, 'folderType' : type};
+      {
+        '_id': id,
+        'parentId': parentId,
+        'placeId': placeId,
+        'name': name,
+        'folderType': type
+      };
 
   String get id => _id;
 

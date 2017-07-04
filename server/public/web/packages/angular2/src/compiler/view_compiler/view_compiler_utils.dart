@@ -1,4 +1,6 @@
+import 'package:angular2/src/core/linker/view_type.dart';
 import 'package:angular2/src/facade/exceptions.dart' show BaseException;
+
 import '../compile_metadata.dart'
     show
         CompileTokenMetadata,
@@ -7,9 +9,6 @@ import '../compile_metadata.dart'
 import '../identifiers.dart' show Identifiers;
 import '../output/output_ast.dart' as o;
 import 'compile_view.dart' show CompileView;
-
-// Template Anchor comment.
-const TEMPLATE_COMMENT_TEXT = 'template bindings={}';
 
 // Creates method parameters list for AppView set attribute calls.
 List<o.Expression> createSetAttributeParams(
@@ -42,12 +41,12 @@ o.Expression getPropertyInView(
         currView.declarationElement.view != null) {
       currView = currView.declarationElement.view;
       viewProp = viewProp == null
-          ? new o.ReadClassMemberExpr('parent')
-          : viewProp.prop('parent');
+          ? new o.ReadClassMemberExpr('parentView')
+          : viewProp.prop('parentView');
     }
     if (!identical(currView, definedView)) {
-      throw new BaseException(
-          '''Internal error: Could not calculate a property in a parent view: ${ property}''');
+      throw new BaseException('Internal error: Could not calculate a property '
+          'in a parent view: $property');
     }
     if (property is o.ReadClassMemberExpr) {
       o.ReadClassMemberExpr readMemberExpr = property;
@@ -66,17 +65,25 @@ o.Expression getPropertyInView(
 }
 
 o.Expression injectFromViewParentInjector(
-    CompileTokenMetadata token, bool optional) {
-  var args = [createDiTokenExpression(token)];
+    CompileView view, CompileTokenMetadata token, bool optional) {
+  o.Expression viewExpr = (view.viewType == ViewType.HOST)
+      ? o.THIS_EXPR
+      : new o.ReadClassMemberExpr('parentView');
+  var args = [
+    createDiTokenExpression(token),
+    new o.ReadClassMemberExpr('parentIndex')
+  ];
   if (optional) {
     args.add(o.NULL_EXPR);
   }
-  return o.THIS_EXPR.prop("parentInjector").callMethod("get", args);
+  return viewExpr.callMethod('injectorGet', args);
 }
 
-String getViewFactoryName(
-    CompileDirectiveMetadata component, num embeddedTemplateIndex) {
-  return '''viewFactory_${component.type.name}${embeddedTemplateIndex}''';
+String getViewFactoryName(CompileDirectiveMetadata component,
+    [int embeddedTemplateIndex]) {
+  String indexPostFix =
+      embeddedTemplateIndex == null ? '' : embeddedTemplateIndex.toString();
+  return 'viewFactory_${component.type.name}$indexPostFix';
 }
 
 o.Expression createDiTokenExpression(CompileTokenMetadata token) {
@@ -90,7 +97,26 @@ o.Expression createDiTokenExpression(CompileTokenMetadata token) {
   }
 }
 
+o.Expression createDebugInfoTokenExpression(CompileTokenMetadata token) {
+  if (token.value != null) {
+    return o.literal(token.value);
+  } else if (token.identifierIsInstance) {
+    return o
+        .importExpr(token.identifier)
+        .instantiate([], o.importType(token.identifier, []));
+  } else {
+    return o.importExpr(token.identifier);
+  }
+}
+
 o.Expression createFlatArray(List<o.Expression> expressions) {
+  // Simplify: No items.
+  if (expressions.isEmpty) {
+    return o.literalArr(
+      const [],
+      new o.ArrayType(null, const [o.TypeModifier.Const]),
+    );
+  }
   // Check for [].addAll([x,y,z]) case and optimize.
   if (expressions.length == 1) {
     if (expressions[0].type is o.ArrayType) {
@@ -137,6 +163,8 @@ o.Expression createFlatArray(List<o.Expression> expressions) {
 o.Expression convertValueToOutputAst(dynamic value) {
   if (value is CompileIdentifierMetadata) {
     return o.importExpr(value);
+  } else if (value is CompileTokenMetadata) {
+    return createDiTokenExpression(value);
   } else if (value is o.Expression) {
     return value;
   } else {
@@ -159,4 +187,12 @@ void createPureProxy(o.Expression fn, num argCount,
       .prop(pureProxyProp.name)
       .set(o.importExpr(pureProxyId).callFn([fn]))
       .toStmt());
+}
+
+CompileDirectiveMetadata componentFromDirectives(
+    List<CompileDirectiveMetadata> directives) {
+  for (CompileDirectiveMetadata directive in directives) {
+    if (directive.isComponent) return directive;
+  }
+  return null;
 }

@@ -1,14 +1,15 @@
 import "dart:async";
 
-import "package:angular2/src/compiler/xhr.dart" show XHR;
 import "package:angular2/src/facade/exceptions.dart" show BaseException;
+
+import "xhr.dart" show XHR;
 
 /// A mock implementation of [XHR] that allows outgoing requests to be mocked
 /// and responded to within a single test, without going to the network.
 class MockXHR extends XHR {
-  List<_Expectation> _expectations = [];
-  var _definitions = new Map<String, String>();
-  List<_PendingRequest> _requests = [];
+  final _expectations = <_Expectation>[];
+  final _definitions = new Map<String, String>();
+  final _requests = <_PendingRequest>[];
   Future<String> get(String url) {
     var request = new _PendingRequest(url);
     this._requests.add(request);

@@ -1,21 +1,19 @@
 import 'dart:async';
 import 'dart:html';
-import 'dart:convert';
+
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
+import 'package:angular_components/angular_components.dart';
+import 'package:share_place/common/ui/button_comp.dart';
+import 'package:share_place/common/ui/text_comp.dart';
+import 'package:share_place/common/util.dart';
+import 'package:share_place/folder/folder_component.dart';
+import 'package:share_place/users/users_comp.dart';
 
 import 'app_config.dart' as conf;
-
-import 'package:angular2_components/angular2_components.dart';
-import 'package:angular2/core.dart';
-
-import 'package:angular2/router.dart';
 import 'environment.dart';
 import 'place.dart';
 import 'place_service.dart';
-import 'package:share_place/common/ui/button_comp.dart';
-import 'package:share_place/common/ui/text_comp.dart';
-import 'package:share_place/folder/folder_component.dart';
-import 'package:share_place/users/users_comp.dart';
-import 'package:share_place/common/util.dart';
 
 @Component(
     selector: 'places',
@@ -43,10 +41,10 @@ class PlacesComponent implements OnInit {
   Future<Null> loadPlaces() async {
     _environment.showScrollBar();
     places = await _placeService.getPlaces();
-
   }
 
   void add() {
+//    _environment.condPopupVisible = true;
     adding = !adding;
     _environment.fireEvent(PlaceParam.addButtonPressed, "places");
   }
@@ -92,6 +90,17 @@ class PlacesComponent implements OnInit {
         await loadPlaces();
       }
     }
+
+    var requestedPlaceIdChange = params[PlaceParam.placeIdRequested];
+    if( requestedPlaceIdChange != null) {
+      for( Place place in places ) {
+        if(place.id == requestedPlaceIdChange) {
+          selectedPlace = place;
+          _environment.fireEvent(PlaceParam.placeLoaded, place.id);
+          return;
+        }
+      }
+    }
     if (adding) {
       KeyEvent keyup = params[PlaceParam.keyPressed];
       if (keyup != null && keyup.keyCode == 27) {
@@ -111,6 +120,7 @@ class PlacesComponent implements OnInit {
 
   void onSelect(Place place) {
     _environment.selectedPlace = place;
+    _environment.track("place", data: {"place": place});
   }
 
   Place get selectedPlace => _environment.selectedPlace;

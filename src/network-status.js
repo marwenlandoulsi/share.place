@@ -12,12 +12,12 @@ if (process.env.DEV)
 
 
 module.exports.checkInternetConnection = (options, cb)=>{
-  log.info('Checking network connection to '+ options.hostname + ' ...');
+  log.info('Checking network connection to '+ options + ' ...');
 
       checkServerConnection(options, (error, status)=>{
 
         if(error) {
-          log.error('error to call server : ', error);
+          log.error('error to call server : ', error.message);
           return cb(false)
         }else if (status === 0) {
           log.error('Bad Status, DNS failure : ', status);

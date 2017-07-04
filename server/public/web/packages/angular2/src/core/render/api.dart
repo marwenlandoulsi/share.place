@@ -1,5 +1,5 @@
-import "package:angular2/src/core/di.dart" show Injector;
-import "package:angular2/src/core/metadata/view.dart" show ViewEncapsulation;
+import 'package:angular2/src/core/di.dart' show Injector;
+import 'package:angular2/src/core/metadata/view.dart' show ViewEncapsulation;
 
 /// Styles host that adds encapsulated styles to global style sheet for use
 /// by [RenderComponentType].
@@ -25,7 +25,6 @@ class RenderComponentType {
   final String id;
   // Url of component template used for debug builds.
   final String templateUrl;
-  final num slotCount;
   final ViewEncapsulation encapsulation;
   List<dynamic /* String | List < dynamic > */ > templateStyles;
 
@@ -43,8 +42,8 @@ class RenderComponentType {
   List<String> _styles;
   bool stylesShimmed = false;
 
-  RenderComponentType(this.id, this.templateUrl, this.slotCount,
-      this.encapsulation, this.templateStyles);
+  RenderComponentType(
+      this.id, this.templateUrl, this.encapsulation, this.templateStyles);
 
   void shimStyles(SharedStylesHost stylesHost) {
     _styles = _flattenStyles(id, templateStyles, []);
@@ -99,33 +98,3 @@ abstract class RenderDebugInfo {
 
   String get source;
 }
-
-@Deprecated('Use dart:html')
-abstract class Renderer {
-  void setElementProperty(
-      dynamic renderElement, String propertyName, dynamic propertyValue);
-  @Deprecated("Use dart:html Element attributes and setAttribute.")
-  void setElementAttribute(
-      dynamic renderElement, String attributeName, String attributeValue);
-
-  void setElementClass(dynamic renderElement, String className, bool isAdd);
-  @Deprecated("Use dart:html Element.style instead")
-  void setElementStyle(
-      dynamic renderElement, String styleName, String styleValue);
-  @Deprecated("Use dart:html Text.text instead")
-  void setText(dynamic renderNode, String text);
-}
-
-/// Injectable service that provides a low-level interface for modifying the UI.
-///
-/// Use this service to bypass Angular's templating and make custom UI changes
-/// that can't be expressed declaratively. For example if you need to set a
-/// property or an attribute whose name is not statically known, use
-/// [#setElementProperty] or [#setElementAttribute] respectively.
-///
-/// If you are implementing a custom renderer, you must implement this
-/// interface.
-///
-/// The default Renderer implementation is `DomRenderer`. Also available is
-/// `WebWorkerRenderer`.
-abstract class RootRenderer {}

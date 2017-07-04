@@ -1,8 +1,9 @@
 import 'dart:async';
 
 import 'package:angular2/src/compiler/xhr.dart' show XHR;
-import 'package:angular2/src/source_gen/common/url_resolver.dart';
 import 'package:build/build.dart';
+
+import 'url_resolver.dart';
 
 /// SourceGen-specific implementation of XHR that is backed by a [BuildStep].
 ///
@@ -16,11 +17,15 @@ class XhrImpl implements XHR {
 
   Future<String> get(String url) async {
     if (!url.startsWith('asset:')) {
-      _buildStep.logger.warning('XhrImpl received unexpected url: $url');
+      log.warning('XhrImpl received unexpected url: $url');
     }
     final assetId = fromUri(url);
-    if (!await _buildStep.hasInput(assetId)) {
-      throw new ArgumentError.value('Could not read asset at uri $url', 'url');
+    if (!await _buildStep.canRead(assetId)) {
+      throw new ArgumentError.value(
+        url,
+        'url',
+        'No asset found at $url while running build on ${_buildStep.inputId}',
+      );
     }
     return _buildStep.readAsString(assetId);
   }

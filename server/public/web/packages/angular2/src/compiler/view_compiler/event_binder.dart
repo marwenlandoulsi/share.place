@@ -1,4 +1,5 @@
 import '../compile_metadata.dart' show CompileDirectiveMetadata;
+import '../identifiers.dart' show Identifiers;
 import '../output/output_ast.dart' as o;
 import '../template_ast.dart' show BoundEventAst, DirectiveAst;
 import 'compile_binding.dart' show CompileBinding;
@@ -6,6 +7,7 @@ import 'compile_element.dart' show CompileElement;
 import 'compile_method.dart' show CompileMethod;
 import 'constants.dart' show EventHandlerVars;
 import 'expression_converter.dart' show convertCdStatementToIr;
+import 'parse_utils.dart';
 
 /// Generates code to listen to a single eventName on a [CompileElement].
 ///
@@ -19,9 +21,12 @@ class CompileEventListener {
   String eventName;
   CompileMethod _method;
   bool _hasComponentHostListener = false;
+  bool _isSimple = true;
+  HandlerType _handlerType = HandlerType.notSimple;
+  o.Expression _simpleHandler;
   String _methodName;
   o.FnParam _eventParam;
-  List<o.Expression> _actionResultExprs = <o.Expression>[];
+  final _actionResultExprs = <o.Expression>[];
 
   /// Helper function to search for an event in [targetEventListeners] list and
   /// add a new one if it doesn't exist yet.
@@ -52,6 +57,11 @@ class CompileEventListener {
 
   void addAction(BoundEventAst hostEvent, CompileDirectiveMetadata directive,
       o.Expression directiveInstance) {
+    if (_isSimple) {
+      _handlerType = hostEvent.handlerType;
+      _isSimple =
+          _actionResultExprs.isEmpty && _handlerType != HandlerType.notSimple;
+    }
     if (directive != null && directive.isComponent) {
       _hasComponentHostListener = true;
     }
@@ -66,6 +76,9 @@ class CompileEventListener {
     if (lastIndex >= 0) {
       var lastStatement = actionStmts[lastIndex];
       var returnExpr = convertStmtIntoExpression(lastStatement);
+      if (_isSimple) {
+        _simpleHandler = _extractFunction(returnExpr);
+      }
       var preventDefaultVar = o.variable('pd_${_actionResultExprs.length}');
       _actionResultExprs.add(preventDefaultVar);
       if (returnExpr != null) {
@@ -80,17 +93,15 @@ class CompileEventListener {
   }
 
   void finishMethod() {
-    var markPathToRootStart = _hasComponentHostListener
-        ? compileElement.appViewContainer.prop('componentView')
-        : o.THIS_EXPR;
+    // If this is a simple event binding, we don't need to generate a method.
+    if (_isSimple) {
+      return;
+    }
     o.Expression resultExpr = o.literal(true);
     for (var i = 0, len = _actionResultExprs.length; i < len; i++) {
       resultExpr = resultExpr.and(_actionResultExprs[i]);
     }
-    List<o.Statement> stmts = <o.Statement>[
-      markPathToRootStart.callMethod('markPathToRootAsCheckOnce', []).toStmt()
-    ]
-      ..addAll(_method.finish())
+    List<o.Statement> stmts = new List<o.Statement>.from(_method.finish())
       ..add(new o.ReturnStatement(resultExpr));
 
     compileElement.view.eventHandlerMethods.add(new o.ClassMethod(
@@ -102,19 +113,20 @@ class CompileEventListener {
   }
 
   void listenToRenderer() {
-    var eventListener = new o.InvokeMemberMethodExpr('evt', [
-      new o.ReadClassMemberExpr(_methodName)
-          .callMethod(o.BuiltinMethod.bind, [o.THIS_EXPR])
-    ]);
+    final handlerExpr = _createEventHandlerExpr();
+    var listenExpr;
 
-    o.Expression listenExpr = new o.InvokeMemberMethodExpr('listen', [
-      this.compileElement.renderNode,
-      o.literal(this.eventName),
-      eventListener
-    ]);
+    if (isNativeHtmlEvent(eventName)) {
+      listenExpr = compileElement.renderNode
+          .callMethod('addEventListener', [o.literal(eventName), handlerExpr]);
+    } else {
+      final appViewUtilsExpr = o.importExpr(Identifiers.appViewUtils);
+      final eventManagerExpr = appViewUtilsExpr.prop('eventManager');
+      listenExpr = eventManagerExpr.callMethod('addEventListener',
+          [compileElement.renderNode, o.literal(eventName), handlerExpr]);
+    }
 
-    compileElement.view.createMethod
-        .addStmt(new o.ExpressionStatement(listenExpr));
+    compileElement.view.createMethod.addStmt(listenExpr.toStmt());
   }
 
   void listenToDirective(
@@ -122,15 +134,32 @@ class CompileEventListener {
     var subscription =
         o.variable('subscription_${compileElement.view.subscriptions.length}');
     this.compileElement.view.subscriptions.add(subscription);
-    var eventListener = new o.InvokeMemberMethodExpr('evt', [
-      new o.ReadClassMemberExpr(_methodName)
-          .callMethod(o.BuiltinMethod.bind, [o.THIS_EXPR])
-    ]);
+    final handlerExpr = _createEventHandlerExpr(forStream: true);
     this.compileElement.view.createMethod.addStmt(subscription
         .set(directiveInstance
             .prop(observablePropName)
-            .callMethod(o.BuiltinMethod.SubscribeObservable, [eventListener]))
+            .callMethod(o.BuiltinMethod.SubscribeObservable, [handlerExpr]))
         .toDeclStmt(null, [o.StmtModifier.Final]));
+  }
+
+  o.Expression _createEventHandlerExpr({bool forStream: false}) {
+    var handlerExpr;
+    var numArgs;
+
+    if (_isSimple) {
+      handlerExpr = _simpleHandler;
+      numArgs = _handlerType == HandlerType.simpleNoArgs ? 0 : 1;
+    } else {
+      handlerExpr = new o.ReadClassMemberExpr(_methodName);
+      numArgs = 1;
+    }
+
+    final wrapperName = '${forStream ? 'stream' : 'event'}Handler$numArgs';
+    if (_hasComponentHostListener) {
+      return compileElement.compViewExpr.callMethod(wrapperName, [handlerExpr]);
+    } else {
+      return new o.InvokeMemberMethodExpr(wrapperName, [handlerExpr]);
+    }
   }
 }
 
@@ -144,16 +173,18 @@ List<CompileEventListener> collectEventListeners(List<BoundEventAst> hostEvents,
         compileElement, hostEvent.name, eventListeners);
     listener.addAction(hostEvent, null, null);
   }
-  var i = -1;
-  for (var directiveAst in dirs) {
-    i++;
-    var directiveInstance = compileElement.directiveInstances[i];
+  for (var i = 0, len = dirs.length; i < len; i++) {
+    final directiveAst = dirs[i];
+    // Don't collect component host event listeners because they're registered
+    // by the component implementation.
+    if (directiveAst.directive.isComponent) continue;
     for (var hostEvent in directiveAst.hostEvents) {
       compileElement.view.bindings
           .add(new CompileBinding(compileElement, hostEvent));
       var listener = CompileEventListener.getOrCreate(
           compileElement, hostEvent.name, eventListeners);
-      listener.addAction(hostEvent, directiveAst.directive, directiveInstance);
+      listener.addAction(hostEvent, directiveAst.directive,
+          compileElement.directiveInstances[i]);
     }
   }
   for (int i = 0, len = eventListeners.length; i < len; i++) {
@@ -189,8 +220,92 @@ o.Expression convertStmtIntoExpression(o.Statement stmt) {
   return null;
 }
 
-final RegExp _eventNameRegExp = new RegExp(r'[^a-zA-Z_]');
+o.Expression _extractFunction(o.Expression returnExpr) {
+  assert(returnExpr is o.InvokeMethodExpr);
+  var callExpr = returnExpr as o.InvokeMethodExpr;
+  return new o.ReadPropExpr(callExpr.receiver, callExpr.name);
+}
 
-String sanitizeEventName(String name) {
-  return name.replaceAll(_eventNameRegExp, '_');
+Set<String> _nativeEventSet;
+
+/// Returns true if event is an html event that is handled by DOM apis
+/// directly and doesn't need to go through plugin system.
+bool isNativeHtmlEvent(String eventName) {
+  const commonEvents = const <String>[
+    'abort',
+    'afterprint',
+    'animationend',
+    'animationiteration',
+    'animationstart',
+    'appinstalled',
+    'audioend',
+    'audiostart',
+    'beforeprint',
+    'beforeunload',
+    'blur',
+    'change',
+    'click',
+    'compositionend',
+    'compositionstart',
+    'compositionupdate',
+    'contextmenu',
+    'copy',
+    'cut',
+    'dblclick',
+    'drag',
+    'dragend',
+    'dragenter',
+    'dragleave',
+    'dragover',
+    'dragstart',
+    'drop',
+    'error',
+    'focus',
+    'fullscreenchange',
+    'fullscreenerror',
+    'gotpointercapture',
+    'lostpointercapture',
+    'input',
+    'invalid',
+    'keydown',
+    'keypress',
+    'keyup',
+    'languagechange',
+    'load',
+    'mousedown',
+    'mouseenter',
+    'mouseleave',
+    'mousemove',
+    'mouseout',
+    'mouseover',
+    'mouseup',
+    'notificationclick',
+    'orientationchange',
+    'paste',
+    'pause',
+    'pointercancel',
+    'pointerdown',
+    'pointerenter',
+    'pointerleave',
+    'pointerlockchange',
+    'pointerlockerror',
+    'pointermove',
+    'pointerout',
+    'pointerover',
+    'pointerup',
+    'reset',
+    'resize',
+    'scroll',
+    'select',
+    'show',
+    'touchcancel',
+    'touchend',
+    'touchmove',
+    'touchstart',
+    'transitionend',
+    'unload',
+    'wheel'
+  ];
+  _nativeEventSet ??= new Set<String>.from(commonEvents);
+  return _nativeEventSet.contains(eventName);
 }

@@ -5,6 +5,7 @@ import '../compile_metadata.dart'
         CompileDirectiveMetadata,
         CompilePipeMetadata,
         CompileIdentifierMetadata,
+        CompileQueryMetadata,
         CompileTokenMap;
 import '../config.dart' show CompilerConfig;
 import '../identifiers.dart' show Identifiers;
@@ -14,24 +15,41 @@ import 'compile_element.dart' show CompileElement, CompileNode;
 import 'compile_method.dart' show CompileMethod;
 import 'compile_pipe.dart' show CompilePipe;
 import 'compile_query.dart'
-    show CompileQuery, createQueryList, addQueryToTokenMap;
+    show CompileQuery, createQueryListField, addQueryToTokenMap;
 import 'constants.dart' show EventHandlerVars;
 import 'expression_converter.dart' show NameResolver;
 import 'view_compiler_utils.dart'
     show getViewFactoryName, getPropertyInView, createPureProxy;
 
+/// Represents data to generate a host, component or embedded AppView.
+///
+/// Members and method builders are populated by ViewBuilder.
 class CompileView implements NameResolver {
-  CompileDirectiveMetadata component;
-  CompilerConfig genConfig;
-  List<CompilePipeMetadata> pipeMetas;
-  o.Expression styles;
-  num viewIndex;
+  final CompileDirectiveMetadata component;
+  final CompilerConfig genConfig;
+  final List<CompilePipeMetadata> pipeMetas;
+  final o.Expression styles;
+  final Map<String, String> deferredModules;
+
+  int viewIndex;
   CompileElement declarationElement;
   List<List<String>> templateVariableBindings;
   ViewType viewType;
   CompileTokenMap<List<CompileQuery>> viewQueries;
+
+  /// Contains references to view children so we can generate code for
+  /// change detection and destroy.
+  List<o.Expression> viewChildren = [];
+
+  /// Flat list of all nodes inside the template including text nodes.
   List<CompileNode> nodes = [];
+
+  /// List of references to top level nodes in view.
   List<o.Expression> rootNodesOrViewContainers = [];
+
+  /// List of references to view containers used by embedded templates
+  /// and child components.
+  List<o.Expression> viewContainers = [];
   List<CompileBinding> bindings = [];
   List<o.Statement> classStatements = [];
   CompileMethod createMethod;
@@ -44,6 +62,9 @@ class CompileView implements NameResolver {
   CompileMethod afterContentLifecycleCallbacksMethod;
   CompileMethod afterViewLifecycleCallbacksMethod;
   CompileMethod destroyMethod;
+
+  /// List of methods used to handle events with non standard parameters in
+  /// handlers or events with multiple actions.
   List<o.ClassMethod> eventHandlerMethods = [];
   List<o.ClassField> fields = [];
   List<o.ClassGetter> getters = [];
@@ -58,8 +79,16 @@ class CompileView implements NameResolver {
   var literalArrayCount = 0;
   var literalMapCount = 0;
   var pipeCount = 0;
-  CompileView(this.component, this.genConfig, this.pipeMetas, this.styles,
-      this.viewIndex, this.declarationElement, this.templateVariableBindings) {
+
+  CompileView(
+      this.component,
+      this.genConfig,
+      this.pipeMetas,
+      this.styles,
+      this.viewIndex,
+      this.declarationElement,
+      this.templateVariableBindings,
+      this.deferredModules) {
     this.createMethod = new CompileMethod(this);
     this.injectorGetMethod = new CompileMethod(this);
     this.updateContentQueriesMethod = new CompileMethod(this);
@@ -75,36 +104,44 @@ class CompileView implements NameResolver {
     this.classType =
         o.importType(new CompileIdentifierMetadata(name: this.className));
     this.viewFactory = o.variable(getViewFactoryName(component, viewIndex));
-    if (identical(this.viewType, ViewType.COMPONENT) ||
-        identical(this.viewType, ViewType.HOST)) {
-      this.componentView = this;
-    } else {
-      this.componentView = this.declarationElement.view.componentView;
+    switch (viewType) {
+      case ViewType.HOST:
+      case ViewType.COMPONENT:
+        componentView = this;
+        break;
+      default:
+        // An embedded template uses it's declaration element's componentView.
+        componentView = declarationElement.view.componentView;
+        break;
     }
-    var viewQueries = new CompileTokenMap<List<CompileQuery>>();
-    if (identical(this.viewType, ViewType.COMPONENT)) {
+    viewQueries = new CompileTokenMap<List<CompileQuery>>();
+    if (viewType == ViewType.COMPONENT) {
       var directiveInstance = new o.ReadClassMemberExpr('ctx');
       var queryIndex = -1;
-      this.component.viewQueries.forEach((queryMeta) {
+      for (CompileQueryMetadata queryMeta in component.viewQueries) {
         queryIndex++;
         var propName =
             '_viewQuery_${queryMeta.selectors[0].name}_${queryIndex}';
         var queryList =
-            createQueryList(queryMeta, directiveInstance, propName, this);
+            createQueryListField(queryMeta, directiveInstance, propName, this);
         var query =
             new CompileQuery(queryMeta, queryList, directiveInstance, this);
         addQueryToTokenMap(viewQueries, query);
-      });
+      }
     }
-    this.viewQueries = viewQueries;
-    templateVariableBindings.forEach((entry) {
-      this.locals[entry[1]] =
+
+    for (List<String> entry in templateVariableBindings) {
+      locals[entry[1]] =
           new o.ReadClassMemberExpr('locals').key(o.literal(entry[0]));
-    });
-    if (this.declarationElement.hasRenderNode) {
-      this.declarationElement.setEmbeddedView(this);
+    }
+    if (declarationElement.parent != null) {
+      declarationElement.setEmbeddedView(this);
+    }
+    if (deferredModules == null) {
+      throw new ArgumentError();
     }
   }
+
   o.Expression callPipe(
       String name, o.Expression input, List<o.Expression> args) {
     return CompilePipe.call(this, name, (new List.from([input])..addAll(args)));
@@ -179,13 +216,15 @@ class CompileView implements NameResolver {
 
   void afterNodes() {
     this.pipes.forEach((pipe) => pipe.create());
-    this.viewQueries.values().forEach((queries) => queries.forEach((query) =>
-        query.afterChildren(this.createMethod, this.updateViewQueriesMethod)));
+    this.viewQueries.values.forEach((queries) => queries.forEach((query) {
+          query.generateImmediateUpdate(createMethod);
+          query.generateDynamicUpdate(updateContentQueriesMethod);
+        }));
   }
 }
 
 ViewType getViewType(
-    CompileDirectiveMetadata component, num embeddedTemplateIndex) {
+    CompileDirectiveMetadata component, int embeddedTemplateIndex) {
   if (embeddedTemplateIndex > 0) {
     return ViewType.EMBEDDED;
   } else if (component.type.isHost) {

@@ -10,12 +10,14 @@
 // @ignoreProblemForFile UNUSED_SHOWN_NAME
 // @ignoreProblemForFile UNUSED_LOCAL_VARIABLE
 import 'location.dart';
-import 'browser/location/hash_location_strategy.template.dart' as i0;
-import 'browser/location/location.template.dart' as i1;
-import 'browser/location/location_strategy.template.dart' as i2;
-import 'browser/location/path_location_strategy.template.dart' as i3;
-import 'browser/location/platform_location.template.dart' as i4;
+import 'browser/location/browser_platform_location.template.dart' as i0;
+import 'browser/location/hash_location_strategy.template.dart' as i1;
+import 'browser/location/location.template.dart' as i2;
+import 'browser/location/location_strategy.template.dart' as i3;
+import 'browser/location/path_location_strategy.template.dart' as i4;
+import 'browser/location/platform_location.template.dart' as i5;
 export 'location.dart';
+export 'browser/location/browser_platform_location.dart';
 export 'browser/location/hash_location_strategy.dart';
 export 'browser/location/location.dart';
 export 'browser/location/location_strategy.dart';
@@ -30,4 +32,5 @@ i1.initReflector();
 i2.initReflector();
 i3.initReflector();
 i4.initReflector();
+i5.initReflector();
 }

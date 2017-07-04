@@ -11,8 +11,7 @@
 // @ignoreProblemForFile UNUSED_LOCAL_VARIABLE
 import 'validators.dart';
 import 'package:angular2/src/core/reflection/reflection.dart' as _ngRef;
-import 'dart:async';
-import 'package:angular2/core.dart' show Provider, Attribute, Directive;
+import 'package:angular2/core.dart';
 import '../model.dart' show AbstractControl;
 import '../validators.dart' show Validators, NG_VALIDATORS;
 import 'package:angular2/core.template.dart' as i0;
@@ -31,19 +30,19 @@ const [],
 )
 ..registerType(MinLengthValidator, new _ngRef.ReflectionInfo(
 const <dynamic>[],
-const [const <dynamic>[String, const Attribute("minlength")]],
+const [const <dynamic>[String, const Attribute('minlength')]],
 (String minLength) => new MinLengthValidator(minLength),
 const <dynamic>[Validator])
 )
 ..registerType(MaxLengthValidator, new _ngRef.ReflectionInfo(
 const <dynamic>[],
-const [const <dynamic>[String, const Attribute("maxlength")]],
+const [const <dynamic>[String, const Attribute('maxlength')]],
 (String maxLength) => new MaxLengthValidator(maxLength),
 const <dynamic>[Validator])
 )
 ..registerType(PatternValidator, new _ngRef.ReflectionInfo(
 const <dynamic>[],
-const [const <dynamic>[String, const Attribute("pattern")]],
+const [const <dynamic>[String, const Attribute('pattern')]],
 (String pattern) => new PatternValidator(pattern),
 const <dynamic>[Validator])
 )

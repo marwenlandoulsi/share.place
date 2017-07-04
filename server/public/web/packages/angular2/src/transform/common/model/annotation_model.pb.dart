@@ -22,11 +22,8 @@ class NamedParameter extends GeneratedMessage {
   static NamedParameter create() => new NamedParameter();
   static PbList<NamedParameter> createRepeated() =>
       new PbList<NamedParameter>();
-  static NamedParameter getDefault() {
-    if (_defaultInstance == null)
-      _defaultInstance = new _ReadonlyNamedParameter();
-    return _defaultInstance;
-  }
+  static NamedParameter getDefault() =>
+      _defaultInstance ??= new _ReadonlyNamedParameter();
 
   static NamedParameter _defaultInstance;
   static void $checkItem(NamedParameter v) {
@@ -50,8 +47,7 @@ class NamedParameter extends GeneratedMessage {
   void clearValue() => clearField(2);
 }
 
-class _ReadonlyNamedParameter extends NamedParameter with ReadonlyMessageMixin {
-}
+class _ReadonlyNamedParameter extends NamedParameter {}
 
 class AnnotationModel extends GeneratedMessage {
   static final BuilderInfo _i = new BuilderInfo('AnnotationModel')
@@ -73,11 +69,8 @@ class AnnotationModel extends GeneratedMessage {
   static AnnotationModel create() => new AnnotationModel();
   static PbList<AnnotationModel> createRepeated() =>
       new PbList<AnnotationModel>();
-  static AnnotationModel getDefault() {
-    if (_defaultInstance == null)
-      _defaultInstance = new _ReadonlyAnnotationModel();
-    return _defaultInstance;
-  }
+  static AnnotationModel getDefault() =>
+      _defaultInstance ??= new _ReadonlyAnnotationModel();
 
   static AnnotationModel _defaultInstance;
   static void $checkItem(AnnotationModel v) {
@@ -105,8 +98,7 @@ class AnnotationModel extends GeneratedMessage {
   void clearIsConstObject() => clearField(4);
 }
 
-class _ReadonlyAnnotationModel extends AnnotationModel
-    with ReadonlyMessageMixin {}
+class _ReadonlyAnnotationModel extends AnnotationModel {}
 
 const NamedParameter$json = const {
   '1': 'NamedParameter',

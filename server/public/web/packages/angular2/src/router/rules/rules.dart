@@ -5,8 +5,7 @@ import "package:angular2/src/facade/exceptions.dart" show BaseException;
 import "../instruction.dart" show ComponentInstruction;
 import "../url_parser.dart" show Url, convertUrlParamsToArray;
 import "route_handlers/route_handler.dart" show RouteHandler;
-import "route_paths/route_path.dart" show RoutePath;
-import "route_paths/route_path.dart" show GeneratedUrl;
+import "route_paths/route_path.dart" show GeneratedUrl, RoutePath;
 
 // RouteMatch objects hold information about a match between a rule and a URL
 abstract class RouteMatch {}
@@ -67,12 +66,11 @@ class RedirectRule implements AbstractRule {
 class RouteRule implements AbstractRule {
   RoutePath _routePath;
   RouteHandler handler;
-  String _routeName;
+  final String _routeName;
   String specificity;
   bool terminal;
   String hash;
-  Map<String, ComponentInstruction> _cache =
-      new Map<String, ComponentInstruction>();
+  final _cache = new Map<String, ComponentInstruction>();
   // TODO: cache component instruction instances by params and by ParsedUrl instance
   RouteRule(this._routePath, this.handler, this._routeName) {
     this.specificity = this._routePath.specificity;

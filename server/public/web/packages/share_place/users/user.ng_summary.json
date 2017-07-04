@@ -19,34 +19,6 @@
     "6": "user.dart"
   },
   "type": {
-    "RoleEnum": {
-      "class": "Identifier",
-      "name": "RoleEnum",
-      "moduleUrl": "asset:share_place/lib/users/user.dart",
-      "prefix": null,
-      "value": null
-    },
-    "User": {
-      "class": "Identifier",
-      "name": "User",
-      "moduleUrl": "asset:share_place/lib/users/user.dart",
-      "prefix": null,
-      "value": null
-    },
-    "LocalAccount": {
-      "class": "Identifier",
-      "name": "LocalAccount",
-      "moduleUrl": "asset:share_place/lib/users/user.dart",
-      "prefix": null,
-      "value": null
-    },
-    "SocialAccount": {
-      "class": "Identifier",
-      "name": "SocialAccount",
-      "moduleUrl": "asset:share_place/lib/users/user.dart",
-      "prefix": null,
-      "value": null
-    },
     "FacebookAccount": {
       "class": "Identifier",
       "name": "FacebookAccount",
@@ -61,9 +33,37 @@
       "prefix": null,
       "value": null
     },
+    "LocalAccount": {
+      "class": "Identifier",
+      "name": "LocalAccount",
+      "moduleUrl": "asset:share_place/lib/users/user.dart",
+      "prefix": null,
+      "value": null
+    },
     "Role": {
       "class": "Identifier",
       "name": "Role",
+      "moduleUrl": "asset:share_place/lib/users/user.dart",
+      "prefix": null,
+      "value": null
+    },
+    "RoleEnum": {
+      "class": "Identifier",
+      "name": "RoleEnum",
+      "moduleUrl": "asset:share_place/lib/users/user.dart",
+      "prefix": null,
+      "value": null
+    },
+    "SocialAccount": {
+      "class": "Identifier",
+      "name": "SocialAccount",
+      "moduleUrl": "asset:share_place/lib/users/user.dart",
+      "prefix": null,
+      "value": null
+    },
+    "User": {
+      "class": "Identifier",
+      "name": "User",
       "moduleUrl": "asset:share_place/lib/users/user.dart",
       "prefix": null,
       "value": null

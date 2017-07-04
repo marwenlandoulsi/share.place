@@ -10,8 +10,10 @@
 // @ignoreProblemForFile UNUSED_SHOWN_NAME
 // @ignoreProblemForFile UNUSED_LOCAL_VARIABLE
 import 'shadow_css.dart';
-import 'package:angular2/src/facade/lang.dart' show jsSplit;
-import 'package:angular2/src/facade/lang.template.dart' as i0;
+import 'package:csslib/parser.dart';
+import 'package:csslib/visitor.dart';
+import 'logging.dart' show logger;
+import 'logging.template.dart' as i0;
 export 'shadow_css.dart';
 
 var _visited = false;

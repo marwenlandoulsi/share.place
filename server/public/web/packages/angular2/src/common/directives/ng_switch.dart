@@ -1,20 +1,21 @@
-import "package:angular2/core.dart"
-    show Directive, Host, ViewContainerRef, TemplateRef;
+import 'package:angular2/core.dart';
+import 'package:angular2/src/core/di/decorators.dart' show Host;
+import 'package:angular2/src/facade/lang.dart';
 
 const _WHEN_DEFAULT = const Object();
 
 class SwitchView {
-  ViewContainerRef _viewContainerRef;
-  TemplateRef _templateRef;
+  final ViewContainerRef _viewContainerRef;
+  final TemplateRef _templateRef;
 
   SwitchView(this._viewContainerRef, this._templateRef);
 
   void create() {
-    this._viewContainerRef.createEmbeddedView(this._templateRef);
+    _viewContainerRef.createEmbeddedView(this._templateRef);
   }
 
   void destroy() {
-    this._viewContainerRef.clear();
+    _viewContainerRef.clear();
   }
 }
 
@@ -38,31 +39,72 @@ class SwitchView {
 ///
 /// ### Examples
 ///
-/// {@example docs/template-syntax/lib/app_component.html region=NgSwitch-expanded}
+/// <?code-excerpt "docs/structural-directives/lib/app_component.html (ngswitch)"?>
+/// ```html
+/// <div [ngSwitch]="hero?.emotion">
+///   <happy-hero    *ngSwitchCase="'happy'"    [hero]="hero"></happy-hero>
+///   <sad-hero      *ngSwitchCase="'sad'"      [hero]="hero"></sad-hero>
+///   <confused-hero *ngSwitchCase="'confused'" [hero]="hero"></confused-hero>
+///   <unknown-hero  *ngSwitchDefault           [hero]="hero"></unknown-hero>
+/// </div>
+/// ```
+///
+/// <?code-excerpt "docs/structural-directives/lib/app_component.html (ngswitch-template-attr)"?>
+/// ```html
+/// <div [ngSwitch]="hero?.emotion">
+///   <happy-hero    template="ngSwitchCase 'happy'"    [hero]="hero"></happy-hero>
+///   <sad-hero      template="ngSwitchCase 'sad'"      [hero]="hero"></sad-hero>
+///   <confused-hero template="ngSwitchCase 'confused'" [hero]="hero"></confused-hero>
+///   <unknown-hero  template="ngSwitchDefault"         [hero]="hero"></unknown-hero>
+/// </div>
+/// ```
+///
+/// <?code-excerpt "docs/structural-directives/lib/app_component.html (ngswitch-template)"?>
+/// ```html
+/// <div [ngSwitch]="hero?.emotion">
+///   <template [ngSwitchCase]="'happy'">
+///     <happy-hero [hero]="hero"></happy-hero>
+///   </template>
+///   <template [ngSwitchCase]="'sad'">
+///     <sad-hero [hero]="hero"></sad-hero>
+///   </template>
+///   <template [ngSwitchCase]="'confused'">
+///     <confused-hero [hero]="hero"></confused-hero>
+///   </template >
+///   <template ngSwitchDefault>
+///     <unknown-hero [hero]="hero"></unknown-hero>
+///   </template>
+/// </div>
+/// ```
 ///
 /// Try the [live example][ex].
-/// See the [Template Syntax section on `ngSwitch`][guide] for more details.
+/// For details, see the [Structural Directives section on `ngSwitch`][guide].
 ///
-/// [ex]: examples/template-syntax/#ngSwitch
-/// [guide]: docs/guide/template-syntax.html#ngSwitch
-@Directive(selector: "[ngSwitch]", inputs: const ["ngSwitch"])
+/// [ex]: http://angular-examples.github.io/template-syntax/#ngSwitch
+/// [guide]: https://webdev.dartlang.org/angular/guide/structural-directives.html#ngSwitch
+///
+@Directive(selector: '[ngSwitch]', inputs: const ['ngSwitch'])
 class NgSwitch {
   dynamic _switchValue;
   bool _useDefault = false;
-  var _valueViews = new Map<dynamic, List<SwitchView>>();
+  final _valueViews = new Map<dynamic, List<SwitchView>>();
+
   List<SwitchView> _activeViews = [];
   set ngSwitch(dynamic value) {
-    // Empty the currently active ViewContainers
-    this._emptyAllActiveViews();
-    // Add the ViewContainers matching the value (with a fallback to default)
-    this._useDefault = false;
-    var views = this._valueViews[value];
-    if (views == null) {
-      this._useDefault = true;
-      views = this._valueViews[_WHEN_DEFAULT];
+    // Calculate set of views to display for this value.
+    var views = _valueViews[value];
+    if (views != null) {
+      _useDefault = false;
+    } else {
+      // Since there is no matching view for the value and there is no
+      // default case, nothing to do just return.
+      if (_useDefault) return;
+      _useDefault = true;
+      views = _valueViews[_WHEN_DEFAULT];
     }
-    this._activateViews(views);
-    this._switchValue = value;
+    _emptyAllActiveViews();
+    _activateViews(views);
+    _switchValue = value;
   }
 
   void _onWhenValueChanged(dynamic oldWhen, dynamic newWhen, SwitchView view) {
@@ -88,27 +130,25 @@ class NgSwitch {
 
   void _emptyAllActiveViews() {
     var activeContainers = this._activeViews;
-    for (var i = 0; i < activeContainers.length; i++) {
+    for (var i = 0, len = activeContainers.length; i < len; i++) {
       activeContainers[i].destroy();
     }
     this._activeViews = [];
   }
 
   void _activateViews(List<SwitchView> views) {
-    // TODO(vicb): assert(this._activeViews.length === 0);
-    if (views != null) {
-      for (var i = 0; i < views.length; i++) {
-        views[i].create();
-      }
-      this._activeViews = views;
+    if (views == null) return;
+    for (var i = 0, len = views.length; i < len; i++) {
+      views[i].create();
     }
+    _activeViews = views;
   }
 
   void _registerView(dynamic value, SwitchView view) {
-    var views = this._valueViews[value];
+    var views = _valueViews[value];
     if (views == null) {
-      views = [];
-      this._valueViews[value] = views;
+      views = <SwitchView>[];
+      _valueViews[value] = views;
     }
     views.add(view);
   }
@@ -116,10 +156,10 @@ class NgSwitch {
   void _deregisterView(dynamic value, SwitchView view) {
     // `_WHEN_DEFAULT` is used a marker for non-registered whens
     if (identical(value, _WHEN_DEFAULT)) return;
-    var views = this._valueViews[value];
+    var views = _valueViews[value];
     if (views.length == 1) {
-      (this._valueViews.containsKey(value) &&
-          (this._valueViews.remove(value) != null || true));
+      (_valueViews.containsKey(value) &&
+          (_valueViews.remove(value) != null || true));
     } else {
       views.remove(view);
     }
@@ -133,7 +173,10 @@ class NgSwitch {
 /// are displayed.
 ///
 /// See [NgSwitch] for more details and example.
-@Directive(selector: "[ngSwitchWhen]", inputs: const ["ngSwitchWhen"])
+///
+@Directive(
+    selector: '[ngSwitchWhen],[ngSwitchCase]',
+    inputs: const ['ngSwitchWhen', 'ngSwitchCase'])
 class NgSwitchWhen {
   // `_WHEN_DEFAULT` is used as a marker for a not yet initialized value
 
@@ -145,7 +188,13 @@ class NgSwitchWhen {
     this._switch = ngSwitch;
     this._view = new SwitchView(viewContainer, templateRef);
   }
+
+  set ngSwitchCase(dynamic value) {
+    ngSwitchWhen = value;
+  }
+
   set ngSwitchWhen(dynamic value) {
+    if (looseIdentical(value, _value)) return;
     this._switch._onWhenValueChanged(this._value, value, this._view);
     this._value = value;
   }
@@ -155,11 +204,12 @@ class NgSwitchWhen {
 /// switch expression value.
 ///
 /// See [NgSwitch] for more details and example.
-@Directive(selector: "[ngSwitchDefault]")
+///
+@Directive(selector: '[ngSwitchDefault]')
 class NgSwitchDefault {
   NgSwitchDefault(ViewContainerRef viewContainer, TemplateRef templateRef,
-      @Host() NgSwitch sswitch) {
-    sswitch._registerView(
+      @Host() NgSwitch switchDirective) {
+    switchDirective._registerView(
         _WHEN_DEFAULT, new SwitchView(viewContainer, templateRef));
   }
 }

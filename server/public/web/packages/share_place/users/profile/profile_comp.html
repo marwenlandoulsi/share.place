@@ -6,20 +6,25 @@
     <form id="profileImageForm" #upload class="dragdrop_profil" [class.uploading]="uploading"
           (dragenter)="upload.style.setProperty('border', '2px solid #9FC8FA')"
           (drop)="upload.style.setProperty('border', '2px dotted #273B54');">
-      <label id="labelfileuploadprf" for="filename">
-        <!--?refreshHack=... obliges the browser to refresh the image if it changes-->
-        <div class="spinAnim"><img src="/auth/gridfs/file/{{photoId}}"/>
-          <div class="spinAnimCircle"></div>
+      <label id="labelProfileComp" for="fileInput">
+        <!--?refreshHack=... obliges the browser to refresh the image if it changes  -->
+
+        <div #photoDiv class="uploadImgprofil" id="photoDiv">
+          <img id="cropping" src="{{photoUrl}}"  onerror="this.src='../images/img_profile.png'"/>
+      <!-- <img  *ngIf="photoId != null" src="/auth/gridfs/file/{{photoId}}/picture.x"  />
+          <img  *ngIf="photoId == null"    src="../images/img_profile.png"/>-->
+          <!--<div class="spinAnimCircle"></div>-->
         </div>
-        <span class="spprof">Change</span>
+
+        <span class="spprof" type="file" >Change</span>
       </label>
-      <input type="file" id="filename" (change)="uploadFile()" class="uploadFile" name="avatar"
+      <input #fileInput type="file" id="fileInput" (change)="imgChange($event)" class="uploadFile" name="avatar"
              style="opacity: 0"/>
     </form>
   </div>
 
+
   <div class="panels">
-    <div class="error">{{error}}</div>
     <div class="messages">
       <div *ngFor="let message of messages">{{message}}</div>
     </div>
@@ -28,10 +33,12 @@
       <form action="#" method="post">
         <div class="email">
           <div class="label">Email</div>
-          <material-input #email required type="email" label="example@domain.com" [disabled]="!emailChanging || isSocialAccount"
+          <material-input #email required type="email" label="example@domain.com"
+                          [disabled]="!emailChanging || isSocialAccount"
                           (change)="checkEmailChanged()" [(ngModel)]="connectedUser.mainMail"
                           class="mail iconM"></material-input>
-          <div (click)="startEmailChange();email.focus();" class="changeMail" [class.hidden]="emailChanging || isSocialAccount"></div>
+          <div (click)="startEmailChange();email.focus();" class="changeMail"
+               [class.hidden]="emailChanging || isSocialAccount"></div>
         </div>
 
         <div class="pass" [class.hidden]="!emailChanging">
@@ -93,4 +100,5 @@
   <div class="btnvalidat">
     <material-button raised class="btn_login" (click)="save()">Save</material-button>
   </div>
+
 </div>

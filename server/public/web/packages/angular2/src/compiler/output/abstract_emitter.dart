@@ -7,8 +7,8 @@ var CATCH_ERROR_VAR = o.variable('error');
 var CATCH_STACK_VAR = o.variable('stack');
 
 abstract class OutputEmitter {
-  String emitStatements(
-      String moduleUrl, List<o.Statement> stmts, List<String> exportedVars);
+  String emitStatements(String moduleUrl, List<o.Statement> stmts,
+      List<String> exportedVars, Map<String, String> deferredModules);
 }
 
 class _EmittedLine {
@@ -18,7 +18,8 @@ class _EmittedLine {
 }
 
 class EmitterVisitorContext {
-  List<String> _exportedVars;
+  final Map<String, String> deferredModules;
+  final List<String> _exportedVars;
   num _indent;
   int _outputPos;
   // Current method being emitted. Allows expressions access to method
@@ -26,13 +27,15 @@ class EmitterVisitorContext {
   o.ClassMethod _activeMethod;
   bool _inSuperCall;
 
-  static EmitterVisitorContext createRoot(List<String> exportedVars) {
-    return new EmitterVisitorContext(exportedVars, 0);
+  static EmitterVisitorContext createRoot(
+      List<String> exportedVars, Map<String, String> deferredModules) {
+    return new EmitterVisitorContext(exportedVars, 0, deferredModules);
   }
 
   List<_EmittedLine> _lines;
-  List<o.ClassStmt> _classes = [];
-  EmitterVisitorContext(this._exportedVars, this._indent) {
+  final List<o.ClassStmt> _classes = [];
+  EmitterVisitorContext(
+      this._exportedVars, this._indent, this.deferredModules) {
     _outputPos = 0;
     this._lines = [new _EmittedLine(_indent)];
   }
@@ -216,13 +219,38 @@ abstract class AbstractEmitterVisitor
   dynamic visitDeclareVarStmt(o.DeclareVarStmt stmt, dynamic context);
 
   @override
-  dynamic visitWriteVarExpr(o.WriteVarExpr expr, dynamic context) {
+  dynamic visitWriteVarExpr(o.WriteVarExpr expr, dynamic context,
+      {bool checkForNull: false}) {
     EmitterVisitorContext ctx = context;
     var lineWasEmpty = ctx.lineIsEmpty();
     if (!lineWasEmpty) {
       ctx.print('(');
     }
-    ctx.print('${expr.name} = ');
+    if (checkForNull) {
+      ctx.print('${expr.name} ??= ');
+    } else {
+      ctx.print('${expr.name} = ');
+    }
+    expr.value.visitExpression(this, ctx);
+    if (!lineWasEmpty) {
+      ctx.print(')');
+    }
+    return null;
+  }
+
+  @override
+  dynamic visitWriteStaticMemberExpr(
+      o.WriteStaticMemberExpr expr, dynamic context) {
+    EmitterVisitorContext ctx = context;
+    var lineWasEmpty = ctx.lineIsEmpty();
+    if (!lineWasEmpty) {
+      ctx.print('(');
+    }
+    if (expr.checkIfNull) {
+      ctx.print('${expr.name} ??= ');
+    } else {
+      ctx.print('${expr.name} = ');
+    }
     expr.value.visitExpression(this, ctx);
     if (!lineWasEmpty) {
       ctx.print(')');
@@ -350,6 +378,19 @@ abstract class AbstractEmitterVisitor
         default:
           throw new BaseException('Unknown builtin variable ${ast.builtin}');
       }
+    }
+    ctx.print(varName);
+    return null;
+  }
+
+  @override
+  dynamic visitReadStaticMemberExpr(
+      o.ReadStaticMemberExpr ast, dynamic context) {
+    EmitterVisitorContext ctx = context;
+    var varName = ast.name;
+    o.ExternalType t = ast.sourceClass;
+    if (t != null) {
+      ctx.print('${t.value.name}.');
     }
     ctx.print(varName);
     return null;
@@ -528,7 +569,11 @@ abstract class AbstractEmitterVisitor
     ctx.print('{', useNewLine);
     ctx.incIndent();
     this.visitAllObjects((entry) {
-      ctx.print(escapeSingleQuoteString(entry[0], _escapeDollarInStrings));
+      if (entry[0] is o.Expression) {
+        entry[0].visitExpression(this, ctx);
+      } else {
+        ctx.print(escapeSingleQuoteString(entry[0], _escapeDollarInStrings));
+      }
       ctx.print(': ');
       entry[1].visitExpression(this, ctx);
     }, ast.entries, ctx, ',', newLine: useNewLine, keepOnSameLine: false);

@@ -21,6 +21,7 @@ class CloudFile {
   LockOwner lockOwner;
   String dataType;
 
+
   CloudFile(this._id, this.storageId, this.folderId, this.placeId, this.version,
       this.name, this.versions, this.isLocked, this.lockOwner, this.dataType);
 
@@ -75,10 +76,11 @@ class FileVersion {
   int actionCount;
   List<FileAction> actions;
   Approved approved;
+  MailInfo mailInfo;
 
   FileVersion(this._id, this.v, this.mimeType, this.status, this.size, this.ts,
       this.userId, this.name,
-      this.userName, this.actionCount, this.approved, this.actions);
+      this.userName, this.actionCount, this.actions, {this.approved, this.mailInfo});
 
   factory FileVersion.fromJson(Map<String, dynamic> file) {
     try {
@@ -94,9 +96,10 @@ class FileVersion {
           file['name'] ,
           file['userName'],
           file['commentCount'],
-          new Approved.fromJson(file['approved']),
           file['actions']?.map((jsonAction) =>
-          new FileAction.fromJson(jsonAction)).toList()
+          new FileAction.fromJson(jsonAction)).toList(),
+        approved: new Approved.fromJson(file['approved']),
+        mailInfo: new MailInfo.fromJson(file['mailInfo'])
       );
       print("constructed file version : $toReturn");
       return toReturn;
@@ -114,7 +117,6 @@ class FileVersion {
           null,
           null,
           0,
-          null,
           null);
     }
   }
@@ -131,8 +133,9 @@ class FileVersion {
         'name' : name,
         'userName': userName,
         'commentCount': actionCount,
+        'actions': actions.toString(),
         "approved": approved?.toJson(),
-        'actions': actions.toString()
+        "mailInfo": mailInfo?.toJson()
       };
 
   String get id => _id;
@@ -195,3 +198,23 @@ class Approved {
   Map toJson() => {'userId': userId, 'userName': userName, 'photoId': photoId};
 }
 
+class MailInfo {
+  String subject;
+  String body;
+  String account;
+  List<String> to;
+  List<String> from;
+  List<String> cc;
+  List<String> cci;
+
+  MailInfo(this.subject, this.account, this.to, this.from, this.body, {this.cc, this.cci});
+
+  factory MailInfo.fromJson(Map<String, dynamic> mailInfo) {
+    if (mailInfo == null)
+      return null;
+    return new MailInfo(
+        mailInfo['subject'], mailInfo['account'], mailInfo['to'], mailInfo['from'], mailInfo['body']);
+  }
+
+  Map toJson() => {'subject': subject, 'account': account,'to': to.toString(), 'from': from.toString(), 'body': body};
+}

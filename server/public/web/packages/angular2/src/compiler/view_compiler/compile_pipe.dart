@@ -39,7 +39,7 @@ class CompilePipe {
   }
 
   o.ReadClassMemberExpr instance;
-  List<_PurePipeProxy> _purePipeProxies = [];
+  final _purePipeProxies = <_PurePipeProxy>[];
   CompilePipe(this.view, this.meta) {
     this.instance = new o.ReadClassMemberExpr(
         '_pipe_${ meta . name}_${ view . pipeCount ++}');
@@ -54,7 +54,7 @@ class CompilePipe {
           .equalsTo(identifierToken(Identifiers.ChangeDetectorRef))) {
         return new o.ReadClassMemberExpr('ref');
       }
-      return injectFromViewParentInjector(diDep.token, false);
+      return injectFromViewParentInjector(this.view, diDep.token, false);
     }).toList();
     this.view.fields.add(new o.ClassField(this.instance.name,
         outputType: o.importType(this.meta.type),
@@ -66,12 +66,8 @@ class CompilePipe {
     this._purePipeProxies.forEach((purePipeProxy) {
       var pipeInstanceSeenFromPureProxy =
           getPropertyInView(this.instance, purePipeProxy.view, this.view);
-      createPureProxy(
-          pipeInstanceSeenFromPureProxy.prop("transform").callMethod(
-              o.BuiltinMethod.bind, [pipeInstanceSeenFromPureProxy]),
-          purePipeProxy.argCount,
-          purePipeProxy.instance,
-          purePipeProxy.view);
+      createPureProxy(pipeInstanceSeenFromPureProxy.prop("transform"),
+          purePipeProxy.argCount, purePipeProxy.instance, purePipeProxy.view);
     });
   }
 

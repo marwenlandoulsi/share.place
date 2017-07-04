@@ -44,6 +44,8 @@ class SocketIoClient {
         "fileAction": PlaceParam.ioFileActionCreated,
         "folderUserRemoved": PlaceParam.ioFolderUserRemoved,
         "placeUserRemoved": PlaceParam.ioPlaceUserRemoved,
+        "profileChanged" :PlaceParam.ioProfileChanged,
+        "placeUserListChanged" :PlaceParam.ioPlaceUserListChanged
 
       });
 /*

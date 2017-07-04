@@ -13,20 +13,25 @@ library angular2.platform.browser_static.template.dart;
 
 import 'browser_static.dart';
 import 'dart:async';
-import 'package:angular2/core.dart' show ComponentRef, coreLoadAndBootstrap, ReflectiveInjector, PlatformRef, getPlatform, createPlatform, PLATFORM_INITIALIZER, MapInjector;
+import 'dart:html';
+import 'package:angular2/core.dart' show ComponentRef, coreLoadAndBootstrap, ReflectiveInjector, PlatformRef, getPlatform, createPlatform, PLATFORM_INITIALIZER, Injector;
 import 'package:angular2/src/core/application_ref.dart' show PlatformRefImpl;
+import 'package:angular2/src/core/di.dart' show Provider;
 import 'package:angular2/src/core/reflection/reflection.dart' show Reflector, reflector;
 import 'package:angular2/src/core/testability/testability.dart' show TestabilityRegistry;
 import 'package:angular2/src/platform/browser_common.dart' show BROWSER_APP_COMMON_PROVIDERS, createInitDomAdapter;
+import 'package:angular2/src/platform/dom/dom_tokens.dart' show DOCUMENT;
 import 'package:angular2/core.template.dart' as i0;
 import 'package:angular2/src/core/application_ref.template.dart' as i1;
-import 'package:angular2/src/core/reflection/reflection.template.dart' as i2;
-import 'package:angular2/src/core/testability/testability.template.dart' as i3;
-import 'package:angular2/src/platform/browser_common.template.dart' as i4;
-import 'package:angular2/src/core/angular_entrypoint.template.dart' as i5;
+import 'package:angular2/src/core/di.template.dart' as i2;
+import 'package:angular2/src/core/reflection/reflection.template.dart' as i3;
+import 'package:angular2/src/core/testability/testability.template.dart' as i4;
+import 'package:angular2/src/platform/browser_common.template.dart' as i5;
+import 'package:angular2/src/platform/dom/dom_tokens.template.dart' as i6;
+import 'package:angular2/src/core/angular_entrypoint.template.dart' as i7;
 export 'browser_static.dart';
 export 'package:angular2/src/core/angular_entrypoint.dart';
-export 'package:angular2/src/platform/browser_common.dart' show BROWSER_PROVIDERS, BrowserDomAdapter, Title, enableDebugTools, disableDebugTools;
+export 'package:angular2/src/platform/browser_common.dart' show BROWSER_PROVIDERS, enableDebugTools, disableDebugTools;
 
 var _visited = false;
 void initReflector() {
@@ -37,4 +42,6 @@ i2.initReflector();
 i3.initReflector();
 i4.initReflector();
 i5.initReflector();
+i6.initReflector();
+i7.initReflector();
 }

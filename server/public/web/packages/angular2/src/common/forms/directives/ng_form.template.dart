@@ -12,24 +12,27 @@
 import 'ng_form.dart';
 import 'package:angular2/src/core/reflection/reflection.dart' as _ngRef;
 import 'dart:async';
-import 'package:angular2/core.dart' show Directive, Provider, Optional, Inject, Self;
+import 'dart:html' show Event;
+import 'package:angular2/core.dart' show Directive, Provider;
+import 'package:angular2/di.dart' show Optional, Inject, Self;
 import 'package:angular2/src/facade/async.dart' show EventEmitter;
 import '../model.dart' show AbstractControl, ControlGroup, Control;
-import '../validators.dart' show NG_VALIDATORS, NG_ASYNC_VALIDATORS;
+import '../validators.dart' show NG_VALIDATORS;
 import 'control_container.dart' show ControlContainer;
 import 'form_interface.dart' show Form;
 import 'ng_control.dart' show NgControl;
 import 'ng_control_group.dart' show NgControlGroup;
-import 'shared.dart' show setUpControl, setUpControlGroup, composeValidators, composeAsyncValidators;
+import 'shared.dart' show setUpControl, setUpControlGroup, composeValidators;
 import 'package:angular2/core.template.dart' as i0;
-import 'package:angular2/src/facade/async.template.dart' as i1;
-import '../model.template.dart' as i2;
-import '../validators.template.dart' as i3;
-import 'control_container.template.dart' as i4;
-import 'form_interface.template.dart' as i5;
-import 'ng_control.template.dart' as i6;
-import 'ng_control_group.template.dart' as i7;
-import 'shared.template.dart' as i8;
+import 'package:angular2/di.template.dart' as i1;
+import 'package:angular2/src/facade/async.template.dart' as i2;
+import '../model.template.dart' as i3;
+import '../validators.template.dart' as i4;
+import 'control_container.template.dart' as i5;
+import 'form_interface.template.dart' as i6;
+import 'ng_control.template.dart' as i7;
+import 'ng_control_group.template.dart' as i8;
+import 'shared.template.dart' as i9;
 export 'ng_form.dart';
 
 var _visited = false;
@@ -38,8 +41,8 @@ if (_visited) return; _visited = true;
 _ngRef.reflector
 ..registerType(NgForm, new _ngRef.ReflectionInfo(
 const <dynamic>[],
-const [const <dynamic>[List, const Optional(), const Self(), const Inject(NG_VALIDATORS)], const <dynamic>[List, const Optional(), const Self(), const Inject(NG_ASYNC_VALIDATORS)]],
-(List<dynamic> validators, List<dynamic> asyncValidators) => new NgForm(validators, asyncValidators),
+const [const <dynamic>[List, const Optional(), const Self(), const Inject(NG_VALIDATORS)]],
+(List<dynamic> validators) => new NgForm(validators),
 const <dynamic>[Form])
 )
 ;
@@ -52,4 +55,5 @@ i5.initReflector();
 i6.initReflector();
 i7.initReflector();
 i8.initReflector();
+i9.initReflector();
 }

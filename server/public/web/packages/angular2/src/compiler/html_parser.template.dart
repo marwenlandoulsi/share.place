@@ -13,7 +13,7 @@ import 'html_parser.dart';
 import 'package:angular2/src/core/reflection/reflection.dart' as _ngRef;
 import 'package:angular2/src/core/di.dart' show Injectable;
 import 'package:source_span/source_span.dart';
-import 'html_ast.dart' show HtmlAst, HtmlAttrAst, HtmlTextAst, HtmlCommentAst, HtmlElementAst;
+import 'html_ast.dart';
 import 'html_lexer.dart' show HtmlToken, HtmlTokenType, tokenizeHtml;
 import 'html_tags.dart' show getHtmlTagDefinition, getNsPrefix, mergeNsAndName;
 import 'parse_util.dart' show ParseError;

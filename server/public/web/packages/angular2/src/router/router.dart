@@ -1,6 +1,6 @@
 import "dart:async";
 
-import "package:angular2/core.dart" show Inject, Injectable;
+import "package:angular2/di.dart" show Inject, Injectable;
 import "package:angular2/platform/common.dart"
     show Location, PathLocationStrategy;
 import "package:angular2/src/facade/async.dart" show EventEmitter;
@@ -8,12 +8,12 @@ import "package:angular2/src/facade/exceptions.dart" show BaseException;
 
 import "directives/router_outlet.dart" show RouterOutlet;
 import "instruction.dart" show ComponentInstruction, Instruction;
-import "route_config/route_config_impl.dart" show RouteDefinition;
+import "route_config/route_config_decorator.dart" show RouteDefinition;
 import "route_registry.dart" show RouteRegistry, ROUTER_PRIMARY_COMPONENT;
 import "utils.dart" show getCanActivateHook;
 
-var _resolveToTrue = new Future.value(true);
-var _resolveToFalse = new Future.value(false);
+final _resolveToTrue = new Future<bool>.value(true);
+final _resolveToFalse = new Future<bool>.value(false);
 
 /// The `Router` is responsible for mapping URLs to components.
 ///
@@ -43,10 +43,10 @@ class Router {
   Instruction currentInstruction;
   Future<dynamic> _currentNavigation = _resolveToTrue;
   RouterOutlet _outlet;
-  var _auxRouters = new Map<String, Router>();
+  final _auxRouters = new Map<String, Router>();
   Router _childRouter;
-  EventEmitter<dynamic> _subject = new EventEmitter();
-  EventEmitter<String> _startNavigationEvent = new EventEmitter<String>();
+  final _subject = new EventEmitter<dynamic>();
+  final _startNavigationEvent = new EventEmitter<String>();
   Router(this.registry, this.parent, this.hostComponent, [this.root]);
 
   /// Constructs a child router. You probably don't need to use this unless you're writing a reusable
@@ -206,7 +206,6 @@ class Router {
     });
   }
 
-  /** @internal */
   Future<dynamic> _settleInstruction(Instruction instruction) {
     return instruction.resolveComponent().then((_) {
       List<Future<dynamic>> unsettledInstructions = [];
@@ -223,7 +222,6 @@ class Router {
     });
   }
 
-  /** @internal */
   Future<dynamic> _navigate(
       Instruction instruction, bool _skipLocationChange, bool _replaceState) {
     return this
@@ -251,7 +249,6 @@ class Router {
     _subject.add(url);
   }
 
-  /** @internal */
   void _emitNavigationFail(url) {
     _subject.addError(url);
   }
@@ -266,7 +263,6 @@ class Router {
    * Recursively set reuse flags
    */
 
-  /** @internal */
   Future<dynamic> _routerCanReuse(Instruction instruction) {
     if (_outlet == null) {
       return _resolveToFalse;
@@ -348,13 +344,11 @@ class Router {
     return next.then((_) => Future.wait(promises));
   }
 
-  /** @internal */
   void _startNavigating(String url) {
     this.navigating = true;
     _startNavigationEvent.add(url);
   }
 
-  /** @internal */
   void _finishNavigating() {
     this.navigating = false;
   }
@@ -422,15 +416,12 @@ class Router {
 
 @Injectable()
 class RootRouter extends Router {
-  /** @internal */
-  Location _location;
-  /** @internal */
+  final Location _location;
   var _locationSub;
-  RootRouter(RouteRegistry registry, Location location,
+  RootRouter(RouteRegistry registry, this._location,
       @Inject(ROUTER_PRIMARY_COMPONENT) dynamic primaryComponent)
       : super(registry, null, primaryComponent) {
     this.root = this;
-    this._location = location;
     this._locationSub = this._location.subscribe((change) {
       // we call recognize ourselves
       this.recognize(change["url"]).then((instruction) {
@@ -474,7 +465,7 @@ class RootRouter extends Router {
       });
     });
     this.registry.configFromComponent(primaryComponent);
-    this.navigateByUrl(location.path());
+    this.navigateByUrl(_location.path());
   }
   Future<dynamic> commit(Instruction instruction,
       [bool _skipLocationChange = false, bool _replaceState = false]) {

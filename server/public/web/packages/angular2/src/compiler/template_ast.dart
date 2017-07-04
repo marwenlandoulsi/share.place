@@ -1,3 +1,6 @@
+import 'package:angular2/src/compiler/view_compiler/parse_utils.dart'
+    show handlerTypeFromExpression, HandlerType;
+
 import 'package:source_span/source_span.dart';
 
 import '../core/security.dart';
@@ -65,6 +68,13 @@ class BoundElementPropertyAst implements TemplateAst {
   }
 }
 
+/// Public part of ProviderElementContext passed to
+/// ElementAst/EmbeddedTemplateAst to drive codegen optimizations.
+abstract class ElementProviderUsage {
+  bool get requiresViewContainer;
+  bool hasNonLocalRequest(ProviderAst providerAst);
+}
+
 /// A binding for an element event (e.g. (event)='handler()').
 class BoundEventAst implements TemplateAst {
   String name;
@@ -74,6 +84,8 @@ class BoundEventAst implements TemplateAst {
   dynamic visit(TemplateAstVisitor visitor, dynamic context) {
     return visitor.visitEvent(this, context);
   }
+
+  HandlerType get handlerType => handlerTypeFromExpression(handler);
 }
 
 /// A reference declaration on an element (e.g. let someName='expression').
@@ -107,10 +119,11 @@ class ElementAst implements TemplateAst {
   List<ReferenceAst> references;
   List<DirectiveAst> directives;
   List<ProviderAst> providers;
-  bool hasViewContainer;
+  final ElementProviderUsage elementProviderUsage;
   List<TemplateAst> children;
   num ngContentIndex;
   SourceSpan sourceSpan;
+
   ElementAst(
       this.name,
       this.attrs,
@@ -119,10 +132,14 @@ class ElementAst implements TemplateAst {
       this.references,
       this.directives,
       this.providers,
-      this.hasViewContainer,
+      this.elementProviderUsage,
       this.children,
       this.ngContentIndex,
       this.sourceSpan);
+
+  bool get hasViewContainer =>
+      elementProviderUsage?.requiresViewContainer ?? false;
+
   dynamic visit(TemplateAstVisitor visitor, dynamic context) {
     return visitor.visitElement(this, context);
   }
@@ -136,10 +153,12 @@ class EmbeddedTemplateAst implements TemplateAst {
   List<VariableAst> variables;
   List<DirectiveAst> directives;
   List<ProviderAst> providers;
-  bool hasViewContainer;
   List<TemplateAst> children;
+  final ElementProviderUsage elementProviderUsage;
+  final bool hasDeferredComponent;
   num ngContentIndex;
   SourceSpan sourceSpan;
+
   EmbeddedTemplateAst(
       this.attrs,
       this.outputs,
@@ -147,10 +166,14 @@ class EmbeddedTemplateAst implements TemplateAst {
       this.variables,
       this.directives,
       this.providers,
-      this.hasViewContainer,
+      this.elementProviderUsage,
       this.children,
       this.ngContentIndex,
-      this.sourceSpan);
+      this.sourceSpan,
+      {this.hasDeferredComponent: false});
+
+  bool get hasViewContainer => elementProviderUsage.requiresViewContainer;
+
   dynamic visit(TemplateAstVisitor visitor, dynamic context) {
     return visitor.visitEmbeddedTemplate(this, context);
   }
@@ -187,21 +210,61 @@ class DirectiveAst implements TemplateAst {
 class ProviderAst implements TemplateAst {
   CompileTokenMetadata token;
   bool multiProvider;
+
+  /// Whether provider should be eagerly created at build time.
+  ///
+  /// Otherwise the AppView will provide a getter for the provider to lazily
+  /// access the provider and return it.
   bool eager;
+
+  /// False if provider doesn't support injection into dynamically loaded
+  /// children.
+  ///
+  /// Typically TemplateRef, NgIf don't need to be injected into dynamic
+  /// children and this flag allows injectorGetInternal to create more
+  /// optimal code by skipping these.
+  bool dynamicallyReachable;
+
+  /// If false, provider is only reachable on the node it is defined on.
+  /// And doesn't support injection through view hierarchy.
+  bool visibleToViewHierarchy;
+
   List<CompileProviderMetadata> providers;
   ProviderAstType providerType;
   SourceSpan sourceSpan;
-  ProviderAst(this.token, this.multiProvider, this.eager, this.providers,
-      this.providerType, this.sourceSpan);
+
+  ProviderAst(this.token, this.multiProvider, this.providers, this.providerType,
+      this.sourceSpan,
+      {this.eager,
+      this.dynamicallyReachable: true,
+      this.visibleToViewHierarchy: true});
+
   // No visit method in the visitor for now...
   dynamic visit(TemplateAstVisitor visitor, dynamic context) => null;
+
+  /// Returns true if the provider is used by a constructor in a child
+  /// CompileView or queried which requires non local access.
+  ///
+  /// It is a signal to view builder to create a public field inside AppView
+  /// to allow other AppView(s) or change detector access to this provider.
+  bool get hasNonLocalRequests => throw new UnimplementedError();
 }
 
 enum ProviderAstType {
+  /// Public providers (Directive.providers) that can be reached across views.
   PublicService,
+
+  /// Provide providers (Directive.viewProviders) that are visible within
+  /// template only.
   PrivateService,
+
+  /// A provider that represents the Component type.
   Component,
+
+  /// A provider that represents a Directive type.
   Directive,
+
+  /// Provider that is used by compiled code itself such as TemplateRef.
   Builtin
 }
 
@@ -251,15 +314,14 @@ abstract class TemplateAstVisitor {
 
 /// Visit every node in a list of [TemplateAst]s with the given
 /// [TemplateAstVisitor].
-List<dynamic> templateVisitAll(
-    TemplateAstVisitor visitor, List<TemplateAst> asts,
+List templateVisitAll(TemplateAstVisitor visitor, List<TemplateAst> asts,
     [dynamic context = null]) {
   var result = [];
-  asts.forEach((ast) {
+  for (TemplateAst ast in asts) {
     var astResult = ast.visit(visitor, context);
     if (astResult != null) {
       result.add(astResult);
     }
-  });
+  }
   return result;
 }

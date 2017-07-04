@@ -14,13 +14,15 @@ import 'package:analyzer/dart/element/element.dart';
 import 'package:analyzer/dart/element/visitor.dart';
 import 'package:angular2/src/compiler/compile_metadata.dart';
 import 'package:angular2/src/source_gen/common/annotation_matcher.dart';
-import 'package:angular2/src/source_gen/template_compiler/compile_type.dart';
-import 'package:angular2/src/source_gen/template_compiler/dart_object_utils.dart';
-import 'package:build/build.dart';
+import 'package:logging/logging.dart';
+import 'compile_metadata.dart';
+import 'dart_object_utils.dart';
+import 'find_components.dart';
 import 'package:angular2/src/compiler/compile_metadata.template.dart' as i0;
 import 'package:angular2/src/source_gen/common/annotation_matcher.template.dart' as i1;
-import 'package:angular2/src/source_gen/template_compiler/compile_type.template.dart' as i2;
-import 'package:angular2/src/source_gen/template_compiler/dart_object_utils.template.dart' as i3;
+import 'compile_metadata.template.dart' as i2;
+import 'dart_object_utils.template.dart' as i3;
+import 'find_components.template.dart' as i4;
 export 'pipe_visitor.dart';
 
 var _visited = false;
@@ -30,4 +32,5 @@ i0.initReflector();
 i1.initReflector();
 i2.initReflector();
 i3.initReflector();
+i4.initReflector();
 }

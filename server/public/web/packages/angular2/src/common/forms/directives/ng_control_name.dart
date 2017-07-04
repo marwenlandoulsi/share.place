@@ -1,30 +1,19 @@
-import "package:angular2/core.dart"
-    show
-        OnChanges,
-        OnDestroy,
-        SimpleChange,
-        Directive,
-        SkipSelf,
-        Provider,
-        Inject,
-        Optional,
-        Self;
-import "package:angular2/src/facade/async.dart" show EventEmitter;
+import 'package:angular2/core.dart'
+    show OnChanges, OnDestroy, SimpleChange, Directive, Provider;
 
-import "../model.dart" show Control;
-import "../validators.dart" show NG_VALIDATORS, NG_ASYNC_VALIDATORS;
-import "control_container.dart" show ControlContainer;
-import "control_value_accessor.dart"
+import 'package:angular2/di.dart' show SkipSelf, Inject, Optional, Self;
+import 'package:angular2/src/facade/async.dart' show EventEmitter;
+
+import '../model.dart' show Control;
+import '../validators.dart' show NG_VALIDATORS;
+import 'control_container.dart' show ControlContainer;
+import 'control_value_accessor.dart'
     show ControlValueAccessor, NG_VALUE_ACCESSOR;
-import "ng_control.dart" show NgControl;
-import "shared.dart"
-    show
-        controlPath,
-        composeValidators,
-        composeAsyncValidators,
-        isPropertyUpdated,
-        selectValueAccessor;
-import "validators.dart" show ValidatorFn, AsyncValidatorFn;
+import 'form_interface.dart' show Form;
+import 'ng_control.dart' show NgControl;
+import 'shared.dart'
+    show controlPath, composeValidators, isPropertyUpdated, selectValueAccessor;
+import 'validators.dart' show ValidatorFn;
 
 const controlNameBinding =
     const Provider(NgControl, useExisting: NgControlName);
@@ -77,22 +66,21 @@ const controlNameBinding =
 ///  credentials: {login:string, password:string};
 ///
 ///  onLogIn(): void {
-///    // this.credentials.login === "some login"
-///    // this.credentials.password === "some password"
+///    // credentials.login === "some login"
+///    // credentials.password === "some password"
 ///  }
 /// }
 /// ```
 @Directive(
-    selector: "[ngControl]",
+    selector: '[ngControl]',
     providers: const [controlNameBinding],
-    inputs: const ["name: ngControl", "model: ngModel"],
-    outputs: const ["update: ngModelChange"],
-    exportAs: "ngForm")
+    inputs: const ['name: ngControl', 'model: ngModel'],
+    outputs: const ['update: ngModelChange'],
+    exportAs: 'ngForm')
 class NgControlName extends NgControl implements OnChanges, OnDestroy {
-  ControlContainer _parent;
-  /* Array<Validator|Function> */ List<dynamic> _validators;
-  /* Array<Validator|Function> */ List<dynamic> _asyncValidators;
-  var update = new EventEmitter();
+  final ControlContainer _parent;
+  final /* Array<Validator|Function> */ List<dynamic> _validators;
+  final update = new EventEmitter<dynamic>();
   dynamic model;
   dynamic viewModel;
   var _added = false;
@@ -105,58 +93,41 @@ class NgControlName extends NgControl implements OnChanges, OnDestroy {
           this._validators,
       @Optional()
       @Self()
-      @Inject(NG_ASYNC_VALIDATORS)
-          this._asyncValidators,
-      @Optional()
-      @Self()
       @Inject(NG_VALUE_ACCESSOR)
           List<ControlValueAccessor> valueAccessors) {
-    this.valueAccessor = selectValueAccessor(this, valueAccessors);
+    valueAccessor = selectValueAccessor(this, valueAccessors);
   }
   @override
   ngOnChanges(Map<String, SimpleChange> changes) {
-    if (!this._added) {
-      this.formDirective.addControl(this);
-      this._added = true;
+    if (!_added) {
+      formDirective.addControl(this);
+      _added = true;
     }
-    if (isPropertyUpdated(changes, this.viewModel)) {
-      this.viewModel = this.model;
-      this.formDirective.updateModel(this, this.model);
+    if (isPropertyUpdated(changes, viewModel)) {
+      viewModel = model;
+      formDirective.updateModel(this, model);
     }
   }
 
   @override
   void ngOnDestroy() {
-    this.formDirective.removeControl(this);
+    formDirective.removeControl(this);
   }
 
   @override
   void viewToModelUpdate(dynamic newValue) {
-    this.viewModel = newValue;
-    this.update.add(newValue);
+    viewModel = newValue;
+    update.add(newValue);
   }
 
   @override
-  List<String> get path {
-    return controlPath(this.name, this._parent);
-  }
+  List<String> get path => controlPath(name, _parent);
 
-  dynamic get formDirective {
-    return this._parent.formDirective;
-  }
+  Form get formDirective => _parent.formDirective;
 
   @override
-  ValidatorFn get validator {
-    return composeValidators(this._validators);
-  }
+  ValidatorFn get validator => composeValidators(_validators);
 
   @override
-  AsyncValidatorFn get asyncValidator {
-    return composeAsyncValidators(this._asyncValidators);
-  }
-
-  @override
-  Control get control {
-    return this.formDirective.getControl(this);
-  }
+  Control get control => formDirective.getControl(this);
 }

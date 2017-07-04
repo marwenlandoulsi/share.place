@@ -16,7 +16,7 @@ var _METADATA_MAP_VAR = '_METADATA';
 String debugOutputAstAsDart(
     dynamic /* o . Statement | o . Expression | o . Type | List < dynamic > */ ast) {
   var converter = new _DartEmitterVisitor(_debugModuleUrl);
-  var ctx = EmitterVisitorContext.createRoot([]);
+  var ctx = EmitterVisitorContext.createRoot([], {});
   List<dynamic> asts;
   if (ast is! List) {
     asts = [ast];
@@ -37,19 +37,21 @@ String debugOutputAstAsDart(
 
 class DartEmitter implements OutputEmitter {
   @override
-  String emitStatements(
-      String moduleUrl, List<o.Statement> stmts, List<String> exportedVars) {
+  String emitStatements(String moduleUrl, List<o.Statement> stmts,
+      List<String> exportedVars, Map<String, String> deferredModules) {
     var srcParts = [];
     // Note: We are not creating a library here as Dart does not need it.
     // Dart analzyer might complain about it though.
     var converter = new _DartEmitterVisitor(moduleUrl);
-    var ctx = EmitterVisitorContext.createRoot(exportedVars);
+    var ctx = EmitterVisitorContext.createRoot(exportedVars, deferredModules);
     converter.visitAllStatements(stmts, ctx);
     converter.importsWithPrefixes.forEach((importedModuleUrl, prefix) {
       String importPath = getImportModulePath(moduleUrl, importedModuleUrl);
       srcParts.add(prefix.isEmpty
           ? "import '$importPath';"
-          : "import '$importPath' as ${prefix};");
+          : (deferredModules.containsKey(importedModuleUrl)
+              ? "import '$importPath' deferred as ${prefix};"
+              : "import '$importPath' as ${prefix};"));
     });
     srcParts.add(ctx.toSource());
     return srcParts.join("\n");
@@ -61,6 +63,7 @@ class _DartEmitterVisitor extends AbstractEmitterVisitor
   // List of packages that are public api and can be imported without prefix.
   static const List<String> whiteListedImports = const [
     'package:angular2/angular2.dart',
+    'dart:core',
     'dart:html',
     // StaticNodeDebugInfo, DebugContext.
     'asset:angular2/lib/src/debug/debug_context.dart',
@@ -74,7 +77,7 @@ class _DartEmitterVisitor extends AbstractEmitterVisitor
     // TemplateRef.
     'asset:angular2/lib/src/core/linker/template_ref.dart',
     'package:angular2/src/core/linker/template_ref.dart',
-    // uninitialized, ChangeDetectionStrategy, Differs*
+    // ChangeDetectionStrategy, Differs*
     'asset:angular2/lib/src/core/change_detection/change_detection.dart',
     'package:angular2/src/core/change_detection/change_detection.dart',
     // NgIf.
@@ -90,7 +93,7 @@ class _DartEmitterVisitor extends AbstractEmitterVisitor
     'package:angular2/src/core/render/api.dart',
   ];
 
-  String _moduleUrl;
+  final String _moduleUrl;
 
   var importsWithPrefixes = new Map<String, String>();
 
@@ -106,6 +109,9 @@ class _DartEmitterVisitor extends AbstractEmitterVisitor
   @override
   dynamic visitDeclareVarStmt(o.DeclareVarStmt stmt, dynamic context) {
     EmitterVisitorContext ctx = context;
+    if (stmt.hasModifier(o.StmtModifier.Static)) {
+      ctx.print('static ');
+    }
     if (stmt.hasModifier(o.StmtModifier.Final)) {
       if (isConstType(stmt.type)) {
         ctx.print('const ');
@@ -166,6 +172,9 @@ class _DartEmitterVisitor extends AbstractEmitterVisitor
 
   void _visitClassField(o.ClassField field, dynamic context) {
     EmitterVisitorContext ctx = context;
+    if (field.hasModifier(o.StmtModifier.Static)) {
+      ctx.print('static ');
+    }
     if (field.hasModifier(o.StmtModifier.Final)) {
       ctx.print('final ');
     } else if (field.type == null) {
@@ -263,7 +272,7 @@ class _DartEmitterVisitor extends AbstractEmitterVisitor
     } else {
       ctx.print('void');
     }
-    ctx.print(' ${ stmt . name}(');
+    ctx.print(' ${stmt.name}(');
     this._visitParams(stmt.params, ctx);
     ctx.println(') {');
     ctx.incIndent();
@@ -282,9 +291,6 @@ class _DartEmitterVisitor extends AbstractEmitterVisitor
         break;
       case o.BuiltinMethod.SubscribeObservable:
         name = "listen";
-        break;
-      case o.BuiltinMethod.bind:
-        name = null;
         break;
       default:
         throw new BaseException('Unknown builtin method: ${ method}');
@@ -411,7 +417,7 @@ class _DartEmitterVisitor extends AbstractEmitterVisitor
   }
 
   @override
-  dynamic visitBuiltintType(o.BuiltinType type, dynamic context) {
+  dynamic visitBuiltinType(o.BuiltinType type, dynamic context) {
     EmitterVisitorContext ctx = context;
     var typeStr;
     switch (type.name) {
@@ -490,17 +496,36 @@ class _DartEmitterVisitor extends AbstractEmitterVisitor
   void _visitIdentifier(CompileIdentifierMetadata value,
       List<o.OutputType> typeParams, dynamic context) {
     EmitterVisitorContext ctx = context;
+    String prefix = '';
+    bool isDeferred = false;
     if (value.moduleUrl != null && value.moduleUrl != _moduleUrl) {
-      var prefix = importsWithPrefixes[value.moduleUrl];
+      prefix = importsWithPrefixes[value.moduleUrl];
       if (prefix == null) {
         if (whiteListedImports.contains(value.moduleUrl)) {
           prefix = '';
         } else {
           prefix = 'import${importsWithPrefixes.length}';
+          if (ctx.deferredModules.containsKey(value.moduleUrl)) {
+            isDeferred = true;
+            prefix = ctx.deferredModules[value.moduleUrl];
+          }
         }
         importsWithPrefixes[value.moduleUrl] = prefix;
       }
-      ctx.print(prefix.isEmpty ? '' : '${prefix}.');
+    } else if (value.emitPrefix) {
+      prefix = value.prefix ?? '';
+    }
+    if (isDeferred) {
+      if (prefix.isNotEmpty) {
+        ctx.print(value.name.isEmpty ? prefix : '$prefix.');
+      }
+    } else {
+      if (value.moduleUrl != null && value.moduleUrl != _moduleUrl) {
+        ctx.print(prefix.isEmpty ? '' : '${prefix}.');
+      }
+      if (value.emitPrefix && value.prefix != null && value.prefix.isNotEmpty) {
+        ctx.print('${value.prefix}.');
+      }
     }
     ctx.print(value.name);
     if (typeParams != null && typeParams.length > 0) {

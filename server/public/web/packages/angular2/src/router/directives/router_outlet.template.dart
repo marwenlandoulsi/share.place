@@ -12,7 +12,7 @@
 import 'router_outlet.dart';
 import 'package:angular2/src/core/reflection/reflection.dart' as _ngRef;
 import 'dart:async';
-import 'package:angular2/core.dart' show Directive, Attribute, ComponentResolver, ComponentFactory, ComponentRef, ViewContainerRef, OnDestroy, Output, MapInjector;
+import 'package:angular2/core.dart' show Directive, Attribute, ComponentResolver, ComponentFactory, ComponentRef, ViewContainerRef, OnDestroy, Output, Injector;
 import 'package:angular2/src/facade/async.dart' show EventEmitter;
 import 'package:collection/collection.dart' show MapEquality;
 import '../instruction.dart' show ComponentInstruction, RouteParams, RouteData;

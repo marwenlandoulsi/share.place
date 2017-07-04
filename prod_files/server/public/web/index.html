@@ -12,23 +12,19 @@
   <link rel="icon" type="image/ico" href="../images/faviconsp.ico">
 
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="scrollbar.css" />
+  <link rel="stylesheet" href="jquery-ui.css">
 
   <script defer src="main.dart" type="application/dart"></script>
   <script defer src="packages/browser/dart.js"></script>
 
   <script src="jquery.min.js"></script>
+  <script src="jquery-ui.min.js"></script>
   <script src="jquery.scrollbar.js"></script>
-  <link rel="stylesheet" href="scrollbar.css" />
 
-  <script type="application/javascript">
+  <script src="../js/mixpanel.js" type="text/javascript"></script>
 
-
-  </script>
-
-  <script type="application/javascript">
-
-  </script>
-
+  <script src="../js/zendesk.js"></script>
 
 </head>
 <body>
@@ -52,6 +48,7 @@
 
 
 <input type="hidden" id="baseUrl" value="err"/>
+<input type="hidden" id="elasticUrl" value="err"/>
 <input type="hidden" id="loginUrl" value="err"/>
 <input type="hidden" id="port" value="err"/>
 <input type="hidden" id="env" value="desktop"/>
@@ -59,11 +56,37 @@
 
 <script type="application/javascript">
   document.getElementById('baseUrl').value = window.location.origin;
+	document.getElementById('elasticUrl').value = window.location.origin;
   //document.getElementById('loginUrl').value = "http://localhost:5000";
   document.getElementById('loginUrl').value = "https://app.share.place";
   document.getElementById('port').value = window.location.port;
 </script>
 <script src="../js/zendesk.js"></script>
+<script type="application/javascript">
+  function dispatchWindowEvent(detail) {
+    console.log("dispatchWindowEvent", detail)
+    var event = document.createEvent('CustomEvent');
+    event.initCustomEvent('sp', false, false, detail);
+    window.dispatchEvent(event);
+  }
+
+  function electronPopupProxyCredentials(detail) {
+    console.log("electronPopupProxyCredentials", detail)
+    var event = document.createEvent('CustomEvent');
+    event.initCustomEvent('electronPopupProxyCredentials', false, false, detail);
+    window.dispatchEvent(event);
+  }
+
+  window.addEventListener('spB', function (e) {
+    console.log(e.detail);
+  });</script>
+
+
+<link rel="stylesheet" href="packages/croppie_dart/src/js/croppie.css"/>
+<script defer src="packages/croppie_dart/src/js/exif.js"></script>
+<script src="packages/croppie_dart/src/js/croppie.min.js"></script>
+<script src="require.js"></script>
+
 </body>
 
 </html>

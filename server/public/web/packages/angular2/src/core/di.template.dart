@@ -12,23 +12,21 @@
 import 'di.dart';
 import 'di/decorators.template.dart' as i0;
 import 'di/injector.template.dart' as i1;
-import 'di/reflective_injector.template.dart' as i2;
+import 'di/opaque_token.template.dart' as i2;
 import 'di/provider.template.dart' as i3;
-import 'di/reflective_provider.template.dart' as i4;
-import 'di/reflective_key.template.dart' as i5;
-import 'di/reflective_exceptions.template.dart' as i6;
-import 'di/opaque_token.template.dart' as i7;
-import 'di/map_injector.template.dart' as i8;
+import 'di/reflective_exceptions.template.dart' as i4;
+import 'di/reflective_injector.template.dart' as i5;
+import 'di/reflective_key.template.dart' as i6;
+import 'di/reflective_provider.template.dart' as i7;
 export 'di.dart';
 export 'di/decorators.dart';
-export 'di/injector.dart' show Injector, InjectorFactory;
-export 'di/reflective_injector.dart' show ReflectiveInjector;
-export 'di/provider.dart' show Provider, provide, noValueProvided;
-export 'di/reflective_provider.dart' show ResolvedReflectiveBinding, ResolvedReflectiveFactory, ReflectiveDependency, ResolvedReflectiveProvider;
-export 'di/reflective_key.dart' show ReflectiveKey;
-export 'di/reflective_exceptions.dart' show NoProviderError, AbstractProviderError, CyclicDependencyError, InstantiationError, InvalidProviderError, NoAnnotationError, OutOfBoundsError;
+export 'di/injector.dart' show Injector;
 export 'di/opaque_token.dart' show OpaqueToken;
-export 'di/map_injector.dart' show MapInjector, MapInjectorFactory;
+export 'di/provider.dart' show Provider, provide, noValueProvided;
+export 'di/reflective_exceptions.dart' show NoProviderError, AbstractProviderError, CyclicDependencyError, InstantiationError, InvalidProviderError, NoAnnotationError, OutOfBoundsError;
+export 'di/reflective_injector.dart' show ReflectiveInjector;
+export 'di/reflective_key.dart' show ReflectiveKey;
+export 'di/reflective_provider.dart' show ResolvedReflectiveBinding, ResolvedReflectiveFactory, ReflectiveDependency, ResolvedReflectiveProvider;
 
 var _visited = false;
 void initReflector() {
@@ -41,5 +39,4 @@ i4.initReflector();
 i5.initReflector();
 i6.initReflector();
 i7.initReflector();
-i8.initReflector();
 }

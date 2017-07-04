@@ -11,10 +11,10 @@
 // @ignoreProblemForFile UNUSED_LOCAL_VARIABLE
 import 'xhr_mock.dart';
 import 'dart:async';
-import 'package:angular2/src/compiler/xhr.dart' show XHR;
 import 'package:angular2/src/facade/exceptions.dart' show BaseException;
-import 'package:angular2/src/compiler/xhr.template.dart' as i0;
-import 'package:angular2/src/facade/exceptions.template.dart' as i1;
+import 'xhr.dart' show XHR;
+import 'package:angular2/src/facade/exceptions.template.dart' as i0;
+import 'xhr.template.dart' as i1;
 export 'xhr_mock.dart';
 
 var _visited = false;

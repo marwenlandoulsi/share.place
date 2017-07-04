@@ -8,10 +8,7 @@ import '../output/output_ast.dart' as o;
 import '../template_ast.dart' show DirectiveAst;
 import 'compile_element.dart' show CompileElement;
 import 'compile_view.dart' show CompileView;
-import 'constants.dart' show DetectChangesVars, ChangeDetectorStateEnum;
-
-var STATE_IS_NEVER_CHECKED =
-    o.THIS_EXPR.prop('cdState').identical(ChangeDetectorStateEnum.NeverChecked);
+import 'constants.dart' show DetectChangesVars;
 
 var NOT_THROW_ON_CHANGES = o.not(o.importExpr(Identifiers.throwOnChanges));
 
@@ -29,13 +26,24 @@ void bindDirectiveDetectChangesLifecycleCallbacks(DirectiveAst directiveAst,
     ]));
   }
   if (lifecycleHooks.contains(LifecycleHooks.OnInit)) {
-    detectChangesInInputsMethod.addStmt(new o.IfStmt(
-        STATE_IS_NEVER_CHECKED.and(NOT_THROW_ON_CHANGES),
-        [directiveInstance.callMethod('ngOnInit', []).toStmt()]));
+    if (view.genConfig.genDebugInfo) {
+      detectChangesInInputsMethod.addStmt(new o.IfStmt(
+          DetectChangesVars.firstCheck.and(NOT_THROW_ON_CHANGES),
+          [directiveInstance.callMethod('ngOnInit', []).toStmt()]));
+    } else {
+      detectChangesInInputsMethod.addStmt(new o.IfStmt(
+          DetectChangesVars.firstCheck,
+          [directiveInstance.callMethod('ngOnInit', []).toStmt()]));
+    }
   }
   if (lifecycleHooks.contains(LifecycleHooks.DoCheck)) {
-    detectChangesInInputsMethod.addStmt(new o.IfStmt(NOT_THROW_ON_CHANGES,
-        [directiveInstance.callMethod('ngDoCheck', []).toStmt()]));
+    if (view.genConfig.genDebugInfo) {
+      detectChangesInInputsMethod.addStmt(new o.IfStmt(NOT_THROW_ON_CHANGES,
+          [directiveInstance.callMethod('ngDoCheck', []).toStmt()]));
+    } else {
+      detectChangesInInputsMethod
+          .addStmt(directiveInstance.callMethod('ngDoCheck', []).toStmt());
+    }
   }
 }
 
@@ -51,7 +59,7 @@ void bindDirectiveAfterContentLifecycleCallbacks(
       compileElement.nodeIndex, compileElement.sourceAst);
   if (!identical(lifecycleHooks.indexOf(LifecycleHooks.AfterContentInit), -1)) {
     afterContentLifecycleCallbacksMethod.addStmt(new o.IfStmt(
-        STATE_IS_NEVER_CHECKED,
+        DetectChangesVars.firstCheck,
         [directiveInstance.callMethod('ngAfterContentInit', []).toStmt()]));
   }
   if (!identical(
@@ -73,7 +81,7 @@ void bindDirectiveAfterViewLifecycleCallbacks(
       compileElement.nodeIndex, compileElement.sourceAst);
   if (!identical(lifecycleHooks.indexOf(LifecycleHooks.AfterViewInit), -1)) {
     afterViewLifecycleCallbacksMethod.addStmt(new o.IfStmt(
-        STATE_IS_NEVER_CHECKED,
+        DetectChangesVars.firstCheck,
         [directiveInstance.callMethod('ngAfterViewInit', []).toStmt()]));
   }
   if (!identical(lifecycleHooks.indexOf(LifecycleHooks.AfterViewChecked), -1)) {
@@ -82,6 +90,8 @@ void bindDirectiveAfterViewLifecycleCallbacks(
   }
 }
 
+// Create code to call ngOnDestroy for each directive that contains OnDestroy
+// lifecycle hook.
 void bindDirectiveDestroyLifecycleCallbacks(
     CompileDirectiveMetadata directiveMeta,
     o.Expression directiveInstance,

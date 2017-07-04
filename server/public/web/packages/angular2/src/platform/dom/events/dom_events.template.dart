@@ -11,7 +11,9 @@
 // @ignoreProblemForFile UNUSED_LOCAL_VARIABLE
 import 'dom_events.dart';
 import 'package:angular2/src/core/reflection/reflection.dart' as _ngRef;
+import 'dart:html' show Element, Event;
 import 'package:angular2/di.dart' show Injectable;
+import 'package:meta/meta.dart';
 import 'event_manager.dart' show EventManagerPlugin;
 import 'package:angular2/di.template.dart' as i0;
 import 'event_manager.template.dart' as i1;

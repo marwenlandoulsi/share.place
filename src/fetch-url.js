@@ -8,20 +8,24 @@ if (process.env.DEV)
   http = require("http");
 
 var electronProxyAgent = require('electron-proxy-agent');
-
+const {net} = require('electron')
 var agent = new electronProxyAgent({
-  resolveProxy : function(url, callback) {
-    callback(global.proxy+"; DIRECT"); // return a valid pac syntax
+  resolveProxy: function (url, callback) {
+    callback(global.proxy + "; DIRECT"); // return a valid pac syntax
   }
 });
 
 const log = require('electron-log');
 module.exports.fetchURL = function (options, cb) {
 
-  if(global.isProxy){
-    options.agent=agent;
-  }
-  const request = http.request(options);
+/*
+  if (global.isProxy) {
+    options.agent = agent;
+    options.headers = {
+      'Proxy-Authorization': buildAuthHeader(global.userProxy, global.pswProxy)
+    }
+  }*/
+  const request = net.request(options);
 
 
   request.on('response', (response) => {
@@ -36,9 +40,18 @@ module.exports.fetchURL = function (options, cb) {
     });
 
     response.on('error', (error) => {
-      return cb(error, null, error.statusCode);
+      return cb(error, null, response.statusCode);
     });
   });
+
+  request.on('login', (event, authInfo, callback) => {
+    if(global.userProxy)
+      callback(global.userProxy, global.pswProxy)
+    else
+      callback()
+
+    //callback('', '')
+  })
 
 //   request.on('login', (event, authInfo, callback) => {
 //     log.info("request login event : the authInfo ", authInfo)
@@ -72,4 +85,8 @@ module.exports.fetchURL = function (options, cb) {
 
   request.end();
 
+}
+
+function buildAuthHeader(user, pass) {
+  return 'Basic ' + new Buffer(user + ':' + pass).toString('base64');
 }

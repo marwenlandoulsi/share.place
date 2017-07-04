@@ -17,17 +17,17 @@ import 'package:angular2/angular2.dart';
 import 'package:angular2/platform/testing/browser.dart';
 import 'package:angular2/src/core/di/reflective_exceptions.dart' show NoAnnotationError;
 import 'package:angular2/src/core/reflection/reflection.dart';
-import 'package:angular2/src/testing/internal.dart' show TestComponentBuilder, ComponentFixture, setBaseTestProviders, getTestInjector, inject;
 import 'package:test/test.dart';
+import 'internal.dart' show TestComponentBuilder, ComponentFixture, setBaseTestProviders, getTestInjector, inject;
 import 'internal_injector.dart';
 import 'package:angular2/angular2.template.dart' as i0;
 import 'package:angular2/platform/testing/browser.template.dart' as i1;
 import 'package:angular2/src/core/di/reflective_exceptions.template.dart' as i2;
 import 'package:angular2/src/core/reflection/reflection.template.dart' as i3;
-import 'package:angular2/src/testing/internal.template.dart' as i4;
+import 'internal.template.dart' as i4;
 import 'internal_injector.template.dart' as i5;
 export 'angular2_testing.dart';
-export 'package:angular2/src/testing/internal.dart' show TestComponentBuilder, ComponentFixture, setBaseTestProviders, getTestInjector, inject;
+export 'internal.dart' show TestComponentBuilder, ComponentFixture, setBaseTestProviders, getTestInjector, inject;
 
 var _visited = false;
 void initReflector() {

@@ -11,7 +11,7 @@ import 'package:share_place/place_service.dart';
 import 'package:share_place/users/user.dart';
 import 'package:share_place/common/ui/button_comp.dart';
 import 'package:share_place/users/role/role_chooser_comp.dart';
-import 'package:angular2_components/angular2_components.dart';
+import 'package:angular_components/angular_components.dart';
 import 'package:share_place/users/user_list_provider.dart';
 
 @Component(
@@ -19,6 +19,8 @@ import 'package:share_place/users/user_list_provider.dart';
     templateUrl: 'invite_dialog_comp.html',
     styleUrls: const ['invite_dialog_comp.css'],
     directives: const [ButtonComp, RoleChooser, materialDirectives])
+
+
 class InviteUsersDialogComp implements OnInit {
   final PlaceService _placeService;
   final UserListProvider _userListProvider;
@@ -57,6 +59,7 @@ class InviteUsersDialogComp implements OnInit {
     usersWithRoles.clear();
     addUserLine();
     List<User> folderUsers =  await _placeService.inviteUsers(users, message);
+    _environment.track("invite", data:users);
     //OPTIMIZE the server returns the new list of folderUsers, we should exploit this result instead of requesting users again
   }
 

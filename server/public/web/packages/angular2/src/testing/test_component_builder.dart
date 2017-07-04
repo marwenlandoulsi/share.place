@@ -1,4 +1,5 @@
 import "dart:async";
+import "dart:html";
 
 import "package:angular2/compiler.dart" show DirectiveResolver, ViewResolver;
 import "package:angular2/core.dart"
@@ -6,18 +7,18 @@ import "package:angular2/core.dart"
         ComponentRef,
         DynamicComponentLoader,
         Injector,
-        Injectable,
         View,
         ElementRef,
         ChangeDetectorRef;
+import "package:angular2/di.dart" show Injectable;
+import 'package:angular2/platform/common_dom.dart';
 import "package:angular2/src/core/linker/app_view_utils.dart";
 import "package:angular2/src/debug/debug_node.dart"
     show DebugElement, getDebugNode;
-import "package:angular2/src/platform/dom/dom_adapter.dart" show DOM;
 import "package:angular2/src/platform/dom/dom_tokens.dart" show DOCUMENT;
+import 'package:angular2/src/platform/dom/shared_styles_host.dart';
 
 import "fake_async.dart" show tick;
-import "utils.dart" show el;
 
 /// Fixture for debugging and testing a component.
 class ComponentFixture {
@@ -89,7 +90,11 @@ class TestComponentBuilder {
   var _viewBindingsOverrides = new Map<Type, List<dynamic>>();
   var _viewOverrides = new Map<Type, View>();
 
-  TestComponentBuilder(this._injector);
+  TestComponentBuilder(this._injector) {
+    // Required because reflective tests do not create a PlatformRef.
+    sharedStylesHost ??= new DomSharedStylesHost(document);
+  }
+
   TestComponentBuilder _clone() {
     var clone = new TestComponentBuilder(_injector);
     clone._viewOverrides = new Map.from(_viewOverrides);
@@ -184,20 +189,20 @@ class TestComponentBuilder {
     _viewBindingsOverrides.forEach((type, bindings) =>
         mockDirectiveResolver.setViewBindingsOverride(type, bindings));
     var rootElId = '''root${ _nextRootElementId ++}''';
-    var rootEl = el('''<div id="${ rootElId}"></div>''');
+    var rootEl = new DivElement()..id = rootElId;
     var doc = _injector.get(DOCUMENT);
     // TODO(juliemr): can/should this be optional?
-    var oldRoots = DOM.querySelectorAll(doc, "[id^=root]");
+    var oldRoots = doc.querySelectorAll("[id^=root]");
     for (var i = 0; i < oldRoots.length; i++) {
-      DOM.remove(oldRoots[i]);
+      oldRoots[i].remove();
     }
-    DOM.appendChild(doc.body, rootEl);
+    (doc as HtmlDocument).body.append(rootEl);
     DynamicComponentLoader loader = _injector.get(DynamicComponentLoader);
     appViewUtils = _injector.get(AppViewUtils);
-    Future<ComponentRef> promise = loader.loadAsRoot(
-        rootComponentType, _injector,
-        overrideSelector: '#${rootElId}');
+    Future<ComponentRef> promise = loader.load(rootComponentType, _injector);
     return promise.then((componentRef) {
+      querySelector('#${rootElId}')
+          .append(componentRef.location.nativeElement as Element);
       return new ComponentFixture(componentRef);
     });
   }

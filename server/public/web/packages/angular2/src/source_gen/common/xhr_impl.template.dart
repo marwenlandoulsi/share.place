@@ -12,10 +12,10 @@
 import 'xhr_impl.dart';
 import 'dart:async';
 import 'package:angular2/src/compiler/xhr.dart' show XHR;
-import 'package:angular2/src/source_gen/common/url_resolver.dart';
 import 'package:build/build.dart';
+import 'url_resolver.dart';
 import 'package:angular2/src/compiler/xhr.template.dart' as i0;
-import 'package:angular2/src/source_gen/common/url_resolver.template.dart' as i1;
+import 'url_resolver.template.dart' as i1;
 export 'xhr_impl.dart';
 
 var _visited = false;

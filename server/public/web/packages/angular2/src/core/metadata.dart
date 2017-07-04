@@ -1,9 +1,9 @@
-import 'package:angular2/src/core/change_detection/change_detection.dart';
+import 'package:meta/meta.dart';
 
+import 'change_detection/change_detection.dart';
 import 'metadata/di.dart';
 import 'metadata/view.dart';
 
-export './metadata/view.dart' hide VIEW_ENCAPSULATION_VALUES;
 export 'metadata/di.dart';
 export 'metadata/lifecycle_hooks.dart'
     show
@@ -15,353 +15,38 @@ export 'metadata/lifecycle_hooks.dart'
         OnDestroy,
         OnInit,
         DoCheck;
+export 'metadata/view.dart';
 
-/// Directives allow you to attach behavior to elements in the DOM.
+/// An annotation that marks a class as an Angular directive, allowing you to
+/// attach behavior to elements in the DOM.
 ///
-/// [Directive]s with an embedded view are called [Component]s.
+/// <?code-excerpt "docs/attribute-directives/lib/highlight_directive_1.dart"?>
+/// ```dart
+/// import 'package:angular2/angular2.dart';
 ///
-/// A directive consists of a single directive annotation and a controller
-/// class. When the directive's [selector] matches elements in the DOM, the
-/// following steps occur:
-///
-/// 1. For each directive, the [ElementInjector] attempts to resolve the
-/// directive's constructor arguments.
-/// 2. Angular instantiates directives for each matched element using
-/// [ElementInjector] in a depth-first order, as declared in the HTML.
-///
-/// ## Understanding How Injection Works
-///
-/// There are three stages of injection resolution.
-///
-/// * Pre-existing Injectors:
-///
-///     - The terminal [Injector] cannot resolve dependencies. It either throws
-///       an error or, if the dependency was specified as [Optional],
-///       returns null.
-///     - The platform injector resolves browser singleton resources, such as:
-///       cookies, title, location, and others.
-///
-/// * Component Injectors: Each component instance has its own [Injector], and
-///   they follow the same parent-child hierarchy as the component instances
-///   in the DOM.
-/// * Element Injectors*: Each component instance has a Shadow DOM. Within
-///   the Shadow DOM each element has an [ElementInjector] which follow the
-///   same parent-child hierarchy as the DOM elements themselves.
-///
-/// When a template is instantiated, it also must instantiate the corresponding
-/// directives in a depth-first order. The current [ElementInjector] resolves
-/// the constructor dependencies for each directive.
-///
-/// Angular then resolves dependencies as follows, according to the order in
-/// which they appear in the [View]:
-///
-/// 1. Dependencies on the current element
-/// 2. Dependencies on element injectors and their parents until it encounters
-///    a Shadow DOM boundary
-/// 3. Dependencies on component injectors and their parents until it encounters
-///    the root component
-/// 4. Dependencies on pre-existing injectors
-///
-///
-/// The `ElementInjector` can inject other directives, element-specific special
-/// objects, or it can delegate to the parent injector.
-///
-/// To inject other directives, declare the constructor parameter as:
-///
-/// - `DirectiveType directive`: a directive on the current element only
-/// - `@Host() DirectiveType directive`: any directive that matches the type
-///   between the current element and the Shadow DOM root.
-/// - `@Query(DirectiveType) QueryList<DirectiveType> query`: A live collection
-///   of direct child directives.
-/// - `@QueryDescendants(DirectiveType) QueryList<DirectiveType> query`: A live
-///   collection of any child directives.
-///
-/// To inject element-specific special objects, declare the constructor
-/// parameter as:
-///
-/// - `ElementRef element`, to obtain a reference to logical element in the
-///   view.
-/// - `ViewContainerRef viewContainer`, to control child template instantiation,
-///   for [Directive] directives only
-/// - `BindingPropagation bindingPropagation`, to control change detection in a
-///   more granular way.
-///
-/// ### Example
-///
-/// The following example demonstrates how dependency injection resolves
-/// constructor arguments in practice.
-///
-/// Assume this HTML template:
-///
-///     <div dependency="1">
-///       <div dependency="2">
-///         <div dependency="3" my-directive>
-///           <div dependency="4">
-///             <div dependency="5"></div>
-///           </div>
-///           <div dependency="6"></div>
-///         </div>
-///       </div>
-///     </div>
-///
-/// With the following dependency decorator and [SomeService] injectable class.
-///
-///     @Injectable()
-///     class SomeService { }
-///
-///     @Directive(
-///       selector: 'dependency',
-///       inputs: [
-///         'id: dependency'
-///       ]
-///     )
-///     class Dependency {
-///       String id;
-///     }
-///
-/// Let's step through the different ways in which [MyDirective] could be
-/// declared...
-///
-/// ### No injection
-///
-/// Here the constructor is declared with no arguments, therefore nothing is
-/// injected into [MyDirective].
-///
-///     @Directive(selector: 'my-directive')
-///     class MyDirective {
-///       MyDirective();
-///     }
-///
-/// This directive would be instantiated with no dependencies.
-///
-/// ### Component-level injection
-///
-/// Directives can inject any injectable instance from the closest component
-/// injector or any of its parents.
-///
-/// Here, the constructor declares a parameter, [someService], and injects the
-/// [SomeService] type from the parent component's injector.
-///
-///     @Directive({ selector: '[my-directive]' })
-///     class MyDirective {
-///       constructor(someService: SomeService) {
-///       }
-///     }
-///
-/// This directive would be instantiated with a dependency on [SomeService].
-///
-///
-/// ### Injecting a directive from the current element
-///
-/// Directives can inject other directives declared on the current element.
-///
-///     @Directive(selector: 'my-directive')
-///     class MyDirective {
-///       MyDirective(Dependency dependency) {
-///         expect(dependency.id, 3);
-///       }
-///     }
-///
-/// This directive would be instantiated with [Dependency] declared at the same
-/// element, in this case `[dependency]="3"`.
-///
-/// ### Injecting a directive from any ancestor elements
-///
-/// Directives can inject other directives declared on any ancestor element
-/// (in the current Shadow DOM), i.e. on the current element, the parent
-/// element, or its parents.
-///
-///     @Directive(selector: 'my-directive')
-///     class MyDirective {
-///       MyDirective(@Host() Dependency dependency) {
-///         expect(dependency.id, 2);
-///       }
-///     }
-///
-/// `@Host` checks the current element, the parent, as well as its parents
-/// recursively. If `dependency="2"` didn't exist on the direct parent, this
-/// injection would have returned `dependency="1"`.
-///
-///
-/// ### Injecting a live collection of direct child directives
-///
-///
-/// A directive can also query for other child directives. Since parent
-/// directives are instantiated before child directives, a directive can't
-/// simply inject the list of child directives. Instead, the directive injects
-/// a [QueryList], which updates its contents as children are added,
-/// removed, or moved by a directive that uses a [ViewContainerRef] such as a
-/// `ngFor`, an `ngIf`, or an `ngSwitch`.
-///
-///     @Directive(selector: 'my-directive')
-///     class MyDirective {
-///       MyDirective(@Query(Dependency) QueryList<Dependency> dependencies);
-///     }
-///
-/// This directive would be instantiated with a [QueryList] which contains
-/// [Dependency] 4 and [Dependency] 6. Here, [Dependency] 5 would not be
-/// included, because it is not a direct child.
-///
-/// ### Injecting a live collection of descendant directives
-///
-/// By passing the descendant flag to `@Query` above, we can include the
-/// children of the child elements.
-///
-///     @Directive({ selector: '[my-directive]' })
-///     class MyDirective {
-///       MyDirective(@Query(Dependency, {descendants: true})
-///           QueryList<Dependency> dependencies);
+/// @Directive(selector: '[myHighlight]')
+/// class HighlightDirective {
+///   HighlightDirective(ElementRef el) {
+///     el.nativeElement.style.backgroundColor = 'yellow';
+///   }
 /// }
+/// ```
 ///
-/// This directive would be instantiated with a Query which would contain
-/// [Dependency] 4, 5 and 6.
+/// Use `@Directive` to mark a class as an Angular directive and provide
+/// additional metadata that determines how the directive should be processed,
+/// instantiated, and used at runtime.
 ///
-/// ### Optional injection
+/// In addition to the metadata configuration specified via the Directive
+/// decorator, directives can control their runtime behavior by implementing
+/// various lifecycle hooks.
 ///
-/// The normal behavior of directives is to return an error when a specified
-/// dependency cannot be resolved. If you would like to inject null on
-/// unresolved dependency instead, you can annotate that dependency with
-/// `@Optional()`. This explicitly permits the author of a template to treat
-/// some of the surrounding directives as optional.
+/// See also:
 ///
-///     @Directive(selector: 'my-directive')
-///     class MyDirective {
-///       MyDirective(@Optional() Dependency dependency);
-///     }
+/// * [Attribute Directives](https://webdev.dartlang.org/angular/guide/attribute-directives)
+/// * [Lifecycle Hooks](https://webdev.dartlang.org/angular/guide/lifecycle-hooks)
 ///
-/// This directive would be instantiated with a [Dependency] directive found on
-/// the current element. If none can be/ found, the injector supplies null
-/// instead of throwing an error.
-///
-/// ### Example
-///
-/// Here we use a decorator directive to simply define basic tool-tip behavior.
-///
-///     @Directive(
-///       selector: 'tooltip',
-///       inputs: [
-///         'text: tooltip'
-///       ],
-///       host: {
-///         '(mouseenter)': 'onMouseEnter()',
-///         '(mouseleave)': 'onMouseLeave()'
-///       }
-///     )
-///     class Tooltip{
-///       String text;
-///       Overlay overlay;
-///       OverlayManager overlayManager;
-///
-///       Tooltip(this.overlayManager);
-///
-///       onMouseEnter() {
-///         overlay = overlayManager.open(text, ...);
-///       }
-///
-///       onMouseLeave() {
-///         overlay.close();
-///         overlay = null;
-///       }
-///     }
-///
-/// In our HTML template, we can then add this behavior to a <div> or any other
-/// element with the `tooltip` selector, like so:
-///
-///     <div tooltip="some text here"></div>
-///
-/// Directives can also control the instantiation, destruction, and positioning
-/// of inline template elements:
-///
-/// A directive uses a [ViewContainerRef] to instantiate, insert, move, and
-/// destroy views at runtime.
-/// The [ViewContainerRef] is created as a result of `<template>` element,
-/// and represents a location in the current view where these actions are
-/// performed.
-///
-/// Views are always created as children of the current [ViewMeta], and as
-/// siblings of the `<template>` element. Thus a directive in a child view
-/// cannot inject the directive that created it.
-///
-/// Since directives that create views via ViewContainers are common in Angular,
-/// and using the full `<template>` element syntax is wordy, Angular
-/// also supports a shorthand notation: `<li *foo="bar">` and
-/// `<li template="foo: bar">` are equivalent.
-///
-/// Thus,
-///
-///     <ul>
-///       <li *foo="bar" title="text"></li>
-///     </ul>
-///
-/// Expands in use to:
-///
-///     <ul>
-///       <template [foo]="bar">
-///         <li title="text"></li>
-///       </template>
-///     </ul>
-///
-/// Notice that although the shorthand places `*foo="bar"` within the `<li>`
-/// element, the binding for the directive controller is correctly instantiated
-/// on the `<template>` element rather than the `<li>` element.
-///
-/// ## Lifecycle hooks
-///
-/// When the directive class implements some [lifecycle-hooks](docs/guide/lifecycle-hooks.html)
-/// the callbacks are called by the change detection at defined points in time
-/// during the life of the directive.
-///
-/// ### Example
-///
-/// Let's suppose we want to implement the `unless` behavior, to conditionally
-/// include a template.
-///
-/// Here is a simple directive that triggers on an `unless` selector:
-///
-///     @Directive(
-///       selector: 'unless',
-///       inputs: ['unless']
-///     )
-///     class Unless {
-///       ViewContainerRef viewContainer;
-///       TemplateRef templateRef;
-///       bool prevCondition;
-///
-///       Unless(this.viewContainer, this.templateRef);
-///
-///       set unless(newCondition) {
-///         if (newCondition && (prevCondition == null || !prevCondition)) {
-///           prevCondition = true;
-///           viewContainer.clear();
-///         } else if (!newCondition && (prevCondition == null ||
-///             prevCondition)) {
-///           prevCondition = false;
-///           viewContainer.create(templateRef);
-///         }
-///       }
-///     }
-///
-/// We can then use this `unless` selector in a template:
-///
-///     <ul>
-///       <li///unless="expr"></li>
-///     </ul>
-///
-/// Once the directive instantiates the child view, the shorthand notation for
-/// the template expands and the result is:
-///
-///     <ul>
-///       <template [unless]="exp">
-///         <li></li>
-///       </template>
-///       <li></li>
-///     </ul>
-///
-/// Note also that although the `<li></li>` template still exists inside the
-/// `<template></template>`, the instantiated view occurs on the second
-/// `<li></li>` which is a sibling to the `<template>` element.
 class Directive extends Injectable {
-  /// The CSS selector that triggers the instantiation of a directive.
+  /// The CSS selector that triggers the instantiation of the directive.
   ///
   /// Angular only allows directives to trigger on CSS selectors that do not
   /// cross element boundaries.
@@ -379,9 +64,8 @@ class Directive extends Injectable {
   ///
   /// ### Example
   ///
-  /// Suppose we have a directive with an `input[type=text]` selector.
-  ///
-  /// And the following HTML:
+  /// Suppose we have a directive with an `input[type=text]` selector
+  /// and the following HTML:
   ///
   /// ```html
   /// <form>
@@ -394,7 +78,7 @@ class Directive extends Injectable {
   /// element.
   final String selector;
 
-  /// Enumerates the set of data-bound input properties for a directive
+  /// The directive's data-bound input properties.
   ///
   /// Angular automatically updates input properties during change detection.
   ///
@@ -437,7 +121,7 @@ class Directive extends Injectable {
   /// ```
   final List<String> inputs;
 
-  /// Enumerates the set of event-bound output properties.
+  /// The directive's event-bound output properties.
   ///
   /// When an output property emits an event, an event handler attached to
   /// that event the template is invoked.
@@ -447,7 +131,7 @@ class Directive extends Injectable {
   ///
   /// - _directiveProperty_ specifies the component property that emits events.
   /// - _bindingProperty_ specifies the DOM property the event handler is
-  /// attached to.
+  ///   attached to.
   ///
   /// ```dart
   /// @Directive(
@@ -478,12 +162,11 @@ class Directive extends Injectable {
   /// ```
   final List<String> outputs;
 
-  /// Specify the events, actions, properties and attributes related to the host
-  /// element.
+  /// Events, actions, properties, and attributes related to the host element.
   ///
-  /// ## Host Listeners
-  /// Specifies which DOM events a directive listens to via a set of '(_event_)'
-  /// to _statement_ key-value pairs:
+  /// ## Host listeners
+  /// Specifies which DOM events the directive listens to via a set of
+  /// '(_event_)' to _statement_ key-value pairs:
   ///
   /// - _event_: the DOM event that the directive listens to
   /// - _statement_: the statement to execute when the event occurs
@@ -492,9 +175,9 @@ class Directive extends Injectable {
   /// is applied on the DOM event.
   ///
   /// To listen to global events, a target must be added to the event name.
-  /// The target can be `window`, `document` or `body`.
+  /// The target can be `window`, `document`, or `body`.
   ///
-  /// When writing a directive event binding, you can also refer to the $event
+  /// When writing a directive event binding, you can also refer to the `$event`
   /// local variable.
   ///
   /// The following example declares a directive that attaches a click listener
@@ -521,8 +204,8 @@ class Directive extends Injectable {
   /// class App {}
   /// ```
   ///
-  /// ## Host Property Bindings
-  /// Specifies which DOM properties a directive updates.
+  /// ## Host property bindings
+  /// Specifies which DOM properties the directive updates.
   ///
   /// Angular automatically checks host property bindings during change
   /// detection. If a binding changes, it will update the host element of the
@@ -577,7 +260,7 @@ class Directive extends Injectable {
   /// ```
   final Map<String, String> host;
 
-  /// Defines the set of injectable objects that are visible to a Directive and
+  /// The set of injectable objects that are visible to the directive and
   /// its light DOM children.
   ///
   /// ### Example
@@ -599,7 +282,7 @@ class Directive extends Injectable {
   /// ```
   final List providers;
 
-  /// Defines the name that can be used in the template to assign this directive
+  /// A name that can be used in the template to assign this directive
   /// to a variable.
   ///
   /// ### Example
@@ -618,7 +301,7 @@ class Directive extends Injectable {
   /// ```
   final String exportAs;
 
-  /// Configures the queries that will be injected into the directive.
+  /// The queries to be injected into the directive.
   ///
   /// Content queries are set before the [ngAfterContentInit] callback is
   /// called. View queries are set before the [ngAfterViewInit] callback is
@@ -640,7 +323,7 @@ class Directive extends Injectable {
   ///         <ng-content></ng-content>
   ///       ''',
   ///       directives: const [ChildDirective, SingleChildDirective])
-  ///     class SomeDir {
+  ///     class SomeDir implements AfterContentInit, AfterViewInit {
   ///       QueryList<ChildDirective> contentChildren;
   ///       QueryList<ChildDirective> viewChildren;
   ///       SingleChildDirective contentChild;
@@ -660,7 +343,7 @@ class Directive extends Injectable {
   final Map<String, dynamic> queries;
 
   const Directive(
-      {String selector,
+      {@required String selector,
       this.inputs,
       this.outputs,
       Map<String, String> host,
@@ -694,9 +377,11 @@ class Directive extends Injectable {
 ///
 /// ### Lifecycle hooks
 ///
-/// When the component class implements some [lifecycle-hooks](docs/guide/lifecycle-hooks.html)
+/// When the component class implements some [lifecycle-hooks][LCH]
 /// the callbacks are called by the change detection at defined points in time
 /// during the life of the component.
+///
+/// [LCH]: https://webdev.dartlang.org/angular/guide/lifecycle-hooks
 class Component extends Directive {
   /// Defines the used change detection strategy.
   ///
@@ -738,32 +423,8 @@ class Component extends Directive {
   ///     class HelloWorld {
   ///     }
   ///
-  List get viewProviders => (_viewBindings != null && _viewBindings.isNotEmpty)
-      ? this._viewBindings
-      : this._viewProviders;
+  final List viewProviders;
 
-  List get viewBindings {
-    return this.viewProviders;
-  }
-
-  final List _viewProviders;
-  final List _viewBindings;
-
-  /// The module id of the module that contains the component.
-  /// Needed to be able to resolve relative urls for templates and styles.
-  /// In Dart, this can be determined automatically and does not need to be set.
-  /// In CommonJS, this can always be set to `module.id`.
-  ///
-  /// ### Example
-  ///
-  ///     @Directive(
-  ///       selector: 'someDir',
-  ///       moduleId: module.id
-  ///     })
-  ///     class SomeDir {
-  ///     }
-  ///
-  final String moduleId;
   final String templateUrl;
   final String template;
 
@@ -781,10 +442,8 @@ class Component extends Directive {
       List<String> outputs,
       Map<String, String> host,
       String exportAs,
-      this.moduleId,
       List providers,
-      List viewBindings,
-      List viewProviders,
+      this.viewProviders,
       this.changeDetection: ChangeDetectionStrategy.Default,
       Map<String, dynamic> queries,
       this.templateUrl,
@@ -795,9 +454,7 @@ class Component extends Directive {
       this.directives,
       this.pipes,
       this.encapsulation})
-      : _viewProviders = viewProviders,
-        _viewBindings = viewBindings,
-        super(
+      : super(
             selector: selector,
             inputs: inputs,
             outputs: outputs,
@@ -808,31 +465,7 @@ class Component extends Directive {
 }
 
 /// Metadata properties available for configuring Views.
-///
-/// Each Angular component requires a single `@Component` and at least one
-/// `@View` annotation. The `@View` annotation specifies the HTML template to
-/// use, and lists the directives that are active within the template.
-///
-/// When a component is instantiated, the template is loaded into the
-/// component's shadow root, and the expressions and statements in the template
-/// are evaluated against the component.
-///
-/// For details on the `@Component` annotation, see [Component].
-///
-/// ## Example
-///
-/// ```
-/// @Component(
-///   selector: 'greet',
-///   template: 'Hello {{name}}!',
-///   directives: const [GreetUser, Bold]
-/// )
-/// class Greet {
-///   final String name;
-///
-///   Greet() : name = 'World';
-/// }
-/// ```
+@Deprecated('Move all properties into your accompanying @Component instead')
 class View {
   /// Specifies a template URL for an Angular component.
   ///
@@ -905,7 +538,11 @@ class View {
 class Pipe extends Injectable {
   final String name;
   final bool _pure;
-  const Pipe({this.name, bool pure})
+
+  /// Warning: [_PipeMetaDataVisitor.visitAnnotation] depends on this
+  /// constructor signature to generate metadata, and will require an update if
+  /// changes are made to the parameter list.
+  const Pipe(this.name, {bool pure})
       : _pure = pure,
         super();
   bool get pure => _pure ?? true;
@@ -1124,7 +761,7 @@ class ContentChildren extends Query {
 ///
 /// ```dart
 /// @Directive(selector: 'someDir')
-/// class SomeDir {
+/// class SomeDir implements AfterContentInit {
 ///   @ContentChild(ChildDirective)
 ///   Query<ChildDirective> contentChild;
 ///
@@ -1194,10 +831,10 @@ class ViewQuery extends Query {
 /// to be selected.
 ///
 /// - If the argument is a [Type], directives or components with the type will
-/// be bound.
+///   be bound.
 /// - If the argument is a [String], the string is interpreted as a list of
-/// comma-separated selectors.  For each selector, an element containing the
-/// matching template variable (e.g. `#child`) will be bound.
+///   comma-separated selectors.  For each selector, an element containing the
+///   matching template variable (e.g. `#child`) will be bound.
 ///
 /// View children are set before the `ngAfterViewInit` callback is called.
 ///
@@ -1223,11 +860,11 @@ class ViewQuery extends Query {
 ///   ''',
 ///   directives: const [ChildCmp]
 /// )
-/// class SomeCmp {
+/// class SomeCmp implements AfterViewInit {
 ///   @ViewChildren(ChildCmp)
 ///   QueryList<ChildCmp> children;
 ///
-///  @override
+///   @override
 ///   ngAfterViewInit() {
 ///     // children are set
 ///     for ( var child in children ) {
@@ -1255,7 +892,7 @@ class ViewQuery extends Query {
 ///     <child-cmp #child3></child-cmp>
 ///   ''',
 ///   directives: const [ChildCmp])
-/// class SomeCmp {
+/// class SomeCmp implements AfterViewInit {
 ///   @ViewChildren('child1, child2, child3')
 ///   QueryList<ChildCmp> children;
 ///
@@ -1276,13 +913,13 @@ class ViewChildren extends ViewQuery {
 
 /// Declares a reference to a single child element.
 ///
-/// The `ViewChildren` annotation takes an argument to select elements.
+/// The `ViewChild` annotation takes an argument to select elements.
 ///
 /// - If the argument is a [Type], a directive or a component with the type will
-/// be bound.
+///   be bound.
 /// - If the argument is a [String], the string is interpreted as a selector. An
-/// element containing the matching template variable (e.g. `#child`) will be
-/// bound.
+///   element containing the matching template variable (e.g. `#child`) will be
+///   bound.
 ///
 /// In either case, `@ViewChild()` assigns the first (looking from above)
 /// element if there are multiple matches.
@@ -1307,7 +944,7 @@ class ViewChildren extends ViewQuery {
 ///   template: '<child-cmp></child-cmp>',
 ///   directives: const [ChildCmp]
 /// )
-/// class SomeCmp {
+/// class SomeCmp implements AfterViewInit {
 ///   @ViewChild(ChildCmp)
 ///   ChildCmp child;
 ///
@@ -1335,7 +972,7 @@ class ViewChildren extends ViewQuery {
 ///   template: '<child-cmp #child></child-cmp>',
 ///   directives: const [ChildCmp]
 /// )
-/// class SomeCmp {
+/// class SomeCmp implements AfterViewInit {
 ///   @ViewChild('child')
 ///   ChildCmp child;
 ///
@@ -1503,9 +1140,9 @@ class HostBinding {
 /// class CountClicks {
 ///   int numberOfClicks = 0;
 ///
-///   @HostListener('click', const ['$event.target'])
+///   @HostListener('click', const [r'$event.target'])
 ///   void onClick(btn) {
-///     print("Button $btn, number of clicks: ${numberOfClicks++}.);
+///     print("Button $btn, number of clicks: ${numberOfClicks++}.");
 ///   }
 /// }
 ///
@@ -1519,24 +1156,6 @@ class HostListener {
   final String eventName;
   final List<String> args;
   const HostListener(this.eventName, [this.args]);
-}
-
-/// Defines an injectable whose value is given by a property on an
-/// InjectorModule class.
-///
-/// ## Example
-///
-/// ```dart
-/// @InjectorModule()
-/// class MyModule {
-///   @Provides(SomeToken)
-///   String someProp = 'Hello World';
-/// }
-/// ```
-/// @experimental
-class Provides extends ProviderProperty {
-  const Provides(dynamic token, {bool multi: false})
-      : super(token, multi: multi);
 }
 
 /// Marks a deferred import as not needing explicit angular initialization.

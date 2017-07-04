@@ -1,10 +1,7 @@
-import "package:angular2/di.dart" show PipeTransform, Pipe, Injectable;
-import "package:angular2/src/facade/intl.dart" show DateFormatter;
+import 'package:angular2/angular2.dart';
+import 'package:intl/intl.dart';
 
-import "invalid_pipe_argument_exception.dart" show InvalidPipeArgumentException;
-
-// TODO: move to a global configurable location along with other i18n components.
-String defaultLocale = "en-US";
+import 'invalid_pipe_argument_exception.dart';
 
 /// Formats a date value to a string based on the requested format.
 ///
@@ -69,7 +66,7 @@ String defaultLocale = "en-US";
 ///     {{ dateObj | date:'medium' }}    // output is 'Jun 15, 2015, 9:43:11 PM'
 ///     {{ dateObj | date:'shortTime' }} // output is '9:43 PM'
 ///     {{ dateObj | date:'mmss' }}      // output is '43:11'
-@Pipe(name: "date", pure: true)
+@Pipe("date", pure: true)
 @Injectable()
 class DatePipe implements PipeTransform {
   static final Map<String, String> _ALIASES = {
@@ -93,7 +90,7 @@ class DatePipe implements PipeTransform {
     if (DatePipe._ALIASES.containsKey(pattern)) {
       pattern = DatePipe._ALIASES[pattern];
     }
-    return DateFormatter.format(value, defaultLocale, pattern);
+    return _formatDate(value, Intl.defaultLocale, pattern);
   }
 
   bool supports(dynamic obj) {
@@ -101,4 +98,20 @@ class DatePipe implements PipeTransform {
   }
 
   const DatePipe();
+}
+
+final RegExp _multiPartRegExp = new RegExp(r'^([yMdE]+)([Hjms]+)$');
+String _normalizeLocale(String locale) => locale?.replaceAll('-', '_');
+String _formatDate(DateTime date, String locale, String pattern) {
+  locale = _normalizeLocale(locale);
+  var formatter = new DateFormat(null, locale);
+  var matches = _multiPartRegExp.firstMatch(pattern);
+  if (matches != null) {
+    // Support for patterns which have known date and time components.
+    formatter.addPattern(matches[1]);
+    formatter.addPattern(matches[2], ', ');
+  } else {
+    formatter.addPattern(pattern);
+  }
+  return formatter.format(date);
 }

@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:angular2/src/platform/server/html_adapter.dart';
 import 'package:angular2/src/transform/common/asset_reader.dart';
 import 'package:angular2/src/transform/common/names.dart';
 import 'package:angular2/src/transform/common/options.dart';
@@ -36,7 +35,6 @@ class DirectiveProcessor extends Transformer implements LazyTransformer {
 
   @override
   Future apply(Transform transform) async {
-    Html5LibDomAdapter.makeCurrent();
     return zone.exec(() async {
       var primaryId = transform.primaryInput.id;
       var reader = new AssetReader.fromTransform(transform);
@@ -47,15 +45,18 @@ class DirectiveProcessor extends Transformer implements LazyTransformer {
       transform.addOutput(new Asset.fromString(
           _ngSummaryAssetId(primaryId), _encoder.convert(ngMeta.toJson())));
 
-      var deferredCount = 0;
-      if (ngMeta.ngDeps != null) {
-        deferredCount = ngMeta.ngDeps.imports.where((i) => i.isDeferred).length;
-      }
-      if (deferredCount > 0) {
-        // The existence of this file with the value != "0" signals
-        // DeferredRewriter that the associated .dart file needs attention.
-        transform.addOutput(new Asset.fromString(
-            _deferredAssetId(primaryId), deferredCount.toString()));
+      if (!options.checkDeferredImportInitialization) {
+        var deferredCount = 0;
+        if (ngMeta.ngDeps != null) {
+          deferredCount =
+              ngMeta.ngDeps.imports.where((i) => i.isDeferred).length;
+        }
+        if (deferredCount > 0) {
+          // The existence of this file with the value != "0" signals
+          // DeferredRewriter that the associated .dart file needs attention.
+          transform.addOutput(new Asset.fromString(
+              _deferredAssetId(primaryId), deferredCount.toString()));
+        }
       }
     }, log: transform.logger);
   }

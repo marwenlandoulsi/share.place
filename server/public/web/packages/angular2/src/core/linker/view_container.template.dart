@@ -10,24 +10,27 @@
 // @ignoreProblemForFile UNUSED_SHOWN_NAME
 // @ignoreProblemForFile UNUSED_LOCAL_VARIABLE
 import 'view_container.dart';
+import 'package:angular2/src/compiler/output/dynamic_instance.dart';
 import 'package:angular2/src/core/di.dart' show Injector;
 import 'package:angular2/src/facade/exceptions.dart' show BaseException;
+import 'package:meta/meta.dart';
 import 'app_view.dart';
 import 'component_factory.dart' show ComponentFactory, ComponentRef;
 import 'element_ref.dart';
 import 'template_ref.dart';
 import 'view_container_ref.dart';
-import 'view_type.dart';
 import 'view_ref.dart' show EmbeddedViewRef, ViewRef, ViewRefImpl;
-import 'package:angular2/src/core/di.template.dart' as i0;
-import 'package:angular2/src/facade/exceptions.template.dart' as i1;
-import 'app_view.template.dart' as i2;
-import 'component_factory.template.dart' as i3;
-import 'element_ref.template.dart' as i4;
-import 'template_ref.template.dart' as i5;
-import 'view_container_ref.template.dart' as i6;
-import 'view_type.template.dart' as i7;
+import 'view_type.dart';
+import 'package:angular2/src/compiler/output/dynamic_instance.template.dart' as i0;
+import 'package:angular2/src/core/di.template.dart' as i1;
+import 'package:angular2/src/facade/exceptions.template.dart' as i2;
+import 'app_view.template.dart' as i3;
+import 'component_factory.template.dart' as i4;
+import 'element_ref.template.dart' as i5;
+import 'template_ref.template.dart' as i6;
+import 'view_container_ref.template.dart' as i7;
 import 'view_ref.template.dart' as i8;
+import 'view_type.template.dart' as i9;
 export 'view_container.dart';
 
 var _visited = false;
@@ -42,4 +45,5 @@ i5.initReflector();
 i6.initReflector();
 i7.initReflector();
 i8.initReflector();
+i9.initReflector();
 }

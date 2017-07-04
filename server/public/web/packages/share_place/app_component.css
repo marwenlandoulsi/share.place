@@ -52,7 +52,7 @@ nav a.router-link-active {
 }
 
 .logo {
-  height: 2.2em;
+  padding-top: 0.1em;
   padding-left: 0.4em;
 }
 
@@ -70,7 +70,7 @@ nav a.router-link-active {
 }
 
 .leftP {
-  background-color: #252c3f;
+  background-color: #273B54;
 }
 
 .news {
@@ -98,7 +98,8 @@ nav a.router-link-active {
   width: 100% !important;
 }
 
-.logout_chmp, .profile_chmp {
+
+.logout_chmp, .profile_chmp .search_chmp {
   position: relative;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 12px;
@@ -183,6 +184,9 @@ material-button.menuItem.profile, material-button.menuItem.logout {
 
 .imgProfil img {
   -webkit-app-region: no-drag;
+  -moz-app-region: no-drag;
+  -o-app-region: no-drag;
+  -ms-app-region: no-drag;
 }
 
 .btnHeader:hover:before {
@@ -197,6 +201,9 @@ material-button.menuItem.profile, material-button.menuItem.logout {
   background-color: #1F181F !important;
   padding: 0 !important;
   -webkit-app-region: drag;
+  -moz-app-region: drag;
+  -o-app-region: drag;
+  -ms-app-region: drag;
 }
 
 .desktopVersion {
@@ -213,3 +220,71 @@ material-button.menuItem.profile, material-button.menuItem.logout {
 .header-top .btnsWindow {
   display: inline-block !important;
 }
+
+.rightPanelinside_header {
+  text-align: right;
+  padding: 0.4em 0.5em 0;
+  width: calc(100% - 1em);
+  background: #262D40;
+  height: 2.1em;
+}
+
+.searchTop {
+  position: relative;
+  /*width: 18em;*/
+  display: inline;
+}
+
+.searchTop input {
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  -ms-border-radius: 30px;
+  border-radius: 30px;
+  border: 0;
+  color: #000;
+  font-size: 0.8em;
+  background: white;
+  background-size: 22px;
+  outline: none;
+  transition: width 1s, background-color 1s, color 1s;
+  padding: 0 2.1em;
+  height: 25px;
+  min-width: 16%;
+}
+
+.searchTop:before {
+  content: "\f1c3";
+  font: normal normal normal 2em/1 'Material-Design-Iconic-Font';
+  color: rgba(135, 146, 160, 0.6);
+  top: -1px;
+  position: absolute;
+  left: 5px;
+  font-size: 1.4em;
+}
+
+.closeSearch:after {
+  content: "\f136";
+  font: normal normal normal 2em/1 'Material-Design-Iconic-Font';
+  color: rgba(135, 146, 160, 0.6);
+  font-size: 1.1em;
+}
+
+.closeSearch {
+  top: 1px;
+  position: absolute;
+  right: 8px;
+  cursor: pointer;
+}
+
+.closeSearch:hover:after {
+  color: rgb(44, 159, 242);
+}
+
+.searchTop input.open {
+  -webkit-border-radius: 10px 10px 0 0;
+  -moz-border-radius: 10px 10px 0 0;
+  -ms-border-radius: 10px 10px 0 0;
+  border-radius: 10px 10px 0 0;
+  height: 34px;
+}
+

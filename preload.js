@@ -58,6 +58,11 @@ process.once('loaded', () => {
     showNotifcation(data.title, data.message);
   });
 
+  window.addEventListener('proxyCredentials', (data) => {
+
+    ipcRenderer.send('sendProxyCredentials', data.detail);
+  });
+
 
   function dispatchWindowEvent(detail) {
     console.log("dispatchWindowEvent", detail)
@@ -86,11 +91,6 @@ process.once('loaded', () => {
     }
   }, false);
 
-  window.addEventListener('showScroller', function (e) {
-
-    showScroll();
-  });
-
   function openFileDialogConditionally(event, label) {
     var rect = label.getBoundingClientRect();
     var isInClickableZone = false;
@@ -106,6 +106,36 @@ process.once('loaded', () => {
       event.preventDefault();
 
   }
+
+  function showSplitter() {
+    $(".leftP, .centerP").resizable(
+        {
+          autoHide: true,
+          handles: 'e',
+          resize: function(e, ui)
+          {
+            var parent = ui.element.parent();
+            //alert(parent.attr('class'));
+            var remainingSpace = parent.width() - ui.element.outerWidth(),
+                divTwo = ui.element.next(),
+                divTwoWidth = (remainingSpace - (divTwo.outerWidth() - divTwo.width()))/parent.width()*100+"%";
+            divTwo.width(divTwoWidth);
+          },
+          stop: function(e, ui)
+          {
+            var parent = ui.element.parent();
+            ui.element.css(
+                {
+                  width: ui.element.width()/parent.width()*100+"%",
+                });
+          }
+        });
+  }
+
+  window.addEventListener('showScroller', function (e) {
+    showScroll();
+    showSplitter();
+  });
 
   function showScroll() {
     jQuery('.scrollbar-macosx').scrollbar();

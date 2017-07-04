@@ -101,7 +101,7 @@ li.subjectItem.active .name {
 .name {
   font-size: 0.8em;
   color: #353535;
-  max-width: calc(100% - 11.7em);
+  max-width: calc(97% - 13em);
   word-break: break-word;
   line-height: 1;
   text-overflow: ellipsis;
@@ -313,7 +313,7 @@ span.txtskype {
 }
 
 li.subjectItem:hover {
-  background-color: #d0d3d4;
+  background-color: rgba(208, 211, 212, 0.76);
   color: white;
   text-decoration: none;
   /*border-left: 0.4em solid #d0d3d4;*/

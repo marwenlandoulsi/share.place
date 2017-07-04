@@ -25,11 +25,8 @@ class PrefixedType extends GeneratedMessage {
   BuilderInfo get info_ => _i;
   static PrefixedType create() => new PrefixedType();
   static PbList<PrefixedType> createRepeated() => new PbList<PrefixedType>();
-  static PrefixedType getDefault() {
-    if (_defaultInstance == null)
-      _defaultInstance = new _ReadonlyPrefixedType();
-    return _defaultInstance;
-  }
+  static PrefixedType getDefault() =>
+      _defaultInstance ??= new _ReadonlyPrefixedType();
 
   static PrefixedType _defaultInstance;
   static void $checkItem(PrefixedType v) {
@@ -53,7 +50,7 @@ class PrefixedType extends GeneratedMessage {
   void clearName() => clearField(2);
 }
 
-class _ReadonlyPrefixedType extends PrefixedType with ReadonlyMessageMixin {}
+class _ReadonlyPrefixedType extends PrefixedType {}
 
 class ReflectionInfoModel extends GeneratedMessage {
   static final BuilderInfo _i = new BuilderInfo('ReflectionInfoModel')
@@ -83,11 +80,8 @@ class ReflectionInfoModel extends GeneratedMessage {
   static ReflectionInfoModel create() => new ReflectionInfoModel();
   static PbList<ReflectionInfoModel> createRepeated() =>
       new PbList<ReflectionInfoModel>();
-  static ReflectionInfoModel getDefault() {
-    if (_defaultInstance == null)
-      _defaultInstance = new _ReadonlyReflectionInfoModel();
-    return _defaultInstance;
-  }
+  static ReflectionInfoModel getDefault() =>
+      _defaultInstance ??= new _ReadonlyReflectionInfoModel();
 
   static ReflectionInfoModel _defaultInstance;
   static void $checkItem(ReflectionInfoModel v) {
@@ -129,8 +123,7 @@ class ReflectionInfoModel extends GeneratedMessage {
   List<PrefixedType> get pipes => $_get(7, 8, null);
 }
 
-class _ReadonlyReflectionInfoModel extends ReflectionInfoModel
-    with ReadonlyMessageMixin {}
+class _ReadonlyReflectionInfoModel extends ReflectionInfoModel {}
 
 const PrefixedType$json = const {
   '1': 'PrefixedType',

@@ -3,16 +3,16 @@
     "1": "",
     "3": [
       {
-        "1": "dart:html",
-        "4": "html",
-        "5": false
-      },
-      {
         "1": "dart:async",
         "5": false
       },
       {
         "1": "dart:convert",
+        "5": false
+      },
+      {
+        "1": "dart:html",
+        "4": "html",
         "5": false
       },
       {
@@ -41,6 +41,10 @@
         "5": false
       },
       {
+        "1": "package:share_place/common/util.dart",
+        "5": false
+      },
+      {
         "1": "package:share_place/environment.dart",
         "5": false
       },
@@ -65,11 +69,11 @@
         "5": false
       },
       {
-        "1": "package:share_place/common/util.dart",
+        "1": "app_context_manager.dart",
         "5": false
       },
       {
-        "1": "app_context_manager.dart",
+        "1": "package:share_place/search/search_item.dart",
         "5": false
       }
     ],
@@ -113,36 +117,40 @@
         "4": "i3"
       },
       {
-        "1": "package:share_place/environment.template.dart",
+        "1": "package:share_place/common/util.template.dart",
         "4": "i4"
       },
       {
-        "1": "package:share_place/file_info.template.dart",
+        "1": "package:share_place/environment.template.dart",
         "4": "i5"
       },
       {
-        "1": "package:share_place/files/cloud_file.template.dart",
+        "1": "package:share_place/file_info.template.dart",
         "4": "i6"
       },
       {
-        "1": "package:share_place/files/file_action.template.dart",
+        "1": "package:share_place/files/cloud_file.template.dart",
         "4": "i7"
       },
       {
-        "1": "package:share_place/news/news_event.template.dart",
+        "1": "package:share_place/files/file_action.template.dart",
         "4": "i8"
       },
       {
-        "1": "package:share_place/users/user.template.dart",
+        "1": "package:share_place/news/news_event.template.dart",
         "4": "i9"
       },
       {
-        "1": "package:share_place/common/util.template.dart",
+        "1": "package:share_place/users/user.template.dart",
         "4": "i10"
       },
       {
         "1": "app_context_manager.template.dart",
         "4": "i11"
+      },
+      {
+        "1": "package:share_place/search/search_item.template.dart",
+        "4": "i12"
       }
     ]
   },

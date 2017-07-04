@@ -13,11 +13,8 @@
         "4": [
           {
             "1": "Pipe",
-            "3": [
-              {
-                "1": "name",
-                "2": "'agoDateFormat'"
-              }
+            "2": [
+              "'agoDateFormat'"
             ],
             "4": false
           }
@@ -27,48 +24,6 @@
     "6": "ago_date_format_pipe.dart"
   },
   "type": {
-    "SECOND": {
-      "class": "Identifier",
-      "name": "SECOND",
-      "moduleUrl": "asset:share_place/lib/common/format/ago_date_format_pipe.dart",
-      "prefix": null,
-      "value": null
-    },
-    "MINUTE": {
-      "class": "Identifier",
-      "name": "MINUTE",
-      "moduleUrl": "asset:share_place/lib/common/format/ago_date_format_pipe.dart",
-      "prefix": null,
-      "value": null
-    },
-    "HOUR": {
-      "class": "Identifier",
-      "name": "HOUR",
-      "moduleUrl": "asset:share_place/lib/common/format/ago_date_format_pipe.dart",
-      "prefix": null,
-      "value": null
-    },
-    "DAY": {
-      "class": "Identifier",
-      "name": "DAY",
-      "moduleUrl": "asset:share_place/lib/common/format/ago_date_format_pipe.dart",
-      "prefix": null,
-      "value": null
-    },
-    "MONTH": {
-      "class": "Identifier",
-      "name": "MONTH",
-      "moduleUrl": "asset:share_place/lib/common/format/ago_date_format_pipe.dart",
-      "prefix": null,
-      "value": null
-    },
-    "YEAR": {
-      "class": "Identifier",
-      "name": "YEAR",
-      "moduleUrl": "asset:share_place/lib/common/format/ago_date_format_pipe.dart",
-      "prefix": null,
-      "value": null
-    },
     "AgoDateFormatPipe": {
       "class": "Pipe",
       "type": {
@@ -83,6 +38,48 @@
       "name": "agoDateFormat",
       "pure": true
     },
+    "DAY": {
+      "class": "Identifier",
+      "name": "DAY",
+      "moduleUrl": "asset:share_place/lib/common/format/ago_date_format_pipe.dart",
+      "prefix": null,
+      "value": null
+    },
+    "HOUR": {
+      "class": "Identifier",
+      "name": "HOUR",
+      "moduleUrl": "asset:share_place/lib/common/format/ago_date_format_pipe.dart",
+      "prefix": null,
+      "value": null
+    },
+    "MINUTE": {
+      "class": "Identifier",
+      "name": "MINUTE",
+      "moduleUrl": "asset:share_place/lib/common/format/ago_date_format_pipe.dart",
+      "prefix": null,
+      "value": null
+    },
+    "MONTH": {
+      "class": "Identifier",
+      "name": "MONTH",
+      "moduleUrl": "asset:share_place/lib/common/format/ago_date_format_pipe.dart",
+      "prefix": null,
+      "value": null
+    },
+    "SECOND": {
+      "class": "Identifier",
+      "name": "SECOND",
+      "moduleUrl": "asset:share_place/lib/common/format/ago_date_format_pipe.dart",
+      "prefix": null,
+      "value": null
+    },
+    "YEAR": {
+      "class": "Identifier",
+      "name": "YEAR",
+      "moduleUrl": "asset:share_place/lib/common/format/ago_date_format_pipe.dart",
+      "prefix": null,
+      "value": null
+    },
     "main": {
       "class": "Identifier",
       "name": "main",
@@ -93,12 +90,12 @@
   },
   "alias": {
     "units": [
-      "YEAR",
-      "MONTH",
       "DAY",
       "HOUR",
       "MINUTE",
-      "SECOND"
+      "MONTH",
+      "SECOND",
+      "YEAR"
     ]
   }
 }

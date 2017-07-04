@@ -11,6 +11,7 @@
 // @ignoreProblemForFile UNUSED_LOCAL_VARIABLE
 import 'element_injector.dart';
 import 'package:angular2/src/core/di/injector.dart' show Injector, THROW_IF_NOT_FOUND;
+import 'package:meta/meta.dart';
 import 'app_view.dart';
 import 'package:angular2/src/core/di/injector.template.dart' as i0;
 import 'app_view.template.dart' as i1;

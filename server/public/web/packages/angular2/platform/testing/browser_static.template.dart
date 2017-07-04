@@ -12,6 +12,7 @@
 library angular2.platform.testing.browser_static.template.dart;
 
 import 'browser_static.dart';
+import 'dart:html';
 import 'package:angular2/compiler.dart' show DirectiveResolver, ViewResolver;
 import 'package:angular2/compiler.dart' show XHR;
 import 'package:angular2/core.dart' show APP_ID, NgZone, Provider, PLATFORM_COMMON_PROVIDERS, PLATFORM_INITIALIZER;
@@ -21,12 +22,11 @@ import 'package:angular2/src/mock/directive_resolver_mock.dart' show MockDirecti
 import 'package:angular2/src/mock/mock_location_strategy.dart' show MockLocationStrategy;
 import 'package:angular2/src/mock/ng_zone_mock.dart' show MockNgZone;
 import 'package:angular2/src/mock/view_resolver_mock.dart' show MockViewResolver;
-import 'package:angular2/src/platform/browser/browser_adapter.dart' show BrowserDomAdapter;
 import 'package:angular2/src/platform/browser/xhr_impl.dart' show XHRImpl;
 import 'package:angular2/src/platform/browser_common.dart' show BROWSER_APP_COMMON_PROVIDERS;
+import 'package:angular2/src/platform/dom/dom_tokens.dart' show DOCUMENT;
 import 'package:angular2/src/testing/test_component_builder.dart' show TestComponentBuilder;
-import 'package:angular2/src/testing/utils.dart' show BrowserDetection;
-import 'package:angular2/src/testing/utils.dart' show Log;
+import 'package:angular2/src/testing/utils.dart' show BrowserDetection, Log;
 import 'package:angular2/compiler.template.dart' as i0;
 import 'package:angular2/core.template.dart' as i1;
 import 'package:angular2/platform/common.template.dart' as i2;
@@ -35,9 +35,9 @@ import 'package:angular2/src/mock/directive_resolver_mock.template.dart' as i4;
 import 'package:angular2/src/mock/mock_location_strategy.template.dart' as i5;
 import 'package:angular2/src/mock/ng_zone_mock.template.dart' as i6;
 import 'package:angular2/src/mock/view_resolver_mock.template.dart' as i7;
-import 'package:angular2/src/platform/browser/browser_adapter.template.dart' as i8;
-import 'package:angular2/src/platform/browser/xhr_impl.template.dart' as i9;
-import 'package:angular2/src/platform/browser_common.template.dart' as i10;
+import 'package:angular2/src/platform/browser/xhr_impl.template.dart' as i8;
+import 'package:angular2/src/platform/browser_common.template.dart' as i9;
+import 'package:angular2/src/platform/dom/dom_tokens.template.dart' as i10;
 import 'package:angular2/src/testing/test_component_builder.template.dart' as i11;
 import 'package:angular2/src/testing/utils.template.dart' as i12;
 export 'browser_static.dart';

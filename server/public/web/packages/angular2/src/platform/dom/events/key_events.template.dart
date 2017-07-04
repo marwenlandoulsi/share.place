@@ -13,13 +13,9 @@ import 'key_events.dart';
 import 'package:angular2/src/core/reflection/reflection.dart' as _ngRef;
 import 'dart:html';
 import 'package:angular2/src/core/di.dart' show Injectable;
-import 'package:angular2/src/core/zone/ng_zone.dart' show NgZone;
-import 'package:angular2/src/platform/dom/dom_adapter.dart' show DOM;
 import 'event_manager.dart' show EventManagerPlugin;
 import 'package:angular2/src/core/di.template.dart' as i0;
-import 'package:angular2/src/core/zone/ng_zone.template.dart' as i1;
-import 'package:angular2/src/platform/dom/dom_adapter.template.dart' as i2;
-import 'event_manager.template.dart' as i3;
+import 'event_manager.template.dart' as i1;
 export 'key_events.dart';
 
 var _visited = false;
@@ -34,6 +30,4 @@ const [],
 ;
 i0.initReflector();
 i1.initReflector();
-i2.initReflector();
-i3.initReflector();
 }

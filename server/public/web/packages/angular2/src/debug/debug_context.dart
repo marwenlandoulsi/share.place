@@ -1,7 +1,7 @@
 import "package:angular2/src/core/di.dart" show Injector;
-import "package:angular2/src/core/linker/view_type.dart";
 import "package:angular2/src/core/render/api.dart" show RenderDebugInfo;
-import "package:angular2/src/debug/debug_app_view.dart";
+
+import "debug_app_view.dart";
 
 class StaticNodeDebugInfo {
   final List providerTokens;
@@ -16,9 +16,9 @@ var _EMPTY_REF_TOKENS = <String, dynamic>{};
 
 class DebugContext<T> implements RenderDebugInfo {
   DebugAppView<T> _view;
-  num _nodeIndex;
-  num _tplRow;
-  num _tplCol;
+  final num _nodeIndex;
+  final num _tplRow;
+  final num _tplCol;
 
   DebugContext(this._view, this._nodeIndex, this._tplRow, this._tplCol);
 
@@ -36,23 +36,13 @@ class DebugContext<T> implements RenderDebugInfo {
     return null;
   }
 
-  dynamic get componentRenderElement {
-    var componentView = this._view;
-    while (componentView.declarationViewContainer != null &&
-        !identical(componentView.type, ViewType.COMPONENT)) {
-      componentView = (componentView.declarationViewContainer.parentView
-          as DebugAppView<T>);
-    }
-    return componentView.declarationViewContainer?.nativeElement;
-  }
-
   Injector get injector => _view.injector(this._nodeIndex);
 
   dynamic get renderNode {
     if (_nodeIndex != null && _view.allNodes != null) {
       return _view.allNodes[this._nodeIndex];
     }
-    return null;
+    return _view.rootEl;
   }
 
   List<dynamic> get providerTokens {

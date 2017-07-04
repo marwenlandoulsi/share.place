@@ -1,4 +1,3 @@
-import "package:angular2/src/compiler/url_resolver.dart" show getUrlScheme;
 import "package:angular2/src/core/di.dart" show Injectable, Inject, Optional;
 import "package:angular2/src/core/di/decorators.dart";
 import "package:angular2/src/core/di/provider.dart" show Provider;
@@ -12,10 +11,9 @@ import "package:angular2/src/core/platform_directives_and_pipes.dart"
     show PLATFORM_DIRECTIVES, PLATFORM_PIPES;
 import "package:angular2/src/core/reflection/reflection.dart" show reflector;
 import "package:angular2/src/facade/exceptions.dart" show BaseException;
-import "package:angular2/src/facade/lang.dart" show stringify;
 
 import "compile_metadata.dart" as cpl;
-import "compiler_utils.dart" show MODULE_SUFFIX, sanitizeIdentifier;
+import "compiler_utils.dart" show sanitizeIdentifier;
 import "directive_lifecycle_reflector.dart" show hasLifecycleHook;
 import "directive_resolver.dart" show DirectiveResolver;
 import "pipe_resolver.dart" show PipeResolver;
@@ -23,14 +21,14 @@ import "view_resolver.dart" show ViewResolver;
 
 @Injectable()
 class RuntimeMetadataResolver {
-  DirectiveResolver _directiveResolver;
-  PipeResolver _pipeResolver;
-  ViewResolver _viewResolver;
-  List<Type> _platformDirectives;
-  List<Type> _platformPipes;
-  var _directiveCache = new Map<Type, cpl.CompileDirectiveMetadata>();
-  var _pipeCache = new Map<Type, cpl.CompilePipeMetadata>();
-  var _anonymousTypes = new Map<Object, num>();
+  final DirectiveResolver _directiveResolver;
+  final PipeResolver _pipeResolver;
+  final ViewResolver _viewResolver;
+  final List<Type> _platformDirectives;
+  final List<Type> _platformPipes;
+  final _directiveCache = new Map<Type, cpl.CompileDirectiveMetadata>();
+  final _pipeCache = new Map<Type, cpl.CompilePipeMetadata>();
+  final _anonymousTypes = new Map<Object, num>();
   var _anonymousTypeIndex = 0;
   RuntimeMetadataResolver(
       this._directiveResolver,
@@ -39,7 +37,7 @@ class RuntimeMetadataResolver {
       @Optional() @Inject(PLATFORM_DIRECTIVES) this._platformDirectives,
       @Optional() @Inject(PLATFORM_PIPES) this._platformPipes);
   String sanitizeTokenName(dynamic token) {
-    var identifier = stringify(token);
+    var identifier = token.toString();
     if (identifier.indexOf("(") >= 0) {
       // case: anonymous functions!
       var found = this._anonymousTypes[token];
@@ -151,7 +149,7 @@ class RuntimeMetadataResolver {
     for (var i = 0; i < directives.length; i++) {
       if (!isValidType(directives[i])) {
         throw new BaseException(
-            '''Unexpected directive value \'${ stringify ( directives [ i ] )}\' on the View of component \'${ stringify ( component )}\'''');
+            '''Unexpected directive value \'${directives[i]}\' on the View of component \'$component\'''');
       }
     }
     return directives.map((type) => this.getDirectiveMetadata(type)).toList();
@@ -163,7 +161,7 @@ class RuntimeMetadataResolver {
     for (var i = 0; i < pipes.length; i++) {
       if (!isValidType(pipes[i])) {
         throw new BaseException(
-            '''Unexpected piped value \'${ stringify ( pipes [ i ] )}\' on the View of component \'${ stringify ( component )}\'''');
+            '''Unexpected piped value \'${pipes[i]}\' on the View of component \'${component}\'''');
       }
     }
     return pipes.map((type) => this.getPipeMetadata(type)).toList();
@@ -223,7 +221,7 @@ class RuntimeMetadataResolver {
         ];
       } else {
         throw new BaseException(
-            '''Invalid provider - only instances of Provider and Type are allowed, got: ${ stringify ( provider )}''');
+            '''Invalid provider - only instances of Provider and Type are allowed, got: $provider''');
       }
     }).toList();
   }
@@ -251,7 +249,6 @@ class RuntimeMetadataResolver {
         useExisting: provider.useExisting != null
             ? this.getTokenMetadata(provider.useExisting)
             : null,
-        useProperty: provider.useProperty,
         deps: compileDeps,
         multi: provider.multi);
   }
@@ -321,14 +318,5 @@ void flattenArray(
 
 bool isValidType(Object value) => value is Type;
 
-String calcModuleUrl(Type type, Component cmpMetadata) {
-  var moduleId = cmpMetadata.moduleId;
-  if (moduleId != null) {
-    var scheme = getUrlScheme(moduleId);
-    return scheme != null && scheme.length > 0
-        ? moduleId
-        : '''package:${ moduleId}${ MODULE_SUFFIX}''';
-  } else {
-    return reflector.importUri(type);
-  }
-}
+String calcModuleUrl(Type type, Component cmpMetadata) =>
+    reflector.importUri(type);

@@ -1,7 +1,8 @@
 import "dart:async";
+import "dart:html";
 
-import "package:angular2/src/core/di.dart" show Injectable, Injector;
-import "package:angular2/src/core/linker/view_container.dart";
+import "package:angular2/src/core/di.dart" show Injectable;
+import "package:angular2/src/core/linker/app_view.dart";
 import "package:angular2/src/core/linker/component_factory.dart"
     show ComponentFactory, NgViewFactory;
 import "package:angular2/src/core/linker/component_resolver.dart"
@@ -24,6 +25,7 @@ import "style_compiler.dart"
 import "template_ast.dart" show TemplateAst;
 import "template_parser.dart" show TemplateParser;
 import "view_compiler/view_compiler.dart" show ViewCompiler;
+import 'view_compiler/view_compiler_utils.dart' show getViewFactoryName;
 import "xhr.dart" show XHR;
 
 /// An internal module of the Angular compiler that begins with component types,
@@ -32,15 +34,15 @@ import "xhr.dart" show XHR;
 @Injectable()
 class RuntimeCompiler implements ComponentResolver {
   RuntimeMetadataResolver _runtimeMetadataResolver;
-  DirectiveNormalizer _templateNormalizer;
+  final DirectiveNormalizer _templateNormalizer;
   final TemplateParser _templateParser;
   final StyleCompiler _styleCompiler;
   final ViewCompiler _viewCompiler;
   XHR _xhr;
-  Map<String, Future<String>> _styleCache = new Map<String, Future<String>>();
-  var _hostCacheKeys = new Map<Type, dynamic>();
-  var _compiledTemplateCache = new Map<dynamic, CompiledTemplate>();
-  var _compiledTemplateDone = new Map<dynamic, Future<CompiledTemplate>>();
+  final _styleCache = new Map<String, Future<String>>();
+  final _hostCacheKeys = new Map<Type, dynamic>();
+  final _compiledTemplateCache = new Map<dynamic, CompiledTemplate>();
+  final _compiledTemplateDone = new Map<dynamic, Future<CompiledTemplate>>();
 
   RuntimeCompiler(
     this._runtimeMetadataResolver,
@@ -49,11 +51,23 @@ class RuntimeCompiler implements ComponentResolver {
     this._styleCompiler,
     this._viewCompiler,
     this._xhr,
-  );
+  ) {
+    window.console.warn(
+        'Reflective mode (i.e. without using code generation) is DEPRECATED. '
+        'Ensure you are using the AngularDart transformer - in 4.0 there will '
+        'no longer be support for using dart:mirrors and the runtime compiler.'
+        '\n\n'
+        'See our skeleton app for an example: https://goo.gl/rRHqO7.');
+  }
 
   Future<ComponentFactory> resolveComponent(Type componentType) {
     CompileDirectiveMetadata compMeta =
         this._runtimeMetadataResolver.getDirectiveMetadata(componentType);
+    if (compMeta.selector == null) {
+      // Purposefully do not make this a breaking change (i.e. throw) because
+      // the reflective compiler is deprecated anyway.
+      print('WARNING: $componentType does not have a "selector" property');
+    }
     var hostCacheKey = this._hostCacheKeys[componentType];
     if (hostCacheKey == null) {
       hostCacheKey = new Object();
@@ -92,8 +106,9 @@ class RuntimeCompiler implements ComponentResolver {
                 .map((dirMeta) =>
                     this._templateNormalizer.normalizeDirective(dirMeta))
                 .toList());
-      done = Future.wait(futures).then/*<Future<CompiledTemplate>>*/(
-          (List<dynamic> stylesAndNormalizedViewDirMetas) {
+      done = Future
+          .wait(futures)
+          .then((List<dynamic> stylesAndNormalizedViewDirMetas) {
         _ResolvedStyles resolvedStyles = stylesAndNormalizedViewDirMetas[0];
         var normalizedViewDirMetas = stylesAndNormalizedViewDirMetas.sublist(1)
             as List<CompileDirectiveMetadata>;
@@ -135,7 +150,7 @@ class RuntimeCompiler implements ComponentResolver {
         parsedTemplate,
         stylesCompileResult,
         new ir.ExternalExpr(new CompileIdentifierMetadata(runtime: styles)),
-        pipes);
+        pipes, {});
     compileResult.dependencies.forEach((dep) {
       var childCompilingComponentsPath = new List.from(compilingComponentsPath);
       var childCacheKey = dep.comp.type.runtime;
@@ -154,7 +169,7 @@ class RuntimeCompiler implements ComponentResolver {
       // proxyViewFactory that will forward calls correctly after
       // initialization.
       dep.factoryPlaceholder.runtime = childComp.proxyViewFactory;
-      dep.factoryPlaceholder.name = 'viewFactory_${dep.comp.type.name}';
+      dep.factoryPlaceholder.name = getViewFactoryName(dep.comp);
       if (!childIsRecursive) {
         // Only wait for a child if it is not a cycle
         childPromises.add(this._compiledTemplateDone[childCacheKey]);
@@ -223,8 +238,8 @@ class CompiledTemplate {
   NgViewFactory proxyViewFactory;
 
   CompiledTemplate() {
-    proxyViewFactory = (Injector childInjector, ViewContainer contextEl) =>
-        viewFactory(childInjector, contextEl);
+    proxyViewFactory = (AppView parentView, int parentIndex) =>
+        viewFactory(parentView, parentIndex);
   }
   void init(NgViewFactory factory) {
     viewFactory = factory;

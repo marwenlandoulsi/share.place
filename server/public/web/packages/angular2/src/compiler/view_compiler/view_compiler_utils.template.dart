@@ -10,16 +10,18 @@
 // @ignoreProblemForFile UNUSED_SHOWN_NAME
 // @ignoreProblemForFile UNUSED_LOCAL_VARIABLE
 import 'view_compiler_utils.dart';
+import 'package:angular2/src/core/linker/view_type.dart';
 import 'package:angular2/src/facade/exceptions.dart' show BaseException;
 import '../compile_metadata.dart' show CompileTokenMetadata, CompileDirectiveMetadata, CompileIdentifierMetadata;
 import '../identifiers.dart' show Identifiers;
 import '../output/output_ast.dart' as o;
 import 'compile_view.dart' show CompileView;
-import 'package:angular2/src/facade/exceptions.template.dart' as i0;
-import '../compile_metadata.template.dart' as i1;
-import '../identifiers.template.dart' as i2;
-import '../output/output_ast.template.dart' as i3;
-import 'compile_view.template.dart' as i4;
+import 'package:angular2/src/core/linker/view_type.template.dart' as i0;
+import 'package:angular2/src/facade/exceptions.template.dart' as i1;
+import '../compile_metadata.template.dart' as i2;
+import '../identifiers.template.dart' as i3;
+import '../output/output_ast.template.dart' as i4;
+import 'compile_view.template.dart' as i5;
 export 'view_compiler_utils.dart';
 
 var _visited = false;
@@ -30,4 +32,5 @@ i1.initReflector();
 i2.initReflector();
 i3.initReflector();
 i4.initReflector();
+i5.initReflector();
 }

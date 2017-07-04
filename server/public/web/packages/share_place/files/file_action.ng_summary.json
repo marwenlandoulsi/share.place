@@ -1,9 +1,9 @@
 {
   "ngDeps": null,
   "type": {
-    "FileAction": {
+    "ActionType": {
       "class": "Identifier",
-      "name": "FileAction",
+      "name": "ActionType",
       "moduleUrl": "asset:share_place/lib/files/file_action.dart",
       "prefix": null,
       "value": null
@@ -15,9 +15,9 @@
       "prefix": null,
       "value": null
     },
-    "ActionType": {
+    "FileAction": {
       "class": "Identifier",
-      "name": "ActionType",
+      "name": "FileAction",
       "moduleUrl": "asset:share_place/lib/files/file_action.dart",
       "prefix": null,
       "value": null

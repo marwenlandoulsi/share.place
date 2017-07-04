@@ -22,7 +22,7 @@ void initReflector() {
 if (_visited) return; _visited = true;
 _ngRef.reflector
 ..registerType(UpperCasePipe, new _ngRef.ReflectionInfo(
-const <dynamic>[const Pipe(name: "uppercase"), const Injectable()],
+const <dynamic>[const Pipe("uppercase"), const Injectable()],
 const [],
 () => new UpperCasePipe(),
 const <dynamic>[PipeTransform])

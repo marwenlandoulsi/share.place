@@ -1,14 +1,14 @@
-import "package:angular2/di.dart" show Injectable;
+import 'package:angular2/di.dart' show Injectable;
 
-import "directives/validators.dart";
-import "model.dart" as model_module;
+import 'directives/validators.dart';
+import 'model.dart' as model_module;
 
 /// Creates a form object from a user-specified configuration.
 ///
 /// ```dart
 /// @Component(
 ///   selector: 'my-app',
-///   viewBindings: const [FORM_BINDINGS]
+///   viewProviders: const [FORM_BINDINGS]
 ///   template: '''
 ///     <form [ngFormModel]="loginForm">
 ///       <p>Login <input ngControl="login"></p>
@@ -26,18 +26,19 @@ import "model.dart" as model_module;
 /// class App {
 ///   ControlGroup loginForm;
 ///
-///   App(FormBuilder builder) {
-///     this.loginForm = builder.group({
+///   App() {
+///     final builder = new FormBuilder();
+///     loginForm = builder.group({
 ///       "login": ["", Validators.required],
 ///       "passwordRetry": builder.group({
 ///         "password": ["", Validators.required],
-///         "passwordConfirmation": ["", Validators.required, asyncValidator]
+///         "passwordConfirmation": ["", Validators.required]
 ///       })
 ///     });
 ///   }
 ///
 ///   String get value {
-///     return JSON.encode(this.loginForm.value);
+///     return JSON.encode(loginForm.value);
 ///   }
 /// }
 /// ```
@@ -49,37 +50,32 @@ class FormBuilder {
   /// See the [ControlGroup] constructor for more details.
   model_module.ControlGroup group(Map<String, dynamic> controlsConfig,
       [Map<String, dynamic> extra = null]) {
-    var controls = this._reduceControls(controlsConfig);
+    var controls = _reduceControls(controlsConfig);
     var optionals =
         ((extra != null ? extra['optionals'] : null) as Map<String, bool>);
     ValidatorFn validator =
         extra != null ? extra['validator'] as ValidatorFn : null;
-    AsyncValidatorFn asyncValidator =
-        extra != null ? extra['asyncValidator'] as AsyncValidatorFn : null;
-    return new model_module.ControlGroup(
-        controls, optionals, validator, asyncValidator);
+    return new model_module.ControlGroup(controls, optionals, validator);
   }
 
-  /// Construct a new [Control] with the given [value], [validator], and
-  /// [asyncValidator].
-  model_module.Control control(Object value,
-      [ValidatorFn validator = null, AsyncValidatorFn asyncValidator = null]) {
-    return new model_module.Control(value, validator, asyncValidator);
+  /// Construct a new [Control] with the given [value], and [validator].
+  model_module.Control control(Object value, [ValidatorFn validator = null]) {
+    return new model_module.Control(value, validator);
   }
 
   /// Construct an array of [Control]s from the given [controlsConfig] array of
-  /// configuration, with the given optional [validator] and [asyncValidator].
+  /// configuration, with the given optional [validator].
   model_module.ControlArray array(List<dynamic> controlsConfig,
-      [ValidatorFn validator = null, AsyncValidatorFn asyncValidator = null]) {
-    var controls = controlsConfig.map((c) => this._createControl(c)).toList();
-    return new model_module.ControlArray(controls, validator, asyncValidator);
+      [ValidatorFn validator = null]) {
+    var controls = controlsConfig.map((c) => _createControl(c)).toList();
+    return new model_module.ControlArray(controls, validator);
   }
 
   Map<String, model_module.AbstractControl> _reduceControls(
       Map<String, dynamic> controlsConfig) {
     Map<String, model_module.AbstractControl> controls = {};
     controlsConfig.forEach((String controlName, dynamic controlConfig) {
-      controls[controlName] = this._createControl(controlConfig);
+      controls[controlName] = _createControl(controlConfig);
     });
     return controls;
   }
@@ -93,12 +89,9 @@ class FormBuilder {
       var value = controlConfig[0];
       ValidatorFn validator =
           controlConfig.length > 1 ? controlConfig[1] as ValidatorFn : null;
-      AsyncValidatorFn asyncValidator = controlConfig.length > 2
-          ? controlConfig[2] as AsyncValidatorFn
-          : null;
-      return this.control(value, validator, asyncValidator);
+      return control(value, validator);
     } else {
-      return this.control(controlConfig);
+      return control(controlConfig);
     }
   }
 }
