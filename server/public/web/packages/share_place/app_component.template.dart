@@ -368,7 +368,7 @@ class ViewAppComponent0 extends AppView<import2.AppComponent> {
     _el_17 = createAndAppend(doc,'label',_el_12);
     _el_17.className = 'desktopVersion';
     addShimE(_el_17);
-    Text _text_18 = new Text('QA V0.1.16');
+    Text _text_18 = new Text('0.1.16');
     _el_17.append(_text_18);
     Text _text_19 = new Text('\n        ');
     _el_12.append(_text_19);
