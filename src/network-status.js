@@ -29,7 +29,7 @@ module.exports.checkInternetConnection = (options, cb)=>{
           log.error('Bad Status, DNS failure : ', status);
           return cb(false);
         }else{
-          log.info('connection to '+ options.hostname + ' : ok');
+          log.info('connection to '+ options + ' : ok');
           return cb(true);
         }
       })
