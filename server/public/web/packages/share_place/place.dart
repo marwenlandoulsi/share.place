@@ -3,6 +3,10 @@ class Place {
   int parentId;
   String name;
   String fullPath;
+  /*
+  * Holds the notification count
+  */
+  int notificationCount = 0;
 
   Place(this._id, this.name);
 

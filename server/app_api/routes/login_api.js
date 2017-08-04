@@ -42,6 +42,9 @@ var upload = multer({
 })
 var proxy = require('../controllers/proxy');
 var lastLoginUserFIle = constants.lastLoginFileData;
+const FormData = require('form-data')
+const net = require(path.join(__dirname, '..', '..', 'local_module', 'request'))
+
 // normal routes ===============================================================
 
 // show the home page (will also have our login links)
@@ -67,6 +70,8 @@ router.get('/logout', function (req, res) {
   req.logout();
   global.executeSync = false;
   var deleteUser = {};
+  global.user = null
+  global.cookieReceived = null
   jsonfile.writeFileSync(lastLoginUserFIle, deleteUser);
   //globalService.sendError(res, 401, {error: "user logged out"});
   res.redirect(conf.onLoginRedirect)
@@ -198,11 +203,22 @@ router.post('/login', passport.authenticate('local-login', {
 // edit profile ---------------------------------
 router.post('/profile/edit', isLoggedIn, (req, res, next) => {
 
+  const reqParams = {
+    name: req.body.name,
+    skype: req.body.skype,
+    picture: req.body.data,
+    email: req.body.email,
+    password: req.body.password,
+    passwordNew: req.body.passwordNew,
+    url: req.url
+  }
   if (global.onLine) {
-    editProfile(req, res, (err, user) => {
+    editProfile(reqParams, (err, user) => {
       if (err) {
-        log.error("error to edit user")
-        globalService.sendError(res, err.statusCode, err.message);
+        if (err.errorFromServer)
+          return globalService.sendError(res, err.statusCode, err.errorFromServer.error, err.errorFromServer.errorDetail)
+        else
+          return globalService.sendError(res, err.statusCode, err.message)
       }
 
       globalService.sendJsonResponse(res, 201, user);
@@ -278,38 +294,56 @@ router.get('/user/photo/:size', function (req, res) {
       globalService.checkPathOrCreateSync(pathToUserPictureDir, pathToUserPicture)
 
       var file = fs.createWriteStream(pathToUserPicture);
-      if (global.isProxy) {
-        if (global.userProxy) {
-          var proxyUrl = "http://" + global.userProxy + ":" + global.pswProxy + "@" + global.proxyUrl;
-          var proxiedRequest = request.defaults({'proxy': proxyUrl});
-          request = proxiedRequest;
-        }
-      }
+      // if (global.isProxy) {
+      //   if (global.userProxy) {
+      //     var proxyUrl = "http://" + global.userProxy + ":" + global.pswProxy + "@" + global.proxyUrl;
+      //     var proxiedRequest = request.defaults({'proxy': proxyUrl});
+      //     request = proxiedRequest;
+      //   }
+      // }
       var options = {
-        url: conf.optionsGetFromAuthReq.url + url,
+        //url: conf.optionsGetFromAuthReq.url + url,
 
         method: conf.optionsGetFromAuthReq.method,
         headers: {
           'Cookie': global.cookieReceived
         },
-        agent: agent
+        // agent: agent
       };
 
-      request(options)
-          .on('response', function (response) {
-            var stream = response.pipe(file);
-            stream.on('finish', function () {
-              readFile(res, pathToUserPicture);
-            });
-          })
-          .on('error', function (err) {
-            log.error("error to download profile picture", err);
+      // request(options)
+      //     .on('response', function (response) {
+      //       var stream = response.pipe(file);
+      //       stream.on('finish', function () {
+      //         readFile(res, pathToUserPicture);
+      //       });
+      //     })
+      //     .on('error', function (err) {
+      //       log.error("error to download profile picture", err);
+      //
+      //       if (fs.existsSync(pathToUserPicture))
+      //         readFile(res, pathToUserPicture);
+      //
+      //       readFile(res, constants.defaultPicture);
+      //     })
 
-            if (fs.existsSync(pathToUserPicture))
-              readFile(res, pathToUserPicture);
 
-            readFile(res, constants.defaultPicture);
-          })
+      net.getResFromRemote(conf.optionsGetFromAuthReq.url + url, options, (err, response) => {
+        if (err) {
+          log.error("error to download profile picture", err);
+
+          if (fs.existsSync(pathToUserPicture))
+            readFile(res, pathToUserPicture);
+
+          readFile(res, constants.defaultPicture);
+        }
+
+        var stream = response.body.pipe(file);
+
+        stream.on('finish', function () {
+          readFile(res, pathToUserPicture);
+        });
+      })
       /* var request = http.get(options, function (response) {
        var stream = response.pipe(file);
        stream.on('finish', function () {
@@ -336,7 +370,7 @@ router.get('/user/photo/:size', function (req, res) {
   }
 });
 // sends the image we saved by userId.
-router.get('/user/photo/:size/:userId', function (req, res) {
+router.get('/user/photo/:size/:userId/picture.x', function (req, res) {
   var url = req.url;
   var pathToUserPicture = path.join(constants.dataDir, url, 'logo-profile.png');
   var pathToUserPictureDir = path.join(constants.dataDir, url);
@@ -350,38 +384,56 @@ router.get('/user/photo/:size/:userId', function (req, res) {
 
     var file = fs.createWriteStream(pathToUserPicture);
 
-    if (global.isProxy) {
-      if (global.userProxy) {
-        var proxyUrl = "http://" + global.userProxy + ":" + global.pswProxy + "@" + global.proxyUrl;
-        var proxiedRequest = request.defaults({'proxy': proxyUrl});
-        request = proxiedRequest;
-      }
-    }
+    // if (global.isProxy) {
+    //   if (global.userProxy) {
+    //     var proxyUrl = "http://" + global.userProxy + ":" + global.pswProxy + "@" + global.proxyUrl;
+    //     var proxiedRequest = request.defaults({'proxy': proxyUrl});
+    //     request = proxiedRequest;
+    //   }
+    // }
     var options = {
-      url: conf.optionsGetFromAuthReq.url + url,
+      //url: conf.optionsGetFromAuthReq.url + url,
 
       method: conf.optionsGetFromAuthReq.method,
       headers: {
         'Cookie': global.cookieReceived
       },
-      agent: agent
+      //  agent: agent
     };
 
-    request(options)
-        .on('response', function (response) {
-          var stream = response.pipe(file);
-          stream.on('finish', function () {
-            readFile(res, pathToUserPicture);
-          });
-        })
-        .on('error', function (err) {
-          log.error("error to download profile picture", err);
 
-          if (fs.existsSync(pathToUserPicture))
-            readFile(res, pathToUserPicture);
+    net.getResFromRemote(conf.optionsGetFromAuthReq.url + url, options, (err, response) => {
+      if (err) {
+        log.error("error to download profile picture", err);
 
-          readFile(res, constants.defaultPicture);
-        })
+        if (fs.existsSync(pathToUserPicture))
+          readFile(res, pathToUserPicture);
+
+        readFile(res, constants.defaultPicture);
+      }
+
+      var stream = response.body.pipe(file);
+
+      stream.on('finish', function () {
+        readFile(res, pathToUserPicture);
+      });
+    })
+
+    // request(options)
+    //     .on('response', function (response) {
+    //       var stream = response.pipe(file);
+    //       stream.on('finish', function () {
+    //         readFile(res, pathToUserPicture);
+    //       });
+    //     })
+    //     .on('error', function (err) {
+    //       log.error("error to download profile picture", err);
+    //
+    //       if (fs.existsSync(pathToUserPicture))
+    //         readFile(res, pathToUserPicture);
+    //
+    //       readFile(res, constants.defaultPicture);
+    //     })
   } else {
     if (fs.existsSync(pathToUserPicture)) {
       readFile(res, pathToUserPicture);
@@ -423,6 +475,7 @@ router.post('/forgot_pass', (req, res, next) => {
       globalService.sendJsonResponse(res, 201, "", data);
 
     })
+
   } else {
     proxy.dialogBox("info", "Share.place", "sorry you are offline you can't reset your password")
   }
@@ -432,65 +485,76 @@ router.post('/forgot_pass', (req, res, next) => {
 router.get('/gridfs/file/:fileId/picture.x', (req, res) => {
 
   let url = req.url
-
-
-
-  if (global.isProxy) {
-    if (global.userProxy) {
-      var proxyUrl = "http://" + global.userProxy + ":" + global.pswProxy + "@" + global.proxyUrl;
-      var proxiedRequest = request.defaults({'proxy': proxyUrl});
-      request = proxiedRequest;
-    }
-  }
+  var pathToUserPicture = path.join(constants.dataDir, url, 'logo-profile.png');
+  var pathToUserPictureDir = path.join(constants.dataDir, url);
   var options = {
-    url: conf.optionsGetFromAuthReq.url + url,
-
     method: conf.optionsGetFromAuthReq.method,
     headers: {
       'Cookie': global.cookieReceived
     },
-    agent: agent
+    // agent: agent
   };
+  if(global.onLine){
+    globalService.checkPathOrCreateSync(pathToUserPictureDir, pathToUserPicture)
 
-  return request(options).pipe(res)
+    var file = fs.createWriteStream(pathToUserPicture);
 
 
-  /*if (req.file) {
-   var pathToFile = path.join(__dirname, '..', '..', 'tmp', 'upload', req.file.filename);
-   form.append('filename', fs.createReadStream(path.join(__dirname, '..', '..', 'tmp', 'upload', req.file.filename)),
-   {
-   filename: req.file.originalname,
-   contentType: req.file.mimeType
-   });
-   }*/
+    net.getResFromRemote(conf.optionsGetFromAuthReq.url + url, options, (err, response) => {
+      if (err) {
+        log.error("error to download profile picture", err);
+
+        if (fs.existsSync(pathToUserPicture))
+          readFile(res, pathToUserPicture);
+
+        readFile(res, constants.defaultPicture);
+      }
+
+      var stream = response.body.pipe(file);
+
+      stream.on('finish', function () {
+        readFile(res, pathToUserPicture);
+      });
+
+
+    })
+
+  }
 
 });
 
 // sends the image we saved by userId   ---------------------------------
 router.get('/gridfs/file/', (req, res) => {
   let url = req.url
-  if (global.isProxy) {
-    if (global.userProxy) {
-      var proxyUrl = "http://" + global.userProxy + ":" + global.pswProxy + "@" + global.proxyUrl;
-      var proxiedRequest = request.defaults({'proxy': proxyUrl});
-      request = proxiedRequest;
-    }
-  }
+  /*if (global.isProxy) {
+   if (global.userProxy) {
+   var proxyUrl = "http://" + global.userProxy + ":" + global.pswProxy + "@" + global.proxyUrl;
+   var proxiedRequest = request.defaults({'proxy': proxyUrl});
+   request = proxiedRequest;
+   }
+   }*/
   var options = {
-    url: conf.optionsGetFromAuthReq.url + url,
+    //url: conf.optionsGetFromAuthReq.url + url,
 
     method: conf.optionsGetFromAuthReq.method,
     headers: {
       'Cookie': global.cookieReceived
     },
-    agent: agent
+    //agent: agent
   };
-  return request(options)
-      .on('response', function (response) {
-        console.log(response.statusCode) // 200
-        console.log(response.headers['content-type']) // 'image/png'
-      })
-      .pipe(res)
+  net.getResFromRemote(conf.optionsGetFromAuthReq.url + url, options, (err, response) => {
+    if (err)
+      globalService.sendError(res, err.statusCode, err.message)
+
+    response.body.pipe(res)
+  })
+  /*
+   return request(options)
+   .on('response', function (response) {
+   console.log(response.statusCode) // 200
+   console.log(response.headers['content-type']) // 'image/png'
+   })
+   .pipe(res)*/
 });
 
 router.post('/profile/uploadImageBase64', function (req, res, next) {
@@ -501,7 +565,7 @@ router.post('/profile/uploadImageBase64', function (req, res, next) {
 
   let form = {};
 
-  if(!_.isEmpty(profilePicture)){
+  if (!_.isEmpty(profilePicture)) {
     form.data = profilePicture
   }
 
@@ -533,7 +597,7 @@ router.post('/profile/uploadImageBase64', function (req, res, next) {
       var user = JSON.parse(body).data;
 
       return globalService.sendJsonResponse(res, resp.statusCode, user)
-    }else{
+    } else {
 
       var error = JSON.parse(body).error;
       return globalService.sendJsonResponse(res, resp.statusCode, error)
@@ -682,101 +746,169 @@ var readFile = function (res, iconPath) {
     }
   });
 };
-var editProfile = function (req, res, cb) {
+var editProfile = function (reqParams, cb) {
 
   // Configure the request
-  let url = req.url;
-  let headers = {
+  let url = reqParams.url;
+
+
+  const form = new FormData()
+  // const dataToPost = {}
+  // if (reqParams.picture) {
+  //   form.append('data', reqParams.picture);
+  //   dataToPost.data = reqParams.picture
+  // }
+  //
+  // if (reqParams.email) {
+  //   form.append('email', reqParams.email);
+  //   dataToPost.email = reqParams.email
+  // }
+  //
+  //
+  // if (reqParams.password) {
+  //   form.append('password', reqParams.password);
+  //   dataToPost.password = reqParams.password
+  // }
+  //
+  //
+  // if (reqParams.name) {
+  //   form.append('name', reqParams.name);
+  //   dataToPost.name = reqParams.name
+  // }
+  //
+
+  // if (reqParams.skype) {
+  //   form.append('skype', reqParams.skype);
+  //   dataToPost.skype = reqParams.skype
+  // }
+  //
+  // if (reqParams.passwordNew) {
+  //   form.append('passwordNew', reqParams.passwordNew);
+  //   dataToPost.passwordNew = reqParams.passwordNew
+  // }
+  //
+  //
+  // // let headers = form.getHeaders()
+  // let headers =  {
+  //   'Cookie': global.cookieReceived,
+  // }
+  //
+  // let reqOptions = {
+  //   method: "POST",
+  //   body: form
+  //   //headers: headers
+  // }
+
+  const body = {
+    name: reqParams.name,
+    passwordNew: reqParams.passwordNew,
+    skype: reqParams.skype,
+    password: reqParams.password,
+    email: reqParams.email,
+    data: reqParams.picture
+  }
+
+  const headers = {
+    'Content-Type': 'application/json',
     'Cookie': global.cookieReceived
   }
-
-
-// Configure the request
-  if (req.file) {
-    let options = {
-      agent: agent,
-      url: constants.urlLoginProxy + url,
-      headers: headers,
-    }
-    var pathToFile = null;
-// Start the request
-    let r = request.post(options, function (error, response, body) {
-
-      if (error) {
-        log.error("error to edit user", error.message);
-        return cb(error)
-      }
-
-
-      if (!error && (response.statusCode == 200 || response.statusCode == 201)) {
-        // Print out the response body
-        var user = JSON.parse(body).data;
-
-        if (pathToFile) {
-          fs.unlink(pathToFile, function (err) {
-            if (err)
-              log.error('err  delete from tmp', err);
-
-
-          });
-        }
-
-        return cb(null, user);
-      } else {
-        var err = new Error();
-        err.status = response.statusCode;
-        err.message = JSON.parse(body).error;
-        return cb(err);
-      }
-    });
-
-    let form = r.form();
-    if (req.file) {
-      pathToFile = path.join(__dirname, '..', '..', 'tmp', 'upload', req.file.filename);
-      form.append('avatar', fs.createReadStream(path.join(__dirname, '..', '..', 'tmp', 'upload', req.file.filename)),
-          {
-            filename: req.file.originalname,
-            contentType: req.file.mimeType
-          });
-    }
-  } else {
-    let options = {
-      agent: agent,
-      url: constants.urlLoginProxy + url,
-      headers: headers,
-      form: req.body
-    }
-    request.post(options, function (error, response, body) {
-
-      if (error) {
-        log.error("error to edit user", error.message);
-        return cb(error)
-      }
-
-
-      if (!error && (response.statusCode == 200 || response.statusCode == 201)) {
-        // Print out the response body
-        var user = JSON.parse(body).data;
-
-        if (pathToFile) {
-          fs.unlink(pathToFile, function (err) {
-            if (err)
-              log.error('err  delete from tmp', err);
-
-
-          });
-        }
-
-        return cb(null, user);
-      } else {
-        var err = new Error();
-        err.status = response.statusCode;
-        err.message = JSON.parse(body).error;
-        return cb(err);
-      }
-    })
+  let reqOptions = {
+    method: 'POST',
+    body: JSON.stringify(body),
+    headers: headers
   }
+  net.requestUrl(constants.urlLoginProxy + url, reqOptions, (err, toReturn) => {
+    if (err)
+      return cb(err)
 
+    return cb(null, toReturn.data)
+  })
+// Configure the request
+//   if (req.file) {
+//     let options = {
+//       agent: agent,
+//       url: constants.urlLoginProxy + url,
+//       headers: headers,
+//     }
+//     var pathToFile = null;
+// // Start the request
+//     let r = request.post(options, function (error, response, body) {
+//
+//       if (error) {
+//         log.error("error to edit user", error.message);
+//         return cb(error)
+//       }
+//
+//
+//       if (!error && (response.statusCode == 200 || response.statusCode == 201)) {
+//         // Print out the response body
+//         var user = JSON.parse(body).data;
+//
+//         if (pathToFile) {
+//           fs.unlink(pathToFile, function (err) {
+//             if (err)
+//               log.error('err  delete from tmp', err);
+//
+//
+//           });
+//         }
+//
+//         return cb(null, user);
+//       } else {
+//         var err = new Error();
+//         err.status = response.statusCode;
+//         err.message = JSON.parse(body).error;
+//         return cb(err);
+//       }
+//     });
+//
+//     let form = r.form();
+//     if (req.file) {
+//       pathToFile = path.join(__dirname, '..', '..', 'tmp', 'upload', req.file.filename);
+//       form.append('avatar', fs.createReadStream(path.join(__dirname, '..', '..', 'tmp', 'upload', req.file.filename)),
+//           {
+//             filename: req.file.originalname,
+//             contentType: req.file.mimeType
+//           });
+//     }
+//   } else {
+//     let options = {
+//       agent: agent,
+//       url: constants.urlLoginProxy + url,
+//       headers: headers,
+//       form: req.body
+//     }
+//     request.post(options, function (error, response, body) {
+//
+//       if (error) {
+//         log.error("error to edit user", error.message);
+//         return cb(error)
+//       }
+//
+//
+//       if (!error && (response.statusCode == 200 || response.statusCode == 201)) {
+//         // Print out the response body
+//         var user = JSON.parse(body).data;
+//
+//         if (pathToFile) {
+//           fs.unlink(pathToFile, function (err) {
+//             if (err)
+//               log.error('err  delete from tmp', err);
+//
+//
+//           });
+//         }
+//
+//         return cb(null, user);
+//       } else {
+//         var err = new Error();
+//         err.status = response.statusCode;
+//         err.message = JSON.parse(body).error;
+//         return cb(err);
+//       }
+//     })
+//   }
+//
 
 }
 var forgotPassword = function (req, res, cb) {
@@ -786,34 +918,56 @@ var forgotPassword = function (req, res, cb) {
 
 // Configure the request
 
-  let options = {
-    agent: agent,
-    url: constants.urlLoginProxy + url,
-    form: req.body
+  // let options = {
+  //   agent: agent,
+  //   url: constants.urlLoginProxy + url,
+  //   form: req.body
+  // }
+  // request.post(options, function (error, response, body) {
+  //
+  //   if (error) {
+  //     log.error("error to reset password")
+  //     return cb(error)
+  //   }
+  //
+  //
+  //   if (!error && (response.statusCode == 200 || response.statusCode == 201)) {
+  //     // Print out the response body
+  //
+  //     let data = JSON.parse(body).msg;
+  //     return cb(null, data);
+  //   } else {
+  //
+  //     var err = new Error();
+  //     err.status = response.statusCode;
+  //     err.message = JSON.parse(body).error;
+  //     log.error("error to reset password", err.message);
+  //     return cb(err);
+  //   }
+  // })
+  let headers = {
+    'Content-Type': 'application/json',
   }
-  request.post(options, function (error, response, body) {
+// Configure the request
+  let options = {
+    url: constants.urlLoginProxy +url,
+    method: constants.optionsPost.method,
+    headers: headers,
+    json: req.body
+  }
 
-    if (error) {
-      log.error("error to reset password")
-      return cb(error)
-    }
+// Start the request
 
-
-    if (!error && (response.statusCode == 200 || response.statusCode == 201)) {
-      // Print out the response body
-
-      let data = JSON.parse(body).msg;
-      return cb(null, data);
-    } else {
-
-      var err = new Error();
-      err.status = response.statusCode;
-      err.message = JSON.parse(body).error;
-      log.error("error to reset password", err.message);
+  globalService.requestRemoteServer(options, (err, toReturn) => {
+    if (err)
       return cb(err);
-    }
-  })
 
+    if (toReturn.error)
+      return cb({errFromServer: toReturn})
+
+
+    return cb(null, toReturn.msg);
+  })
 
 }
 

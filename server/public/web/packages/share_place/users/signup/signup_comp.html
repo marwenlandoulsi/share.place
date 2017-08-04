@@ -1,28 +1,34 @@
 <div class="signup" id="signup">
   <div class="header">
     <div class="top">
-      <div class="signuptext">Signup</div>
+      <div class="welcome">
+        <div class="logo_intro"><img src="/images/logo_intro.png"></div>
+        <span class="signuptext">Welcome to Share.Place</span>
+      </div>
+
       <div class="close" (click)="close()"></div>
     </div>
-    <form id="signupForm" #upload class="dragdrop_profil {{dragEnter ? 'drag' : ''}} {{drop ? 'drop' : ''}} "
-          [class.uploading]="uploading"
-          (dragenter)="dragEnter = true"
-          (drop)="drop = true">
-      <label id="labelfileuploadprf" for="filename">
-        <!--?refreshHack=... obliges the browser to refresh the image if it changes-->
-        <div  #signupPhotoDiv class="uploadImgprofil" id="signupPhotoDiv">
-          <img    id="cropping" id="imgPrev" src="../images/img_profile.png" title=""/>
-        </div>
-        <span class="spprof">Change</span>
-      </label>
-      <input #filename type="file" id="filename" class="uploadFile" name="filename"
-             (change)="imgChange()" style="opacity: 0"/>
 
-    </form>
+
+    <!--<form id="signupForm" #upload class="dragdrop_profil {{dragEnter ? 'drag' : ''}} {{drop ? 'drop' : ''}} "-->
+    <!--[class.uploading]="uploading"-->
+    <!--(dragenter)="dragEnter = true"-->
+    <!--(drop)="drop = true">-->
+    <!--<label id="labelfileuploadprf" for="filename">-->
+    <!--&lt;!&ndash;?refreshHack=... obliges the browser to refresh the image if it changes&ndash;&gt;-->
+    <!--<div  #signupPhotoDiv class="uploadImgprofil" id="signupPhotoDiv">-->
+    <!--<img    id="cropping" id="imgPrev" src="../images/img_profile.png" title=""/>-->
+    <!--</div>-->
+    <!--<span class="spprof">Change</span>-->
+    <!--</label>-->
+    <!--<input #filename type="file" id="filename" class="uploadFile" name="filename"-->
+    <!--(change)="imgChange()" style="opacity: 0"/>-->
+
+    <!--</form>-->
   </div>
 
   <div class="content">
-   <div class="mandatory">
+    <div class="mandatory">
 
       <div class="email">
         <div class="label emaillab">Email</div>
@@ -30,33 +36,33 @@
                         class="mail"></material-input>
       </div>
       <div class="pass">
-        <div class="label">Password</div>
-        <material-input required [(ngModel)]="user.pass" type="password" class="password"></material-input>
+      <div class="label">Password</div>
+      <material-input required [(ngModel)]="user.pass" type="password" class="password"></material-input>
       </div>
       <div class="pass" [class.passEqual]="passwordsError()">
-        <div class="label">Password</div>
-        <material-input required [(ngModel)]="passVerif" type="password" (keyup)="startCheckingPasswords()"
-                        class="password"></material-input>
+      <div class="label">Password</div>
+      <material-input required [(ngModel)]="passVerif" type="password" (keyup)="startCheckingPasswords()"
+      class="password"></material-input>
       </div>
     </div>
 
     <div class="optional">
-      <div class="username">
-        <div class="label">Username</div>
-        <div class="cham">
-          <material-input label="" [(ngModel)]="user.name" class="input"></material-input>
-        </div>
-      </div>
-      <div class="skype">
-        <div class="label">Skype</div>
-        <div class="cham">
-          <material-input label="" [(ngModel)]="user.skype" class="input"></material-input>
-        </div>
-      </div>
+    <div class="username">
+    <div class="label">Username</div>
+    <div class="cham">
+    <material-input label="" [(ngModel)]="user.name" class="input"></material-input>
+    </div>
+    </div>
+    <div class="skype">
+    <div class="label">Skype</div>
+    <div class="cham">
+    <material-input label="" [(ngModel)]="user.skype" class="input"></material-input>
+    </div>
+    </div>
     </div>
   </div>
   <div class="center">
-    <material-button raised class="btn_login pos2" [disabled]="!submitEnabled" (click)="signup()"
+    <material-button raised class="btn_login blue pos2" [disabled]="!submitEnabled" (click)="signup()"
                      (keyup.enter)="signup()">OK
     </material-button>
   </div>

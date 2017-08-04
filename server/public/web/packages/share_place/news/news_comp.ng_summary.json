@@ -27,10 +27,6 @@
         "5": false
       },
       {
-        "1": "package:share_place/place_detail_component.dart",
-        "5": false
-      },
-      {
         "1": "package:share_place/place_service.dart",
         "5": false
       },
@@ -58,11 +54,6 @@
         ],
         "6": [
           "OnInit"
-        ],
-        "7": [
-          {
-            "2": "PlaceDetailComponent"
-          }
         ]
       }
     ],

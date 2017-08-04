@@ -4,32 +4,25 @@ ul {
 }
 
 .subjects {
-  border-radius: 3px;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  -o-border-radius: 3px;
+  padding-bottom: 3.5em;
+  position: relative;
 }
 
 li.user {
   list-style-type: none;
   display: inline-block;
-  margin-left: 0.1em;
 }
 
 ul.subjectList {
-  width: 95.2%;
   list-style: none;
 }
 
 li.subjectItem {
-  padding: 0.1em 0.55em 0.1em 0.7em;
   cursor: pointer;
-  background: #edf2f8;
+  margin-bottom: 1px;
   position: relative;
-  border-bottom: 1px solid #ffffff;
-  /*border-left: 0.4em solid #edf2f8;*/
-  /*width: calc(95% - 1.15em);*/
-  width: calc(100% - 1.25em);
+  border: 1px solid transparent;
+  padding: 2px 0 2px 6px;
 }
 
 li.unread {
@@ -50,18 +43,18 @@ li.subjectItem.active .name {
 .locked .thumb:after,
 .locked.ownAction .thumb:after {
   position: absolute;
-  left: -10px;
-  top: 5px;
+  left: -6px;
+  top: 1px;
   z-index: 9;
   content: "";
   background-repeat: no-repeat;
   display: block;
-  width: 1.4em;
-  height: 1.4em;
+  width: 1.7em;
+  height: 1.7em;
 }
 
 .approved .thumb:before {
-  background: url("../images/approved.png");
+  background: url("/images/approved.png");
   background-repeat: no-repeat;
   left: auto;
   right: -10px;
@@ -69,12 +62,12 @@ li.subjectItem.active .name {
 }
 
 .locked .thumb:after {
-  background: url("../images/locked_sm_Red.png");
+  background: url("/images/locked_sm_Red.png");
   background-repeat: no-repeat;
 }
 
 .locked.ownAction .thumb:after {
-  background: url("../images/locked_sm.png");
+  background: url("/images/locked_sm.png");
   background-repeat: no-repeat;
 }
 
@@ -89,7 +82,7 @@ li.subjectItem.active .name {
   text-align: center;
   /*width: 3.3em;*/
   width: 2.8em;
-  height: 1.8em;
+  height: 1.9em;
   margin-right: 0.2em;
 }
 
@@ -103,10 +96,11 @@ li.subjectItem.active .name {
   color: #353535;
   max-width: calc(97% - 13em);
   word-break: break-word;
-  line-height: 1;
+  line-height: 1.4;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+  font-family: 'robotoregular';
 }
 
 .version {
@@ -126,28 +120,38 @@ li.subjectItem.active .name {
 
 .users {
   float: right;
+  margin-left: 0.4em;
   min-width: 2em;
 }
 
+.dropZone {
+  /*  padding: 0 0 1em;
+  width: calc(100% - 2em);*/
+  width: 100%;
+}
+
 .uploadDropZone {
-  border-radius: 0 0 3px 3px;
-  -webkit-border-radius: 0 0 3px 3px;
-  -moz-border-radius: 0 0 3px 3px;
-  background-color: #fff;
-  border: 1px solid #EBF0F3 !important;
+  /*border-radius: 0 0 3px 3px;*/
+  /*-webkit-border-radius: 0 0 3px 3px;*/
+  /*-moz-border-radius: 0 0 3px 3px;*/
+  /*background-color: #fff;*/
+  /*border: 1px solid #EBF0F3 !important;*/
+  /*text-align: center;*/
+  /*-webkit-transition: 0.3s;*/
+  /*-o-transition: 0.3s;*/
+  /*transition: 0.3s;*/
+  /*position: relative;*/
+  /*width: calc(100% - 2px);*/
+  /*min-height: 100px !important;*/
+
   text-align: center;
-  -webkit-transition: 0.3s;
-  -o-transition: 0.3s;
-  transition: 0.3s;
   position: relative;
-  width: calc(100% - 2px);
+  width: 100%;
   min-height: 100px !important;
+  background-color: transparent;
 }
 
 .uploadFile {
-  border-radius: 0 0 3px 3px;
-  -webkit-border-radius: 0 0 3px 3px;
-  -moz-border-radius: 0 0 3px 3px;
   padding: 0 !important;
   cursor: pointer;
   width: 100%;
@@ -161,56 +165,128 @@ li.subjectItem.active .name {
 }
 
 .profileImg.validator > img {
-  border: 2px solid green;
+  border: 2px solid #26C875;
 }
 
-.title {
-  border-radius: 3px 3px 0 0;
-  -webkit-border-radius: 3px 3px 0 0;
-  -moz-border-radius: 3px 3px 0 0;
-  width: calc(100% - 1.3em);
+/*__________________________________________*/
+.headerSubject {
   font-size: 1em;
-  color: #fff;
-  background-color: #3471AA;
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: normal;
-  height: 2.3em;
-  line-height: 2.2em;
-  padding: 0 0.3em 0 1em;
-  overflow: hidden;
+  color: #000;
+  font-weight: bold;
   position: relative;
+  overflow: hidden;
 }
+
+.titleSubject {
+  display: inline-block;
+  width: 50%;
+  line-height: 1.2;
+  font-family: 'nexa_boldregular';
+}
+
+.rightSubjTitle {
+  width: 50%;
+  display: inline-block;
+  text-align: right;
+  float: right;
+}
+
+.zoneDragingIn {
+  padding: 0 1em;
+  width: calc(100% - 2em);
+}
+
+/*__________________*/
 
 .newTopic {
-  padding: 0.5em;
-  background-color: #dde2e5;
   display: block;
-  border-bottom: 1px solid rgba(243, 246, 247, 0.71)
+}
+
+.newTopic, .headerSubject {
+  padding: 1em 1em 0;
+  width: calc(100% - 2em);
+  position: relative;
+  z-index: 1;
+}
+
+.addBtn.addPeople {
+  width: 2em;
 }
 
 .addBtn.addPeople, .users_list {
-  float: right;
-  margin-left: 0.3em;
+  display: inline-block;
+  vertical-align: top;
+  padding-top: 0.3em;
 }
 
 .users_list {
-  margin-right: 0.1em;
-  margin-top: 0.25em;
   list-style: none;
-  position: absolute;
-  top: 0;
-  right: 39px;
-  max-width: 50%;
+  /*height: 2.7em;*/
+  /*position: relative;*/
+  /*color: #26C875;*/
+  /*line-height: 3.8em;*/
+
+  overflow: hidden;
+  width: calc(100% - 3.5em);
+  height: 33px;
+  padding-right: 3px;
+
 }
 
+.users_list li:first-child {
+  margin-right: 4px;
+}
+
+.moreUsers {
+  display: inline-block;
+  float: left;
+  line-height: 2;
+  width: 0.6em;
+  transform: rotate(0);
+  -webkit-transform: rotate(0);
+}
+
+.users_list.usersDisplayed li, .users_list.usersDisplayed li.useractive {
+  /*float: none;*/
+  display: inline-block;
+}
+
+.users_list.usersDisplayed li.useractive {
+  margin: 0
+}
+
+.users_list.usersDisplayed {
+  height: auto;
+}
+
+.moreExpanded.moreUsers {
+  opacity: 1;
+}
+
+.moreUsers:after {
+  font-size: 1.3em;
+  font-family: 'Material-Design-Iconic-Font';
+  color: #26C875;
+  content: '\f2f9';
+  cursor: pointer;
+}
+
+ul.users_list.usersDisplayed {
+  overflow: visible;
+}
+
+.moreExpanded.moreUsers {
+  transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+}
+
+/*__________________*/
 .useractive {
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   border-radius: 50%;
   float: right;
-  margin-left: 0.4em;
-  margin-top: -0.1em;
-
+  margin-left: -7px;
 }
 
 .useractive img {
@@ -223,7 +299,7 @@ li.subjectItem.active .name {
 }
 
 .useractive.approver img {
-  box-shadow: 0 0 0 2px #9EDE17;
+  box-shadow: 0 0 0 0.18em #26C875;
 }
 
 /* userInfoPopup */
@@ -247,7 +323,7 @@ li.subjectItem.active .name {
   content: '';
   width: 17px;
   height: 17px;
-  background: url("../images/approved.png") no-repeat;
+  background: url("/images/approved.png") no-repeat;
   position: absolute;
   left: 0;
 }
@@ -285,7 +361,7 @@ li.subjectItem.active .name {
 
 .userInfoPopup .name {
   margin-bottom: 0.5em;
-  background: url("../images/tiret-black.png") repeat-x center center;
+  background: url("/images/tiret-black.png") repeat-x center center;
   width: 100%;
   max-width: 100%;
 }
@@ -312,30 +388,8 @@ span.txtskype {
   color: rgba(0, 0, 0, 0.68);
 }
 
-li.subjectItem:hover {
-  background-color: rgba(208, 211, 212, 0.76);
-  color: white;
-  text-decoration: none;
-  /*border-left: 0.4em solid #d0d3d4;*/
-}
-
 li.subjectItem:hover .name {
   color: #888;
-}
-
-li.subjectItem:hover:after {
-  left: 100%;
-  top: 50%;
-  border: solid transparent;
-  content: " ";
-  height: 0;
-  width: 0;
-  position: absolute;
-  pointer-events: none;
-  border-color: rgba(85, 134, 164, 0);
-  border-width: 10px;
-  margin-top: -10px;
-  border-left-color: #d0d3d4;
 }
 
 li.subjectItem.unread .name {
@@ -343,35 +397,31 @@ li.subjectItem.unread .name {
   font-weight: bold;
 }
 
-li.subjectItem.selected:after {
-  left: 100%;
-  top: 50%;
-  border: solid transparent;
-  content: " ";
-  height: 0;
-  width: 0;
-  position: absolute;
-  pointer-events: none;
-  border-color: rgba(85, 134, 164, 0);
-  border-left-color: #4590d1;
-  border-width: 10px;
-  margin-top: -10px;
+li.subjectItem.unread:hover .name {
+  color: #000;
 }
 
 li.subjectItem.selected {
-  background-color: #4690D1;
-  /*border-left: 0.4em solid #4690D1;*/
+  background-color: #D8E8FF;
   color: white;
   text-decoration: none;
+  border: 1px solid #3697FF;
+}
+
+li.subjectItem:hover {
+  background-color: rgba(216, 232, 255, 0.58);
+  color: white;
+  text-decoration: none;
+  border: 1px solid rgba(216, 232, 255, 0.58);
 }
 
 li.subjectItem.selected .version {
-  background-color: #1A1A99;
+  background-color: #3697FF;
   color: #fff;
 }
 
 li.subjectItem.selected .name {
-  color: white;
+  font-weight: bold;
 }
 
 .newTopic .btn_valid:hover:after {
@@ -384,7 +434,12 @@ li.subjectItem.selected .name {
   position: relative
 }
 
-.hideDropZone .uploadDropZone{
+/*
+here i make the zone in all the div
+top: 0;*/
+/*height: 100% !important;*/
+
+.hideDropZone .uploadDropZone {
   position: absolute !important;
   left: 0;
   top: 0;
@@ -393,23 +448,28 @@ li.subjectItem.selected .name {
   opacity: 0;
   z-index: 0;
 }
+
 .dropZoneVisible .uploadDropZone {
   z-index: 1;
   opacity: 1;
 }
 
-.hideDropZone.dragging .uploadDropZone ,  .dropZoneVisible.dragging .uploadDropZone{
+.hideDropZone.dragging .uploadDropZone, .dropZoneVisible.dragging .uploadDropZone {
   opacity: 0.7;
   z-index: 5;
+  background-color: #D8E8FF;
   position: relative;
-  background-color: #00ADEF;
+
 }
 
-
-.dropZoneVisible.dragging  #labelfileupload{
+.dropZoneVisible.dragging #labelfileupload, .hideDropZone.dragging #labelfileupload {
   opacity: 0.1;
+  z-index: -1;
 }
 
+.dropZoneVisible.dragging #labelfileupload, .dropZoneVisible.dragging #labelfileupload:before {
+  color: #3697FF;
+}
 
 .hideDropZone.dragging .subjectListScollZone,
 .dropZoneVisible.dragging .uploadDropZone {
@@ -421,10 +481,59 @@ li.subjectItem.selected .name {
   position: relative;
 }
 
-/* _ _ _ _ _ */
+.dragging .newTopic, .dragging .headerSubject {
+  position: initial;
+  z-index: -9;
+}
+
+.dropZone.dropZoneVisible.dragging .zoneDragingIn {
+  width: 100%;
+  padding: 0;
+}
+
+.subjectRight {
+  float: right;
+}
+
+
+li.subjectItem:hover.selected {
+  border: 1px solid #3697FF;
+}
+
+/*.dropZone.dropZoneVisible.dragging {*/
+/*position: relative;*/
+/*}*/
+
+/*.dropZone.dropZoneVisible.dragging  .zoneDragingIn {*/
+/*background-color: #FF00EB;*/
+/*position: absolute;*/
+/*width: 100%;*/
+/*height: 100%;*/
+/*z-index: 2;*/
+/*}*/
+
+/*________________*/
+
+@media only screen and (max-width: 1200px) {
+
+  .zoneDragingIn {
+    padding: 0 0.4em;
+    width: calc(100% - 0.9em);
+  }
+
+  .newTopic {
+    padding: 0.8em 0.4em 0;
+    width: calc(100% - 0.8em);
+  }
+
+  .headerSubject {
+    padding: 0.8em 0.4em 0 0.6em;
+    width: calc(100% - 1em);
+  }
+
+}
 
 @media (max-width: 800px) and (min-width: 700px) {
-
   .thumb {
     display: none !important;
   }

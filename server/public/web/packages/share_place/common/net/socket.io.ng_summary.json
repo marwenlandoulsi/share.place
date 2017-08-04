@@ -30,6 +30,10 @@
         "1": "package:share_place/app_config.dart",
         "4": "conf",
         "5": false
+      },
+      {
+        "1": "package:logging/logging.dart",
+        "5": false
       }
     ],
     "6": "socket.io.dart"

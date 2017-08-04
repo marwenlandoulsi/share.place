@@ -1,27 +1,34 @@
 <div class="users">
   <div class="titleDiv">
-    <div class="title">
-      <div class="hTitlein">People</div>
+    <div class="h2Places">
+      People
     </div>
   </div>
   <div class="subtitle">in {{selectedPlace?.name}}</div>
-  <ul class="list contentScroll">
-    <div class="scrollbar-macosx">
-      <div class="spinnerInner"> <material-spinner class="spinner" *ngIf="users == null"></material-spinner></div>
-      <li *ngFor="let userItem of users" class="user">
-        <div class="userLine" [class.popupOpen]="clickedUserId == userItem.id"  (click)="clickedUserId = userItem.id"
-             popupSource alignPositionX="after"
-             alignPositionY="start" #userElem="popupSource">
-          <img *ngIf ="userItem.photoIdMap != null" src="/auth/gridfs/file/{{userItem?.photoIdMap['photoIdS']}}/picture.x" class="profileImg">
-          <img  *ngIf ="userItem.photoIdMap == null" src="../images/img_profile.png" class="profileImg">
-          <div class="userName" title="{{userItem?.displayName}}">{{userItem?.displayName}}</div>
+
+  <div class="people">
+    <div class="scrollbar-macosx_">
+
+      <ul class="list">
+        <div class="spinnerInner">
+          <material-spinner class="spinner" *ngIf="users == null"></material-spinner>
         </div>
-        <info-popup *ngIf="clickedUserId == userItem.id"
-                    [userId]="userItem.id"
-                    [source]="userElem" [offsetX]="20" [offsetY]="-10"
-                    [visible]="clickedUserId == userItem.id" [parent]="self" [arrowCss]="'arrowLeft'">
-        </info-popup>
-      </li>
+        <li *ngFor="let userItem of users" class="user">
+          <div class="userLine" [class.popupOpen]="clickedUserId == userItem.id" (click)="clickedUserId = userItem.id"
+               popupSource alignPositionX="after"
+               alignPositionY="start" #userElem="popupSource">
+            <img *ngIf="userItem.photoIdMap != null"
+                 src="/auth/gridfs/file/{{userItem?.photoIdMap['photoIdS']}}/picture.x" class="profileImg">
+            <img *ngIf="userItem.photoIdMap == null" src="/images/img_profile.png" class="profileImg">
+            <div class="userName" title="{{userItem?.displayName}}">{{userItem?.displayName}}</div>
+          </div>
+          <info-popup *ngIf="clickedUserId == userItem.id"
+                      [userId]="userItem.id"
+                      [source]="userElem" [offsetX]="20" [offsetY]="-10"
+                      [visible]="clickedUserId == userItem.id" [parent]="self" [arrowCss]="'arrowLeft'">
+          </info-popup>
+        </li>
+      </ul>
     </div>
-  </ul>
+  </div>
 </div>

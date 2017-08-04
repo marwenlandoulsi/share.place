@@ -102,4 +102,6 @@ class LoginComp implements OnInit {
     googleClicked = true;
     window.location.assign(loginGoogleUrl);
   }
+
+
 }

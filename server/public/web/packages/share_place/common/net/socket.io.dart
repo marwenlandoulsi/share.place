@@ -6,8 +6,9 @@ import 'package:share_place/environment.dart';
 import 'package:angular2/core.dart';
 import 'package:angular2/angular2.dart';
 import 'package:share_place/app_config.dart' as conf;
-
+import 'package:logging/logging.dart';
 class SocketIoClient {
+  final Logger log = new Logger("SocketIoClient");
   JsObject _io;
   JsObject _socket;
   bool connected;
@@ -32,7 +33,7 @@ class SocketIoClient {
     await _socket.callMethod('on', ['connect', () {
       //js callback
       connected = true;
-      print('Connected to socket.io');
+      log.info('Connected to socket.io');
       attachBroadcast({
         "userConnect": PlaceParam.ioFolderUserConnected,
         "folder": PlaceParam.ioFolderCreated,
@@ -45,7 +46,8 @@ class SocketIoClient {
         "folderUserRemoved": PlaceParam.ioFolderUserRemoved,
         "placeUserRemoved": PlaceParam.ioPlaceUserRemoved,
         "profileChanged" :PlaceParam.ioProfileChanged,
-        "placeUserListChanged" :PlaceParam.ioPlaceUserListChanged
+        "placeUserListChanged" :PlaceParam.ioPlaceUserListChanged,
+        "fileVersionRemoved " :PlaceParam.treatFileChanged
 
       });
 /*
@@ -69,7 +71,7 @@ class SocketIoClient {
 
   on(String eventName, callback(cbData)) {
     if (!connected) {
-      print(
+      log.warning(
           "not connected : $eventName is trying to access socket.io too early.");
       return;
     }
@@ -94,13 +96,13 @@ class SocketIoClient {
       return;
 
     await context.callMethod('io', ['disconnect']);
-    print("socket closed");
+    log.info("socket closed");
   }
 
   attachBroadcast(Map<String, PlaceParam> eventMap) {
     eventMap.forEach((String event, PlaceParam fireParam) =>
         on(event, (data) {
-          print("socket io event received $event");
+          log.finest("socket io event received $event");
           eventBus.fire({
             fireParam: data
           });

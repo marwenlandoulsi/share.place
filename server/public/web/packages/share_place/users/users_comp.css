@@ -1,7 +1,7 @@
 .users {
-  padding-right: 15px;
-  margin-top: 40px;
-  padding-bottom: 18px;
+  padding-right: 0.7em;
+  margin-top: 2.1em;
+  padding-bottom: 3.4em;
 }
 
 .user > div {
@@ -24,10 +24,6 @@
 
 .list {
   list-style-type: none;
-  padding-left: 0.2em;
-  background: white;
-  margin-bottom: 0.4em;
-  border-radius: 6px;
 }
 
 a {
@@ -54,21 +50,19 @@ a {
   border-radius: 50%;
   display: inline-block;
   margin-right: 2px;
+  position: relative;
 }
 
 .userName {
   vertical-align: middle;
-  color: #273B54;
-  font-size: 13px;
+  color: rgba(255, 255, 255, 0.49);
+  font-size: 0.9em;
   word-break: break-word;
   width: calc(100% - 31.5px);
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
-}
-
-.userName:hover {
-  color: #000;
+  font-family: 'nexa_lightregular';
 }
 
 .fa-skype {
@@ -80,7 +74,7 @@ a {
 }
 
 .title {
-  background: url("../images/tiret-grey.png") repeat-x center center;
+  background: url("/images/tiret-grey.png") repeat-x center center;
   padding: 0 !important;
   color: #414c5f;
   font-size: 1em;
@@ -143,4 +137,11 @@ a {
 
 .userLine.popupOpen {
   background-color: rgba(0, 0, 0, 0.04);
+}
+
+
+@media only screen and (max-width: 1200px) {
+  .userName {
+    font-size: 0.9em;
+  }
 }

@@ -10,13 +10,9 @@ class BrowserDataService extends BrowserClient {
   final Logger log = new Logger("BrowserDataService");
 
   Future<Response> get(String url, {Map<String, String> headers}) {
-//    if (url.contains("sp/file") )
     log.fine("requesting " + url);
     return super.get(url, headers: headers);
-//    else if (url.contains("sp/place"))
-//      return super.get(url, headers: headers);
-//    else
-//    return _handler(url);
+
   }
 
 

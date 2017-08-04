@@ -112,11 +112,11 @@ class ViewInviteUsersDialogComp0 extends AppView<import2.InviteUsersDialogComp> 
   import9.MaterialMultilineInputComponent _MaterialMultilineInputComponent_73_6;
   dynamic _BaseMaterialInput_73_7;
   import10.MaterialInputDefaultValueAccessor _MaterialInputDefaultValueAccessor_73_8;
-  DivElement _el_76;
-  Element _el_78;
-  import11.ViewMaterialButtonComponent0 _compView_78;
-  import12.AcxDarkTheme _AcxDarkTheme_78_2;
-  import13.MaterialButtonComponent _MaterialButtonComponent_78_3;
+  DivElement _el_77;
+  Element _el_79;
+  import11.ViewMaterialButtonComponent0 _compView_79;
+  import12.AcxDarkTheme _AcxDarkTheme_79_2;
+  import13.MaterialButtonComponent _MaterialButtonComponent_79_3;
   var _expr_0;
   var _expr_2;
   var _expr_5;
@@ -292,7 +292,7 @@ class ViewInviteUsersDialogComp0 extends AppView<import2.InviteUsersDialogComp> 
     addShimC(_el_64);
     _el_65 = createAndAppend(doc,'span',_el_64);
     addShimE(_el_65);
-    Text _text_66 = new Text('More lines');
+    Text _text_66 = new Text('Invite more');
     _el_65.append(_text_66);
     Text _text_67 = new Text(' ');
     _el_64.append(_text_67);
@@ -310,7 +310,6 @@ class ViewInviteUsersDialogComp0 extends AppView<import2.InviteUsersDialogComp> 
     _compView_73 = new import6.ViewMaterialMultilineInputComponent0(this,73);
     _el_73 = _compView_73.rootEl;
     _el_11.append(_el_73);
-    createAttr(_el_73,'contenteditable','true');
     createAttr(_el_73,'id','inviteLablel');
     createAttr(_el_73,'label','Hello! Join me on Share.Place, it\'s a super simple app to share and collaborate together!');
     createAttr(_el_73,'multiline','');
@@ -325,33 +324,35 @@ class ViewInviteUsersDialogComp0 extends AppView<import2.InviteUsersDialogComp> 
     _BaseMaterialInput_73_7 = _MaterialMultilineInputComponent_73_6;
     _MaterialInputDefaultValueAccessor_73_8 = new import10.MaterialInputDefaultValueAccessor(_BaseMaterialInput_73_7,_NgControl_73_5);
     _compView_73.create(_MaterialMultilineInputComponent_73_6,[const []]);
-    Text _text_74 = new Text('\n  ');
+    Text _text_74 = new Text('\n    ');
     _el_11.append(_text_74);
-    Text _text_75 = new Text('\n\n  ');
-    _el_1.append(_text_75);
-    _el_76 = createAndAppend(doc,'div',_el_1);
-    _el_76.className = 'modal-footer';
-    addShimC(_el_76);
-    Text _text_77 = new Text('\n    ');
-    _el_76.append(_text_77);
-    _compView_78 = new import11.ViewMaterialButtonComponent0(this,78);
-    _el_78 = _compView_78.rootEl;
-    _el_76.append(_el_78);
-    _el_78.className = 'submitbottom';
-    createAttr(_el_78,'raised','');
-    addShimC(_el_78);
-    _AcxDarkTheme_78_2 = new import12.AcxDarkTheme(parentView.injectorGet(import21.darkThemeToken,parentIndex,null));
-    _MaterialButtonComponent_78_3 = new import13.MaterialButtonComponent(new ElementRef(_el_78),_AcxDarkTheme_78_2,_compView_78.ref);
-    Text _text_79 = new Text('Send invites');
-    _compView_78.create(_MaterialButtonComponent_78_3,[[_text_79]]);
-    Text _text_80 = new Text('\n  ');
-    _el_76.append(_text_80);
+    Text _text_75 = new Text('\n');
+    _el_11.append(_text_75);
+    Text _text_76 = new Text('\n\n');
+    _el_1.append(_text_76);
+    _el_77 = createAndAppend(doc,'div',_el_1);
+    _el_77.className = 'modal-footer';
+    addShimC(_el_77);
+    Text _text_78 = new Text('\n');
+    _el_77.append(_text_78);
+    _compView_79 = new import11.ViewMaterialButtonComponent0(this,79);
+    _el_79 = _compView_79.rootEl;
+    _el_77.append(_el_79);
+    _el_79.className = 'submitbottom';
+    createAttr(_el_79,'raised','');
+    addShimC(_el_79);
+    _AcxDarkTheme_79_2 = new import12.AcxDarkTheme(parentView.injectorGet(import21.darkThemeToken,parentIndex,null));
+    _MaterialButtonComponent_79_3 = new import13.MaterialButtonComponent(new ElementRef(_el_79),_AcxDarkTheme_79_2,_compView_79.ref);
+    Text _text_80 = new Text('Send invites');
+    _compView_79.create(_MaterialButtonComponent_79_3,[[_text_80]]);
     Text _text_81 = new Text('\n');
-    _el_1.append(_text_81);
+    _el_77.append(_text_81);
+    Text _text_82 = new Text('\n');
+    _el_1.append(_text_82);
     _el_9.addEventListener('click',eventHandler0(ctx.close));
     _el_64.addEventListener('click',eventHandler0(ctx.addUserLine));
     final subscription_0 = _NgModel_73_4.update.listen(streamHandler1(_handle_ngModelChange_73_0));
-    _el_78.addEventListener('click',eventHandler0(ctx.save));
+    _el_79.addEventListener('click',eventHandler0(ctx.save));
     init(const [],[subscription_0]);
     return null;
   }
@@ -363,8 +364,8 @@ class ViewInviteUsersDialogComp0 extends AppView<import2.InviteUsersDialogComp> 
     if ((((identical(token, import9.MaterialMultilineInputComponent) || identical(token, import25.ReferenceDirective)) || identical(token, import26.Focusable)) && (73 == nodeIndex))) { return _MaterialMultilineInputComponent_73_6; }
     if ((identical(token, import27.BaseMaterialInput) && (73 == nodeIndex))) { return _BaseMaterialInput_73_7; }
     if ((identical(token, import10.MaterialInputDefaultValueAccessor) && (73 == nodeIndex))) { return _MaterialInputDefaultValueAccessor_73_8; }
-    if ((identical(token, import12.AcxDarkTheme) && ((78 <= nodeIndex) && (nodeIndex <= 79)))) { return _AcxDarkTheme_78_2; }
-    if (((identical(token, import13.MaterialButtonComponent) || identical(token, import28.ButtonDirective)) && ((78 <= nodeIndex) && (nodeIndex <= 79)))) { return _MaterialButtonComponent_78_3; }
+    if ((identical(token, import12.AcxDarkTheme) && ((79 <= nodeIndex) && (nodeIndex <= 80)))) { return _AcxDarkTheme_79_2; }
+    if (((identical(token, import13.MaterialButtonComponent) || identical(token, import28.ButtonDirective)) && ((79 <= nodeIndex) && (nodeIndex <= 80)))) { return _MaterialButtonComponent_79_3; }
     return notFoundResult;
   }
   void detectChangesInternal() {
@@ -398,54 +399,54 @@ class ViewInviteUsersDialogComp0 extends AppView<import2.InviteUsersDialogComp> 
     if (changed) { _compView_73.markAsCheckOnce(); }
     changed = false;
     if (firstCheck) {
-      _MaterialButtonComponent_78_3.raised = '';
+      _MaterialButtonComponent_79_3.raised = '';
       changed = true;
     }
-    if (changed) { _compView_78.markAsCheckOnce(); }
+    if (changed) { _compView_79.markAsCheckOnce(); }
     _appEl_57.detectChangesInNestedViews();
     final currVal_0 = import17.interpolate1('\n      Send invites ',_ctx.selectedPlace.name,'\n    ');
     if (!import29.looseIdentical(_expr_0,currVal_0)) {
       _text_6.text = currVal_0;
       _expr_0 = currVal_0;
     }
-    final currVal_10 = _MaterialButtonComponent_78_3.disabledStr;
+    final currVal_10 = _MaterialButtonComponent_79_3.disabledStr;
     if (!import29.looseIdentical(_expr_10,currVal_10)) {
-      setAttr(_el_78,'aria-disabled',currVal_10?.toString());
+      setAttr(_el_79,'aria-disabled',currVal_10?.toString());
       _expr_10 = currVal_10;
     }
-    final currVal_11 = (_MaterialButtonComponent_78_3.raised? '': null);
+    final currVal_11 = (_MaterialButtonComponent_79_3.raised? '': null);
     if (!import29.looseIdentical(_expr_11,currVal_11)) {
-      setAttr(_el_78,'raised',currVal_11?.toString());
+      setAttr(_el_79,'raised',currVal_11?.toString());
       _expr_11 = currVal_11;
     }
-    final currVal_12 = _MaterialButtonComponent_78_3.tabIndex;
+    final currVal_12 = _MaterialButtonComponent_79_3.tabIndex;
     if (!import29.looseIdentical(_expr_12,currVal_12)) {
-      setAttr(_el_78,'tabindex',currVal_12?.toString());
+      setAttr(_el_79,'tabindex',currVal_12?.toString());
       _expr_12 = currVal_12;
     }
-    final currVal_13 = _MaterialButtonComponent_78_3.zElevation;
+    final currVal_13 = _MaterialButtonComponent_79_3.zElevation;
     if (!import29.looseIdentical(_expr_13,currVal_13)) {
-      setAttr(_el_78,'elevation',currVal_13?.toString());
+      setAttr(_el_79,'elevation',currVal_13?.toString());
       _expr_13 = currVal_13;
     }
-    final currVal_14 = _MaterialButtonComponent_78_3.visualFocus;
+    final currVal_14 = _MaterialButtonComponent_79_3.visualFocus;
     if (!import29.looseIdentical(_expr_14,currVal_14)) {
-      updateElemClass(_el_78,'is-focused',currVal_14);
+      updateElemClass(_el_79,'is-focused',currVal_14);
       _expr_14 = currVal_14;
     }
-    final currVal_15 = (_MaterialButtonComponent_78_3.disabled? '': null);
+    final currVal_15 = (_MaterialButtonComponent_79_3.disabled? '': null);
     if (!import29.looseIdentical(_expr_15,currVal_15)) {
-      setAttr(_el_78,'disabled',currVal_15?.toString());
+      setAttr(_el_79,'disabled',currVal_15?.toString());
       _expr_15 = currVal_15;
     }
     _compView_73.detectChanges();
-    _compView_78.detectChanges();
+    _compView_79.detectChanges();
     if (firstCheck) { _MaterialMultilineInputComponent_73_6.ngAfterViewInit(); }
   }
   void destroyInternal() {
     _appEl_57.destroyNestedViews();
     _compView_73.destroy();
-    _compView_78.destroy();
+    _compView_79.destroy();
     _MaterialMultilineInputComponent_73_6.ngOnDestroy();
     _MaterialInputDefaultValueAccessor_73_8.ngOnDestroy();
   }

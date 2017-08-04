@@ -1,30 +1,31 @@
 <div class="header headerplaces">
-  <!--tittle places top-->
-  <label class="label">Places</label>
   <div class="add">
-    <div (click)="add();newPlace.focus('places')" class="addBtn"></div>
+    <div (click)="add();newPlace.focus('places')" class="addBtn"><i class="fa fa-plus" aria-hidden="true"></i></div>
   </div>
 </div>
+
 <div class="placesInner">
   <div class="scrollbar-macosx">
+
     <ul class="places">
-
-      <!--<div class="spinnerInner">-->
-      <!--<material-spinner class="spinner" *ngIf="subjects == null"></material-spinner>-->
-      <!--</div>-->
-
+      <div class="spinnerInner">
+        <material-spinner class="spinner" *ngIf="places == null"></material-spinner>
+      </div>
       <li [style.display]="adding ? 'block' : 'none'" class="addplace">
-        <txt #newPlace [confirm]="save" [sources]="['../images/ok.png', '../images/ok.png', '../images/ok.png']"
-             class="saveAdd"></txt>
+        <txt #newPlace [confirm]="save" class="saveAdd"
+             [sources]="['/images/ok_white.png', '/images/ok_white.png', '/images/ok_white.png']"></txt>
       </li>
 
       <material-expansionpanel-set>
         <material-expansionpanel flat *ngFor="let place of places" name="{{place.name}}" class="placePanel"
-                                 showSaveCancel="false" (open)="selectedPlace = place" [expanded]="selectedPlace?.id == place.id">
+                                 showSaveCancel="false" (open)="selectedPlace = place"
+                                 [expanded]="selectedPlace?.id == place.id" [secondaryText]="notificationCountText(place)">
+
           <div *ngIf="place?.id == selectedPlace?.id">
             <folders></folders>
             <users-comp></users-comp>
           </div>
+
         </material-expansionpanel>
       </material-expansionpanel-set>
 

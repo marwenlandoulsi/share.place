@@ -139,6 +139,21 @@ process.once('loaded', () => {
 
   function showScroll() {
     jQuery('.scrollbar-macosx').scrollbar();
+    jQuery("#benchList").animate({ scrollTop: $(this).height() + 1000 }, "fast");
+  }
+  function  showHorizontalSpilitter() {
+    $(".searchInner").resizable({
+      handles: 's',
+      stop: function(event, ui) {
+        $(this).css("width", '');
+      }
+    });
   }
 
+
+  window.addEventListener('showHorizontalSpilitter', function (e) {
+    showHorizontalSpilitter();
+  });
 })
+
+

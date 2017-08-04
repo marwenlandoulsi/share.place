@@ -16,15 +16,19 @@
         "5": false
       },
       {
+        "1": "package:logging/logging.dart",
+        "5": false
+      },
+      {
+        "1": "package:angular2/router.dart",
+        "5": false
+      },
+      {
         "1": "package:angular2/core.dart",
         "5": false
       },
       {
         "1": "package:http/http.dart",
-        "5": false
-      },
-      {
-        "1": "package:logging/logging.dart",
         "5": false
       },
       {
@@ -101,56 +105,60 @@
     "6": "place_service.dart",
     "7": [
       {
-        "1": "package:angular2/core.template.dart",
+        "1": "package:angular2/router.template.dart",
         "4": "i0"
       },
       {
-        "1": "app_config.template.dart",
+        "1": "package:angular2/core.template.dart",
         "4": "i1"
       },
       {
-        "1": "place.template.dart",
+        "1": "app_config.template.dart",
         "4": "i2"
       },
       {
-        "1": "folder.template.dart",
+        "1": "place.template.dart",
         "4": "i3"
       },
       {
-        "1": "package:share_place/common/util.template.dart",
+        "1": "folder.template.dart",
         "4": "i4"
       },
       {
-        "1": "package:share_place/environment.template.dart",
+        "1": "package:share_place/common/util.template.dart",
         "4": "i5"
       },
       {
-        "1": "package:share_place/file_info.template.dart",
+        "1": "package:share_place/environment.template.dart",
         "4": "i6"
       },
       {
-        "1": "package:share_place/files/cloud_file.template.dart",
+        "1": "package:share_place/file_info.template.dart",
         "4": "i7"
       },
       {
-        "1": "package:share_place/files/file_action.template.dart",
+        "1": "package:share_place/files/cloud_file.template.dart",
         "4": "i8"
       },
       {
-        "1": "package:share_place/news/news_event.template.dart",
+        "1": "package:share_place/files/file_action.template.dart",
         "4": "i9"
       },
       {
-        "1": "package:share_place/users/user.template.dart",
+        "1": "package:share_place/news/news_event.template.dart",
         "4": "i10"
       },
       {
-        "1": "app_context_manager.template.dart",
+        "1": "package:share_place/users/user.template.dart",
         "4": "i11"
       },
       {
-        "1": "package:share_place/search/search_item.template.dart",
+        "1": "app_context_manager.template.dart",
         "4": "i12"
+      },
+      {
+        "1": "package:share_place/search/search_item.template.dart",
+        "4": "i13"
       }
     ]
   },

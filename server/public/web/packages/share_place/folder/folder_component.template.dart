@@ -12,6 +12,7 @@
 import 'folder_component.dart';
 import 'package:angular2/src/core/reflection/reflection.dart' as _ngRef;
 import 'dart:async';
+import 'dart:js';
 import 'package:angular2/core.dart';
 import 'package:angular2/router.dart';
 import 'package:share_place/environment.dart';
@@ -26,6 +27,8 @@ import 'package:share_place/folder/node/tree_node_component.dart';
 import 'package:share_place/users/user.dart';
 import 'package:share_place/common/util.dart';
 import 'package:share_place/files/cloud_file.dart';
+import 'package:logging/logging.dart';
+import 'dart:convert';
 import 'package:angular2/core.template.dart' as i0;
 import 'package:angular2/router.template.dart' as i1;
 import 'package:share_place/environment.template.dart' as i2;
@@ -53,12 +56,14 @@ import 'dart:html';
 import 'package:angular2/src/core/linker/app_view_utils.dart' as import9;
 import 'package:angular2/angular2.dart';
 import 'package:angular2/src/core/linker/template_ref.dart';
-import 'node/tree_node_component.template.dart' as import12;
-import 'node/tree_node_component.dart' as import13;
-import '../place_service.dart' as import14;
-import '../environment.dart' as import15;
-import 'package:angular2/src/facade/lang.dart' as import16;
-import 'package:angular2/src/router/router.dart' as import17;
+import 'package:angular_components/src/components/material_spinner/material_spinner.template.dart' as import12;
+import 'package:angular_components/src/components/material_spinner/material_spinner.dart' as import13;
+import 'node/tree_node_component.template.dart' as import14;
+import 'node/tree_node_component.dart' as import15;
+import '../place_service.dart' as import16;
+import '../environment.dart' as import17;
+import 'package:angular2/src/router/router.dart' as import18;
+import 'package:angular2/src/facade/lang.dart' as import19;
 const List<dynamic> styles_FolderComponent = const [import0.styles];
 class ViewFolderComponent0 extends AppView<import2.FolderComponent> {
   ViewContainer _appEl_0;
@@ -98,13 +103,15 @@ class ViewFolderComponent1 extends AppView<import2.FolderComponent> {
   DivElement _el_0;
   DivElement _el_3;
   Element _el_5;
-  DivElement _el_7;
-  DivElement _el_15;
+  DivElement _el_9;
+  DivElement _el_21;
+  DivElement _el_23;
+  DivElement _el_25;
   DivElement _el_27;
-  DivElement _el_29;
-  DivElement _el_31;
-  ViewContainer _appEl_33;
-  NgIf _NgIf_33_5;
+  ViewContainer _appEl_29;
+  NgIf _NgIf_29_5;
+  ViewContainer _appEl_32;
+  NgIf _NgIf_32_5;
   ViewFolderComponent1(AppView<dynamic> parentView,num parentIndex): super(import6.ViewType.EMBEDDED,{},parentView,parentIndex,ChangeDetectionStrategy.CheckAlways) {
     componentType = ViewFolderComponent0.renderType;
   }
@@ -124,89 +131,93 @@ class ViewFolderComponent1 extends AppView<import2.FolderComponent> {
     Text _text_4 = new Text('\n		');
     _el_3.append(_text_4);
     _el_5 = createAndAppend(doc,'span',_el_3);
-    _el_5.className = 'hTitle';
+    _el_5.className = 'h2Places';
     addShimE(_el_5);
-    Text _text_6 = new Text('\n			');
+    Text _text_6 = new Text('\n			Folders\n		');
     _el_5.append(_text_6);
-    _el_7 = createAndAppend(doc,'div',_el_5);
-    _el_7.className = 'hTitleIn';
-    addShimC(_el_7);
-    Text _text_8 = new Text('Folders');
-    _el_7.append(_text_8);
-    Text _text_9 = new Text('\n      ');
-    _el_5.append(_text_9);
-    Text _text_10 = new Text('\n      ');
-    _el_5.append(_text_10);
-    Text _text_11 = new Text('\n      ');
-    _el_5.append(_text_11);
-    Text _text_12 = new Text('\n		');
-    _el_5.append(_text_12);
-    Text _text_13 = new Text('\n  ');
-    _el_3.append(_text_13);
-    Text _text_14 = new Text('\n  ');
-    _el_0.append(_text_14);
-    _el_15 = createAndAppend(doc,'div',_el_0);
-    addShimC(_el_15);
+    Text _text_7 = new Text('\n  ');
+    _el_3.append(_text_7);
+    Text _text_8 = new Text('\n  ');
+    _el_0.append(_text_8);
+    _el_9 = createAndAppend(doc,'div',_el_0);
+    addShimC(_el_9);
+    Text _text_10 = new Text('\n    ');
+    _el_9.append(_text_10);
+    Text _text_11 = new Text('\n    ');
+    _el_9.append(_text_11);
+    Text _text_12 = new Text('\n    ');
+    _el_9.append(_text_12);
+    Text _text_13 = new Text('\n    ');
+    _el_9.append(_text_13);
+    Text _text_14 = new Text('\n    ');
+    _el_9.append(_text_14);
+    Text _text_15 = new Text('\n    ');
+    _el_9.append(_text_15);
     Text _text_16 = new Text('\n    ');
-    _el_15.append(_text_16);
-    Text _text_17 = new Text('\n      ');
-    _el_15.append(_text_17);
-    Text _text_18 = new Text('\n                   ');
-    _el_15.append(_text_18);
-    Text _text_19 = new Text('\n                   ');
-    _el_15.append(_text_19);
-    Text _text_20 = new Text('\n      ');
-    _el_15.append(_text_20);
-    Text _text_21 = new Text('\n        ');
-    _el_15.append(_text_21);
-    Text _text_22 = new Text('\n             ');
-    _el_15.append(_text_22);
-    Text _text_23 = new Text('\n      ');
-    _el_15.append(_text_23);
-    Text _text_24 = new Text('\n    ');
-    _el_15.append(_text_24);
-    Text _text_25 = new Text('\n  ');
-    _el_15.append(_text_25);
-    Text _text_26 = new Text('\n  ');
-    _el_0.append(_text_26);
-    _el_27 = createAndAppend(doc,'div',_el_0);
-    _el_27.className = 'folders';
+    _el_9.append(_text_16);
+    Text _text_17 = new Text('\n    ');
+    _el_9.append(_text_17);
+    Text _text_18 = new Text('\n    ');
+    _el_9.append(_text_18);
+    Text _text_19 = new Text('\n  ');
+    _el_9.append(_text_19);
+    Text _text_20 = new Text('\n  ');
+    _el_0.append(_text_20);
+    _el_21 = createAndAppend(doc,'div',_el_0);
+    _el_21.className = 'folders';
+    addShimC(_el_21);
+    Text _text_22 = new Text('\n    ');
+    _el_21.append(_text_22);
+    _el_23 = createAndAppend(doc,'div',_el_21);
+    _el_23.className = 'scrollbar-macosx';
+    addShimC(_el_23);
+    Text _text_24 = new Text('\n\n      ');
+    _el_23.append(_text_24);
+    _el_25 = createAndAppend(doc,'div',_el_23);
+    _el_25.className = 'scrollContent';
+    addShimC(_el_25);
+    Text _text_26 = new Text('\n        ');
+    _el_25.append(_text_26);
+    _el_27 = createAndAppend(doc,'div',_el_25);
+    _el_27.className = 'spinnerInner';
     addShimC(_el_27);
-    Text _text_28 = new Text('\n    ');
+    Text _text_28 = new Text('\n          ');
     _el_27.append(_text_28);
-    _el_29 = createAndAppend(doc,'div',_el_27);
-    _el_29.className = 'scrollbar-macosx';
-    addShimC(_el_29);
-    Text _text_30 = new Text('\n      ');
-    _el_29.append(_text_30);
-    _el_31 = createAndAppend(doc,'div',_el_29);
-    _el_31.className = 'scrollContent';
-    addShimC(_el_31);
-    Text _text_32 = new Text('\n        ');
-    _el_31.append(_text_32);
-    var _anchor_33 = ngAnchor.clone(false);
-    _el_31.append(_anchor_33);
-    _appEl_33 = new ViewContainer(33,31,this,_anchor_33);
-    TemplateRef _TemplateRef_33_4 = new TemplateRef(_appEl_33,viewFactory_FolderComponent2);
-    _NgIf_33_5 = new NgIf(_appEl_33,_TemplateRef_33_4);
-    Text _text_34 = new Text('\n      ');
-    _el_31.append(_text_34);
-    Text _text_35 = new Text('\n    ');
-    _el_29.append(_text_35);
-    Text _text_36 = new Text('\n  ');
-    _el_27.append(_text_36);
-    Text _text_37 = new Text('\n\n');
-    _el_0.append(_text_37);
+    var _anchor_29 = ngAnchor.clone(false);
+    _el_27.append(_anchor_29);
+    _appEl_29 = new ViewContainer(29,27,this,_anchor_29);
+    TemplateRef _TemplateRef_29_4 = new TemplateRef(_appEl_29,viewFactory_FolderComponent2);
+    _NgIf_29_5 = new NgIf(_appEl_29,_TemplateRef_29_4);
+    Text _text_30 = new Text('\n        ');
+    _el_27.append(_text_30);
+    Text _text_31 = new Text('\n\n        ');
+    _el_25.append(_text_31);
+    var _anchor_32 = ngAnchor.clone(false);
+    _el_25.append(_anchor_32);
+    _appEl_32 = new ViewContainer(32,25,this,_anchor_32);
+    TemplateRef _TemplateRef_32_4 = new TemplateRef(_appEl_32,viewFactory_FolderComponent3);
+    _NgIf_32_5 = new NgIf(_appEl_32,_TemplateRef_32_4);
+    Text _text_33 = new Text('\n      ');
+    _el_25.append(_text_33);
+    Text _text_34 = new Text('\n    ');
+    _el_23.append(_text_34);
+    Text _text_35 = new Text('\n  ');
+    _el_21.append(_text_35);
+    Text _text_36 = new Text('\n\n');
+    _el_0.append(_text_36);
     init([_el_0],const []);
     return null;
   }
   void detectChangesInternal() {
     final import2.FolderComponent _ctx = ctx;
-    _NgIf_33_5.ngIf = (_ctx.folders != null);
-    _appEl_33.detectChangesInNestedViews();
+    _NgIf_29_5.ngIf = (_ctx.folders == null);
+    _NgIf_32_5.ngIf = (_ctx.folders != null);
+    _appEl_29.detectChangesInNestedViews();
+    _appEl_32.detectChangesInNestedViews();
   }
   void destroyInternal() {
-    _appEl_33.destroyNestedViews();
+    _appEl_29.destroyNestedViews();
+    _appEl_32.destroyNestedViews();
   }
 }
 AppView<import2.FolderComponent> viewFactory_FolderComponent1(AppView<dynamic> parentView,num parentIndex) {
@@ -214,31 +225,64 @@ AppView<import2.FolderComponent> viewFactory_FolderComponent1(AppView<dynamic> p
 }
 class ViewFolderComponent2 extends AppView<import2.FolderComponent> {
   Element _el_0;
-  import12.ViewTreeNodeComponent0 _compView_0;
-  import13.TreeNodeComponent _TreeNodeComponent_0_2;
-  var _expr_0;
+  import12.ViewMaterialSpinnerComponent0 _compView_0;
+  import13.MaterialSpinnerComponent _MaterialSpinnerComponent_0_2;
   ViewFolderComponent2(AppView<dynamic> parentView,num parentIndex): super(import6.ViewType.EMBEDDED,{},parentView,parentIndex,ChangeDetectionStrategy.CheckAlways) {
     componentType = ViewFolderComponent0.renderType;
   }
   ComponentRef build() {
     final import2.FolderComponent _ctx = ctx;
-    _compView_0 = new import12.ViewTreeNodeComponent0(this,0);
+    _compView_0 = new import12.ViewMaterialSpinnerComponent0(this,0);
+    _el_0 = _compView_0.rootEl;
+    _el_0.className = 'spinner';
+    addShimC(_el_0);
+    _MaterialSpinnerComponent_0_2 = new import13.MaterialSpinnerComponent();
+    _compView_0.create(_MaterialSpinnerComponent_0_2,[]);
+    init([_el_0],const []);
+    return null;
+  }
+  dynamic injectorGetInternal(dynamic token,int nodeIndex,dynamic notFoundResult) {
+    if ((identical(token, import13.MaterialSpinnerComponent) && (0 == nodeIndex))) { return _MaterialSpinnerComponent_0_2; }
+    return notFoundResult;
+  }
+  void detectChangesInternal() {
+    final import2.FolderComponent _ctx = ctx;
+    _compView_0.detectChanges();
+  }
+  void destroyInternal() {
+    _compView_0.destroy();
+  }
+}
+AppView<import2.FolderComponent> viewFactory_FolderComponent2(AppView<dynamic> parentView,num parentIndex) {
+  return new ViewFolderComponent2(parentView,parentIndex);
+}
+class ViewFolderComponent3 extends AppView<import2.FolderComponent> {
+  Element _el_0;
+  import14.ViewTreeNodeComponent0 _compView_0;
+  import15.TreeNodeComponent _TreeNodeComponent_0_2;
+  var _expr_0;
+  ViewFolderComponent3(AppView<dynamic> parentView,num parentIndex): super(import6.ViewType.EMBEDDED,{},parentView,parentIndex,ChangeDetectionStrategy.CheckAlways) {
+    componentType = ViewFolderComponent0.renderType;
+  }
+  ComponentRef build() {
+    final import2.FolderComponent _ctx = ctx;
+    _compView_0 = new import14.ViewTreeNodeComponent0(this,0);
     _el_0 = _compView_0.rootEl;
     addShimC(_el_0);
-    _TreeNodeComponent_0_2 = new import13.TreeNodeComponent(parentView.parentView.injectorGet(import14.PlaceService,parentView.parentIndex),parentView.parentView.injectorGet(import15.Environment,parentView.parentIndex),parentView.parentView.injectorGet(import2.FolderComponent,parentView.parentIndex));
+    _TreeNodeComponent_0_2 = new import15.TreeNodeComponent(parentView.parentView.injectorGet(import16.PlaceService,parentView.parentIndex),parentView.parentView.injectorGet(import17.Environment,parentView.parentIndex),parentView.parentView.injectorGet(import2.FolderComponent,parentView.parentIndex),parentView.parentView.injectorGet(import18.Router,parentView.parentIndex));
     _compView_0.create(_TreeNodeComponent_0_2,[]);
     init([_el_0],const []);
     return null;
   }
   dynamic injectorGetInternal(dynamic token,int nodeIndex,dynamic notFoundResult) {
-    if ((identical(token, import13.TreeNodeComponent) && (0 == nodeIndex))) { return _TreeNodeComponent_0_2; }
+    if ((identical(token, import15.TreeNodeComponent) && (0 == nodeIndex))) { return _TreeNodeComponent_0_2; }
     return notFoundResult;
   }
   void detectChangesInternal() {
     bool firstCheck = identical(this.cdState, ChangeDetectorState.NeverChecked);
     final import2.FolderComponent _ctx = ctx;
     final currVal_0 = _ctx.folders;
-    if (!import16.looseIdentical(_expr_0,currVal_0)) {
+    if (!import19.looseIdentical(_expr_0,currVal_0)) {
       _TreeNodeComponent_0_2.nodes = currVal_0;
       _expr_0 = currVal_0;
     }
@@ -249,8 +293,8 @@ class ViewFolderComponent2 extends AppView<import2.FolderComponent> {
     _compView_0.destroy();
   }
 }
-AppView<import2.FolderComponent> viewFactory_FolderComponent2(AppView<dynamic> parentView,num parentIndex) {
-  return new ViewFolderComponent2(parentView,parentIndex);
+AppView<import2.FolderComponent> viewFactory_FolderComponent3(AppView<dynamic> parentView,num parentIndex) {
+  return new ViewFolderComponent3(parentView,parentIndex);
 }
 const List<dynamic> styles_FolderComponentHost = const [];
 class ViewFolderComponentHost0 extends AppView<dynamic> {
@@ -265,7 +309,7 @@ class ViewFolderComponentHost0 extends AppView<dynamic> {
     final _ctx = ctx;
     _compView_0 = new ViewFolderComponent0(this,0);
     rootEl = _compView_0.rootEl;
-    _FolderComponent_0_2 = new import2.FolderComponent(this.injectorGet(import14.PlaceService,parentIndex),this.injectorGet(import17.Router,parentIndex),this.injectorGet(import15.Environment,parentIndex));
+    _FolderComponent_0_2 = new import2.FolderComponent(this.injectorGet(import16.PlaceService,parentIndex),this.injectorGet(import18.Router,parentIndex),this.injectorGet(import17.Environment,parentIndex));
     _compView_0.create(_FolderComponent_0_2,projectableNodes);
     init([rootEl],const []);
     return new ComponentRef(0,this,rootEl,_FolderComponent_0_2);

@@ -14,6 +14,7 @@ import 'app_config.dart' as conf;
 import 'environment.dart';
 import 'place.dart';
 import 'place_service.dart';
+import 'folder.dart';
 
 @Component(
     selector: 'places',
@@ -24,7 +25,6 @@ import 'place_service.dart';
     ]
 )
 class PlacesComponent implements OnInit {
-  List<Place> places;
   bool adding = false;
 
   final PlaceService _placeService;
@@ -34,14 +34,14 @@ class PlacesComponent implements OnInit {
   PlacesComponent(this._placeService, this._router, this._environment);
 
   void ngOnInit() {
-    loadPlaces();
     _environment.eventBus.getBus().listen((params) => show(params));
+
+    _environment.showScrollBar();
+    _environment.resize('showSplitterLeft');
   }
 
-  Future<Null> loadPlaces() async {
-    _environment.showScrollBar();
-    places = await _placeService.getPlaces();
-  }
+
+  List<Place> get places => _environment.placeList.data;
 
   void add() {
 //    _environment.condPopupVisible = true;
@@ -56,9 +56,8 @@ class PlacesComponent implements OnInit {
 
     try {
       Place toSelect = await
-      _placeService.createPlace(placeName);
-      await loadPlaces
-        ();
+      await _placeService.createPlace(placeName);
+      await _placeService.loadPlaces();
       onSelect(toSelect);
     } catch (ex) {
       print(ex);
@@ -75,26 +74,33 @@ class PlacesComponent implements OnInit {
 
   show(Map<PlaceParam, dynamic> params) async {
     if (_environment.connectedUser == null) {
-      places = [];
+      //places = [];
       return;
     }
 
     if (params[PlaceParam.login]) {
-      loadPlaces();
+      await _placeService.loadPlaces();
+    }
+    if (hasFolderNotification(params)) {
+      dynamic folderNotifDataJsObj = extractFolderNotificationData(params);
+      //OPTIMIZE should load only the place folderNotifDataJsObj['placeId']
+
+      String placeId = folderNotifDataJsObj['placeId'];
+      await _placeService.refreshPlaceNotifications();
     }
     if (params.containsKey(PlaceParam.treatUserInvite)) {
       dynamic inviteDetails = params[PlaceParam.treatUserInvite];
 
       var invitedToPlaceId = inviteDetails['placeId'];
       if (!hasPlace(invitedToPlaceId)) {
-        await loadPlaces();
+        await _placeService.loadPlaces();
       }
     }
 
     var requestedPlaceIdChange = params[PlaceParam.placeIdRequested];
-    if( requestedPlaceIdChange != null) {
-      for( Place place in places ) {
-        if(place.id == requestedPlaceIdChange) {
+    if (requestedPlaceIdChange != null) {
+      for (Place place in places) {
+        if (place.id == requestedPlaceIdChange) {
           selectedPlace = place;
           _environment.fireEvent(PlaceParam.placeLoaded, place.id);
           return;
@@ -119,14 +125,28 @@ class PlacesComponent implements OnInit {
 
 
   void onSelect(Place place) {
-    _environment.selectedPlace = place;
+    selectedPlace = place;
     _environment.track("place", data: {"place": place});
   }
 
   Place get selectedPlace => _environment.selectedPlace;
 
   void set selectedPlace(Place selectedPlace) {
-    _environment.selectedPlace = selectedPlace;
+    if (this.selectedPlace?.id == selectedPlace?.id)
+      return;
+
+    navigateToPlace(selectedPlace);
+    //_environment.selectedPlace = selectedPlace;
+  }
+
+  Future<Null> navigateToPlace(Place place) async {
+    List<Folder> folders = await _placeService.getFolders(place.id);
+    folders.forEach((Folder folder) {
+      if (folder.type == "home") {
+        _environment.navigate("FolderSelected", pId: place?.id, fId: folder.id);
+        return;
+      }
+    });
   }
 
   void placeExpanded() {
@@ -134,4 +154,8 @@ class PlacesComponent implements OnInit {
   }
 
   String get baseUrl => conf.baseUrl;
+
+  String notificationCountText(Place place) =>
+      place.notificationCount > 0 ? place.notificationCount.toString() : null;
+
 }

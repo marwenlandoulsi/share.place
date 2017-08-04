@@ -73,8 +73,8 @@ app.set('view engine', 'ejs'); // set up ejs for templating
 
 //app.use(log4js.connectLogger(log4js.getLogger("http"), { level: 'auto' }));
 app.use(cookieParser()); // read cookies (needed for auth)
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({limit: '6mb', extended: false}));
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '15mb', extended: false}));
 
 app.use(express.static(path.join(__dirname, 'static')));
 //app.use(express.static(path.join(__dirname, 'static')));
@@ -208,7 +208,7 @@ function isAuthenticatedRest(req, res, next) {
             }
             return next();
           } else {
-            log.erro('error to save user in req', error);
+            log.error('error to save user in req', error);
 
             return globalService.sendJsonResponse(res, 401, {error: 'not connected'});
           }

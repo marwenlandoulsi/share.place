@@ -11,6 +11,10 @@
         "5": false
       },
       {
+        "1": "package:angular2/router.dart",
+        "5": false
+      },
+      {
         "1": "package:angular2/core.dart",
         "5": false
       },
@@ -54,6 +58,15 @@
       {
         "1": "place.dart",
         "5": false
+      },
+      {
+        "1": "package:share_place/common/data/data.dart",
+        "5": false
+      },
+      {
+        "1": "package:share_place/common/data/collections.dart",
+        "4": "collection",
+        "5": false
       }
     ],
     "5": [
@@ -76,44 +89,56 @@
     "6": "environment.dart",
     "7": [
       {
-        "1": "package:angular2/core.template.dart",
+        "1": "package:angular2/router.template.dart",
         "4": "i0"
       },
       {
-        "1": "package:share_place/common/net/mix_panel.template.dart",
+        "1": "package:angular2/core.template.dart",
         "4": "i1"
       },
       {
-        "1": "package:share_place/common/net/socket.io.template.dart",
+        "1": "package:share_place/common/net/mix_panel.template.dart",
         "4": "i2"
       },
       {
-        "1": "package:share_place/users/user.template.dart",
+        "1": "package:share_place/common/net/socket.io.template.dart",
         "4": "i3"
       },
       {
-        "1": "app_config.template.dart",
+        "1": "package:share_place/users/user.template.dart",
         "4": "i4"
       },
       {
-        "1": "event_bus.template.dart",
+        "1": "app_config.template.dart",
         "4": "i5"
       },
       {
-        "1": "file_info.template.dart",
+        "1": "event_bus.template.dart",
         "4": "i6"
       },
       {
-        "1": "files/cloud_file.template.dart",
+        "1": "file_info.template.dart",
         "4": "i7"
       },
       {
-        "1": "folder.template.dart",
+        "1": "files/cloud_file.template.dart",
         "4": "i8"
       },
       {
-        "1": "place.template.dart",
+        "1": "folder.template.dart",
         "4": "i9"
+      },
+      {
+        "1": "place.template.dart",
+        "4": "i10"
+      },
+      {
+        "1": "package:share_place/common/data/data.template.dart",
+        "4": "i11"
+      },
+      {
+        "1": "package:share_place/common/data/collections.template.dart",
+        "4": "i12"
       }
     ]
   },

@@ -27,10 +27,6 @@
         "5": false
       },
       {
-        "1": "package:share_place/place_detail_component.dart",
-        "5": false
-      },
-      {
         "1": "package:share_place/place_service.dart",
         "5": false
       },
@@ -58,11 +54,6 @@
         ],
         "6": [
           "OnInit"
-        ],
-        "7": [
-          {
-            "2": "PlaceDetailComponent"
-          }
         ]
       }
     ],
@@ -89,16 +80,12 @@
         "4": "i4"
       },
       {
-        "1": "package:share_place/place_detail_component.template.dart",
+        "1": "package:share_place/place_service.template.dart",
         "4": "i5"
       },
       {
-        "1": "package:share_place/place_service.template.dart",
-        "4": "i6"
-      },
-      {
         "1": "news_event.template.dart",
-        "4": "i7"
+        "4": "i6"
       }
     ]
   },

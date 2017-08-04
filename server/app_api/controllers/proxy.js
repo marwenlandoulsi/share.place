@@ -33,7 +33,7 @@ let taffy = require('taffy');
 let login = require("../config/passport");
 let shell = require('electron').shell;
 let checksum = require('checksum');
-
+const FormData = require('form-data')
 
 //List of Place
 
@@ -42,6 +42,7 @@ const sendEvent = (nameOfEvent, content) => {
   ipcRenderer.send(nameOfEvent, content)
 }
 
+const net = require(path.join(__dirname, '..', '..', 'local_module', 'request'))
 
 module.exports.searchFileFromElastic = (req, res) => {
 
@@ -80,26 +81,30 @@ module.exports.searchFileFromElastic = (req, res) => {
     res.status(response.statusCode);
     res.json(body);
   })
-},
-    module.exports.getUtilFile = (req, res) => {
-      let userId = req.user._id;
-      let url = req.url;
-      let pathDirectory = path.join(constants.dataDir, userId, url);
-      let pathToUtilFile = path.join(constants.dataDir, userId, url, 'icon.bmp');
-      if (global.onLine) {
-        if (!fs.existsSync(pathToUtilFile)) {
-          // let mode = 0o0500;
-          downloadFile(url, pathDirectory, pathToUtilFile, 0o0500, (err, pathFileDownload) => {
-            if (err)
-              return globalService.sendError(res, err.statusCode, err.message);
+}
+module.exports.getUtilFile = (req, res) => {
+  let userId = req.user._id;
+  let url = req.url;
+  let pathDirectory = path.join(constants.dataDir, userId, url);
+  let pathToUtilFile = path.join(constants.dataDir, userId, url, 'icon.bmp');
+  if (global.onLine) {
 
-            return readFile(res, pathFileDownload, url, userId)
-          });
-          // return res.redirect('http://localhost:3000/sp/' + url);
-        }
+    // let mode = 0o0500;
+    downloadFile(url, pathDirectory, pathToUtilFile, 0o0500, (err, pathFileDownload) => {
+      if (err) {
+        if (err.errorFromServer)
+          return globalService.sendError(res, err.statusCode, err.errorFromServer.error, err.errorFromServer.errorDetail)
+        else
+          return globalService.sendError(res, err.code, err.message)
       }
-      return readFile(res, pathToUtilFile, url, userId)
-    }
+
+      return readFile(res, pathFileDownload, url, userId)
+    });
+    // return res.redirect('http://localhost:3000/sp/' + url);
+
+  }
+  return readFile(res, pathToUtilFile, url, userId)
+}
 
 let downloadUtilFileToDisc = module.exports.downloadUtilFileToDisc = (url, callBack) => {
   let userId = global.userConnected._id;
@@ -134,27 +139,29 @@ module.exports.get = function (req, res) {
 
   let pathDirectory = path.join(constants.dataDir, userId, url);
   let pathToDataFile = path.join(constants.dataDir, userId, url, 'data.json');
-  globalService.checkPathOrCreateSync(pathDirectory, pathToDataFile, '[]');
+  globalService.checkPathOrCreateSync(pathDirectory, pathToDataFile, '[]\n');
   let dataFromFile = jsonfile.readFileSync(pathToDataFile);
   let folderId = req.params.folderId;
   let fileId = req.params.fileId;
   let placeId = req.params.placeId;
-
   if (global.onLine) {
 
     getDataFromServer(req, res, email, password, url, (err, received) => {
-      if (err)
-        return globalService.sendError(res, err.statusCode, err.message);
-
+      if (err) {
+        if (err.errorFromServer)
+          return globalService.sendError(res, err.statusCode, err.errorFromServer.error, err.errorFromServer.errorDetail)
+        else
+          return globalService.sendError(res, err.code, err.message)
+      }
 
       let dataReceived = received.data;
-      saveInLocalDb(dataReceived, dataFromFile, pathToDataFile, (err, toReturn) => {
-        if (err)
-          return globalService.sendError(res, err.statusCode, err.message);
-
-        return globalService.sendJsonResponse(res, 200, dataReceived);
-
+      saveInLocalDb(dataReceived, dataFromFile, pathToDataFile, (error, toReturn) => {
+        if (error) {
+          log.error("error to save data in local db")
+        }
       })
+
+      return globalService.sendJsonResponse(res, 200, dataReceived);
     });
 
   } else {
@@ -172,7 +179,7 @@ module.exports.proxyGet = function (url, callBack) {
   }
   let pathDirectory = path.join(constants.dataDir, userId, url);
   let pathToDataFile = path.join(constants.dataDir, userId, url, 'data.json');
-  globalService.checkPathOrCreateSync(pathDirectory, pathToDataFile, '[]');
+  globalService.checkPathOrCreateSync(pathDirectory, pathToDataFile, '[]\n');
   let dataFromFile = jsonfile.readFileSync(pathToDataFile);
 
 
@@ -197,7 +204,7 @@ module.exports.proxyGet = function (url, callBack) {
 
 }
 module.exports.cron = function (req, res) {
-  console.log("cron executed");
+  log.error("cron executed");
 }
 module.exports.uploadFile = function (req, res) {
   let fileToUpload = req.files[0];
@@ -218,24 +225,26 @@ module.exports.uploadFile = function (req, res) {
   let placeName = place.select("name")[0];
   let folderName = folder.select("name")[0];
   let pathToDir = path.join(global.homeDir, '/share.place/' + userId + '/' + placeName + '/' + folderName + '/');
-  let pathFileInTmp = path.join(__dirname, '..', '..', 'tmp', 'upload', fileToUpload.filename);
+  let pathFileInTmp = path.join(fileToUpload.destination , fileToUpload.filename);
   if (global.onLine) {
     httpPostFileToUpload(url, fileToUpload, (err, received) => {
-      if (err)
-        log.error("error upload", err.message);
 
+      if (err) {
+        if (err.errorFromServer)
+          return globalService.sendError(res, err.statusCode, err.errorFromServer.error, err.errorFromServer.errorDetail)
+        else
+          return globalService.sendError(res, err.code, err.message)
+      }
 
-      let dataReceived = JSON.parse(received).data;
+     // log.error("received", received)
+      let dataReceived = received.data;
 
       fs.unlink(pathFileInTmp, function (err) {
-        if (err) {
+        if (err)
           log.error('err  delete from tmp', err);
-          return globalService.sendJsonResponse(res, 405, err.message);
-
-        } else {
-          return globalService.sendJsonResponse(res, 200, dataReceived);
-        }
       });
+
+      return globalService.sendJsonResponse(res, 200, dataReceived);
     });
   } else {
     showDialogBox("info", "Share.place", "sorry you are offline you can't upload File");
@@ -414,47 +423,52 @@ function downloadFileInDisc(url, mode, callBack) {
       let file = dbFile({_id: fileId});
       let placeName = place.select("name")[0];
       let folderName = folder.select("name")[0];
+      let folderState = folder.select("state")[0]
       let versions = file.select("versions")[0]
       let fileName = versions[versions.length - 1].name;
+      let fileState = file.select("state")[0]
 
-      getPathFileInHomeDir(file.get()[0], dataFolder, (pathToHomDir, pathToFileInDir) => {
+      if(fileState != 'D' && folderState != 'D'){
+        getPathFileInHomeDir(file.get()[0], dataFolder, (pathToHomDir, pathToFileInDir) => {
 
-        let pathToDir = path.join(global.homeDir, 'share.place', userId, placeName, pathToHomDir + '/');
+          let pathToDir = path.join(global.homeDir, 'share.place', userId, placeName, pathToHomDir + '/');
 
-        let pathToFile = path.join(pathToDir, fileName);
+          let pathToFile = path.join(pathToDir, fileName);
 
-        if (global.onLine) {
-          if (!fs.existsSync(pathToFile)) {
-            downloadFile(url, pathToDir, pathToFile, mode, (err, ok) => {
-              if (err)
-                return callBack(err)
+          if (global.onLine) {
+            if (!fs.existsSync(pathToFile)) {
+              downloadFile(url, pathToDir, pathToFile, mode, (err, ok) => {
+                if (err)
+                  return callBack(err)
 
-              return callBack(null, true, pathToFile);
-            });
-          } else {
-            isSameFile(file.get()[0], pathToFile, (err, sameFile) => {
-              if (err)
-                return callBack(err)
-              if (!sameFile) {
-                fs.unlink(pathToFile, (err) => {
-                  if (err)
-                    return callBack(err);
-
-                  downloadFile(url, pathToDir, pathToFile, mode, (err, ok) => {
+                return callBack(null, true, pathToFile);
+              });
+            } else {
+              isSameFile(file.get()[0], pathToFile, (err, sameFile) => {
+                if (err)
+                  return callBack(err)
+                if (!sameFile) {
+                  fs.unlink(pathToFile, (err) => {
                     if (err)
                       return callBack(err);
 
-                    return callBack(null, true, pathToFile);
-                  });
-                })
+                    downloadFile(url, pathToDir, pathToFile, mode, (err, ok) => {
+                      if (err)
+                        return callBack(err);
 
-              }
-            })
+                      return callBack(null, true, pathToFile);
+                    });
+                  })
+
+                }
+              })
+            }
           }
-        }
 
-        return callBack(null, false, pathToFile);
-      })
+          return callBack(null, false, pathToFile);
+        })
+      }
+      return callBack(null, false, null);
     });
   })
 
@@ -463,117 +477,168 @@ function downloadFileInDisc(url, mode, callBack) {
 
 let getDataFromServer = function (req, res, email, password, url, cb) {
 
-  if (typeof (global.cookieReceived) == "undefined") {
-
-    if (!email) {
-      res.redirect('/web');
-    }
-    login.loginFromServer(req, email, password, function (err, user, info) {
-      if (err) {
-        return globalService.sendError(res, err.statusCode, err.statusCode);
-      }
-
-      if (info) {
-        return globalService.sendError(res, 401, "you are online again please log in")
-      }
-      if (user) {
-        globalService.setSidInInput(global.cookieReceived);
-        return httpGetJson(global.cookieReceived, url, cb)
-      }
-    })
+  if (!global.cookieReceived) {
+    res.redirect('/web');
+    // if (!email) {
+    //   res.redirect('/web');
+    // }
+    // login.loginFromServer(req, email, password, function (err, user, info) {
+    //   if(err){
+    //     if (err.errorFromServer)
+    //       return globalService.sendError(res, err.statusCode, err.errorFromServer.error, err.errorFromServer.errorDetail)
+    //     else
+    //       return globalService.sendError(res, err.statusCode, err.message)
+    //   }
+    //
+    //   if (info) {
+    //     return globalService.sendError(res, 401, "you are online again please log in")
+    //   }
+    //   if (user) {
+    //     globalService.setSidInInput(global.cookieReceived);
+    //     return httpGetJson(global.cookieReceived, url, cb)
+    //   }
+    // })
   }
   globalService.setSidInInput(global.cookieReceived);
   return httpGetJson(global.cookieReceived, url, cb);
 };
+
 let openFile = function (res, dataFile, pathFile) {
   return shell.openItem(pathFile);
 }
-let httpPostFileToUpload = function (url, fileToUpload, cb) {
 
-  let formData = {
-    toUpload: {
-      value: fs.createReadStream(path.join(__dirname, '..', '..', 'tmp', 'upload', fileToUpload.filename)),
-      options: {
-        filename: fileToUpload.originalname,
-        contentType: fileToUpload.mimeType
-      }
-    }
-  };
+let httpPostFileToUpload = function (url, fileToUpload, cb) {
+  const form = new FormData()
+  console.log('************', fileToUpload)
+  form.append('toUpload', fs.createReadStream(path.join(fileToUpload.destination , fileToUpload.filename)));
 
   let headers = {
     'Cookie': global.cookieReceived
   }
-  let options = {
-    url: constants.optionsPost.url + url,
+  let reqOptions = {
     method: constants.optionsPost.method,
     headers: headers,
-    formData: formData,
-    agent: agent
+    body: form
   }
-  request(options, function (err, resp, body) {
+  net.requestUrl(constants.optionsPost.url + url, reqOptions, (err, toReturn) => {
     if (err)
-      return cb(err);
+      return cb(err)
 
-    if (!err && resp.statusCode == 200) {
-      return cb(null, body);
-    }
-
-  });
+    return cb(null, toReturn)
+  })
+  // form.append('toUpload', fs.createReadStream(path.join(__dirname, '..', '..', 'tmp', 'upload', fileToUpload.filename)),
+  //     {
+  //       filename: fileToUpload.originalname,
+  //       contentType: fileToUpload.mimeType
+  //     });
+  // let formData = {
+  //   toUpload: {
+  //     value: fs.createReadStream(path.join(__dirname, '..', '..', 'tmp', 'upload', fileToUpload.filename)),
+  //     options: {
+  //       filename: fileToUpload.originalname,
+  //       contentType: fileToUpload.mimeType
+  //     }
+  //   }
+  // };
+  //
+  // let headers = {
+  //   'Cookie': global.cookieReceived
+  // }
+  // let options = {
+  //   url: constants.optionsPost.url + url,
+  //   method: constants.optionsPost.method,
+  //   headers: headers,
+  //   formData: formData,
+  //   agent: agent
+  // }
+  // request(options, function (err, resp, body) {
+  //   if (err)
+  //     return cb(err);
+  //
+  //   if (!err && resp.statusCode == 200) {
+  //     return cb(null, body);
+  //   }
+  //
+  // });
 }
 
 let httpUploadNewVersion = function (url, pathOfFile, filename, contentType, cb) {
-
-  let formData = {
-    toUpload: {
-      value: fs.createReadStream(pathOfFile),
-      options: {
-        filename: filename,
-        contentType: contentType
-      }
-    }
-  };
+  const form = new FormData()
+  form.append('toUpload', fs.createReadStream(pathOfFile));
 
   let headers = {
     'Cookie': global.cookieReceived
   }
-
-  let options = {
-    url: constants.optionsPost.url + url,
+  let reqOptions = {
     method: constants.optionsPost.method,
     headers: headers,
-    formData: formData,
-    agent: agent
+    body: form
   }
-  if (global.isProxy) {
-    if (global.userProxy) {
-      var proxyUrl = "http://" + global.userProxy + ":" + global.pswProxy + "@" + global.proxyUrl;
-      var proxiedRequest = request.defaults({'proxy': proxyUrl});
-      request = proxiedRequest;
-    }
-  }
-  request(options, function (err, resp, body) {
+  net.requestUrl(constants.optionsPost.url + url, reqOptions, (err, toReturn) => {
     if (err)
-      return cb(err);
+      return cb(err)
 
-    if (!err && resp.statusCode == 200) {
-      return cb(null, body);
-    }
-  });
+    return cb(null, toReturn)
+  })
+  // let formData = {
+  //   toUpload: {
+  //     value: fs.createReadStream(pathOfFile),
+  //     options: {
+  //       filename: filename,
+  //       contentType: contentType
+  //     }
+  //   }
+  // };
+  //
+  // let headers = {
+  //   'Cookie': global.cookieReceived
+  // }
+  //
+  // let options = {
+  //   url: constants.optionsPost.url + url,
+  //   method: constants.optionsPost.method,
+  //   headers: headers,
+  //   formData: formData,
+  //   agent: agent
+  // }
+  // if (global.isProxy) {
+  //   if (global.userProxy) {
+  //     var proxyUrl = "http://" + global.userProxy + ":" + global.pswProxy + "@" + global.proxyUrl;
+  //     var proxiedRequest = request.defaults({'proxy': proxyUrl});
+  //     request = proxiedRequest;
+  //   }
+  // }
+  // request(options, function (err, resp, body) {
+  //   if (err)
+  //     return cb(err);
+  //
+  //   if (!err && resp.statusCode == 200) {
+  //     return cb(null, body);
+  //   }
+  // });
 }
 
 let httpGetJson = function (cookie, url, cb) {
 
-  if (cookie)
-    global.cookieReceived = cookie;
-
+  /* if (cookie)
+   global.cookieReceived = cookie;
+   */
   let options = {
     url: constants.optionsGetReq.url + url,
     method: constants.optionsGetReq.method,
     headers: {
       'Cookie': global.cookieReceived,
-    },
-    agent: agent
+    }//,
+    //agent: agent
   };
+
+  globalService.requestRemoteServer(options, (err, dataReceived) => {
+
+    if (err)
+      return cb(err)
+
+    return cb(null, dataReceived)
+  })
   /*
    let options = {
    host: constants.optionsGet.host,
@@ -585,30 +650,30 @@ let httpGetJson = function (cookie, url, cb) {
    'Cookie': global.cookieReceived,
    }
    };*/
-  if (global.isProxy) {
-    if (global.userProxy) {
-      var proxyUrl = "http://" + global.userProxy + ":" + global.pswProxy + "@" + global.proxyUrl;
-      var proxiedRequest = request.defaults({'proxy': proxyUrl});
-      request = proxiedRequest;
-    }
-  }
-  request(options, function (error, response, body) {
+  /*if (global.isProxy) {
+   if (global.userProxy) {
+   var proxyUrl = "http://" + global.userProxy + ":" + global.pswProxy + "@" + global.proxyUrl;
+   var proxiedRequest = request.defaults({'proxy': proxyUrl});
+   request = proxiedRequest;
+   }
+   }
+   request(options, function (error, response, body) {
 
-    if (error) {
-      log.error("error to get data from server:", error)
-      return cb(error)
-    }
-    if (response.statusCode > 400) {
-      var error = new Error(body.error)
-      error.statusCode = response.statusCode;
+   if (error) {
+   log.error("error to get data from server:", error)
+   return cb(error)
+   }
+   if (response.statusCode > 400) {
+   var error = new Error(body.error)
+   error.statusCode = response.statusCode;
 
-      return cb(error);
-    }
-    let parsed = JSON.parse(body);
-    return cb(null, parsed);
+   return cb(error);
+   }
+   let parsed = JSON.parse(body);
+   return cb(null, parsed);
 
 
-  });
+   });*/
   /*
    return http.get(options, function (response) {
 
@@ -676,64 +741,77 @@ function downloadFile(url, directory, pathFile, mode, cb) {
 };
 module.exports.proxyDownloadFile = downloadFile;
 let httpGetFile = function (options, cb) {
-
-  options.agent = agent
-  if (global.isProxy) {
-    if (global.userProxy) {
-      var proxyUrl = "http://" + global.userProxy + ":" + global.pswProxy + "@" + global.proxyUrl;
-      var proxiedRequest = request.defaults({'proxy': proxyUrl});
-      request = proxiedRequest;
-    }
+  let reqOptions = {
+    method: options.method,
+    headers: options.headers
   }
 
-  request(options)
-      .on('response', function (response) {
-        let data = [];
-        let total_bytes = parseInt(response.headers['content-length'], 10);
-        let received_bytes = 0
-        let err;
-        response.on('data', function (chunk) {
+  net.getFileFromRemote(options.url, reqOptions, (err, buffer) => {
 
-          if (response.statusCode == 200 || response.statusCode == 201) {
+//    log.error("getFileFromRemote err", err, "buff", buffer)
+    if (err)
+      return cb(err)
 
-            received_bytes += chunk.length;
-            let progress = parseFloat(received_bytes / total_bytes);
-            showProgressBar(progress);
-            data.push(chunk);
-          } else {
-            err = chunk.toString()
-          }
-
-        });
-        response.on('error', function (err) {
-          // Data reception is done, do whatever with it!
-          return cb(err);
-        });
-
-        response.on('end', function () {
-          // Data reception is done, do whatever with it!
-          if (response.statusCode == 200 || response.statusCode == 201) {
-            showProgressBar(-1);
-            let buffer = Buffer.concat(data);
-            return cb(null, buffer);
-          } else {
-            let error = new Error();
-            error.statusCode = response.statusCode;
-            error.message = JSON.parse(err).error;
-            return cb(error);
-          }
-        });
-        /*else {
-         console.log("response.body.error",response.body.error)
-         let error = new Error();
-         error.statusCode = response.statusCode;
-         error.message = response.body.error;
-         return cb(error);
-         }*/
-
-      }).on('error', function (err) {
-    return cb(err);
+    return cb(null, buffer)
   })
+  /*
+   options.agent = agent
+   if (global.isProxy) {
+   if (global.userProxy) {
+   var proxyUrl = "http://" + global.userProxy + ":" + global.pswProxy + "@" + global.proxyUrl;
+   var proxiedRequest = request.defaults({'proxy': proxyUrl});
+   request = proxiedRequest;
+   }
+   }
+   */
+  // request(options)
+  //     .on('response', function (response) {
+  //       let data = [];
+  //       let total_bytes = parseInt(response.headers['content-length'], 10);
+  //       let received_bytes = 0
+  //       let err;
+  //       response.on('data', function (chunk) {
+  //
+  //         if (response.statusCode == 200 || response.statusCode == 201) {
+  //
+  //           received_bytes += chunk.length;
+  //           let progress = parseFloat(received_bytes / total_bytes);
+  //           showProgressBar(progress);
+  //           data.push(chunk);
+  //         } else {
+  //           err = chunk.toString()
+  //         }
+  //
+  //       });
+  //       response.on('error', function (err) {
+  //         // Data reception is done, do whatever with it!
+  //         return cb(err);
+  //       });
+  //
+  //       response.on('end', function () {
+  //         // Data reception is done, do whatever with it!
+  //         if (response.statusCode == 200 || response.statusCode == 201) {
+  //           showProgressBar(-1);
+  //           let buffer = Buffer.concat(data);
+  //           return cb(null, buffer);
+  //         } else {
+  //           let error = new Error();
+  //           error.statusCode = response.statusCode;
+  //           error.message = JSON.parse(err).error;
+  //           return cb(error);
+  //         }
+  //       });
+  //       /*else {
+  //        log.error("response.body.error",response.body.error)
+  //        let error = new Error();
+  //        error.statusCode = response.statusCode;
+  //        error.message = response.body.error;
+  //        return cb(error);
+  //        }*/
+  //
+  //     }).on('error', function (err) {
+  //   return cb(err);
+  // })
   /*
    return http.get(options, function (response) {
    // Continuously update stream with data
@@ -866,7 +944,7 @@ let isSameFile = (datafile, pathFileHome, cb) => {
     }
 
     let localCs = data.versions[data.versions.length - 1].sum;
-    log.info("localCs", localCs, "sum", sum)
+    //log.info("comparing to file : localCs", localCs, "sum", sum)
     if (sum == localCs) {
       return cb(null, true);
     } else {
@@ -882,18 +960,23 @@ module.exports.post = function (req, res) {
   let userId = global.userConnected._id;
 
   if (global.onLine) {
-    httpPostJson(url, jsonData, (objError, toReturn) => {
-      if (objError) {
-        if (objError.errFromServer) {
-          return globalService.sendError(res, 402, objError.errFromServer.error, objError.errFromServer.errorDetail)
-        } else {
-          log.error("error to delete", objError.errorRequest)
-          return globalService.sendError(res, 402, "error occured try again")
-        }
+    httpPostJson(url, jsonData, (err, toReturn) => {
+      /*if (objError) {
+       if (objError.errFromServer) {
+       return globalService.sendError(res, 402, objError.errFromServer.error, objError.errFromServer.errorDetail)
+       } else {
+       log.error("error to delete", objError.errorRequest)
+       return globalService.sendError(res, 402, "error occured try again")
+       }
+       }*/
+      if (err) {
+        if (err.errorFromServer)
+          return globalService.sendError(res, err.statusCode, err.errorFromServer.error, err.errorFromServer.errorDetail)
+        else
+          return globalService.sendError(res, err.code, err.message)
       }
 
-
-      return globalService.sendJsonResponse(res, 200, toReturn)
+      return globalService.sendJsonResponse(res, 200, toReturn.data)
     });
 
   } else {
@@ -931,16 +1014,22 @@ module.exports.post = function (req, res) {
 module.exports.delete = function (req, res) {
   let url = req.url;
   if (global.onLine) {
-    httpDelete(url, (objError, toReturn) => {
-      if (objError) {
-        if (objError.errFromServer) {
-          return globalService.sendError(res, 402, objError.errFromServer.error, objError.errFromServer.errorDetail)
-        } else {
-          log.error("error to delete", objError.errorRequest)
-          return globalService.sendError(res, 402, "error occured try again")
-        }
-      }
+    httpDelete(url, (err, toReturn) => {
+      // if (objError) {
+      //   if (objError.errFromServer) {
+      //     return globalService.sendError(res, 402, objError.errFromServer.error, objError.errFromServer.errorDetail)
+      //   } else {
+      //     log.error("error to delete", objError.errorRequest)
+      //     return globalService.sendError(res, 402, "error occured try again")
+      //   }
+      // }
 
+      if (err) {
+        if (err.errorFromServer)
+          return globalService.sendError(res, err.statusCode, err.errorFromServer.error, err.errorFromServer.errorDetail)
+        else
+          return globalService.sendError(res, err.code, err.message)
+      }
 
       return globalService.sendJsonResponse(res, 200, toReturn)
 
@@ -989,36 +1078,46 @@ module.exports.deleteFolder = function (req, res) {
          */
         try {
           globalService.deleteFolderRecursive(pathFolderInHomeDir, dataFolder.name);
-          httpDelete(url, (objError, toReturn) => {
-            if (objError) {
-              if (objError.errFromServer) {
-                return globalService.sendError(res, 402, objError.errFromServer.error, objError.errFromServer.errorDetail)
-              } else {
-                log.error("error to delete", objError.errorRequest)
-                return globalService.sendError(res, 402, "error occured try again")
-              }
+          httpDelete(url, (err, toReturn) => {
+            // if (objError) {
+            //   if (objError.errFromServer) {
+            //     return globalService.sendError(res, 402, objError.errFromServer.error, objError.errFromServer.errorDetail)
+            //   } else {
+            //     log.error("error to delete", objError.errorRequest)
+            //     return globalService.sendError(res, 402, "error occured try again")
+            //   }
+            // }
+            if (err) {
+              if (err.errorFromServer)
+                return globalService.sendError(res, err.statusCode, err.errorFromServer.error, err.errorFromServer.errorDetail)
+              else
+                return globalService.sendError(res, err.code, err.message)
             }
-
 
             return globalService.sendJsonResponse(res, 200, toReturn)
 
           });
         }
         catch (err) {
-          log.error("error to delete folder:", pathFolderInHomeDir, " , error :", error)
+          log.error("error to delete folder:", pathFolderInHomeDir, " , error :", err)
           showDialogBox("info", "share.place", "please close opened files ");
         }
       } else {
-        httpDelete(url, (objError, toReturn) => {
-          if (objError) {
-            if (objError.errFromServer) {
-              return globalService.sendError(res, 402, objError.errFromServer.error, objError.errFromServer.errorDetail)
-            } else {
-              log.error("error to delete", objError.errorRequest)
-              return globalService.sendError(res, 402, "error occured try again")
-            }
+        httpDelete(url, (err, toReturn) => {
+          // if (objError) {
+          //   if (objError.errFromServer) {
+          //     return globalService.sendError(res, 402, objError.errFromServer.error, objError.errFromServer.errorDetail)
+          //   } else {
+          //     log.error("error to delete", objError.errorRequest)
+          //     return globalService.sendError(res, 402, "error occured try again")
+          //   }
+          // }
+          if (err) {
+            if (err.errorFromServer)
+              return globalService.sendError(res, err.statusCode, err.errorFromServer.error, err.errorFromServer.errorDetail)
+            else
+              return globalService.sendError(res, err.code, err.message)
           }
-
 
           return globalService.sendJsonResponse(res, 200, toReturn)
 
@@ -1039,17 +1138,24 @@ module.exports.put = function (req, res) {
     if (typeof (lock) != "undefined") {
       if (lock) {
         lockFile(req, url, jsonToPut, (err, toReturn) => {
-          if (err)
-            return globalService.sendError(res, 405, err.message);
+          if (err) {
+            if (err.errorFromServer)
+              return globalService.sendError(res, err.statusCode, err.errorFromServer.error, err.errorFromServer.errorDetail)
+            else
+              return globalService.sendError(res, err.code, err.message)
+          }
 
           return globalService.sendJsonResponse(res, 200, toReturn);
         });
       } else {
         let fileId = req.params.fileId;
         unlockFile(url, fileId, jsonToPut, (err, pathToFile, toReturn) => {
-          if (err)
-            return globalService.sendError(res, 405, err.message);
-
+          if (err) {
+            if (err.errorFromServer)
+              return globalService.sendError(res, err.statusCode, err.errorFromServer.error, err.errorFromServer.errorDetail)
+            else
+              return globalService.sendError(res, err.code, err.message)
+          }
 
           fs.chmodSync(pathToFile, '0555');
           let event = {
@@ -1071,9 +1177,12 @@ module.exports.put = function (req, res) {
       let usersFile = jsonfile.readFileSync(pathUsersDbFile);
       let usersDb = taffy(usersFile);
       httpPutJson(url, jsonToPut, (err, user) => {
-        if (err)
-          return globalService.sendError(res, err.statusCode, err.message)
-
+        if (err) {
+          if (err.errorFromServer)
+            return globalService.sendError(res, err.statusCode, err.errorFromServer.error, err.errorFromServer.errorDetail)
+          else
+            return globalService.sendError(res, err.code, err.message)
+        }
 
         usersDb({_id: user._id}).update({visiblePostits: user.visiblePostits});
 
@@ -1082,7 +1191,6 @@ module.exports.put = function (req, res) {
         return globalService.sendJsonResponse(res, 200, user);
       })
     } else if (url.indexOf("moveToFolder") != -1) {
-      console.log("erbzaeazeaze")
       let fileInfoId = req.params.fileInfoId;
       let folderId = req.params.folderId;
       let placeId = req.params.placeId;
@@ -1093,28 +1201,31 @@ module.exports.put = function (req, res) {
       getPathFolderInHomeDirFromReq(req, (pathToFolder) => {
         let pathToFileToMove = path.join(pathToFolder, fileName);
 
-        console.log("pathToFileToMove", pathToFileToMove)
         if (fs.existsSync(pathToFileToMove)) {
-          console.log("fs.existsSync(pathToFileToMove)", fs.existsSync(pathToFileToMove))
           fs.unlink(pathToFileToMove, (err) => {
             if (err) {
               showDialogBox("info", "Share.place", "Please close the file " + fileName + " before moving it");
             }
 
             httpPutJson(url, jsonToPut, (err, toReturn) => {
-              if (err)
-                return globalService.sendError(res, err.statusCode, err.message)
-
+              if (err) {
+                if (err.errorFromServer)
+                  return globalService.sendError(res, err.statusCode, err.errorFromServer.error, err.errorFromServer.errorDetail)
+                else
+                  return globalService.sendError(res, err.code, err.message)
+              }
 
               return globalService.sendJsonResponse(res, 200, toReturn);
             })
           })
         } else {
-          console.log("fs.existsSync(ssss)", fs.existsSync(pathToFileToMove))
           httpPutJson(url, jsonToPut, (err, toReturn) => {
-            if (err)
-              return globalService.sendError(res, err.statusCode, err.message)
-
+            if (err) {
+              if (err.errorFromServer)
+                return globalService.sendError(res, err.statusCode, err.errorFromServer.error, err.errorFromServer.errorDetail)
+              else
+                return globalService.sendError(res, err.code, err.message)
+            }
 
             return globalService.sendJsonResponse(res, 200, toReturn);
           })
@@ -1122,9 +1233,12 @@ module.exports.put = function (req, res) {
       })
     } else {
       httpPutJson(url, jsonToPut, (err, toReturn) => {
-        if (err)
-          return globalService.sendError(res, err.statusCode, err.message)
-
+        if (err) {
+          if (err.errorFromServer)
+            return globalService.sendError(res, err.statusCode, err.errorFromServer.error, err.errorFromServer.errorDetail)
+          else
+            return globalService.sendError(res, err.code, err.message)
+        }
 
         return globalService.sendJsonResponse(res, 200, toReturn);
       })
@@ -1158,13 +1272,16 @@ module.exports.putFolder = function (req, res) {
       if (fs.existsSync(pathFolderInHomeDir)) {
         fs.rename(pathFolderInHomeDir, newPathToFolderInHomeDir, (err) => {
           if (err) {
-            log.error("error to rename folder:", pathFolderInHomeDir, " , error :", err.message)
+            log.error("error to rename folder:", pathFolderInHomeDir, " , error :", err)
             showDialogBox("info", "rename folder", "please close opened files ");
           } else {
             httpPutJson(url, jsonToPut, (err, toReturn) => {
-              if (err)
-                return globalService.sendError(res, err.statusCode, err.message)
-
+              if (err) {
+                if (err.errorFromServer)
+                  return globalService.sendError(res, err.statusCode, err.errorFromServer.error, err.errorFromServer.errorDetail)
+                else
+                  return globalService.sendError(res, err.code, err.message)
+              }
 
               return globalService.sendJsonResponse(res, 200, toReturn);
             })
@@ -1172,9 +1289,12 @@ module.exports.putFolder = function (req, res) {
         })
       } else {
         httpPutJson(url, jsonToPut, (err, toReturn) => {
-          if (err)
-            return globalService.sendError(res, err.statusCode, err.message)
-
+          if (err) {
+            if (err.errorFromServer)
+              return globalService.sendError(res, err.statusCode, err.errorFromServer.error, err.errorFromServer.errorDetail)
+            else
+              return globalService.sendError(res, err.code, err.message)
+          }
 
           return globalService.sendJsonResponse(res, 200, toReturn);
         })
@@ -1214,27 +1334,30 @@ let lockFile = function (req, url, jsonToPut, callBack) {
   let mode = 0o666;
 
   httpPutJson(url, jsonToPut, (err, toReturn) => {
+
+
     if (err) {
       return callBack(err);
     }
+
 
     let userId = req.user._id;
     let placeId = req.params.placeId;
     let folderId = req.params.folderId;
     let pathDirectory = path.join(constants.dataDir, userId, url);
     let pathToDataFile = path.join(constants.dataDir, userId, url, 'data.json');
-    globalService.checkPathOrCreateSync(pathDirectory, pathToDataFile, '[]');
+    globalService.checkPathOrCreateSync(pathDirectory, pathToDataFile, '[]\n');
     let dataFromFile = jsonfile.readFileSync(pathToDataFile);
-    saveInLocalDb(toReturn, dataFromFile, pathToDataFile, (err) => {
-      if (err)
-        return callBack(err)
+    saveInLocalDb(toReturn, dataFromFile, pathToDataFile, (error) => {
+      if (error)
+        return callBack(error)
       /* let urlFileInfo = "/place/"+placeId+"/folder/"+folderId+"/fileInfo";
        getDataFromServer (req, null , null, null, urlFileInfo, (err, fileInfoFromServer)=>{
        let pathDbFileInfo = path.join(constants.dataDir, userId , 'place', placeId, 'folder', folderId, 'fileInfo/data.json');
        let dataDbFileInfo = jsonfile.readFileSync(pathDbFileInfo);
        saveInLocalDb(fileInfoFromServer, dataDbFileInfo, pathDbFileInfo)
        })*/
-      return callBack(err, toReturn);
+      return callBack(null, toReturn);
     })
   });
 };
@@ -1320,7 +1443,7 @@ let unlockFile = function (url, fileId, jsonToPut, callBack) {
 
 let httpPostJson = function (url, jsonData, callBack) {
   let headers = {
-    'Content-Type': 'application/json; charset=utf-8',
+    'Content-Type': 'application/json',
     'Cookie': global.cookieReceived
   }
 // Configure the request
@@ -1332,9 +1455,14 @@ let httpPostJson = function (url, jsonData, callBack) {
   }
 
 // Start the request
-  globalService.requestRemoteServer(options, (error, toReturn) => {
-    if (error)
-      return callBack(error)
+
+  globalService.requestRemoteServer(options, (err, toReturn) => {
+    if (err)
+      return callBack(err);
+
+    if (toReturn.error)
+      return callBack({errFromServer: toReturn})
+
 
     return callBack(null, toReturn);
   })
@@ -1384,13 +1512,17 @@ let httpDelete = function (url, callBack) {
     if (err)
       return callBack(err);
 
+    if (toReturn.error)
+      return callBack({errFromServer: toReturn})
+
+
     return callBack(null, toReturn);
   })
 }
 let httpPutJson = function (url, jsonData, callBack) {
 
   let headers = {
-    'Content-Type': 'application/json; charset=utf-8',
+    'Content-Type': 'application/json',
     'Cookie': global.cookieReceived
   }
 // Configure the request
@@ -1399,48 +1531,56 @@ let httpPutJson = function (url, jsonData, callBack) {
     url: constants.optionsPut.url + url,
     method: constants.optionsPut.method,
     headers: headers,
-    json: jsonData,
-    agent: agent
+    json: jsonData//,
+    // agent: agent
   }
-  if (global.isProxy) {
-    if (global.userProxy) {
-      var proxyUrl = "http://" + global.userProxy + ":" + global.pswProxy + "@" + global.proxyUrl;
-      var proxiedRequest = request.defaults({'proxy': proxyUrl});
-      request = proxiedRequest;
-    }
-  }
-// Start the request
-  request(options, function (error, response, body) {
 
-    if (error) {
-      log.error("error to put Data", error.message);
-      return callBack(error)
-    }
-
-    // Print out the response body
-
-    if (response.statusCode == 200 || response.statusCode == 201) {
-      let data;
-      if (typeof (body) != "object") {
-        data = JSON.parse(body).data
-      } else {
-        data = body.data;
-      }
-      return callBack(null, data);
-    } else {
-      let err = new Error();
-      if (typeof (body) != "object") {
-        err.message = JSON.parse(body).error;
-        err.name = JSON.parse(body).errorDetail;
-      } else {
-        err.message = body.error;
-        err.name = body.errorDetail;
-      }
-
+  globalService.requestRemoteServer(options, (err, dataReceived) => {
+    if (err)
       return callBack(err);
-    }
 
+
+    return callBack(null, dataReceived.data);
   })
+  /*if (global.isProxy) {
+   if (global.userProxy) {
+   var proxyUrl = "http://" + global.userProxy + ":" + global.pswProxy + "@" + global.proxyUrl;
+   var proxiedRequest = request.defaults({'proxy': proxyUrl});
+   request = proxiedRequest;
+   }
+   }*/
+// Start the request
+  /* request(options, function (error, response, body) {
+
+   if (error) {
+   log.error("error to put Data", error.message);
+   return callBack(error)
+   }
+
+   // Print out the response body
+
+   if (response.statusCode == 200 || response.statusCode == 201) {
+   let data;
+   if (typeof (body) != "object") {
+   data = JSON.parse(body).data
+   } else {
+   data = body.data;
+   }
+   return callBack(null, data);
+   } else {
+   let err = new Error();
+   if (typeof (body) != "object") {
+   err.message = JSON.parse(body).error;
+   err.name = JSON.parse(body).errorDetail;
+   } else {
+   err.message = body.error;
+   err.name = body.errorDetail;
+   }
+
+   return callBack(err);
+   }
+
+   })*/
 }
 let readFile = function (res, iconPath, url, userId) {
   fs.readFile(iconPath, function (err, contents) {
@@ -1457,9 +1597,12 @@ let readFile = function (res, iconPath, url, userId) {
 
       downloadFile(url, pathDirectory, pathToUtilFile, 0o0500, (err, pathFileDownload) => {
         //TODO return default pictur if error;
-        if (err)
-          return globalService.sendError(res, err.statusCode, err.message);
-
+        if (err) {
+          if (err.errorFromServer)
+            return globalService.sendError(res, err.statusCode, err.errorFromServer.error, err.errorFromServer.errorDetail)
+          else
+            return globalService.sendError(res, err.code, err.message)
+        }
         fs.readFile(pathFileDownload, (err, fileUtil) => {
           return res.end(fileUtil);
         })

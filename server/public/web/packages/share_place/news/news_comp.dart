@@ -6,7 +6,6 @@ import 'package:angular2/router.dart';
 import 'package:share_place/place.dart';
 import 'package:share_place/folder.dart';
 import 'package:share_place/environment.dart';
-import 'package:share_place/place_detail_component.dart';
 import 'package:share_place/place_service.dart';
 
 import 'news_event.dart';
@@ -14,8 +13,8 @@ import 'news_event.dart';
 @Component(
     selector: 'news-comp',
     templateUrl: 'news_comp.html',
-    styleUrls: const ['news_comp.css'],
-    directives: const [PlaceDetailComponent])
+    styleUrls: const ['news_comp.css']
+)
 class NewsComp implements OnInit {
   final PlaceService _placeService;
   final Router _router;

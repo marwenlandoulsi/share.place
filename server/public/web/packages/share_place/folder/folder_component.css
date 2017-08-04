@@ -1,29 +1,8 @@
 .header {
   position: relative;
-  margin: 1em 0 0 0;
+  margin: 0;
   display: inline-block;
   width: 100%;
-  height: 1.7em;
-}
-
-.hTitle {
-  position: absolute;
-  left: 0;
-  top: 0;
-  font-size: 1em;
-  width: calc(100% - 0.6em);
-  color: #414c5f;
-  float: left;
-  background: url("../images/tiret-grey.png") repeat-x center center;
-  font-weight: bold;
-}
-
-.hTitleIn {
-  background: white;
-  padding-right: 0.5em;
-  display: inline;
-  vertical-align: -webkit-baseline-middle;
-  vertical-align: baseline-middle;
 }
 
 .header .add {

@@ -45,5 +45,9 @@ class Folder {
     children.add(child);
   }
 
+  void clearChildren() {
+    children.clear();
+  }
+
 
 }

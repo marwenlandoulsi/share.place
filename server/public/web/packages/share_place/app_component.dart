@@ -9,13 +9,13 @@ import 'app_config.dart' as conf;
 
 import 'environment.dart';
 import 'package:share_place/file_info.dart';
+import 'package:share_place/files/cloud_file.dart';
 import 'package:share_place/places_component.dart';
 import 'package:share_place/place_service.dart';
 import 'package:share_place/common/ui/notification.dart' as notif;
-import 'package:share_place/dashboard_component.dart';
+import 'package:share_place/path_change_interceptor.dart';
 import 'package:share_place/files/files_comp.dart';
 import 'package:share_place/news/news_comp.dart';
-import 'package:share_place/place_detail_component.dart';
 import 'package:share_place/postit/postit_component.dart';
 import 'package:share_place/subject/subject_list_comp.dart';
 import 'package:share_place/users/change_roles/change_roles_dialog_comp.dart';
@@ -25,10 +25,10 @@ import 'package:share_place/users/terms_andconditions/terms_andconditions.dart';
 import 'package:share_place/users/user.dart';
 import 'package:share_place/search/search_comp.dart';
 import 'package:share_place/electron/proxy_credentials.dart';
+import 'package:share_place/search/search_input/search_input.dart';
 /**
  * file upload from http://stackoverflow.com/questions/13298140/how-to-upload-a-file-in-dart
  */
-
 @Component(
     selector: 'my-app',
     templateUrl: "app_component.html",
@@ -49,18 +49,47 @@ import 'package:share_place/electron/proxy_credentials.dart';
       ChangeRolesDialogComp,
       TermsAndconditions,
       ElasticSearchComponent,
-      ProxyCredentials
+      ProxyCredentials,
+      SearchInput,
+      MaterialTooltipDirective
     ],
     providers: const [
-      PlaceService,
       ROUTER_PROVIDERS,
       materialProviders,
+      PlaceService,
     ])
 @RouteConfig(const [
-  const Route(path: '/', name: 'Dashboard', component: DashboardComponent),
+  const Route(path: '/', name: 'Home', component: PathChangeInterceptor),
+  const Route(path: '/places/mail', name: 'ShowMail', component: PathChangeInterceptor),
   const Route(
-      path: '/folder/:id', name: 'Folder', component: PlaceDetailComponent),
-  const Route(path: '/place', name: 'PlaceList', component: PlacesComponent)
+      path: '/places', name: 'PlaceList', component: PathChangeInterceptor),
+  const Route(path: '/places/:pId/',
+      name: 'PlaceSelected',
+      component: PathChangeInterceptor),
+  const Route(path: '/places/:pId/folders/',
+      name: 'PlaceSelected',
+      component: PathChangeInterceptor),
+  const Route(path: '/places/:pId/folders/:fId/',
+      name: 'FolderSelected',
+      component: PathChangeInterceptor),
+  const Route(path: '/places/:pId/folders/:fId/topics/',
+      name: 'FolderSelected',
+      component: PathChangeInterceptor),
+  const Route(path: '/places/:pId/folders/:fId/topics/:fileId/',
+      name: 'SubjectSelected',
+      component: PathChangeInterceptor),
+  const Route(path: '/places/:pId/folders/:fId/topics/:fileId/versions/',
+      name: 'SubjectSelected',
+      component: PathChangeInterceptor),/*
+  const Route(path: '/places/:pId/folders/:fId/topics/:fileId/:sType/',
+      name: 'MailImportSelected',
+      component: PathChangeInterceptor),*/
+  const Route(path: '/places/:pId/folders/:fId/topics/:sType',
+      name: 'MailImportSelected',
+      component: PathChangeInterceptor),
+  const Route(path: '/places/:pId/folders/:fId/topics/:fileId/versions/:vId',
+      name: 'FileVersionSelected',
+      component: PathChangeInterceptor),
 ])
 class AppComponent
     implements OnInit {
@@ -70,7 +99,6 @@ class AppComponent
   List<FileInfo> fileInfoList;
 
   bool profileMenuVisible;
-
 
   String get baseUrl => conf.baseUrl;
 
@@ -84,10 +112,12 @@ class AppComponent
 
   get folder => _environment.selectedFolder;
 
-  AppComponent(this._router, this._environment, this._placeService);
+  AppComponent(this._router, this._environment, this._placeService) {
+    _environment.router = _router;
+    _placeService.subscribeToRouter(_router);
+  }
 
   Future<Null> ngOnInit() async {
-    print("rununing app in ${window.navigator.appName}");
 
     //globally listen for events as esc to quit popins
     document.onKeyUp.listen((event) {
@@ -99,8 +129,6 @@ class AppComponent
     window.on['sp'].listen((CustomEvent event) {
       if (event.detail['showPopupCredentials'] != null) {
         var detail = event.detail['showPopupCredentials'];
-        print(
-            "event captured ${detail['serverAdress']}, ${detail['serverName']}");
         electronProxyCredentials = new ElectronProxyCredentials(
             detail['serverAdress'], detail['serverName']);
       }
@@ -114,6 +142,36 @@ class AppComponent
     _placeService.loadConnectedUser();
 
     conf.readConf();
+
+    await showUrlView();
+  }
+
+  Future showUrlView() async {
+    int viewDetailsIndex = window.location.href.indexOf("/places");
+
+    if (viewDetailsIndex != -1) {
+      String viewUrl = window.location.href.substring(viewDetailsIndex);
+
+      Instruction showPage = await _router.recognize(viewUrl);
+
+      ComponentInstruction pageInstruction = await showPage.resolveComponent();
+
+      String success = pageInstruction.params['succ'];
+
+      if(success == 'true'){
+        print("success mail import");
+        _environment.setmailImportStatus = true;
+      }
+
+
+
+      _placeService.prepareNavState(path: viewUrl,
+          placeId: pageInstruction.params['pId'],
+          folderId: pageInstruction.params['fId'],
+          subjectId: pageInstruction.params['fileId'],
+          versionId: pageInstruction.params['vId'],
+          subjectType: pageInstruction.params['sType']);
+    }
   }
 
   ElectronProxyCredentials get electronProxyCredentials =>
@@ -171,13 +229,21 @@ class AppComponent
     searchText = null;
   }
 
-
   void search(String dataToSearch) {
     _environment.searchText = dataToSearch;
     _environment.fireEvent(PlaceParam.search, dataToSearch);
   }
 
-  String get userPictureUrl => userPictureId == null ? "../images/img_profile.png" : "/auth/gridfs/file/${userPictureId}/picture.x";
+  String get userPictureUrl =>
+      userPictureId == null
+          ? "/images/img_profile.png"
+          : "/auth/gridfs/file/${userPictureId}/picture.x";
+
+
+  FileInfo get selectedSubject => _environment.selectedSubject;
+  CloudFile get selectedFile => _environment.selectedFile;
+
+
 }
 
 

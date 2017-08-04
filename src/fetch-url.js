@@ -44,11 +44,13 @@ module.exports.fetchURL = function (options, cb) {
     });
   });
 
-  request.on('login', (event, authInfo, callback) => {
+  request.on('login', (authInfo, callback) => {
+
+    log.error ('event on login : fetch url')
     if(global.userProxy)
-      callback(global.userProxy, global.pswProxy)
+      return callback(global.userProxy, global.pswProxy)
     else
-      callback()
+      return callback()
 
     //callback('', '')
   })

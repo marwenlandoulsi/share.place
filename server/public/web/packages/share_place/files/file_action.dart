@@ -3,11 +3,12 @@ class FileAction {
   String fileId;
   String text;
   DateTime ts;
+  int version;
   ActionUser user;
   ActionType action;
 
   FileAction(this._id, this.fileId, this.text,
-      this.ts, this.user, this.action);
+      this.ts,this.version, this.user, this.action);
 
   String get id => _id;
 
@@ -22,6 +23,7 @@ class FileAction {
           jsonMap['text'],
           new DateTime.fromMillisecondsSinceEpoch(
               int.parse(jsonMap['ts'] ??= 0), isUtc: true),
+          jsonMap['version'],
           new ActionUser.fromJson(
               jsonMap['user']),
           new ActionType.fromJson(jsonMap['action'])
@@ -33,6 +35,7 @@ class FileAction {
         'fileId': fileId,
         'text': text,
         'ts': ts?.millisecondsSinceEpoch,
+        'version' :version,
         'user': user?.toJson(),
         'action':action?.toJson()
       };

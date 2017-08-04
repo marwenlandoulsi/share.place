@@ -261,7 +261,7 @@ class ViewProfileComp0 extends AppView<import2.ProfileComp> {
     _el_15.append(_text_16);
     _el_17 = createAndAppend(doc,'img',_el_15);
     createAttr(_el_17,'id','cropping');
-    createAttr(_el_17,'onerror','this.src=\'../images/img_profile.png\'');
+    createAttr(_el_17,'onerror','this.src=\'/images/img_profile.png\'');
     addShimE(_el_17);
     Text _text_18 = new Text('\n      ');
     _el_15.append(_text_18);
@@ -586,7 +586,7 @@ class ViewProfileComp0 extends AppView<import2.ProfileComp> {
     _compView_117 = new import15.ViewMaterialButtonComponent0(this,117);
     _el_117 = _compView_117.rootEl;
     _el_115.append(_el_117);
-    _el_117.className = 'btn_login';
+    _el_117.className = 'btn_login blue';
     createAttr(_el_117,'raised','');
     addShimC(_el_117);
     _AcxDarkTheme_117_2 = new import16.AcxDarkTheme(parentView.injectorGet(import24.darkThemeToken,parentIndex,null));

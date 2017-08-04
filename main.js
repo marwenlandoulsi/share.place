@@ -69,7 +69,7 @@ ipcMain.on('online-status-changed', (event, status) => {
       port: conf.optionsGet.port,
       path: '/'
     }
-    checkConnectionCtrl.checkInternetConnection("https://github.com/", (remoteIsReachable) => {
+    checkConnectionCtrl.checkInternetConnection(conf.remoteUrl, (remoteIsReachable) => {
       global.onLine = remoteIsReachable;
       if (!remoteIsReachable) {
 
@@ -79,7 +79,7 @@ ipcMain.on('online-status-changed', (event, status) => {
       }
     })
     setInterval(function () {
-      checkConnectionCtrl.checkInternetConnection("https://github.com/", (remoteIsReachable) => {
+      checkConnectionCtrl.checkInternetConnection(conf.remoteUrl, (remoteIsReachable) => {
         global.onLine = remoteIsReachable;
         if (!remoteIsReachable) {
 
@@ -285,7 +285,9 @@ app.on('ready', function () {
       global.serverPort = listener.address().port;
       global.address = listener.address().address;
       process.on('uncaughtException', (err) => {
-        log.error("process error : ", err);
+
+        log.error("process error : ", err, err.trace);
+       // app.quit();
       });
       /*
        var screenElectron = require('electron').screen;

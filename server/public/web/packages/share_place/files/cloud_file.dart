@@ -26,7 +26,7 @@ class CloudFile {
       this.name, this.versions, this.isLocked, this.lockOwner, this.dataType);
 
   List<FileVersion> get orderedVersions =>
-      new List<FileVersion>.from(versions.reversed);
+      new List<FileVersion>.from(versions);
 
   factory CloudFile.fromJson(Map<String, dynamic> file) =>
       new CloudFile(
@@ -72,13 +72,15 @@ class FileVersion {
   String name;
   String userName;
   String status;
+  String state ;
   int size;
   int actionCount;
   List<FileAction> actions;
   Approved approved;
   MailInfo mailInfo;
 
-  FileVersion(this._id, this.v, this.mimeType, this.status, this.size, this.ts,
+
+  FileVersion(this._id, this.v, this.mimeType, this.status,   this.state ,this.size, this.ts,
       this.userId, this.name,
       this.userName, this.actionCount, this.actions, {this.approved, this.mailInfo});
 
@@ -89,6 +91,7 @@ class FileVersion {
           file['v'] ??= 0,
           file['mimeType'],
           file['status'],
+          file['state'],
           file['size'] ??= -1,
           new DateTime.fromMillisecondsSinceEpoch(
               int.parse(file['ts'] ??= 0), isUtc: true),
@@ -111,13 +114,15 @@ class FileVersion {
           0,
           null,
           "failure",
-          0,
-          null,
-          null,
-          null,
           null,
           0,
-          null);
+          null,
+          null,
+          null,
+          null,
+          0,
+          null
+      );
     }
   }
 

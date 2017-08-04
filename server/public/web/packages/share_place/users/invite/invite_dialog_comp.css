@@ -17,8 +17,9 @@ h4, h5 {
 }
 
 .modal-title {
-  color: white;
-  font-weight: bold;
+  color: #444;
+  font-family: 'nexa_boldregular';
+  font-size: 2em;
 }
 
 .close:hover {
@@ -35,14 +36,10 @@ h4, .close {
   display: inline-block;
 }
 
-h4 {
-  font-size: 14px;
-  font-weight: normal;
-}
 
 .inviteUsersbody {
   padding: 1em;
-  background-color: #eeeef0;
+  background-color: #fff;
   color: #000;
 }
 
@@ -58,8 +55,8 @@ h4 {
 }
 
 .modal-header {
-  background-color: #262D40;
-  color: #fff;
+  background-color: #fff;
+  color: #444;
   padding: 0.7em;
 }
 
@@ -134,12 +131,12 @@ role-chooser-comp {
 
 .addUserDiv {
   text-align: right;
-  background: url("../images/tiret-grey.png") repeat-x center center;
+  background: url("/images/tiret-grey.png") repeat-x center center;
   margin-bottom: 11px;
 }
 
 .addUserDiv_inside {
-  background: #eeeef0;
+  background: #fff;
   padding-left: 0.5em;
   display: inline;
   font-size: 1em;
@@ -171,6 +168,8 @@ role-chooser-comp {
 
 .addUserDiv_inside span {
   vertical-align: super;
+  font-family: 'robotoregular';
+
 }
 
 material-input.themeable {
@@ -180,19 +179,25 @@ material-input.themeable {
 
 .modal-footer {
   text-align: center;
-  padding-bottom: 5%;
-  background-color: #eeeef0;
+  padding-bottom: 3%;
+  background-color: #fff;
 
 }
 
 material-button.submitbottom {
-  margin: 0 auto !important;
-  width: auto !important;
+  margin: 0 auto;
+  width: auto ;
   padding-left: 20px;
   padding-right: 40px;
-  background: #00adef url("../images/arrow-white.png") no-repeat 84% 49%;
+  background: #00adef url("/images/arrow-white.png") no-repeat 84% 49%;
+
+  height: 36px;
+
+
   text-transform: none !important;
-  color: #fff !important;
+  color: white ;
+  font-size: 16px !important;
+  line-height: 0.9 !important;
 }
 
 .blueadd {

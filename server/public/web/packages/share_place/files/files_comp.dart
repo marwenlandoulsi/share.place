@@ -19,9 +19,10 @@ import 'package:share_place/app_config.dart' as conf;
 import 'cloud_file.dart';
 import 'package:angular_components/angular_components.dart';
 import 'package:share_place/postit/postit_component.dart';
+import 'package:share_place/importMail/importMail_comp.dart';
 import 'package:share_place/users/info_popup/info_popup.dart';
 import 'package:share_place/users/info_popup/popup_parent.dart';
-
+import 'package:logging/logging.dart';
 /**
  * Comments were generated thanks to : http://www.cssarrowplease.com/
  *
@@ -32,7 +33,7 @@ import 'package:share_place/users/info_popup/popup_parent.dart';
     templateUrl: 'files_comp.html',
     styleUrls: const ['files_comp.css'],
     directives: const [
-      TextComp, NgClass, materialDirectives, PostitComponent, InfoPopup],
+      TextComp, NgClass, materialDirectives, PostitComponent, InfoPopup, ImportMailComponent],
     providers: const[materialProviders],
     pipes: const [AgoDateFormatPipe, FileSizePipe])
 class FilesComp implements OnInit, PopupParent {
@@ -40,6 +41,7 @@ class FilesComp implements OnInit, PopupParent {
   final Router _router;
   final Environment _environment;
   final Map<String, FileVersionsMap> versionAttributes = {};
+  final Logger log = new Logger("Environment");
 
   int fileMenuVisible;
   int selectedVersion;
@@ -58,15 +60,21 @@ class FilesComp implements OnInit, PopupParent {
 
 
   show(Map<PlaceParam, String> params) async {
-    var fileInfoId = params[PlaceParam.fileInfoId];
-    if (fileInfoId != null) {
+    var fileId = params[PlaceParam.fileId];
+
+    if( params.containsKey(PlaceParam.fileId) )
+
+    if (fileId != null) {
       hideMenu();
       popupUserInfoId = null;
-      print('_environment.selectedFolder.id ${_environment.selectedFolder.id}');
+      //FIXME these events should be launched only if the environment is ready
+      if( _environment.selectedSubject?.fileId == null) {
+        log.severe("Unconsistent state : selectedSubject is null");
+        //return;
+      }
+
       await getFile
-        (
-          _environment.selectedPlace.id, _environment.selectedFolder.id,
-          _environment.selectedSubject.fileId);
+        (_environment.selectedPlace.id, _environment.selectedFolder.id, fileId);
     } else if (params[PlaceParam.placeId] != null) {
       selectedFile = null;
     } else if (params.containsKey(PlaceParam.ioFileActionCreated) ||
@@ -74,19 +82,24 @@ class FilesComp implements OnInit, PopupParent {
         params.containsKey(PlaceParam.ioSubjectChanged)) {
       await reloadFile();
     }
+
+    new Future.delayed(new Duration(seconds:1),() => _environment.adjustHeights() );
   }
 
   Future<CloudFile> getFile(String placeId, String folderId,
       String fileId) async {
+
+
     selectedFile = await _placeService.getFile(placeId, folderId, fileId);
     versionAttributes.clear();
     detectLastLockAction();
     _environment.showScrollBar();
-    return selectedFile;
+
+    if (selectedFile != null)
+      return selectedFile;
   }
 
   TextChanged writingComment(String comment) {
-    print("writing " + comment);
   }
 
   void select(CloudFile file) {
@@ -119,27 +132,26 @@ class FilesComp implements OnInit, PopupParent {
     if (lastVersionActions == null)
       return;
 
-    lastVersionActions = lastVersionActions.reversed.toList();
+    lastVersionActions = lastVersionActions.toList();
     for (int i = 0; i < lastVersionActions.length; i++) {
       FileAction fileAction = lastVersionActions[i];
-      //print( "action ${i+1}/${lastVersionActions.length}: ${fileAction.action.actionType} : ${fileAction.action.value} ");
+//      print( "######action ${i}/${lastVersionActions.length}: ${fileAction.action.actionType} : ${fileAction.action.value} ");
       if (fileAction.action.actionType == "fileLock" &&
           fileAction.action.value == "on") {
         activeLockActionIndex = i;
-        return;
+
       }
     }
   }
 
   bool showReleaseButton(FileAction action, int actionIndex, int versionIndex) {
-    /* print(
-        "isLocked: ${selectedFile.isLocked} && isActionAuthor: ${isActionAuthor(
-            action)} && isActionOn:${isActionOn(
-            action)} && last version: ${versionIndex ==
-            0} && right action: ${activeLockActionIndex ==
-            actionIndex} (activeLockActionIndex: ${activeLockActionIndex})");*/
+//     print(
+//        "*******************isLocked: ${selectedFile.isLocked} && isActionAuthor: ${isActionAuthor(
+//            action)} && isActionOn:${isActionOn(
+//            action)} && last version: ${versionIndex ==
+//            selectedFile.versions.length - 1} && right action: ${activeLockActionIndex == actionIndex} (activeLockActionIndex: ${activeLockActionIndex} actionIndex : ${actionIndex})");
     return selectedFile.isLocked && isActionAuthor(action) &&
-        isActionOn(action) && versionIndex == 0 &&
+        isActionOn(action) && versionIndex == selectedFile.versions.length - 1 &&
         activeLockActionIndex == actionIndex;
   }
 
@@ -157,10 +169,10 @@ class FilesComp implements OnInit, PopupParent {
   User get connectedUser => _environment.connectedUser;
 
   Iterable<FileAction> getActionsForVersionIndex(int index) =>
-      selectedFile.orderedVersions[index].actions?.reversed;
+      selectedFile.orderedVersions[index].actions;
 
   Iterable<FileAction> getActionsForVersion(FileVersion version) =>
-      version.actions?.reversed;
+      version.actions;
 
   void set selectedFile(CloudFile file) {
     _environment.selectedFile = file;
@@ -181,12 +193,13 @@ class FilesComp implements OnInit, PopupParent {
       "version": version,
       "open": !attr.commentPaneOpen
     });
+
+    _environment.showScrollBar();
     return attr.switchCommentOpen();
   }
 
 
   Future<Null> moreComments(String fileId, int version) async {
-    print("loading comments of $fileId, version: $version");
     List<FileAction> moreComments = await _placeService.getComments(
         fileId, version, lastLoadedCommentIndex(fileId, version));
     getFileVersionAttributes(fileId, version, createIfNull: true).loaded(
@@ -297,11 +310,11 @@ class FilesComp implements OnInit, PopupParent {
     _environment.track("unlock", data: {"file": selectedFile.id});
   }
 
-  Future<Null> delete(FileVersion version)async {
+  Future<Null> delete(FileVersion version) async {
     hideMenu();
-    selectedFile = await _placeService.removeFileVersion(
+    if( window.confirm("Do you want to delete the version ${version.v} of the file ${version.name}?") )
+   selectedFile = await _placeService.removeFileVersion(
         selectedPlace.id, selectedSubject.folderId, selectedFile.id, version.v);
-
   }
 
   String formatDesc(FileVersion version) {
@@ -419,7 +432,7 @@ class FilesComp implements OnInit, PopupParent {
     }
 
     if (actionItem.action.actionType == 'fileApprove') {
-      if (actionItem.action.value == 'on') {
+      if (actionItem.action.value == 'on' ) {
         var userName = actionItem.user.userName;
         if (userName == null)
           userName = "";
@@ -450,10 +463,12 @@ class FilesComp implements OnInit, PopupParent {
   bool shouldShowApproveMenu(FileVersion version) =>
       isFile(version.v) && isOwner && version.approved == null;
 
+  bool shouldShowDelete(FileVersion version) =>
+      isFile(version.v) && isOwner ;
 
   bool shouldShowUnApproveMenu(FileVersion version) =>
-      isFile(version.v) && isOwner && version.approved != null &&
-          connectedUser.id == version.approved.userId;
+      isFile(version.v) && isOwner && version.approved != null ;
+
 
   int computeIndex(FileVersion version, int actionIndex) {
     return version.v * 10000 + actionIndex;
@@ -468,11 +483,20 @@ class FilesComp implements OnInit, PopupParent {
 
   Future<FileInfo> uploadVersion(String fileName) async {
     var form = querySelector("#uploadVersion");
+
     FileInfo createdFileInfo = await _placeService.prePostFile(
         {"name": _environment.selectedFile.name});
     _environment.track("fileVersion", data: {"fileInfo": createdFileInfo});
     FileInfo updatedFileInfo = await _placeService.postFile(
         new FormData(form), asNewVersion: true);
+
+   // _environment.fireEvent(PlaceParam.fileInfoListLoaded, updatedFileInfo.folderId);
+
+    if (updatedFileInfo!= null){
+      _environment.fireEvent(PlaceParam.folderId, updatedFileInfo?.folderId);
+      _environment.selectedSubject = updatedFileInfo;
+    }
+
     return updatedFileInfo;
   }
 
@@ -489,9 +513,13 @@ class FilesComp implements OnInit, PopupParent {
     dropZone.classes.add("uploading");
   }
 
+  String injectMailBody(Element target, FileVersion version) {
+    target.innerHtml = version.mailInfo.body;
+    return "body";
+  }
+
   String thumbSrc(FileVersion version, Folder selectedFolder,
       CloudFile selectedFile) {
-//TODO get info from server
     String mimeType = version.mimeType;
     if (mimeType == null)
       return null;
@@ -499,87 +527,86 @@ class FilesComp implements OnInit, PopupParent {
       case 'image/png' :
       case 'image/jpeg' :
       case 'image/bpm' :
-        return "/sp/place/${selectedPlace?.id}/folder/${selectedFolder?.id}/file/${selectedFile?.id}/version/${version.v}/thumb.x";
+        return "/sp/place/${selectedPlace?.id}/folder/${selectedFolder
+            ?.id}/file/${selectedFile?.id}/version/${version.v}/thumb.x";
         break;
       case 'application/quickNote' :
-        return conf.quickNoteIcon;
+        return conf.icons['quickNoteIcon'];
         break;
       case 'text/plain':
-        return conf.txtIcon;
+        return conf.icons['txtIcon'];
         break;
       case 'application/x-pdf':
-        return conf.pdfIcon;
+        return conf.icons['pdfIcon'];
         break;
       case 'application/pdf':
-        return conf.pdfIcon;
+        return conf.icons['pdfIcon'];
         break;
       case 'application/msword':
-        return conf.wordIcon;
+        return conf.icons['wordIcon'];
         break;
       case 'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
-        return conf.wordIcon;
+        return conf.icons['wordIcon'];
         break;
       case 'application/vnd.ms-word.document.macroEnabled.12':
-        return conf.wordIcon;
+        return conf.icons['wordIcon'];
         break;
       case 'application/vnd.ms-word.template.macroEnabled.12':
-        return conf.wordIcon;
+        return conf.icons['wordIcon'];
         break;
       case 'application/vnd.ms-powerpoint':
-        return conf.pptIcon;
+        return conf.icons['pptIcon'];
         break;
       case 'application/vnd.openxmlformats-officedocument.presentationml.presentation':
-        return conf.pptIcon;
+        return conf.icons['pptIcon'];
         break;
       case 'application/vnd.openxmlformats-officedocument.presentationml.template':
-        return conf.pptIcon;
+        return conf.icons['pptIcon'];
         break;
       case '  application/vnd.openxmlformats-officedocument.presentationml.slideshow':
-        return conf.pptIcon;
+        return conf.icons['pptIcon'];
         break;
       case '  application/vnd.ms-powerpoint.addin.macroEnabled.12':
-        return conf.pptIcon;
+        return conf.icons['pptIcon'];
         break;
       case 'application/vnd.ms-powerpoint.presentation.macroEnabled.12':
-        return conf.pptIcon;
+        return conf.icons['pptIcon'];
         break;
       case 'application/vnd.ms-powerpoint.addin.macroEnabled.12':
-        return conf.pptIcon;
+        return conf.icons['pptIcon'];
         break;
       case 'application/vnd.ms-excel':
-        return conf.excelIcon;
+        return conf.icons['excelIcon'];
         break;
       case 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet':
-        return conf.excelIcon;
+        return conf.icons['excelIcon'];
         break;
       case 'application/vnd.openxmlformats-officedocument.spreadsheetml.template':
-        return conf.excelIcon;
+        return conf.icons['excelIcon'];
         break;
       case 'application/vnd.ms-excel.sheet.macroEnabled.12':
-        return conf.excelIcon;
+        return conf.icons['excelIcon'];
         break;
       case 'application/vnd.ms-excel.template.macroEnabled.12':
-        return conf.excelIcon;
+        return conf.icons['excelIcon'];
         break;
       case 'application/vnd.ms-excel.addin.macroEnabled.12':
-        return conf.excelIcon;
+        return conf.icons['excelIcon'];
         break;
       case 'application/vnd.ms-excel.sheet.binary.macroEnabled.12':
-        return conf.excelIcon;
+        return conf.icons['excelIcon'];
         break;
 
       default:
-        return conf.defaultIcon;
+        return conf.icons['defaultIcon'];
     }
-
-
   }
-
 
   @override
   bool get allowRoleChange =>
       _environment.selectedFolder != null ? _environment.selectedFolder.type !=
           "support" ? true : false : false;
+
 }
 
 class FileVersionAttributes {

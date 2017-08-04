@@ -1,7 +1,7 @@
 {
-  "name": "Share.Place",
-  "version": "0.1.16",
-  "description": "share place",
+  "name": "Share.Place.dev",
+  "version": "0.1.17",
+  "description": "share place dev",
   "main": "main.js",
   "repository": {
     "type": "git",

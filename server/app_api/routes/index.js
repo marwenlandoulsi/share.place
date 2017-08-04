@@ -17,20 +17,25 @@ var ctrlProxy = require('../controllers/proxy');
 
 var ctrlCron = require('../controllers/cron');
 var path = require('path')
+var globalService = require("../global")
 
-let globalService
-if (process.env.DEV)
- globalService = require(path.join(__dirname, '..', '..', '..', '..', 'app_api', 'global'));
 
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, path.join(__dirname, '../../tmp/upload/'))
+
+    const pathDest =  path.join(__dirname, '..','..','tmp','upload',req.params.fileId)
+
+    globalService.checkDirectorySync(pathDest)
+
+    cb(null, pathDest)
   },
   filename: function (req, file, cb) {
-    crypto.pseudoRandomBytes(16, function (err, raw) {
+   /* crypto.pseudoRandomBytes(16, function (err, raw) {
       var fileName = raw.toString('hex') + Date.now() + '.' + mime.extension(file.mimetype);
-      cb(null, fileName);
-    });
+      cb(null, file.originalName);
+    });*/
+
+    return cb(null, file.originalname);
   }
 });
 
@@ -225,6 +230,7 @@ post('/place/:placeId/folder/:folderId/quickNote', ctrlProxy.post);
 post('/place/:placeId/folder/:folderId/file/:fileId/version/:fileVersion/comment', ctrlProxy.post);
 post('/place/:placeId/folder/:folderId/user', ctrlProxy.post);
 post('/place/:placeId/folder/:folderId/file/:fileId/version/:fileVersion/action', ctrlProxy.post)
+post('/file/search', ctrlProxy.post);
 get('/cron', ctrlProxy.cron);
 
 get('/place/:placeId/folder/:folderId/fileInfo', ctrlProxy.get);
@@ -238,12 +244,12 @@ get('/place/:placeId/folder/:folderId/file/:fileId/version/:v/download', ctrlPro
 
 get('/place/:placeId/folder/:folderId/user', ctrlProxy.get);
 get('/place/:placeId/folder/:folderId/file/:fileId', ctrlProxy.get);
-
+get('/place/placeNotify', ctrlProxy.get);
 del('/place/:placeId/folder/:folderId/file/:fileId', ctrlProxy.delete);
 get('/place/:placeId/folder/:folderId/file', ctrlProxy.get);
 get('/place/:placeId/folder/:folderId/file/:fileId/version/:fileVersion/thumb.x', ctrlProxy.getUtilFile);
 // Place
-get('/place', ctrlProxy.get);
+//get('/place', ctrlProxy.get);
 post('/place/:placeId/folder/:folderId/file', ctrlProxy.post);
 post('/place/:placeId/folder/:folderId/file/:fileId', ctrlProxy.uploadFile, {
   upload: upload.array('toUpload', 10),
@@ -285,10 +291,11 @@ put('/place/:placeId/folder/:folderId/fileInfo/:fileInfoId/moveToFolder/:targetF
 
 post('/file/_search', ctrlProxy.searchFileFromElastic);
 
+post('/file/search', ctrlProxy.post);
 var pathElectronServerRoutes = path.join(__dirname, '..', '..', '..', '..', 'test', 'electronServerRoutes.json')
-
+/*
 if (process.env.DEV)
   globalService.generateRoutesFile(router.stack, pathElectronServerRoutes)
-
+*/
 module.exports = router;
 

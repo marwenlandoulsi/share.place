@@ -17,11 +17,10 @@
     <!--class="addBtn" [disabled]="selectedPlace==null"></btn>-->
     <div class="title">
       <div class="welcome">
-        <div class="logo_intro"><img src="../images/logo_intro.png"/></div>
+        <div class="logo_intro"><img src="/images/logo_intro.png"/></div>
         <span>Welcome to Share.Place</span></div>
       <!--<div class="close" (click)="close()"><img src="../images/close_pop.png"/></div>-->
     </div>
-
   </div>
 
   <div class="panels">
@@ -46,7 +45,7 @@
           <div class="forgot"><a href="#" tabindex="-1" (click)="forgotPassDisplayed = true">forgot?</a></div>
           <material-input required [(ngModel)]="user.pass" type="password" class="password labelPassw" (keyup.enter)="login()"></material-input>
         </div>
-        <material-button raised class="btn_login" (click)="login()" (keyup.enter)="login()">Login</material-button>
+        <material-button raised class="btn_login blue" (click)="login()" (keyup.enter)="login()">Login</material-button>
       </form>
 
     </div>

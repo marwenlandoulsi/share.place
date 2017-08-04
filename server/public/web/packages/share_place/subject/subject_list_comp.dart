@@ -43,15 +43,23 @@ class SubjectListComponent
   final DomSanitizationService urlSanitizer;
   final UserListProvider _userListProvider;
 
-  List<FileInfo> subjects;
   FileInfo renaming;
   User infoPopupUser;
   bool infoPopupOpen;
   String popupUserInfoId;
   int subjectInfoPopupIndex;
+  bool moreUsersDisplayed = false;
 
   SubjectListComponent(this._placeService, this._router, this._environment,
       this._userListProvider, this.urlSanitizer);
+
+  List<FileInfo> get subjects {
+    List<FileInfo> toReturn = _environment.subjectList.data;
+    if(toReturn == null)
+      return null;
+
+    return toReturn.reversed;
+  }
 
   Future<Null> ngOnInit() async {
     _environment.eventBus.getBus().listen((params) => show(params));
@@ -61,15 +69,19 @@ class SubjectListComponent
   }
 
   show(Map<PlaceParam, dynamic> params) async {
-    var fileId = params[PlaceParam.lockStateChange];
+    String fileId = params[PlaceParam.lockStateChange];
     if (fileId == null)
       fileId = params[PlaceParam.approvalStateChange];
+
     var folderId = params[PlaceParam.folderId];
+    String selectedFileId = params[PlaceParam.fileId];
+
     if (folderId != null) { // folder selected
-      selectedSubject = null;
-      await getSubjects(_environment.selectedPlace.id, folderId);
+      await getSubjects(folderId);
     } else if (fileId != null) { // file changed
       await reloadSubjects();
+    } else if (selectedFileId != null) { // file changed
+      selectSubjectByFileId(selectedFileId);
     } else if (
     params.containsKey(PlaceParam.ioSubjectCreated) ||
         params.containsKey(PlaceParam.ioSubjectChanged)
@@ -77,12 +89,7 @@ class SubjectListComponent
       await reloadSubjects();
     } else if (params.containsKey(PlaceParam.fileInfoIdRequested)) {
       print("fileInfoIdRequested ${params.values}");
-      for (FileInfo subject in subjects) {
-        if (subject.id == params[PlaceParam.fileInfoIdRequested]) {
-          selectedSubject = subject;
-          return;
-        }
-      }
+      selectSubject(params[PlaceParam.fileInfoIdRequested]);
     } else if (params.containsKey(PlaceParam.treatUserInvite)) {
       await _placeService.loadConnectedUser();
     }
@@ -101,14 +108,31 @@ class SubjectListComponent
     }
   }
 
+  void selectSubject(String fileInfoId) {
+    for (FileInfo subject in subjects) {
+      if (subject.id == fileInfoId) {
+        selectedSubject = subject;
+        return;
+      }
+    }
+  }
+
+  void selectSubjectByFileId(String fileId) {
+    for (FileInfo subject in subjects) {
+      if (subject.fileId == fileId) {
+        _environment.selectedSubject = subject;
+        return;
+      }
+    }
+  }
+
   Future reloadSubjects() async {
     print("reload subjects called ");
     if (_environment.selectedPlace == null ||
         _environment.selectedFolder == null)
       return;
     print("reload subjects executing");
-    await getSubjects(
-        _environment.selectedPlace.id, _environment.selectedFolder.id);
+    await getSubjects(_environment.selectedFolder.id);
   }
 
   bool get adding => _environment.inviteUsersDialog;
@@ -156,25 +180,26 @@ class SubjectListComponent
   void refreshSubjectListAndSelect(FileInfo createdFileInfo) {
     //if an error happened (eg. file locked) then no createdFileInfo will be returned
     if (createdFileInfo != null) {
-      getSubjects(_environment.selectedPlace.id, _environment.selectedFolder.id)
+      getSubjects(_environment.selectedFolder.id)
           .then((n) {
         gotoSubject(createdFileInfo);
       });
     }
   }
 
-  Future<Null> getSubjects(String placeId, String folderId) async {
-    subjects = await _placeService.getFolderSubjects(placeId, folderId);
-    print("############### subjects reloaded : ${subjects?.length}");
+  Future<Null> getSubjects(String folderId) async {
+    await _placeService.loadFolderSubjects(folderId);
     if (subjects != null) {
-      subjects = subjects.reversed;
       _environment.fireEvent(PlaceParam.fileInfoListLoaded, folderId);
     }
     _environment.showScrollBar();
+    _environment.resize('showSplitterCenter');
   }
 
+
+  /** calcul height **/
   bool computeSizes(Element subjectList) {
-    int remainingSpace = window.innerHeight - 175 - subjectList.offsetHeight;
+    int remainingSpace = window.innerHeight - 200 - subjectList.offsetHeight;
     if (remainingSpace > 0) {
       querySelector("#fileForm").style.height = "${remainingSpace}px";
     }
@@ -186,6 +211,7 @@ class SubjectListComponent
       renaming = null;
 
     onSelect(subject);
+
   }
 
   Place get selectedPlace => _environment.selectedPlace;
@@ -195,7 +221,16 @@ class SubjectListComponent
   FileInfo get selectedSubject => _environment.selectedSubject;
 
   void set selectedSubject(FileInfo subject) {
-    _environment.selectedSubject = subject;
+//    if (this.selectedSubject?.id == subject?.id)
+//      return;
+
+    if(subject?.dataType=='mailImport')
+      _environment.navigate("MailImportSelected", pId: selectedPlace?.id, fId:selectedFolder?.id, fileId:subject?.fileId, sType: subject?.dataType );
+
+    else
+      _environment.navigate("SubjectSelected", pId: selectedPlace?.id, fId:selectedFolder?.id, fileId:subject?.fileId );
+
+    _environment.track("subject", data: {"subject": subject});
   }
 
   //FIXME : must b renamed to isOwner
@@ -214,7 +249,10 @@ class SubjectListComponent
   }
 
 
-  void rename() {
+  void rename(FileInfo subject) {
+    if( selectedSubject?.id != subject.id )
+      return;
+
     if (renaming != null)
       return;
     renaming = selectedSubject;
@@ -227,12 +265,11 @@ class SubjectListComponent
   }
 
   Future<FileInfo> doRename(String subjectNewName) async {
-    print("#####hgdchsg");
     FileInfo toRename = renaming;
     renaming = null;
     FileInfo toSelect = await _placeService.renameSubject(
         toRename, subjectNewName);
-    await getSubjects(selectedPlace.id, _environment.selectedFolder.id);
+    await getSubjects(_environment.selectedFolder.id);
     onSelect(toSelect);
   }
 
@@ -240,15 +277,16 @@ class SubjectListComponent
   Future<FileInfo> save(String subjectName) async {
     adding = false;
     FileInfo toSelect = await _placeService.createSubject(subjectName);
-    await getSubjects(selectedPlace.id, _environment.selectedFolder.id);
+    await getSubjects(_environment.selectedFolder.id);
     _environment.track("subjectRename",
         data: {"subjectName": subjectName, "subject": selectedSubject});
     onSelect(toSelect);
   }
 
   void onSelect(FileInfo fileInfo) {
-    _environment.selectedSubject = fileInfo;
-    _environment.track("subject", data: {"subject": fileInfo});
+    print("selected subject id:${fileInfo.id}");
+    selectedSubject = fileInfo;
+    //_environment.track("subject", data: {"subject": fileInfo});
   }
 
   void cancelRename() {
@@ -327,15 +365,14 @@ class SubjectListComponent
     if (userItem?.photoId!= null)
       return  "/auth/gridfs/file/${userItem?.photoIdMap['photoIdS']}/picture.x";
     else
-      return  "../images/img_profile.png" ;
+      return  "/images/img_profile.png" ;
   }
 
 
   String thumbSrc(FileInfo subject, Folder selectedFolder) {
-
     String mimeType = subject.mimeType;
     if (mimeType == null)
-      return conf.defaultIcon;
+      return conf.icons['defaultIcon'];
     switch (mimeType) {
       case 'image/png' :
       case 'image/jpeg' :
@@ -344,82 +381,100 @@ class SubjectListComponent
             ?.id}/file/${subject.fileId}/version/${subject.v}/thumb.x";
         break;
       case 'application/quickNote' :
-        return conf.quickNoteIcon;
+        return conf.icons['quickNoteIcon'];
+        break;
+      case 'application/mailImport' :
+        return conf.icons['mailImport'];
         break;
       case 'text/plain':
-        return conf.txtIcon;
+        return conf.icons['txtIcon'];
         break;
       case 'application/x-pdf':
-        return conf.pdfIcon;
+        return conf.icons['pdfIcon'];
         break;
       case 'application/pdf':
-        return conf.pdfIcon;
+        return conf.icons['pdfIcon'];
         break;
       case 'application/msword':
-        return conf.wordIcon;
+        return conf.icons['wordIcon'];
         break;
       case 'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
-        return conf.wordIcon;
+        return conf.icons['wordIcon'];
         break;
       case 'application/vnd.ms-word.document.macroEnabled.12':
-        return conf.wordIcon;
+        return conf.icons['wordIcon'];
         break;
       case 'application/vnd.ms-word.template.macroEnabled.12':
-        return conf.wordIcon;
+        return conf.icons['wordIcon'];
         break;
       case 'application/vnd.ms-powerpoint':
-        return conf.pptIcon;
+        return conf.icons['pptIcon'];
         break;
       case 'application/vnd.openxmlformats-officedocument.presentationml.presentation':
-        return conf.pptIcon;
+        return conf.icons['pptIcon'];
         break;
       case 'application/vnd.openxmlformats-officedocument.presentationml.template':
-        return conf.pptIcon;
+        return conf.icons['pptIcon'];
         break;
       case '  application/vnd.openxmlformats-officedocument.presentationml.slideshow':
-        return conf.pptIcon;
+        return conf.icons['pptIcon'];
         break;
       case '  application/vnd.ms-powerpoint.addin.macroEnabled.12':
-        return conf.pptIcon;
+        return conf.icons['pptIcon'];
         break;
       case 'application/vnd.ms-powerpoint.presentation.macroEnabled.12':
-        return conf.pptIcon;
+        return conf.icons['pptIcon'];
         break;
       case 'application/vnd.ms-powerpoint.addin.macroEnabled.12':
-        return conf.pptIcon;
+        return conf.icons['pptIcon'];
         break;
       case 'application/vnd.ms-excel':
-        return conf.excelIcon;
+        return conf.icons['excelIcon'];
         break;
       case 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet':
-        return conf.excelIcon;
+        return conf.icons['excelIcon'];
         break;
       case 'application/vnd.openxmlformats-officedocument.spreadsheetml.template':
-        return conf.excelIcon;
+        return conf.icons['excelIcon'];
         break;
       case 'application/vnd.ms-excel.sheet.macroEnabled.12':
-        return conf.excelIcon;
+        return conf.icons['excelIcon'];
         break;
       case 'application/vnd.ms-excel.template.macroEnabled.12':
-        return conf.excelIcon;
+        return conf.icons['excelIcon'];
         break;
       case 'application/vnd.ms-excel.addin.macroEnabled.12':
-        return conf.excelIcon;
+        return conf.icons['excelIcon'];
         break;
       case 'application/vnd.ms-excel.sheet.binary.macroEnabled.12':
-        return conf.excelIcon;
+        return conf.icons['excelIcon'];
         break;
+
       default:
-        return conf.defaultIcon;
+        return conf.icons['defaultIcon'];
     }
   }
-  Future<Null> removeTopic(FileInfo subject) async {
-    await _placeService.removeTopic(subject);
+  Future<Null> removeSubject(FileInfo subject) async {
+    if( selectedSubject?.id != subject.id )
+      return;
+
+    if( window.confirm("Do you want to delete the file versions in the subject : ${subject.name}?") )
+      await _placeService.removeTopic(subject);
   }
 
   @override
   bool get allowRoleChange =>
       _environment.selectedFolder != null ? _environment.selectedFolder.type !=
           "support" ? true : false : false;
+
+  bool showMoreUsersButton(Element ul) {
+//    print( "##################### ${ul.offsetWidth} vs. ${users.length * 30}" );
+
+    if( moreUsersDisplayed )
+      return true;
+//    print( "##################### ${moreUsersDisplayed}");
+//    print( "##################### ${ul.offsetWidth < users.length * 30}");
+    return ul.offsetWidth < users.length * 35;
+  }
 }
 

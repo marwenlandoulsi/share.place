@@ -16,14 +16,17 @@ String get baseUrl => _baseUrlValue;
 String get remoteUrl => _loginUrlValue;
 
 String get elasticUrl => _elasticUrlValue;
-String defaultPicture = '../images/logo-profile.png';
-String wordIcon = '../images/icon/docicon1.png';
-String excelIcon = '../images/icon/docicon2.png';
-String pptIcon = '../images/icon/docicon3.png';
-String pdfIcon = '../images/icon/docicon4.png';
-String txtIcon = '../images/icon/docicon7.png';
-String defaultIcon = '../images/icon/docicon8.png';
-String quickNoteIcon = '../images/icon/docicon9.png';
+String defaultPicture = '/images/logo-profile.png';
+Map<String, String> icons = {
+  "wordIcon": '/images/icon/docicon1.png',
+  "excelIcon": '/images/icon/docicon2.png',
+  "pptIcon": '/images/icon/docicon3.png',
+  "pdfIcon": '/images/icon/docicon4.png',
+  "txtIcon": '/images/icon/docicon7.png',
+  "defaultIcon": '/images/icon/docicon8.png',
+  "quickNoteIcon": '/images/icon/docicon9.png',
+  "mailImport": '/images/icon/importMail.png'
+};
 
 
 String get cookieSessionId => _cookieSessionIdValue;
@@ -33,6 +36,8 @@ int get port => _port;
 bool get isWebApp => _env == "web";
 
 Logger log = new Logger("app_config");
+
+String firstUrl = "/";
 
 void readConf() {
   //elements are put in closures to avoid variable confusion by limiting their scope
@@ -45,7 +50,7 @@ void readConf() {
   {
     InputElement elasticUrlInput = document.querySelector("#elasticUrl");
     if (elasticUrlInput != null)
-      _elasticUrlValue = elasticUrlInput.value+"/sp";
+      _elasticUrlValue = elasticUrlInput.value + "/sp";
   }
   {
     InputElement loginInput = document.querySelector("#loginUrl");
@@ -61,6 +66,11 @@ void readConf() {
     InputElement port = document.querySelector("#port");
     if (port != null && port.value != null)
       _port = int.parse(port.value);
+  }
+  {
+    InputElement firstPageElem = document.querySelector("#firstUrl");
+    if (firstPageElem != null && firstPageElem.value != null)
+      firstUrl = firstPageElem.value;
   }
 
   InputElement env = document.querySelector("#env");

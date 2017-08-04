@@ -10,6 +10,9 @@ let request = require('request');
 var fsExtra = require('fs-extra');
 var fs = require("fs");
 var mkdirp = require('mkdirp');
+const path = require("path")
+const net = require(path.join(__dirname, '..', 'local_module', 'request'))
+const jsonfile = require('jsonfile');
 module.exports = {
   sendJsonResponse: function (res, status, content, message) {
     res.status(status);
@@ -20,10 +23,18 @@ module.exports = {
     res.json(responseJson);
   },
   sendError: function (res, statusCode, errorMessage, errorDetail) {
+    log.error("error returned to user: \n - statusCode : " + statusCode + "\n - errorMessage :" + errorMessage)
     var err = new Error();
+    if(!statusCode){
+
+      res.status(500);
+      let jsonRes = {error: "proxy server error", errorDetail: errorDetail}
+      return res.json(jsonRes);
+    }
+
     res.status(statusCode);
     let jsonRes = {error: errorMessage, errorDetail: errorDetail}
-    res.json(jsonRes);
+    return res.json(jsonRes);
     // log.error(jsonRes);
   },
   handleError: function (res, err) {
@@ -80,44 +91,64 @@ module.exports = {
     global.mainWindow.webContents.executeJavaScript('document.getElementById("cc").value = "' + sID + '";');
   },
   requestRemoteServer: (options, callBack) => {
-    if(global.isProxy){
-      if(global.userProxy){
-        var proxyUrl = "http://" + global.userProxy + ":" + global.pswProxy + "@" +global.proxyUrl;
-        var proxiedRequest = request.defaults({'proxy': proxyUrl});
-        request= proxiedRequest;
+    /*if(global.isProxy){
+     if(global.userProxy){
+     var proxyUrl = "http://" + global.userProxy + ":" + global.pswProxy + "@" +global.proxyUrl;
+     var proxiedRequest = request.defaults({'proxy': proxyUrl});
+     request= proxiedRequest;
+     }
+     }
+     request(options, function (error, response, body) {
+
+     if (error) {
+     log.error("error to delete Data", error.message);
+     return callBack({errorRequest: error})
+     }
+
+     // Print out the response body
+
+     if (response.statusCode == 200 || response.statusCode == 201) {
+     let data;
+     if (typeof (body) != "object") {
+     data = JSON.parse(body).data
+     } else {
+     data = body.data;
+     }
+     return callBack(null, data);
+     } else {
+     let errToReturn = {}
+     if (typeof (body) != "object") {
+     errToReturn.error = JSON.parse(body).error;
+     errToReturn.errorDetail = JSON.parse(body).errorDetail;
+     } else {
+     errToReturn.error = body.error;
+
+     errToReturn.errorDetail = body.errorDetail;
+     }
+
+     return callBack({errFromServer: errToReturn});
+     }
+
+     })*/
+    let reqOptions = {}
+
+    if (options.method)
+      reqOptions.method = options.method
+
+    if (options.json)
+      reqOptions.body = JSON.stringify(options.json)
+
+    if (options.headers)
+      reqOptions.headers = options.headers
+
+    net.requestUrl(options.url, reqOptions, (err, dataReceived) => {
+
+      if (err) {
+        return callBack(err)
       }
-    }
-    request(options, function (error, response, body) {
 
-      if (error) {
-        log.error("error to delete Data", error.message);
-        return callBack({errorRequest: error})
-      }
 
-      // Print out the response body
-
-      if (response.statusCode == 200 || response.statusCode == 201) {
-        let data;
-        if (typeof (body) != "object") {
-          data = JSON.parse(body).data
-        } else {
-          data = body.data;
-        }
-        return callBack(null, data);
-      } else {
-        let errToReturn = {}
-        if (typeof (body) != "object") {
-          errToReturn.error = JSON.parse(body).error;
-          errToReturn.errorDetail = JSON.parse(body).errorDetail;
-        } else {
-          errToReturn.error = body.error;
-
-          errToReturn.errorDetail = body.errorDetail;
-        }
-
-        return callBack({errFromServer: errToReturn});
-      }
-
+      return callBack(null, dataReceived)
     })
   },
   deleteFolderRecursive: (path, folderName) => {
@@ -134,8 +165,13 @@ module.exports = {
         fs.rmdirSync(path);
       }
     }
+  },readFile : (path, callBack) =>{
+    try{
+      return callBack(null, jsonfile.readFileSync(path));
+    }catch (error){
+      return callBack(error)
+    }
   }
-
 }
 
 

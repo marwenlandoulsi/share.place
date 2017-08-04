@@ -47,16 +47,17 @@
     </div>
 
     <div class="addUserDiv">
-      <div class="addUserDiv_inside" (click)="addUserLine()" onselectstart="return false"><span>More lines</span> </div>
+      <div class="addUserDiv_inside" (click)="addUserLine()" onselectstart="return false"><span>Invite more</span> </div>
     </div>
 
     <span class="labelinvit">Message</span>
 
-    <material-input   [(ngModel)]="message" type="text" multiline rows="5" id="inviteLablel" contenteditable="true"
-                    label="Hello! Join me on Share.Place, it's a super simple app to share and collaborate together!"></material-input>
-  </div>
+    <material-input   [(ngModel)]="message" type="text" multiline rows="5" id="inviteLablel"
+                      label="Hello! Join me on Share.Place, it's a super simple app to share and collaborate together!"></material-input>
+    <!--contenteditable="true"-->
+</div>
 
-  <div class="modal-footer">
-    <material-button raised (click)="save()" class="submitbottom">Send invites</material-button>
-  </div>
+<div class="modal-footer">
+<material-button raised (click)="save()" class="submitbottom">Send invites</material-button>
+</div>
 </div>

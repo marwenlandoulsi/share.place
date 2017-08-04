@@ -2,9 +2,10 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:html' as html;
 
+import 'package:logging/logging.dart';
+import 'package:angular2/router.dart';
 import 'package:angular2/core.dart';
 import 'package:http/http.dart';
-import 'package:logging/logging.dart';
 
 import 'app_config.dart' as conf;
 import 'place.dart';
@@ -20,12 +21,15 @@ import 'package:share_place/users/user.dart';
 import 'app_context_manager.dart';
 import 'package:share_place/search/search_item.dart';
 
-
 @Injectable()
 class PlaceService {
   final Logger log = new Logger("PlaceService");
   static const USER_PROFILE_URL = "/sp/user/connected";
-  static final _headers = {'Content-Type': 'application/json' ,'Cache-control': 'no-cache' ,'HTTP-EQUIV':'Pragma' ,};
+  static final _headers = {
+    'Content-Type': 'application/json',
+    'Cache-control': 'no-cache',
+    'HTTP-EQUIV': 'Pragma',
+  };
   static final _elasticHeaders = {'Content-Type': 'application/json'};
   static const _placesUrl = '/sp/place'; // URL to web API
   static const _newsEventUrl = '/sp/news'; // URL to web API
@@ -40,6 +44,21 @@ class PlaceService {
     _appContextManager = new AppContextManager(_environment, this);
   }
 
+  Object subscribeToRouter(Router router ) {
+    return router.subscribe((dynamic event) async {
+      if( event is String ) {
+        Map<String, String> params = await _environment.getRouteParams(event);
+        String folderId = params["fId"];
+        String fileId = params["fileId"];
+        await prepareNavState(path:params["_routeName"], placeId: params["pId"], folderId: folderId, subjectId: fileId);
+
+        if( fileId != null && _environment.selectedSubject?.fileId != fileId)
+          _environment.fireEvent(PlaceParam.fileId, fileId);
+
+      }
+    });
+  }
+
   dynamic _extractData(Response resp) {
     _environment.serverError = '';
 //happens if user is disconnected
@@ -48,14 +67,21 @@ class PlaceService {
 
     var statusCode = resp.statusCode;
     var respBody = JSON.decode(resp.body);
+
     var msg = respBody['message'];
     if (msg != null)
       _environment.addMessage(msg);
 
     if (statusCode >= 200 && statusCode < 300) {
-      log.finest("response : ${resp.body}");
+      log.finest( "response : ${resp.body}");
       dynamic toReturn = respBody['data'];
       return toReturn;
+    } else if (statusCode == 301) {
+      log.finest("response : ${resp.body}");
+      dynamic toReturn = respBody['data']['url'];
+      log.finest("url***************** : ${toReturn}");
+      redirectToUrl(toReturn);
+      return null;
     } else if (statusCode == 401) {
       _environment.connectedUser = null;
       _environment.serverError = respBody['error'];
@@ -98,6 +124,129 @@ class PlaceService {
       return null;
     return await _http.get(conf.baseUrl + url, headers: headers);
   }
+
+  Future<bool> prepareNavState(
+      {path, placeId, folderId, subjectId, versionId, subjectType}) async {
+    log.finer(
+        "prepareNavState $path (pId: ${placeId}, fId: ${folderId}, fileId: ${subjectId}, vId: ${versionId}, sType:${subjectType})");
+    if (_environment.connectedUser == null) {
+      User connected = await
+      loadConnectedUser();
+      if (connected == null)
+        return true as FutureOr<bool>;
+    }
+
+    var reloadPlaces = !_environment.placeList.isValid;
+
+    if (reloadPlaces)
+      await loadPlaces
+        ();
+
+    if (placeId == null)
+      return true as FutureOr<bool>;
+
+    if (_environment.selectedPlaceData.data?.id != placeId) {
+      List<Place> placeList = _environment.placeList.data;
+      bool placeFound = false;
+      for (int i = 0; i < placeList.length; i++) {
+        Place place = placeList[i];
+        if (place.id == placeId) {
+          _environment.selectedPlace = place;
+          placeFound = true;
+          break;
+        }
+      }
+      if (!placeFound) {
+        html.window.alert("Place not found");
+        return false as FutureOr;
+      }
+    }
+
+    if (_environment.folderList.dataId != placeId ||
+        !_environment.folderList.isValid) {
+      await loadFolders
+        (placeId);
+    }
+
+    if (folderId == null)
+      return true as FutureOr<bool>;
+
+    if (_environment.selectedFolderData.data?.id != folderId) {
+      for (int i = 0; i < _environment.folderList.data.length; i++) {
+        Folder folder = _environment.folderList.data[i];
+        if (folder.id == folderId) {
+          _environment.selectedFolder = folder;
+          break;
+        }
+      }
+    }
+
+    if (_environment.subjectList.dataId != folderId ||
+        !_environment.subjectList.isValid) {
+      await loadFolderSubjects
+        (folderId);
+    }
+
+    if (subjectId == null) {
+      return true as FutureOr<bool>;
+    }
+
+    if (_environment.selectedSubjectData.data?.id != subjectId) {
+      for (int i = 0; i < _environment.subjectList.data.length; i++) {
+        FileInfo subject = _environment.subjectList.data[i];
+        if (subject.id == subjectId) {
+          _environment.selectedSubject = subject;
+          break;
+        }
+      }
+    }
+
+    return true as FutureOr<bool>;
+  }
+
+  Future<List<Place>> loadPlaces() async {
+    List<Place> places = await getPlaces();
+    _environment.placeList.data = places;
+    await refreshPlaceNotifications();
+    return places;
+  }
+
+  Future refreshPlaceNotifications() async {
+    List<Place> places = _environment.placeList.data;
+    Map<String, dynamic> placeNotifications = await loadPlaceNotifications();
+    if (placeNotifications != null) {
+      for (Place place in places) {
+        var placeNotifs = placeNotifications[place.id];
+        place.notificationCount =
+        placeNotifs != null ? placeNotifs['count'] : 0;
+      }
+    }
+  }
+
+  Future<List<Folder>> loadFolders(String placeId) async {
+    List<Folder> folders = await getFolders(placeId);
+    List<Folder> filtred = [];
+    bool showMailImport = _environment.options["mailImport"];
+    for (int i = 0; i < folders.length; i++) {
+      Folder folder = folders[i];
+      if (!showMailImport && folder.type == "profile")
+        continue;
+      filtred.add(folder);
+    }
+    _environment.folderList.setData(placeId, filtred);
+    await updatePlaceNotificationCount(placeId);
+  }
+
+  Future updatePlaceNotificationCount(String placeId) async {
+    Map<String, dynamic> placeNotifications = await loadPlaceNotifications();
+    var currentPlaceNotifs = placeNotifications[placeId];
+    _environment.selectedPlace.notificationCount =
+    currentPlaceNotifs == null ? 0 : currentPlaceNotifs['count'];
+  }
+
+  Future<List<FileInfo>> loadFolderSubjects(String folderId) async =>
+      _environment.subjectList.setData(
+          folderId, await getFolderSubjects(folderId));
 
   Future<FileInfo> createQuickNote(String title) async {
     Response response = await post("/sp/place/" +
@@ -201,6 +350,8 @@ class PlaceService {
       final places = data
           .map((value) => new Place.fromJson(value))
           .toList();
+
+
       return places;
     } catch (e) {
       throw _handleError(e);
@@ -246,11 +397,51 @@ class PlaceService {
     }
   }
 
-  Future<List<FileInfo>> getFolderSubjects(String placeId,
+  Future<List<FileInfo>> getFolderSubjects(String folderId) async {
+    try {
+      String placeId = _environment.selectedPlaceData.data?.id;
+      if (placeId == null)
+        throw "No place selected, subjects can't be loaded";
+
+      final response = await get(
+          "/sp/place/${placeId}/folder/${folderId}/fileInfo");
+      var subjectsJson = _extractData(response);
+      if (subjectsJson == null)
+        return null;
+
+      final subjects = subjectsJson
+          .map((value) => new FileInfo.fromJson(value))
+          .toList();
+      return subjects;
+    } catch (e) {
+      throw _handleError(e);
+    }
+  }
+
+  Future<bool> startMailImport(String placeId,
+      String folderId, String fileId) async {
+    try {
+      final response = await get(
+          "/sp/importGmail?placeId=$placeId&folderId=$folderId&fileInfoId=$fileId");
+
+      var success = _extractData(response);
+
+      if (success?.data == "success")
+        return true;
+
+      return false;
+    } catch (e) {
+      throw _handleError(e);
+    }
+  }
+
+
+  Future<List<FileInfo>> getMailSubjects(String placeId,
       String folderId) async {
     try {
       final response = await get(
-          "/sp/place/${placeId}/folder/${folderId}/fileInfo");
+          "/sp/importGmail?placeId=$placeId&folderId=$folderId");
+
       var subjectsJson = _extractData(response);
       if (subjectsJson == null)
         return null;
@@ -281,7 +472,8 @@ class PlaceService {
     try {
       final response = await get(
           '/sp/place/${placeId}/folder/${folderId}/file/${fileId}');
-      return new CloudFile.fromJson(_extractData(response));
+      if (response != null)
+        return new CloudFile.fromJson(_extractData(response));
     } catch (e) {
       throw _handleError(e);
     }
@@ -314,9 +506,6 @@ class PlaceService {
     log.severe(e); // for demo purposes only
     return new Exception('Server error; cause: $e');
   }
-
-  Future<Place> getPlace(int id) async =>
-      (await getPlaces()).firstWhere((place) => place.id == id);
 
   Future<Place> createPlace(String name) async {
     try {
@@ -429,6 +618,17 @@ class PlaceService {
           headers: _headers);
       _environment.notifications = _extractData(response);
       return _environment.notifications;
+    } catch (e) {
+      throw _handleError(e);
+    }
+  }
+
+  Future<Map<String, dynamic>> loadPlaceNotifications() async {
+    try {
+      final response = await get(
+          "/sp/place/placeNotify",
+          headers: _headers);
+      return _extractData(response);
     } catch (e) {
       throw _handleError(e);
     }
@@ -556,6 +756,11 @@ class PlaceService {
     //final response = await get("/auth/logout");
   }
 
+  Future<Null> redirectToUrl(String url) async {
+    html.window.location.assign(url);
+    //final response = await get("/auth/logout");
+  }
+
   Future<User> signup(User user, String croppieData) async {
     var userBody = {};
     setIfNotEmpty(userBody, "name", user.name);
@@ -574,7 +779,7 @@ class PlaceService {
   }
 
   Future<User> saveProfile(User user, {bool mailChanged,
-    String newPass ,String croppieData }) async {
+    String newPass, String croppieData }) async {
     var userBody = {};
     setIfNotEmpty(userBody, "name", user.name);
     setIfNotEmpty(userBody, "skype", user.skype);
@@ -620,11 +825,13 @@ class PlaceService {
   }
 
 
-  Future<List<User>> removeUserFromFolder(User user) async {
+  Future<Null> removeUserFromFolder(User user) async {
     try {
       await del(
           '/sp/place/${_environment.selectedPlace.id}/folder/${_environment
               .selectedFolder.id}/user/${user.id}');
+      List<Place> places = await getPlaces();
+      _environment.placeList.data = places;
     } catch (e) {
       throw _handleError(e);
     }
@@ -659,7 +866,7 @@ class PlaceService {
   }
 
   Future<Null> removeFileVersion(String placeId, String folderId, String fileId
-      ,int fileVersion) async {
+      , int fileVersion) async {
     try {
       await del(
           '/sp/place/${placeId}/folder/${folderId}/file/${fileId}/version/${fileVersion}');
@@ -679,46 +886,9 @@ class PlaceService {
 
 
   Future<List<SearchItem>> search(String dataToSearch) async {
-    //List<FileInfo>
-    Map query = {
-      "query": {
-        "constant_score": {
-          "filter": {
-            "bool": {
-              "must": {
-                "term": {
-                  "users.userId": _environment.connectedUser.id
-                }
-              },
-              "should": {
-                "has_child": {
-                  "type": "fileversion",
-                  "query": {
-                    "query_string": {
-                      "query": "$dataToSearch*",
-                      "fields": [ "name^4", "attachment.content"],
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-/*
-      "highlight": {
-        "fields": {
-          "name": {},
-          "attachment.content": {}
-        }
-      }
-*/
-    };
-
     Response response = await
-    _http.post("${conf.elasticUrl}/file/_search", headers: _elasticHeaders,
-        body: JSON.encode(query));
-
+    _http.post("/sp/file/search",
+        body: {"data": dataToSearch});
     return _extractElasticSearchData(response).map((searchItem) =>
     new SearchItem.fromJson(searchItem))
         .toList();
@@ -735,7 +905,7 @@ class PlaceService {
 
     if (statusCode >= 200 && statusCode < 300) {
       //how to map
-      dynamic hitsList = respBody['hits']['hits'];
+      dynamic hitsList = respBody['data']['hits']['hits'];
       List searchItemList = new List();
       if (hitsList == null)
         return new List(0);

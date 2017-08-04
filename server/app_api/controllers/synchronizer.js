@@ -17,6 +17,11 @@ module.exports.synchronizeRemoteData = function () {
 }
 
 var getData = function (url, callback) {
+  if(!global.user){
+    log.info ("interrupting synchronizer, user disconnected")
+    return callback([])
+  }
+
   log.info("called sync ", url, " : ", isSyncEnabled(url));
   var urlC = '/' + url;
   if (isSyncEnabled(url)) {

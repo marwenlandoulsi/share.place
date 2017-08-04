@@ -1,16 +1,17 @@
 {
-  "name": "Share.Place",
-  "version": "0.1.16",
-  "description": "share place",
+  "name": "Share.Place.qa",
+  "version": "0.1.17",
+  "description": "share place qa",
   "main": "main.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/marwenlandoulsi/share.place"
+    "url": "https://github.com/marwenlandoulsi/share.place.qa"
   },
   "scripts": {
     "start": "electron .",
     "build:win": "build --win --ia32 --x64 --publish always",
     "build:winDev": "build --win --ia32 --x64",
+    "build:mac": "build --mac",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
@@ -37,7 +38,7 @@
     ],
     "asar": false,
     "copyright": "©2017 Share.Place, Inc.",
-    "appId": "com.share.place",
+    "appId": "com.share.place.qa",
     "win": {
       "icon": "./shareElecIco.ico",
       "target": "nsis"

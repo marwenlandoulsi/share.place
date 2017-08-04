@@ -38,7 +38,9 @@ var agent = new electronProxyAgent({
   }
 });
 
-
+const fetch = require('electron-fetch')
+const net = require(path.join(__dirname,'..', '..', 'local_module', 'request'))
+const FormData = require('form-data')
 module.exports = function (passport) {
   var users = jsonfile.readFileSync(userfile);
 
@@ -99,12 +101,16 @@ module.exports = function (passport) {
 
 
             loginFromServer(req, email, password, function (err, user) {
-              if (err) {
+
+              if(err)
                 return done(err);
-              }
+
               if (!user) {
                 return done(null, false, req.flash('loginMessage', 'Oops! Wrong email or password.'))
               }
+
+              global.user = user
+
               var userLocal = localUsers({local: {email: email}});
 
 
@@ -191,7 +197,6 @@ module.exports = function (passport) {
             var skype = req.body.skype;
 
             let profilePicture = req.body.data
-
 
 
             signUpFromServer(req, email, password, name, skype, profilePicture, (err, user) => {
@@ -301,113 +306,155 @@ var loginFromServer = function (req, email, password, cb) {
 
 // Configure the request
   var url = '/login/proxy';
-  if (global.isProxy) {
-    if (global.userProxy) {
-      var proxyUrl = "http://" + global.userProxy + ":" + global.pswProxy + "@" + global.proxyUrl;
-      var proxiedRequest = request.defaults({'proxy': proxyUrl});
-      request = proxiedRequest;
-    }
-  }
-  var options = {
-    url: constants.urlLoginProxy + url,
-    method: constants.optionsPost.method,
-    headers: headers,
-    form: {'email': email, 'password': password},
-    agent: agent
-  };
+  /* if (global.isProxy) {
+   if (global.userProxy) {
+   var proxyUrl = "http://" + global.userProxy + ":" + global.pswProxy + "@" + global.proxyUrl;
+   var proxiedRequest = request.defaults({'proxy': proxyUrl});
+   request = proxiedRequest;
+   }
+   }*/
+  /*
+   var options = {
+   url: constants.urlLoginProxy + url,
+   method: constants.optionsPost.method,
+   headers: headers,
+   form: {'email': email, 'password': password},
+   agent: agent
+   };*/
 
 // Start the request
-  request(options, function (error, response, body) {
+  /*request(options, function (error, response, body) {
 
-    if (error) {
-      log.error("error to login", error.message);
-      return cb(error)
-    }
+   if (error) {
+   log.error("error to login", error.message);
+   return cb(error)
+   }
 
-    if (response.statusCode == 302) {
-      return cb(null, null, 'Oops! Wrong email or password.');
-    }
+   if (response.statusCode == 302) {
+   return cb(null, null, 'Oops! Wrong email or password.');
+   }
 
-    if (response.statusCode == 401) {
-      return cb(null, null, 'Oops! Wrong email or password.');
-    }
-    if (!error && response.statusCode == 200) {
-      // Print out the response body
-      var user = JSON.parse(body).data;
-      var cookie = '';
-      if (response.headers['set-cookie'].length > 1) {
-        return log.error("many cookie in set-cookie", response.headers['set-cookie'].length);
+   if (response.statusCode == 401) {
+   return cb(null, null, 'Oops! Wrong email or password.');
+   }
+   if (!error && response.statusCode == 200) {
+   // Print out the response body
+   var user = JSON.parse(body).data;
+   var cookie = '';
+   if (response.headers['set-cookie'].length > 1) {
+   return log.error("many cookie in set-cookie", response.headers['set-cookie'].length);
 
-      } else {
-        cookie += response.headers['set-cookie'][0];
-      }
-      global.cookieReceived = cookie;
-      return cb(null, user);
+   } else {
+   cookie += response.headers['set-cookie'][0];
+   }
+   global.cookieReceived = cookie;
+   return cb(null, user);
+   }
+   })*/
+
+
+  const body = {'email': email, 'password': password}
+  net.requestUrl(constants.urlLoginProxy + url, {
+    method: constants.optionsPost.method,
+    body: JSON.stringify(body),
+    headers: {'Content-Type': 'application/json'},
+  }, (err, dataReceived)=>{
+      if(err)
+        return cb(err)
+
+  /*  if(dataReceived.cookie)
+      global.cookieReceived = dataReceived.cookie
+*/
+    return cb(null, dataReceived.data)
+  })/*
+  fetch(constants.urlLoginProxy + url, {
+    method: 'POST',
+    body: JSON.stringify(body),
+    headers: {'Content-Type': 'application/json'},
+  }).then(res => {
+    log.error("res.ok", res.ok)
+    log.error("***** statu", res.status)
+    log.error("zzzzz", res.statusText)
+    log.error("saz", res.headers.raw())
+    log.error(":", res.headers.get('content-type'))
+    let headers
+    if(res.ok)
+      headers = res.headers.raw()
+    var cookie = '';
+    if (headers['set-cookie'].length > 1) {
+      return log.error("many cookie in set-cookie", response.headers['set-cookie'].length);
+    } else {
+      cookie += headers['set-cookie'][0];
     }
-  })
+    global.cookieReceived = cookie;
+    log.error ('cookier', cookie)
+    return res.json()
+  }).then(json => {
+    cb(json.data)
+  })*/
 };
 
 
 var signUpFromServer = function (req, email, password, name, skype, profilePicture, cb) {
 
 
-  // Configure the request
-  var url = req.url;
-  var pathToFile = null;
-
-  if (global.isProxy) {
-    if (global.userProxy) {
-      var proxyUrl = "http://" + global.userProxy + ":" + global.pswProxy + "@" + global.proxyUrl;
-      var proxiedRequest = request.defaults({'proxy': proxyUrl});
-      request = proxiedRequest;
-    }
-  }
-
-  // Start the request
-  var r = request.post(constants.urlLoginProxy + url, function (error, response, body) {
-
-    if (error) {
-      log.error("error to signUp", error.message);
-      return cb(error)
-    }
-
-
-    if (!error && (response.statusCode == 200 || response.statusCode == 201)) {
-      // Print out the response body
-      var user = JSON.parse(body).data;
-      var cookie = ''
-      if (response.headers['set-cookie'].length > 1) {
-        return log.error("many cookie in set-cookie", response.headers['set-cookie'].length);
-
-      } else {
-        cookie += response.headers['set-cookie'][0];
-      }
-      log.info("user created:", user)
-      global.cookieReceived = cookie;
-      globalService.setSidInInput(cookie);
-
-      if (pathToFile) {
-        fs.unlink(pathToFile, function (err) {
-          if (err)
-            log.error('err  delete from tmp', err);
-
-        });
-      }
-
-      return cb(null, user);
-    }
-  });
-  var form = r.form();
+  // // Configure the request
+  const url = req.url;
+  // var pathToFile = null;
+  //
+  // if (global.isProxy) {
+  //   if (global.userProxy) {
+  //     var proxyUrl = "http://" + global.userProxy + ":" + global.pswProxy + "@" + global.proxyUrl;
+  //     var proxiedRequest = request.defaults({'proxy': proxyUrl});
+  //     request = proxiedRequest;
+  //   }
+  // }
+  //
+  // // Start the request
+  // var r = request.post(constants.urlLoginProxy + url, function (error, response, body) {
+  //
+  //   if (error) {
+  //     log.error("error to signUp", error.message);
+  //     return cb(error)
+  //   }
+  //
+  //
+  //   if (!error && (response.statusCode == 200 || response.statusCode == 201)) {
+  //     // Print out the response body
+  //     var user = JSON.parse(body).data;
+  //     var cookie = ''
+  //     if (response.headers['set-cookie'].length > 1) {
+  //       return log.error("many cookie in set-cookie", response.headers['set-cookie'].length);
+  //
+  //     } else {
+  //       cookie += response.headers['set-cookie'][0];
+  //     }
+  //     log.info("user created:", user)
+  //     global.cookieReceived = cookie;
+  //     globalService.setSidInInput(cookie);
+  //
+  //     if (pathToFile) {
+  //       fs.unlink(pathToFile, function (err) {
+  //         if (err)
+  //           log.error('err  delete from tmp', err);
+  //
+  //       });
+  //     }
+  //
+  //     return cb(null, user);
+  //   }
+  // });
+  // var form = r.form();
   /*if (req.file) {
-    var pathToFile = path.join(__dirname, '..', '..', 'tmp', 'upload', req.file.filename);
-    form.append('filename', fs.createReadStream(path.join(__dirname, '..', '..', 'tmp', 'upload', req.file.filename)),
-        {
-          filename: req.file.originalname,
-          contentType: req.file.mimeType
-        });
-  }*/
-
-  if(!_.isEmpty(profilePicture)){
+   var pathToFile = path.join(__dirname, '..', '..', 'tmp', 'upload', req.file.filename);
+   form.append('filename', fs.createReadStream(path.join(__dirname, '..', '..', 'tmp', 'upload', req.file.filename)),
+   {
+   filename: req.file.originalname,
+   contentType: req.file.mimeType
+   });
+   }*/
+  const form = new FormData()
+  if (!_.isEmpty(profilePicture)) {
     form.append('data', profilePicture);
   }
   if (email)
@@ -422,7 +469,16 @@ var signUpFromServer = function (req, email, password, name, skype, profilePictu
   if (skype)
     form.append('skype', skype);
 
+  let reqOptions = {
+    method: "POST",
+    body: form
+  }
+  net.requestUrl(constants.urlLoginProxy + url, reqOptions, (err, toReturn) => {
+    if (err)
+      return cb(err)
 
+    return cb(null, toReturn.data)
+  })
 }
 
 /*

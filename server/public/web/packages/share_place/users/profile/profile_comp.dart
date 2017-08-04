@@ -178,6 +178,6 @@ class ProfileComp implements OnInit {
 
   bool get hasGoogleAccount => connectedUser.googleAccount != null;
 
-  String get photoUrl => photoId == null ? "../images/img_profile.png" : "/auth/gridfs/file/$photoId/picture.x";
+  String get photoUrl => photoId == null ? "/images/img_profile.png" : "/auth/gridfs/file/$photoId/picture.x";
 
 }

@@ -10,9 +10,9 @@
         <!--?refreshHack=... obliges the browser to refresh the image if it changes  -->
 
         <div #photoDiv class="uploadImgprofil" id="photoDiv">
-          <img id="cropping" src="{{photoUrl}}"  onerror="this.src='../images/img_profile.png'"/>
+          <img id="cropping" src="{{photoUrl}}"  onerror="this.src='/images/img_profile.png'"/>
       <!-- <img  *ngIf="photoId != null" src="/auth/gridfs/file/{{photoId}}/picture.x"  />
-          <img  *ngIf="photoId == null"    src="../images/img_profile.png"/>-->
+          <img  *ngIf="photoId == null"    src="/images/img_profile.png"/>-->
           <!--<div class="spinAnimCircle"></div>-->
         </div>
 
@@ -98,7 +98,7 @@
     <div class="clearfix"></div>
   </div>
   <div class="btnvalidat">
-    <material-button raised class="btn_login" (click)="save()">Save</material-button>
+    <material-button raised class="btn_login blue" (click)="save()">Save</material-button>
   </div>
 
 </div>

@@ -281,7 +281,7 @@ class ViewLoginComp0 extends AppView<import2.LoginComp> {
     _el_27.className = 'logo_intro';
     addShimC(_el_27);
     _el_28 = createAndAppend(doc,'img',_el_27);
-    createAttr(_el_28,'src','../images/logo_intro.png');
+    createAttr(_el_28,'src','/images/logo_intro.png');
     addShimE(_el_28);
     Text _text_29 = new Text('\n        ');
     _el_25.append(_text_29);
@@ -293,7 +293,7 @@ class ViewLoginComp0 extends AppView<import2.LoginComp> {
     _el_23.append(_text_32);
     Text _text_33 = new Text('\n    ');
     _el_23.append(_text_33);
-    Text _text_34 = new Text('\n\n  ');
+    Text _text_34 = new Text('\n  ');
     _el_18.append(_text_34);
     Text _text_35 = new Text('\n\n  ');
     _el_16.append(_text_35);
@@ -434,7 +434,7 @@ class ViewLoginComp0 extends AppView<import2.LoginComp> {
     _compView_76 = new import21.ViewMaterialButtonComponent0(this,76);
     _el_76 = _compView_76.rootEl;
     _el_45.append(_el_76);
-    _el_76.className = 'btn_login';
+    _el_76.className = 'btn_login blue';
     createAttr(_el_76,'raised','');
     addShimC(_el_76);
     _AcxDarkTheme_76_2 = new import22.AcxDarkTheme(parentView.injectorGet(import36.darkThemeToken,parentIndex,null));

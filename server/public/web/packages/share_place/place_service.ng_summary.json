@@ -16,15 +16,19 @@
         "5": false
       },
       {
+        "1": "package:logging/logging.dart",
+        "5": false
+      },
+      {
+        "1": "package:angular2/router.dart",
+        "5": false
+      },
+      {
         "1": "package:angular2/core.dart",
         "5": false
       },
       {
         "1": "package:http/http.dart",
-        "5": false
-      },
-      {
-        "1": "package:logging/logging.dart",
         "5": false
       },
       {

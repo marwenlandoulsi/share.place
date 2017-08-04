@@ -23,9 +23,9 @@ class RoleItem {
   @Input() set role(String role) {
     itemRole = role;
     images = [
-      '../images/roles/$role.png',
-      '../images/roles/$role-h.png',
-      '../images/roles/$role-c.png'
+      '/images/roles/$role.png',
+      '/images/roles/$role-h.png',
+      '/images/roles/$role-c.png'
     ];
   }
 
