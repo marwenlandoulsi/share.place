@@ -68,6 +68,7 @@ class ViewTextComp0 extends AppView<import2.TextComp> {
     _el_2 = createAndAppend(doc,'input',_el_0);
     _el_2.className = 'txt';
     createAttr(_el_2,'id','txt');
+    createAttr(_el_2,'ng-focus','isFocused');
     createAttr(_el_2,'type','text');
     addShimC(_el_2);
     _DefaultValueAccessor_2_2 = new import4.DefaultValueAccessor(new ElementRef(_el_2));

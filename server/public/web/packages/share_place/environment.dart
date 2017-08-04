@@ -1,13 +1,12 @@
 import 'dart:async';
 import 'dart:html';
 
-import 'package:angular2/router.dart';
 import 'package:angular2/core.dart';
 import 'package:logging/logging.dart';
 import 'package:share_place/common/net/mix_panel.dart';
 import 'package:share_place/common/net/socket.io.dart';
-
 import 'package:share_place/users/user.dart';
+
 import 'app_config.dart' as conf;
 import 'event_bus.dart';
 import 'file_info.dart';
@@ -15,6 +14,7 @@ import 'files/cloud_file.dart';
 import 'folder.dart';
 import 'place.dart';
 import 'package:share_place/common/data/data.dart';
+import 'package:angular2/router.dart';
 import 'package:share_place/common/data/collections.dart' as collection;
 
 @Injectable()
@@ -67,32 +67,21 @@ class Environment {
     //window.onOffline.listen((Event e) => online = false);
   }
 
-  Future<Map<String, String>> getRouteParams(String url) async {
-    Instruction inst = await
-    _router.recognize(url);
-    ComponentInstruction compInst = await
-    inst.resolveComponent();
-    Map<String, String> params = compInst.params;
-    params["_routeName"] = compInst.routeName;
-    return params;
-  }
-
   void adjustHeights() {
     int remainingSpace;
     int remainingSpace2;
 
     const int heightNewTopic = 66;
     var benchList = querySelector("#benchList");
-    var versionListScroll = querySelector(
-        ".versionsListScroll .scrollbar-macosx");
-    var subjectListScrollZone = querySelector(
-        ".subjectListScollZone .scrollbar-macosx");
-    if (benchList == null) {
+    var versionListScroll = querySelector(".versionsListScroll .scrollbar-macosx");
+    var subjectListScrollZone = querySelector(".subjectListScollZone .scrollbar-macosx");
+    if( benchList == null ) {
       log.warning("benchList is null");
       return;
     }
 
-    if (this.searchText != null) {
+    if (this.searchText != null ) {
+
       Element searchInnerDiv = querySelector("#searchInner");
       if (selectedSubject != null) {
         remainingSpace2 =
@@ -170,31 +159,31 @@ class Environment {
     window.dispatchEvent(event);
   }
 
-  Future<Null> navigate(String routingName,
-      {pId, fId, fileId, vId, sType}) async {
+  void navigate(String routingName, {pId, fId, tId, vId, sType}) {
     Map<String, String> navigationParams = {};
     collection.addIfCondition(navigationParams, 'pId', pId);
     collection.addIfCondition(navigationParams, 'fId', fId);
-    collection.addIfCondition(navigationParams, 'fileId', fileId);
+    collection.addIfCondition(navigationParams, 'tId', tId);
     collection.addIfCondition(navigationParams, 'vId', vId);
     collection.addIfCondition(navigationParams, 'sType', sType);
 
 
-    await _router.navigate([routingName, navigationParams]);
+
+    _router.navigate([routingName, navigationParams]);
 
     if (routingName == "PlaceSelected") {
       selectedFolder = null;
+
     } else if (routingName == "FolderSelected") {
       if (selectedFolder?.id != fId)
         selectedSubject = null;
 
       fireEvent(PlaceParam.folderId, fId);
     } else if (routingName == "SubjectSelected") {
-//      if (selectedSubject?.id != fileId)
-//        selectedFile = null;
+      if (selectedSubject?.id != tId)
+        selectedFile = null;
 
-
-      fireEvent(PlaceParam.fileId, fileId);
+      fireEvent(PlaceParam.fileInfoId, tId);
     }
   }
 
@@ -206,11 +195,11 @@ class Environment {
     selectedFolderData.data = null;
     _file = null;
 
-
     if (idChanged) {
       eventBus.fire({
         PlaceParam.placeId: place?.id,
         PlaceParam.folderId: null,
+        PlaceParam.fileInfoId: null,
         PlaceParam.fileId: null
       });
     }
@@ -228,6 +217,7 @@ class Environment {
       eventBus.fire(
           {
             PlaceParam.folderId: folder?.id?.toString(),
+            PlaceParam.fileInfoId: null,
             PlaceParam.fileId: null
           });
     }
@@ -245,10 +235,9 @@ class Environment {
     this.selectedSubjectData.data = fileInfo;
     //bool idChanged = this.selectedSubjectData.data?.id != fileInfo?.id;
     _file = null;
-
-    //FIXME zied bug
     //if( fileInfo != null ) {
-    //eventBus.fire({PlaceParam.fileId: fileInfo?.id});
+    eventBus.fire(
+        {PlaceParam.fileInfoId: fileInfo?.id});
     //}
   }
 
@@ -256,6 +245,7 @@ class Environment {
 
   void set selectedFile(CloudFile file) {
     this._file = file;
+    eventBus.fire({PlaceParam.fileId: file?.id?.toString()});
   }
 
   User get connectedUser => _connected;
@@ -385,7 +375,7 @@ class Environment {
         print( "folder list loaded" );
         consumeOnce(PlaceParam.fileInfoListLoaded, (dynamic folderId) {
           print( "subject list loaded" );
-          fireEvent(PlaceParam.fileInfoIdRequested, fileId);
+          fireEvent(PlaceParam.fileInfoIdRequested, fileInfoId);
         });
         fireEvent(PlaceParam.folderIdRequested, folderId);
       });
@@ -425,6 +415,7 @@ enum PlaceParam {
   fileInfoIdRequested,
   folderId,
   folderListLoaded,
+  fileInfoId,
   fileInfoListLoaded,
   fileId,
   userId,

@@ -893,7 +893,7 @@ class ViewSubjectListComponent8 extends AppView<import2.SubjectListComponent> {
       updateClass(_el_0,'qNote',currVal_1);
       _expr_1 = currVal_1;
     }
-    final currVal_2 = ((_ctx.selectedSubject != null) && (locals['\$implicit'].fileId == _ctx.selectedSubject.fileId));
+    final currVal_2 = ((_ctx.selectedSubject != null) && (locals['\$implicit'].id == _ctx.selectedSubject.id));
     if (!import30.looseIdentical(_expr_2,currVal_2)) {
       updateClass(_el_0,'selected',currVal_2);
       _expr_2 = currVal_2;

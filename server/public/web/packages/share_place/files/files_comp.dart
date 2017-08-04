@@ -60,21 +60,20 @@ class FilesComp implements OnInit, PopupParent {
 
 
   show(Map<PlaceParam, String> params) async {
-    var fileId = params[PlaceParam.fileId];
+    var fileInfoId = params[PlaceParam.fileInfoId];
 
-    if( params.containsKey(PlaceParam.fileId) )
-
-    if (fileId != null) {
+    if (fileInfoId != null) {
       hideMenu();
       popupUserInfoId = null;
       //FIXME these events should be launched only if the environment is ready
       if( _environment.selectedSubject?.fileId == null) {
         log.severe("Unconsistent state : selectedSubject is null");
-        //return;
+        return;
       }
 
       await getFile
-        (_environment.selectedPlace.id, _environment.selectedFolder.id, fileId);
+        (_environment.selectedPlace.id, _environment.selectedFolder.id,
+          _environment.selectedSubject.fileId);
     } else if (params[PlaceParam.placeId] != null) {
       selectedFile = null;
     } else if (params.containsKey(PlaceParam.ioFileActionCreated) ||
@@ -88,18 +87,16 @@ class FilesComp implements OnInit, PopupParent {
 
   Future<CloudFile> getFile(String placeId, String folderId,
       String fileId) async {
-
-
     selectedFile = await _placeService.getFile(placeId, folderId, fileId);
     versionAttributes.clear();
     detectLastLockAction();
     _environment.showScrollBar();
-
     if (selectedFile != null)
       return selectedFile;
   }
 
   TextChanged writingComment(String comment) {
+    print("writing " + comment);
   }
 
   void select(CloudFile file) {
@@ -200,6 +197,7 @@ class FilesComp implements OnInit, PopupParent {
 
 
   Future<Null> moreComments(String fileId, int version) async {
+    print("loading comments of $fileId, version: $version");
     List<FileAction> moreComments = await _placeService.getComments(
         fileId, version, lastLoadedCommentIndex(fileId, version));
     getFileVersionAttributes(fileId, version, createIfNull: true).loaded(

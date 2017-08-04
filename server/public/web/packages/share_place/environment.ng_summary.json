@@ -11,10 +11,6 @@
         "5": false
       },
       {
-        "1": "package:angular2/router.dart",
-        "5": false
-      },
-      {
         "1": "package:angular2/core.dart",
         "5": false
       },
@@ -61,6 +57,10 @@
       },
       {
         "1": "package:share_place/common/data/data.dart",
+        "5": false
+      },
+      {
+        "1": "package:angular2/router.dart",
         "5": false
       },
       {

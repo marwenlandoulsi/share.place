@@ -18,7 +18,6 @@ import 'package:angular_components/angular_components.dart';
 import 'app_config.dart' as conf;
 import 'environment.dart';
 import 'package:share_place/file_info.dart';
-import 'package:share_place/files/cloud_file.dart';
 import 'package:share_place/places_component.dart';
 import 'package:share_place/place_service.dart';
 import 'package:share_place/common/ui/notification.dart' as notif;
@@ -41,23 +40,22 @@ import 'package:angular_components/angular_components.template.dart' as i2;
 import 'app_config.template.dart' as i3;
 import 'environment.template.dart' as i4;
 import 'package:share_place/file_info.template.dart' as i5;
-import 'package:share_place/files/cloud_file.template.dart' as i6;
-import 'package:share_place/places_component.template.dart' as i7;
-import 'package:share_place/place_service.template.dart' as i8;
-import 'package:share_place/common/ui/notification.template.dart' as i9;
-import 'package:share_place/path_change_interceptor.template.dart' as i10;
-import 'package:share_place/files/files_comp.template.dart' as i11;
-import 'package:share_place/news/news_comp.template.dart' as i12;
-import 'package:share_place/postit/postit_component.template.dart' as i13;
-import 'package:share_place/subject/subject_list_comp.template.dart' as i14;
-import 'package:share_place/users/change_roles/change_roles_dialog_comp.template.dart' as i15;
-import 'package:share_place/users/login/login_comp.template.dart' as i16;
-import 'package:share_place/users/profile/profile_comp.template.dart' as i17;
-import 'package:share_place/users/terms_andconditions/terms_andconditions.template.dart' as i18;
-import 'package:share_place/users/user.template.dart' as i19;
-import 'package:share_place/search/search_comp.template.dart' as i20;
-import 'package:share_place/electron/proxy_credentials.template.dart' as i21;
-import 'package:share_place/search/search_input/search_input.template.dart' as i22;
+import 'package:share_place/places_component.template.dart' as i6;
+import 'package:share_place/place_service.template.dart' as i7;
+import 'package:share_place/common/ui/notification.template.dart' as i8;
+import 'package:share_place/path_change_interceptor.template.dart' as i9;
+import 'package:share_place/files/files_comp.template.dart' as i10;
+import 'package:share_place/news/news_comp.template.dart' as i11;
+import 'package:share_place/postit/postit_component.template.dart' as i12;
+import 'package:share_place/subject/subject_list_comp.template.dart' as i13;
+import 'package:share_place/users/change_roles/change_roles_dialog_comp.template.dart' as i14;
+import 'package:share_place/users/login/login_comp.template.dart' as i15;
+import 'package:share_place/users/profile/profile_comp.template.dart' as i16;
+import 'package:share_place/users/terms_andconditions/terms_andconditions.template.dart' as i17;
+import 'package:share_place/users/user.template.dart' as i18;
+import 'package:share_place/search/search_comp.template.dart' as i19;
+import 'package:share_place/electron/proxy_credentials.template.dart' as i20;
+import 'package:share_place/search/search_input/search_input.template.dart' as i21;
 export 'app_component.dart';
 import 'app_component.css.shim.dart' as import0;
 import 'package:angular2/src/core/linker/app_view.dart';
@@ -211,34 +209,34 @@ class ViewAppComponent0 extends AppView<import2.AppComponent> {
   import20.SearchInput _SearchInput_62_9;
   ViewContainer _appEl_65;
   NgIf _NgIf_65_5;
+  DivElement _el_68;
   DivElement _el_70;
-  DivElement _el_72;
-  Element _el_74;
-  import21.ViewSubjectListComponent0 _compView_74;
-  import22.UserListProvider _UserListProvider_74_2;
-  import23.SubjectListComponent _SubjectListComponent_74_3;
+  Element _el_72;
+  import21.ViewSubjectListComponent0 _compView_72;
+  import22.UserListProvider _UserListProvider_72_2;
+  import23.SubjectListComponent _SubjectListComponent_72_3;
+  DivElement _el_75;
   DivElement _el_77;
-  DivElement _el_79;
-  Element _el_81;
-  import24.ViewFilesComp0 _compView_81;
-  import25.FilesComp _FilesComp_81_2;
-  dynamic __defaultPopupPositions_81_3;
-  import26.Angular2ManagedZone __ManagedZone_81_4;
-  dynamic __Window_81_5;
-  dynamic __DomService_81_6;
-  import27.AcxImperativeViewUtils __AcxImperativeViewUtils_81_7;
-  dynamic __Document_81_8;
-  import28.DomRuler __DomRuler_81_9;
-  dynamic __overlayContainerName_81_10;
-  dynamic __overlayContainerParent_81_11;
-  dynamic __overlayContainerToken_81_12;
-  dynamic __overlaySyncDom_81_13;
-  import29.OverlayStyleConfig __OverlayStyleConfig_81_14;
-  import30.ZIndexer __ZIndexer_81_15;
-  import31.OverlayDomRenderService __OverlayDomRenderService_81_16;
-  import32.OverlayDomService __OverlayService_81_17;
-  import33.DomPopupSourceFactory __DomPopupSourceFactory_81_18;
-  import34.PopupService __PopupService_81_19;
+  Element _el_79;
+  import24.ViewFilesComp0 _compView_79;
+  import25.FilesComp _FilesComp_79_2;
+  dynamic __defaultPopupPositions_79_3;
+  import26.Angular2ManagedZone __ManagedZone_79_4;
+  dynamic __Window_79_5;
+  dynamic __DomService_79_6;
+  import27.AcxImperativeViewUtils __AcxImperativeViewUtils_79_7;
+  dynamic __Document_79_8;
+  import28.DomRuler __DomRuler_79_9;
+  dynamic __overlayContainerName_79_10;
+  dynamic __overlayContainerParent_79_11;
+  dynamic __overlayContainerToken_79_12;
+  dynamic __overlaySyncDom_79_13;
+  import29.OverlayStyleConfig __OverlayStyleConfig_79_14;
+  import30.ZIndexer __ZIndexer_79_15;
+  import31.OverlayDomRenderService __OverlayDomRenderService_79_16;
+  import32.OverlayDomService __OverlayService_79_17;
+  import33.DomPopupSourceFactory __DomPopupSourceFactory_79_18;
+  import34.PopupService __PopupService_79_19;
    int _expr_5;
    String _expr_6;
   var _expr_9;
@@ -248,73 +246,73 @@ class ViewAppComponent0 extends AppView<import2.AppComponent> {
     renderType ??= import38.appViewUtils.createRenderType('',ViewEncapsulation.Emulated,styles_AppComponent);
     setupComponentType(renderType);
   }
-  dynamic get _defaultPopupPositions_81_3 {
-    if ((this.__defaultPopupPositions_81_3 == null)) { (__defaultPopupPositions_81_3 = import40.inlinePositions); }
-    return this.__defaultPopupPositions_81_3;
+  dynamic get _defaultPopupPositions_79_3 {
+    if ((this.__defaultPopupPositions_79_3 == null)) { (__defaultPopupPositions_79_3 = import40.inlinePositions); }
+    return this.__defaultPopupPositions_79_3;
   }
-  import26.Angular2ManagedZone get _ManagedZone_81_4 {
-    if ((this.__ManagedZone_81_4 == null)) { (__ManagedZone_81_4 = new import26.Angular2ManagedZone(this.parentView.injectorGet(import41.NgZone,this.parentIndex))); }
-    return this.__ManagedZone_81_4;
+  import26.Angular2ManagedZone get _ManagedZone_79_4 {
+    if ((this.__ManagedZone_79_4 == null)) { (__ManagedZone_79_4 = new import26.Angular2ManagedZone(this.parentView.injectorGet(import41.NgZone,this.parentIndex))); }
+    return this.__ManagedZone_79_4;
   }
-  dynamic get _Window_81_5 {
-    if ((this.__Window_81_5 == null)) { (__Window_81_5 = import42.getWindow()); }
-    return this.__Window_81_5;
+  dynamic get _Window_79_5 {
+    if ((this.__Window_79_5 == null)) { (__Window_79_5 = import42.getWindow()); }
+    return this.__Window_79_5;
   }
-  dynamic get _DomService_81_6 {
-    if ((this.__DomService_81_6 == null)) { (__DomService_81_6 = import43.createDomService(this.parentView.injectorGet(import44.DomService,this.parentIndex,null),this.parentView.injectorGet(import45.Disposer,this.parentIndex,null),this._ManagedZone_81_4,this._Window_81_5)); }
-    return this.__DomService_81_6;
+  dynamic get _DomService_79_6 {
+    if ((this.__DomService_79_6 == null)) { (__DomService_79_6 = import43.createDomService(this.parentView.injectorGet(import44.DomService,this.parentIndex,null),this.parentView.injectorGet(import45.Disposer,this.parentIndex,null),this._ManagedZone_79_4,this._Window_79_5)); }
+    return this.__DomService_79_6;
   }
-  import27.AcxImperativeViewUtils get _AcxImperativeViewUtils_81_7 {
-    if ((this.__AcxImperativeViewUtils_81_7 == null)) { (__AcxImperativeViewUtils_81_7 = new import27.AcxImperativeViewUtils(this.parentView.injectorGet(import46.DynamicComponentLoader,this.parentIndex),this._DomService_81_6)); }
-    return this.__AcxImperativeViewUtils_81_7;
+  import27.AcxImperativeViewUtils get _AcxImperativeViewUtils_79_7 {
+    if ((this.__AcxImperativeViewUtils_79_7 == null)) { (__AcxImperativeViewUtils_79_7 = new import27.AcxImperativeViewUtils(this.parentView.injectorGet(import46.DynamicComponentLoader,this.parentIndex),this._DomService_79_6)); }
+    return this.__AcxImperativeViewUtils_79_7;
   }
-  dynamic get _Document_81_8 {
-    if ((this.__Document_81_8 == null)) { (__Document_81_8 = import42.getDocument()); }
-    return this.__Document_81_8;
+  dynamic get _Document_79_8 {
+    if ((this.__Document_79_8 == null)) { (__Document_79_8 = import42.getDocument()); }
+    return this.__Document_79_8;
   }
-  import28.DomRuler get _DomRuler_81_9 {
-    if ((this.__DomRuler_81_9 == null)) { (__DomRuler_81_9 = new import28.DomRuler(this._Document_81_8,this._DomService_81_6)); }
-    return this.__DomRuler_81_9;
+  import28.DomRuler get _DomRuler_79_9 {
+    if ((this.__DomRuler_79_9 == null)) { (__DomRuler_79_9 = new import28.DomRuler(this._Document_79_8,this._DomService_79_6)); }
+    return this.__DomRuler_79_9;
   }
-  dynamic get _overlayContainerName_81_10 {
-    if ((this.__overlayContainerName_81_10 == null)) { (__overlayContainerName_81_10 = import47.getDefaultContainerName(this.parentView.injectorGet(import31.overlayContainerName,this.parentIndex,null))); }
-    return this.__overlayContainerName_81_10;
+  dynamic get _overlayContainerName_79_10 {
+    if ((this.__overlayContainerName_79_10 == null)) { (__overlayContainerName_79_10 = import47.getDefaultContainerName(this.parentView.injectorGet(import31.overlayContainerName,this.parentIndex,null))); }
+    return this.__overlayContainerName_79_10;
   }
-  dynamic get _overlayContainerParent_81_11 {
-    if ((this.__overlayContainerParent_81_11 == null)) { (__overlayContainerParent_81_11 = import47.getOverlayContainerParent(this._Document_81_8,this.parentView.injectorGet(import31.overlayContainerParent,this.parentIndex,null))); }
-    return this.__overlayContainerParent_81_11;
+  dynamic get _overlayContainerParent_79_11 {
+    if ((this.__overlayContainerParent_79_11 == null)) { (__overlayContainerParent_79_11 = import47.getOverlayContainerParent(this._Document_79_8,this.parentView.injectorGet(import31.overlayContainerParent,this.parentIndex,null))); }
+    return this.__overlayContainerParent_79_11;
   }
-  dynamic get _overlayContainerToken_81_12 {
-    if ((this.__overlayContainerToken_81_12 == null)) { (__overlayContainerToken_81_12 = import47.getDefaultContainer(this._overlayContainerName_81_10,this._overlayContainerParent_81_11,this.parentView.injectorGet(import31.overlayContainerToken,this.parentIndex,null))); }
-    return this.__overlayContainerToken_81_12;
+  dynamic get _overlayContainerToken_79_12 {
+    if ((this.__overlayContainerToken_79_12 == null)) { (__overlayContainerToken_79_12 = import47.getDefaultContainer(this._overlayContainerName_79_10,this._overlayContainerParent_79_11,this.parentView.injectorGet(import31.overlayContainerToken,this.parentIndex,null))); }
+    return this.__overlayContainerToken_79_12;
   }
-  dynamic get _overlaySyncDom_81_13 {
-    if ((this.__overlaySyncDom_81_13 == null)) { (__overlaySyncDom_81_13 = true); }
-    return this.__overlaySyncDom_81_13;
+  dynamic get _overlaySyncDom_79_13 {
+    if ((this.__overlaySyncDom_79_13 == null)) { (__overlaySyncDom_79_13 = true); }
+    return this.__overlaySyncDom_79_13;
   }
-  import29.OverlayStyleConfig get _OverlayStyleConfig_81_14 {
-    if ((this.__OverlayStyleConfig_81_14 == null)) { (__OverlayStyleConfig_81_14 = new import29.OverlayStyleConfig(this._Document_81_8)); }
-    return this.__OverlayStyleConfig_81_14;
+  import29.OverlayStyleConfig get _OverlayStyleConfig_79_14 {
+    if ((this.__OverlayStyleConfig_79_14 == null)) { (__OverlayStyleConfig_79_14 = new import29.OverlayStyleConfig(this._Document_79_8)); }
+    return this.__OverlayStyleConfig_79_14;
   }
-  import30.ZIndexer get _ZIndexer_81_15 {
-    if ((this.__ZIndexer_81_15 == null)) { (__ZIndexer_81_15 = new import30.ZIndexer()); }
-    return this.__ZIndexer_81_15;
+  import30.ZIndexer get _ZIndexer_79_15 {
+    if ((this.__ZIndexer_79_15 == null)) { (__ZIndexer_79_15 = new import30.ZIndexer()); }
+    return this.__ZIndexer_79_15;
   }
-  import31.OverlayDomRenderService get _OverlayDomRenderService_81_16 {
-    if ((this.__OverlayDomRenderService_81_16 == null)) { (__OverlayDomRenderService_81_16 = new import31.OverlayDomRenderService(this._OverlayStyleConfig_81_14,this._overlayContainerToken_81_12,this._overlayContainerName_81_10,this._DomRuler_81_9,this._DomService_81_6,this._AcxImperativeViewUtils_81_7,this._overlaySyncDom_81_13,this._ZIndexer_81_15)); }
-    return this.__OverlayDomRenderService_81_16;
+  import31.OverlayDomRenderService get _OverlayDomRenderService_79_16 {
+    if ((this.__OverlayDomRenderService_79_16 == null)) { (__OverlayDomRenderService_79_16 = new import31.OverlayDomRenderService(this._OverlayStyleConfig_79_14,this._overlayContainerToken_79_12,this._overlayContainerName_79_10,this._DomRuler_79_9,this._DomService_79_6,this._AcxImperativeViewUtils_79_7,this._overlaySyncDom_79_13,this._ZIndexer_79_15)); }
+    return this.__OverlayDomRenderService_79_16;
   }
-  import32.OverlayDomService get _OverlayService_81_17 {
-    if ((this.__OverlayService_81_17 == null)) { (__OverlayService_81_17 = new import32.OverlayDomService(this.parentView.injectorGet(import41.NgZone,this.parentIndex),this._overlaySyncDom_81_13,this._OverlayDomRenderService_81_16,this.parentView.injectorGet(import48.OverlayService,this.parentIndex,null))); }
-    return this.__OverlayService_81_17;
+  import32.OverlayDomService get _OverlayService_79_17 {
+    if ((this.__OverlayService_79_17 == null)) { (__OverlayService_79_17 = new import32.OverlayDomService(this.parentView.injectorGet(import41.NgZone,this.parentIndex),this._overlaySyncDom_79_13,this._OverlayDomRenderService_79_16,this.parentView.injectorGet(import48.OverlayService,this.parentIndex,null))); }
+    return this.__OverlayService_79_17;
   }
-  import33.DomPopupSourceFactory get _DomPopupSourceFactory_81_18 {
-    if ((this.__DomPopupSourceFactory_81_18 == null)) { (__DomPopupSourceFactory_81_18 = new import33.DomPopupSourceFactory(this._Window_81_5,this._DomRuler_81_9)); }
-    return this.__DomPopupSourceFactory_81_18;
+  import33.DomPopupSourceFactory get _DomPopupSourceFactory_79_18 {
+    if ((this.__DomPopupSourceFactory_79_18 == null)) { (__DomPopupSourceFactory_79_18 = new import33.DomPopupSourceFactory(this._Window_79_5,this._DomRuler_79_9)); }
+    return this.__DomPopupSourceFactory_79_18;
   }
-  import34.PopupService get _PopupService_81_19 {
-    if ((this.__PopupService_81_19 == null)) { (__PopupService_81_19 = new import34.PopupService(this._defaultPopupPositions_81_3,this._OverlayService_81_17,this._ZIndexer_81_15)); }
-    return this.__PopupService_81_19;
+  import34.PopupService get _PopupService_79_19 {
+    if ((this.__PopupService_79_19 == null)) { (__PopupService_79_19 = new import34.PopupService(this._defaultPopupPositions_79_3,this._OverlayService_79_17,this._ZIndexer_79_15)); }
+    return this.__PopupService_79_19;
   }
   ComponentRef build() {
     final import2.AppComponent _ctx = ctx;
@@ -367,7 +365,7 @@ class ViewAppComponent0 extends AppView<import2.AppComponent> {
     _el_14 = createAndAppend(doc,'div',_el_12);
     _el_14.className = 'labelHeader';
     addShimC(_el_14);
-    Text _text_15 = new Text('Share.Place');
+    Text _text_15 = new Text('Share.Place/TheWhaleInc.Share.Place');
     _el_14.append(_text_15);
     Text _text_16 = new Text('\n    ');
     _el_12.append(_text_16);
@@ -458,7 +456,7 @@ class ViewAppComponent0 extends AppView<import2.AppComponent> {
     _el_45 = createAndAppend(doc,'label',_el_41);
     _el_45.className = 'desktopVersion';
     addShimE(_el_45);
-    Text _text_46 = new Text('QA - V0.1.17');
+    Text _text_46 = new Text('V0.1.17');
     _el_45.append(_text_46);
     Text _text_47 = new Text('\n    ');
     _el_41.append(_text_47);
@@ -496,7 +494,7 @@ class ViewAppComponent0 extends AppView<import2.AppComponent> {
     Text _text_57 = new Text('\n    ');
     _el_56.append(_text_57);
     _el_58 = createAndAppend(doc,'div',_el_56);
-    _el_58.className = 'panel-top_';
+    _el_58.className = '';
     addShimC(_el_58);
     Text _text_59 = new Text('\n      ');
     _el_58.append(_text_59);
@@ -529,63 +527,59 @@ class ViewAppComponent0 extends AppView<import2.AppComponent> {
     _NgIf_65_5 = new NgIf(_appEl_65,_TemplateRef_65_4);
     Text _text_66 = new Text('\n    ');
     _el_58.append(_text_66);
-    Text _text_67 = new Text('\n    ');
+    Text _text_67 = new Text('\n\n    ');
     _el_56.append(_text_67);
-    Text _text_68 = new Text('\n    ');
-    _el_56.append(_text_68);
-    Text _text_69 = new Text('\n    ');
-    _el_56.append(_text_69);
-    _el_70 = createAndAppend(doc,'div',_el_56);
-    _el_70.className = 'panel-bottom_';
+    _el_68 = createAndAppend(doc,'div',_el_56);
+    _el_68.className = 'panel-bottom';
+    addShimC(_el_68);
+    Text _text_69 = new Text('\n      ');
+    _el_68.append(_text_69);
+    _el_70 = createAndAppend(doc,'div',_el_68);
+    _el_70.className = 'centerP';
     addShimC(_el_70);
-    Text _text_71 = new Text('\n      ');
+    Text _text_71 = new Text('\n        ');
     _el_70.append(_text_71);
-    _el_72 = createAndAppend(doc,'div',_el_70);
-    _el_72.className = 'centerP';
+    _compView_72 = new import21.ViewSubjectListComponent0(this,72);
+    _el_72 = _compView_72.rootEl;
+    _el_70.append(_el_72);
     addShimC(_el_72);
-    Text _text_73 = new Text('\n        ');
-    _el_72.append(_text_73);
-    _compView_74 = new import21.ViewSubjectListComponent0(this,74);
-    _el_74 = _compView_74.rootEl;
-    _el_72.append(_el_74);
-    addShimC(_el_74);
-    _UserListProvider_74_2 = new import22.UserListProvider(parentView.injectorGet(import54.Environment,parentIndex),parentView.injectorGet(import15.PlaceService,parentIndex));
-    _SubjectListComponent_74_3 = new import23.SubjectListComponent(parentView.injectorGet(import15.PlaceService,parentIndex),parentView.injectorGet(import53.Router,parentIndex),parentView.injectorGet(import54.Environment,parentIndex),_UserListProvider_74_2,parentView.injectorGet(import59.DomSanitizationService,parentIndex));
-    _compView_74.create(_SubjectListComponent_74_3,[]);
-    Text _text_75 = new Text('\n      ');
-    _el_72.append(_text_75);
-    Text _text_76 = new Text('\n      ');
-    _el_70.append(_text_76);
-    _el_77 = createAndAppend(doc,'div',_el_70);
-    _el_77.className = 'rightP';
+    _UserListProvider_72_2 = new import22.UserListProvider(parentView.injectorGet(import54.Environment,parentIndex),parentView.injectorGet(import15.PlaceService,parentIndex));
+    _SubjectListComponent_72_3 = new import23.SubjectListComponent(parentView.injectorGet(import15.PlaceService,parentIndex),parentView.injectorGet(import53.Router,parentIndex),parentView.injectorGet(import54.Environment,parentIndex),_UserListProvider_72_2,parentView.injectorGet(import59.DomSanitizationService,parentIndex));
+    _compView_72.create(_SubjectListComponent_72_3,[]);
+    Text _text_73 = new Text('\n      ');
+    _el_70.append(_text_73);
+    Text _text_74 = new Text('\n      ');
+    _el_68.append(_text_74);
+    _el_75 = createAndAppend(doc,'div',_el_68);
+    _el_75.className = 'rightP';
+    addShimC(_el_75);
+    Text _text_76 = new Text('\n        ');
+    _el_75.append(_text_76);
+    _el_77 = createAndAppend(doc,'div',_el_75);
+    _el_77.className = 'files';
     addShimC(_el_77);
-    Text _text_78 = new Text('\n        ');
+    Text _text_78 = new Text('\n          ');
     _el_77.append(_text_78);
-    _el_79 = createAndAppend(doc,'div',_el_77);
-    _el_79.className = 'files';
+    _compView_79 = new import24.ViewFilesComp0(this,79);
+    _el_79 = _compView_79.rootEl;
+    _el_77.append(_el_79);
     addShimC(_el_79);
-    Text _text_80 = new Text('\n          ');
-    _el_79.append(_text_80);
-    _compView_81 = new import24.ViewFilesComp0(this,81);
-    _el_81 = _compView_81.rootEl;
-    _el_79.append(_el_81);
-    addShimC(_el_81);
-    _FilesComp_81_2 = new import25.FilesComp(parentView.injectorGet(import15.PlaceService,parentIndex),parentView.injectorGet(import53.Router,parentIndex),parentView.injectorGet(import54.Environment,parentIndex));
-    _compView_81.create(_FilesComp_81_2,[]);
-    Text _text_82 = new Text('\n        ');
-    _el_79.append(_text_82);
-    Text _text_83 = new Text('\n      ');
-    _el_77.append(_text_83);
-    Text _text_84 = new Text('\n    ');
-    _el_70.append(_text_84);
-    Text _text_85 = new Text('\n  ');
-    _el_56.append(_text_85);
-    Text _text_86 = new Text('\n  ');
-    _el_0.append(_text_86);
-    Text _text_87 = new Text('\n');
-    _el_0.append(_text_87);
-    Text _text_88 = new Text('\n\n');
-    parentRenderNode.append(_text_88);
+    _FilesComp_79_2 = new import25.FilesComp(parentView.injectorGet(import15.PlaceService,parentIndex),parentView.injectorGet(import53.Router,parentIndex),parentView.injectorGet(import54.Environment,parentIndex));
+    _compView_79.create(_FilesComp_79_2,[]);
+    Text _text_80 = new Text('\n        ');
+    _el_77.append(_text_80);
+    Text _text_81 = new Text('\n      ');
+    _el_75.append(_text_81);
+    Text _text_82 = new Text('\n    ');
+    _el_68.append(_text_82);
+    Text _text_83 = new Text('\n  ');
+    _el_56.append(_text_83);
+    Text _text_84 = new Text('\n  ');
+    _el_0.append(_text_84);
+    Text _text_85 = new Text('\n');
+    _el_0.append(_text_85);
+    Text _text_86 = new Text('\n\n');
+    parentRenderNode.append(_text_86);
     _el_28.addEventListener('click',eventHandler1(_handle_click_28_0));
     init(const [],const []);
     return null;
@@ -604,26 +598,26 @@ class ViewAppComponent0 extends AppView<import2.AppComponent> {
     if ((identical(token, import19.Location) && (62 == nodeIndex))) { return _Location_62_7; }
     if ((identical(token, import53.Router) && (62 == nodeIndex))) { return _Router_62_8; }
     if ((identical(token, import20.SearchInput) && (62 == nodeIndex))) { return _SearchInput_62_9; }
-    if ((identical(token, import22.UserListProvider) && (74 == nodeIndex))) { return _UserListProvider_74_2; }
-    if ((identical(token, import23.SubjectListComponent) && (74 == nodeIndex))) { return _SubjectListComponent_74_3; }
-    if ((identical(token, import25.FilesComp) && (81 == nodeIndex))) { return _FilesComp_81_2; }
-    if ((identical(token, import34.defaultPopupPositions) && (81 == nodeIndex))) { return _defaultPopupPositions_81_3; }
-    if ((identical(token, import61.ManagedZone) && (81 == nodeIndex))) { return _ManagedZone_81_4; }
-    if ((identical(token, Window) && (81 == nodeIndex))) { return _Window_81_5; }
-    if ((identical(token, import44.DomService) && (81 == nodeIndex))) { return _DomService_81_6; }
-    if ((identical(token, import27.AcxImperativeViewUtils) && (81 == nodeIndex))) { return _AcxImperativeViewUtils_81_7; }
-    if ((identical(token, Document) && (81 == nodeIndex))) { return _Document_81_8; }
-    if ((identical(token, import28.DomRuler) && (81 == nodeIndex))) { return _DomRuler_81_9; }
-    if ((identical(token, import31.overlayContainerName) && (81 == nodeIndex))) { return _overlayContainerName_81_10; }
-    if ((identical(token, import31.overlayContainerParent) && (81 == nodeIndex))) { return _overlayContainerParent_81_11; }
-    if ((identical(token, import31.overlayContainerToken) && (81 == nodeIndex))) { return _overlayContainerToken_81_12; }
-    if ((identical(token, import31.overlaySyncDom) && (81 == nodeIndex))) { return _overlaySyncDom_81_13; }
-    if ((identical(token, import29.OverlayStyleConfig) && (81 == nodeIndex))) { return _OverlayStyleConfig_81_14; }
-    if ((identical(token, import30.ZIndexer) && (81 == nodeIndex))) { return _ZIndexer_81_15; }
-    if ((identical(token, import31.OverlayDomRenderService) && (81 == nodeIndex))) { return _OverlayDomRenderService_81_16; }
-    if ((identical(token, import48.OverlayService) && (81 == nodeIndex))) { return _OverlayService_81_17; }
-    if ((identical(token, import33.DomPopupSourceFactory) && (81 == nodeIndex))) { return _DomPopupSourceFactory_81_18; }
-    if ((identical(token, import34.PopupService) && (81 == nodeIndex))) { return _PopupService_81_19; }
+    if ((identical(token, import22.UserListProvider) && (72 == nodeIndex))) { return _UserListProvider_72_2; }
+    if ((identical(token, import23.SubjectListComponent) && (72 == nodeIndex))) { return _SubjectListComponent_72_3; }
+    if ((identical(token, import25.FilesComp) && (79 == nodeIndex))) { return _FilesComp_79_2; }
+    if ((identical(token, import34.defaultPopupPositions) && (79 == nodeIndex))) { return _defaultPopupPositions_79_3; }
+    if ((identical(token, import61.ManagedZone) && (79 == nodeIndex))) { return _ManagedZone_79_4; }
+    if ((identical(token, Window) && (79 == nodeIndex))) { return _Window_79_5; }
+    if ((identical(token, import44.DomService) && (79 == nodeIndex))) { return _DomService_79_6; }
+    if ((identical(token, import27.AcxImperativeViewUtils) && (79 == nodeIndex))) { return _AcxImperativeViewUtils_79_7; }
+    if ((identical(token, Document) && (79 == nodeIndex))) { return _Document_79_8; }
+    if ((identical(token, import28.DomRuler) && (79 == nodeIndex))) { return _DomRuler_79_9; }
+    if ((identical(token, import31.overlayContainerName) && (79 == nodeIndex))) { return _overlayContainerName_79_10; }
+    if ((identical(token, import31.overlayContainerParent) && (79 == nodeIndex))) { return _overlayContainerParent_79_11; }
+    if ((identical(token, import31.overlayContainerToken) && (79 == nodeIndex))) { return _overlayContainerToken_79_12; }
+    if ((identical(token, import31.overlaySyncDom) && (79 == nodeIndex))) { return _overlaySyncDom_79_13; }
+    if ((identical(token, import29.OverlayStyleConfig) && (79 == nodeIndex))) { return _OverlayStyleConfig_79_14; }
+    if ((identical(token, import30.ZIndexer) && (79 == nodeIndex))) { return _ZIndexer_79_15; }
+    if ((identical(token, import31.OverlayDomRenderService) && (79 == nodeIndex))) { return _OverlayDomRenderService_79_16; }
+    if ((identical(token, import48.OverlayService) && (79 == nodeIndex))) { return _OverlayService_79_17; }
+    if ((identical(token, import33.DomPopupSourceFactory) && (79 == nodeIndex))) { return _DomPopupSourceFactory_79_18; }
+    if ((identical(token, import34.PopupService) && (79 == nodeIndex))) { return _PopupService_79_19; }
     return notFoundResult;
   }
   void detectChangesInternal() {
@@ -661,8 +655,8 @@ class ViewAppComponent0 extends AppView<import2.AppComponent> {
     if (firstCheck) { _PlacesComponent_53_2.ngOnInit(); }
     if (firstCheck) { _SearchInput_62_9.ngOnInit(); }
     _NgIf_65_5.ngIf = (_ctx.searchText != null);
-    if (firstCheck) { _SubjectListComponent_74_3.ngOnInit(); }
-    if (firstCheck) { _FilesComp_81_2.ngOnInit(); }
+    if (firstCheck) { _SubjectListComponent_72_3.ngOnInit(); }
+    if (firstCheck) { _FilesComp_79_2.ngOnInit(); }
     _appEl_2.detectChangesInNestedViews();
     _appEl_4.detectChangesInNestedViews();
     _appEl_6.detectChangesInNestedViews();
@@ -683,8 +677,8 @@ class ViewAppComponent0 extends AppView<import2.AppComponent> {
     _compView_49.detectChanges();
     _compView_53.detectChanges();
     _compView_62.detectChanges();
-    _compView_74.detectChanges();
-    _compView_81.detectChanges();
+    _compView_72.detectChanges();
+    _compView_79.detectChanges();
     if (firstCheck) { _PopupSourceDirective_28_2.ngAfterViewInit(); }
   }
   void destroyInternal() {
@@ -703,8 +697,8 @@ class ViewAppComponent0 extends AppView<import2.AppComponent> {
     _compView_49.destroy();
     _compView_53.destroy();
     _compView_62.destroy();
-    _compView_74.destroy();
-    _compView_81.destroy();
+    _compView_72.destroy();
+    _compView_79.destroy();
     _PopupSourceDirective_28_2.ngOnDestroy();
     _RouterOutlet_37_4.ngOnDestroy();
   }
@@ -1908,13 +1902,13 @@ AppView viewFactory_AppComponentHost0(AppView<dynamic> parentView,num parentInde
   return new ViewAppComponentHost0(parentView,parentIndex);
 }
 const ComponentFactory AppComponentNgFactory = const ComponentFactory('my-app',viewFactory_AppComponentHost0,import2.AppComponent,_METADATA);
-const _METADATA = const <dynamic>[AppComponent, const <dynamic>[const RouteConfig(const [const Route(path: '/', name: 'Home', component: PathChangeInterceptor), const Route(path: '/places/mail', name: 'ShowMail', component: PathChangeInterceptor), const Route(path: '/places', name: 'PlaceList', component: PathChangeInterceptor), const Route(path: '/places/:pId/', name: 'PlaceSelected', component: PathChangeInterceptor), const Route(path: '/places/:pId/folders/', name: 'PlaceSelected', component: PathChangeInterceptor), const Route(path: '/places/:pId/folders/:fId/', name: 'FolderSelected', component: PathChangeInterceptor), const Route(path: '/places/:pId/folders/:fId/topics/', name: 'FolderSelected', component: PathChangeInterceptor), const Route(path: '/places/:pId/folders/:fId/topics/:fileId/', name: 'SubjectSelected', component: PathChangeInterceptor), const Route(path: '/places/:pId/folders/:fId/topics/:fileId/versions/', name: 'SubjectSelected', component: PathChangeInterceptor), const Route(path: '/places/:pId/folders/:fId/topics/:sType', name: 'MailImportSelected', component: PathChangeInterceptor), const Route(path: '/places/:pId/folders/:fId/topics/:fileId/versions/:vId', name: 'FileVersionSelected', component: PathChangeInterceptor)])]];
+const _METADATA = const <dynamic>[AppComponent, const <dynamic>[const RouteConfig(const [const Route(path: '/', name: 'Home', component: PathChangeInterceptor), const Route(path: '/places/mail', name: 'ShowMail', component: PathChangeInterceptor), const Route(path: '/places', name: 'PlaceList', component: PathChangeInterceptor), const Route(path: '/places/:pId/', name: 'PlaceSelected', component: PathChangeInterceptor), const Route(path: '/places/:pId/folders/', name: 'PlaceSelected', component: PathChangeInterceptor), const Route(path: '/places/:pId/folders/:fId/', name: 'FolderSelected', component: PathChangeInterceptor), const Route(path: '/places/:pId/folders/:fId/topics/', name: 'FolderSelected', component: PathChangeInterceptor), const Route(path: '/places/:pId/folders/:fId/topics/:tId/', name: 'SubjectSelected', component: PathChangeInterceptor), const Route(path: '/places/:pId/folders/:fId/topics/:tId/versions/', name: 'SubjectSelected', component: PathChangeInterceptor), const Route(path: '/places/:pId/folders/:fId/topics/:sType', name: 'MailImportSelected', component: PathChangeInterceptor), const Route(path: '/places/:pId/folders/:fId/topics/:tId/versions/:vId', name: 'FileVersionSelected', component: PathChangeInterceptor)])]];
 var _visited = false;
 void initReflector() {
 if (_visited) return; _visited = true;
 _ngRef.reflector
 ..registerType(AppComponent, new _ngRef.ReflectionInfo(
-const <dynamic>[const RouteConfig(const [const Route(path: '/', name: 'Home', component: PathChangeInterceptor), const Route(path: '/places/mail', name: 'ShowMail', component: PathChangeInterceptor), const Route(path: '/places', name: 'PlaceList', component: PathChangeInterceptor), const Route(path: '/places/:pId/', name: 'PlaceSelected', component: PathChangeInterceptor), const Route(path: '/places/:pId/folders/', name: 'PlaceSelected', component: PathChangeInterceptor), const Route(path: '/places/:pId/folders/:fId/', name: 'FolderSelected', component: PathChangeInterceptor), const Route(path: '/places/:pId/folders/:fId/topics/', name: 'FolderSelected', component: PathChangeInterceptor), const Route(path: '/places/:pId/folders/:fId/topics/:fileId/', name: 'SubjectSelected', component: PathChangeInterceptor), const Route(path: '/places/:pId/folders/:fId/topics/:fileId/versions/', name: 'SubjectSelected', component: PathChangeInterceptor), const Route(path: '/places/:pId/folders/:fId/topics/:sType', name: 'MailImportSelected', component: PathChangeInterceptor), const Route(path: '/places/:pId/folders/:fId/topics/:fileId/versions/:vId', name: 'FileVersionSelected', component: PathChangeInterceptor)]), AppComponentNgFactory],
+const <dynamic>[const RouteConfig(const [const Route(path: '/', name: 'Home', component: PathChangeInterceptor), const Route(path: '/places/mail', name: 'ShowMail', component: PathChangeInterceptor), const Route(path: '/places', name: 'PlaceList', component: PathChangeInterceptor), const Route(path: '/places/:pId/', name: 'PlaceSelected', component: PathChangeInterceptor), const Route(path: '/places/:pId/folders/', name: 'PlaceSelected', component: PathChangeInterceptor), const Route(path: '/places/:pId/folders/:fId/', name: 'FolderSelected', component: PathChangeInterceptor), const Route(path: '/places/:pId/folders/:fId/topics/', name: 'FolderSelected', component: PathChangeInterceptor), const Route(path: '/places/:pId/folders/:fId/topics/:tId/', name: 'SubjectSelected', component: PathChangeInterceptor), const Route(path: '/places/:pId/folders/:fId/topics/:tId/versions/', name: 'SubjectSelected', component: PathChangeInterceptor), const Route(path: '/places/:pId/folders/:fId/topics/:sType', name: 'MailImportSelected', component: PathChangeInterceptor), const Route(path: '/places/:pId/folders/:fId/topics/:tId/versions/:vId', name: 'FileVersionSelected', component: PathChangeInterceptor)]), AppComponentNgFactory],
 const [const <dynamic>[Router], const <dynamic>[Environment], const <dynamic>[PlaceService]],
 (Router _router, Environment _environment, PlaceService _placeService) => new AppComponent(_router, _environment, _placeService),
 const <dynamic>[OnInit])
@@ -1942,5 +1936,4 @@ i18.initReflector();
 i19.initReflector();
 i20.initReflector();
 i21.initReflector();
-i22.initReflector();
 }

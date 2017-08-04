@@ -292,7 +292,7 @@ class ViewInviteUsersDialogComp0 extends AppView<import2.InviteUsersDialogComp> 
     addShimC(_el_64);
     _el_65 = createAndAppend(doc,'span',_el_64);
     addShimE(_el_65);
-    Text _text_66 = new Text('Invite more');
+    Text _text_66 = new Text('More lines');
     _el_65.append(_text_66);
     Text _text_67 = new Text(' ');
     _el_64.append(_text_67);

@@ -69,19 +69,14 @@ class SubjectListComponent
   }
 
   show(Map<PlaceParam, dynamic> params) async {
-    String fileId = params[PlaceParam.lockStateChange];
+    var fileId = params[PlaceParam.lockStateChange];
     if (fileId == null)
       fileId = params[PlaceParam.approvalStateChange];
-
     var folderId = params[PlaceParam.folderId];
-    String selectedFileId = params[PlaceParam.fileId];
-
     if (folderId != null) { // folder selected
       await getSubjects(folderId);
     } else if (fileId != null) { // file changed
       await reloadSubjects();
-    } else if (selectedFileId != null) { // file changed
-      selectSubjectByFileId(selectedFileId);
     } else if (
     params.containsKey(PlaceParam.ioSubjectCreated) ||
         params.containsKey(PlaceParam.ioSubjectChanged)
@@ -89,7 +84,12 @@ class SubjectListComponent
       await reloadSubjects();
     } else if (params.containsKey(PlaceParam.fileInfoIdRequested)) {
       print("fileInfoIdRequested ${params.values}");
-      selectSubject(params[PlaceParam.fileInfoIdRequested]);
+      for (FileInfo subject in subjects) {
+        if (subject.id == params[PlaceParam.fileInfoIdRequested]) {
+          selectedSubject = subject;
+          return;
+        }
+      }
     } else if (params.containsKey(PlaceParam.treatUserInvite)) {
       await _placeService.loadConnectedUser();
     }
@@ -104,24 +104,6 @@ class SubjectListComponent
       MouseEvent click = params[PlaceParam.pageClick];
       if (click != null) {
         //renaming = null;
-      }
-    }
-  }
-
-  void selectSubject(String fileInfoId) {
-    for (FileInfo subject in subjects) {
-      if (subject.id == fileInfoId) {
-        selectedSubject = subject;
-        return;
-      }
-    }
-  }
-
-  void selectSubjectByFileId(String fileId) {
-    for (FileInfo subject in subjects) {
-      if (subject.fileId == fileId) {
-        _environment.selectedSubject = subject;
-        return;
       }
     }
   }
@@ -223,12 +205,11 @@ class SubjectListComponent
   void set selectedSubject(FileInfo subject) {
 //    if (this.selectedSubject?.id == subject?.id)
 //      return;
-
     if(subject?.dataType=='mailImport')
-      _environment.navigate("MailImportSelected", pId: selectedPlace?.id, fId:selectedFolder?.id, fileId:subject?.fileId, sType: subject?.dataType );
+      _environment.navigate("MailImportSelected", pId: selectedPlace?.id, fId:selectedFolder?.id, tId:subject?.id, sType: subject?.dataType );
 
     else
-      _environment.navigate("SubjectSelected", pId: selectedPlace?.id, fId:selectedFolder?.id, fileId:subject?.fileId );
+      _environment.navigate("SubjectSelected", pId: selectedPlace?.id, fId:selectedFolder?.id, tId:subject?.id );
 
     _environment.track("subject", data: {"subject": subject});
   }
@@ -284,7 +265,6 @@ class SubjectListComponent
   }
 
   void onSelect(FileInfo fileInfo) {
-    print("selected subject id:${fileInfo.id}");
     selectedSubject = fileInfo;
     //_environment.track("subject", data: {"subject": fileInfo});
   }

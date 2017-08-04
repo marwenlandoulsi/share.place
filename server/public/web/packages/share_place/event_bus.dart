@@ -13,7 +13,6 @@ class EventBus<K, V> {
   new StreamController<Map<PlaceParam, dynamic>>.broadcast();
 
   void fire(Map<PlaceParam, dynamic> params) {
-    if( params.containsKey(PlaceParam.fileId) )
     _controller.add(params);
   }
 

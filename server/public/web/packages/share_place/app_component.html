@@ -35,7 +35,7 @@
 
 
   <div class="header header-top">
-    <div class="labelHeader">Share.Place</div>
+    <div class="labelHeader">Share.Place/TheWhaleInc.Share.Place</div>
     <div class="alertInner">
       <notification [msg]="error" class="notif error" [duration]="-1"></notification>
       <div *ngIf="messages != null && messages.length > 0">
@@ -85,7 +85,7 @@
   <div class="leftP">
     <div class="logo_header">
       <img src="/images/logo_sharePlace.png" class="logo">
-      <label class="desktopVersion">QA - V0.1.17</label>
+      <label class="desktopVersion">V0.1.17</label>
     </div>
     <postit-comp [name]="'places'" [header]="'Welcome!'" [body]="'You can create your place on clicking on the + icon'"
                  class="placesPostit"></postit-comp>
@@ -96,15 +96,14 @@
 
   </div>
   <div class="rightPanelinside">
-    <div class="panel-top_">
+    <div class="">
       <div class="rightPanelinside_header">
         <search-input></search-input>
       </div>
       <search-comp *ngIf="searchText != null"></search-comp>
     </div>
-    <!--<div class="splitter-horizontal">-->
-    <!--</div>-->
-    <div class="panel-bottom_">
+
+    <div class="panel-bottom">
       <div class="centerP">
         <subjects></subjects>
       </div>

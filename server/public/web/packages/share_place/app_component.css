@@ -135,12 +135,6 @@ material-button.menuItem.profile, material-button.menuItem.logout {
   color: #273B54;
 }
 
-/*[_nghost-dkp-7]:not([icon]) .content {*/
-[_nghost-dkp-7]:not([icon]) .content {
-  padding: 0.2em 0.4em !important;
-}
-
-
 .btnHeader {
   -webkit-app-region: no-drag;
   background-color: transparent;

@@ -55,7 +55,7 @@
             <li *ngFor="let subject of subjects; let subjectIndex = index" (click)="gotoSubject(subject)"
                 class="subjectItem"
                 [class.qNote]="subject.dataType == 'quickNote'"
-                [class.selected]="selectedSubject != null && subject.fileId == selectedSubject.fileId"
+                [class.selected]="selectedSubject != null && subject.id == selectedSubject.id"
                 [class.approved]="subject.approved != null"
                 [class.locked]="subject.lockOwner != null"
                 [class.ownAction]="subject.lockOwner?.userId == connectedUser.id"

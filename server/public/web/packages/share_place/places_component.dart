@@ -82,10 +82,8 @@ class PlacesComponent implements OnInit {
       await _placeService.loadPlaces();
     }
     if (hasFolderNotification(params)) {
-      dynamic folderNotifDataJsObj = extractFolderNotificationData(params);
-      //OPTIMIZE should load only the place folderNotifDataJsObj['placeId']
-
-      String placeId = folderNotifDataJsObj['placeId'];
+//      dynamic folderNotifDataJsObj = extractFolderNotificationData(params);
+//      String placeId = folderNotifDataJsObj['placeId'];
       await _placeService.refreshPlaceNotifications();
     }
     if (params.containsKey(PlaceParam.treatUserInvite)) {

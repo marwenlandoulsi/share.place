@@ -17,7 +17,6 @@ import 'package:share_place/environment.dart';
 import 'package:angular2/core.dart';
 import 'package:angular2/angular2.dart';
 import 'package:share_place/app_config.dart' as conf;
-import 'package:logging/logging.dart';
 import 'package:share_place/event_bus.template.dart' as i0;
 import 'package:share_place/environment.template.dart' as i1;
 import 'package:angular2/core.template.dart' as i2;

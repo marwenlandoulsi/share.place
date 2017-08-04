@@ -2,10 +2,9 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:html' as html;
 
-import 'package:logging/logging.dart';
-import 'package:angular2/router.dart';
 import 'package:angular2/core.dart';
 import 'package:http/http.dart';
+import 'package:logging/logging.dart';
 
 import 'app_config.dart' as conf;
 import 'place.dart';
@@ -44,21 +43,6 @@ class PlaceService {
     _appContextManager = new AppContextManager(_environment, this);
   }
 
-  Object subscribeToRouter(Router router ) {
-    return router.subscribe((dynamic event) async {
-      if( event is String ) {
-        Map<String, String> params = await _environment.getRouteParams(event);
-        String folderId = params["fId"];
-        String fileId = params["fileId"];
-        await prepareNavState(path:params["_routeName"], placeId: params["pId"], folderId: folderId, subjectId: fileId);
-
-        if( fileId != null && _environment.selectedSubject?.fileId != fileId)
-          _environment.fireEvent(PlaceParam.fileId, fileId);
-
-      }
-    });
-  }
-
   dynamic _extractData(Response resp) {
     _environment.serverError = '';
 //happens if user is disconnected
@@ -73,7 +57,7 @@ class PlaceService {
       _environment.addMessage(msg);
 
     if (statusCode >= 200 && statusCode < 300) {
-      log.finest( "response : ${resp.body}");
+      log.finest("response : ${resp.body}");
       dynamic toReturn = respBody['data'];
       return toReturn;
     } else if (statusCode == 301) {
@@ -128,7 +112,7 @@ class PlaceService {
   Future<bool> prepareNavState(
       {path, placeId, folderId, subjectId, versionId, subjectType}) async {
     log.finer(
-        "prepareNavState $path (pId: ${placeId}, fId: ${folderId}, fileId: ${subjectId}, vId: ${versionId}, sType:${subjectType})");
+        "$path (pId: ${placeId}, fId: ${folderId}, tId: ${subjectId}, vId: ${versionId}, sType:${subjectType})");
     if (_environment.connectedUser == null) {
       User connected = await
       loadConnectedUser();
@@ -190,6 +174,7 @@ class PlaceService {
     if (subjectId == null) {
       return true as FutureOr<bool>;
     }
+
 
     if (_environment.selectedSubjectData.data?.id != subjectId) {
       for (int i = 0; i < _environment.subjectList.data.length; i++) {
@@ -419,10 +404,10 @@ class PlaceService {
   }
 
   Future<bool> startMailImport(String placeId,
-      String folderId, String fileId) async {
+      String folderId, String fileInfoId) async {
     try {
       final response = await get(
-          "/sp/importGmail?placeId=$placeId&folderId=$folderId&fileInfoId=$fileId");
+          "/sp/importGmail?placeId=$placeId&folderId=$folderId&fileInfoId=$fileInfoId");
 
       var success = _extractData(response);
 
@@ -472,6 +457,7 @@ class PlaceService {
     try {
       final response = await get(
           '/sp/place/${placeId}/folder/${folderId}/file/${fileId}');
+      print('response $response');
       if (response != null)
         return new CloudFile.fromJson(_extractData(response));
     } catch (e) {

@@ -9,7 +9,6 @@ import 'app_config.dart' as conf;
 
 import 'environment.dart';
 import 'package:share_place/file_info.dart';
-import 'package:share_place/files/cloud_file.dart';
 import 'package:share_place/places_component.dart';
 import 'package:share_place/place_service.dart';
 import 'package:share_place/common/ui/notification.dart' as notif;
@@ -75,19 +74,19 @@ import 'package:share_place/search/search_input/search_input.dart';
   const Route(path: '/places/:pId/folders/:fId/topics/',
       name: 'FolderSelected',
       component: PathChangeInterceptor),
-  const Route(path: '/places/:pId/folders/:fId/topics/:fileId/',
+  const Route(path: '/places/:pId/folders/:fId/topics/:tId/',
       name: 'SubjectSelected',
       component: PathChangeInterceptor),
-  const Route(path: '/places/:pId/folders/:fId/topics/:fileId/versions/',
+  const Route(path: '/places/:pId/folders/:fId/topics/:tId/versions/',
       name: 'SubjectSelected',
       component: PathChangeInterceptor),/*
-  const Route(path: '/places/:pId/folders/:fId/topics/:fileId/:sType/',
+  const Route(path: '/places/:pId/folders/:fId/topics/:tId/:sType/',
       name: 'MailImportSelected',
       component: PathChangeInterceptor),*/
   const Route(path: '/places/:pId/folders/:fId/topics/:sType',
       name: 'MailImportSelected',
       component: PathChangeInterceptor),
-  const Route(path: '/places/:pId/folders/:fId/topics/:fileId/versions/:vId',
+  const Route(path: '/places/:pId/folders/:fId/topics/:tId/versions/:vId',
       name: 'FileVersionSelected',
       component: PathChangeInterceptor),
 ])
@@ -114,10 +113,10 @@ class AppComponent
 
   AppComponent(this._router, this._environment, this._placeService) {
     _environment.router = _router;
-    _placeService.subscribeToRouter(_router);
   }
 
   Future<Null> ngOnInit() async {
+    print("running app in ${window.navigator.appName}");
 
     //globally listen for events as esc to quit popins
     document.onKeyUp.listen((event) {
@@ -129,6 +128,8 @@ class AppComponent
     window.on['sp'].listen((CustomEvent event) {
       if (event.detail['showPopupCredentials'] != null) {
         var detail = event.detail['showPopupCredentials'];
+        print(
+            "event captured ${detail['serverAdress']}, ${detail['serverName']}");
         electronProxyCredentials = new ElectronProxyCredentials(
             detail['serverAdress'], detail['serverName']);
       }
@@ -168,7 +169,7 @@ class AppComponent
       _placeService.prepareNavState(path: viewUrl,
           placeId: pageInstruction.params['pId'],
           folderId: pageInstruction.params['fId'],
-          subjectId: pageInstruction.params['fileId'],
+          subjectId: pageInstruction.params['tId'],
           versionId: pageInstruction.params['vId'],
           subjectType: pageInstruction.params['sType']);
     }
@@ -239,9 +240,6 @@ class AppComponent
           ? "/images/img_profile.png"
           : "/auth/gridfs/file/${userPictureId}/picture.x";
 
-
-  FileInfo get selectedSubject => _environment.selectedSubject;
-  CloudFile get selectedFile => _environment.selectedFile;
 
 
 }

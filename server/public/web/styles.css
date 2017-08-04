@@ -1592,11 +1592,11 @@ material-button.menuItem.profile .content, material-button.menuItem.logout .cont
 }
 
 #changeRoleUsers .roleChooser role-item.owner {
-  background: url("../images/tiret-black-long.png") no-repeat right 50% !important;
+  background: url("../images/tiret-black.png") repeat-x right 50% !important;
 }
 
 #changeRoleUsers .roleChooser role-item.delete {
-  background: url("../images/tiret-black-long.png") no-repeat left 50% !important;
+  background: url("../images/tiret-black.png") repeat-x left 50% !important;
 }
 
 #changeRoleUsers .roleChooser role-item.viewer,
@@ -1712,14 +1712,11 @@ material-button.menuItem.profile .content, material-button.menuItem.logout .cont
   height: 100% !important;
   /*height: 31px !important;*/
   right: -12px !important;
-  top: calc(50vh - 16px) !important;
+  top: 0 !important;
   bottom: 0;
   /*background: url("../images/ui-resizable-e.png") no-repeat;*/
 }
 
-.ui-resizable-e:hover {
-  opacity: 0.7
-}
 
 iframe#launcher {
   margin: 2px 4px !important;
@@ -1858,17 +1855,23 @@ li.subjectItem.selected:hover .delete_subject:hover {
 
 }
 
-.splitter-horizontal {
-  flex: 0 0 auto;
-  height: 5px;
-  background: url(https://raw.githubusercontent.com/RickStrahl/jquery-resizable/master/assets/hsizegrip.png) center center no-repeat #535353;
-  cursor: row-resize;
-}
+/******** resize search and the rest of content ************************/
 
 .panel-bottom {
-  flex: 1 1 auto;
-  /* resizable */
-  min-height: 200px;
+  min-height: 150px !important;
+  display: block;
+}
+
+.ui-resizable-s {
+  cursor: row-resize;
+  height: 20px;
+  width: 100%;
+  bottom: -5px;
+  left: 0;
+}
+
+.ui-resizable-s:hover, .ui-resizable-e:hover {
+  background-color: rgba(241, 241, 241, 0.21);
 }
 
 /*__________________*/
