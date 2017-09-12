@@ -19,10 +19,6 @@
         "5": false
       },
       {
-        "1": "package:angular2/router.dart",
-        "5": false
-      },
-      {
         "1": "package:share_place/environment.dart",
         "5": false
       },
@@ -63,19 +59,15 @@
         "5": false
       },
       {
-        "1": "package:share_place/common/util.dart",
-        "5": false
-      },
-      {
-        "1": "package:share_place/files/cloud_file.dart",
-        "5": false
-      },
-      {
         "1": "package:logging/logging.dart",
         "5": false
       },
       {
-        "1": "dart:convert",
+        "1": "package:share_place/app_constants.dart",
+        "5": false
+      },
+      {
+        "1": "package:share_place/common/event/event_analyser.dart",
         "5": false
       }
     ],
@@ -92,10 +84,6 @@
           {
             "1": "PlaceService",
             "4": "_placeService"
-          },
-          {
-            "1": "Router",
-            "4": "_router"
           },
           {
             "1": "Environment",
@@ -134,56 +122,52 @@
         "4": "i0"
       },
       {
-        "1": "package:angular2/router.template.dart",
+        "1": "package:share_place/environment.template.dart",
         "4": "i1"
       },
       {
-        "1": "package:share_place/environment.template.dart",
+        "1": "package:share_place/folder.template.dart",
         "4": "i2"
       },
       {
-        "1": "package:share_place/folder.template.dart",
+        "1": "package:share_place/place.template.dart",
         "4": "i3"
       },
       {
-        "1": "package:share_place/place.template.dart",
+        "1": "package:share_place/place_service.template.dart",
         "4": "i4"
       },
       {
-        "1": "package:share_place/place_service.template.dart",
+        "1": "package:share_place/common/ui/button_comp.template.dart",
         "4": "i5"
       },
       {
-        "1": "package:share_place/common/ui/button_comp.template.dart",
+        "1": "package:share_place/common/ui/text_comp.template.dart",
         "4": "i6"
       },
       {
-        "1": "package:share_place/common/ui/text_comp.template.dart",
+        "1": "package:angular_components/angular_components.template.dart",
         "4": "i7"
       },
       {
-        "1": "package:angular_components/angular_components.template.dart",
+        "1": "package:share_place/postit/postit_component.template.dart",
         "4": "i8"
       },
       {
-        "1": "package:share_place/postit/postit_component.template.dart",
+        "1": "package:share_place/folder/node/tree_node_component.template.dart",
         "4": "i9"
       },
       {
-        "1": "package:share_place/folder/node/tree_node_component.template.dart",
+        "1": "package:share_place/users/user.template.dart",
         "4": "i10"
       },
       {
-        "1": "package:share_place/users/user.template.dart",
+        "1": "package:share_place/app_constants.template.dart",
         "4": "i11"
       },
       {
-        "1": "package:share_place/common/util.template.dart",
+        "1": "package:share_place/common/event/event_analyser.template.dart",
         "4": "i12"
-      },
-      {
-        "1": "package:share_place/files/cloud_file.template.dart",
-        "4": "i13"
       }
     ]
   },
@@ -208,26 +192,6 @@
                 "class": "Identifier",
                 "name": "PlaceService",
                 "moduleUrl": "asset:share_place/lib/place_service.dart",
-                "prefix": null,
-                "value": null
-              },
-              "identifierIsInstance": false
-            },
-            "value": null,
-            "isAttribute": false,
-            "isSelf": false,
-            "isHost": false,
-            "isSkipSelf": false,
-            "isOptional": false,
-            "isValue": false
-          },
-          {
-            "token": {
-              "value": null,
-              "identifier": {
-                "class": "Identifier",
-                "name": "Router",
-                "moduleUrl": "asset:angular2/lib/src/router/router.dart",
                 "prefix": null,
                 "value": null
               },
@@ -287,13 +251,6 @@
       "viewProviders": [],
       "queries": [],
       "viewQueries": []
-    },
-    "extractFolderNotificationData": {
-      "class": "Identifier",
-      "name": "extractFolderNotificationData",
-      "moduleUrl": "asset:share_place/lib/folder/folder_component.dart",
-      "prefix": null,
-      "value": null
     },
     "hasFolderNotification": {
       "class": "Identifier",

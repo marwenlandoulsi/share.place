@@ -72,14 +72,66 @@ nav a.router-link-active {
   background-color: #252132;
 }
 
+.header-top {
+  position: relative;
+  z-index: 1001;
+  height: 1.5em;
+  background-color: #1F181F;
+  padding: 0.3em 0.5em 0.4em 0.5em;
+  -webkit-app-region: drag;
+  width: calc(100% - 1em);
+}
+
+.leftHeader {
+  width: calc(100% - 2.7em);
+  float: left;
+  vertical-align: middle;
+}
+
 .labelHeader {
   background-color: #312b31;
-  color: #000;
-  height: 1em;
-  padding: 0.2em 0.4em;
-  width: calc(80% - 0.8em);
-  display: inline-block;
-  vertical-align: top;
+  line-height: 1.2;
+  height: 1.3em;
+  padding: 0.2em 0.5em 0.2em 0.2em;
+  display: block;
+  vertical-align: middle;
+  font-family: 'robotoregular';
+  color: #797171;
+  font-size: 15px;
+  font-weight: 500;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.titleHeader {
+  color: #817D8F;
+  float: left;
+  margin-right: 0.7em;
+}
+
+.copyIcon {
+  float: right;
+  -webkit-app-region: no-drag;
+  position: relative;
+  z-index: 99999;
+}
+
+.copyIcon:after {
+  font-family: 'Material-Design-Iconic-Font';
+  color: #C5C1D2;
+  content: '\f237';
+  margin-left: 0.4em;
+  font-size: 1em;
+  font-weight: normal;
+  cursor: pointer;
+}
+
+.copyIcon:hover:after {
+  color: #fff;
 }
 
 .news {
@@ -139,7 +191,7 @@ material-button.menuItem.profile, material-button.menuItem.logout {
   -webkit-app-region: no-drag;
   background-color: transparent;
   border: none;
-  padding:0 10px;
+  padding: 0 10px;
   -moz-border-radius: 0;
   -webkit-border-radius: 0;
   -o-border-radius: 0;
@@ -182,22 +234,11 @@ material-button.menuItem.profile, material-button.menuItem.logout {
   color: #8792A0;
 }
 
-.header-top {
-  position: relative;
-  z-index: 1001;
-  height: 1.4em;
-  background-color: #1F181F !important;
-  padding: 0.4em 0.5em !important;
-  -webkit-app-region: drag;
-  width: calc(100% - 1em);
-}
-
 .desktopVersion {
   color: #817D8F;
   font-size: 15px;
   font-weight: 500;
 }
-
 
 .header-top .logo_header,
 .header-top .desktopVersion,
@@ -215,7 +256,13 @@ material-button.menuItem.profile, material-button.menuItem.logout {
   height: 2.5em;
 }
 
+.appElectron .leftHeader {
+  width: calc(100% - 12.7em);
+}
 
+.appElectron .rightMenu {
+  width: 12em;
+}
 
 /*__________________*/
 @media only screen and (max-width: 1200px) {

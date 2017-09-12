@@ -1,4 +1,7 @@
-<div>
+<div [ngClass]="{'appElectron': !isWebApp}">
+  <div>
+    <downloadApp-comp [name]="'downloadApp'"></downloadApp-comp>
+  </div>
   <modal *ngIf="connectedUser == null" [visible]="true">
     <material-dialog class="basic-dialog login_pop">
       <login-comp></login-comp>
@@ -35,7 +38,13 @@
 
 
   <div class="header header-top">
-    <div class="labelHeader">Share.Place/TheWhaleInc.Share.Place</div>
+    <div class="leftHeader">
+      <div class="titleHeader">Share.Place</div>
+      <div class="labelHeader" id="p1">
+        <div class="copyIcon" onclick="copyToClipboard('#p1')" title="Copy this Url"></div>
+        {{displayLink}}
+      </div>
+    </div>
     <div class="alertInner">
       <notification [msg]="error" class="notif error" [duration]="-1"></notification>
       <div *ngIf="messages != null && messages.length > 0">
@@ -85,7 +94,7 @@
   <div class="leftP">
     <div class="logo_header">
       <img src="/images/logo_sharePlace.png" class="logo">
-      <label class="desktopVersion">V0.1.17</label>
+      <label class="desktopVersion">V0.2.2</label>
     </div>
     <postit-comp [name]="'places'" [header]="'Welcome!'" [body]="'You can create your place on clicking on the + icon'"
                  class="placesPostit"></postit-comp>
@@ -100,7 +109,7 @@
       <div class="rightPanelinside_header">
         <search-input></search-input>
       </div>
-      <search-comp *ngIf="searchText != null"></search-comp>
+      <search-comp id="searchResult" *ngIf="searchText != null"></search-comp>
     </div>
 
     <div class="panel-bottom">

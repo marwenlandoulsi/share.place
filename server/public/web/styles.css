@@ -336,7 +336,7 @@ nav a.active {
 
 .rightMenu {
   display: inline-block;
-  width: 19%;
+  width: 2em;
   text-align: right;
   vertical-align: top;
   height: 1.4em;
@@ -344,7 +344,7 @@ nav a.active {
 }
 
 .rightMenu .imgProfil {
-  margin-top: -3.5px;
+  margin-top: -1.7px;
   display: inline-block !important;
   vertical-align: top;
 }
@@ -604,42 +604,19 @@ textarea {
   font-size: 11px !important;
 }
 
-#labelfileupload {
-  cursor: pointer;
-  color: #9E9E9E;
-  z-index: 1;
-  background-color: transparent;
-  font-size: 13px;
-  display: block;
-  position: absolute;
-  top: 50%;
-  width: 12em;
-  left: calc(50% - 6em);
-  -webkit-transition: 0.3s;
-  -o-transition: 0.3s;
-  transition: 0.3s;
+
+
+input#hideInput::-webkit-file-upload-button {
+  -webkit-appearance: textfield;
+  display: none;
 }
 
-#labelfileupload:before {
-  font-family: 'Material-Design-Iconic-Font';
-  color: #BEBEBE;
-  content: '\f223';
-  font-size: 1.7em;
-  display: inline-block;
-  position: absolute;
-  left: 48%;
-  top: -34px;
-}
-
-.uploadDropZone:hover #labelfileupload:before, .uploadDropZone:focus #labelfileupload:before,
-.uploadDropZone:hover #labelfileupload, .uploadDropZone:focus #labelfileupload {
-  color: #3598f9;
-}
 
 .uploadDropZone:hover, .uploadDropZone:focus {
   -webkit-transition: 0.3s;
   -o-transition: 0.3s;
   transition: 0.3s;
+
 }
 
 .nomargin {
@@ -750,10 +727,10 @@ textarea {
   border-radius: 0;
 }
 
-form#fileForm {
-  clear: both;
-  position: relative;
-}
+/*form#fileForm {*/
+  /*clear: both;*/
+  /*position: relative;*/
+/*}*/
 
 .close:hover {
   opacity: 0.7;
@@ -1032,23 +1009,10 @@ header.closed .primary-text {
   color: #85828d !important;
 }
 
-.isUploading {
-  width: 44px;
-  height: 44px;
-  padding: 0;
-  margin: auto;
-  position: absolute;
-  left: 8px;
-  right: auto;
-  top: 5px;
-  bottom: auto;
-}
 
-.progress {
-  width: 44px;
-  height: 44px;
-  position: relative;
-  background-image: url(../images/ring-alt.gif) no-repeat center center;
+.popinVersion .content {
+  padding: 0.1em 0.57em !important;
+  font-size: 0.8em;
 }
 
 .popinVersion {
@@ -1056,43 +1020,38 @@ header.closed .primary-text {
   padding-top: 1em;
 }
 
-.popinVersion .menuItemVers {
+.popinVersion .menuItemVersion {
   width: 100%;
-  text-align: left !important;
-  text-transform: none !important;
-  color: #273B54 !important;
-  font-size: 1em !important;
+  text-align: left;
+  text-transform: none;
+  color: #273B54;
+  font-size: 1em;
 }
 
-.popinVersion .content {
-  padding: 0.1em 0.57em !important;
-  font-size: 0.8em;
-}
 
-.popinVersion .menuItemVers i {
+.popinVersion .menuItemVersion i {
   margin-right: 0.5em;
   font-size: 2em;
 }
 
-.popinVersion .menuItemVers i.approve {
+.popinVersion .menuItemVersion i.approve {
   color: #26C875;
 }
 
-.popinVersion .menuItemVers i.nnApprove {
+.popinVersion .menuItemVersion i.nnApprove {
   color: #BEBEBE;
 }
 
-.popinVersion .menuItemVers i.commentVers {
+.popinVersion .menuItemVersion i.commentVers {
   color: #63C7FE;
 }
 
-.popinVersion .menuItemVers i.delete {
+.popinVersion .menuItemVersion i.delete {
   color: #BEBEBE;
   padding-left: 0.1em;
 }
 
-.spanVers {
-  /*width: 30%;*/
+.spanVersion {
   text-align: center !important;
 }
 
@@ -1564,6 +1523,7 @@ material-button.menuItem.profile .content, material-button.menuItem.logout .cont
 
 .subjects .addBtn:hover:after {
   color: #71698D;
+  color: #312B31;
 }
 
 #inputSym .input-container {
@@ -1585,6 +1545,20 @@ material-button.menuItem.profile .content, material-button.menuItem.logout .cont
 .spinnerInner {
   margin: 0 auto !important;
   text-align: center !important;
+}
+
+.crashedInner {
+  margin: 0 auto !important;
+  text-align: center !important;
+  font-family: 'Material-Design-Iconic-Font';
+}
+
+.crashedInner::after {
+  content: '\f1f1';
+  color: #F96767;
+  position: absolute;
+  right: -2px;
+  top: -3px;
 }
 
 #changeRoleUsers .roleChooser role-item {
@@ -1690,6 +1664,10 @@ material-button.menuItem.profile .content, material-button.menuItem.logout .cont
   padding-right: 0.6em;
 }
 
+.leftP .panel.active {
+  background-color: yellow !important;
+}
+
 .h2Places {
   font-size: 1.2em;
   color: #5F5D65;
@@ -1716,7 +1694,6 @@ material-button.menuItem.profile .content, material-button.menuItem.logout .cont
   bottom: 0;
   /*background: url("../images/ui-resizable-e.png") no-repeat;*/
 }
-
 
 iframe#launcher {
   margin: 2px 4px !important;
@@ -1755,7 +1732,7 @@ iframe#launcher {
   line-height: 0.9em;
   text-align: center;
   background-color: transparent;
-
+  margin-top: 5px;
 }
 
 /*li.subjectItem.selected .validRename_subject {*/
@@ -1799,7 +1776,7 @@ iframe#launcher {
 }
 
 .delete_subject {
-  margin: 0;
+  margin: 5px 0 0;
 }
 
 li.subjectItem.selected:hover .rename_subject:after,
@@ -1833,8 +1810,10 @@ li.subjectItem.selected:hover .delete_subject:hover {
 }
 
 .termsConditions {
-  z-index: 9999999;
+  z-index: 1005;
 }
+
+
 
 /*__________________*/
 
@@ -1863,7 +1842,7 @@ li.subjectItem.selected:hover .delete_subject:hover {
 }
 
 .ui-resizable-s {
-  cursor: row-resize;
+  cursor: row-resize !important;
   height: 20px;
   width: 100%;
   bottom: -5px;
@@ -1969,10 +1948,6 @@ table {
 
   .leftP {
     height: auto;
-  }
-
-  .rightMenu {
-    margin-right: 0.2em;
   }
 
   .centerP, .rightP {

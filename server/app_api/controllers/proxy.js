@@ -43,7 +43,6 @@ const sendEvent = (nameOfEvent, content) => {
 }
 
 const net = require(path.join(__dirname, '..', '..', 'local_module', 'request'))
-
 module.exports.searchFileFromElastic = (req, res) => {
 
   let url = req.url;
@@ -125,8 +124,10 @@ let downloadUtilFileToDisc = module.exports.downloadUtilFileToDisc = (url, callB
 
   return callBack(false)
 }
+
 //module.exports.downloadUtilFileToDisc = downloadUtilFileToDisc;
-module.exports.get = function (req, res) {
+
+function get(req, res) {
 
   let userId = req.user._id;
   let url = req.url;
@@ -139,7 +140,7 @@ module.exports.get = function (req, res) {
 
   let pathDirectory = path.join(constants.dataDir, userId, url);
   let pathToDataFile = path.join(constants.dataDir, userId, url, 'data.json');
-  globalService.checkPathOrCreateSync(pathDirectory, pathToDataFile, '[]\n');
+  globalService.checkPathOrCreateSync(pathDirectory, pathToDataFile, '[]');
   let dataFromFile = jsonfile.readFileSync(pathToDataFile);
   let folderId = req.params.folderId;
   let fileId = req.params.fileId;
@@ -170,6 +171,8 @@ module.exports.get = function (req, res) {
 
 }
 
+module.exports.get = get;
+
 module.exports.proxyGet = function (url, callBack) {
   let userId = global.userConnected._id;
   let email, password;
@@ -186,7 +189,7 @@ module.exports.proxyGet = function (url, callBack) {
   if (global.onLine) {
     getDataFromServer(null, null, email, password, url, (err, received) => {
       if (err) {
-        log.error("error to sync data ", err.message);
+        log.error("error to sync data ", err);
         return callBack(err)
       }
 
@@ -195,7 +198,7 @@ module.exports.proxyGet = function (url, callBack) {
 
       saveInLocalDb(dataReceived, dataFromFile, pathToDataFile, (err, toReturn) => {
         if (err)
-          return log.error("error to save in localDb", err.message);
+          return log.error("error to save in localDb", err);
 
         return callBack(null, dataReceived)
       })
@@ -225,7 +228,7 @@ module.exports.uploadFile = function (req, res) {
   let placeName = place.select("name")[0];
   let folderName = folder.select("name")[0];
   let pathToDir = path.join(global.homeDir, '/share.place/' + userId + '/' + placeName + '/' + folderName + '/');
-  let pathFileInTmp = path.join(fileToUpload.destination , fileToUpload.filename);
+  let pathFileInTmp = path.join(fileToUpload.destination, fileToUpload.filename);
   if (global.onLine) {
     httpPostFileToUpload(url, fileToUpload, (err, received) => {
 
@@ -236,7 +239,7 @@ module.exports.uploadFile = function (req, res) {
           return globalService.sendError(res, err.code, err.message)
       }
 
-     // log.error("received", received)
+      // log.error("received", received)
       let dataReceived = received.data;
 
       fs.unlink(pathFileInTmp, function (err) {
@@ -251,21 +254,181 @@ module.exports.uploadFile = function (req, res) {
   }
 }
 
+function unlinkAndDownloadFile(objParams) {
+
+  const pathToFile = objParams.pathToFile,
+      fileName = objParams.fileName,
+      dataFile = objParams.dataFile,
+      url = objParams.url,
+      pathToDir = objParams.pathToDir,
+      mode = objParams.mode;
+
+  //
+  // dialog.showMessageBox({
+  //   type: "question",
+  //   title: "Share.Place",
+  //   message: "Your file will be overwritten do you want to continue ?",
+  //   buttons: ["Yes", "No"],
+  //   noLink: true,
+  //   cancelId: 1000
+  // }, (indexButton) => {
+  //
+  //   if (indexButton != 1000 && indexButton != 1 ) {
+  if (fs.existsSync(pathToFile)) {
+    fs.unlink(pathToFile, function (err) {
+      if (err) {
+        log.error('err to delete from ' + pathToFile + ' :', err);
+        showNotification("Share.place Notification", "Error occured try again or delete the file in :" + pathToFile);
+      }
+      showNotification("Share.place Notification", "downloading the file '" + fileName + "' of the topic '" + dataFile.name + "'")
+      downloadFile(url, pathToDir, pathToFile, mode, (err, ok) => {
+        if (err)
+          showDialogBox("error", "share.place", "failed to download/open the file");
+        //
+        // let isOpened = openFile(pathToFile);
+        // if (isOpened)
+        //   showNotification("Share.place Notification", "File opened : " + fileName);
+        // else
+        //   showNotification("Share.place Notification", "sorry we can't open the file '" + fileName + "'");
+
+        return global.mainWindow.webContents.stop();
+      });
+    });
+  } else {
+    downloadFile(url, pathToDir, pathToFile, mode, (err, ok) => {
+      if (err)
+        showDialogBox("error", "share.place", "failed to download/open the file");
+
+      let isOpened = openFile(pathToFile);
+      if (isOpened)
+        showNotification("Share.place Notification", "File opened : " + fileName);
+      else
+        showNotification("Share.place Notification", "sorry we can't open the file '" + fileName + "'");
+
+      return global.mainWindow.webContents.stop();
+    });
+  }
+  //
+  // }
+  //   openFile(pathToFile);
+  //   return global.mainWindow.webContents.stop();
+  // })
+}
+
+function openLocalFile(objParams) {
+  const pathToFile = objParams.pathToFile,
+      modeFile = objParams.modeFile,
+      dataFile = objParams.dataFile;
+
+
+  fs.chmodSync(pathToFile, modeFile);
+  let isOpened = openFile(pathToFile);
+
+  if (isOpened)
+    showNotification("File opened", dataFile.name)
+  else
+    showNotification("File not opened", "sorry we can't open the file '" + dataFile.name + "'")
+
+  return global.mainWindow.webContents.stop();
+}
+
+function isLockedByUser(dataFile, userId, v) {
+  return (dataFile.isLocked) && (dataFile.lockOwner.userId == userId) && (v == dataFile.lockedVersion);
+}
+
+function copyFileIfLocked(params, cb) {
+  const connectedUserId = params.userId,
+      pathToFile = params.pathToFile,
+      pathToHomDir = params.pathToHomDir,
+      fileName = params.fileName,
+      placeName = params.placeName,
+      dataFile = params.dataFile,
+      url = params.url;
+
+  let nameFileWithoutExt = (dataFile.dataType == "quickNote") ? dataFile.name : String(dataFile.name).substr(0, String(dataFile.name).indexOf('.'))
+
+  const pathToLockDir = path.join(global.homeDir, 'share.place', connectedUserId, placeName, pathToHomDir,nameFileWithoutExt, nameFileWithoutExt + "_locked");
+  globalService.checkDirectorySync(pathToLockDir)
+  const pathToFileInLockDir = path.join(pathToLockDir, fileName);
+
+  if (fs.existsSync(pathToFileInLockDir)) {
+    isSameFile(globalService.findFileVersion(dataFile, dataFile.lockedVersion), pathToFileInLockDir, (err, sameFile) => {
+      if (err)
+        log.error('error to check if same file', err);
+
+      if (!sameFile) {
+        let options = {
+          "server version": {
+            fn: () => {
+              unlinkAndDownloadFile;
+              cb(null, pathToFile)
+            },
+            params: {
+              pathToFile: pathToFile,
+              fileName: fileName,
+              dataFile: dataFile,
+              url: url,
+              pathToDir: pathToHomDir,
+              mode: 0o666
+            }
+          },
+          "My version": {
+            fn: () => {
+              openLocalFile;
+              cb(null, pathToFileInLockDir)
+            },
+            params: {
+              pathToFile: pathToFileInLockDir,
+              modeFile: '0777',
+              dataFile: dataFile
+            }
+          },
+        }
+        showConfirmBox("info", "Share.place", "You have unsaved changes in your local copy, which version would you like to open?", options)
+
+      } else {
+        // openLocalFile({
+        //   pathToFile: pathToFile,
+        //   modeFile: '0777',
+        //   dataFile: dataFile
+        // });
+
+        return cb(null, pathToFileInLockDir)
+      }
+    })
+
+  } else {
+    fs.createReadStream(pathToFile).pipe(fs.createWriteStream(pathToFileInLockDir)).on('finish', (err) => {
+      if (err) {
+        log.error("we can't copy the file to lock dir")
+        return cb(err)
+      }
+
+      console.log("file copied in : ", pathToFileInLockDir)
+      fs.chmodSync(pathToFileInLockDir, '0777');
+      return cb(null, pathToFileInLockDir)
+    })
+
+
+  }
+
+
+}
+
 module.exports.getFile = function (req, res) {
 
   let userId = req.user._id;
   let url = req.url;
   let v = req.params.v;
-
-  let pathDbDataPlace = path.join(constants.dataDir, userId, url.substring(0, nth_occurrence(url, '/', 2)), 'data.json');
+  let pathDbDataPlaces = path.join(constants.dataDir, userId, url.substring(0, nth_occurrence(url, '/', 2)), 'data.json');
   let pathDbDataFolder = path.join(constants.dataDir, userId, url.substring(0, nth_occurrence(url, '/', 4)), 'data.json');
   let pathDbDataFile = path.join(constants.dataDir, userId, url.substring(0, nth_occurrence(url, '/', 7)), 'data.json');
 
-  let dataPlace = jsonfile.readFileSync(pathDbDataPlace);
+  let dataPlaces = jsonfile.readFileSync(pathDbDataPlaces);
   let dataFolder = jsonfile.readFileSync(pathDbDataFolder);
   let dataFile = jsonfile.readFileSync(pathDbDataFile);
 
-  let dbPlace = new taffy(dataPlace);
+  let dbPlace = new taffy(dataPlaces);
   let dbFolder = new taffy(dataFolder);
 
   let place = dbPlace({_id: dataFile.placeId});
@@ -273,104 +436,96 @@ module.exports.getFile = function (req, res) {
   let placeName = place.select("name")[0];
   let folderName = folder.select("name")[0];
   let donwloadVersion = false;
+  let fileName;
 
-  if (dataFile.versions.length != v)
+
+  if (v || dataFile.dataType == "quickNote")
     donwloadVersion = true;
+  else {
+    donwloadVersion = true;
+    v = dataFile.versions[dataFile.versions.length - 1].v
+  }
+  if (!placeName) {
+    let pathDbDataPlace = path.join(constants.dataDir, userId, 'place', dataFile.placeId, 'data.json');
+    let dataPlace = jsonfile.readFileSync(pathDbDataPlace);
+    placeName = dataPlace.name;
+  }
+
+  function openFileAndShowNotif(err, pathToFile) {
+    if (err) {
+      log.error("error to open file")
+      showNotification("Share.place Notification", "sorry we can't open the file '" + fileName + "'");
+    }
+
+
+    let isOpened = openFile(pathToFile);
+    if (isOpened)
+      showNotification("Share.place Notification", "File '" + fileName + "'opened.");
+    else
+      showNotification("Share.place Notification", "sorry we can't open the file '" + fileName + "'");
+
+    global.mainWindow.webContents.stop();
+  }
 
   getPathFileInHomeDir(dataFile, dataFolder, (pathToHomDir, pathToFileInDir) => {
     let pathToDir = path.join(global.homeDir, 'share.place', userId, placeName, pathToHomDir + '/');
-    let pathToFile = path.join(pathToDir + dataFile.versions[v - 1].name);
-    let nameFileWithoutExt = String(dataFile.name).substr(0, String(dataFile.name).indexOf('.'))
-
+    fileName = globalService.findFileVersion(dataFile, v).name;
+    let pathToFile = path.join(pathToDir, fileName);
+    let nameFileWithoutExt = (dataFile.dataType == "quickNote") ? dataFile.name : String(dataFile.name).substr(0, String(dataFile.name).indexOf('.'))
     if (donwloadVersion) {
-      pathToDir = path.join(pathToDir, nameFileWithoutExt + "_V" + v);
-      pathToFile = path.join(pathToDir, dataFile.versions[v - 1].name);
+      pathToDir = path.join(pathToDir, nameFileWithoutExt, nameFileWithoutExt + "_V_" + v);
+      pathToFile = path.join(pathToDir, fileName)
     }
 
 
     let mode = 0o0500;
     let modeFile = '0555';
+    const params = {
+      userId: userId,
+      pathToFile: pathToFile,
+      pathToHomDir: pathToHomDir,
+      fileName: fileName,
+      placeName: placeName,
+      dataFile: dataFile,
+      url: url
+    }
+
     if (global.onLine) {
 
-      if ((dataFile.isLocked) && (dataFile.lockOwner.userId == userId)) {
-        mode = 0o666;
-        modeFile = '0777';
-      }
-
-
       if (!fs.existsSync(pathToFile)) {
-        /*      if(!fs.existsSync(path.join(pathToDir,nameFileWithoutExt+"_V"+v )))
-         globalService.checkDirectorySync(path.join(pathToDir,nameFileWithoutExt+"_V"+v )
-         */
-        showNotification("Downloading File", dataFile.name)
+        showNotification("Share.place Notification", "downloading the file '" + fileName + "' of the topic '" + dataFile.name + "'")
         downloadFile(url, pathToDir, pathToFile, mode, (err, ok) => {
-          if (err)
+          if (err){
             showDialogBox("error", "share.place", "failed to download/open the file");
-
-          let isOpened = openFile(res, dataFile, pathToFile);
-          if (isOpened)
-            showNotification("File opened", dataFile.name);
-          else
-            showNotification("File not opened", "sorry we can't open the file '" + dataFile.name + "'");
-
-          global.mainWindow.webContents.stop();
+            return
+          }else{
+            if (isLockedByUser(dataFile, userId, v)) {
+              // mode = 0o666;
+              // modeFile = '0777';
+              pathToFile = copyFileIfLocked(params, openFileAndShowNotif);
+            } else {
+              openFileAndShowNotif(null, pathToFile)
+            }
+          }
 
         });
-
       } else {
-        isSameFile(dataFile, pathToFile, (err, sameFile) => {
-          if (err)
-            log.error('error to check if same file', err);
-
-          if (!sameFile) {
-            fs.unlink(pathToFile, function (err) {
-              if (err) {
-                log.error('err to delete from ' + pathToFile + ' :', err);
-                showNotification("Error occured try again or delete the file in :" + pathToFile);
-              }
-              showNotification("Downloading File", dataFile.name);
-              downloadFile(url, pathToDir, pathToFile, mode, (err, ok) => {
-                if (err)
-                  showDialogBox("error", "share.place", "failed to download/open the file");
-
-                let isOpened = openFile(res, dataFile, pathToFile);
-                if (isOpened)
-                  showNotification("File opened", dataFile.name);
-                else
-                  showNotification("File not opened", "sorry we can't open the file '" + dataFile.name + "'");
-
-                return global.mainWindow.webContents.stop();
-              });
-            });
-
-          } else {
-            fs.chmodSync(pathToFile, modeFile);
-            let isOpened = openFile(res, dataFile, pathToFile);
-
-            if (isOpened)
-              showNotification("File opened", dataFile.name)
-            else
-              showNotification("File not opened", "sorry we can't open the file '" + dataFile.name + "'")
-
-            return global.mainWindow.webContents.stop();
-          }
-        })
+        if (isLockedByUser(dataFile, userId, v)) {
+          // mode = 0o666;
+          // modeFile = '0777';
+          pathToFile = copyFileIfLocked(params, openFileAndShowNotif);
+        } else {
+          openFileAndShowNotif(null, pathToFile);
+        }
       }
     } else {
       if (!fs.existsSync(pathToFile)) {
-
         showDialogBox("error", "open file", "sorry you are offline and the file doesn't exist in your home directory");
+        return
       }
-      fs.chmodSync(pathToFile, modeFile);
-      let isOpened = openFile(res, dataFile, pathToFile);
-
-      if (isOpened)
-        showNotification("File opened", dataFile.name)
-      else
-        showNotification("File not opened", "sorry we can't open the file '" + dataFile.name + "'")
-
-      return global.mainWindow.webContents.stop();
+      openFileAndShowNotif(null, pathToFile);
     }
+
 
   });
 
@@ -428,10 +583,17 @@ function downloadFileInDisc(url, mode, callBack) {
       let fileName = versions[versions.length - 1].name;
       let fileState = file.select("state")[0]
 
-      if(fileState != 'D' && folderState != 'D'){
+      if (fileState != 'D' && folderState != 'D') {
         getPathFileInHomeDir(file.get()[0], dataFolder, (pathToHomDir, pathToFileInDir) => {
 
-          let pathToDir = path.join(global.homeDir, 'share.place', userId, placeName, pathToHomDir + '/');
+          let pathToDir = path.join(global.homeDir, 'share.place', userId, placeName, pathToHomDir );
+
+          let nameFileWithoutExt = (file.get()[0].dataType == "quickNote") ? file.get()[0].name : String(file.get()[0].name).substr(0, String(file.get()[0].name).indexOf('.'))
+
+
+            pathToDir = path.join(pathToDir, nameFileWithoutExt, nameFileWithoutExt + "_V_" +  globalService.findFileVersion(file.get()[0]).v);
+
+
 
           let pathToFile = path.join(pathToDir, fileName);
 
@@ -444,7 +606,8 @@ function downloadFileInDisc(url, mode, callBack) {
                 return callBack(null, true, pathToFile);
               });
             } else {
-              isSameFile(file.get()[0], pathToFile, (err, sameFile) => {
+              const dataFileVersion = globalService.findFileVersion(file.get()[0])
+              isSameFile(dataFileVersion, pathToFile, (err, sameFile) => {
                 if (err)
                   return callBack(err)
                 if (!sameFile) {
@@ -499,18 +662,20 @@ let getDataFromServer = function (req, res, email, password, url, cb) {
     //   }
     // })
   }
-  globalService.setSidInInput(global.cookieReceived);
+
   return httpGetJson(global.cookieReceived, url, cb);
 };
 
-let openFile = function (res, dataFile, pathFile) {
+let openFile = function (pathFile) {
+  console.log("show path to open -- : ", pathFile)
   return shell.openItem(pathFile);
+
 }
 
 let httpPostFileToUpload = function (url, fileToUpload, cb) {
   const form = new FormData()
-  console.log('************', fileToUpload)
-  form.append('toUpload', fs.createReadStream(path.join(fileToUpload.destination , fileToUpload.filename)));
+
+  form.append('toUpload', fs.createReadStream(path.join(fileToUpload.destination, fileToUpload.filename)));
 
   let headers = {
     'Cookie': global.cookieReceived
@@ -633,7 +798,6 @@ let httpGetJson = function (cookie, url, cb) {
   };
 
   globalService.requestRemoteServer(options, (err, dataReceived) => {
-
     if (err)
       return cb(err)
 
@@ -706,6 +870,7 @@ let httpGetJson = function (cookie, url, cb) {
    });*/
 }
 module.exports.callRemoteServer = httpGetJson;
+
 function downloadFile(url, directory, pathFile, mode, cb) {
   /* let options = {
    host: constants.hostURL,
@@ -933,9 +1098,9 @@ let nth_occurrence = (string, char, nth) => {
   }
 }
 
-let isSameFile = (datafile, pathFileHome, cb) => {
+let isSameFile = (dataFileVersion, pathFileHome, cb) => {
   checksum.file(pathFileHome, (err, sum) => {
-    let data = JSON.parse(JSON.stringify(datafile));
+    //slet data = JSON.parse(JSON.stringify(datafile));
 
     if (err) {
       log.error("error checksum : ", err.message);
@@ -943,8 +1108,8 @@ let isSameFile = (datafile, pathFileHome, cb) => {
       return cb(err)
     }
 
-    let localCs = data.versions[data.versions.length - 1].sum;
-    //log.info("comparing to file : localCs", localCs, "sum", sum)
+    let localCs = dataFileVersion.sum;
+    log.info("comparing to file : localCs", localCs, "sum", sum)
     if (sum == localCs) {
       return cb(null, true);
     } else {
@@ -958,7 +1123,7 @@ module.exports.post = function (req, res) {
   let url = req.url;
   let jsonData = req.body;
   let userId = global.userConnected._id;
-
+  let placeId = req.params.placeId;
   if (global.onLine) {
     httpPostJson(url, jsonData, (err, toReturn) => {
       /*if (objError) {
@@ -975,6 +1140,9 @@ module.exports.post = function (req, res) {
         else
           return globalService.sendError(res, err.code, err.message)
       }
+
+      if (!placeId && url.indexOf('/place') != -1)
+        get(req, null);
 
       return globalService.sendJsonResponse(res, 200, toReturn.data)
     });
@@ -1149,6 +1317,8 @@ module.exports.put = function (req, res) {
         });
       } else {
         let fileId = req.params.fileId;
+        let folderId = req.params.folderId;
+        let placeId = req.params.placeId;
         unlockFile(url, fileId, jsonToPut, (err, pathToFile, toReturn) => {
           if (err) {
             if (err.errorFromServer)
@@ -1157,10 +1327,12 @@ module.exports.put = function (req, res) {
               return globalService.sendError(res, err.code, err.message)
           }
 
-          fs.chmodSync(pathToFile, '0555');
+          // fs.chmodSync(pathToFile, '0555');
           let event = {
             refresh: {
               fileId: fileId,
+              folderId: folderId,
+              placeId: placeId,
               type: "file"
             }
           }
@@ -1168,6 +1340,8 @@ module.exports.put = function (req, res) {
           global.mainWindow.webContents.executeJavaScript(
               `dispatchWindowEvent(` + event + `);`
           );
+
+
           return globalService.sendJsonResponse(res, 200, toReturn);
 
         });
@@ -1329,6 +1503,145 @@ let getPathFolderInHomeDirFromReq = (req, callBack) => {
     return callBack(pathFolderInHomeDir);
   })
 }
+let unlockFile = function (url, fileId, jsonToPut, callBack) {
+  let userId = global.userConnected._id;
+  let placeId = globalService.getIdFromUrl("place", url);
+  let folderId = globalService.getIdFromUrl("folder", url);
+
+  let pathDbDataPlace = path.join(constants.dataDir, userId, url.substring(0, nth_occurrence(url, '/', 2)), 'data.json');
+  let pathDbDataFolder = path.join(constants.dataDir, userId, url.substring(0, nth_occurrence(url, '/', 4)), 'data.json');
+  let urlListeFile = "/place/" + placeId + "/folder/" + folderId + "/file/" + fileId;
+  let pathDbDataFile = path.join(constants.dataDir, userId, 'place', placeId, 'folder', folderId, 'file', fileId, 'data.json');
+
+  let dataPlace = jsonfile.readFileSync(pathDbDataPlace);
+  let dataFolder = jsonfile.readFileSync(pathDbDataFolder);
+  let dataFile = jsonfile.readFileSync(pathDbDataFile);
+  const versionLocked = dataFile.lockedVersion
+  if (global.onLine) {
+    let urlToUploadFile = "/place/" + placeId + "/folder/" + folderId + "/file/" + fileId;
+
+    let dbPlace = new taffy(dataPlace);
+    let dbFolder = new taffy(dataFolder);
+    //let dbFile = new taffy([data]);
+    let place = dbPlace({_id: placeId});
+    let folder = dbFolder({_id: folderId});
+    let placeName = place.select("name")[0];
+    let folderName = folder.select("name")[0];
+    getPathLockedFileInHomeDir(dataFile, dataFolder, (pathToHomDir, pathToFileInDir) => {
+
+      const newPathToHomDir = pathToHomDir+"_modified"
+      let renamedPathInHomeDir= path.join(global.homeDir, 'share.place', userId, placeName, newPathToHomDir);
+      let originalPathInHomeDir= path.join(global.homeDir, 'share.place', userId, placeName, pathToHomDir);
+
+      if(fs.existsSync(originalPathInHomeDir)){
+        const renameFolder = globalService.renameFolder(originalPathInHomeDir, renamedPathInHomeDir)
+        if(!renameFolder){
+          showNotification("Share.place Notification", "sorry we can't unlock the file please close it and try again")
+          const errorToReturn = {
+            code : 403,
+            message:  "sorry we can't unlock the file please close it and try again"
+          }
+          return callBack(errorToReturn);
+        }
+        pathToFileInDir = path.join(newPathToHomDir, globalService.findFileVersion(dataFile).name)
+        pathToHomDir = newPathToHomDir
+      }
+
+      httpPutJson(url, jsonToPut, (err, toReturn) => {
+        if (err) {
+          log.error("error to unlock:", err.message)
+          return callBack(err)
+        }
+        let email;
+        let password;
+        if (global.userConnected.local) {
+
+          email = global.userConnected.local.email;
+          password = global.userConnected.local.password;
+        }
+        getDataFromServer(null, null, email, password, urlListeFile, (err, dataReceived) => {
+          if (err) {
+            log.error("error to receive data after Unlock: ", err.message);
+            return callBack(err)
+          }
+
+          saveInLocalDb(dataReceived.data, dataFile, pathDbDataFile, (err, data) => {
+            if (err) {
+              log.error('error to save liste of file in local Db');
+              return callBack(err)
+            }
+            let file = data;
+
+
+            let fileName = file.versions[file.versions.length - 1].name;
+            let contentType = file.versions[file.versions.length - 1].fileType;
+            file.versionLocked = versionLocked;
+
+
+            let pathToFile = path.join(global.homeDir, 'share.place', userId, placeName, pathToFileInDir);
+            let pathToUserHomDir = path.join(global.homeDir, 'share.place', userId, placeName, pathToHomDir);
+            isSameFile(globalService.findFileVersion(file), pathToFile, (err, sameFile) => {
+              if (err)
+                log.error("error to test isSameFile:", err.message)
+              if (fs.existsSync(pathToFile)) {
+                if (!sameFile) {
+                  httpUploadNewVersion(urlToUploadFile, pathToFile, fileName, contentType, (err, dataReceivedAfterUpload) => {
+                    if (err) {
+                      log.error("error to upload the new version:", err.message)
+                      showDialogBox("error", "share.place", "sorry, an error occured while uploading the file :'" + fileName + "' please retry later")
+                    }
+
+                    showNotification("Share.Place Notification", "New version of file '" + fileName + "' uploaded.")
+                    log.info("new version uploaded")
+
+                    // fs.chmodSync(pathToFile, '0777');
+                    const moveToTrash = shell.moveItemToTrash(pathToFile)
+                    if (moveToTrash) {
+                      log.info("the file in path : '" + pathToFile + "' moved to trash");
+                      fs.rmdirSync(pathToUserHomDir)
+                    } else {
+                      log.info("error to move the file in path : '" + pathToFile + "'  to trash");
+                    }
+
+                    // const urlVersion = "/place/"+file.placeId+"/folder/"+file.folderId+"/file/"+file.id+"/version/"+ file.versionLocked+"/download"
+                    //
+                    // fs.unlink(pathToFile, function (err) {
+                    //   if (err) {
+                    //     log.error('err to delete from ' + pathToFile + ' :', err);
+                    //     return
+                    //   }
+                    //   // mode = 0o666;
+                    //   // modeFile = '0777';
+                    //   log.error("file deleted");
+                    //   // const urlVersion = "/place/"+file.placeId+"/folder/"+file.folderId+"/file/"+file.id+"/version/"+ file.versionLocked+"/download"
+                    //   // downloadFile(url, pathToUserHomDir, pathToFile,  0o666, (err, ok) => {
+                    //   //   if (err)
+                    //   //     log.error('error to download the file' + pathToFile + ' :', err);
+                    //   //
+                    //   // });
+                    // });
+                  });
+                }else{
+                  const moveToTrash = shell.moveItemToTrash(pathToFile)
+                  if (moveToTrash) {
+                    log.info("the file in path : '" + pathToFile + "' moved to trash");
+                    fs.rmdirSync(pathToUserHomDir)
+                  } else {
+                    log.info("error to move the file in path : '" + pathToFile + "'  to trash");
+                  }
+                }
+              }
+            });
+            return callBack(null, pathToFile, toReturn);
+          });
+
+
+        });
+      })
+    });
+  }
+}
+
 let lockFile = function (req, url, jsonToPut, callBack) {
 
   let mode = 0o666;
@@ -1361,84 +1674,6 @@ let lockFile = function (req, url, jsonToPut, callBack) {
     })
   });
 };
-
-let unlockFile = function (url, fileId, jsonToPut, callBack) {
-  let userId = global.userConnected._id;
-  let placeId = globalService.getIdFromUrl("place", url);
-  let folderId = globalService.getIdFromUrl("folder", url);
-
-  let pathDbDataPlace = path.join(constants.dataDir, userId, url.substring(0, nth_occurrence(url, '/', 2)), 'data.json');
-  let pathDbDataFolder = path.join(constants.dataDir, userId, url.substring(0, nth_occurrence(url, '/', 4)), 'data.json');
-  let urlListeFile = "/place/" + placeId + "/folder/" + folderId + "/file/" + fileId;
-  let pathDbDataFile = path.join(constants.dataDir, userId, 'place', placeId, 'folder', folderId, 'file', fileId, 'data.json');
-
-  let dataPlace = jsonfile.readFileSync(pathDbDataPlace);
-  let dataFolder = jsonfile.readFileSync(pathDbDataFolder);
-  let dataFile = jsonfile.readFileSync(pathDbDataFile);
-  if (global.onLine) {
-    let urlToUploadFile = "/place/" + placeId + "/folder/" + folderId + "/file/" + fileId;
-    httpPutJson(url, jsonToPut, (err, toReturn) => {
-      if (err) {
-        log.error("error to unlock:", err.message)
-        return callBack(err)
-      }
-      let email;
-      let password;
-      if (global.userConnected.local) {
-
-        email = global.userConnected.local.email;
-        password = global.userConnected.local.password;
-      }
-      getDataFromServer(null, null, email, password, urlListeFile, (err, dataReceived) => {
-        if (err) {
-          log.error("error to receive data after Unlock: ", err.message);
-          return callBack(err)
-        }
-
-        saveInLocalDb(dataReceived.data, dataFile, pathDbDataFile, (err, data) => {
-          if (err) {
-            log.error('error to save liste of file in local Db');
-            return callBack(err)
-          }
-          let dbPlace = new taffy(dataPlace);
-          let dbFolder = new taffy(dataFolder);
-          //let dbFile = new taffy([data]);
-          let place = dbPlace({_id: placeId});
-          let folder = dbFolder({_id: folderId});
-          let file = data;
-
-          let placeName = place.select("name")[0];
-          let folderName = folder.select("name")[0];
-          let fileName = file.versions[file.versions.length - 1].name;
-          let contentType = file.versions[file.versions.length - 1].fileType;
-
-
-          getPathFileInHomeDir(file, dataFolder, (pathToHomDir, pathToFileInDir) => {
-            let pathToFile = path.join(global.homeDir, 'share.place', userId, placeName, pathToFileInDir);
-            isSameFile(file, pathToFile, (err, sameFile) => {
-              if (err)
-                log.error("error to test isSameFile:", err.message)
-
-              if (!sameFile) {
-
-                httpUploadNewVersion(urlToUploadFile, pathToFile, fileName, contentType, (err, dataReceivedAfterUpload) => {
-                  if (err) {
-                    log.error("error to upload the new version:", err.message)
-                    showDialogBox("error", "share.place", "sorry, an error occured while uploading the file :'" + fileName + "' please retry later")
-                  }
-                  log.info("new version uploaded")
-                });
-              }
-            });
-            return callBack(null, pathToFile, toReturn);
-          });
-
-
-        });
-      })
-    });
-  }
-}
 
 
 let httpPostJson = function (url, jsonData, callBack) {
@@ -1615,8 +1850,39 @@ let readFile = function (res, iconPath, url, userId) {
   });
 };
 
+//FIXME merge with get path file in home dir
+let getPathLockedFileInHomeDir = function (fileData, ListeOfFolder, callBack) {
+
+  let fileName = globalService.findFileVersion(fileData).name;
+  let folderId = fileData.folderId;
+  let dbListeOfFolder = taffy(ListeOfFolder);
+  let parentId = dbListeOfFolder({_id: folderId}).select("parentId")[0];
+  let pathToHomDir = '';
+
+  while (parentId != null) {
+    let folderName = dbListeOfFolder({_id: folderId}).select("name")[0];
+    pathToHomDir = path.join(folderName, pathToHomDir);
+    folderId = parentId;
+    parentId = dbListeOfFolder({_id: folderId}).select("parentId")[0];
+  }
+
+  if (parentId == null) {
+    let folderName = dbListeOfFolder({_id: folderId}).select("name")[0];
+    pathToHomDir = path.join(folderName, pathToHomDir);
+  }
+  let nameFileWithoutExt = (fileData.dataType == "quickNote") ? fileData.name : String(fileData.name).substr(0, String(fileData.name).indexOf('.'))
+
+  pathToHomDir = path.join(pathToHomDir,nameFileWithoutExt, nameFileWithoutExt + '_locked')
+  let pathToFileInDir = path.join(pathToHomDir, fileName);
+
+  return callBack(pathToHomDir, pathToFileInDir);
+}
+
+
 let getPathFileInHomeDir = function (fileData, ListeOfFolder, callBack) {
-  let fileName = fileData.versions[fileData.versions.length - 1].name;
+
+  let fileName = globalService.findFileVersion(fileData).name;
+
 
   let folderId = fileData.folderId;
 
@@ -1638,6 +1904,19 @@ let getPathFileInHomeDir = function (fileData, ListeOfFolder, callBack) {
     let folderName = dbListeOfFolder({_id: folderId}).select("name")[0];
     pathToHomDir = path.join(folderName, pathToHomDir);
   }
+  //
+  // if (fileData.versionLocked) {
+  //   fileName = fileData.versions[fileData.versionLocked - 1].name
+  //   let nameFileWithoutExt = String(fileData.name).substr(0, String(fileData.name).indexOf('.'))
+  //
+  //   if (fileData.dataType == "quickNote") {
+  //     nameFileWithoutExt = fileData.name
+  //     fileName = fileData.versions[fileData.versionLocked].name
+  //
+  //   }
+  //
+  //   pathToHomDir = path.join(pathToHomDir, nameFileWithoutExt + "_V_" + fileData.versionLocked)
+  // }
   let pathToFileInDir = path.join(pathToHomDir, fileName);
 
   return callBack(pathToHomDir, pathToFileInDir);
@@ -1679,6 +1958,36 @@ var showDialogBox = function (type, title, message) {
   }, () => {
     return global.mainWindow.webContents.stop();
   })
+}
+
+var showConfirmBox = function (type, title, message, nameCallbackMap) {
+
+  const buttons = [];
+  let i = 0;
+  let indexCallBackMap = []
+  for (const name in nameCallbackMap) {
+    indexCallBackMap[i++] = nameCallbackMap[name]
+    buttons.push(name)
+  }
+
+  dialog.showMessageBox({
+    type: "question",
+    title: title,
+    message: message,
+    buttons: buttons,
+    noLink: true,
+    cancelId: 1000
+  }, (indexButton) => {
+    if (indexButton != 1000) {
+      const params = indexCallBackMap[indexButton].params
+
+      indexCallBackMap[indexButton].fn(params);
+
+    }
+
+    return global.mainWindow.webContents.stop();
+  })
+
 }
 var showProgressBar = function (progress) {
 

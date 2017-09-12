@@ -4,6 +4,7 @@ var dialog = require('electron').dialog;
 var pjson = require('./package.json');
 var jsonfile = require('jsonfile');
 var fs = require('fs-extra');
+const Menu = require('electron').Menu;
 
 var path = require('path');
 //var menubar = require('./tray/menubar')
@@ -12,6 +13,8 @@ const {autoUpdater} = require('electron-updater');
 const {session} = require('electron');
 const {crashReporter} = require('electron');
 const conf = require(path.join(__dirname, 'server', 'app_config.js'));
+var appIcon = null;
+var tray;
 
 /*
  crashReporter.start({
@@ -94,58 +97,6 @@ ipcMain.on('online-status-changed', (event, status) => {
     mainWindow.setOverlayIcon(path.join(__dirname, 'Offline-red.ico'), 'you are offLine');
   }
 });
-/*
- if (!process.env.DEV) {
- ipcMain.on('online-status-changed', (event, status) => {
-
- global.onLine = status;
- if (status) {
- //  mainWindow.setOverlayIcon(path.join(__dirname, 'Online.ico'), 'you are onLine');
-
- mainWindow.setOverlayIcon(path.join(__dirname, 'Online.ico'), 'you are onLine');
- isReachable(['https://app.share.place']).then(reachable => {
- log.info("'https://app.share.place' is reachable", reachable)
- if (!reachable) {
- global.onLine = reachable;
- mainWindow.setOverlayIcon(path.join(__dirname, 'Offline-red.ico'), 'you are offLine');
-
- }
- });
- } else {
- mainWindow.setOverlayIcon(path.join(__dirname, 'Offline-red.ico'), 'you are offLine');
- }
- })
- } else {
- //global.onLine = true;
- ipcMain.on('online-status-changed', (event, status) => {
-
- global.onLine = status;
- log.info("network exist:", status)
- if (status) {
- //  mainWindow.setOverlayIcon(path.join(__dirname, 'Online.ico'), 'you are onLine');
-
- mainWindow.setOverlayIcon(path.join(__dirname, 'Online.ico'), 'you are onLine');
- isReachable('localhost:3000').then(reachable => {
- log.info("'localhost:3000' is reachable:", reachable)
- if (!reachable) {
- global.onLine = reachable;
- mainWindow.setOverlayIcon(path.join(__dirname, 'Offline-red.ico'), 'you are offLine');
-
- }
- });
- } else {
-
- isReachable('localhost:3000').then(reachable => {
- log.info("'localhost:3000' is reachable:", reachable)
- if (!reachable) {
- global.onLine = reachable;
- mainWindow.setOverlayIcon(path.join(__dirname, 'Offline-red.ico'), 'you are offLine');
-
- }
- });
- }
- })
- }*/
 
 ipcMain.on('minimizeCurrentWindow', (event, status) => {
   // console.trace();
@@ -163,6 +114,12 @@ ipcMain.on('maximizeCurrentWindow', (event, status) => {
   }
 });
 
+
+ipcMain.on('writeLog', (event, data) => {
+  // console.trace();
+  log.error("error received from client side: ", data)
+
+});
 ipcMain.on('closeCurrentWindow', (event, status) => {
   // console.trace();
   let window = BrowserWindow.getFocusedWindow();
@@ -171,12 +128,6 @@ ipcMain.on('closeCurrentWindow', (event, status) => {
 });
 
 app.on('window-all-closed', () => {
-  /*mainWindow.webContents.session.clearStorageData([{
-
-   storages: ["clear"]
-   }, () => {
-
-   }])*/
   app.quit();
 });
 
@@ -270,6 +221,7 @@ app.on('ready', function () {
     /*const {net} = require('electron');
      global.net = net; */
     global.homeDir = app.getPath('home');
+    global.downloadsDir = app.getPath('downloads');
 
     var expressApp = require('./server/app');
     var listener = expressApp.listen(0, 'localhost', () => {
@@ -287,7 +239,7 @@ app.on('ready', function () {
       process.on('uncaughtException', (err) => {
 
         log.error("process error : ", err, err.trace);
-       // app.quit();
+        // app.quit();
       });
       /*
        var screenElectron = require('electron').screen;
@@ -310,43 +262,264 @@ app.on('ready', function () {
 
       //mainWindow.maximize();
 
-      if(global.isProxy){
-        mainWindow.webContents.session.setProxy({proxyRules: global.proxyUrl, proxyBypassRules: '<local>'}, function () {
+      if (global.isProxy) {
+        mainWindow.webContents.session.setProxy({
+          proxyRules: global.proxyUrl,
+          proxyBypassRules: '<local>'
+        }, function () {
+
           mainWindow.loadURL('http://127.0.0.1:' + global.serverPort + '/web/');
+
         });
-      }else{
+      } else {
+
+
         mainWindow.loadURL('http://127.0.0.1:' + global.serverPort + '/web/');
+
       }
 
       // mainWindow.loadURL('http://127.0.0.1:' + global.serverPort + '/web/');
       global.homeUrlServer = 'http://127.0.0.1:' + global.serverPort + '/web';
       mainWindow.once('ready-to-show', (event) => {
-        mainWindow.show();
-        event.sender.send('showFrame');
+        mainWindow.webContents.session.clearStorageData({
+              storages: ["appcache", "cookies", "filesystem", "indexdb", "localstorage", "shadercache", "websql", "serviceworkers"]
+            }, () => {
+              mainWindow.show();
+              event.sender.send('showFrame');
+
+            })
 
       });
 
       mainWindow.on('closed', function () {
-        /*mainWindow.webContents.session.clearStorageData([{
-
-         storages: ["clear"]
-         }, () => {
-
-         }])*/
         app.quit();
       });
-      /*
-       mainWindow.webContents.on('will-navigate', function(event) {
-       event.preventDefault();
-       });*/
 
       global.mainWindow = mainWindow;
+      init()
     });
   })
 
-
+  //
+  //
+  // appIcon = new Tray(path.join(__dirname, 'logo255-255.png'));
+  //
+  // const template = [
+  //   {
+  //     label: 'Send logs',
+  //     type: 'normal',
+  //     click: function () {
+  //
+  //     }
+  //   }, {
+  //     type: 'separator'
+  //   },
+  //   {
+  //     role: 'window',
+  //     submenu: [
+  //       {
+  //         role: 'minimize',
+  //         click: function (item, focusedWindow) {
+  //           if (focusedWindow) {
+  //             // on reload, start fresh and close any old
+  //             // open secondary windows
+  //             if (focusedWindow.id === 1) {
+  //               focusedWindow.minimise()
+  //             }
+  //           }
+  //         }
+  //       },
+  //       {role: 'close'}
+  //     ]
+  //   }
+  // ]
+  //
+  //
+  // const menu = Menu.buildFromTemplate(template)
+  // Menu.setApplicationMenu(menu)
+  // appIcon.setToolTip('Share.Place');
+  // appIcon.setContextMenu(menu);
 });
 
+function init() {
+  if (process.platform === 'linux') {
+    initLinux()
+  }
+  if (process.platform === 'win32') {
+    initWin32()
+  }
+  // OS X apps generally do not have menu bar icons
+}
+
+function initLinux() {
+  checkLinuxTraySupport(function (supportsTray) {
+    if (supportsTray) createTray()
+  })
+}
+
+function initWin32() {
+  createTray()
+}
+
+function checkLinuxTraySupport(cb) {
+  var cp = require('child_process')
+
+  // Check that we're on Ubuntu (or another debian system) and that we have
+  // libappindicator1. If WebTorrent was installed from the deb file, we should
+  // always have it. If it was installed from the zip file, we might not.
+  cp.exec('dpkg --get-selections libappindicator1', function (err, stdout) {
+    if (err) return cb(false)
+    // Unfortunately there's no cleaner way, as far as I can tell, to check
+    // whether a debian package is installed:
+    cb(stdout.endsWith('\tinstall\n'))
+  })
+}
+
+function createTray() {
+
+  tray = require('electron').Tray
+  appIcon = new tray(getIconPath())
+  // On Windows, left click opens the app, right click opens the context menu.
+  // On Linux, any click (left or right) opens the context menu.
+  appIcon.on('click', () => mainWindow.show())
+  appIcon.setToolTip('Share.Place');
+  // Show the tray context menu, and keep the available commands up to date
+  updateTrayMenu()
+}
+
+function getIconPath() {
+  return path.join(__dirname, 'logo255-255.png')
+}
+
+function updateTrayMenu() {
+  var contextMenu = require('electron').Menu.buildFromTemplate(getMenuTemplate())
+  appIcon.setContextMenu(contextMenu)
+}
+
+
+function getMenuTemplate() {
+  return [
+    {type: 'separator'},
+    {
+      label: 'Send logs',
+      click: () => sendLogs()
+    },
+    // {type: 'separator'},
+    // getToggleItem(),
+    {type: 'separator'},
+    {
+      label: 'Quit',
+      click: () => app.quit()
+    },
+    {type: 'separator'}
+  ]
+
+  function getToggleItem() {
+    if (!mainWindow || !mainWindow.isVisible()) {
+      return {
+        label: 'Hide Share.Place',
+        click: () => mainWindow.hide()
+      }
+    } else {
+      return {
+        label: 'Show Share.Place',
+        click: () => mainWindow.show()
+      }
+    }
+  }
+}
+
+function sendLogs() {
+  //
+  // const net = require(path.join(__dirname, 'server', 'local_module', 'request'))
+  // const FormData = require('form-data')
+  // const pathLogs = path.join(app.getPath("userData"), "log.log");
+  // const form = new FormData()
+  //
+  // form.append('toUpload', fs.createReadStream(pathLogs));
+  //
+  // let headers = {
+  //   'Cookie': global.cookieReceived
+  // }
+  // let reqOptions = {
+  //   method: "POST",
+  //   headers: headers,
+  //   body: form
+  // }
+  // net.requestUrl('http://127.0.0.1:3000/sp/rr', reqOptions, (err, toReturn) => {
+  //   if (err){
+  //     log.error("error to send logs", err)
+  //     return mainWindow.webContents.executeJavaScript('alert("error to send log file please try again")')
+  //   }
+  //
+  //   return mainWindow.webContents.executeJavaScript('alert("log file send")');
+  // })
+  let nodemailer = require('nodemailer')
+  let transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'no-reply@share.place',
+      pass: 'shareplace12'
+    },
+    tls: {
+      rejectUnauthorized: false
+    }
+  })
+
+
+  let mailUserConnected = null
+
+  function getMailUser(user) {
+    let mail ;
+    if (user.local)
+      mail = user.local.email
+    else if (user.facebook)
+      mail = user.facebook.email
+    else if (user.google)
+      mail = user.google.email
+
+    return mail
+  }
+
+  if(global.user){
+    mailUserConnected = getMailUser(global.user);
+  }else{
+    mailUserConnected = []
+    var constants = require('./server/app_config');
+    let users = jsonfile.readFileSync(constants.usersFileData)
+
+    for(var i=0; i<users.length; i++){
+      mailUserConnected.push(getMailUser(users[i]))
+    }
+  }
+
+  let mailOptions = {
+    to: "support@share.place",
+    from: 'Share-place Team <noreply.share.place@gmail.com>',
+    subject: 'logs send from : ' + mailUserConnected,
+    html: '  Hello,<br><br>' +
+    'Log file send<br><br>' +
+    'Cheers,<br><br>' +
+    'Share.Place Team.<br>',
+    attachments: [
+      {
+        filename: "log.log",
+        path: path.join(app.getPath("userData"), "log.log"),
+      }
+    ]
+  }
+  transporter.sendMail(mailOptions, function (err) {
+    if (err) {
+      log.error("error to send logs", err)
+      return mainWindow.webContents.executeJavaScript('alert("error to send log file please try again")')
+    }
+
+    return mainWindow.webContents.executeJavaScript('alert("log file send")');
+
+  })
+
+
+}
 
 function getPort(cb) {
   var port = portrange;

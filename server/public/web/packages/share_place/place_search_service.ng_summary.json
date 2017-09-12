@@ -21,6 +21,10 @@
       {
         "1": "place.dart",
         "5": false
+      },
+      {
+        "1": "package:share_place/common/central.dart",
+        "5": false
       }
     ],
     "5": [

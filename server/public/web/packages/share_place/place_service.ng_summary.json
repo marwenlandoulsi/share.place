@@ -75,6 +75,14 @@
       {
         "1": "package:share_place/search/search_item.dart",
         "5": false
+      },
+      {
+        "1": "package:share_place/common/central.dart",
+        "5": false
+      },
+      {
+        "1": "package:share_place/app_constants.dart",
+        "5": false
       }
     ],
     "5": [

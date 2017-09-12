@@ -15,31 +15,39 @@ const net = require(path.join(__dirname, '..', 'local_module', 'request'))
 const jsonfile = require('jsonfile');
 module.exports = {
   sendJsonResponse: function (res, status, content, message) {
-    res.status(status);
-    var responseJson = {data: content};
-    if (message)
-      responseJson.msg = message;
+    if (res) {
+      res.status(status);
+      var responseJson = {data: content};
+      if (message)
+        responseJson.msg = message;
 
-    res.json(responseJson);
-  },
-  sendError: function (res, statusCode, errorMessage, errorDetail) {
-    log.error("error returned to user: \n - statusCode : " + statusCode + "\n - errorMessage :" + errorMessage)
-    var err = new Error();
-    if(!statusCode){
-
-      res.status(500);
-      let jsonRes = {error: "proxy server error", errorDetail: errorDetail}
-      return res.json(jsonRes);
+      res.json(responseJson);
     }
 
-    res.status(statusCode);
-    let jsonRes = {error: errorMessage, errorDetail: errorDetail}
-    return res.json(jsonRes);
+  },
+  sendError: function (res, statusCode, errorMessage, errorDetail) {
+    if (res) {
+      log.error("error returned to user: \n - statusCode : " + statusCode + "\n - errorMessage :" + errorMessage)
+      var err = new Error();
+      if (!statusCode) {
+
+        res.status(500);
+        let jsonRes = {error: "proxy server error", errorDetail: errorDetail}
+        return res.json(jsonRes);
+      }
+
+      res.status(statusCode);
+      let jsonRes = {error: errorMessage, errorDetail: errorDetail}
+      return res.json(jsonRes);
+
+    }
     // log.error(jsonRes);
   },
   handleError: function (res, err) {
-    res.status(err.status);
-    res.json({error: err.message});
+    if (res) {
+      res.status(err.status);
+      res.json({error: err.message});
+    }
   },
   KeyExist: function (key, obj) {
     return (key in obj);
@@ -165,12 +173,34 @@ module.exports = {
         fs.rmdirSync(path);
       }
     }
-  },readFile : (path, callBack) =>{
-    try{
+  }, readFile: (path, callBack) => {
+    try {
       return callBack(null, jsonfile.readFileSync(path));
-    }catch (error){
+    } catch (error) {
       return callBack(error)
     }
+  }, findFileVersion: (file, versionNumber) => {
+
+    //if no version specified return the last version
+    if (!versionNumber)
+      return file.versions[file.versions.length - 1]
+
+    for (let i = 0; i < file.versions.length; i++) {
+      if (file.versions[i].v == versionNumber) {
+        return file.versions[i]
+      }
+    }
+
+    return null
+  }, renameFolder: (oldPath, newPath) => {
+    try{
+      fs.renameSync(oldPath, newPath)
+      return true
+    }catch (e){
+      log.error("error to rename folder : ", e)
+      return false
+    }
+
   }
 }
 

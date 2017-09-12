@@ -71,7 +71,7 @@ module.exports = function (passport) {
           log.error("can't get cookie:", error);
 
         var cookie = cookies[0];
-        cookie.cookierFromServer = global.cookieReceived;
+        cookie.cookieFromServer = global.cookieReceived;
         jsonfile.writeFile(lastLoginUserFIle, cookie);
       })
     }
@@ -108,7 +108,7 @@ module.exports = function (passport) {
               if (!user) {
                 return done(null, false, req.flash('loginMessage', 'Oops! Wrong email or password.'))
               }
-
+              globalService.setSidInInput(global.cookieReceived);
               global.user = user
 
               var userLocal = localUsers({local: {email: email}});
@@ -203,11 +203,13 @@ module.exports = function (passport) {
               if (err)
                 return done(err);
 
+              globalService.setSidInInput(global.cookieReceived);
 
               users = jsonfile.readFileSync(userfile);
               localUsers = taffy(users);
               saveUserInLocalDb(users, userfile, localUsers, user);
               global.userConnected = user
+              global.user = user
               return done(null, user);
             });
           }
@@ -253,9 +255,9 @@ module.exports = function (passport) {
 
             var cookie = cookies[0];
             if (cookie)
-              cookie.cookierFromServer = global.cookieReceived;
+              cookie.cookieFromServer = global.cookieReceived;
             else
-              cookie = {"cookierFromServer": global.cookieReceived};
+              cookie = {"cookieFromServer": global.cookieReceived};
             global.enterToDes = true;
             jsonfile.writeFile(lastLoginUserFIle, cookie);
           })
@@ -306,52 +308,6 @@ var loginFromServer = function (req, email, password, cb) {
 
 // Configure the request
   var url = '/login/proxy';
-  /* if (global.isProxy) {
-   if (global.userProxy) {
-   var proxyUrl = "http://" + global.userProxy + ":" + global.pswProxy + "@" + global.proxyUrl;
-   var proxiedRequest = request.defaults({'proxy': proxyUrl});
-   request = proxiedRequest;
-   }
-   }*/
-  /*
-   var options = {
-   url: constants.urlLoginProxy + url,
-   method: constants.optionsPost.method,
-   headers: headers,
-   form: {'email': email, 'password': password},
-   agent: agent
-   };*/
-
-// Start the request
-  /*request(options, function (error, response, body) {
-
-   if (error) {
-   log.error("error to login", error.message);
-   return cb(error)
-   }
-
-   if (response.statusCode == 302) {
-   return cb(null, null, 'Oops! Wrong email or password.');
-   }
-
-   if (response.statusCode == 401) {
-   return cb(null, null, 'Oops! Wrong email or password.');
-   }
-   if (!error && response.statusCode == 200) {
-   // Print out the response body
-   var user = JSON.parse(body).data;
-   var cookie = '';
-   if (response.headers['set-cookie'].length > 1) {
-   return log.error("many cookie in set-cookie", response.headers['set-cookie'].length);
-
-   } else {
-   cookie += response.headers['set-cookie'][0];
-   }
-   global.cookieReceived = cookie;
-   return cb(null, user);
-   }
-   })*/
-
 
   const body = {'email': email, 'password': password}
   net.requestUrl(constants.urlLoginProxy + url, {

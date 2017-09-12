@@ -41,7 +41,7 @@ var upload = multer({
   dest: path.join(__dirname, '..', '..', 'tmp', 'upload/')
 })
 var proxy = require('../controllers/proxy');
-var lastLoginUserFIle = constants.lastLoginFileData;
+var lastLoginUserFile = constants.lastLoginFileData;
 const FormData = require('form-data')
 const net = require(path.join(__dirname, '..', '..', 'local_module', 'request'))
 
@@ -72,7 +72,7 @@ router.get('/logout', function (req, res) {
   var deleteUser = {};
   global.user = null
   global.cookieReceived = null
-  jsonfile.writeFileSync(lastLoginUserFIle, deleteUser);
+  jsonfile.writeFileSync(lastLoginUserFile, deleteUser);
   //globalService.sendError(res, 401, {error: "user logged out"});
   res.redirect(conf.onLoginRedirect)
 })
@@ -177,9 +177,15 @@ var authenticate = (req, res, next, strategy) => {
   }
   passport.authenticate(strategy, (err, user, info) => {
 
-    if (!user)
-      return globalService.sendError(res, 401, "wrong email or password");
+    if (err) {
+      if (err.errorFromServer)
+        return globalService.sendError(res, err.statusCode, err.errorFromServer.error, err.errorFromServer.errorDetail)
+      else
+        return globalService.sendError(res, err.code, err.message)
+    }
 
+    if (!user)
+      return globalService.sendError(res, 402, "wrong email or password");
 
     req.login(user, {}, function (err) {
       if (err) {
@@ -494,7 +500,7 @@ router.get('/gridfs/file/:fileId/picture.x', (req, res) => {
     },
     // agent: agent
   };
-  if(global.onLine){
+  if (global.onLine) {
     globalService.checkPathOrCreateSync(pathToUserPictureDir, pathToUserPicture)
 
     var file = fs.createWriteStream(pathToUserPicture);
@@ -675,6 +681,7 @@ var streamFromBuffer = function (buffer, writestream) {
   bufferToStream.push(null) // Push null to end stream
   bufferToStream.pipe(writestream)
 }
+
 function downloadFile(url, pathToUserPictureDir, pathToUserPicture, cb) {
 
 
@@ -950,7 +957,7 @@ var forgotPassword = function (req, res, cb) {
   }
 // Configure the request
   let options = {
-    url: constants.urlLoginProxy +url,
+    url: constants.urlLoginProxy + url,
     method: constants.optionsPost.method,
     headers: headers,
     json: req.body

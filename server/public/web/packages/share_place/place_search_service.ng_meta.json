@@ -21,6 +21,10 @@
       {
         "1": "place.dart",
         "5": false
+      },
+      {
+        "1": "package:share_place/common/central.dart",
+        "5": false
       }
     ],
     "5": [
@@ -49,6 +53,10 @@
       {
         "1": "place.template.dart",
         "4": "i1"
+      },
+      {
+        "1": "package:share_place/common/central.template.dart",
+        "4": "i2"
       }
     ]
   },

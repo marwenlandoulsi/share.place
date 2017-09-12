@@ -1,6 +1,7 @@
 {
-  "name": "Share.Place",
-  "version": "0.1.17",
+  "name": "Shareplace",
+  "productName": "Shareplace",
+  "version": "0.2.2",
   "description": "share place",
   "main": "main.js",
   "repository": {
@@ -9,8 +10,9 @@
   },
   "scripts": {
     "start": "electron .",
-    "build:win": "build --win --ia32 --x64 --publish always",
-    "build:winDev": "build --win --ia32 --x64",
+    "build:win": "electron-builder --win --ia32 --x64 --publish always",
+    "build:winDev": "electron-builder --win --ia32 --x64",
+    "build:mac": "electron-builder --mac",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
@@ -24,6 +26,7 @@
     "fs-extra": "^2.0.0",
     "http": "0.0.0",
     "nedb-session-store": "^1.1.1",
+    "nodemailer": "^4.1.0",
     "path": "^0.12.7"
   },
   "build": {
@@ -36,11 +39,11 @@
       }
     ],
     "asar": false,
-    "copyright": "©2017 Share.Place, Inc.",
     "appId": "com.share.place",
     "win": {
       "icon": "./shareElecIco.ico",
-      "target": "nsis"
+      "target": "nsis",
+      "publisherName":"Shareplace SAS"
     },
     "nsis": {
       "installerIcon": "./shareElecIco.ico",
@@ -49,16 +52,16 @@
       "runAfterFinish": true
     }
   },
+  "homepage": "https://www.share.place/",
   "keywords": [
     "Electron",
     "Windows",
     "autoupdate"
   ],
-  "author": "share.place",
-  "license": "ISC",
-  "copyright": "©2017 Share.Place, Inc.",
+  "author": "Shareplace SAS",
+  "copyright": "©2017 Shareplace SAS.",
   "devDependencies": {
     "electron": "1.4.15",
-    "electron-builder": "^15.6.2"
+    "electron-builder": "^19.27.7"
   }
 }

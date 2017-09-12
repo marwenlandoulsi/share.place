@@ -11,6 +11,10 @@
         "5": false
       },
       {
+        "1": "package:uuid/uuid.dart",
+        "5": false
+      },
+      {
         "1": "package:angular2/core.dart",
         "5": false
       },
@@ -67,6 +71,15 @@
         "1": "package:share_place/common/data/collections.dart",
         "4": "collection",
         "5": false
+      },
+      {
+        "1": "package:share_place/app_constants.dart",
+        "5": false
+      },
+      {
+        "1": "package:share_place/common/central.dart",
+        "4": "central",
+        "5": false
       }
     ],
     "5": [
@@ -81,7 +94,7 @@
         "5": [
           {
             "1": "EventBus",
-            "4": "eventBus"
+            "4": "_eventBus"
           }
         ]
       }

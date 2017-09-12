@@ -16,8 +16,8 @@ var sess = require('electron').session
 var jsonfile = require('jsonfile');
 
 
-var userfile = path.join(constants.usersFileData);
-var lastLoginUserFIle = constants.lastLoginFileData;
+var userFile = path.join(constants.usersFileData);
+var lastLoginUserFile = constants.lastLoginFileData;
 var bodyParser = require('body-parser');
 var fs = require('fs');//file system npm module
 var cron = require('../server/app_api/controllers/cron')
@@ -102,7 +102,7 @@ var cookieLastUserLogin = jsonfile.readFileSync(constants.lastLoginFileData);
 var sid;
 if (cookieLastUserLogin.name) {
   sid = String(cookieLastUserLogin.value).substr((String(cookieLastUserLogin.value).indexOf("A") + 1), String(cookieLastUserLogin.value).indexOf('.') - 4);
-  global.cookieReceived = cookieLastUserLogin.cookierFromServer;
+  global.cookieReceived = cookieLastUserLogin.cookieFromServer;
 
   ss = session({
     secret: 'ilovescotchscotchyscotchscotch', // session secret
@@ -114,8 +114,10 @@ if (cookieLastUserLogin.name) {
     maxAge: new Date(Date.now() + (60 * 60 * 24)),
     store: store
   })
-} else if (cookieLastUserLogin.cookierFromServer) {
-  global.cookieReceived = cookieLastUserLogin.cookierFromServer;
+
+
+} else if (cookieLastUserLogin.cookieFromServer) {
+  global.cookieReceived = cookieLastUserLogin.cookieFromServer;
 }
 app.use(ss);
 
@@ -132,16 +134,19 @@ var isAuthenticated = function (req, res, next) {
 app.use('/sp', isAuthenticatedRest, routesApi)//API routes
 
 function isAuthenticatedRest(req, res, next) {
-  cookieLastUserLogin = jsonfile.readFileSync(constants.lastLoginFileData);
   if (req.user) {
     if(!global.executeSync){
       global.executeSync = true;
+      global.user = req.user
       cron.sync();
     }
     return next();
   }
-  else if (!cookieLastUserLogin.name) {
-    if (!cookieLastUserLogin.cookierFromServer)
+
+  let cookieLastUserLogin = jsonfile.readFileSync(constants.lastLoginFileData);
+
+  if (!cookieLastUserLogin.name) {
+    if (!cookieLastUserLogin.cookieFromServer)
       return globalService.sendJsonResponse(res, 401, {error: 'not connected'});
     else {
       var proxy = require(path.join(__dirname, "app_api", "controllers", "proxy"));
@@ -193,8 +198,8 @@ function isAuthenticatedRest(req, res, next) {
         if (!userId) {
           return globalService.sendJsonResponse(res, 401, {error: 'not connected'});
         }
-        var userfile = path.join(constants.usersFileData);
-        var users = jsonfile.readFileSync(userfile);
+        var userFile = path.join(constants.usersFileData);
+        var users = jsonfile.readFileSync(userFile);
         var localUsers = taffy(users);
 
         var userLocal = localUsers({_id: userId});
@@ -204,6 +209,7 @@ function isAuthenticatedRest(req, res, next) {
 
             if(!global.executeSync){
               global.executeSync = true;
+              global.user = userLocal.get()[0]
               cron.sync();
             }
             return next();
@@ -217,7 +223,7 @@ function isAuthenticatedRest(req, res, next) {
       });
     });
   }
-
+  globalService.setSidInInput(cookieLastUserLogin.cookieFromServer)
 
 }
 app.use('/refreshUser', (req, res, next) => authenticate(req, res, next, 'refresh-user'));

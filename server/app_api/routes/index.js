@@ -222,10 +222,11 @@ var del = function (url, callback, options) {
     });
   }
 };
-
+get('/place/:placeId', ctrlProxy.get);
 get('/place', ctrlProxy.get);
 post('/place', ctrlProxy.post);
-post('/place/:placeId/folder', ctrlProxy.post);
+//post('/place/:placeId/folder', ctrlProxy.post);
+post('/place/:placeId/folder/:folderId', ctrlProxy.post);
 post('/place/:placeId/folder/:folderId/quickNote', ctrlProxy.post);
 post('/place/:placeId/folder/:folderId/file/:fileId/version/:fileVersion/comment', ctrlProxy.post);
 post('/place/:placeId/folder/:folderId/user', ctrlProxy.post);
@@ -241,10 +242,12 @@ get('/place/:placeId/folder/:folderId/quickNote/:quickNoteId', ctrlProxy.get);
 get('/file', ctrlProxy.get);
 get('/place/:placeId/folder/:folderId/file/:fileId/download', ctrlProxy.getFile);
 get('/place/:placeId/folder/:folderId/file/:fileId/version/:v/download', ctrlProxy.getFile);
+del('/place/:placeId/folder/:folderId/file/:fileId/version/:v', ctrlProxy.delete);
+
 
 get('/place/:placeId/folder/:folderId/user', ctrlProxy.get);
 get('/place/:placeId/folder/:folderId/file/:fileId', ctrlProxy.get);
-get('/place/placeNotify', ctrlProxy.get);
+get('/place/notify/placeNotify', ctrlProxy.get);
 del('/place/:placeId/folder/:folderId/file/:fileId', ctrlProxy.delete);
 get('/place/:placeId/folder/:folderId/file', ctrlProxy.get);
 get('/place/:placeId/folder/:folderId/file/:fileId/version/:fileVersion/thumb.x', ctrlProxy.getUtilFile);
@@ -288,6 +291,8 @@ put('/place/:placeId/folder/:folderId/fileInfo/:fileInfoId', ctrlProxy.put);
 get('/place/:placeId/notify', ctrlProxy.get);
 
 put('/place/:placeId/folder/:folderId/fileInfo/:fileInfoId/moveToFolder/:targetFolderId', ctrlProxy.put);
+
+get('/place/:placeId/folder/:folderId/fileInfo/:fileInfoId', ctrlProxy.get);
 
 post('/file/_search', ctrlProxy.searchFileFromElastic);
 

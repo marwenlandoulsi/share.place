@@ -50,6 +50,7 @@
 <input type="hidden" id="baseUrl" value="err"/>
 <input type="hidden" id="elasticUrl" value="err"/>
 <input type="hidden" id="loginUrl" value="err"/>
+<input type="hidden" id="resourcesUrl" value="err"/>
 <input type="hidden" id="port" value="err"/>
 <input type="hidden" id="env" value="desktop"/>
 <input type="hidden" id="cc" value=""/>
@@ -57,6 +58,7 @@
 <script type="application/javascript">
   document.getElementById('baseUrl').value = window.location.origin;
 	document.getElementById('elasticUrl').value = window.location.origin;
+  document.getElementById('resourcesUrl').value = window.location.origin+'/web';
   //document.getElementById('loginUrl').value = "http://localhost:5000";
   document.getElementById('loginUrl').value = "https://app.share.place";
   document.getElementById('port').value = window.location.port;
@@ -78,7 +80,15 @@
 
   window.addEventListener('spB', function (e) {
     console.log(e.detail);
-  });</script>
+  });
+  function copyToClipboard(element) {
+    var $temp = $("<input>");
+    $("body").append($temp);
+    $temp.val($(element).text().toString().trim()).select();
+    document.execCommand("copy");
+    $temp.remove();
+  }
+</script>
 
 
 <link rel="stylesheet" href="packages/croppie_dart/src/js/croppie.css"/>

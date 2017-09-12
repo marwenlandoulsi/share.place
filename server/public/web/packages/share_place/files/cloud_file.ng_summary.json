@@ -5,6 +5,14 @@
       {
         "1": "package:share_place/files/file_action.dart",
         "5": false
+      },
+      {
+        "1": "package:logging/logging.dart",
+        "5": false
+      },
+      {
+        "1": "package:share_place/common/central.dart",
+        "5": false
       }
     ],
     "6": "cloud_file.dart"

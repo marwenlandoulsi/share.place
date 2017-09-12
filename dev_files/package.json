@@ -1,6 +1,6 @@
 {
-  "name": "Share.Place.dev",
-  "version": "0.1.17",
+  "name": "Shareplace",
+  "version": "0.2.0",
   "description": "share place dev",
   "main": "main.js",
   "repository": {
@@ -22,6 +22,7 @@
     "electron-proxy-agent": "^1.0.2",
     "electron-updater": "^1.10.3",
     "fs-extra": "^2.0.0",
+    "nodemailer": "^4.1.0",
     "http": "0.0.0",
     "nedb-session-store": "^1.1.1",
     "path": "^0.12.7"
@@ -59,6 +60,6 @@
   "copyright": "©2017 Share.Place, Inc.",
   "devDependencies": {
     "electron": "1.4.15",
-    "electron-builder": "^15.6.2"
+    "electron-builder": "^19.27.7"
   }
 }

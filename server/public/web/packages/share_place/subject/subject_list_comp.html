@@ -1,12 +1,12 @@
-<div *ngIf="selectedFolder != null" class="subjects">
-  <div #dropZone class="dropZone {{computeSizes(subjectList) ? 'hideDropZone' : 'dropZoneVisible' }}">
+<div *ngIf="selectedFolder != null" class="subjects {{dropFileFormVisible ? 'dropZoneVisible' : 'hideDropZone'}}">
+  <div #dropZone class="dropZone">
     <div class="headerSubject">
-
       <span class="nameTroq titleSubject" title="{{selectedFolder.name}}">{{selectedFolder.name}}</span>
 
       <postit-comp [name]="'invitePeople'" [header]="'Great!'"
                    [body]="'Now invite some poople to join you clicking on the + icon'"
                    class="subjectsPostit"></postit-comp>
+
       <modal [visible]="adding">
         <material-dialog defaultPopupSizeProvider
                          enforceSpaceConstraints
@@ -29,7 +29,7 @@
             <info-popup *ngIf="infoPopupUser?.id == userItem.id" [(visible)]="infoPopupOpen"
                         [source]="userInfoPopup"
                         [offsetX]="7" [offsetY]="0"
-                        [userId]="userItem.id" [parent]="self" [arrowCss]="'arrowTop'"></info-popup>
+                        [userId]="userItem.id" [parent]="self" [allowUserRemoval]="true" [arrowCss]="'arrowTop'"></info-popup>
           </li>
         </ul>
         <div (click)="add()" class="addBtn addPeople"></div>
@@ -46,12 +46,12 @@
     </div>
 
     <div class="zoneDragingIn">
-      <div (dragenter)="dragEnter(dropZone)" class="subjectListScollZone">
+      <div class="subjectListScollZone" (dragenter)="dragEnter(dropZone)">
         <div class="scrollbar-macosx">
           <div class="spinnerInner">
             <material-spinner class="spinner" *ngIf="subjects == null "></material-spinner>
           </div>
-          <ul #subjectList class="subjectList">
+          <ul id="subjectList" #subjectList class="subjectList">
             <li *ngFor="let subject of subjects; let subjectIndex = index" (click)="gotoSubject(subject)"
                 class="subjectItem"
                 [class.qNote]="subject.dataType == 'quickNote'"
@@ -66,6 +66,7 @@
                   <div *ngIf="subject.status == 'waiting'" class="spinnerInner">
                     <material-spinner class="spinner"></material-spinner>
                   </div>
+                  <div *ngIf="subject.status == 'crashed'" class="crashedInner"></div>
                   <img *ngIf="subject.status != 'waiting'"
                        src="{{thumbSrc(subject,selectedFolder)}}">
                 </div>
@@ -81,6 +82,7 @@
 
                   <div class="users">
                     <ul>
+                      <!-- lastThreeUsers(subject) -->
                       <li *ngFor="let activeUser of subject.users" class="user">
                         <div class="profileImg" [class.validator]="activeUser.role == 'admin'"
                              (click)="showSubjectUserInfoPopup( activeUser.userId, subjectIndex, $event )"
@@ -115,9 +117,8 @@
        (click)="doRename(folderRenamer.value)"></btn>-->
 
                 <div *ngIf="isRenaming(subject)" class="editSubject">
-                  <input type="text" #folderRenamer
-                         value="{{subject.name}}" (keyup.enter)="doRename(folderRenamer.value)"
-                         autofocus/>
+                  <input type="text" #folderRenamer  autoFocus="true"
+                         value="{{subject.name}}" (keyup.enter)="doRename(folderRenamer.value)" />
                   <btn [sources]="['/images/okBlue.png', '/images/okBlue.png', '/images/okBlue.png']"
                        (click)="doRename(folderRenamer.value)"></btn>
                 </div>
@@ -128,17 +129,18 @@
         </div>
       </div>
 
-      <!-- new onclick="event.preventDefault();"  supprimer du form  /  add this to form #dropZone -->
+
+
       <form id="fileForm" class="uploadDropZone" (dragenter)="dragEnter(dropZone)"
             (dragleave)="dragLeave(dropZone)"
             (drop)="fileDropped(dropZone)">
 
         <label #fileUploadLabel id="labelfileupload" for="fileupload"> Drag'n drop or browse file </label>
         <input #fileInput type="file" id="fileupload"
-               (change)="uploadFiles($event.target.files[0].name, $event.target.files[0].size)"
+               (change)="uploadFiles($event.target.files)"
                class="uploadFile" name="toUpload"
                style="opacity: 0;"
-               (click)="openFileDialogConditionally($event, fileUploadLabel)"/>
+               (click)="openFileDialogConditionally($event, fileUploadLabel)" multiple />
         <postit-comp [name]="'files'" [header]="'Cool !'"
                      [body]="'Now you can Drag\'n drop a file here and start collaborate with your team '"
                      class="filesPostit"></postit-comp>

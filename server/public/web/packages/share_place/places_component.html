@@ -12,14 +12,19 @@
         <material-spinner class="spinner" *ngIf="places == null"></material-spinner>
       </div>
       <li [style.display]="adding ? 'block' : 'none'" class="addplace">
-        <txt #newPlace [confirm]="save" class="saveAdd"
+        <txt #newPlace [confirm]="save"
              [sources]="['/images/ok_white.png', '/images/ok_white.png', '/images/ok_white.png']"></txt>
       </li>
 
       <material-expansionpanel-set>
-        <material-expansionpanel flat *ngFor="let place of places" name="{{place.name}}" class="placePanel"
+        <material-expansionpanel flat *ngFor="let place of places" name="{{place.name}}" title="{{place.name}}"
+                                 class="placePanel"
                                  showSaveCancel="false" (open)="selectedPlace = place"
-                                 [expanded]="selectedPlace?.id == place.id" [secondaryText]="notificationCountText(place)">
+
+                                 [expanded]="selectedPlace?.id == place.id"
+                                 [secondaryText]="notificationCountText(place)"
+
+                                 materialTooltip="{{place.name}}">
 
           <div *ngIf="place?.id == selectedPlace?.id">
             <folders></folders>

@@ -1,8 +1,13 @@
+form#fileForm {
+clear: both;
+position: relative;
+}
+
 .headerFiles {
   /*border-bottom: 1px solid #BEBEBE;*/
   margin-bottom: 0;
-  padding: 0.5em 0.5em 0;
-  width: calc(100% - 1em);
+  padding: 0.9em 1em 0;
+  width: calc(100% - 2em);
 }
 
 .files {
@@ -132,7 +137,7 @@ ul {
 }
 
 .liVersion {
-  border-bottom: 1px solid rgba(221, 226, 229, 0.17);
+  /*border-bottom: 1px solid rgba(221, 226, 229, 0.17);*/
 }
 
 .liVersion.closeIt {
@@ -172,6 +177,7 @@ ul {
   height: 4em;
   bottom: 0;
   z-index: 100;
+  width: -moz-available;
 }
 
 .addTopicBtn, .appareilPhoto, .micro {
@@ -369,20 +375,20 @@ a {
   margin-bottom: 2em;
 }
 
-.uploadStatus {
-  position: absolute;
-  left: -19px;
-  top: -5px;
-  z-index: 9;
-  opacity: 0.7;
-  font-family: 'Material-Design-Iconic-Font';
-}
+/*.uploadStatus {*/
+  /*position: absolute;*/
+  /*left: -19px;*/
+  /*top: -5px;*/
+  /*z-index: 9;*/
+  /*opacity: 0.7;*/
+  /*font-family: 'Material-Design-Iconic-Font';*/
+/*}*/
 
-.uploadStatus:after {
-  font-size: 2.1em;
-  color: #252C3F;
-  content: '\f21e';
-}
+/*.uploadStatus:after {*/
+  /*font-size: 2.1em;*/
+  /*color: #252C3F;*/
+  /*content: '\f21e';*/
+/*}*/
 
 .bubbleInner {
   display: inline-block;
@@ -395,9 +401,9 @@ a {
 .bubble {
   position: relative;
   display: inline-block;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
+  -webkit-border-radius: 0 3px 3px 3px;
+  -moz-border-radius: 0 3px 3px 3px;
+  border-radius: 0 3px 3px 3px;
   padding: 0.4em 0.5em;
   background: #F1F1F1;
   color: #000;
@@ -446,6 +452,7 @@ a {
 .moreActions.active {
   opacity: 1;
 }
+
 
 /*.bubbleContent:after, .bubbleContent:before {*/
 /*right: 100%;*/
@@ -765,6 +772,9 @@ li.more {
 
 .ownAction .bubble {
   background: #D8E8FF;
+  -webkit-border-radius: 3px 0 3px 3px;
+  -moz-border-radius: 3px 0 3px 3px;
+  border-radius: 3px 0 3px 3px;
 }
 
 .ownAction .etatBlock .bubble {
@@ -926,7 +936,7 @@ li.more {
   cursor: pointer;
   padding: 0;
   font-family: 'Material-Design-Iconic-Font';
-  margin-top: 13px;
+  margin-top: 11px;
   margin-right: 2px;
 }
 
@@ -1012,9 +1022,8 @@ li.more {
 
 .dragging .fileDropZone {
   z-index: 9999999;
-  opacity: 0.5 !important;
-  /*border: 2px dashed lightblue;*/
-  background-color: #00ADEF;
+  opacity: 0.7 !important;
+  background-color: #D8E8FF;
 }
 
 /*.addTopicBtn .fileDropZone {*/
@@ -1081,6 +1090,17 @@ ul.listDirection {
   width: 100%;
 }
 
+/************************/
+
+.quickNoteStyle .versionTitleNumber   {
+  display: none;
+}
+
+.crashedInner::after {
+  font-size: 1.6em;
+  right: -10px;
+  top: 4px;
+}
 /*__________________*/
 @media only screen and (max-width: 1200px) {
 

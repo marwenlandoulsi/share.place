@@ -62,6 +62,13 @@
       "moduleUrl": "asset:share_place/lib/app_config.dart",
       "prefix": null,
       "value": null
+    },
+    "resourcesUrl": {
+      "class": "Identifier",
+      "name": "resourcesUrl",
+      "moduleUrl": "asset:share_place/lib/app_config.dart",
+      "prefix": null,
+      "value": null
     }
   },
   "alias": {}

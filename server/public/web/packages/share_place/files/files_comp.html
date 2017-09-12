@@ -1,14 +1,16 @@
 <div class="files">
+  <iframe id="dnlFrame" #dnlFrame style="display: none" onload="checkDownloadStatus();"></iframe>
   <div *ngIf="selectedFile != null" class="content" id="content-files">
     <div class="headerFiles">
       <div class="title" title="{{selectedFile.name}}"> {{selectedFile.name}}</div>
       <!--<div class="icons"></div>-->
     </div>
 
-    <div #dropZone class="versionsListScroll " (dragenter)="dragEnter(dropZone)">
+    <div #dropZone class="versionsListScroll" (dragenter)="dragEnter(dropZone)">
 
       <form id="uploadVersion">
-        <input #fileInput type="file" name="toUpload" (change)="uploadVersion($event.target.files[0].name)"
+        <input #fileInput type="file" id="hideInput" name="toUpload"
+               (change)="uploadVersion($event.target.files[0].name)"
                class="fileDropZone"
                (drop)="fileDropped(dropZone)" (dragleave)="dragLeave(dropZone)" style="opacity: 0;"/>
         <!--onclick="event.preventDefault();"-->
@@ -26,11 +28,12 @@
                   <ul class="listDirection">
                     <li *ngFor="let versionItem of selectedFile.orderedVersions; let versionIndex = index"
                         class="liVersion"
-                        [class.closeIt]="!isCommentsOpen(selectedFile.id, versionItem.v)">
+                        [class.closeIt]="!isCommentsOpen(selectedFile.id, versionItem.v)" >
                       <!--*ngIf="actionBlock has class draft"-->
                       <div *ngIf="versionItem.state == 'V'">
                         <div class="versionHeader">
-                          <div class="versionTitle"
+                          <div [class.quickNoteStyle]="versionItem?.mimeType == 'application/quickNote'"
+                               class="versionTitle"
                                (click)="switchCommentOpen(selectedFile.id, versionItem.v)">
                             <div class="versionTitleNumber">Version {{versionItem?.v}}</div>
                           </div>
@@ -64,7 +67,8 @@
                             <ul class="actionList">
                               <!--connectedUser l1-->
                               <li class="actionLiElem"
-                                  [class.ownAction]="connectedUser.id == versionItem.userId">
+                                  [class.ownAction]="connectedUser.id == versionItem.userId"
+                                  id="{{constructDivId(versionItem.v, null)}}">
                                 <div class="actionBlock {{versionItem.approved == null ? 'draft' : 'approved'}}">
                                   <div class="actionPropsBlock"
                                        (click)="showUserInfoPopup( versionItem, -1 )"
@@ -95,10 +99,12 @@
                                                 <material-spinner
                                                     class="spinner"></material-spinner>
                                               </div>
+
                                               <img *ngIf="versionItem.status != 'waiting'"
                                                    src="{{thumbSrc(versionItem,selectedFolder,selectedFile )}}"
                                                    class="thumbnail">
 
+                                              <div *ngIf="versionItem.status == 'crashed'" class="crashedInner"></div>
                                               <div
                                                   *ngIf="versionItem.status!='uploaded' && versionItem?.mimeType != 'application/quickNote'"
                                                   class="uploadStatus">
@@ -119,8 +125,8 @@
                                                 <div class="linerow"
                                                      *ngIf="versionItem?.mimeType != 'application/quickNote'">
                                                   <span class="filetypedoc">{{formatDesc( versionItem )}}</span>
-                                                  <span class="fileSize">
-                                            {{selectedFile.orderedVersions[0].size | fileSizeFormat}}
+                                                  <span class="fileSize" *ngIf="versionItem?.status != 'waiting'">
+                                            {{versionItem.size | fileSizeFormat}}
                                           </span>
                                                 </div>
                                               </div>
@@ -131,7 +137,8 @@
                                         <div class="fileMoreActions">
                                       <span class="fileversion"
                                             *ngIf="versionItem?.mimeType != 'application/quickNote'">v. {{versionItem.v}}</span>
-                                          <span class="moreActions" popupSource
+                                          <span class="moreActions"
+                                                popupSource
                                                 #fileMenu="popupSource"
                                                 alignPositionY="after"
                                                 alignPositionX="end"
@@ -161,31 +168,32 @@
                                               <material-button
                                                   (click)="approve(versionItem)"
                                                   *ngIf="shouldShowApproveMenu(versionItem)"
-                                                  class="menuItemVers">
-                                            <span class="spanVers"> <i
-                                                class="zmdi zmdi-check-circle approve"></i> </span>
+                                                  class="menuItemVersion">
+                                               <span class="spanVersion"> <i
+                                                   class="zmdi zmdi-check-circle approve"></i> </span>
                                                 Approve
                                               </material-button>
                                               <material-button
                                                   (click)="unapprove(versionItem)"
                                                   *ngIf="shouldShowUnApproveMenu(versionItem)"
-                                                  class="menuItemVers">
-                                          <span class="spanVers"><i
-                                              class="zmdi zmdi-check-circle nnApprove"></i> </span>
+                                                  class="menuItemVersion">
+                                                <span class="spanVersion"><i
+                                                    class="zmdi zmdi-check-circle nnApprove"></i> </span>
                                                 Unapprove
                                               </material-button>
                                             </div>
                                             <material-button
-                                                class="menuItemVers"
+                                                class="menuItemVersion"
                                                 *ngIf="false">
-                                              <span class="spanVers"><i
+                                              <span class="spanVersion"><i
                                                   class="zmdi zmdi-comment commentVers"></i> </span>Comment
 
                                             </material-button>
                                             <material-button
                                                 (click)="delete(versionItem)"
-                                                class="menuItemVers" *ngIf="shouldShowDelete(versionItem)">
-                                                                                             <span class="spanVers"><i
+                                                class="menuItemVersion" *ngIf="shouldShowDelete(versionItem)">
+                                                                                             <span
+                                                                                                 class="spanVersion"><i
                                                                                                  class="zmdi zmdi-delete delete"></i> </span>
                                               Delete
                                             </material-button>
@@ -203,7 +211,7 @@
                               <li *ngFor="let actionItem of getActionsForVersion(versionItem); let actionIndex = index"
                                   class="actionLiElem"
                                   [class.ownAction]="isActionAuthor( actionItem )"
-                                  [class.isActionOn]="isActionOn( actionItem )">
+                                  [class.isActionOn]="isActionOn( actionItem )" id="{{constructDivId(versionItem.v, actionIndex)}}">
 
 
                                 <!--comment-->
@@ -290,7 +298,7 @@
 
                                         <material-button
                                             *ngIf="showReleaseButton(actionItem, actionIndex, versionIndex)"
-                                            class="release" (click)="unlock()">
+                                            class="release" (click)="unlock(versionIndex)">
                                           Release
                                         </material-button>
                                         <span class="constructText">{{constructText(versionItem, actionItem)}}</span>
