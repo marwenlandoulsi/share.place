@@ -80,6 +80,10 @@
         "1": "package:share_place/common/central.dart",
         "4": "central",
         "5": false
+      },
+      {
+        "1": "package:share_place/users/place_user_list_provider.dart",
+        "5": false
       }
     ],
     "5": [
@@ -160,6 +164,10 @@
       {
         "1": "package:share_place/common/central.template.dart",
         "4": "i14"
+      },
+      {
+        "1": "package:share_place/users/place_user_list_provider.template.dart",
+        "4": "i15"
       }
     ]
   },

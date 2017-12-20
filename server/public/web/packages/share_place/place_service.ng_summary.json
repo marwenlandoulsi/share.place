@@ -33,6 +33,10 @@
         "5": false
       },
       {
+        "1": "package:share_place/common/access_denied_exception.dart",
+        "5": false
+      },
+      {
         "1": "place.dart",
         "5": false
       },
@@ -42,6 +46,10 @@
       },
       {
         "1": "package:share_place/common/util.dart",
+        "5": false
+      },
+      {
+        "1": "package:share_place/common/data/data.dart",
         "5": false
       },
       {
@@ -82,6 +90,10 @@
       },
       {
         "1": "package:share_place/app_constants.dart",
+        "5": false
+      },
+      {
+        "1": "package:share_place/common/conflict_error.dart",
         "5": false
       }
     ],

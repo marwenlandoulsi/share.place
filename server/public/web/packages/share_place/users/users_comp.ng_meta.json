@@ -61,6 +61,11 @@
       {
         "1": "package:share_place/app_constants.dart",
         "5": false
+      },
+      {
+        "1": "package:share_place/app_config.dart",
+        "4": "conf",
+        "5": false
       }
     ],
     "5": [
@@ -164,6 +169,10 @@
       {
         "1": "package:share_place/app_constants.template.dart",
         "4": "i13"
+      },
+      {
+        "1": "package:share_place/app_config.template.dart",
+        "4": "i14"
       }
     ]
   },
@@ -295,7 +304,7 @@
       ],
       "template": {
         "encapsulation": 0,
-        "template": "<div class=\"users\">\r\n  <div class=\"titleDiv\">\r\n    <div class=\"h2Places\">\r\n      People\r\n    </div>\r\n  </div>\r\n  <div class=\"subtitle\">in {{selectedPlace?.name}}</div>\r\n\r\n  <div class=\"people\">\r\n    <div class=\"scrollbar-macosx_\">\r\n\r\n      <ul class=\"list\">\r\n        <div class=\"spinnerInner\">\r\n          <material-spinner class=\"spinner\" *ngIf=\"users == null\"></material-spinner>\r\n        </div>\r\n        <li *ngFor=\"let userItem of users\" class=\"user\">\r\n          <div class=\"userLine\" [class.popupOpen]=\"clickedUserId == userItem.id\" (click)=\"clickedUserId = userItem.id\"\r\n               popupSource alignPositionX=\"after\"\r\n               alignPositionY=\"start\" #userElem=\"popupSource\">\r\n            <img *ngIf=\"userItem.photoIdMap != null\"\r\n                 src=\"/auth/gridfs/file/{{userItem?.photoIdMap['photoIdS']}}/picture.x\" class=\"profileImg\">\r\n            <img *ngIf=\"userItem.photoIdMap == null\" src=\"/images/img_profile.png\" class=\"profileImg\">\r\n            <div class=\"userName\" title=\"{{userItem?.displayName}}\">{{userItem?.displayName}}</div>\r\n          </div>\r\n          <info-popup *ngIf=\"clickedUserId == userItem.id\"\r\n                      [userId]=\"userItem.id\"\r\n                      [source]=\"userElem\" [offsetX]=\"20\" [offsetY]=\"-10\"\r\n                      [visible]=\"clickedUserId == userItem.id\" [parent]=\"self\" [arrowCss]=\"'arrowLeft'\">\r\n          </info-popup>\r\n\r\n\r\n        </li>\r\n      </ul>\r\n    </div>\r\n  </div>\r\n</div>",
+        "template": "<div class=\"users\">\r\n  <div class=\"titleDiv\">\r\n    <div class=\"h2Places\">\r\n      People\r\n    </div>\r\n  </div>\r\n  <div class=\"subtitle\">{{selectedPlace?.name}}</div>\r\n\r\n  <div class=\"people\">\r\n    <div class=\"scrollbar-macosx\">\r\n      <ul class=\"list\">\r\n        <div class=\"spinnerInner\" *ngIf=\"users == null\">\r\n          <material-spinner class=\"spinner\"></material-spinner>\r\n        </div>\r\n        <li *ngFor=\"let userItem of users\" class=\"user\">\r\n          <div  *ngIf=\"userItem.type !='roby'\">\r\n            <div class=\"userLine\" [class.popupOpen]=\"clickedUserId == userItem.id\" (click)=\"clickedUserId = userItem.id\"\r\n                 popupSource alignPositionX=\"after\"\r\n                 alignPositionY=\"start\" #userElem=\"popupSource\">\r\n              <img *ngIf=\"userItem.photoIdMap != null && userItem.type !='roby'\"\r\n                   src=\"/auth/gridfs/file/{{userItem?.photoIdMap['photoIdS']}}/picture.x\" class=\"profileImg\">\r\n              <img *ngIf=\"userItem.photoIdMap == null && userItem.type !='roby'\" src=\"/images/img_profile.png\" class=\"profileImg\">\r\n              <div class=\"userName\"  *ngIf=\"userItem.type !='roby'\" title=\"{{userItem?.displayName}}\">{{userItem?.displayName}}</div>\r\n            </div>\r\n            <info-popup *ngIf=\"clickedUserId == userItem.id && userItem.type !='roby'\"\r\n                        [userId]=\"userItem.id\"\r\n                        [user]=\"userItem\"\r\n                        [source]=\"userElem\" [offsetX]=\"20\" [offsetY]=\"-10\"\r\n                        [visible]=\"clickedUserId == userItem.id\" [parent]=\"self\" [arrowCss]=\"'arrowLeft'\">\r\n            </info-popup>\r\n          </div>\r\n        </li>\r\n      </ul>\r\n    </div>\r\n  </div>\r\n</div>",
         "templateUrl": "asset:share_place/lib/users/users_comp.html",
         "styles": [],
         "styleUrls": [

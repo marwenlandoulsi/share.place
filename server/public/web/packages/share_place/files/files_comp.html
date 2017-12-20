@@ -1,39 +1,103 @@
 <div class="files">
   <iframe id="dnlFrame" #dnlFrame style="display: none" onload="checkDownloadStatus();"></iframe>
+
+  <!--<div *ngIf="showPostit && topicSelected" class="postit placesPostit">-->
+    <!--<div class="header" *ngIf="showContentPostitFolder">-->
+      <!--<div class="rubyPostit"></div>-->
+      <!--<div class="textHeader">Welcome to Share.Place !</div>-->
+    <!--</div>-->
+    <!--<div class="body">-->
+      <!--<div id="dropFileInPostIt" [class.showContentPostit]="showContentPostitFolder"-->
+           <!--[class.checkedPostit]="isCheckedPostitFolder"> 1. Drag'n-->
+        <!--drop a file-->
+      <!--</div>-->
+      <!--<div id="inviteInPostit" [class.showContentPostit]="showContentPostitInvite"-->
+           <!--[class.checkedPostit]="isCheckedPostitInvite"> 2. Invite-->
+        <!--some people-->
+      <!--</div>-->
+      <!--<div id="collaborateFileInPostIt" [class.showContentPostit]="showContentPostitFiles"-->
+           <!--[class.checkedPostit]="isCheckedPostitFiles">-->
+        <!--3. Collaborate! :-)-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+
+
   <div *ngIf="selectedFile != null" class="content" id="content-files">
     <div class="headerFiles">
-      <div class="title" title="{{selectedFile.name}}"> {{selectedFile.name}}</div>
+      <div class="title" title="{{selectedFile.name}}" [innerHTML]="selectedFile?.name  | wrapBold: searchText"></div>
       <!--<div class="icons"></div>-->
     </div>
 
     <div #dropZone class="versionsListScroll" (dragenter)="dragEnter(dropZone)">
 
-      <form id="uploadVersion">
+      <form #fileForm id="uploadVersion">
         <input #fileInput type="file" id="hideInput" name="toUpload"
-               (change)="uploadVersion($event.target.files[0].name)"
+               (change)="uploadVersion($event.target.files[0].name, fileForm)"
                class="fileDropZone"
                (drop)="fileDropped(dropZone)" (dragleave)="dragLeave(dropZone)" style="opacity: 0;"/>
         <!--onclick="event.preventDefault();"-->
       </form>
 
       <div class="scrollbar-macosx" id="benchList">
-        <div class="spinnerInner">
-          <material-spinner class="spinner" *ngIf="selectedFile == null"></material-spinner>
+        <div class="spinnerInner" *ngIf="selectedFile == null">
+          <material-spinner class="spinner"></material-spinner>
         </div>
         <ul class="list" *ngIf="selectedFile.dataType != 'mailImport'">
           <li class="file">
             <div class="fileDesc" id="fileDesc">
               <div class="latestVersionComments">
-                <div class="versions" id="reverseDirection">
+                <div class="versions">
                   <ul class="listDirection">
                     <li *ngFor="let versionItem of selectedFile.orderedVersions; let versionIndex = index"
                         class="liVersion"
-                        [class.closeIt]="!isCommentsOpen(selectedFile.id, versionItem.v)" >
+                        [class.closeIt]="!isCommentsOpen(selectedFile.id, versionItem.v)">
+
+                      <!--<postit-comp *ngIf="showContentPostitFolder"-->
+                                   <!--[name]="'places'"-->
+                                   <!--[showHint]="false"-->
+                                   <!--[startDivId]="'dropFileInPostIt'"-->
+                                   <!--[endDivId]="'labelfileupload'"-->
+                                   <!--[startMarginTop]="'0'"-->
+                                   <!--[startMarginLeft]="'0'"-->
+                                   <!--[endMarginLeft]="'0'"-->
+                                   <!--[endMarginTop]="'0'"-->
+                                   <!--[arrowEndDivPosition]="'top'"-->
+                                   <!--[arrowStartDivPosition]="'left'"-->
+                      <!--&gt;</postit-comp>-->
+
+                      <!--<postit-comp *ngIf="showContentPostitInvite"-->
+                                   <!--[name]="'places'"-->
+                                   <!--[showHint]="false"-->
+                                   <!--[startDivId]="'inviteInPostit'"-->
+                                   <!--[endDivId]="'btnAddPeople'"-->
+                                   <!--[startMarginTop]="'0'"-->
+                                   <!--[startMarginLeft]="'0'"-->
+                                   <!--[endMarginLeft]="'0'"-->
+                                   <!--[endMarginTop]="'0'"-->
+                                   <!--[arrowEndDivPosition]="'bottom'"-->
+                                   <!--[arrowStartDivPosition]="'left'"-->
+                      <!--&gt;</postit-comp>-->
+
+                      <!--<postit-comp *ngIf="showContentPostitFiles"--->
+                      <!--[name]="'places'"-->
+                      <!--[showHint]="false"-->
+                      <!--[startDivId]="'collaborateFileInPostIt'"-->
+                      <!--[endDivId]="constructDivId(versionItem.v, null)"-->
+                      <!--[startMarginTop]="'0'"-->
+                      <!--[startMarginLeft]="'0'"-->
+                      <!--[endMarginLeft]="'0'"-->
+                      <!--[endMarginTop]="'0'"-->
+                      <!--[arrowEndDivPosition]="'top'"-->
+                      <!--[arrowStartDivPosition]="'top'"-->
+                      <!--&gt;-->
+                      <!--</postit-comp>-->
+
                       <!--*ngIf="actionBlock has class draft"-->
                       <div *ngIf="versionItem.state == 'V'">
-                        <div class="versionHeader">
-                          <div [class.quickNoteStyle]="versionItem?.mimeType == 'application/quickNote'"
-                               class="versionTitle"
+                        <div class="versionHeader"
+                             [class.quickNoteStyle]="versionItem?.mimeType == 'application/quickNote'">
+                          <div class="versionTitle"
                                (click)="switchCommentOpen(selectedFile.id, versionItem.v)">
                             <div class="versionTitleNumber">Version {{versionItem?.v}}</div>
                           </div>
@@ -45,7 +109,8 @@
                         <div class="version">
 
                           <div *ngIf="versionItem.mailInfo != null" class="mailInfo">
-                            <div class="account"><strong>Mail imported From:</strong> {{versionItem.mailInfo.account}}
+                            <div class="account"><strong>Mail imported From:</strong>
+                              {{versionItem.mailInfo.account}}
                             </div>
                             <div class="from"><strong>Mail send from:</strong> {{versionItem.mailInfo.from}}</div>
                             <div class="to"><strong>Mail received to: </strong>{{versionItem.mailInfo.to}}</div>
@@ -73,15 +138,17 @@
                                   <div class="actionPropsBlock"
                                        (click)="showUserInfoPopup( versionItem, -1 )"
                                        popupSource
-                                       alignPositionX="before"
-                                       alignPositionY="start"
+                                       alignPositionX="after"
+                                       alignPositionY="end"
+
                                        #fileAuthor="popupSource">
-                              <span class="author"><img src="/auth/user/photo/s/{{versionItem.userId}}/picture.x"
-                                                        class="profileImg"></span>
+                              <span class="author">
+                                <img src="{{userProfilePic(versionItem)}}" class="profileImg">
+                              </span>
 
                                     <info-popup
                                         *ngIf="isUserInfoPopup(versionItem, -1)"
-                                        [userId]="popupUserInfoId"
+                                        [userId]="getAuthor(versionItem, -1)"
                                         [offsetY]="-10" [source]="fileAuthor"
                                         [parent]="self"
                                         [arrowCss]="'arrowRight'"></info-popup>
@@ -90,7 +157,7 @@
                                     <div class="bubble">
 
                                       <div class="bubbleContent">
-                                        <div class="pLeft" [class.noClick]="!isFile"
+                                        <div class="pLeft" [class.noClick]="!isFile"  [class.quickNoteHover]="versionItem?.mimeType == 'application/quickNote'"
                                              (click)="openFileDialog(versionItem.v)">
                                           <div class="fileThumb">
                                             <div class="fileThumb_bg">
@@ -104,7 +171,8 @@
                                                    src="{{thumbSrc(versionItem,selectedFolder,selectedFile )}}"
                                                    class="thumbnail">
 
-                                              <div *ngIf="versionItem.status == 'crashed'" class="crashedInner"></div>
+                                              <div *ngIf="versionItem.status == 'definitelyLost'"
+                                                   class="crashedInner"></div>
                                               <div
                                                   *ngIf="versionItem.status!='uploaded' && versionItem?.mimeType != 'application/quickNote'"
                                                   class="uploadStatus">
@@ -118,8 +186,9 @@
                                               <div class="line">
                                                 <div class="fileLink">
                                                   <div class="fileName"
-                                                       title="{{versionItem?.name}}">
-                                                    {{versionItem?.name}}
+                                                       title="{{versionItem?.name}}"
+                                                       [innerHTML]="versionItem?.name  | wrapBold: searchText">
+                                                    <!--{{versionItem?.name}}-->
                                                   </div>
                                                 </div>
                                                 <div class="linerow"
@@ -133,14 +202,13 @@
                                             </div>
                                           </div>
                                         </div>
-
                                         <div class="fileMoreActions">
-                                      <span class="fileversion"
-                                            *ngIf="versionItem?.mimeType != 'application/quickNote'">v. {{versionItem.v}}</span>
+                                          <span class="fileversion"
+                                                *ngIf="versionItem?.mimeType != 'application/quickNote'">v. {{versionItem.v}}</span>
                                           <span class="moreActions"
                                                 popupSource
                                                 #fileMenu="popupSource"
-                                                alignPositionY="after"
+                                                alignPositionY="{{showBelow(versionIndex) ? 'after' : 'before'}}"
                                                 alignPositionX="end"
                                                 (click)="switchMenuState(versionItem.v)"></span>
                                         </div>
@@ -153,8 +221,9 @@
                                             [visible]="fileMenuVisible == versionItem.v"
                                             (close)="fileMenuVisible = -1">
                                           <div header class="headerPopVersion">
-                                            <div class="fileName">
-                                              {{versionItem.name}}
+                                            <div class="fileName"
+                                                 [innerHTML]="versionItem?.name  | wrapBold: searchText">
+                                              <!--{{versionItem.name}}-->
                                             </div>
                                             <div class="fileInfo">
                                               <!--*ngIf="selectedFile.dataType != 'quickNote'"-->
@@ -211,32 +280,33 @@
                               <li *ngFor="let actionItem of getActionsForVersion(versionItem); let actionIndex = index"
                                   class="actionLiElem"
                                   [class.ownAction]="isActionAuthor( actionItem )"
-                                  [class.isActionOn]="isActionOn( actionItem )" id="{{constructDivId(versionItem.v, actionIndex)}}">
+                                  [class.isActionOn]="isActionOn( actionItem )"
+                                  id="{{constructDivId(versionItem.v, actionIndex)}}">
 
 
-                                <!--comment-->
+                                <!-- partie comment-->
                                 <div *ngIf="actionItem.action.actionType == 'comment'"
                                      class="actionBlock commentBlock">
                                   <!--<div class="timeComm">  </div>-->
+
+                                  <!--{{showBelowPopinfo(actionItem.action.actionType) ? '' : 'before'}}-->
                                   <div (click)="showUserInfoPopup( versionItem, actionIndex )"
                                        class="actionPropsBlock"
                                        popupSource alignPositionX="before"
-                                       alignPositionY="start"
+                                       alignPositionY="after"
                                        #commentAuthor="popupSource">
-                              <span class="author"><img src="/auth/user/photo/s/{{actionItem.user.userId}}/picture.x"
-                                                        class="profileImg"></span>
-
+                                    <span class="author"><img src="{{userIcon(actionItem.user.userId)}}"
+                                                              class="profileImg"></span>
                                     <info-popup
                                         *ngIf="isUserInfoPopup(versionItem, actionIndex)"
-                                        [userId]="popupUserInfoId"
+                                        [userId]="getAuthor(versionItem, actionIndex)"
                                         [source]="commentAuthor" [parent]="self"
-                                        [offsetY]="-10"
-                                        [arrowCss]="'arrowRight'"></info-popup>
+                                        [offsetY]="-10"></info-popup>
                                   </div>
                                   <div class="bubbleInner">
                                     <div class="bubble">
-                                      <div class="bubbleContent">
-                                        {{actionItem.text}}
+                                      <div class="bubbleContent"
+                                           [innerHTML]="actionItem.text  | wrapBold: searchText">
                                       </div>
                                     </div>
                                     <span class="comm-ts">{{actionItem?.ts | agoDateFormat}}</span>
@@ -256,7 +326,7 @@
 
                                     <info-popup
                                         *ngIf="isUserInfoPopup(versionItem, actionIndex)"
-                                        [userId]="popupUserInfoId"
+                                        [userId]="getAuthor(versionItem, actionIndex)"
                                         [offsetY]="-10" [source]="approveAuthor"
                                         [parent]="self"
                                         [arrowCss]="'arrowRight'"></info-popup>
@@ -287,7 +357,7 @@
 
                                     <info-popup
                                         *ngIf="isUserInfoPopup(versionItem, actionIndex)"
-                                        [userId]="popupUserInfoId"
+                                        [userId]="getAuthor(versionItem, actionIndex)"
                                         [offsetY]="-10" [source]="lockAuthor"
                                         [parent]="self"
                                         [arrowCss]="'arrowRight'"></info-popup>
@@ -295,13 +365,13 @@
                                   <div class="bubbleInner">
                                     <div class="bubble">
                                       <div class="bubbleContent">
-
                                         <material-button
-                                            *ngIf="showReleaseButton(actionItem, actionIndex, versionIndex)"
-                                            class="release" (click)="unlock(versionIndex)">
+                                            *ngIf="showReleaseButton(actionItem, actionIndex, versionItem)"
+                                            class="release" (click)="unlock(versionItem.v)">
                                           Release
                                         </material-button>
-                                        <span class="constructText">{{constructText(versionItem, actionItem)}}</span>
+                                        <span
+                                            class="constructText">{{constructText(versionItem, actionItem)}}</span>
                                         <div class="lockIcon"></div>
                                       </div>
 
@@ -321,7 +391,8 @@
                           <material-dialog class="basic-dialog fileOpen" hideHeader="true"
                                            hideFooter="true">
                             <div class="popupHeader">
-                              <div class="fileName">{{selectedFile.name}}</div>
+                              <div class="fileName" [innerHTML]="selectedFile.name  | wrapBold: searchText">
+                              </div>
                               <div class="close" (click)="cancelFileOpen()"></div>
                             </div>
                             <div class="content">
@@ -329,16 +400,27 @@
                                 just take a look at the document?
                               </div>
                               <div class="fileActions">
-                                <div class="fileActions_btn">
-                                  <div class="btn material-icons lock"
-                                       (click)="lockAndOpen(openFileVersion)"></div>
-                                  <span>Lock & Modify</span>
-                                </div>
-                                <div class="fileActions_btn posRight">
-                                  <div class="btn material-icons openOnly"
-                                       (click)="openFileLink(openFileVersion)"></div>
-                                  <span>View (read only)</span>
-                                </div>
+                                <table width="100%" style="margin-top: 1em;">
+                                  <tr>
+                                    <td width="45%">
+                                      <div class="fileActions_btn">
+                                        <div class="btn material-icons lock"
+                                             (click)="lockAndOpen(openFileVersion)"></div>
+                                        <span>Lock & Modify</span>
+                                      </div>
+                                    </td>
+                                    <td width="10%"></td>
+                                    <td width="45%">
+                                      <div class="fileActions_btn">
+                                        <div class="btn material-icons openOnly"
+                                             (click)="openFileLink(openFileVersion)"></div>
+                                        <span>View (read only)</span>
+                                      </div>
+                                    </td>
+                                  </tr>
+                                </table>
+
+
                               </div>
                             </div>
                           </material-dialog>
@@ -353,48 +435,52 @@
 
         </ul>
         <ul class="list" *ngIf="selectedFile.dataType == 'mailImport'">
-          <!--<div>-->
-          <!--{{selectedFolder.type}} || {{selectedFolder.name}}-->
-          <!--</div>-->
-          <!--<li><a> test</a></li>-->
+
 
           <importMail-comp></importMail-comp>
         </ul>
 
       </div>
     </div>
-    <postit-comp [name]="'comment'" [body]="'To talk to the team, type a comment here...'"
-                 class="commentPostit" *ngIf="selectedFile.dataType != 'mailImport'"></postit-comp>
 
-    <div class="newTopicCont">
-      <div class="newTopic" id="newTopic" *ngIf="selectedFile.dataType != 'mailImport'">
-        <div class="newComment">
+    <div class="addComment" id="addComment" *ngIf="selectedFile.dataType != 'mailImport'">
+      <div class="newComment">
 
-
-          <table style="width: 100%">
-            <tr>
-              <td class="cmtTd" style="width: 96%">
-                <div class="whiteComment">
-                  <input #comment class="comment" placeholder="Write your comment here"
-                         (keyup.enter)="addComment(comment.value, selectedFile.versions.last.v);comment.value='';"
-                         class="txt"/>
-                  <div (click)="addComment(comment.value, selectedFile.versions.last.v);comment.value='';"
-                       class="btnValid"></div>
-                </div>
-              </td>
-              <td class="cmtTd" style="width: 4%">
-                <div class="topicIcons icRight">
-                  <div class="addTopicBtn" (click)="fileInput.click()"></div>
-                  <div class="micro"></div>
-                  <div class="appareilPhoto"></div>
-                </div>
-              </td>
-            </tr>
-          </table>
-        </div>
+        <table style="width: 100%">
+          <tr>
+            <td class="cmtTd lTd">
+              <div class="whiteComment">
+                <input #comment placeholder="Add a comment..."
+                       (keyup.enter)="addComment(comment.value, lastVisibleVersion?.v);comment.value='';close()"
+                       class="comment txt"/>
+                <div (click)="addComment(comment.value, lastVisibleVersion?.v);comment.value='';close()"
+                     class="btnValid"></div>
+              </div>
+            </td>
+            <td class="cmtTd rTd">
+              <div class="topicIcons">
+                <div class="addTopicBtn" (click)="fileInput.click()"></div>
+                <div class="micro"></div>
+                <div class="appareilPhoto"></div>
+              </div>
+            </td>
+          </tr>
+        </table>
       </div>
     </div>
 
-
+    <!--<postit-comp class="placesPostit" *ngIf="showContentPostitFiles"-->
+                 <!--[name]="'places'"-->
+                 <!--[hintHeader]="'This is a File Topic'"-->
+                 <!--[hintBody]="'You can discuss about the file here'"-->
+                 <!--[startDivId]="'addTopic'"-->
+                 <!--[endDivId]="'addComment'"-->
+                 <!--[showHint]="true"-->
+                 <!--[startMarginTop]="'120px'"-->
+                 <!--[startMarginLeft]="'0'"-->
+                 <!--[endMarginLeft]="'-16.5%'"-->
+                 <!--[endMarginTop]="'-15%'"-->
+                 <!--[arrowStartAtHint]="false"-->
+    <!--&gt;</postit-comp>-->
   </div>
 </div>

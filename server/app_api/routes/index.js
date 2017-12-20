@@ -15,7 +15,7 @@ var router = express.Router();
 
 var ctrlProxy = require('../controllers/proxy');
 
-var ctrlCron = require('../controllers/cron');
+const ctrlCron = require('../controllers/cron');
 var path = require('path')
 var globalService = require("../global")
 
@@ -222,12 +222,17 @@ var del = function (url, callback, options) {
     });
   }
 };
+post('/user/checkPassword', ctrlProxy.post);
+get('/util/loadAppVersion', ctrlProxy.get);
+get('/superUser', ctrlProxy.get);
 get('/place/:placeId', ctrlProxy.get);
 get('/place', ctrlProxy.get);
 post('/place', ctrlProxy.post);
 //post('/place/:placeId/folder', ctrlProxy.post);
 post('/place/:placeId/folder/:folderId', ctrlProxy.post);
 post('/place/:placeId/folder/:folderId/quickNote', ctrlProxy.post);
+
+post('/place/:placeId/folder/:folderId/is-unused-topic', ctrlProxy.post);
 post('/place/:placeId/folder/:folderId/file/:fileId/version/:fileVersion/comment', ctrlProxy.post);
 post('/place/:placeId/folder/:folderId/user', ctrlProxy.post);
 post('/place/:placeId/folder/:folderId/file/:fileId/version/:fileVersion/action', ctrlProxy.post)
@@ -254,6 +259,7 @@ get('/place/:placeId/folder/:folderId/file/:fileId/version/:fileVersion/thumb.x'
 // Place
 //get('/place', ctrlProxy.get);
 post('/place/:placeId/folder/:folderId/file', ctrlProxy.post);
+post('/place/:placeId/folder/:folderId/is-unused-folder', ctrlProxy.post);
 post('/place/:placeId/folder/:folderId/file/:fileId', ctrlProxy.uploadFile, {
   upload: upload.array('toUpload', 10),
 });
@@ -297,6 +303,10 @@ get('/place/:placeId/folder/:folderId/fileInfo/:fileInfoId', ctrlProxy.get);
 post('/file/_search', ctrlProxy.searchFileFromElastic);
 
 post('/file/search', ctrlProxy.post);
+
+//alias
+
+get('/place/:placeId/alias', ctrlProxy.get);
 var pathElectronServerRoutes = path.join(__dirname, '..', '..', '..', '..', 'test', 'electronServerRoutes.json')
 /*
 if (process.env.DEV)

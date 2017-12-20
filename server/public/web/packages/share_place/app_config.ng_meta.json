@@ -14,6 +14,13 @@
     "6": "app_config.dart"
   },
   "type": {
+    "appVersion": {
+      "class": "Identifier",
+      "name": "appVersion",
+      "moduleUrl": "asset:share_place/lib/app_config.dart",
+      "prefix": null,
+      "value": null
+    },
     "baseUrl": {
       "class": "Identifier",
       "name": "baseUrl",
@@ -35,9 +42,30 @@
       "prefix": null,
       "value": null
     },
+    "isMac": {
+      "class": "Identifier",
+      "name": "isMac",
+      "moduleUrl": "asset:share_place/lib/app_config.dart",
+      "prefix": null,
+      "value": null
+    },
+    "isMacAndFirefox": {
+      "class": "Identifier",
+      "name": "isMacAndFirefox",
+      "moduleUrl": "asset:share_place/lib/app_config.dart",
+      "prefix": null,
+      "value": null
+    },
     "isWebApp": {
       "class": "Identifier",
       "name": "isWebApp",
+      "moduleUrl": "asset:share_place/lib/app_config.dart",
+      "prefix": null,
+      "value": null
+    },
+    "isWin": {
+      "class": "Identifier",
+      "name": "isWin",
       "moduleUrl": "asset:share_place/lib/app_config.dart",
       "prefix": null,
       "value": null

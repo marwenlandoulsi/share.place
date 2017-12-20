@@ -9,10 +9,15 @@ let log = require('electron-log');
 let path = require('path');
 let fsExtra = require('fs-extra');
 let fs = require("fs");
-let constants = require('../../app_config');
-let globalService = require("../global")
-var dialog = require('electron').dialog;
-var eNotify = require('electron-notify');
+let constants = require(path.join(__dirname, '..', '..', 'app_config.js'));
+let globalService = require(path.join(__dirname, "..", "global.js"))
+let electron
+var dialog
+if (global.syncDisabled) {
+  electron = require('electron')
+  dialog = electron.dialog;
+}
+
 //let request = require('request-promise').defaults({ simple: false });
 let request = require('request');
 let http = require("https");
@@ -30,19 +35,15 @@ var agent = new electronProxyAgent({
 http.globalAgent = agent;
 let jsonfile = require('jsonfile');
 let taffy = require('taffy');
-let login = require("../config/passport");
-let shell = require('electron').shell;
+let login = require(path.join(__dirname, "..", "config", "passport"));
+let shell = electron ? electron.shell : null;
 let checksum = require('checksum');
 const FormData = require('form-data')
 
-//List of Place
-
-const {ipcRenderer} = require('electron');
-const sendEvent = (nameOfEvent, content) => {
-  ipcRenderer.send(nameOfEvent, content)
-}
-
 const net = require(path.join(__dirname, '..', '..', 'local_module', 'request'))
+const aliases = require(path.join(__dirname,  'aliases'));
+const aliasesController = new aliases.AliasesController();
+
 module.exports.searchFileFromElastic = (req, res) => {
 
   let url = req.url;
@@ -113,8 +114,10 @@ let downloadUtilFileToDisc = module.exports.downloadUtilFileToDisc = (url, callB
   if (global.onLine) {
     if (!fs.existsSync(pathToUtilFile)) {
       downloadFile(url, pathDirectory, pathToUtilFile, 0o0500, (err, pathFileDownload) => {
-        if (err)
-          log.info("failed to download icon: ", err.message);
+        if (err) {
+          log.error("failed to download icon from url : ", url)
+          log.error("  └─ Error :", err)
+        }
 
         return callBack(true)
       });
@@ -128,9 +131,19 @@ let downloadUtilFileToDisc = module.exports.downloadUtilFileToDisc = (url, callB
 //module.exports.downloadUtilFileToDisc = downloadUtilFileToDisc;
 
 function get(req, res) {
+  if (req.url.indexOf("loadAppVersion") != -1) {
+    return res.end(global.appVersion);
+  }
+
 
   let userId = req.user._id;
   let url = req.url;
+  let urlToSetInPath = url;
+
+  if (urlToSetInPath.indexOf("?") != -1) {
+    urlToSetInPath = urlToSetInPath.toString().substring(0, urlToSetInPath.indexOf("?"));
+  }
+
   let email = null;
   let password = null;
   if (req.user.local) {
@@ -138,16 +151,16 @@ function get(req, res) {
     password = req.user.local.password;
   }
 
-  let pathDirectory = path.join(constants.dataDir, userId, url);
-  let pathToDataFile = path.join(constants.dataDir, userId, url, 'data.json');
+  let pathDirectory = path.join(constants.dataDir, userId, urlToSetInPath);
+  let pathToDataFile = path.join(pathDirectory, 'data.json');
+
   globalService.checkPathOrCreateSync(pathDirectory, pathToDataFile, '[]');
-  let dataFromFile = jsonfile.readFileSync(pathToDataFile);
   let folderId = req.params.folderId;
   let fileId = req.params.fileId;
   let placeId = req.params.placeId;
   if (global.onLine) {
 
-    getDataFromServer(req, res, email, password, url, (err, received) => {
+    getDataFromServer(email, password, url, (err, received) => {
       if (err) {
         if (err.errorFromServer)
           return globalService.sendError(res, err.statusCode, err.errorFromServer.error, err.errorFromServer.errorDetail)
@@ -156,16 +169,24 @@ function get(req, res) {
       }
 
       let dataReceived = received.data;
-      saveInLocalDb(dataReceived, dataFromFile, pathToDataFile, (error, toReturn) => {
-        if (error) {
-          log.error("error to save data in local db")
-        }
-      })
+      jsonfile.readFile(pathToDataFile, function (err, dataInFile) {
+        if (err)
+          log.error("error to read file ", err)
+
+
+        saveInLocalDb(dataReceived, dataInFile, pathToDataFile, (error, toReturn) => {
+          if (error) {
+            log.error("error to save data in local db")
+          }
+        })
+      });
+
 
       return globalService.sendJsonResponse(res, 200, dataReceived);
     });
 
   } else {
+    let dataFromFile = jsonfile.readFileSync(pathToDataFile);
     return globalService.sendJsonResponse(res, 200, dataFromFile);
   }
 
@@ -180,6 +201,7 @@ module.exports.proxyGet = function (url, callBack) {
     email = global.userConnected.local.email;
     password = global.userConnected.local.password;
   }
+
   let pathDirectory = path.join(constants.dataDir, userId, url);
   let pathToDataFile = path.join(constants.dataDir, userId, url, 'data.json');
   globalService.checkPathOrCreateSync(pathDirectory, pathToDataFile, '[]\n');
@@ -187,9 +209,10 @@ module.exports.proxyGet = function (url, callBack) {
 
 
   if (global.onLine) {
-    getDataFromServer(null, null, email, password, url, (err, received) => {
+    getDataFromServer(email, password, url, (err, received) => {
       if (err) {
-        log.error("error to sync data ", err);
+        log.error("error to sync data from url : ", url);
+        log.error("  └─ Error :", err)
         return callBack(err)
       }
 
@@ -200,8 +223,9 @@ module.exports.proxyGet = function (url, callBack) {
         if (err)
           return log.error("error to save in localDb", err);
 
-        return callBack(null, dataReceived)
       })
+
+      return callBack(null, dataReceived)
     });
   }
 
@@ -336,18 +360,22 @@ function isLockedByUser(dataFile, userId, v) {
   return (dataFile.isLocked) && (dataFile.lockOwner.userId == userId) && (v == dataFile.lockedVersion);
 }
 
-function copyFileIfLocked(params, cb) {
+async function copyFileIfLocked(params, cb) {
   const connectedUserId = params.userId,
       pathToFile = params.pathToFile,
       pathToHomDir = params.pathToHomDir,
       fileName = params.fileName,
       placeName = params.placeName,
       dataFile = params.dataFile,
-      url = params.url;
+      url = params.url,
+      topicAlias = params.topicAlias,
+      userAlias = params.userAlias,
+      placeAlias = params.placeAlias
+
 
   let nameFileWithoutExt = (dataFile.dataType == "quickNote") ? dataFile.name : String(dataFile.name).substr(0, String(dataFile.name).indexOf('.'))
 
-  const pathToLockDir = path.join(global.homeDir, 'share.place', connectedUserId, placeName, pathToHomDir,nameFileWithoutExt, nameFileWithoutExt + "_locked");
+  const pathToLockDir = path.join(global.homeDir, 'share.place', userAlias, placeAlias, pathToHomDir, topicAlias, topicAlias + "_locked");
   globalService.checkDirectorySync(pathToLockDir)
   const pathToFileInLockDir = path.join(pathToLockDir, fileName);
 
@@ -404,7 +432,7 @@ function copyFileIfLocked(params, cb) {
         return cb(err)
       }
 
-      console.log("file copied in : ", pathToFileInLockDir)
+      log.info("file copied in : ", pathToFileInLockDir)
       fs.chmodSync(pathToFileInLockDir, '0777');
       return cb(null, pathToFileInLockDir)
     })
@@ -423,26 +451,30 @@ module.exports.getFile = function (req, res) {
   let pathDbDataPlaces = path.join(constants.dataDir, userId, url.substring(0, nth_occurrence(url, '/', 2)), 'data.json');
   let pathDbDataFolder = path.join(constants.dataDir, userId, url.substring(0, nth_occurrence(url, '/', 4)), 'data.json');
   let pathDbDataFile = path.join(constants.dataDir, userId, url.substring(0, nth_occurrence(url, '/', 7)), 'data.json');
+  let pathDbDataTopics = path.join(constants.dataDir, userId, "place", req.params.placeId, "folder", req.params.folderId, "fileInfo", 'data.json');
 
   let dataPlaces = jsonfile.readFileSync(pathDbDataPlaces);
   let dataFolder = jsonfile.readFileSync(pathDbDataFolder);
   let dataFile = jsonfile.readFileSync(pathDbDataFile);
+  let dataTopics = jsonfile.readFileSync(pathDbDataTopics);
+
 
   let dbPlace = new taffy(dataPlaces);
   let dbFolder = new taffy(dataFolder);
+  let dbTopic = new taffy(dataTopics);
 
   let place = dbPlace({_id: dataFile.placeId});
   let folder = dbFolder({_id: dataFile.folderId});
   let placeName = place.select("name")[0];
   let folderName = folder.select("name")[0];
-  let donwloadVersion = false;
+  let downloadVersion = false;
   let fileName;
 
 
   if (v || dataFile.dataType == "quickNote")
-    donwloadVersion = true;
+    downloadVersion = true;
   else {
-    donwloadVersion = true;
+    downloadVersion = true;
     v = dataFile.versions[dataFile.versions.length - 1].v
   }
   if (!placeName) {
@@ -467,15 +499,46 @@ module.exports.getFile = function (req, res) {
     global.mainWindow.webContents.stop();
   }
 
-  getPathFileInHomeDir(dataFile, dataFolder, (pathToHomDir, pathToFileInDir) => {
-    let pathToDir = path.join(global.homeDir, 'share.place', userId, placeName, pathToHomDir + '/');
+  getPathFileInHomeDir(dataFile, dataFolder, true, async (pathToHomDir, pathToFileInDir) => {
+
+    let userAlias = await aliasesController.getAlias({
+      placeId: dataFile.placeId,
+      userId: req.user._id,
+      refreshNeeded: true,
+      elementId: "u-" + req.user._id,
+      contextId: "user"
+    });
+    let placeAlias = await aliasesController.getAlias({
+      placeId: dataFile.placeId,
+      userId: req.user._id,
+      refreshNeeded: true,
+      elementId: "p-" + dataFile.placeId,
+      contextId: "place"
+    });
+
+    if(!userAlias || !placeAlias || !pathToHomDir){
+      let error  = new Error("missing argument : - userAlias : "+userAlias+" / - placeAlias :" + placeAlias+" / - pathToHomDir : "+pathToHomDir )
+      error.status = 404
+      showDialogBox("error", "share.place", "Failed to download the file. Please try again later");
+      throw error;
+    }
+
+    let pathToDir = path.join(global.homeDir, 'share.place', userAlias, placeAlias, pathToHomDir + '/');
     fileName = globalService.findFileVersion(dataFile, v).name;
     let pathToFile = path.join(pathToDir, fileName);
-    let nameFileWithoutExt = (dataFile.dataType == "quickNote") ? dataFile.name : String(dataFile.name).substr(0, String(dataFile.name).indexOf('.'))
-    if (donwloadVersion) {
-      pathToDir = path.join(pathToDir, nameFileWithoutExt, nameFileWithoutExt + "_V_" + v);
-      pathToFile = path.join(pathToDir, fileName)
-    }
+    //let nameFileWithoutExt = (dataFile.dataType == "quickNote") ? dataFile.name : String(dataFile.name).substr(0, String(dataFile.name).indexOf('.'))
+
+    let topicId = dbTopic({fileId: dataFile._id}).select("_id")[0];
+    let topicAlias = await aliasesController.getAlias({
+      placeId: dataFile.placeId,
+      userId: req.user._id,
+      refreshNeeded: true,
+      elementId: "t-" + topicId,
+      contextId: "f-" + dataFile.folderId
+    });
+
+    pathToDir = path.join(pathToDir, topicAlias, topicAlias + "_V_" + v);
+    pathToFile = path.join(pathToDir, fileName)
 
 
     let mode = 0o0500;
@@ -487,7 +550,10 @@ module.exports.getFile = function (req, res) {
       fileName: fileName,
       placeName: placeName,
       dataFile: dataFile,
-      url: url
+      url: url,
+      topicAlias: topicAlias,
+      userAlias: userAlias,
+      placeAlias: placeAlias
     }
 
     if (global.onLine) {
@@ -495,10 +561,10 @@ module.exports.getFile = function (req, res) {
       if (!fs.existsSync(pathToFile)) {
         showNotification("Share.place Notification", "downloading the file '" + fileName + "' of the topic '" + dataFile.name + "'")
         downloadFile(url, pathToDir, pathToFile, mode, (err, ok) => {
-          if (err){
+          if (err) {
             showDialogBox("error", "share.place", "failed to download/open the file");
             return
-          }else{
+          } else {
             if (isLockedByUser(dataFile, userId, v)) {
               // mode = 0o666;
               // modeFile = '0777';
@@ -507,16 +573,51 @@ module.exports.getFile = function (req, res) {
               openFileAndShowNotif(null, pathToFile)
             }
           }
-
         });
+
       } else {
-        if (isLockedByUser(dataFile, userId, v)) {
-          // mode = 0o666;
-          // modeFile = '0777';
-          pathToFile = copyFileIfLocked(params, openFileAndShowNotif);
-        } else {
-          openFileAndShowNotif(null, pathToFile);
-        }
+        const dataFileVersion = globalService.findFileVersion(dataFile, v)
+
+        isSameFile(dataFileVersion, pathToFile, (err, sameFile) => {
+          if (err) {
+            showDialogBox("error", "share.place", "failed to download/open the file");
+            return
+          }
+
+          if (sameFile) {
+            if (isLockedByUser(dataFile, userId, v)) {
+              // mode = 0o666;
+              // modeFile = '0777';
+              pathToFile = copyFileIfLocked(params, openFileAndShowNotif);
+            } else {
+              openFileAndShowNotif(null, pathToFile);
+            }
+          } else {
+            showNotification("Share.place Notification", "The file '" + fileName + "' of the topic '" + dataFile.name + "' was changed but not locked we should download the server version")
+
+            fs.unlink(pathToFile, (err) => {
+              if (err) {
+                showDialogBox("error", "share.place", "failed to download/open the file please close the file and retry");
+                return
+              }
+
+              downloadFile(url, pathToDir, pathToFile, mode, (err, ok) => {
+                if (err) {
+                  showDialogBox("error", "share.place", "failed to download/open the file");
+                  return
+                } else {
+                  if (isLockedByUser(dataFile, userId, v)) {
+                    // mode = 0o666;
+                    // modeFile = '0777';
+                    pathToFile = copyFileIfLocked(params, openFileAndShowNotif);
+                  } else {
+                    openFileAndShowNotif(null, pathToFile)
+                  }
+                }
+              });
+            })
+          }
+        })
       }
     } else {
       if (!fs.existsSync(pathToFile)) {
@@ -525,8 +626,6 @@ module.exports.getFile = function (req, res) {
       }
       openFileAndShowNotif(null, pathToFile);
     }
-
-
   });
 
 }
@@ -543,7 +642,7 @@ function downloadFileInDisc(url, mode, callBack) {
 
   let pathDbDataPlace = path.join(constants.dataDir, userId, url.substring(0, nth_occurrence(url, '/', 2)), 'data.json');
   let pathDbDataFolder = path.join(constants.dataDir, userId, url.substring(0, nth_occurrence(url, '/', 4)), 'data.json');
-  let urlListeFile = "/place/" + placeId + "/folder/" + folderId + "/file";
+  let urlFileList = "/place/" + placeId + "/folder/" + folderId + "/file";
 
   let pathDbDataFile = path.join(constants.dataDir, userId, '/place/', placeId, '/folder/', folderId, 'file/data.json');
 
@@ -552,117 +651,127 @@ function downloadFileInDisc(url, mode, callBack) {
   let dataFile = jsonfile.readFileSync(pathDbDataFile);
   let email;
   let password;
-  if (global.userConnected.local) {
-    email = global.userConnected.local.email;
-    password = global.userConnected.local.password
-  }
-  getDataFromServer(null, null, email, password, urlListeFile, (err, dataReceived) => {
-    if (err) {
-      log.error("error to receive data: ", err.message);
-      return callBack(err)
-    }
+  // if (global.userConnected.local) {
+  //   email = global.userConnected.local.email;
+  //   password = global.userConnected.local.password
+  // }
+
+  let dbPlace = new taffy(dataPlace);
+  let dbFolder = new taffy(dataFolder);
+  let dbFile = new taffy(dataFile);
+  let place = dbPlace({_id: placeId});
+  let folder = dbFolder({_id: folderId});
+  let file = dbFile({_id: fileId});
+  let placeName = place.select("name")[0];
+  let folderName = folder.select("name")[0];
+  let folderState = folder.select("state")[0]
+  let folderType = folder.select("folderType")[0]
+  let versions = file.select("versions")[0]
+  let fileName = versions[versions.length - 1].name;
+  let fileState = file.select("state")[0]
+  if (fileState != 'D' && folderState != 'D' && folderType != "profile") {
+    getPathFileInHomeDir(file.get()[0], dataFolder, false, async (pathToHomDir, pathToFileInDir) => {
+
+      let userAlias = await aliasesController.getAlias({
+        placeId: file.select("placeId")[0],
+        userId: userId,
+        refreshNeeded: false,
+        elementId: "u-" + userId,
+        contextId: "user"
+      });
 
 
-    saveInLocalDb(dataReceived.data, dataFile, pathDbDataFile, (err, data) => {
-      if (err) {
-        log.error('error to save liste of file in local Db');
-        return callBack(err)
-      }
+      let placeAlias = await aliasesController.getAlias({
+        placeId: file.select("placeId")[0],
+        userId: userId,
+        refreshNeeded: false,
+        elementId: "p-" + file.select("placeId")[0],
+        contextId: "place"
+      });
+      let pathToDir = path.join(global.homeDir, 'share.place', userAlias, placeAlias, pathToHomDir + '/');
+      let pathDbDataTopics = path.join(constants.dataDir, userId, "place", file.select("placeId")[0], "folder", file.select("folderId")[0], "fileInfo", 'data.json');
+      let dbTopic = new taffy(jsonfile.readFileSync(pathDbDataTopics));
+      let topicId = dbTopic({fileId: file.select("_id")[0]}).select("_id")[0];
+      let topicAlias = await aliasesController.getAlias({
+        placeId: file.select("placeId")[0],
+        userId: userId,
+        refreshNeeded: false,
+        elementId: "t-" + topicId,
+        contextId: "f-" + file.select("folderId")[0]
+      });
+
+      pathToDir = path.join(pathToDir, topicAlias, topicAlias + "_V_" + versions[versions.length - 1].v);
 
 
-      let dbPlace = new taffy(dataPlace);
-      let dbFolder = new taffy(dataFolder);
-      let dbFile = new taffy(data);
-      let place = dbPlace({_id: placeId});
-      let folder = dbFolder({_id: folderId});
-      let file = dbFile({_id: fileId});
-      let placeName = place.select("name")[0];
-      let folderName = folder.select("name")[0];
-      let folderState = folder.select("state")[0]
-      let versions = file.select("versions")[0]
-      let fileName = versions[versions.length - 1].name;
-      let fileState = file.select("state")[0]
+      let pathToFile = path.join(pathToDir, fileName);
 
-      if (fileState != 'D' && folderState != 'D') {
-        getPathFileInHomeDir(file.get()[0], dataFolder, (pathToHomDir, pathToFileInDir) => {
+      if (global.onLine) {
+        if (!fs.existsSync(pathToFile)) {
+          downloadFile(url, pathToDir, pathToFile, mode, async (err, ok) => {
+            if (err)
+              return callBack(err)
 
-          let pathToDir = path.join(global.homeDir, 'share.place', userId, placeName, pathToHomDir );
+            if (isLockedByUser(file.get()[0], userId, versions[versions.length - 1].v)) {
+              // mode = 0o666;
+              // modeFile = '0777';
+              console.log("file is locked by user ======> ", userAlias)
+              const params = {
+                userId: userId,
+                pathToFile: pathToFile,
+                pathToHomDir: pathToHomDir,
+                fileName: fileName,
+                placeName: placeName,
+                dataFile: file.get()[0],
+                url: url,
+                topicAlias: topicAlias,
+                userAlias: userAlias,
+                placeAlias: placeAlias
+              }
 
-          let nameFileWithoutExt = (file.get()[0].dataType == "quickNote") ? file.get()[0].name : String(file.get()[0].name).substr(0, String(file.get()[0].name).indexOf('.'))
-
-
-            pathToDir = path.join(pathToDir, nameFileWithoutExt, nameFileWithoutExt + "_V_" +  globalService.findFileVersion(file.get()[0]).v);
-
-
-
-          let pathToFile = path.join(pathToDir, fileName);
-
-          if (global.onLine) {
-            if (!fs.existsSync(pathToFile)) {
-              downloadFile(url, pathToDir, pathToFile, mode, (err, ok) => {
+              copyFileIfLocked(params, (err, path) => {
                 if (err)
-                  return callBack(err)
+                  log.error("error to copie locked file after sync", err)
 
-                return callBack(null, true, pathToFile);
               });
-            } else {
-              const dataFileVersion = globalService.findFileVersion(file.get()[0])
-              isSameFile(dataFileVersion, pathToFile, (err, sameFile) => {
-                if (err)
-                  return callBack(err)
-                if (!sameFile) {
-                  fs.unlink(pathToFile, (err) => {
-                    if (err)
-                      return callBack(err);
 
-                    downloadFile(url, pathToDir, pathToFile, mode, (err, ok) => {
-                      if (err)
-                        return callBack(err);
 
-                      return callBack(null, true, pathToFile);
-                    });
-                  })
-
-                }
-              })
             }
-          }
 
-          return callBack(null, false, pathToFile);
-        })
+            return callBack(null, true, pathToFile);
+          });
+        } else {
+          const dataFileVersion = globalService.findFileVersion(file.get()[0])
+          isSameFile(dataFileVersion, pathToFile, (err, sameFile) => {
+            if (err)
+              return callBack(err)
+            if (!sameFile) {
+              fs.unlink(pathToFile, (err) => {
+                if (err)
+                  return callBack(err);
+
+                downloadFile(url, pathToDir, pathToFile, mode, (err, ok) => {
+                  if (err)
+                    return callBack(err);
+
+                  return callBack(null, true, pathToFile);
+                });
+              })
+
+            }
+          })
+        }
       }
-      return callBack(null, false, null);
-    });
-  })
+
+      return callBack(null, false, pathToFile);
+    })
+  }
+  return callBack(null, false, null);
+
 
 }
 
 
-let getDataFromServer = function (req, res, email, password, url, cb) {
-
-  if (!global.cookieReceived) {
-    res.redirect('/web');
-    // if (!email) {
-    //   res.redirect('/web');
-    // }
-    // login.loginFromServer(req, email, password, function (err, user, info) {
-    //   if(err){
-    //     if (err.errorFromServer)
-    //       return globalService.sendError(res, err.statusCode, err.errorFromServer.error, err.errorFromServer.errorDetail)
-    //     else
-    //       return globalService.sendError(res, err.statusCode, err.message)
-    //   }
-    //
-    //   if (info) {
-    //     return globalService.sendError(res, 401, "you are online again please log in")
-    //   }
-    //   if (user) {
-    //     globalService.setSidInInput(global.cookieReceived);
-    //     return httpGetJson(global.cookieReceived, url, cb)
-    //   }
-    // })
-  }
-
+let getDataFromServer = function (email, password, url, cb) {
   return httpGetJson(global.cookieReceived, url, cb);
 };
 
@@ -727,24 +836,37 @@ let httpPostFileToUpload = function (url, fileToUpload, cb) {
   // });
 }
 
-let httpUploadNewVersion = function (url, pathOfFile, filename, contentType, cb) {
-  const form = new FormData()
-  form.append('toUpload', fs.createReadStream(pathOfFile));
+let httpUploadNewVersion = function (url, urlToUploadFakeFile, pathOfFile, file, cb) {
 
-  let headers = {
-    'Cookie': global.cookieReceived
-  }
-  let reqOptions = {
-    method: constants.optionsPost.method,
-    headers: headers,
-    body: form
-  }
-  net.requestUrl(constants.optionsPost.url + url, reqOptions, (err, toReturn) => {
+  const jsonToPost = {"fileId": file._id}
+  let fileName = file.versions[file.versions.length - 1].name;
+  let contentType = file.versions[file.versions.length - 1].fileType;
+
+  httpPostJson(urlToUploadFakeFile, jsonToPost, (err, data) => {
     if (err)
       return cb(err)
 
-    return cb(null, toReturn)
+
+    const form = new FormData()
+    form.append('toUpload', fs.createReadStream(pathOfFile));
+
+    let headers = {
+      'Cookie': global.cookieReceived
+    }
+    let reqOptions = {
+      method: constants.optionsPost.method,
+      headers: headers,
+      body: form
+    }
+    net.requestUrl(constants.optionsPost.url + url, reqOptions, (err, toReturn) => {
+      if (err)
+        return cb(err)
+
+      return cb(null, toReturn)
+    })
+
   })
+
   // let formData = {
   //   toUpload: {
   //     value: fs.createReadStream(pathOfFile),
@@ -803,71 +925,6 @@ let httpGetJson = function (cookie, url, cb) {
 
     return cb(null, dataReceived)
   })
-  /*
-   let options = {
-   host: constants.optionsGet.host,
-   method: constants.optionsGet.method,
-   port: constants.optionsGet.port,
-   path: constants.optionsGet.path + url,
-   agent: agent,
-   headers: {
-   'Cookie': global.cookieReceived,
-   }
-   };*/
-  /*if (global.isProxy) {
-   if (global.userProxy) {
-   var proxyUrl = "http://" + global.userProxy + ":" + global.pswProxy + "@" + global.proxyUrl;
-   var proxiedRequest = request.defaults({'proxy': proxyUrl});
-   request = proxiedRequest;
-   }
-   }
-   request(options, function (error, response, body) {
-
-   if (error) {
-   log.error("error to get data from server:", error)
-   return cb(error)
-   }
-   if (response.statusCode > 400) {
-   var error = new Error(body.error)
-   error.statusCode = response.statusCode;
-
-   return cb(error);
-   }
-   let parsed = JSON.parse(body);
-   return cb(null, parsed);
-
-
-   });*/
-  /*
-   return http.get(options, function (response) {
-
-   // Continuously update stream with data
-   let body = '';
-
-   response.on('data', function (d) {
-   body += d;
-   });
-   response.on('error', function (err) {
-   // Data reception is done, do whatever with it!
-   return cb(err);
-   });
-   response.on('end', function () {
-   // Data reception is done, do whatever with it!
-
-   let parsed = JSON.parse(body);
-   if (response.statusCode > 400) {
-   var error = new Error(parsed.error)
-   error.statusCode = response.statusCode;
-
-   return cb(error);
-   }
-   return cb(null, parsed);
-
-
-   });
-   }).on('error', function (e) {
-   return cb(e);
-   });*/
 }
 module.exports.callRemoteServer = httpGetJson;
 
@@ -897,6 +954,14 @@ function downloadFile(url, directory, pathFile, mode, cb) {
     if (err)
       return cb(err);
 
+    if (!data) {
+      log.error("error to get data from server")
+
+      let error = new Error();
+      error.message = "error to get data from server";
+      error.code = 404;
+      return cb(err);
+    }
     log.info("download file in :", pathFile);
     //fs.writeFileSync(path, data);
     globalService.checkPathOrCreateSync(directory, pathFile, data, mode);
@@ -1021,63 +1086,36 @@ let httpGetFile = function (options, cb) {
 
 let saveInLocalDb = (data, dataInFile, path, cb) => {
 
-  /*if (typeof (data.length) != "undefined") {
-   let localDbData = taffy(dataInFile);
-   for (let c = 0; c < data.length; c++) {
-   let oneData = data[c];
-   let dataExist = localDbData({_id: oneData._id});
-   if (dataExist.select("_id").length == 0) {
-   //dataInFile.push(oneData);
-   jsonfile.writeFileSync(path, data);
-   } else {
-   if (dataExist.select("_id").length > 1) {
-   log.error("many same data in: " + path);
-   err.status = 404;
-   err.message = "many same data";
-   return cb(err)
-   } else {
-   if (JSON.stringify(dataExist.select("_id")[0]) != JSON.stringify(oneData)) {
-   localDbData({_id: data._id}).update(oneData);
-   jsonfile.writeFileSync(path, localDbData().get());
-   }
-   }
-   }
-   }
-   } else {
-   if (typeof (dataInFile.length) == "undefined" || dataInFile.length == 0) {
-   if (JSON.stringify(dataInFile) != JSON.stringify(data)) {
-   jsonfile.writeFileSync(path, data);
-   }
-   } else {
-
-   log.error("conflict between data received and data in file: " + path);
-
-   err.status = 404;
-   err.message = "conflict between data received and data in file";
-   return cb(err);
-
-   }
-   }*/
   let err = new Error();
   if (data) {
     jsonfile.writeFile(path, data, (err) => {
-      if (err)
+      if (err) {
         log.error("error to save in local db:", err)
+        return cb(err)
+      }
+
+      if (!dataInFile) {
+        log.error("undefined data in file : " + path);
+      } else {
+        if (dataInFile.length != 0) {
+          if (( !data.length && dataInFile.length) ||
+              (data.length && !dataInFile.length)) {
+            log.error("conflict between data received and data in file: " + path);
+            // jsonfile.writeFileSync(path, data);
+          }
+        }
+
+      }
+
+
+      return cb(null, data);
     });
 
-
-    if (dataInFile.length != 0) {
-      if (( !data.length && dataInFile.length) ||
-          (data.length && !dataInFile.length)) {
-        log.error("conflict between data received and data in file: " + path);
-        // jsonfile.writeFileSync(path, data);
-      }
-    }
 
     //var dataSaved = jsonfile.readFileSync(path);
 
   }
-  return cb(null, data);
+
 }
 
 let nth_occurrence = (string, char, nth) => {
@@ -1143,6 +1181,8 @@ module.exports.post = function (req, res) {
 
       if (!placeId && url.indexOf('/place') != -1)
         get(req, null);
+
+      //getAndSaveAlias(req)
 
       return globalService.sendJsonResponse(res, 200, toReturn.data)
     });
@@ -1519,6 +1559,7 @@ let unlockFile = function (url, fileId, jsonToPut, callBack) {
   const versionLocked = dataFile.lockedVersion
   if (global.onLine) {
     let urlToUploadFile = "/place/" + placeId + "/folder/" + folderId + "/file/" + fileId;
+    let urlToUploadFakeFile = "/place/" + placeId + "/folder/" + folderId + "/file/";
 
     let dbPlace = new taffy(dataPlace);
     let dbFolder = new taffy(dataFolder);
@@ -1527,19 +1568,36 @@ let unlockFile = function (url, fileId, jsonToPut, callBack) {
     let folder = dbFolder({_id: folderId});
     let placeName = place.select("name")[0];
     let folderName = folder.select("name")[0];
-    getPathLockedFileInHomeDir(dataFile, dataFolder, (pathToHomDir, pathToFileInDir) => {
+    getPathLockedFileInHomeDir(dataFile, dataFolder, async (pathToHomDir, pathToFileInDir) => {
+      console.log("pathToHomDir unlock ===> ", pathToHomDir)
+      console.log("pathToFileInDir unlock ===> ", pathToFileInDir)
 
-      const newPathToHomDir = pathToHomDir+"_modified"
-      let renamedPathInHomeDir= path.join(global.homeDir, 'share.place', userId, placeName, newPathToHomDir);
-      let originalPathInHomeDir= path.join(global.homeDir, 'share.place', userId, placeName, pathToHomDir);
+      const newPathToHomDir = pathToHomDir + "_modified"
+      let placeAlias = await  aliasesController.getAlias({
+        placeId: placeId,
+        userId: userId,
+        refreshNeeded: false,
+        elementId: "p-" + placeId,
+        contextId: "place"
+      })
 
-      if(fs.existsSync(originalPathInHomeDir)){
+      let userAlias = await  aliasesController.getAlias({
+        placeId: placeId,
+        userId: userId,
+        refreshNeeded: false,
+        elementId: "u-" + userId,
+        contextId: "user"
+      })
+      let renamedPathInHomeDir = path.join(global.homeDir, 'share.place', userAlias, placeAlias, newPathToHomDir);
+      let originalPathInHomeDir = path.join(global.homeDir, 'share.place', userAlias, placeAlias, pathToHomDir);
+
+      if (fs.existsSync(originalPathInHomeDir)) {
         const renameFolder = globalService.renameFolder(originalPathInHomeDir, renamedPathInHomeDir)
-        if(!renameFolder){
+        if (!renameFolder) {
           showNotification("Share.place Notification", "sorry we can't unlock the file please close it and try again")
           const errorToReturn = {
-            code : 403,
-            message:  "sorry we can't unlock the file please close it and try again"
+            code: 403,
+            message: "sorry we can't unlock the file please close it and try again"
           }
           return callBack(errorToReturn);
         }
@@ -1559,7 +1617,7 @@ let unlockFile = function (url, fileId, jsonToPut, callBack) {
           email = global.userConnected.local.email;
           password = global.userConnected.local.password;
         }
-        getDataFromServer(null, null, email, password, urlListeFile, (err, dataReceived) => {
+        getDataFromServer(email, password, urlListeFile, (err, dataReceived) => {
           if (err) {
             log.error("error to receive data after Unlock: ", err.message);
             return callBack(err)
@@ -1578,14 +1636,14 @@ let unlockFile = function (url, fileId, jsonToPut, callBack) {
             file.versionLocked = versionLocked;
 
 
-            let pathToFile = path.join(global.homeDir, 'share.place', userId, placeName, pathToFileInDir);
-            let pathToUserHomDir = path.join(global.homeDir, 'share.place', userId, placeName, pathToHomDir);
+            let pathToFile = path.join(global.homeDir, 'share.place', userAlias, placeAlias, pathToFileInDir);
+            let pathToUserHomDir = path.join(global.homeDir, 'share.place', userAlias, placeAlias, pathToHomDir);
             isSameFile(globalService.findFileVersion(file), pathToFile, (err, sameFile) => {
               if (err)
                 log.error("error to test isSameFile:", err.message)
               if (fs.existsSync(pathToFile)) {
                 if (!sameFile) {
-                  httpUploadNewVersion(urlToUploadFile, pathToFile, fileName, contentType, (err, dataReceivedAfterUpload) => {
+                  httpUploadNewVersion(urlToUploadFile, urlToUploadFakeFile, pathToFile, file, (err, dataReceivedAfterUpload) => {
                     if (err) {
                       log.error("error to upload the new version:", err.message)
                       showDialogBox("error", "share.place", "sorry, an error occured while uploading the file :'" + fileName + "' please retry later")
@@ -1621,7 +1679,7 @@ let unlockFile = function (url, fileId, jsonToPut, callBack) {
                     //   // });
                     // });
                   });
-                }else{
+                } else {
                   const moveToTrash = shell.moveItemToTrash(pathToFile)
                   if (moveToTrash) {
                     log.info("the file in path : '" + pathToFile + "' moved to trash");
@@ -1630,6 +1688,23 @@ let unlockFile = function (url, fileId, jsonToPut, callBack) {
                     log.info("error to move the file in path : '" + pathToFile + "'  to trash");
                   }
                 }
+              } else {
+
+
+                let options = {
+                  "select file to upload": {
+                    fn: showOpenDialog,
+                    params: {
+                      title: "Share.place",
+                      message: "select the file to upload",
+                      defaultPath: pathToUserHomDir,
+                      urlToUploadFile: urlToUploadFile,
+                      urlToFakeFile: urlToUploadFakeFile,
+                      file: file
+                    }
+                  }
+                }
+                showConfirmBox("info", "Share.place", "There are no locked file in your home directory do you want to release without upload of new version?", options)
               }
             });
             return callBack(null, pathToFile, toReturn);
@@ -1642,17 +1717,29 @@ let unlockFile = function (url, fileId, jsonToPut, callBack) {
   }
 }
 
+function uploadFromOpenDialog(pathToFile, urlToUploadFile, urlToFakeFile, file) {
+  if (pathToFile) {
+    httpUploadNewVersion(urlToUploadFile, urlToFakeFile, pathToFile, file, (err, dataReceivedAfterUpload) => {
+      if (err) {
+        log.error("error to upload the new version:", err.message)
+        showDialogBox("error", "share.place", "sorry, an error occured while uploading the file :'" + fileName + "' please retry later")
+      }
+
+      showNotification("Share.Place Notification", "New version of file '" + fileName + "' uploaded.")
+      log.info("new version uploaded")
+    })
+  }
+}
+
 let lockFile = function (req, url, jsonToPut, callBack) {
 
   let mode = 0o666;
 
   httpPutJson(url, jsonToPut, (err, toReturn) => {
 
-
     if (err) {
       return callBack(err);
     }
-
 
     let userId = req.user._id;
     let placeId = req.params.placeId;
@@ -1711,39 +1798,9 @@ let httpDelete = function (url, callBack) {
     method: constants.optionsDel.method,
     headers: headers
   }
-  /*
-   request(options, function (error, response, body) {
 
-   if (error) {
-   log.error("error to delete Data", error.message);
-   return callBack({errorRequest : error})
-   }
-
-   // Print out the response body
-
-   if (response.statusCode == 200 || response.statusCode == 201) {
-   let data;
-   if (typeof (body) != "object") {
-   data = JSON.parse(body).data
-   } else {
-   data = body.data;
-   }
-   return callBack(null, data);
-   } else {
-   let errToReturn = {}
-   if (typeof (body) != "object") {
-   errToReturn.error = JSON.parse(body).error;
-   errToReturn.errorDetail = JSON.parse(body).errorDetail;
-   } else {
-   errToReturn.error  = body.error;
-   errToReturn.errorDetail = body.errorDetail;
-   }
-
-   return callBack({errFromServer : errToReturn});
-   }
-
-   })*/
   globalService.requestRemoteServer(options, (err, toReturn) => {
+
     if (err)
       return callBack(err);
 
@@ -1751,7 +1808,8 @@ let httpDelete = function (url, callBack) {
       return callBack({errFromServer: toReturn})
 
 
-    return callBack(null, toReturn);
+    const dataReceived = toReturn.data
+    return callBack(null, dataReceived);
   })
 }
 let httpPutJson = function (url, jsonData, callBack) {
@@ -1839,6 +1897,10 @@ let readFile = function (res, iconPath, url, userId) {
             return globalService.sendError(res, err.code, err.message)
         }
         fs.readFile(pathFileDownload, (err, fileUtil) => {
+          if (err) {
+            log.error("error to readFile : ", err)
+            return globalService.sendError(res, err.code, err.message)
+          }
           return res.end(fileUtil);
         })
       });
@@ -1851,96 +1913,118 @@ let readFile = function (res, iconPath, url, userId) {
 };
 
 //FIXME merge with get path file in home dir
-let getPathLockedFileInHomeDir = function (fileData, ListeOfFolder, callBack) {
+let getPathLockedFileInHomeDir = async function (fileData, folderList, callBack) {
 
   let fileName = globalService.findFileVersion(fileData).name;
   let folderId = fileData.folderId;
-  let dbListeOfFolder = taffy(ListeOfFolder);
-  let parentId = dbListeOfFolder({_id: folderId}).select("parentId")[0];
+  let dbFolderList = taffy(folderList);
+  let parentId = dbFolderList({_id: folderId}).select("parentId")[0];
   let pathToHomDir = '';
+  let alias = ""
+  let userId = global.userConnected._id == null ? global.user._id : global.userConnected._id;
 
+  let params = {
+    placeId: fileData.placeId,
+    userId: userId,
+    refreshNeeded: true,
+
+  }
   while (parentId != null) {
-    let folderName = dbListeOfFolder({_id: folderId}).select("name")[0];
-    pathToHomDir = path.join(folderName, pathToHomDir);
+    params.elementId = "f-" + folderId
+    params.contextId = "f-" + parentId;
+    alias = await aliasesController.getAlias(params)
+    //dbAliasList({elementId: folderId}).select("alias")[0];
+    pathToHomDir = path.join(alias, pathToHomDir);
     folderId = parentId;
-    parentId = dbListeOfFolder({_id: folderId}).select("parentId")[0];
+    parentId = dbFolderList({_id: folderId}).select("parentId")[0];
   }
 
   if (parentId == null) {
-    let folderName = dbListeOfFolder({_id: folderId}).select("name")[0];
-    pathToHomDir = path.join(folderName, pathToHomDir);
+    params.elementId = "f-" + folderId
+    params.contextId = "p-" + dbFolderList({_id: folderId}).select("placeId")[0];
+    alias = await aliasesController.getAlias(params)
+    pathToHomDir = path.join(alias, pathToHomDir);
   }
-  let nameFileWithoutExt = (fileData.dataType == "quickNote") ? fileData.name : String(fileData.name).substr(0, String(fileData.name).indexOf('.'))
 
-  pathToHomDir = path.join(pathToHomDir,nameFileWithoutExt, nameFileWithoutExt + '_locked')
+  let pathDbDataTopics = path.join(constants.dataDir, userId, "place", fileData.placeId, "folder", fileData.folderId, "fileInfo", 'data.json');
+  let dataTopics = jsonfile.readFileSync(pathDbDataTopics);
+  let dbTopic = new taffy(dataTopics);
+  let topicId = dbTopic({fileId: fileData._id}).select("_id")[0];
+  let topicAlias = await aliasesController.getAlias({
+    placeId: fileData.placeId,
+    userId: userId,
+    refreshNeeded: false,
+    elementId: "t-" + topicId,
+    contextId: "f-" + fileData.folderId
+  });
+
+  pathToHomDir = path.join(pathToHomDir, topicAlias, topicAlias + '_locked')
   let pathToFileInDir = path.join(pathToHomDir, fileName);
 
   return callBack(pathToHomDir, pathToFileInDir);
 }
 
 
-let getPathFileInHomeDir = function (fileData, ListeOfFolder, callBack) {
+let getPathFileInHomeDir = async function (fileData, folderList, refreshNeeded, callBack) {
 
   let fileName = globalService.findFileVersion(fileData).name;
 
 
   let folderId = fileData.folderId;
 
-  let dbListeOfFolder = taffy(ListeOfFolder);
-
-  let parentId = dbListeOfFolder({_id: folderId}).select("parentId")[0];
+  let dbFolderList = taffy(folderList);
+  let parentId = dbFolderList({_id: folderId}).select("parentId")[0];
 
   let pathToHomDir = '';
+  let alias = ""
 
+  let params = {
+    placeId: fileData.placeId,
+    userId: global.userConnected._id == null ? global.user._id : global.userConnected._id,
+    refreshNeeded: refreshNeeded,
 
+  }
   while (parentId != null) {
-    let folderName = dbListeOfFolder({_id: folderId}).select("name")[0];
-    pathToHomDir = path.join(folderName, pathToHomDir);
+    params.elementId = "f-" + folderId
+    params.contextId = "f-" + parentId;
+    alias = await aliasesController.getAlias(params)
+    //dbAliasList({elementId: folderId}).select("alias")[0];
+    pathToHomDir = path.join(alias, pathToHomDir);
     folderId = parentId;
-    parentId = dbListeOfFolder({_id: folderId}).select("parentId")[0];
+    parentId = dbFolderList({_id: folderId}).select("parentId")[0];
   }
 
   if (parentId == null) {
-    let folderName = dbListeOfFolder({_id: folderId}).select("name")[0];
-    pathToHomDir = path.join(folderName, pathToHomDir);
+    params.elementId = "f-" + folderId
+    params.contextId = "p-" + dbFolderList({_id: folderId}).select("placeId")[0];
+    alias = await aliasesController.getAlias(params)
+    pathToHomDir = path.join(alias, pathToHomDir);
   }
-  //
-  // if (fileData.versionLocked) {
-  //   fileName = fileData.versions[fileData.versionLocked - 1].name
-  //   let nameFileWithoutExt = String(fileData.name).substr(0, String(fileData.name).indexOf('.'))
-  //
-  //   if (fileData.dataType == "quickNote") {
-  //     nameFileWithoutExt = fileData.name
-  //     fileName = fileData.versions[fileData.versionLocked].name
-  //
-  //   }
-  //
-  //   pathToHomDir = path.join(pathToHomDir, nameFileWithoutExt + "_V_" + fileData.versionLocked)
-  // }
+
   let pathToFileInDir = path.join(pathToHomDir, fileName);
 
   return callBack(pathToHomDir, pathToFileInDir);
 }
 
-let getPathFolderInHomeDir = function (folderData, ListeOfFolder, newNameFolder, callBack) {
+let getPathFolderInHomeDir = function (folderData, folderList, newNameFolder, callBack) {
 
   let folderId = folderData._id;
   let folderName = folderData.name;
-  let dbListeOfFolder = taffy(ListeOfFolder);
+  let dbFolderList = taffy(folderList);
 
-  let parentId = dbListeOfFolder({_id: folderId}).select("parentId")[0];
+  let parentId = dbFolderList({_id: folderId}).select("parentId")[0];
 
   let pathToHomDir = '';
   while (parentId != null) {
 
-    let folderName = dbListeOfFolder({_id: folderId}).select("name")[0];
+    let folderName = dbFolderList({_id: folderId}).select("name")[0];
     pathToHomDir = path.join(folderName, pathToHomDir);
     folderId = parentId;
-    parentId = dbListeOfFolder({_id: folderId}).select("parentId")[0];
+    parentId = dbFolderList({_id: folderId}).select("parentId")[0];
   }
 
   if (parentId == null) {
-    let folderName = dbListeOfFolder({_id: folderId}).select("name")[0];
+    let folderName = dbFolderList({_id: folderId}).select("name")[0];
     pathToHomDir = path.join(folderName, pathToHomDir);
   }
   let newPathFolderInHomeDir;
@@ -1959,7 +2043,20 @@ var showDialogBox = function (type, title, message) {
     return global.mainWindow.webContents.stop();
   })
 }
+var showOpenDialog = function (objParams) {
+  const title = objParams.title, message = objParams.message, defaultPath = objParams.defaultPath;
+  let urlToUploadFile = objParams.urlToUploadFile
 
+  dialog.showOpenDialog({
+    title: title,
+    defaultPath: defaultPath,
+    message: message,
+    properties: ["openFile", "showHiddenFiles"]
+  }, (filePaths) => {
+    if (filePaths)
+      uploadFromOpenDialog(filePaths[0], urlToUploadFile, objParams.urlToFakeFile, objParams.file)
+  })
+}
 var showConfirmBox = function (type, title, message, nameCallbackMap) {
 
   const buttons = [];
@@ -1969,7 +2066,7 @@ var showConfirmBox = function (type, title, message, nameCallbackMap) {
     indexCallBackMap[i++] = nameCallbackMap[name]
     buttons.push(name)
   }
-
+  buttons.push("close");
   dialog.showMessageBox({
     type: "question",
     title: title,
@@ -1978,7 +2075,7 @@ var showConfirmBox = function (type, title, message, nameCallbackMap) {
     noLink: true,
     cancelId: 1000
   }, (indexButton) => {
-    if (indexButton != 1000) {
+    if (indexButton != 1000 && indexButton != (buttons.length - 1)) {
       const params = indexCallBackMap[indexButton].params
 
       indexCallBackMap[indexButton].fn(params);
@@ -2019,5 +2116,12 @@ var showNotification = function (title, message) {
    eNotify.notify({title: title, text: message});*/
   global.mainWindow.send("showNotif", {title: title, message: message});
 }
+
+/*function getAndSaveAlias(req) {
+  req.url = "/place/" + req.params.placeId + "/alias/";
+  get(req, null)
+}*/
+
+ 
 module.exports.proxyShowNotification = showNotification;
 module.exports.dialogBox = showDialogBox;

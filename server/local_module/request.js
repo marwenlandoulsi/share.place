@@ -39,14 +39,15 @@ module.exports.requestUrl = (reqUrl, options, cb) => {
 
         return cb(null, json)
       }).catch(err => {
-        log.error('error to get json from response', err)
-
+        log.error('error to get json from response from url : ', reqUrl)
+        log.error("  └─ Error :",err)
+        err.code = res.status;
         return cb(err)
       })
     } else if (res.status == 502) {
 
       let error = new Error("status code out of range : " + res.status)
-      error.status = 500
+      error.code = 500
       return cb(error)
 
     } else {
@@ -56,12 +57,15 @@ module.exports.requestUrl = (reqUrl, options, cb) => {
           toReturn.errorFromServer = json
         return cb(toReturn)
       }).catch(err => {
-        log.error('error to get json from error send from server', err)
+        log.error('error to get json from error send from server from url : ', reqUrl)
+        log.error("  └─ Error :",err)
+        err.code = res.status;
         return cb(err)
       })
     }
   }).catch(err => {
-    log.error('error to get request server', err)
+    log.error('error to get request server from url : ', reqUrl)
+    log.error("  └─ Error :",err)
     return cb(err)
   })
 }
@@ -80,14 +84,15 @@ module.exports.getFileFromRemote = (reqUrl, options, cb) => {
           res.buffer().then(buffer => {
             return cb(null, buffer)
           }).catch(err => {
-            log.error("error to get buffer:", err)
-            log.trace("  └─Trace :", err.trace)
+            log.error("error to get buffer from url : ", reqUrl)
+            log.error("  └─ Error :",err)
+            err.code = res.status;
             return cb(err)
           })
         } else if (res.status == 502) {
 
           let error = new Error("status code out of range : " + res.status)
-          error.status = 500
+          error.code = 500
           return cb(error)
 
         } else {
@@ -96,21 +101,31 @@ module.exports.getFileFromRemote = (reqUrl, options, cb) => {
             toReturn.errorFromServer = json
             return cb(toReturn)
           }).catch(err => {
-            log.error('error to get json from error', err)
+            log.error("error to get json from error from url : ", reqUrl)
+            log.error("  └─ Error :",err)
+            err.code = res.status;
             return cb(err)
           })
         }
       })
       .catch(err => {
-        log.error("err to download file : ", err, err.trace)
+        log.error("err to download file from url : ", reqUrl)
+        log.error("  └─ Error :",err)
         return cb(err)
       })
 }
 
 module.exports.getResFromRemote = (reqUrl, options, cb) => {
+  let status ;
   fetch(reqUrl, options)
-      .then(res => cb(null, res))
-      .catch(err => cb(err))
+      .then(res => {
+        status = res.status
+        cb(null, res)
+      })
+      .catch(err => {
+        err.code = err.status ? err.status : status;
+        return cb(err)
+      })
 }
 
 function setSidInInput(cookie) {

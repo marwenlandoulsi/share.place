@@ -1,6 +1,6 @@
 {
   "name": "Shareplace",
-  "version": "0.2.0",
+  "version": "0.4.12",
   "description": "share place dev",
   "main": "main.js",
   "repository": {
@@ -20,7 +20,7 @@
     "electron-notify": "^0.1.0",
     "electron-packager": "^8.5.2",
     "electron-proxy-agent": "^1.0.2",
-    "electron-updater": "^1.10.3",
+    "electron-updater": "^2.16.1",
     "fs-extra": "^2.0.0",
     "nodemailer": "^4.1.0",
     "http": "0.0.0",
@@ -33,21 +33,38 @@
       {
         "provider": "github",
         "owner": "marwenlandoulsi",
-        "repo": "share.place"
+        "repo": "share.place.qa"
       }
     ],
     "asar": false,
-    "copyright": "©2017 Share.Place, Inc.",
-    "appId": "com.share.place",
+    "appId": "com.share.place.qa",
     "win": {
       "icon": "./shareElecIco.ico",
-      "target": "nsis"
+      "target": "nsis",
+      "publisherName": "Shareplace SAS"
     },
     "nsis": {
       "installerIcon": "./shareElecIco.ico",
       "perMachine": false,
       "oneClick": true,
       "runAfterFinish": true
+    },
+    "mac": {
+      "category": "public.sharePlace.business",
+      "icon": "./build/icons/mac/icon.icns",
+      "type": "development"
+    },
+    "dmg": {
+      "title":"shareplace",
+      "icon": "./build/icons/mac/icon.icns"
+    },
+    "pkg": {
+      "allowAnywhere": false,
+      "allowCurrentUserHome": true,
+      "allowRootDirectory": false
+    },
+    "directories": {
+      "buildResources": "./build"
     }
   },
   "keywords": [
@@ -59,7 +76,7 @@
   "license": "ISC",
   "copyright": "©2017 Share.Place, Inc.",
   "devDependencies": {
-    "electron": "1.4.15",
+    "electron": "1.7.9",
     "electron-builder": "^19.27.7"
   }
 }

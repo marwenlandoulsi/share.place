@@ -4,7 +4,7 @@ var dialog = require('electron').dialog;
 var pjson = require('./package.json');
 var jsonfile = require('jsonfile');
 var fs = require('fs-extra');
-const Menu = require('electron').Menu;
+const menu = require('electron').Menu;
 
 var path = require('path');
 //var menubar = require('./tray/menubar')
@@ -31,6 +31,7 @@ const os = require('os');
 
 const dateFormat = require('dateformat');
 const now = new Date();
+global.appVersion = pjson.version;
 log.info("╔══════════════════════════════════════════════════════════════════════════════════════════════════╗")
 log.info("║      Share.place " + pjson.version + ", " + os.platform() + " " + os.release() + " at " + dateFormat(now, "GMT:dddd, mmmm dS, yyyy, h:MM:ss TT Z") + "           ║")
 log.info("╚══════════════════════════════════════════════════════════════════════════════════════════════════╝")
@@ -45,6 +46,31 @@ var checkConnectionCtrl = require(path.join(__dirname, 'src', 'network-status.js
 var mainWindow = null;
 var globalService = require("./server/app_api/global");
 var globalConfig = require("./app_config");
+
+var templateMenu = [{
+  label: "Shareplace",
+  submenu: [
+    {label: "About Shareplace", selector: "orderFrontStandardAboutPanel:"},
+    {type: "separator"},
+    {
+      label: "Quit", accelerator: "Command+Q", click: function () {
+      app.quit();
+    }
+    }
+  ]
+}, {
+  label: "Edit",
+  submenu: [
+    // { label: "Undo", accelerator: "CmdOrCtrl+Z", selector: "undo:" },
+    {label: "Redo", accelerator: "Shift+CmdOrCtrl+Z", selector: "redo:"},
+    {type: "separator"},
+    {label: "Cut", accelerator: "CmdOrCtrl+X", selector: "cut:"},
+    {label: "Copy", accelerator: "CmdOrCtrl+C", selector: "copy:"},
+    {label: "Paste", accelerator: "CmdOrCtrl+V", selector: "paste:"},
+    {label: "Select All", accelerator: "CmdOrCtrl+A", selector: "selectAll:"}
+  ]
+}
+];
 globalService.checkPathOrCreateSync(globalConfig.dataDir, globalConfig.usersFileData, '[]');
 globalService.checkPathOrCreateSync(globalConfig.dataDir, globalConfig.lastLoginFileData, '{}');
 //var checksum = require('checksum');
@@ -74,27 +100,33 @@ ipcMain.on('online-status-changed', (event, status) => {
     }
     checkConnectionCtrl.checkInternetConnection(conf.remoteUrl, (remoteIsReachable) => {
       global.onLine = remoteIsReachable;
-      if (!remoteIsReachable) {
-
-        mainWindow.setOverlayIcon(path.join(__dirname, 'Offline-red.ico'), 'you are offLine');
-      } else {
-        mainWindow.setOverlayIcon(path.join(__dirname, 'Online.ico'), 'you are onLine');
-      }
-    })
-    setInterval(function () {
-      checkConnectionCtrl.checkInternetConnection(conf.remoteUrl, (remoteIsReachable) => {
-        global.onLine = remoteIsReachable;
+      if (process.platform == 'win32') {
         if (!remoteIsReachable) {
 
           mainWindow.setOverlayIcon(path.join(__dirname, 'Offline-red.ico'), 'you are offLine');
         } else {
           mainWindow.setOverlayIcon(path.join(__dirname, 'Online.ico'), 'you are onLine');
         }
+      }
+    })
+    setInterval(function () {
+      checkConnectionCtrl.checkInternetConnection(conf.remoteUrl, (remoteIsReachable) => {
+        global.onLine = remoteIsReachable;
+        if (process.platform == 'win32') {
+          if (!remoteIsReachable) {
+
+            mainWindow.setOverlayIcon(path.join(__dirname, 'Offline-red.ico'), 'you are offLine');
+          } else {
+            mainWindow.setOverlayIcon(path.join(__dirname, 'Online.ico'), 'you are onLine');
+          }
+        }
       })
     }, 10000);
 
   } else {
-    mainWindow.setOverlayIcon(path.join(__dirname, 'Offline-red.ico'), 'you are offLine');
+    if (process.platform == 'win32') {
+      mainWindow.setOverlayIcon(path.join(__dirname, 'Offline-red.ico'), 'you are offLine');
+    }
   }
 });
 
@@ -128,6 +160,9 @@ ipcMain.on('closeCurrentWindow', (event, status) => {
 });
 
 app.on('window-all-closed', () => {
+  if (global.forkedSyncWorker)
+    global.forkedSyncWorker.send("killSyncWorker");
+
   app.quit();
 });
 
@@ -194,7 +229,7 @@ app.on('ready', function () {
 
   session.defaultSession.allowNTLMCredentialsForDomains(domains);
   const ses = session.fromPartition('', {cache: false})
-
+  global.syncDisabled = true
   ses.resolveProxy('google.com', (proxy) => {
     log.info("you are behind the proxy : ", proxy)
     global.proxy = proxy
@@ -224,6 +259,7 @@ app.on('ready', function () {
     global.downloadsDir = app.getPath('downloads');
 
     var expressApp = require('./server/app');
+
     var listener = expressApp.listen(0, 'localhost', () => {
 
       /*var mb =  menubar ({
@@ -241,6 +277,13 @@ app.on('ready', function () {
         log.error("process error : ", err, err.trace);
         // app.quit();
       });
+
+      process.on('unhandledRejection', (reason, p) => {
+        log.error('Unhandled Rejection at: Promise', p, 'reason:', reason);
+        // application specific logging, throwing an error, or other logic here
+      })
+
+
       /*
        var screenElectron = require('electron').screen;
        var mainScreen = screenElectron.getPrimaryDisplay();
@@ -282,12 +325,12 @@ app.on('ready', function () {
       global.homeUrlServer = 'http://127.0.0.1:' + global.serverPort + '/web';
       mainWindow.once('ready-to-show', (event) => {
         mainWindow.webContents.session.clearStorageData({
-              storages: ["appcache", "cookies", "filesystem", "indexdb", "localstorage", "shadercache", "websql", "serviceworkers"]
-            }, () => {
-              mainWindow.show();
-              event.sender.send('showFrame');
+          storages: ["appcache", "cookies", "filesystem", "indexdb", "localstorage", "shadercache", "websql", "serviceworkers"]
+        }, () => {
+          mainWindow.show();
+          event.sender.send('showFrame');
 
-            })
+        })
 
       });
 
@@ -297,48 +340,12 @@ app.on('ready', function () {
 
       global.mainWindow = mainWindow;
       init()
+
+
     });
   })
-
-  //
-  //
-  // appIcon = new Tray(path.join(__dirname, 'logo255-255.png'));
-  //
-  // const template = [
-  //   {
-  //     label: 'Send logs',
-  //     type: 'normal',
-  //     click: function () {
-  //
-  //     }
-  //   }, {
-  //     type: 'separator'
-  //   },
-  //   {
-  //     role: 'window',
-  //     submenu: [
-  //       {
-  //         role: 'minimize',
-  //         click: function (item, focusedWindow) {
-  //           if (focusedWindow) {
-  //             // on reload, start fresh and close any old
-  //             // open secondary windows
-  //             if (focusedWindow.id === 1) {
-  //               focusedWindow.minimise()
-  //             }
-  //           }
-  //         }
-  //       },
-  //       {role: 'close'}
-  //     ]
-  //   }
-  // ]
-  //
-  //
-  // const menu = Menu.buildFromTemplate(template)
-  // Menu.setApplicationMenu(menu)
-  // appIcon.setToolTip('Share.Place');
-  // appIcon.setContextMenu(menu);
+  setApplicationMenu(templateMenu);
+  global.electronApp = app;
 });
 
 function init() {
@@ -392,7 +399,7 @@ function getIconPath() {
 }
 
 function updateTrayMenu() {
-  var contextMenu = require('electron').Menu.buildFromTemplate(getMenuTemplate())
+  var contextMenu = menu.buildFromTemplate(getMenuTemplate())
   appIcon.setContextMenu(contextMenu)
 }
 
@@ -409,7 +416,7 @@ function getMenuTemplate() {
     {type: 'separator'},
     {
       label: 'Quit',
-      click: () => app.quit()
+      click: () => quit()
     },
     {type: 'separator'}
   ]
@@ -430,30 +437,7 @@ function getMenuTemplate() {
 }
 
 function sendLogs() {
-  //
-  // const net = require(path.join(__dirname, 'server', 'local_module', 'request'))
-  // const FormData = require('form-data')
-  // const pathLogs = path.join(app.getPath("userData"), "log.log");
-  // const form = new FormData()
-  //
-  // form.append('toUpload', fs.createReadStream(pathLogs));
-  //
-  // let headers = {
-  //   'Cookie': global.cookieReceived
-  // }
-  // let reqOptions = {
-  //   method: "POST",
-  //   headers: headers,
-  //   body: form
-  // }
-  // net.requestUrl('http://127.0.0.1:3000/sp/rr', reqOptions, (err, toReturn) => {
-  //   if (err){
-  //     log.error("error to send logs", err)
-  //     return mainWindow.webContents.executeJavaScript('alert("error to send log file please try again")')
-  //   }
-  //
-  //   return mainWindow.webContents.executeJavaScript('alert("log file send")');
-  // })
+
   let nodemailer = require('nodemailer')
   let transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -470,7 +454,7 @@ function sendLogs() {
   let mailUserConnected = null
 
   function getMailUser(user) {
-    let mail ;
+    let mail;
     if (user.local)
       mail = user.local.email
     else if (user.facebook)
@@ -481,14 +465,14 @@ function sendLogs() {
     return mail
   }
 
-  if(global.user){
+  if (global.user) {
     mailUserConnected = getMailUser(global.user);
-  }else{
+  } else {
     mailUserConnected = []
     var constants = require('./server/app_config');
     let users = jsonfile.readFileSync(constants.usersFileData)
 
-    for(var i=0; i<users.length; i++){
+    for (var i = 0; i < users.length; i++) {
       mailUserConnected.push(getMailUser(users[i]))
     }
   }
@@ -511,14 +495,20 @@ function sendLogs() {
   transporter.sendMail(mailOptions, function (err) {
     if (err) {
       log.error("error to send logs", err)
-      return mainWindow.webContents.executeJavaScript('alert("error to send log file please try again")')
+      return mainWindow.webContents.executeJavaScript('alert("Failure to send log file please try again")')
     }
 
-    return mainWindow.webContents.executeJavaScript('alert("log file send")');
+    return mainWindow.webContents.executeJavaScript('alert("Log file was sent successfully")');
 
   })
 
 
+}
+
+function setApplicationMenu(templateMenu) {
+  if (process.platform == "darwin") {
+    menu.setApplicationMenu(menu.buildFromTemplate(templateMenu));
+  }
 }
 
 function getPort(cb) {
@@ -558,6 +548,23 @@ function createFile(filename) {
       console.log("The file exists!");
     }
   });
+
+}
+
+
+function registerShortcut(shortcutList) {
+  for (let i = 0; i < shortcutList.length; i++) {
+    let ret = globalShortcut.register(shortcutList[i], (aa, bb) => {
+      log.info('la commande ' + shortcutList[i] + ' is pressed')
+      log.info("aa : " + aa + " bb : " + bb)
+
+    })
+
+    if (!ret) {
+      log.info('registration failed')
+    }
+  }
+
 
 }
 

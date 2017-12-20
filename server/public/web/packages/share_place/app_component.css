@@ -12,7 +12,7 @@ h2 {
 
 .logo_header {
   text-align: center;
-  padding: 1em 0;
+  padding: 0.8em 0;
 }
 
 nav a {
@@ -68,10 +68,6 @@ nav a.router-link-active {
   border-bottom: 2px solid cornflowerblue;
 }
 
-.leftP {
-  background-color: #252132;
-}
-
 .header-top {
   position: relative;
   z-index: 1001;
@@ -96,7 +92,7 @@ nav a.router-link-active {
   display: block;
   vertical-align: middle;
   font-family: 'robotoregular';
-  color: #797171;
+  color: #6f6666;
   font-size: 15px;
   font-weight: 500;
   -ms-user-select: none;
@@ -111,6 +107,9 @@ nav a.router-link-active {
   color: #817D8F;
   float: left;
   margin-right: 0.7em;
+  font-size: 0.9em;
+  vertical-align: middle;
+  margin-top: 3px;
 }
 
 .copyIcon {
@@ -227,6 +226,7 @@ material-button.menuItem.profile, material-button.menuItem.logout {
 }
 
 .imgProfil img {
+  cursor: pointer;
   -webkit-app-region: no-drag;
 }
 
@@ -248,12 +248,13 @@ material-button.menuItem.profile, material-button.menuItem.logout {
   vertical-align: top;
 }
 
-.rightPanelinside_header {
+.rightPanelInsideHeader {
   text-align: right;
-  padding: 0.4em 0.5em 0;
+  /*padding: 0.4em 0.5em 0;*/
   width: calc(100% - 1em);
   background: #3697FF;
-  height: 2.5em;
+  padding: 0 0.5em;
+  height: 2.52em;
 }
 
 .appElectron .leftHeader {
@@ -264,13 +265,56 @@ material-button.menuItem.profile, material-button.menuItem.logout {
   width: 12em;
 }
 
+.appElectron .btnsWindow {
+  margin-left: 1em;
+}
+
+/*__________ header electron sur Mac ________*/
+
+.appElectron.mac .leftHeader {
+  width: calc(100% - 6.8em);
+  padding-left: 4.2em;
+}
+
+.appElectron.mac .rightMenu {
+  width: 2em;
+}
+
+.breadCrumbContent {
+  text-align: left;
+  width: 100%;
+  overflow: hidden;
+  height: 40px;
+  line-height: 37px;
+}
+
+.hideTree {
+  visibility: hidden;
+}
+
+.hideHeaderTop.header-top .rightMenu {
+  opacity: 0.5;
+}
+
+.hideHeaderTop.header-top .rightMenu .imgProfil {
+  opacity: 0;
+}
+
+.hideHeaderTop.header-top .rightMenu .imgProfil img {
+  cursor: default;
+}
+
 /*__________________*/
 @media only screen and (max-width: 1200px) {
-  .rightPanelinside_header {
-    padding: 0.1em 0.2em 0;
+
+  .rightPanelInsideHeader {
+    padding: 0 0.2em;
     width: calc(100% - 0.4em);
     height: 2.25em;
   }
 
+  .breadCrumbContent {
+    line-height: 34px;
+  }
 }
 

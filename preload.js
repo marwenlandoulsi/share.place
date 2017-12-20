@@ -67,7 +67,7 @@ process.once('loaded', () => {
         });
   }
 
-  function showHorizontalSpilitter() {
+  function showHorizontalSplitter() {
     $(".searchInner").resizable({
       handles: 's',
       stop: function (event, ui) {
@@ -107,6 +107,22 @@ process.once('loaded', () => {
     //alert('Url copied');
   }
 
+  function  scrollTo(eventDetail) {
+
+    var thisTop = $(eventDetail.idElementToScrollTo).position().top;
+
+    $(eventDetail.idScroller).animate({
+      scrollTop:thisTop
+    }, 'fast');
+  }
+
+  window.addEventListener('scrollTo', function (e) {
+    var eventDetail = JSON.parse(e.detail);
+
+    scrollTo(eventDetail);
+  });
+
+
   window.addEventListener('showScroller', function (e) {
     showScroll();
   });
@@ -119,8 +135,8 @@ process.once('loaded', () => {
     showSplitterLeft();
   });
 
-  window.addEventListener('showHorizontalSpilitter', function (e) {
-    showHorizontalSpilitter();
+  window.addEventListener('showHorizontalSplitter', function (e) {
+    showHorizontalSplitter();
   });
 
   function checkDownloadStatus(){
@@ -132,7 +148,15 @@ process.once('loaded', () => {
     if(title.indexOf('504') != -1)
       alert('ups! error on file download ')
   }
+  function checkDownloadStatus(){
+    const frame = window.frames['dnlFrame'];
+    if( !frame )
+      return
 
+    const title = frame.contentWindow.document.title;
+    if(title.indexOf('504') != -1)
+      alert('ups! error on file download ')
+  }
 
   //----------------------------- electron ---------------------------
 

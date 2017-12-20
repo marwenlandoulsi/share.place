@@ -2,62 +2,61 @@
 <div class="inviteUsers" id="inviteUsers">
   <div class="modal-header">
     <h4 class="modal-title">
-      Send invites {{selectedPlace.name}}
+      Send invites  <!-- {{selectedPlace.name}}-->
     </h4>
   </div>
   <div class="close" (click)="close()"></div>
   <div class="modal-body inviteUsersbody">
-    <p>It's time to invite some colleagues and start to collaborate! <br/>
-      Type email (internal or external), set authorizations
-      and send invites!</p>
-    <table class="invites">
-      <tr>
-        <th width="40%"></th>
-        <th width="60%">
-          <span class="labelinvit textCenter magBtm">Authorization</span>
-
-          <p class="p_invi">User can <span class="fStrong">approve</span>, read, export, modify document and <span
-              class="fStrong">invite new people</span></p>
-          <p class="p_invi">User can read, export&nbsp; and <strong>modify</strong> document</p>
-          <p class="p_invi">User can read and export document</p>
-
-        </th>
-      </tr>
-
-    </table>
-
-
 
     <div class="containerInvites">
       <div class="scrollbar-macosx">
-      <table class="invites">
-        <tr *ngFor="let userRole of usersWithRoles">
-          <td width="40%">
-            <span class="labelinvit">Email</span>
-            <material-input #search class="mailToAdd" type="email"  autoFocus="true"
-                            (keyup)="onKeyUp(search.inputText)" class="emailinp"
-                            placeholder="example@mydomain.com" [(ngModel)]="userRole.email"></material-input>
-          </td>
-          <td width="60%" class="rolesLine">
-            <role-chooser-comp #role [(selected)]="userRole.roleName"></role-chooser-comp>
-          </td>
-        </tr>
-      </table>
-    </div>
+        <table class="invites" style="text-align: left" style="border-collapse: separate; border-spacing: 2px;">
+          <tr style="text-align: left">
+            <th width="40%" style="padding-left: 10px">Email</th>
+            <th width="6%"></th>
+            <th width="54%" style="padding-left: 10px">Access</th>
+          </tr>
+          <tr *ngFor="let userRole of usersWithRoles">
+            <td width="40%" class="verticalAlign">
+              <material-input #search class="mailToAdd" type="email" autoFocus="true"
+                              (keyup)="onKeyUp(search.inputText)" class="emailInscription"
+                              placeholder="example@mydomain.com" [(ngModel)]="userRole.email"></material-input>
+            </td>
+            <td width="6%" class="canContent"  style="text-align: center" >
+              <div class="can">can:</div>
+            </td>
+            <td width="54%" class="verticalAlign" style="border-spacing: 0;">
+              <select [(ngModel)]="userRole.roleName">
+                <option value="owner">Modify & export docs + approve + invite people</option>
+                <option value="viewer">Modify & export docs</option>
+                <option value="writer">Read only & export docs</option>
+              </select>
+
+            </td>
+          </tr>
+        </table>
+      </div>
     </div>
 
     <div class="addUserDiv">
-      <div class="addUserDiv_inside" (click)="addUserLine()" onselectstart="return false"><span>Invite more</span> </div>
+      <div class="addUserDiv_inside" (click)="addUserLine()" onselectstart="return false"><span>Invite more</span></div>
     </div>
 
-    <span class="labelinvit">Message</span>
+    <span class="titleMessage"><strong>Message</strong> for external users</span>
 
-    <material-input   [(ngModel)]="message" type="text" multiline rows="5" id="inviteLablel"
-                      autoFocus="true" label="Hello! Join me on Share.Place, it's a super simple app to share and collaborate together!"></material-input>
-    <!--contenteditable="true"-->
-</div>
+    <material-input [(ngModel)]="message" type="text" multiline rows="5" id="inviteLabel"
+                     autoFocus="true"
+                     label="&nbsp; &nbsp;Hello!
+                     &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
+                     &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
+                     &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
+                     &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
+                     &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
+                     Join me on Share.Place, it's a super simple app to share and collaborate together! ">
+    </material-input>
+  </div>
 
-<div class="modal-footer">
-<material-button raised (click)="save()" class="submitbottom">Send invites</material-button>
-</div>
+  <div class="modal-footer">
+    <material-button raised (click)="save()" class="submitbottom">Invite & send</material-button>
+  </div>
 </div>

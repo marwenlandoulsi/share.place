@@ -33,6 +33,10 @@
         "5": false
       },
       {
+        "1": "package:share_place/common/access_denied_exception.dart",
+        "5": false
+      },
+      {
         "1": "place.dart",
         "5": false
       },
@@ -42,6 +46,10 @@
       },
       {
         "1": "package:share_place/common/util.dart",
+        "5": false
+      },
+      {
+        "1": "package:share_place/common/data/data.dart",
         "5": false
       },
       {
@@ -83,6 +91,10 @@
       {
         "1": "package:share_place/app_constants.dart",
         "5": false
+      },
+      {
+        "1": "package:share_place/common/conflict_error.dart",
+        "5": false
       }
     ],
     "5": [
@@ -117,56 +129,68 @@
         "4": "i1"
       },
       {
-        "1": "place.template.dart",
+        "1": "package:share_place/common/access_denied_exception.template.dart",
         "4": "i2"
       },
       {
-        "1": "folder.template.dart",
+        "1": "place.template.dart",
         "4": "i3"
       },
       {
-        "1": "package:share_place/common/util.template.dart",
+        "1": "folder.template.dart",
         "4": "i4"
       },
       {
-        "1": "package:share_place/environment.template.dart",
+        "1": "package:share_place/common/util.template.dart",
         "4": "i5"
       },
       {
-        "1": "package:share_place/file_info.template.dart",
+        "1": "package:share_place/common/data/data.template.dart",
         "4": "i6"
       },
       {
-        "1": "package:share_place/files/cloud_file.template.dart",
+        "1": "package:share_place/environment.template.dart",
         "4": "i7"
       },
       {
-        "1": "package:share_place/files/file_action.template.dart",
+        "1": "package:share_place/file_info.template.dart",
         "4": "i8"
       },
       {
-        "1": "package:share_place/news/news_event.template.dart",
+        "1": "package:share_place/files/cloud_file.template.dart",
         "4": "i9"
       },
       {
-        "1": "package:share_place/users/user.template.dart",
+        "1": "package:share_place/files/file_action.template.dart",
         "4": "i10"
       },
       {
-        "1": "app_context_manager.template.dart",
+        "1": "package:share_place/news/news_event.template.dart",
         "4": "i11"
       },
       {
-        "1": "package:share_place/search/search_item.template.dart",
+        "1": "package:share_place/users/user.template.dart",
         "4": "i12"
       },
       {
-        "1": "package:share_place/common/central.template.dart",
+        "1": "app_context_manager.template.dart",
         "4": "i13"
       },
       {
-        "1": "package:share_place/app_constants.template.dart",
+        "1": "package:share_place/search/search_item.template.dart",
         "4": "i14"
+      },
+      {
+        "1": "package:share_place/common/central.template.dart",
+        "4": "i15"
+      },
+      {
+        "1": "package:share_place/app_constants.template.dart",
+        "4": "i16"
+      },
+      {
+        "1": "package:share_place/common/conflict_error.template.dart",
+        "4": "i17"
       }
     ]
   },

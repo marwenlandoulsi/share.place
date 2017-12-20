@@ -21,6 +21,11 @@
       {
         "1": "package:share_place/common/ui/button_comp.dart",
         "5": false
+      },
+      {
+        "1": "package:share_place/app_config.dart",
+        "4": "conf",
+        "5": false
       }
     ],
     "5": [
@@ -68,6 +73,10 @@
       {
         "1": "package:share_place/common/ui/button_comp.template.dart",
         "4": "i4"
+      },
+      {
+        "1": "package:share_place/app_config.template.dart",
+        "4": "i5"
       }
     ]
   },
@@ -168,7 +177,7 @@
       "lifecycleHooks": [],
       "template": {
         "encapsulation": 0,
-        "template": "<div class=\"role\" [class.selected]=\"selected\" (click)=\"clicked()\">\r\n  <btn #icon\r\n      [sources]=\"images\"></btn>\r\n</div>\r\n",
+        "template": "<div class=\"role\" [class.selected]=\"selected\" (click)=\"clicked()\">\r\n  <btn #icon\r\n      [sources]=\"images\">\r\n  </btn>\r\n</div>\r\n",
         "templateUrl": "asset:share_place/lib/users/role/role_item.html",
         "styles": [],
         "styleUrls": [

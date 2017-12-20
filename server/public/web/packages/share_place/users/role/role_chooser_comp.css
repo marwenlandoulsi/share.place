@@ -9,7 +9,7 @@
   font: normal normal normal 2em/1 'Material-Design-Iconic-Font';
   position: relative;
   float: left;
-  background: url("/images/tiret-black.png") repeat-x center center;
+  background: url("/images/tiret-gris.png") repeat-x center center;
 }
 
 .roleChooser role-item.delete { display: none}

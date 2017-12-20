@@ -62,10 +62,10 @@ app.use(function errorHandler(err, req, res, next) {
 });
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+// app.set('views', path.join(__dirname, 'views'));
 // app.set('views', __dirname+'/views');
 //app.set('view engine', 'jade');
-app.set('view engine', 'ejs'); // set up ejs for templating
+// app.set('view engine', 'ejs'); // set up ejs for templating
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -135,13 +135,17 @@ app.use('/sp', isAuthenticatedRest, routesApi)//API routes
 
 function isAuthenticatedRest(req, res, next) {
   if (req.user) {
-    if(!global.executeSync){
-      global.executeSync = true;
+
       global.user = req.user
-      cron.sync();
-    }
+      //cron.sync();
+      globalService.runSyncServer()
     return next();
   }
+  if (req.url.indexOf("loadAppVersion") != -1)
+    return next();
+
+  if (req.url.indexOf("/superUser") != -1)
+    return next();
 
   let cookieLastUserLogin = jsonfile.readFileSync(constants.lastLoginFileData);
 
@@ -158,10 +162,7 @@ function isAuthenticatedRest(req, res, next) {
         if (global.cookieReceived) {
           req.login(user, function (error) {
             if (!error) {
-              if(!global.executeSync){
-                global.executeSync = true;
-                cron.sync();
-              }
+              globalService.runSyncServer()
               return next();
             } else {
               log.error('error to save user in request ', error);
@@ -177,8 +178,8 @@ function isAuthenticatedRest(req, res, next) {
       if (err) {
         log.error("error to load Db ", err)
         return globalService.sendJsonResponse(res, 401, {error: 'not connected'});
-
       }
+
       db.find({"_id": req.sessionID}, function (err, docs) {
         if (err) {
           log.error("error to find sid in db", err);
@@ -204,14 +205,19 @@ function isAuthenticatedRest(req, res, next) {
 
         var userLocal = localUsers({_id: userId});
         //req.session.passport.user = userLocal.get()[0];
-        req.login(userLocal.get()[0], function (error) {
-          if (!error) {
 
-            if(!global.executeSync){
-              global.executeSync = true;
-              global.user = userLocal.get()[0]
-              cron.sync();
-            }
+        const userFnd = userLocal.get()[0]
+
+        if(!userFnd)
+          return globalService.sendJsonResponse(res, 401, {error: 'user not found'});
+
+
+        req.login(userFnd, function (error) {
+          if (!error) {
+            global.user = userLocal.get()[0]
+
+            globalService.runSyncServer()
+
             return next();
           } else {
             log.error('error to save user in req', error);
@@ -226,6 +232,7 @@ function isAuthenticatedRest(req, res, next) {
   globalService.setSidInInput(cookieLastUserLogin.cookieFromServer)
 
 }
+
 app.use('/refreshUser', (req, res, next) => authenticate(req, res, next, 'refresh-user'));
 
 var authenticate = (req, res, next, strategy) => {
@@ -254,29 +261,49 @@ var authenticate = (req, res, next, strategy) => {
 //app.use(isAuthenticated, express.static(path.join(__dirname, 'public/')));
 
 //app.use(isAuthenticated, express.static(__dirname + '/public'));
+
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
-  var err = new Error('Not Found ' + req.url);
+  var err = new Error('Url Not Found :' + req.url);
   err.status = 404;
   next(err);
+
 });
 
 app.use(function (err, req, res, next) {
-  log.error(err.stack);
-  res.endStatus(500);
+  if (err) {
+    log.error("server catch error :", err);
+    if (err.status != 404) {
+      const electron = require('electron')
+      const dialog = electron.dialog;
+      dialog.showMessageBox({
+        type: "error",
+        title: "Something went wrong",
+        message: "Sorry, Something went wrong. Please restart the app",
+      }, () => {
+        global.electronApp.relaunch()
+        return
+      })
+    }
+
+
+  }
+
+  // res.status(err.status || 500);
+  // res.render('error');
   // or you could call res.render('error'); if you have a view for that.
 });
 
 // error handler
-app.use(function (err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});
+// app.use(function (err, req, res, next) {
+//   // set locals, only providing error in development
+//   res.locals.message = err.message;
+//   res.locals.error = req.app.get('env') === 'development' ? err : {};
+//
+//   // render the error page
+//   res.status(err.status || 500);
+//   res.render('error');
+// });
 if (constants.debugServer) {
   app.set('port', 3001);
   var server = http.createServer(app);

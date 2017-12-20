@@ -9,7 +9,11 @@ var proxy = require('../controllers/proxy');
 var constants = require('../../app_config');
 var ctrlLoginApi = require('../routes/login_api');
 var configAuth = constants.oauth; // load the auth variables
-const {session} = require('electron')
+let session;
+
+if (global.syncDisabled) {
+  session = require('electron').session
+}
 let _ = require('underscore')
 
 //var request = require('request-promise').defaults({ simple: false });
@@ -22,7 +26,7 @@ var jsonfile = require('jsonfile');
 var path = require('path');
 var sep = path.sep;
 
-var userfile = path.join(constants.usersFileData);
+var userFile = path.join(constants.usersFileData);
 var lastLoginUserFIle = constants.lastLoginFileData;
 var cron = require("../controllers/cron");
 var pro = require('express-http-proxy');
@@ -39,12 +43,12 @@ var agent = new electronProxyAgent({
 });
 
 const fetch = require('electron-fetch')
-const net = require(path.join(__dirname,'..', '..', 'local_module', 'request'))
+const net = require(path.join(__dirname, '..', '..', 'local_module', 'request'))
 const FormData = require('form-data')
 module.exports = function (passport) {
-  var users = jsonfile.readFileSync(userfile);
+  var users = jsonfile.readFileSync(userFile);
 
-  var localUsers = taffy(users);
+  let localUsersDb = taffy(users);
 
   // =========================================================================
   // passport session setup ==================================================
@@ -60,23 +64,26 @@ module.exports = function (passport) {
 
   // used to deserialize the user
   passport.deserializeUser(function (id, done) {
-    users = jsonfile.readFileSync(userfile);
-    localUsers = taffy(users);
+    users = jsonfile.readFileSync(userFile);
+    localUsersDb = taffy(users);
 
-    var userLocal = localUsers({_id: id});
-    if (!global.enterToDes) {
-      global.enterToDes = true;
-      session.defaultSession.cookies.get({url: 'http://127.0.0.1', name: "connect.sid"}, (error, cookies) => {
-        if (error)
-          log.error("can't get cookie:", error);
+    const userLocal = localUsersDb({_id: id});
+    const user = userLocal.get()[0]
+    if (user) {
+      if (!global.enterToDes) {
+        global.enterToDes = true;
+        session.defaultSession.cookies.get({url: 'http://127.0.0.1', name: "connect.sid"}, (error, cookies) => {
+          if (error)
+            log.error("can't get cookie:", error);
 
-        var cookie = cookies[0];
-        cookie.cookieFromServer = global.cookieReceived;
-        jsonfile.writeFile(lastLoginUserFIle, cookie);
-      })
+          var cookie = cookies[0];
+          cookie.cookieFromServer = global.cookieReceived;
+          jsonfile.writeFile(lastLoginUserFIle, cookie);
+        })
+      }
+
+      return done(null, user);
     }
-
-    done(null, userLocal.get()[0]);
 
   });
 
@@ -102,7 +109,7 @@ module.exports = function (passport) {
 
             loginFromServer(req, email, password, function (err, user) {
 
-              if(err)
+              if (err)
                 return done(err);
 
               if (!user) {
@@ -111,63 +118,46 @@ module.exports = function (passport) {
               globalService.setSidInInput(global.cookieReceived);
               global.user = user
 
-              var userLocal = localUsers({local: {email: email}});
+              const localUser = localUsersDb({_id: user._id}).get()[0];
 
-
-              if (userLocal.select("local").length == 0) {
-
-
-                var newLocalUser = user;
-
-                users.push(newLocalUser);
-
-                jsonfile.writeFileSync(userfile, users);
-                localUsers = taffy(users);
-                global.userConnected = user;
-                //cron.sync();
-                return done(null, user);
+              if (!localUser) {
+                users.push(user);
+                jsonfile.writeFileSync(userFile, users);
               } else {
-                if (user) {
-                  if (userLocal.select("local")[0].password != user.local.password) {
-
-                    localUsers({local: {email: email}}).update({
-                      local: {
-                        email: user.local.email,
-                        password: user.local.password
-                      }
-                    });
-                    jsonfile.writeFileSync(userfile, localUsers().get());
-                    global.userConnected = user;
-                    //     cron.sync();
-                    return done(null, user);
-                  }
-                  global.userConnected = user;
-                  //  cron.sync();
-                  return done(null, user);
-                } else {
-
-                  return done(err);
-                }
+                localUsersDb({_id: user._id}).update(user);
+                jsonfile.writeFileSync(userFile, localUsersDb().get());
               }
+
+              global.userConnected = user;
+              return done(null, user);
             })
           } else {
-            var userLocal = localUsers({local: {email: email}});
-
-            if (userLocal.get().length == 0) {
-              log.info("no user found");
-              return done(null, false, req.flash('loginMessage', 'No user found.'));
+            var localUserList = localUsersDb({local: {email: email}});
+            let err
+            if (localUserList.get().length == 0) {
+              log.error("no user found with email:", email);
+              err = new Error("Sorry you are offline, '" + email + "' is unknown, try connecting to internet")
+              err.status = 404
+              err.code = 404
+              return done(err);
+            } else if (localUserList.get().length > 1) {
+              log.error("many user found with same mail :", email);
+              err = new Error("Sorry you can't login with '" + email + "'. Please contact share.place team")
+              err.status = 404
+              err.code = 404
+              return done(err);
             } else {
-              log.info("user found id local DB", userLocal.get()[0]);
-              if (validPassword(password, userLocal.select("local")[0].password)) {
-                return done(null, userLocal.get()[0]);
+              log.info("user found id local DB", localUserList.get()[0]);
+              if (validPassword(password, localUserList.select("local")[0].password)) {
+                return done(null, localUserList.get()[0]);
               } else {
-                return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.'));
+                return done(null, false, req.flash('loginMessage', 'Oops! Wrong mail or password.'));
               }
 
-              return done(null, userLocal.get()[0]);
+              return done(null, localUserList.get()[0]);
             }
 
-            return done(null, userLocal.get()[0]);
+            return done(null, localUserList.get()[0]);
           }
 
 
@@ -205,9 +195,9 @@ module.exports = function (passport) {
 
               globalService.setSidInInput(global.cookieReceived);
 
-              users = jsonfile.readFileSync(userfile);
-              localUsers = taffy(users);
-              saveUserInLocalDb(users, userfile, localUsers, user);
+              users = jsonfile.readFileSync(userFile);
+              localUsersDb = taffy(users);
+              saveUserInLocalDb(users, userFile, localUsersDb, user);
               global.userConnected = user
               global.user = user
               return done(null, user);
@@ -242,11 +232,11 @@ module.exports = function (passport) {
           if (err)
             return callback(err);
 
-          users = jsonfile.readFileSync(userfile);
-          localUsers = taffy(users);
+          users = jsonfile.readFileSync(userFile);
+          localUsersDb = taffy(users);
           var user = dataReceived.data;
           global.userConnected = user;
-          saveUserInLocalDb(users, userfile, localUsers, user);
+          saveUserInLocalDb(users, userFile, localUsersDb, user);
           globalService.setSidInInput(global.cookieReceived);
 
           session.defaultSession.cookies.get({url: 'http://127.0.0.1'}, (error, cookies) => {
@@ -314,40 +304,41 @@ var loginFromServer = function (req, email, password, cb) {
     method: constants.optionsPost.method,
     body: JSON.stringify(body),
     headers: {'Content-Type': 'application/json'},
-  }, (err, dataReceived)=>{
-      if(err)
-        return cb(err)
+  }, (err, dataReceived) => {
+    if (err)
+      return cb(err)
 
-  /*  if(dataReceived.cookie)
-      global.cookieReceived = dataReceived.cookie
-*/
+    /*  if(dataReceived.cookie)
+        global.cookieReceived = dataReceived.cookie
+  */
     return cb(null, dataReceived.data)
-  })/*
-  fetch(constants.urlLoginProxy + url, {
-    method: 'POST',
-    body: JSON.stringify(body),
-    headers: {'Content-Type': 'application/json'},
-  }).then(res => {
-    log.error("res.ok", res.ok)
-    log.error("***** statu", res.status)
-    log.error("zzzzz", res.statusText)
-    log.error("saz", res.headers.raw())
-    log.error(":", res.headers.get('content-type'))
-    let headers
-    if(res.ok)
-      headers = res.headers.raw()
-    var cookie = '';
-    if (headers['set-cookie'].length > 1) {
-      return log.error("many cookie in set-cookie", response.headers['set-cookie'].length);
-    } else {
-      cookie += headers['set-cookie'][0];
-    }
-    global.cookieReceived = cookie;
-    log.error ('cookier', cookie)
-    return res.json()
-  }).then(json => {
-    cb(json.data)
-  })*/
+  })
+  /*
+    fetch(constants.urlLoginProxy + url, {
+      method: 'POST',
+      body: JSON.stringify(body),
+      headers: {'Content-Type': 'application/json'},
+    }).then(res => {
+      log.error("res.ok", res.ok)
+      log.error("***** statu", res.status)
+      log.error("zzzzz", res.statusText)
+      log.error("saz", res.headers.raw())
+      log.error(":", res.headers.get('content-type'))
+      let headers
+      if(res.ok)
+        headers = res.headers.raw()
+      var cookie = '';
+      if (headers['set-cookie'].length > 1) {
+        return log.error("many cookie in set-cookie", response.headers['set-cookie'].length);
+      } else {
+        cookie += headers['set-cookie'][0];
+      }
+      global.cookieReceived = cookie;
+      log.error ('cookier', cookie)
+      return res.json()
+    }).then(json => {
+      cb(json.data)
+    })*/
 };
 
 

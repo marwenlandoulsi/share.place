@@ -3,7 +3,11 @@
 var bcrypt = require('bcrypt-nodejs')
 var passport = require('passport')
 var express = require('express')
-var BrowserWindow = require('electron').BrowserWindow;
+var BrowserWindow
+if (global.syncDisabled){
+  BrowserWindow= require('electron').BrowserWindow;
+}
+
 var request = require('request');
 var LocalStrategy = require('passport-local').Strategy
 
@@ -68,12 +72,15 @@ router.get('/profile', isLoggedIn, function (req, res) {
 // LOGOUT ==============================
 router.get('/logout', function (req, res) {
   req.logout();
-  global.executeSync = false;
+  global.syncExecuted = false;
   var deleteUser = {};
   global.user = null
   global.cookieReceived = null
   jsonfile.writeFileSync(lastLoginUserFile, deleteUser);
   //globalService.sendError(res, 401, {error: "user logged out"});
+
+  global.forkedSyncWorker.send("killSyncWorker");
+
   res.redirect(conf.onLoginRedirect)
 })
 

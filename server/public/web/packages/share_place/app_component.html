@@ -1,4 +1,4 @@
-<div [ngClass]="{'appElectron': !isWebApp}">
+<div [ngClass]="{'appElectron': !isWebApp , 'isMacAndFirefox' : isMacAndFirefox, 'mac': isMac}">
   <div>
     <downloadApp-comp [name]="'downloadApp'"></downloadApp-comp>
   </div>
@@ -8,7 +8,7 @@
     </material-dialog>
   </modal>
 
-  <modal *ngIf="profilePopinVisible != null" [visible]="profilePopinVisible">
+  <modal *ngIf="profilePopinVisible" [visible]="profilePopinVisible">
     <material-dialog class="basic-dialog profile_pop">
       <profile-comp *ngIf="connectedUser != null"></profile-comp>
     </material-dialog>
@@ -36,17 +36,23 @@
     </material-dialog>
   </modal>
 
-
-  <div class="header header-top">
+  <div [class.hideHeaderTop]="connectedUser == null" class="header header-top">
     <div class="leftHeader">
-      <div class="titleHeader">Share.Place</div>
-      <div class="labelHeader" id="p1">
-        <div class="copyIcon" onclick="copyToClipboard('#p1')" title="Copy this Url"></div>
+      <div class="titleHeader">Share.Place <label class="desktopVersion">V{{appVersion}}</label></div>
+      <div class="labelHeader" id="urlCopy" *ngIf="connectedUser != null">
+        <div class="copyIcon" onclick="copyToClipboard('#urlCopy')" title="Copy this Url"></div>
         {{displayLink}}
       </div>
     </div>
     <div class="alertInner">
-      <notification [msg]="error" class="notif error" [duration]="-1"></notification>
+      <!--<notification [msg]="error" class="notif error" [duration]="-1"></notification>-->
+      <div *ngIf="errors  != null && errors.length > 0">
+        <div *ngFor="let errorItem of errors">
+          <notification [msg]="errorItem" class="notif error" [duration]="-1"></notification>
+        </div>
+      </div>
+
+
       <div *ngIf="messages != null && messages.length > 0">
         <div *ngFor="let messageItem of messages">
           <notification [msg]="messageItem" class="notif message" [duration]="-1"></notification>
@@ -54,33 +60,15 @@
       </div>
     </div>
     <div class="rightMenu">
-      <div class="imgProfil">
+      <div class="imgProfil" *ngIf="connectedUser != null" (click)="profile()">
         <img popupSource #profileMenu="popupSource" alignPositionX="end"
              alignPositionY="after"
              src="{{userPictureUrl}}"
              class="profileImg"
-             (click)="profileMenuVisible = !profileMenuVisible"/>
+             (click)="profile()"/>
       </div>
-      <material-popup defaultPopupSizeProvider
-                      enforceSpaceConstraints
-                      [source]="profileMenu"
-                      [(visible)]="profileMenuVisible"
-                      class="profilemenuvisible" *ngIf="connectedUser != null ">
-        <div header class="popupHeader connectUsername">
-          <span>{{connectedUser?.displayName}}</span>
-        </div>
-        <div class="popupContent">
-          <material-button (click)="profile()" class="menuItem profile">
-            <div class="profile_chmp">Edit profile</div>
-          </material-button>
-          <material-button (click)="logout()" class="menuItem logout">
-            <div class="logout_chmp">Logout</div>
-          </material-button>
-        </div>
 
-      </material-popup>
-
-      <div class="btnsWindow" *ngIf="!isWebApp">
+      <div class="btnsWindow" *ngIf="!isWebApp && !isMac">
         <div class="btnHeader minus" aria-hidden="true" (click)="sendWindowEvent('minimizeWindow')"></div>
         <div class="btnHeader window-maximize" aria-hidden="true"
              (click)="sendWindowEvent('maximizeWindow')"></div>
@@ -90,29 +78,38 @@
   </div>
 
   <router-outlet></router-outlet>
-
-  <div class="leftP">
+  <div #leftPanel id="leftP" class="leftP" style="width:17%">
     <div class="logo_header">
       <img src="/images/logo_sharePlace.png" class="logo">
-      <label class="desktopVersion">V0.2.2</label>
     </div>
-    <postit-comp [name]="'places'" [header]="'Welcome!'" [body]="'You can create your place on clicking on the + icon'"
-                 class="placesPostit"></postit-comp>
-    <postit-comp *ngIf="folder != null" [name]="'folders'" [header]="'Create a folder'"
-                 [body]="'To start, create a folder clicking on the + icon'"
-                 class="foldersPostit"></postit-comp>
-    <places></places>
+    <div class="showPanel" [class.closePanel]="showingLeftP" (click)="switchPlacesPanel(leftPanel)"><i
+        class="zmdi zmdi-chevron-right"></i></div>
 
+
+    <places [class.hidden]="!showingLeftP"></places>
   </div>
-  <div class="rightPanelinside">
-    <div class="">
-      <div class="rightPanelinside_header">
-        <search-input></search-input>
+
+  <div #rightPanel class="rightPanelInside" style="width: 83%" [class.showPanelPlaces]="showingLeftP"
+       [class.hidePanelPlaces]="!showingLeftP" [class.forbidden]="!hasAccessToFolder">
+    <div class="headerPanelRight">
+      <div class="rightPanelInsideHeader">
+        <table width="100%" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="60%" [class.hideTree]="showingLeftP">
+              <div class="breadCrumbContent">
+                <breadcrumbs-comp></breadcrumbs-comp>
+              </div>
+            </td>
+            <td width="40%">
+              <search-input></search-input>
+            </td>
+          </tr>
+        </table>
       </div>
       <search-comp id="searchResult" *ngIf="searchText != null"></search-comp>
     </div>
-
-    <div class="panel-bottom">
+    <error-comp *ngIf="!hasAccessToFolder"></error-comp>
+    <div *ngIf="hasAccessToFolder" class="panel-bottom">
       <div class="centerP">
         <subjects></subjects>
       </div>
@@ -122,7 +119,7 @@
         </div>
       </div>
     </div>
+
   </div>
-  <!--<button onclick="dispatchWindowEvent('data of event')">Test event</button>-->
 </div>
 

@@ -80,6 +80,10 @@
         "1": "package:share_place/common/central.dart",
         "4": "central",
         "5": false
+      },
+      {
+        "1": "package:share_place/users/place_user_list_provider.dart",
+        "5": false
       }
     ],
     "5": [

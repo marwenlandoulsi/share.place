@@ -5,6 +5,11 @@
       {
         "1": "package:angular2/core.dart",
         "5": false
+      },
+      {
+        "1": "package:share_place/app_config.dart",
+        "4": "conf",
+        "5": false
       }
     ],
     "5": [
@@ -17,6 +22,10 @@
       {
         "1": "package:angular2/core.template.dart",
         "4": "i0"
+      },
+      {
+        "1": "package:share_place/app_config.template.dart",
+        "4": "i1"
       }
     ]
   },

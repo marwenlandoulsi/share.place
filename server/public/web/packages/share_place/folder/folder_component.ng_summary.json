@@ -69,6 +69,11 @@
       {
         "1": "package:share_place/common/event/event_analyser.dart",
         "5": false
+      },
+      {
+        "1": "package:share_place/app_config.dart",
+        "4": "conf",
+        "5": false
       }
     ],
     "5": [
@@ -185,7 +190,7 @@
       ],
       "template": {
         "encapsulation": 0,
-        "template": "<div *ngIf=\"selectedPlace != null\" class=\"folders\">\r\n  <!--<a *ngIf=\"selectedPlace != null && selectedFolder != null\" class=\"importEmail\" href=\"/sp/importGmail?placeId={{selectedPlace.id}}&folderId={{selectedFolder?.id}}\">import from gmail</a>-->\r\n\r\n  <div class=\"header\">\r\n\t\t<span class=\"h2Places\">\r\n\t\t\tFolders\r\n\t\t</span>\r\n  </div>\r\n  <div>\r\n\r\n  </div>\r\n  <div class=\"folders\">\r\n    <div class=\"scrollbar-macosx\">\r\n\r\n      <div class=\"scrollContent\">\r\n        <div class=\"spinnerInner\">\r\n          <material-spinner class=\"spinner\" *ngIf=\"folders == null\"></material-spinner>\r\n        </div>\r\n\r\n        <tree-node-comp *ngIf=\"folders != null\" [nodes]=\"folders\"></tree-node-comp>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n</div>\r\n",
+        "template": "<div *ngIf=\"selectedPlace != null\" class=\"folders\">\r\n  <div class=\"folders\">\r\n    <div class=\"scrollbar-macosx\">\r\n      <div class=\"scrollContent\">\r\n        <!--<div class=\"spinnerInner\" *ngIf=\"folders == null\">-->\r\n        <!--<material-spinner class=\"spinner\"></material-spinner>-->\r\n        <!--</div>-->\r\n\r\n        <div class=\"timeline-item\" *ngIf=\"folders == null\">\r\n          <div class=\"folderItem selected\">\r\n            <div  class=\"nodeArrow fa fa-angle-up\"></div>\r\n            <div class=\"folder-name\" title=\"Home\"> Home</div>\r\n          </div>\r\n\r\n          <div class=\"animated-background\">\r\n            <div class=\"background-masker line1\"></div>\r\n            <div class=\"background-masker line2\"></div>\r\n          </div>\r\n        </div>\r\n        <tree-node-comp *ngIf=\"folders != null\" [nodes]=\"folders\"></tree-node-comp>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n",
         "templateUrl": "asset:share_place/lib/folder/folder_component.html",
         "styles": [],
         "styleUrls": [

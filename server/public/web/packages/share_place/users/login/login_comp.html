@@ -19,15 +19,11 @@
       <div class="welcome">
         <div class="logo_intro"><img src="/images/logo_intro.png"/></div>
         <span>Welcome to Share.Place</span></div>
-      <!--<div class="close" (click)="close()"><img src="../images/close_pop.png"/></div>-->
+
     </div>
   </div>
 
   <div class="panels">
-
-    <div class="messages">
-      <div *ngFor="let message of messages">{{message}}</div>
-    </div>
 
     <div class="local">
       <form action="#" method="post">
@@ -38,14 +34,14 @@
         </div>
         <div class="email">
           <div class="label">Email</div>
-          <material-input  required label="example@domain.com" [(ngModel)]="user.email" class="mail"></material-input>
+          <material-input  required label="example@domain.com" [(ngModel)]="user.email" (keyup)= "emailForgot()"class="mail"></material-input>
         </div>
         <div class="pass" id="inputSym">
           <div class="label">Password</div>
           <div class="forgot"><a href="#" tabindex="-1" (click)="forgotPassDisplayed = true">forgot?</a></div>
           <material-input required [(ngModel)]="user.pass" type="password" class="password labelPassw" (keyup.enter)="login()"></material-input>
         </div>
-        <material-button raised class="btn_login blue" (click)="login()" (keyup.enter)="login()">Login</material-button>
+        <material-button raised class="btn_login spaceBtn blue" (click)="login()" (keyup.enter)="login()">Login</material-button>
       </form>
 
     </div>

@@ -27,6 +27,7 @@
 
 .center {
   text-align: center;
+  margin: 0 auto;
 }
 
 span, .logo_intro {
@@ -77,16 +78,14 @@ a {
 }
 
 .btn_login {
-  background: #00adef;
+  background: #3697FF;
   height: 36px;
   width: 98px;
   margin: 5px 0 0 74px !important;
   color: white;
 }
 
-.btn_login.pos2 {
-  margin: 0 !important;
-}
+
 
 main.bottom-scroll-stroke {
   border-bottom: 0 !important;
@@ -127,11 +126,6 @@ material-input.input.themeable {
 .error {
   color: red;
   font-weight: bold;
-}
-
-.mandatory {
-  margin-bottom: 8%;
-  padding-bottom: 6%;
 }
 
 .profile {
@@ -196,7 +190,7 @@ material-input.mail.themeable, material-input.password.themeable, material-input
 }
 
 .panels {
-  padding: 2em 2em 0;
+  padding: 2em 1.5em 0;
   position: relative;
   clear: both;
   overflow: initial;
@@ -222,7 +216,7 @@ material-input.mail.themeable, material-input.password.themeable, material-input
 }
 
 .header {
-  padding: 1em 1em 0;
+  padding: 1em 1.5em 0;
 }
 
 /* drag and drop */
@@ -328,16 +322,12 @@ material-input.mail.themeable, material-input.password.themeable, material-input
 }
 
 .btn_login {
-  margin: 4em 0 2em 0 !important;
+  margin:  0 !important;
 }
 
 .passwordZone {
   margin-bottom: 1.5em;
 }
-
-/*main, header, footer {*/
-/*background-color: #00adef !important;*/
-/*}*/
 
 .email {
   position: relative;
@@ -383,4 +373,3 @@ material-input {
   vertical-align: middle;
   display: inline-block;
 }
-

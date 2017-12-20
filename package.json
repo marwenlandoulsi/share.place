@@ -1,7 +1,7 @@
 {
   "name": "Shareplace",
   "productName": "Shareplace",
-  "version": "0.2.2",
+  "version": "0.4.12",
   "description": "share place",
   "main": "main.js",
   "repository": {
@@ -22,7 +22,7 @@
     "electron-notify": "^0.1.0",
     "electron-packager": "^8.5.2",
     "electron-proxy-agent": "^1.0.2",
-    "electron-updater": "^1.10.3",
+    "electron-updater": "^2.16.1",
     "fs-extra": "^2.0.0",
     "http": "0.0.0",
     "nedb-session-store": "^1.1.1",
@@ -50,6 +50,23 @@
       "perMachine": false,
       "oneClick": true,
       "runAfterFinish": true
+    },
+    "mac": {
+      "category": "public.sharePlace.business",
+      "icon": "./build/icons/mac/icon.icns",
+      "type": "development"
+    },
+    "dmg": {
+      "title": "shareplace",
+      "icon": "./build/icons/mac/icon.icns"
+    },
+    "pkg": {
+      "allowAnywhere": false,
+      "allowCurrentUserHome": true,
+      "allowRootDirectory": false
+    },
+    "directories": {
+      "buildResources": "./build"
     }
   },
   "homepage": "https://www.share.place/",
@@ -61,7 +78,7 @@
   "author": "Shareplace SAS",
   "copyright": "©2017 Shareplace SAS.",
   "devDependencies": {
-    "electron": "1.4.15",
+    "electron": "1.7.9",
     "electron-builder": "^19.27.7"
   }
 }

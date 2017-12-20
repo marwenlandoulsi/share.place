@@ -4,31 +4,31 @@
       People
     </div>
   </div>
-  <div class="subtitle">in {{selectedPlace?.name}}</div>
+  <div class="subtitle">{{selectedPlace?.name}}</div>
 
   <div class="people">
-    <div class="scrollbar-macosx_">
-
+    <div class="scrollbar-macosx">
       <ul class="list">
-        <div class="spinnerInner">
-          <material-spinner class="spinner" *ngIf="users == null"></material-spinner>
+        <div class="spinnerInner" *ngIf="users == null">
+          <material-spinner class="spinner"></material-spinner>
         </div>
         <li *ngFor="let userItem of users" class="user">
-          <div class="userLine" [class.popupOpen]="clickedUserId == userItem.id" (click)="clickedUserId = userItem.id"
-               popupSource alignPositionX="after"
-               alignPositionY="start" #userElem="popupSource">
-            <img *ngIf="userItem.photoIdMap != null"
-                 src="/auth/gridfs/file/{{userItem?.photoIdMap['photoIdS']}}/picture.x" class="profileImg">
-            <img *ngIf="userItem.photoIdMap == null" src="/images/img_profile.png" class="profileImg">
-            <div class="userName" title="{{userItem?.displayName}}">{{userItem?.displayName}}</div>
+          <div  *ngIf="userItem.type !='roby'">
+            <div class="userLine" [class.popupOpen]="clickedUserId == userItem.id" (click)="clickedUserId = userItem.id"
+                 popupSource alignPositionX="after"
+                 alignPositionY="start" #userElem="popupSource">
+              <img *ngIf="userItem.photoIdMap != null && userItem.type !='roby'"
+                   src="/auth/gridfs/file/{{userItem?.photoIdMap['photoIdS']}}/picture.x" class="profileImg">
+              <img *ngIf="userItem.photoIdMap == null && userItem.type !='roby'" src="/images/img_profile.png" class="profileImg">
+              <div class="userName"  *ngIf="userItem.type !='roby'" title="{{userItem?.displayName}}">{{userItem?.displayName}}</div>
+            </div>
+            <info-popup *ngIf="clickedUserId == userItem.id && userItem.type !='roby'"
+                        [userId]="userItem.id"
+                        [user]="userItem"
+                        [source]="userElem" [offsetX]="20" [offsetY]="-10"
+                        [visible]="clickedUserId == userItem.id" [parent]="self" [arrowCss]="'arrowLeft'">
+            </info-popup>
           </div>
-          <info-popup *ngIf="clickedUserId == userItem.id"
-                      [userId]="userItem.id"
-                      [source]="userElem" [offsetX]="20" [offsetY]="-10"
-                      [visible]="clickedUserId == userItem.id" [parent]="self" [arrowCss]="'arrowLeft'">
-          </info-popup>
-
-
         </li>
       </ul>
     </div>

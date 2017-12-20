@@ -1,7 +1,7 @@
 /* The Modal (background) */
 
 #inviteUsers {
-  width: 57em;
+  width: 53em;
 }
 
 h4, h5 {
@@ -36,10 +36,8 @@ h4, .close {
   display: inline-block;
 }
 
-
 .inviteUsersbody {
-  padding: 1em;
-  background-color: #fff;
+  padding: 0 1.3em 1em 1.5em;
   color: #000;
 }
 
@@ -55,9 +53,8 @@ h4, .close {
 }
 
 .modal-header {
-  background-color: #fff;
   color: #444;
-  padding: 0.7em;
+  padding: 1em 1em 1em 1.6em;
 }
 
 .label {
@@ -79,6 +76,10 @@ input.mailToAdd {
   padding-top: 2em;
 }
 
+.textCenter {
+  text-align: center;
+}
+
 .roleZone .label {
   vertical-align: top;
   display: inline-block;
@@ -96,37 +97,8 @@ role-chooser-comp {
   opacity: 0.6;
 }
 
-.labelinvit {
-  font-size: 1em;
-  font-weight: bold;
-  color: #000;
-  display: block;
-  margin-bottom: 0;
-  text-align: left;
-}
-
-.magBtm {
-  margin-bottom: 1em;
-}
-
-.invites {
-  width: 100%;
-}
-
-
-.p_invi {
-  display: inline-block;
-  width: 31%;
-  font-size: 0.9em;
-  line-height: 1.2;
-  float: left;
-  font-weight: normal;
-  /*word-break: break-all;*/
-  margin: 0 0.8em 0 0;
-}
-
-.p_invi .fStrong {
-  font-weight: bold;
+.verticalAlign {
+  vertical-align: top !important;
 }
 
 .addUserDiv {
@@ -136,7 +108,6 @@ role-chooser-comp {
 }
 
 .addUserDiv_inside {
-  background: #fff;
   padding-left: 0.5em;
   display: inline;
   font-size: 1em;
@@ -154,12 +125,12 @@ role-chooser-comp {
 
 .addUserDiv_inside:after {
   font-size: 2.3em;
-  color: #21BAF5;
+  color: #3697FF;
   content: '\f276';
 }
 
 .addUserDiv_inside:hover:after, .addUserDiv_inside:hover span {
-  color: #04B1F3;
+  color: #3697FF;
 }
 
 .addUserDiv_inside:hover {
@@ -169,7 +140,18 @@ role-chooser-comp {
 .addUserDiv_inside span {
   vertical-align: super;
   font-family: 'robotoregular';
+  margin-right: 8px;
+}
 
+.titleMessage {
+  margin-bottom: 10px;
+  display: block;
+}
+
+material-input {
+  border-radius: 3px !important;
+  -moz-border-radius: 3px !important;
+  -webkit-border-radius: 3px !important;
 }
 
 material-input.themeable {
@@ -179,44 +161,66 @@ material-input.themeable {
 
 .modal-footer {
   text-align: center;
-  padding-bottom: 3%;
-  background-color: #fff;
-
+  padding-bottom: 5%;
 }
 
 material-button.submitbottom {
   margin: 0 auto;
-  width: auto ;
+  width: auto;
   padding-left: 20px;
   padding-right: 40px;
-  background: #00adef url("/images/arrow-white.png") no-repeat 84% 49%;
-
+  background: #3697FF url("/images/arrow-white.png") no-repeat 84% 49%;
   height: 36px;
-
-
   text-transform: none !important;
-  color: white ;
+  color: white;
   font-size: 16px !important;
   line-height: 0.9 !important;
-}
-
-.blueadd {
-  width: 18px;
-  height: 18px;
-  vertical-align: middle;
-  margin-left: 4px;
-  cursor: pointer;
-}
-
-material-input.themeable {
-  width: 100%;
-}
-
-.textCenter, .rolesLine {
-  text-align: center;
 }
 
 .containerInvites > input {
   padding: 0 0.5em !important;
   width: calc(100% - 1em) !important;
+}
+
+/* bg popin */
+.modal-header, .inviteUsersbody, .modal-footer, .addUserDiv_inside {
+  background-color: #f4f4f4;
+}
+
+.canContent {
+  position: relative;
+}
+
+.can {
+  position: absolute;
+  top: 4px;
+  left: auto;
+  width: 100%;
+}
+
+select {
+  height: 27px;
+  width: 100%;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+}
+
+select option[value="owner"]   { background:url("../images/owner.png") no-repeat 45% 45% !important; }
+
+
+material-input.themeable, .addUserDiv {
+  width: 100% !important;
+}
+
+.invites {
+  width: 96% !important;
+}
+
+.top-section {
+  padding: 8px 12px 20px 2px !important;
+}
+
+.inviteLabel {
+  font-size: 3em;
 }

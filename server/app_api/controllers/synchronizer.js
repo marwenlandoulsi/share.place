@@ -16,7 +16,16 @@ module.exports.synchronizeRemoteData = function () {
   });
 }
 
-var getData = function (url, callback) {
+function delay(ms) {
+  return new Promise((resolve, reject) => {
+    setTimeout(resolve, ms)
+  })
+}
+
+const getData = async function (url, callback) {
+
+  // to avoid over charging the server
+  await delay(100)
   if(!global.user){
     log.info ("interrupting synchronizer, user disconnected")
     return callback([])

@@ -25,6 +25,11 @@
       {
         "1": "package:share_place/environment.dart",
         "5": false
+      },
+      {
+        "1": "package:share_place/app_config.dart",
+        "4": "conf",
+        "5": false
       }
     ],
     "5": [
@@ -65,6 +70,10 @@
       {
         "1": "package:share_place/environment.template.dart",
         "4": "i5"
+      },
+      {
+        "1": "package:share_place/app_config.template.dart",
+        "4": "i6"
       }
     ]
   },

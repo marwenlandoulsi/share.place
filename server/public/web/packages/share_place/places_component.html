@@ -5,35 +5,44 @@
 </div>
 
 <div class="placesInner">
-  <div class="scrollbar-macosx">
-
+  <div class="scrollbar-macosx" id="placesScroller">
     <ul class="places">
-      <div class="spinnerInner">
-        <material-spinner class="spinner" *ngIf="places == null"></material-spinner>
+      <div class="spinnerInner" *ngIf="places == null">
+        <material-spinner class="spinner"></material-spinner>
       </div>
       <li [style.display]="adding ? 'block' : 'none'" class="addplace">
         <txt #newPlace [confirm]="save"
-             [sources]="['/images/ok_white.png', '/images/ok_white.png', '/images/ok_white.png']"></txt>
+       txt   [sources]="['/images/ok_white.png', '/images/ok_white.png', '/images/ok_white.png']"></txt>
       </li>
-
       <material-expansionpanel-set>
         <material-expansionpanel flat *ngFor="let place of places" name="{{place.name}}" title="{{place.name}}"
+                                 [ngClass]="{visited: selectedPlace?.id == place.id }"
                                  class="placePanel"
                                  showSaveCancel="false" (open)="selectedPlace = place"
-
                                  [expanded]="selectedPlace?.id == place.id"
-                                 [secondaryText]="notificationCountText(place)"
+                                 [secondaryText]="notificationCountText(place)" id="{{constructPlaceDivId(place)}}">
 
-                                 materialTooltip="{{place.name}}">
+          <!--<div class="spinnerInner">-->
+          <!--<material-spinner  class="spinner"></material-spinner> -->
+          <!--</div>-->
 
-          <div *ngIf="place?.id == selectedPlace?.id">
-            <folders></folders>
-            <users-comp></users-comp>
+          <div class="timeline-item" *ngIf="place?.id != selectedPlace?.id">
+            <div class="folderItem selected">
+              <div  class="nodeArrow fa fa-angle-up"></div>
+              <div class="folder-name" title="Home"> Home</div>
+            </div>
+            <div class="animated-background">
+              <div class="background-masker line1"></div>
+              <div class="background-masker line2"></div>
+            </div>
           </div>
 
+          <div *ngIf="place?.id == selectedPlace?.id">
+          <folders></folders>
+          <!--<users-comp></users-comp>-->
+          </div>
         </material-expansionpanel>
       </material-expansionpanel-set>
-
     </ul>
   </div>
 </div>

@@ -27,6 +27,11 @@
         "5": false
       },
       {
+        "1": "package:share_place/app_config.dart",
+        "4": "conf",
+        "5": false
+      },
+      {
         "1": "package:http/http.dart",
         "5": false
       },
@@ -42,11 +47,30 @@
         "1": "dart:html",
         "4": "html",
         "5": false
+      },
+      {
+        "1": "dart:convert",
+        "5": false
+      },
+      {
+        "1": "dart:async",
+        "5": false
+      },
+      {
+        "1": "package:yaml/yaml.dart",
+        "5": false
       }
     ],
     "6": "main.dart"
   },
   "type": {
+    "loadLastVersion": {
+      "class": "Identifier",
+      "name": "loadLastVersion",
+      "moduleUrl": "asset:share_place/web/main.dart",
+      "prefix": null,
+      "value": null
+    },
     "main": {
       "class": "Identifier",
       "name": "main",

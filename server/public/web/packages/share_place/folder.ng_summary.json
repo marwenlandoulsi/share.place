@@ -7,6 +7,13 @@
       "moduleUrl": "asset:share_place/lib/folder.dart",
       "prefix": null,
       "value": null
+    },
+    "TreeIdsPerNames": {
+      "class": "Identifier",
+      "name": "TreeIdsPerNames",
+      "moduleUrl": "asset:share_place/lib/folder.dart",
+      "prefix": null,
+      "value": null
     }
   },
   "alias": {}

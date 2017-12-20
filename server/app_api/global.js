@@ -19,7 +19,7 @@ module.exports = {
       res.status(status);
       var responseJson = {data: content};
       if (message)
-        responseJson.msg = message;
+        responseJson.message = message;
 
       res.json(responseJson);
     }
@@ -37,7 +37,7 @@ module.exports = {
       }
 
       res.status(statusCode);
-      let jsonRes = {error: errorMessage, errorDetail: errorDetail}
+      let jsonRes = {error: errorMessage =! null ? errorMessage : errorDetail, errorDetail: errorDetail}
       return res.json(jsonRes);
 
     }
@@ -65,6 +65,7 @@ module.exports = {
       if (!fs.existsSync(file)) {
 
         fs.writeFileSync(file, dataToInsert, {mode: mode});
+//        fs.chownSync(file, 65535, 65535)
         /* fs.chmod(file, mode, function (err) {
          if (err) {
          return log.error("problem to set mode", mode, " : ", err.message);
@@ -90,6 +91,9 @@ module.exports = {
     return url.substring(valueStart, valueEnd);
   },
   setSidInInput: (cookie) => {
+    if(!cookie)
+      return
+
     var sidToken = cookie.match(/connect\.sid=s%3A([^;]+)/);
     var sID;
     if (!sidToken) {
@@ -99,45 +103,7 @@ module.exports = {
     global.mainWindow.webContents.executeJavaScript('document.getElementById("cc").value = "' + sID + '";');
   },
   requestRemoteServer: (options, callBack) => {
-    /*if(global.isProxy){
-     if(global.userProxy){
-     var proxyUrl = "http://" + global.userProxy + ":" + global.pswProxy + "@" +global.proxyUrl;
-     var proxiedRequest = request.defaults({'proxy': proxyUrl});
-     request= proxiedRequest;
-     }
-     }
-     request(options, function (error, response, body) {
 
-     if (error) {
-     log.error("error to delete Data", error.message);
-     return callBack({errorRequest: error})
-     }
-
-     // Print out the response body
-
-     if (response.statusCode == 200 || response.statusCode == 201) {
-     let data;
-     if (typeof (body) != "object") {
-     data = JSON.parse(body).data
-     } else {
-     data = body.data;
-     }
-     return callBack(null, data);
-     } else {
-     let errToReturn = {}
-     if (typeof (body) != "object") {
-     errToReturn.error = JSON.parse(body).error;
-     errToReturn.errorDetail = JSON.parse(body).errorDetail;
-     } else {
-     errToReturn.error = body.error;
-
-     errToReturn.errorDetail = body.errorDetail;
-     }
-
-     return callBack({errFromServer: errToReturn});
-     }
-
-     })*/
     let reqOptions = {}
 
     if (options.method)
@@ -192,6 +158,34 @@ module.exports = {
     }
 
     return null
+  }, runSyncServer: () => {
+
+    if(global.syncExecuted)
+      return
+
+
+    const {fork} = require('child_process');
+    const pathSyncApp = path.join(__dirname, '..', 'syncApp.js')
+
+    const options = {
+      stdio: [ 'pipe', 'pipe', 'pipe', 'ipc' ]
+    };
+    const child = fork(pathSyncApp, {
+      env: {
+        notSync:false,
+        onLine: global.onLine,
+        userConnected: JSON.stringify(global.userConnected),
+        cookieReceived: global.cookieReceived,
+        user : JSON.stringify(global.userConnected),
+        homeDir:global.homeDir
+      }},options);
+
+    global.forkedSyncWorker = child;
+    global.syncExecuted = true
+    child.on('message', function(msg) {
+      console.log('****************************************************completed: ' + msg);
+      // try to kill child process when work signals it's done
+    });
   }, renameFolder: (oldPath, newPath) => {
     try{
       fs.renameSync(oldPath, newPath)
@@ -200,7 +194,6 @@ module.exports = {
       log.error("error to rename folder : ", e)
       return false
     }
-
   }
 }
 
