@@ -1,7 +1,7 @@
 {
   "name": "Shareplace",
   "productName": "Shareplace",
-  "version": "0.4.12",
+  "version": "0.5.0",
   "description": "share place",
   "main": "main.js",
   "repository": {
@@ -12,7 +12,7 @@
     "start": "electron .",
     "build:win": "electron-builder --win --ia32 --x64 --publish always",
     "build:winDev": "electron-builder --win --ia32 --x64",
-    "build:mac": "electron-builder --mac",
+    "build:mac": "electron-builder --mac --publish always",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
@@ -22,7 +22,7 @@
     "electron-notify": "^0.1.0",
     "electron-packager": "^8.5.2",
     "electron-proxy-agent": "^1.0.2",
-    "electron-updater": "^2.16.1",
+    "electron-updater": "^2.18.2",
     "fs-extra": "^2.0.0",
     "http": "0.0.0",
     "nedb-session-store": "^1.1.1",
@@ -67,7 +67,17 @@
     },
     "directories": {
       "buildResources": "./build"
-    }
+    },
+    "protocols": [
+      {
+        "name": "shareplace",
+        "role": "Viewer",
+        "schemes": [
+          "sp",
+          "SP"
+        ]
+      }
+    ]
   },
   "homepage": "https://www.share.place/",
   "keywords": [

@@ -7,9 +7,6 @@ process.once('loaded', () => {
   const {ipcRenderer} = require('electron');
   var path = require('path');
 
-
-
-
   function dispatchWindowEvent(detail) {
     console.log("dispatchWindowEvent", detail)
     var event = document.createEvent('CustomEvent');
@@ -203,25 +200,24 @@ process.once('loaded', () => {
   showNotifcation(title, body);
   });*/
   ipcRenderer.on('showNotif', (event, data) => {
-
     showNotifcation(data.title, data.message);
   });
   window.addEventListener('showNotif', (data) => {
-    console.log("showNotif", data)
     data = data.detail
 
     showNotifcation(JSON.parse(data).title, JSON.parse(data).message);
   });
 
   window.addEventListener('writeLog', (data) => {
-
     data = data.detail
     ipcRenderer.send('writeLog', data)
+  });
 
+  window.addEventListener('sendLogs', (data) => {
+    ipcRenderer.send('sendLogs', null)
   });
 
   window.addEventListener('proxyCredentials', (data) => {
-
     ipcRenderer.send('sendProxyCredentials', data.detail);
   });
 

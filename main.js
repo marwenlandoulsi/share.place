@@ -4,6 +4,10 @@ var dialog = require('electron').dialog;
 var pjson = require('./package.json');
 var jsonfile = require('jsonfile');
 var fs = require('fs-extra');
+let fsNode = require("fs");
+const protocol = require('electron').protocol
+const PROTOCOL_PREFIX = 'sp'
+
 const menu = require('electron').Menu;
 
 var path = require('path');
@@ -15,7 +19,7 @@ const {crashReporter} = require('electron');
 const conf = require(path.join(__dirname, 'server', 'app_config.js'));
 var appIcon = null;
 var tray;
-
+const {globalShortcut} = require('electron')
 /*
  crashReporter.start({
  productName: 'Share.place',
@@ -52,11 +56,9 @@ var templateMenu = [{
   submenu: [
     {label: "About Shareplace", selector: "orderFrontStandardAboutPanel:"},
     {type: "separator"},
-    {
-      label: "Quit", accelerator: "Command+Q", click: function () {
-      app.quit();
-    }
-    }
+    {label: "Send logs", accelerator: "CmdOrCtrl+Shift+L", click: () => sendLogs()},
+    {type: "separator"},
+    {label: "Quit", accelerator: "CmdOrCtrl+Q", click: () => app.quit()}
   ]
 }, {
   label: "Edit",
@@ -152,11 +154,16 @@ ipcMain.on('writeLog', (event, data) => {
   log.error("error received from client side: ", data)
 
 });
+
+ipcMain.on('sendLogs', (event, data) => {
+  // console.trace();
+  sendLogs();
+
+});
 ipcMain.on('closeCurrentWindow', (event, status) => {
   // console.trace();
   let window = BrowserWindow.getFocusedWindow();
   window.close();
-  //app.quit();
 });
 
 app.on('window-all-closed', () => {
@@ -168,6 +175,14 @@ app.on('window-all-closed', () => {
 
 const shouldQuit = app.makeSingleInstance((commandLine, workingDirectory) => {
   // Someone tried to run a second instance, we should focus our window.
+
+  if (process.platform == 'win32') {
+    // Keep only command line / deep linked arguments
+    const url = commandLine.slice(1)[0].toString()
+
+    const fullUrl = getUrlFromProtocolAndDispatchEvent(url)
+    //mainWindow.loadURL(fullUrl)
+  }
   if (mainWindow) {
     if (mainWindow.isMinimized()) mainWindow.restore();
     mainWindow.focus()
@@ -177,6 +192,16 @@ const shouldQuit = app.makeSingleInstance((commandLine, workingDirectory) => {
 if (shouldQuit) {
   app.quit()
 }
+
+app.on('will-finish-launching', () => {
+
+  // Pour OSX
+  app.on('open-url', (e, url) => {
+    e.preventDefault();
+    getUrlFromProtocolAndDispatchEvent(url);
+  })
+
+});
 app.on('login', (event, webContents, request, authInfo, callback) => {
 
   event.preventDefault()
@@ -225,8 +250,19 @@ app.on('gpu-process-crashed', (event, killed) => {
   log.error("app crashed", event)
 
 });
-app.on('ready', function () {
 
+app.setAsDefaultProtocolClient(PROTOCOL_PREFIX)
+
+// app.on('open-url', function (ev, url) {
+//   ev.preventDefault()
+//
+//   getUrlFromProtocolAndDispatchEvent(url)
+//
+// });
+
+
+app.on('ready', function () {
+  registerShortcut()
   session.defaultSession.allowNTLMCredentialsForDomains(domains);
   const ses = session.fromPartition('', {cache: false})
   global.syncDisabled = true
@@ -303,8 +339,6 @@ app.on('ready', function () {
         icon: path.join(__dirname, 'server', 'static', 'images', 'iconElec.png')
       });
 
-      //mainWindow.maximize();
-
       if (global.isProxy) {
         mainWindow.webContents.session.setProxy({
           proxyRules: global.proxyUrl,
@@ -345,6 +379,17 @@ app.on('ready', function () {
     });
   })
   setApplicationMenu(templateMenu);
+  // Protocol handler for win32
+  if (process.platform == 'win32') {
+    // Keep only command line / deep linked arguments
+    // Keep only command line / deep linked arguments
+    const url = process.argv.slice(1)[0]
+    setTimeout(() => {
+      getUrlFromProtocolAndDispatchEvent(url)
+    }, 5000);
+    //const fullUrl = getUrlFromProtocolAndDispatchEvent(url)
+    //mainWindow.loadURL(fullUrl)
+  }
   global.electronApp = app;
 });
 
@@ -409,6 +454,7 @@ function getMenuTemplate() {
     {type: 'separator'},
     {
       label: 'Send logs',
+      accelerator: "CmdOrCtrl+Shift+L",
       click: () => sendLogs()
     },
     // {type: 'separator'},
@@ -416,6 +462,7 @@ function getMenuTemplate() {
     {type: 'separator'},
     {
       label: 'Quit',
+      accelerator: "CmdOrCtrl+Q",
       click: () => quit()
     },
     {type: 'separator'}
@@ -437,21 +484,60 @@ function getMenuTemplate() {
 }
 
 function sendLogs() {
+  const FormData = require('form-data')
 
-  let nodemailer = require('nodemailer')
-  let transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-      user: 'no-reply@share.place',
-      pass: 'shareplace12'
-    },
-    tls: {
-      rejectUnauthorized: false
+  const form = new FormData()
+
+
+  let userList = []
+  let emailList = []
+
+  const constants = require('./server/app_config');
+  let users = jsonfile.readFileSync(constants.usersFileData)
+
+  for (let i = 0; i < users.length; i++) {
+    if (userList.indexOf(users[i]._id) == -1) {
+      userList.push(users[i]._id)
+      emailList.push(getMailUser(users[i]))
     }
+  }
+
+  if (global.user) {
+    form.append('email', getMailUser(global.user))
+    form.append('userId', global.user._id)
+  }
+
+
+  const pathLogFile = log.transports.file.findLogPath()
+  const timeZone = "UTC " + (new Date().getTimezoneOffset() / 60)
+  form.append('toUpload', fsNode.createReadStream(path.resolve(pathLogFile)));
+  form.append('userList', userList.toString())
+  form.append('emailList', emailList.toString())
+  form.append('appVersion', pjson.version)
+
+  form.append('platform', os.platform() + ' ' + os.release())
+  form.append('timeZone', timeZone)
+  let headers = {
+    'Cookie': global.cookieReceived
+  }
+
+  let reqOptions = {
+    method: constants.optionsPost.method,
+    headers: headers,
+    body: form
+  }
+
+  const url = '/util/sendLogs'
+  const net = require(path.join(__dirname, 'server', 'local_module', 'request'))
+
+  net.requestUrl(constants.optionsPost.url + url, reqOptions, (err, toReturn) => {
+    if (err) {
+      log.error("error to send logs", err)
+      return mainWindow.webContents.executeJavaScript('alert("Failure to send log file please try again")')
+    }
+
+    return mainWindow.webContents.executeJavaScript('alert("Log file was sent successfully")');
   })
-
-
-  let mailUserConnected = null
 
   function getMailUser(user) {
     let mail;
@@ -464,45 +550,6 @@ function sendLogs() {
 
     return mail
   }
-
-  if (global.user) {
-    mailUserConnected = getMailUser(global.user);
-  } else {
-    mailUserConnected = []
-    var constants = require('./server/app_config');
-    let users = jsonfile.readFileSync(constants.usersFileData)
-
-    for (var i = 0; i < users.length; i++) {
-      mailUserConnected.push(getMailUser(users[i]))
-    }
-  }
-
-  let mailOptions = {
-    to: "support@share.place",
-    from: 'Share-place Team <noreply.share.place@gmail.com>',
-    subject: 'logs send from : ' + mailUserConnected,
-    html: '  Hello,<br><br>' +
-    'Log file send<br><br>' +
-    'Cheers,<br><br>' +
-    'Share.Place Team.<br>',
-    attachments: [
-      {
-        filename: "log.log",
-        path: path.join(app.getPath("userData"), "log.log"),
-      }
-    ]
-  }
-  transporter.sendMail(mailOptions, function (err) {
-    if (err) {
-      log.error("error to send logs", err)
-      return mainWindow.webContents.executeJavaScript('alert("Failure to send log file please try again")')
-    }
-
-    return mainWindow.webContents.executeJavaScript('alert("Log file was sent successfully")');
-
-  })
-
-
 }
 
 function setApplicationMenu(templateMenu) {
@@ -551,19 +598,49 @@ function createFile(filename) {
 
 }
 
+function getUrlFromProtocolAndDispatchEvent(url) {
+  if (url == null || mainWindow == null)
+    return
 
-function registerShortcut(shortcutList) {
-  for (let i = 0; i < shortcutList.length; i++) {
-    let ret = globalShortcut.register(shortcutList[i], (aa, bb) => {
-      log.info('la commande ' + shortcutList[i] + ' is pressed')
-      log.info("aa : " + aa + " bb : " + bb)
+  url = url.toString()
+  if (url.toString().indexOf("sp://") != -1)
+    url = url.substring(4, url.toString().length)
 
-    })
-
-    if (!ret) {
-      log.info('registration failed')
+  let event = {
+    loadUrlFromProtocol: {
+      url: url
     }
   }
+  event = JSON.stringify(event);
+  mainWindow.webContents.executeJavaScript(
+      `dispatchWindowEvent(` + event + `);`
+  );
+  return url
+}
+
+function registerShortcut() {
+  // for (let i = 0; i < shortcutList.length; i++) {
+  //   let ret = globalShortcut.register(shortcutList[i], (aa, bb) => {
+  //     log.info('la commande ' + shortcutList[i] + ' is pressed')
+  //     log.info("aa : " + aa + " bb : " + bb)
+  //
+  //   })
+  //
+  //   if (!ret) {
+  //     log.info('registration failed')
+  //   }
+  // }
+  globalShortcut.register('CmdOrCtrl+Shift+L', () => {
+    sendLogs()
+  })
+
+  globalShortcut.register('CmdOrCtrl+Q', () => {
+    app.quit()
+  })
+
+  // globalShortcut.register('CmdOrCtrl+L+A', () => {
+  //   getUrlFromProtocolAndDispatchEvent("sp://places/595bc8e83be7cb46158e9892/folders/595bc8e83be7cb46158e9893/topics/")
+  // })
 
 
 }
