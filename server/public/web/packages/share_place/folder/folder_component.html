@@ -1,24 +1,19 @@
 <div *ngIf="selectedPlace != null" class="folders">
   <div class="folders">
-    <div class="scrollbar-macosx">
-      <div class="scrollContent">
-        <!--<div class="spinnerInner" *ngIf="folders == null">-->
-        <!--<material-spinner class="spinner"></material-spinner>-->
-        <!--</div>-->
-
-        <div class="timeline-item" *ngIf="folders == null">
-          <div class="folderItem selected">
-            <div  class="nodeArrow fa fa-angle-up"></div>
-            <div class="folder-name" title="Home"> Home</div>
-          </div>
-
-          <div class="animated-background">
-            <div class="background-masker line1"></div>
-            <div class="background-masker line2"></div>
-          </div>
-        </div>
-        <tree-node-comp *ngIf="folders != null" [nodes]="folders"></tree-node-comp>
+    <!--<div class="scrollbar-macosx">-->
+    <!--<div class="scrollContent">-->
+    <div class="timeline-item" *ngIf="folders == null">
+      <div class="folderItem selected">
+        <div class="nodeArrow fa fa-angle-up"></div>
+        <div class="folder-name" title="Home"> Home</div>
+      </div>
+      <div class="animated-background">
+        <div class="background-masker line1"></div>
+        <div class="background-masker line2"></div>
       </div>
     </div>
+    <tree-node-comp *ngIf="folders != null" [nodes]="folders"></tree-node-comp>
+    <!--</div>-->
+    <!--</div>-->
   </div>
 </div>

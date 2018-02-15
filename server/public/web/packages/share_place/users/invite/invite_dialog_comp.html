@@ -20,7 +20,7 @@
             <td width="40%" class="verticalAlign">
               <material-input #search class="mailToAdd" type="email" autoFocus="true"
                               (keyup)="onKeyUp(search.inputText)" class="emailInscription"
-                              placeholder="example@mydomain.com" [(ngModel)]="userRole.email"></material-input>
+                              placeholder="example@mydomain.com" (keyup.enter)="save()" [(ngModel)]="userRole.email"></material-input>
             </td>
             <td width="6%" class="canContent"  style="text-align: center" >
               <div class="can">can:</div>
@@ -28,10 +28,13 @@
             <td width="54%" class="verticalAlign" style="border-spacing: 0;">
               <select [(ngModel)]="userRole.roleName">
                 <option value="owner">Modify & export docs + approve + invite people</option>
-                <option value="viewer">Modify & export docs</option>
-                <option value="writer">Read only & export docs</option>
+                <option value="writer">Modify & export docs</option>
+                <option value="viewer">Read only & export docs</option>
               </select>
 
+            </td>
+            <td class="verticalAlign" style="border-spacing: 0;" *ngIf="usersWithRoles.length > 1">
+              <div class="delete" (click)="deleteUser(userRole)"></div>
             </td>
           </tr>
         </table>
@@ -57,6 +60,6 @@
   </div>
 
   <div class="modal-footer">
-    <material-button raised (click)="save()" class="submitbottom">Invite & send</material-button>
+    <material-button class="submitbottom" raised (click)="save()" (keyup.enter)="save()">Invite & send</material-button>
   </div>
 </div>

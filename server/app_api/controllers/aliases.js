@@ -17,8 +17,13 @@ class AliasesController {
     }catch (error){
       log.error("error to get alias", error)
       if (error instanceof errors.BusinessError) {
-        proxy.dialogBox("error", "share.place", "failed to download/open the file please close the file and retry");
-        return
+
+        const id = aliasesService.getIdFromElementId(params.elementId)
+        const type = aliasesService.getTypeFromElementId(params.elementId)
+        aliasesService.createMissingAlias(id,type).then().catch((err)=>log.error("error to create missing alias"))
+
+        proxy.dialogBox("error", "share.place", "Sorry, an error occurred, please retry in a few seconds");
+        return null;
       }
     }
   }

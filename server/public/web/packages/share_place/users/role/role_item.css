@@ -19,3 +19,20 @@
   font-weight: normal;
 }
 
+.iconRole {
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+}
+
+.iconRole {
+  background: url("/images/roles/role_not_selected.png") no-repeat;
+}
+
+.iconRole:hover, .role.selected .iconRole {
+  background: url("/images/roles/role_selected.png") no-repeat;
+}
+
+.iconRole:hover {
+  opacity: 0.8;
+}

@@ -43,14 +43,6 @@
         "5": false
       },
       {
-        "1": "package:share_place/common/ui/button_comp.dart",
-        "5": false
-      },
-      {
-        "1": "package:share_place/common/ui/text_comp.dart",
-        "5": false
-      },
-      {
         "1": "package:share_place/users/info_popup/info_popup.dart",
         "5": false
       },
@@ -97,12 +89,6 @@
           "OnInit"
         ],
         "7": [
-          {
-            "2": "ButtonComp"
-          },
-          {
-            "2": "TextComp"
-          },
           {
             "2": "materialDirectives"
           },
@@ -151,28 +137,20 @@
         "4": "i8"
       },
       {
-        "1": "package:share_place/common/ui/button_comp.template.dart",
+        "1": "package:share_place/users/info_popup/info_popup.template.dart",
         "4": "i9"
       },
       {
-        "1": "package:share_place/common/ui/text_comp.template.dart",
+        "1": "package:share_place/users/info_popup/popup_parent.template.dart",
         "4": "i10"
       },
       {
-        "1": "package:share_place/users/info_popup/info_popup.template.dart",
+        "1": "package:share_place/app_constants.template.dart",
         "4": "i11"
       },
       {
-        "1": "package:share_place/users/info_popup/popup_parent.template.dart",
-        "4": "i12"
-      },
-      {
-        "1": "package:share_place/app_constants.template.dart",
-        "4": "i13"
-      },
-      {
         "1": "package:share_place/app_config.template.dart",
-        "4": "i14"
+        "4": "i12"
       }
     ]
   },

@@ -20,6 +20,7 @@
   color: #000;
   border-radius: 3px;
   margin-bottom: 0.1em;
+  display: none;
 }
 
 .places .text {
@@ -103,7 +104,6 @@ header.closed .notifPlace {
   /*max-width: calc(100% - 7em);*/
   width: calc(100% - 4em);
   max-width: calc(100% - 4em);
-
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
@@ -112,10 +112,12 @@ header.closed .notifPlace {
   font-size: 1.1em;
 }
 
-
+.display {
+  display: block;
+}
 
 @media only screen and (max-width: 1200px) {
-  .folder-name  {
+  .folder-name {
     font-size: 0.9em;
   }
 }

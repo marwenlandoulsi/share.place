@@ -386,7 +386,7 @@ async function copyFileIfLocked(params, cb) {
 
       if (!sameFile) {
         let options = {
-          "server version": {
+          "Server version": {
             fn: () => {
               unlinkAndDownloadFile;
               cb(null, pathToFile)
@@ -516,12 +516,6 @@ module.exports.getFile = function (req, res) {
       contextId: "place"
     });
 
-    if(!userAlias || !placeAlias || !pathToHomDir){
-      let error  = new Error("missing argument : - userAlias : "+userAlias+" / - placeAlias :" + placeAlias+" / - pathToHomDir : "+pathToHomDir )
-      error.status = 404
-      showDialogBox("error", "share.place", "Failed to download the file. Please try again later");
-      throw error;
-    }
 
     let pathToDir = path.join(global.homeDir, 'share.place', userAlias, placeAlias, pathToHomDir + '/');
     fileName = globalService.findFileVersion(dataFile, v).name;
@@ -537,6 +531,13 @@ module.exports.getFile = function (req, res) {
       contextId: "f-" + dataFile.folderId
     });
 
+
+    if(!userAlias || !placeAlias || !topicAlias){
+
+      log.error("error to found alias / user alias is ", userAlias, "/ place Alias is ", placeAlias, "/ topic alias", topicAlias)
+
+      return
+    }
     pathToDir = path.join(pathToDir, topicAlias, topicAlias + "_V_" + v);
     pathToFile = path.join(pathToDir, fileName)
 
@@ -714,7 +715,6 @@ function downloadFileInDisc(url, mode, callBack) {
             if (isLockedByUser(file.get()[0], userId, versions[versions.length - 1].v)) {
               // mode = 0o666;
               // modeFile = '0777';
-              console.log("file is locked by user ======> ", userAlias)
               const params = {
                 userId: userId,
                 pathToFile: pathToFile,
@@ -2066,7 +2066,7 @@ var showConfirmBox = function (type, title, message, nameCallbackMap) {
     indexCallBackMap[i++] = nameCallbackMap[name]
     buttons.push(name)
   }
-  buttons.push("close");
+  buttons.push("Cancel");
   dialog.showMessageBox({
     type: "question",
     title: title,

@@ -195,6 +195,12 @@ process.once('loaded', () => {
     ipcRenderer.send('closeCurrentWindow');
   });
 
+
+  window.addEventListener('envReady', (data) => {
+    data = data.detail
+    ipcRenderer.send('envReady', data);
+  });
+
   /*
   window.addEventListener('showNotif',(title, body) => {
   showNotifcation(title, body);
@@ -217,6 +223,10 @@ process.once('loaded', () => {
     ipcRenderer.send('sendLogs', null)
   });
 
+
+  window.addEventListener('openUrlElectron', (data) => {
+    ipcRenderer.send('openUrlElectron',  data.detail)
+  });
   window.addEventListener('proxyCredentials', (data) => {
     ipcRenderer.send('sendProxyCredentials', data.detail);
   });

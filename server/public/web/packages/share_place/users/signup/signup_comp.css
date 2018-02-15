@@ -6,7 +6,6 @@
   width: 36em;
 }
 
-
 #signup .header {
   position: relative;
   padding: 1em 1.4em 0;
@@ -14,7 +13,7 @@
 }
 
 #signup .signuptext {
-  font-size:  1.5em;
+  font-size: 1.5em;
   color: #000;
   font-family: 'nexa_boldregular';
   vertical-align: middle;
@@ -84,8 +83,6 @@ a {
   margin: 5px 0 0 74px !important;
   color: white;
 }
-
-
 
 main.bottom-scroll-stroke {
   border-bottom: 0 !important;
@@ -322,7 +319,7 @@ material-input.mail.themeable, material-input.password.themeable, material-input
 }
 
 .btn_login {
-  margin:  0 !important;
+  margin: 0 !important;
 }
 
 .passwordZone {
@@ -372,4 +369,11 @@ material-input {
   margin-right: 6px;
   vertical-align: middle;
   display: inline-block;
+}
+
+.btn_login:disabled {
+  background-color: rgba(181, 181, 181, 0.99) !important;
+  color: #D2D2D2;
+  border-color: rgba(181, 181, 181, 0.99);
+  cursor: not-allowed;
 }

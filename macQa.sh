@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+
+# p12 certificate creation: https://support.magplus.com/hc/en-us/articles/203808748-iOS-Creating-a-Distribution-Certificate-and-p12-File
+
 echo "-------------------------- preparing files to publish on electron --------------------------"
 echo "-------------------------- building dart files --------------------------"
 copyOptions=v
@@ -9,8 +12,22 @@ echo "bd dir $buildDir"
 
 cd $projectDir/public
 
-pub get --packages-dir
-pub build --output=../electron_files/server/public
+echo -------------------------- compiling dart -------------------------------
+fastMode=$1
+
+case $fastMode in
+  fast)
+    echo "fast mode : skipping compile"
+    ;;
+  f)
+    echo "fast mode : skipping compile"
+    ;;
+  *)
+    echo "compiling dart code"
+    pub get --packages-dir
+    pub build --output=../electron_files/server/public
+    ;;
+esac
 
 cd $projectDir
 
@@ -28,7 +45,6 @@ cp "-R$copyOptions" ./electron_files/ "$buildDir"
 
 
 echo ------------------------------ files ready -------------------------------------
-c:
 cd $buildDir
 chown -R $USER ./
 

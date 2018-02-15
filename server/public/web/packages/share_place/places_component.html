@@ -1,6 +1,6 @@
 <div class="header headerplaces">
   <div class="add">
-    <div (click)="add();newPlace.focus('places')" class="addBtn"><i class="fa fa-plus" aria-hidden="true"></i></div>
+    <div (click)="add(newPlace);" class="addBtn"><i class="fa fa-plus" aria-hidden="true"></i></div>
   </div>
 </div>
 
@@ -10,9 +10,9 @@
       <div class="spinnerInner" *ngIf="places == null">
         <material-spinner class="spinner"></material-spinner>
       </div>
-      <li [style.display]="adding ? 'block' : 'none'" class="addplace">
-        <txt #newPlace [confirm]="save"
-       txt   [sources]="['/images/ok_white.png', '/images/ok_white.png', '/images/ok_white.png']"></txt>
+      <li class="addplace addNewPlace" [class.display]="adding">
+        <input #newPlace type="text" (keyup.enter)="save(newPlace.value)"/>
+        <div class="btnOk btnFolder" (click)="save(newPlace.value)"></div>
       </li>
       <material-expansionpanel-set>
         <material-expansionpanel flat *ngFor="let place of places" name="{{place.name}}" title="{{place.name}}"
@@ -21,14 +21,12 @@
                                  showSaveCancel="false" (open)="selectedPlace = place"
                                  [expanded]="selectedPlace?.id == place.id"
                                  [secondaryText]="notificationCountText(place)" id="{{constructPlaceDivId(place)}}">
-
           <!--<div class="spinnerInner">-->
           <!--<material-spinner  class="spinner"></material-spinner> -->
           <!--</div>-->
-
           <div class="timeline-item" *ngIf="place?.id != selectedPlace?.id">
             <div class="folderItem selected">
-              <div  class="nodeArrow fa fa-angle-up"></div>
+              <div class="nodeArrow fa fa-angle-up"></div>
               <div class="folder-name" title="Home"> Home</div>
             </div>
             <div class="animated-background">
@@ -38,8 +36,8 @@
           </div>
 
           <div *ngIf="place?.id == selectedPlace?.id">
-          <folders></folders>
-          <!--<users-comp></users-comp>-->
+            <folders></folders>
+            <!--<users-comp></users-comp>-->
           </div>
         </material-expansionpanel>
       </material-expansionpanel-set>

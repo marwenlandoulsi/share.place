@@ -44,7 +44,6 @@
   /*max-width: calc(100% - 7em);*/
   width: calc(100% - 4em);
   max-width: calc(100% - 4em);
-
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;

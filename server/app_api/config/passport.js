@@ -313,113 +313,49 @@ var loginFromServer = function (req, email, password, cb) {
   */
     return cb(null, dataReceived.data)
   })
-  /*
-    fetch(constants.urlLoginProxy + url, {
-      method: 'POST',
-      body: JSON.stringify(body),
-      headers: {'Content-Type': 'application/json'},
-    }).then(res => {
-      log.error("res.ok", res.ok)
-      log.error("***** statu", res.status)
-      log.error("zzzzz", res.statusText)
-      log.error("saz", res.headers.raw())
-      log.error(":", res.headers.get('content-type'))
-      let headers
-      if(res.ok)
-        headers = res.headers.raw()
-      var cookie = '';
-      if (headers['set-cookie'].length > 1) {
-        return log.error("many cookie in set-cookie", response.headers['set-cookie'].length);
-      } else {
-        cookie += headers['set-cookie'][0];
-      }
-      global.cookieReceived = cookie;
-      log.error ('cookier', cookie)
-      return res.json()
-    }).then(json => {
-      cb(json.data)
-    })*/
+
 };
 
 
 var signUpFromServer = function (req, email, password, name, skype, profilePicture, cb) {
 
-
-  // // Configure the request
   const url = req.url;
-  // var pathToFile = null;
-  //
-  // if (global.isProxy) {
-  //   if (global.userProxy) {
-  //     var proxyUrl = "http://" + global.userProxy + ":" + global.pswProxy + "@" + global.proxyUrl;
-  //     var proxiedRequest = request.defaults({'proxy': proxyUrl});
-  //     request = proxiedRequest;
-  //   }
+
+  // const form = new FormData()
+  // if (!_.isEmpty(profilePicture)) {
+  //   form.append('data', profilePicture);
   // }
-  //
-  // // Start the request
-  // var r = request.post(constants.urlLoginProxy + url, function (error, response, body) {
-  //
-  //   if (error) {
-  //     log.error("error to signUp", error.message);
-  //     return cb(error)
-  //   }
-  //
-  //
-  //   if (!error && (response.statusCode == 200 || response.statusCode == 201)) {
-  //     // Print out the response body
-  //     var user = JSON.parse(body).data;
-  //     var cookie = ''
-  //     if (response.headers['set-cookie'].length > 1) {
-  //       return log.error("many cookie in set-cookie", response.headers['set-cookie'].length);
-  //
-  //     } else {
-  //       cookie += response.headers['set-cookie'][0];
-  //     }
-  //     log.info("user created:", user)
-  //     global.cookieReceived = cookie;
-  //     globalService.setSidInInput(cookie);
-  //
-  //     if (pathToFile) {
-  //       fs.unlink(pathToFile, function (err) {
-  //         if (err)
-  //           log.error('err  delete from tmp', err);
-  //
-  //       });
-  //     }
-  //
-  //     return cb(null, user);
-  //   }
-  // });
-  // var form = r.form();
-  /*if (req.file) {
-   var pathToFile = path.join(__dirname, '..', '..', 'tmp', 'upload', req.file.filename);
-   form.append('filename', fs.createReadStream(path.join(__dirname, '..', '..', 'tmp', 'upload', req.file.filename)),
-   {
-   filename: req.file.originalname,
-   contentType: req.file.mimeType
-   });
-   }*/
-  const form = new FormData()
-  if (!_.isEmpty(profilePicture)) {
-    form.append('data', profilePicture);
+  const body ={}
+  if (email){
+    //form.append('email', email);
+    body.email = email
   }
-  if (email)
-    form.append('email', email);
 
-  if (password)
-    form.append('password', password);
 
-  if (name)
-    form.append('name', name);
+  if (password){
+    //form.append('password', password);
+    body.password = password
+  }
 
-  if (skype)
-    form.append('skype', skype);
+
+  if (name){
+    // form.append('name', name)
+    body.name = name
+  }
+
+
+  if (skype){
+    // form.append('skype', skype);
+    body.skype = skype
+  }
+
 
   let reqOptions = {
     method: "POST",
-    body: form
+    body: JSON.stringify(body),
+    headers: {'Content-Type': 'application/json'},
   }
+
   net.requestUrl(constants.urlLoginProxy + url, reqOptions, (err, toReturn) => {
     if (err)
       return cb(err)

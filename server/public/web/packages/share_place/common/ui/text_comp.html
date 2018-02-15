@@ -1,4 +1,0 @@
-<div class="text_comp">
-	<input id="txt" type="text" #text (keyup)="onKeyUp(text.value)" (keyup.enter)="onConfirm(text.value)" class="txt" [(ngModel)]="value" [disabled]="!enabled" 	 ng-focus="isFocused"  />
-	<btn class="okBtn" (click)="onConfirm(text.value)" [sources]="sources" [disabled]="!enabled" >{{label}}</btn>
-</div>

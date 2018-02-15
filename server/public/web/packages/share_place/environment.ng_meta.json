@@ -35,6 +35,10 @@
         "5": false
       },
       {
+        "1": "package:share_place/users/user_util.dart",
+        "5": false
+      },
+      {
         "1": "app_config.dart",
         "4": "conf",
         "5": false
@@ -82,7 +86,11 @@
         "5": false
       },
       {
-        "1": "package:share_place/users/place_user_list_provider.dart",
+        "1": "package:share_place/env/folder_manager.dart",
+        "5": false
+      },
+      {
+        "1": "package:share_place/env/notif_manager.dart",
         "5": false
       }
     ],
@@ -122,52 +130,60 @@
         "4": "i3"
       },
       {
-        "1": "app_config.template.dart",
+        "1": "package:share_place/users/user_util.template.dart",
         "4": "i4"
       },
       {
-        "1": "event_bus.template.dart",
+        "1": "app_config.template.dart",
         "4": "i5"
       },
       {
-        "1": "file_info.template.dart",
+        "1": "event_bus.template.dart",
         "4": "i6"
       },
       {
-        "1": "files/cloud_file.template.dart",
+        "1": "file_info.template.dart",
         "4": "i7"
       },
       {
-        "1": "folder.template.dart",
+        "1": "files/cloud_file.template.dart",
         "4": "i8"
       },
       {
-        "1": "place.template.dart",
+        "1": "folder.template.dart",
         "4": "i9"
       },
       {
-        "1": "package:share_place/common/data/data.template.dart",
+        "1": "place.template.dart",
         "4": "i10"
       },
       {
-        "1": "package:angular2/router.template.dart",
+        "1": "package:share_place/common/data/data.template.dart",
         "4": "i11"
       },
       {
-        "1": "package:share_place/common/data/collections.template.dart",
+        "1": "package:angular2/router.template.dart",
         "4": "i12"
       },
       {
-        "1": "package:share_place/app_constants.template.dart",
+        "1": "package:share_place/common/data/collections.template.dart",
         "4": "i13"
       },
       {
-        "1": "package:share_place/common/central.template.dart",
+        "1": "package:share_place/app_constants.template.dart",
         "4": "i14"
       },
       {
-        "1": "package:share_place/users/place_user_list_provider.template.dart",
+        "1": "package:share_place/common/central.template.dart",
         "4": "i15"
+      },
+      {
+        "1": "package:share_place/env/folder_manager.template.dart",
+        "4": "i16"
+      },
+      {
+        "1": "package:share_place/env/notif_manager.template.dart",
+        "4": "i17"
       }
     ]
   },

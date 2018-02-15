@@ -32,10 +32,6 @@
         "5": false
       },
       {
-        "1": "package:share_place/common/data/data.dart",
-        "5": false
-      },
-      {
         "1": "package:share_place/error/error_comp.dart",
         "5": false
       },
@@ -69,7 +65,7 @@
         "5": false
       },
       {
-        "1": "package:share_place/subject/subject_list_comp.dart",
+        "1": "package:share_place/subjects/subjectList/subject_list_comp.dart",
         "5": false
       },
       {
@@ -109,15 +105,15 @@
         "5": false
       },
       {
-        "1": "package:share_place/users/user_util.dart",
-        "5": false
-      },
-      {
         "1": "package:share_place/app_constants.dart",
         "5": false
       },
       {
         "1": "package:share_place/breadcrumbs/breadcrumbs_comp.dart",
+        "5": false
+      },
+      {
+        "1": "package:angular2/security.dart",
         "5": false
       }
     ],
@@ -141,6 +137,10 @@
           {
             "1": "Environment",
             "4": "_environment"
+          },
+          {
+            "1": "DomSanitizationService",
+            "4": "urlSanitizer"
           },
           {
             "1": "PlaceService",
@@ -232,92 +232,88 @@
         "4": "i4"
       },
       {
-        "1": "package:share_place/common/data/data.template.dart",
+        "1": "package:share_place/error/error_comp.template.dart",
         "4": "i5"
       },
       {
-        "1": "package:share_place/error/error_comp.template.dart",
+        "1": "package:share_place/file_info.template.dart",
         "4": "i6"
       },
       {
-        "1": "package:share_place/file_info.template.dart",
+        "1": "package:share_place/places_component.template.dart",
         "4": "i7"
       },
       {
-        "1": "package:share_place/places_component.template.dart",
+        "1": "package:share_place/place_service.template.dart",
         "4": "i8"
       },
       {
-        "1": "package:share_place/place_service.template.dart",
+        "1": "package:share_place/common/ui/notification.template.dart",
         "4": "i9"
       },
       {
-        "1": "package:share_place/common/ui/notification.template.dart",
+        "1": "package:share_place/path_change_interceptor.template.dart",
         "4": "i10"
       },
       {
-        "1": "package:share_place/path_change_interceptor.template.dart",
+        "1": "package:share_place/files/files_comp.template.dart",
         "4": "i11"
       },
       {
-        "1": "package:share_place/files/files_comp.template.dart",
+        "1": "package:share_place/news/news_comp.template.dart",
         "4": "i12"
       },
       {
-        "1": "package:share_place/news/news_comp.template.dart",
+        "1": "package:share_place/subjects/subjectList/subject_list_comp.template.dart",
         "4": "i13"
       },
       {
-        "1": "package:share_place/subject/subject_list_comp.template.dart",
+        "1": "package:share_place/users/change_roles/change_roles_dialog_comp.template.dart",
         "4": "i14"
       },
       {
-        "1": "package:share_place/users/change_roles/change_roles_dialog_comp.template.dart",
+        "1": "package:share_place/users/login/login_comp.template.dart",
         "4": "i15"
       },
       {
-        "1": "package:share_place/users/login/login_comp.template.dart",
+        "1": "package:share_place/users/profile/profile_comp.template.dart",
         "4": "i16"
       },
       {
-        "1": "package:share_place/users/profile/profile_comp.template.dart",
+        "1": "package:share_place/users/terms_andconditions/terms_andconditions.template.dart",
         "4": "i17"
       },
       {
-        "1": "package:share_place/users/terms_andconditions/terms_andconditions.template.dart",
+        "1": "package:share_place/users/user.template.dart",
         "4": "i18"
       },
       {
-        "1": "package:share_place/users/user.template.dart",
+        "1": "package:share_place/search/search_comp.template.dart",
         "4": "i19"
       },
       {
-        "1": "package:share_place/search/search_comp.template.dart",
+        "1": "package:share_place/electron/proxy_credentials.template.dart",
         "4": "i20"
       },
       {
-        "1": "package:share_place/electron/proxy_credentials.template.dart",
+        "1": "package:share_place/search/search_input/search_input.template.dart",
         "4": "i21"
       },
       {
-        "1": "package:share_place/search/search_input/search_input.template.dart",
+        "1": "package:share_place/users/download_app/download_app.template.dart",
         "4": "i22"
       },
       {
-        "1": "package:share_place/users/download_app/download_app.template.dart",
+        "1": "package:share_place/app_constants.template.dart",
         "4": "i23"
       },
       {
-        "1": "package:share_place/users/user_util.template.dart",
+        "1": "package:share_place/breadcrumbs/breadcrumbs_comp.template.dart",
         "4": "i24"
       },
       {
-        "1": "package:share_place/app_constants.template.dart",
+        "1": "package:angular2/security.template.dart",
         "4": "i25"
-      },
-      {
-        "1": "package:share_place/breadcrumbs/breadcrumbs_comp.template.dart",
-        "4": "i26"
       }
     ]
   },
@@ -380,6 +376,26 @@
               "value": null,
               "identifier": {
                 "class": "Identifier",
+                "name": "DomSanitizationService",
+                "moduleUrl": "asset:angular2/lib/src/security/dom_sanitization_service.dart",
+                "prefix": null,
+                "value": null
+              },
+              "identifierIsInstance": false
+            },
+            "value": null,
+            "isAttribute": false,
+            "isSelf": false,
+            "isHost": false,
+            "isSkipSelf": false,
+            "isOptional": false,
+            "isValue": false
+          },
+          {
+            "token": {
+              "value": null,
+              "identifier": {
+                "class": "Identifier",
                 "name": "PlaceService",
                 "moduleUrl": "asset:share_place/lib/place_service.dart",
                 "prefix": null,
@@ -409,7 +425,7 @@
       ],
       "template": {
         "encapsulation": 0,
-        "template": "<div [ngClass]=\"{'appElectron': !isWebApp , 'isMacAndFirefox' : isMacAndFirefox, 'mac': isMac}\">\r\n  <div>\r\n    <downloadApp-comp [name]=\"'downloadApp'\"></downloadApp-comp>\r\n  </div>\r\n  <modal *ngIf=\"connectedUser == null\" [visible]=\"true\">\r\n    <material-dialog class=\"basic-dialog login_pop\">\r\n      <login-comp></login-comp>\r\n    </material-dialog>\r\n  </modal>\r\n\r\n  <modal *ngIf=\"profilePopinVisible\" [visible]=\"profilePopinVisible\">\r\n    <material-dialog class=\"basic-dialog profile_pop\">\r\n      <profile-comp *ngIf=\"connectedUser != null\"></profile-comp>\r\n    </material-dialog>\r\n  </modal>\r\n\r\n  <modal *ngIf=\"editingRole\" [visible]=\"editingRole\">\r\n    <material-dialog defaultPopupSizeProvider\r\n                     enforceSpaceConstraints\r\n                     class=\"profilemenuvisible\">\r\n      <change-roles-dialog></change-roles-dialog>\r\n    </material-dialog>\r\n  </modal>\r\n\r\n  <modal *ngIf=\"termsAndConditionsVisible != null\" [visible]=\"termsAndConditionsVisible\">\r\n    <material-dialog defaultPopupSizeProvider\r\n                     enforceSpaceConstraints\r\n                     headered info class=\"termsConditions\">\r\n      <termsConditions-comp [name]=\"'termsAndConditions'\"></termsConditions-comp>\r\n    </material-dialog>\r\n  </modal>\r\n\r\n  <modal *ngIf=\"electronProxyCredentials != null\" [visible]=\"electronProxyCredentials != null\">\r\n    <material-dialog class=\"proxyCredentials\">\r\n      <proxy-credentials></proxy-credentials>\r\n    </material-dialog>\r\n  </modal>\r\n\r\n  <div [class.hideHeaderTop]=\"connectedUser == null\" class=\"header header-top\">\r\n    <div class=\"leftHeader\">\r\n      <div class=\"titleHeader\">Share.Place <label class=\"desktopVersion\">V{{appVersion}}</label></div>\r\n      <div class=\"labelHeader\" id=\"urlCopy\" *ngIf=\"connectedUser != null\">\r\n        <div class=\"copyIcon\" onclick=\"copyToClipboard('#urlCopy')\" title=\"Copy this Url\"></div>\r\n        {{displayLink}}\r\n      </div>\r\n    </div>\r\n    <div class=\"alertInner\">\r\n      <!--<notification [msg]=\"error\" class=\"notif error\" [duration]=\"-1\"></notification>-->\r\n      <div *ngIf=\"errors  != null && errors.length > 0\">\r\n        <div *ngFor=\"let errorItem of errors\">\r\n          <notification [msg]=\"errorItem\" class=\"notif error\" [duration]=\"-1\"></notification>\r\n        </div>\r\n      </div>\r\n\r\n\r\n      <div *ngIf=\"messages != null && messages.length > 0\">\r\n        <div *ngFor=\"let messageItem of messages\">\r\n          <notification [msg]=\"messageItem\" class=\"notif message\" [duration]=\"-1\"></notification>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"rightMenu\">\r\n      <div class=\"imgProfil\" *ngIf=\"connectedUser != null\" (click)=\"profile()\">\r\n        <img popupSource #profileMenu=\"popupSource\" alignPositionX=\"end\"\r\n             alignPositionY=\"after\"\r\n             src=\"{{userPictureUrl}}\"\r\n             class=\"profileImg\"\r\n             (click)=\"profile()\"/>\r\n      </div>\r\n\r\n      <div class=\"btnsWindow\" *ngIf=\"!isWebApp && !isMac\">\r\n        <div class=\"btnHeader minus\" aria-hidden=\"true\" (click)=\"sendWindowEvent('minimizeWindow')\"></div>\r\n        <div class=\"btnHeader window-maximize\" aria-hidden=\"true\"\r\n             (click)=\"sendWindowEvent('maximizeWindow')\"></div>\r\n        <div class=\"btnHeader closeWind\" aria-hidden=\"true\" (click)=\"sendWindowEvent('closeWindow')\"></div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n  <router-outlet></router-outlet>\r\n  <div #leftPanel id=\"leftP\" class=\"leftP\" style=\"width:17%\">\r\n    <div class=\"logo_header\">\r\n      <img src=\"/images/logo_sharePlace.png\" class=\"logo\">\r\n    </div>\r\n    <div class=\"showPanel\" [class.closePanel]=\"showingLeftP\" (click)=\"switchPlacesPanel(leftPanel)\"><i\r\n        class=\"zmdi zmdi-chevron-right\"></i></div>\r\n\r\n\r\n    <places [class.hidden]=\"!showingLeftP\"></places>\r\n  </div>\r\n\r\n  <div #rightPanel class=\"rightPanelInside\" style=\"width: 83%\" [class.showPanelPlaces]=\"showingLeftP\"\r\n       [class.hidePanelPlaces]=\"!showingLeftP\" [class.forbidden]=\"!hasAccessToFolder\">\r\n    <div class=\"headerPanelRight\">\r\n      <div class=\"rightPanelInsideHeader\">\r\n        <table width=\"100%\" cellspacing=\"0\" cellpadding=\"0\">\r\n          <tr>\r\n            <td width=\"60%\" [class.hideTree]=\"showingLeftP\">\r\n              <div class=\"breadCrumbContent\">\r\n                <breadcrumbs-comp></breadcrumbs-comp>\r\n              </div>\r\n            </td>\r\n            <td width=\"40%\">\r\n              <search-input></search-input>\r\n            </td>\r\n          </tr>\r\n        </table>\r\n      </div>\r\n      <search-comp id=\"searchResult\" *ngIf=\"searchText != null\"></search-comp>\r\n    </div>\r\n    <error-comp *ngIf=\"!hasAccessToFolder\"></error-comp>\r\n    <div *ngIf=\"hasAccessToFolder\" class=\"panel-bottom\">\r\n      <div class=\"centerP\">\r\n        <subjects></subjects>\r\n      </div>\r\n      <div class=\"rightP\">\r\n        <div class=\"files\">\r\n          <files-comp></files-comp>\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n  </div>\r\n</div>\r\n\r\n",
+        "template": "<div class=\"resizeTopElectron\" *ngIf=\"!isWebApp\"></div>\r\n<div [ngClass]=\"{'appElectron': !isWebApp , 'isMacAndFirefox' : isMacAndFirefox, 'mac': isMac}\">\r\n  <div>\r\n    <downloadApp-comp [name]=\"'downloadApp'\"></downloadApp-comp>\r\n  </div>\r\n  <modal *ngIf=\"connectedUser == null\" [visible]=\"true\">\r\n    <material-dialog class=\"basic-dialog login_pop\">\r\n      <login-comp></login-comp>\r\n    </material-dialog>\r\n  </modal>\r\n\r\n  <modal *ngIf=\"profilePopinVisible\" [visible]=\"profilePopinVisible\">\r\n    <material-dialog class=\"basic-dialog profile_pop\">\r\n      <profile-comp *ngIf=\"connectedUser != null\"></profile-comp>\r\n    </material-dialog>\r\n  </modal>\r\n\r\n  <modal *ngIf=\"editingRole\" [visible]=\"editingRole\">\r\n    <material-dialog defaultPopupSizeProvider\r\n                     enforceSpaceConstraints\r\n                     class=\"profilemenuvisible\">\r\n      <change-roles-dialog></change-roles-dialog>\r\n    </material-dialog>\r\n  </modal>\r\n\r\n  <modal *ngIf=\"termsAndConditionsVisible != null\" [visible]=\"termsAndConditionsVisible\">\r\n    <material-dialog defaultPopupSizeProvider\r\n                     enforceSpaceConstraints\r\n                     headered info class=\"termsConditions\">\r\n      <termsConditions-comp [name]=\"'termsAndConditions'\"></termsConditions-comp>\r\n    </material-dialog>\r\n  </modal>\r\n\r\n  <modal *ngIf=\"electronProxyCredentials != null\" [visible]=\"electronProxyCredentials != null\">\r\n    <material-dialog class=\"proxyCredentials\">\r\n      <proxy-credentials></proxy-credentials>\r\n    </material-dialog>\r\n  </modal>\r\n\r\n  <div [class.hideHeaderTop]=\"connectedUser == null\" class=\"header header-top\">\r\n    <div class=\"leftHeader\">\r\n      <div class=\"titleHeader\">Share.Place <label class=\"desktopVersion\">V{{appVersion}}</label></div>\r\n      <div class=\"labelHeader\" id=\"urlCopy\" *ngIf=\"connectedUser != null\">\r\n        <input #inputCopyUrl draggable=\"false\" class=\"inputCopyUrl\" [(ngModel)]=\"displayLink\"\r\n               (keyup.enter)=\"goToDisplayLink(inputCopyUrl)\" (click)=\"inputCopyClicked(inputCopyUrl)\"\r\n               (keyup.esc)=\"inputCopyEscaped(inputCopyUrl)\" value=\"{{displayLink}}\" spellcheck=\"false\">\r\n        <div class=\"copyIcon\" (click)=\"copyUrlToClipboard()\" title=\"Copy this Url\"></div>\r\n      </div>\r\n    </div>\r\n    <div class=\"alertInner\">\r\n      <!--<notification [msg]=\"error\" class=\"notif error\" [duration]=\"-1\"></notification>-->\r\n      <div *ngIf=\"errors  != null && errors.length > 0\">\r\n        <div *ngFor=\"let errorItem of errors\">\r\n          <notification [msg]=\"errorItem\" class=\"notif error\" [duration]=\"-1\"></notification>\r\n        </div>\r\n      </div>\r\n\r\n      <div *ngIf=\"messages != null && messages.length > 0\">\r\n        <div *ngFor=\"let messageItem of messages\">\r\n          <notification [msg]=\"messageItem\" class=\"notif message\" [duration]=\"-1\"></notification>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"rightMenu\">\r\n      <a class=\"openDesktopApp\" *ngIf=\"isWebApp\" href=\"{{desktopUrl}}\"></a>\r\n      <div class=\"imgProfil\" *ngIf=\"connectedUser != null\" (click)=\"profile()\">\r\n        <img popupSource #profileMenu=\"popupSource\" alignPositionX=\"end\"\r\n             alignPositionY=\"after\"\r\n             src=\"{{userPictureUrl}}\"\r\n             class=\"profileImg\"\r\n             (click)=\"profile()\"/>\r\n      </div>\r\n\r\n      <div class=\"btnsWindow\" *ngIf=\"!isWebApp && !isMac\">\r\n        <div class=\"btnHeader minus\" aria-hidden=\"true\" (click)=\"sendWindowEvent('minimizeWindow')\"></div>\r\n        <div class=\"btnHeader window-maximize\" aria-hidden=\"true\"\r\n             (click)=\"sendWindowEvent('maximizeWindow')\"></div>\r\n        <div class=\"btnHeader closeWind\" aria-hidden=\"true\" (click)=\"sendWindowEvent('closeWindow')\"></div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n  <router-outlet></router-outlet>\r\n  <div #leftPanel id=\"leftP\" class=\"leftP\" style=\"width:17%\">\r\n    <div class=\"logo_header\">\r\n      <div class=\"logo\" title=\"Welcome to Share Place\"></div>\r\n      <!--<img src=\"/images/logo_sharePlace.png\" class=\"logo\">-->\r\n    </div>\r\n    <div class=\"showPanel\" [class.closePanel]=\"showingLeftP\" (click)=\"switchPlacesPanel(leftPanel)\"><i\r\n        class=\"zmdi zmdi-chevron-right\"></i></div>\r\n\r\n\r\n    <places [class.hidden]=\"!showingLeftP\"></places>\r\n  </div>\r\n\r\n  <div #rightPanel class=\"rightPanelInside\" style=\"width: 83%\" [class.showPanelPlaces]=\"showingLeftP\"\r\n       [class.hidePanelPlaces]=\"!showingLeftP\" [class.forbidden]=\"!hasAccessToFolder\">\r\n    <div class=\"headerPanelRight\">\r\n      <div class=\"rightPanelInsideHeader\">\r\n        <table width=\"100%\" cellspacing=\"0\" cellpadding=\"0\">\r\n          <tr>\r\n            <td width=\"60%\" [class.hideTree]=\"showingLeftP\">\r\n              <div class=\"breadCrumbContent\">\r\n                <breadcrumbs-comp></breadcrumbs-comp>\r\n              </div>\r\n            </td>\r\n            <td width=\"40%\">\r\n              <search-input></search-input>\r\n            </td>\r\n          </tr>\r\n        </table>\r\n      </div>\r\n      <search-comp id=\"searchResult\" *ngIf=\"searchText != null\"></search-comp>\r\n    </div>\r\n    <error-comp *ngIf=\"!hasAccessToFolder\"></error-comp>\r\n    <div *ngIf=\"hasAccessToFolder\" class=\"panel-bottom\">\r\n      <div class=\"centerP\">\r\n        <subjects></subjects>\r\n      </div>\r\n      <div class=\"rightP\">\r\n        <div class=\"files\">\r\n          <files-comp></files-comp>\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n  </div>\r\n</div>\r\n\r\n",
         "templateUrl": "asset:share_place/lib/app_component.html",
         "styles": [],
         "styleUrls": [
@@ -2066,78 +2082,6 @@
                 "isOptional": false,
                 "isValue": false
               },
-              {
-                "token": {
-                  "value": null,
-                  "identifier": {
-                    "class": "Identifier",
-                    "name": "Environment",
-                    "moduleUrl": "asset:share_place/lib/environment.dart",
-                    "prefix": null,
-                    "value": null
-                  },
-                  "identifierIsInstance": false
-                },
-                "value": null,
-                "isAttribute": false,
-                "isSelf": false,
-                "isHost": false,
-                "isSkipSelf": false,
-                "isOptional": false,
-                "isValue": false
-              }
-            ]
-          },
-          "useExisting": null,
-          "useValue": null,
-          "useFactory": null,
-          "multi": false,
-          "deps": null
-        },
-        {
-          "class": "Provider",
-          "token": {
-            "value": null,
-            "identifier": {
-              "class": "Type",
-              "name": "UserUtil",
-              "moduleUrl": "asset:share_place/lib/users/user_util.dart",
-              "prefix": null,
-              "isHost": false,
-              "value": null,
-              "diDeps": [
-                {
-                  "token": {
-                    "value": null,
-                    "identifier": {
-                      "class": "Identifier",
-                      "name": "Environment",
-                      "moduleUrl": "asset:share_place/lib/environment.dart",
-                      "prefix": null,
-                      "value": null
-                    },
-                    "identifierIsInstance": false
-                  },
-                  "value": null,
-                  "isAttribute": false,
-                  "isSelf": false,
-                  "isHost": false,
-                  "isSkipSelf": false,
-                  "isOptional": false,
-                  "isValue": false
-                }
-              ]
-            },
-            "identifierIsInstance": false
-          },
-          "useClass": {
-            "class": "Type",
-            "name": "UserUtil",
-            "moduleUrl": "asset:share_place/lib/users/user_util.dart",
-            "prefix": null,
-            "isHost": false,
-            "value": null,
-            "diDeps": [
               {
                 "token": {
                   "value": null,

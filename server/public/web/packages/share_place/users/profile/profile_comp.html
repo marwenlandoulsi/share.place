@@ -1,4 +1,4 @@
-<div class="login" id="login" (keyup.esc)="cancel()">
+<div class="login" id="login" (keyup.esc)="cancel()" (keyup.enter)="save()">
   <div class="header">
     <div class="close" (click)="close()"></div>
     <table width="100%">
@@ -7,6 +7,8 @@
           <div class="title">Profile</div>
         </td>
         <td width="50%" style="text-align: right">
+          <material-button *ngIf="!isWebApp" (click)="sendLogs()" class="btn_login logout sendLog">Send Logs
+          </material-button>
           <material-button (click)="logout()" class="btn_login logout">Logout</material-button>
         </td>
       </tr>
@@ -35,47 +37,48 @@
           <material-input #email required type="email" label="example@domain.com"
                           [disabled]="!emailChanging || isSocialAccount"
                           (change)="checkEmailChanged()" [(ngModel)]="connectedUser.mainMail"
-                          class="mail iconM">
+                          class="mail iconM" tabindex="1">
           </material-input>
           <div (click)="startEmailChange();email.focus();" class="changeMail"
                [class.hidden]="isSocialAccount" [class.clicked]="emailChanging"></div>
         </div>
-
-
         <div>
           <fieldset>
             <div class="changePass" (click)="changePass()" [class.clicked]="passwordChanging"></div>
             <div class="pass" [class.passEqual]="!isCorrectPassword && (emailChanging || passwordChanging)">
               <div class="label">Current Password</div>
               <material-input [(ngModel)]="connectedUser.pass" (keyup)="verifPassword()" type="password"
-                              class="password" [disabled]="!emailChanging && !passwordChanging"></material-input>
+                              class="password" [disabled]="!emailChanging && !passwordChanging"
+                              tabindex="2"></material-input>
             </div>
             <div class="pass">
               <div class="label">New Password</div>
               <material-input [(ngModel)]="newPass" type="password" class="password"
-                              [disabled]="!passwordChanging"></material-input>
+                              [disabled]="!passwordChanging" tabindex="3"></material-input>
             </div>
             <div class="pass" [class.passEqual]="passwordsError()">
               <div class="label">New Password again</div>
               <material-input [(ngModel)]="passVerif" type="password" class="password"
                               (keyup)="startCheckingPasswords()"
-                              [disabled]="!passwordChanging"></material-input>
+                              [disabled]="!passwordChanging" tabindex="4"></material-input>
             </div>
           </fieldset>
         </div>
         <div class="userName bottom_input">
           <div class="label">User name</div>
-          <material-input required [(ngModel)]="connectedUser.name" class="name"></material-input>
+          <material-input required [(ngModel)]="connectedUser.name" class="name" tabindex="5"></material-input>
         </div>
       </form>
 
       <div class="skype bottom_input">
         <div class="label">Skype</div>
-        <material-input [(ngModel)]="connectedUser.skype" class="value"></material-input>
+        <material-input [(ngModel)]="connectedUser.skype" class="value" tabindex="6"></material-input>
       </div>
     </div>
     <div class="modal-footer">
-      <button class="btn_login save blue" id="save" [disabled]="disableSaveButton" (click)="save()">Save</button>
+      <button class="btn_login save blue" id="save" [disabled]="disableSaveButton" (click)="save()"
+              (keyup.enter)="save()">Save
+      </button>
     </div>
     <div class="clearfix"></div>
   </div>

@@ -16,6 +16,22 @@ h4, h5 {
   float: right;
 }
 
+.delete {
+  font-family: 'Material-Design-Iconic-Font';
+  text-align: right;
+  cursor: pointer;
+}
+
+.delete:after {
+  content: '\f136';
+  color: grey;
+  font-size: 1.4em;
+}
+
+.delete:hover {
+  opacity: 0.7;
+}
+
 .modal-title {
   color: #444;
   font-family: 'nexa_boldregular';
@@ -206,15 +222,13 @@ select {
   -moz-border-radius: 3px;
 }
 
-select option[value="owner"]   { background:url("../images/owner.png") no-repeat 45% 45% !important; }
-
 
 material-input.themeable, .addUserDiv {
   width: 100% !important;
 }
 
 .invites {
-  width: 96% !important;
+  width: 97% !important;
 }
 
 .top-section {

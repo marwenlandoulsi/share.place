@@ -1,36 +1,17 @@
-<div class="signup" id="signup">
+<div class="signup" id="signup" (keyup.enter)="signup()">
   <div class="header">
     <div class="top">
       <div class="welcome">
         <div class="logo_intro"><img src="/images/logo_intro.png"></div>
         <span class="signuptext">Welcome to Share.Place</span>
       </div>
-
       <div class="close" (click)="close()"></div>
     </div>
-
-
-    <!--<form id="signupForm" #upload class="dragdrop_profil {{dragEnter ? 'drag' : ''}} {{drop ? 'drop' : ''}} "-->
-    <!--[class.uploading]="uploading"-->
-    <!--(dragenter)="dragEnter = true"-->
-    <!--(drop)="drop = true">-->
-    <!--<label id="labelfileuploadprf" for="filename">-->
-    <!--&lt;!&ndash;?refreshHack=... obliges the browser to refresh the image if it changes&ndash;&gt;-->
-    <!--<div  #signupPhotoDiv class="uploadImgprofil" id="signupPhotoDiv">-->
-    <!--<img    id="cropping" id="imgPrev" src="../images/img_profile.png" title=""/>-->
-    <!--</div>-->
-    <!--<span class="spprof">Change</span>-->
-    <!--</label>-->
-    <!--<input  #filename type="file" id="filename" class="uploadFile" name="filename"-->
-    <!--(change)="imgChange()" style="opacity: 0"/>-->
-
-    <!--</form>-->
   </div>
-
   <div class="content">
     <div class="mandatory">
       <div class="email">
-        <div class="label emaillab">Email</div>
+        <div class="label emaillab">Signup Email</div>
         <material-input required type="email" label="example@domain.com" [(ngModel)]="user.email"
                         class="mail"></material-input>
       </div>
@@ -61,9 +42,9 @@
     </div>
   </div>
   <div class="center">
-    <material-button raised class="btn_login blue" [disabled]="!submitEnabled" (click)="signup()"
-                     (keyup.enter)="signup()">OK
-    </material-button>
+    <button class="btn_login blue" [disabled]="!submitEnabled" (click)="signup()"
+            (keyup.enter)="signup()">OK
+    </button>
   </div>
 </div>
 

@@ -250,22 +250,23 @@ img#cropping {
 }
 
 .logout {
-  margin: 2em 0 0 0;
+  margin: 1.2em 0 0 0;
   background-color: white;
   border: 2px solid #3697FF;
   border-radius: 3px !important;
   -moz-border-radius: 3px !important;
   -webkit-border-radius: 3px !important;
+  font-family: 'robotoregular';
 }
 
 .logout:before {
   color: #3697FF;
-  font-size: 1.5em;
+  font-size: 1.3em;
   font-family: FontAwesome;
   content: "\f08b";
   position: absolute;
   left: 9px;
-  top: 4px;
+  top: 6px;
 }
 
 .btn_login.save {
@@ -295,4 +296,14 @@ fieldset {
 
 .changeImg.clicked:before, .changePass.clicked:before {
   color: white;
+}
+
+.sendLog {
+  margin-bottom: -0.6em;
+}
+
+.sendLog:before {
+  content: '\f194';
+  font-family: 'Material-Design-Iconic-Font' !important;
+  top: 5px;
 }

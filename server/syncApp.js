@@ -2,9 +2,9 @@
 
 const log = require("electron-log")
 
-var path = require('path');
+const path = require('path');
 
-var cron = require('../server/app_api/controllers/cron')
+const cron = require('../server/app_api/controllers/cron')
 
 cron.sync()
 

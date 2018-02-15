@@ -20,6 +20,7 @@ const conf = require(path.join(__dirname, 'server', 'app_config.js'));
 var appIcon = null;
 var tray;
 const {globalShortcut} = require('electron')
+const shell = require('electron').shell;
 /*
  crashReporter.start({
  productName: 'Share.place',
@@ -155,6 +156,22 @@ ipcMain.on('writeLog', (event, data) => {
 
 });
 
+ipcMain.on('openUrlElectron', (event, url) => {
+  // console.trace();
+  if(url == null)
+    return;
+
+  url = url.toString()
+
+  if(url.indexOf("sp://")!= -1||url.indexOf(conf.server_address)!= -1 ){
+    extractUrlFromProtocolAndDispatchEvent(url)
+    return
+  }
+
+  shell.openExternal(url)
+
+});
+
 ipcMain.on('sendLogs', (event, data) => {
   // console.trace();
   sendLogs();
@@ -164,6 +181,30 @@ ipcMain.on('closeCurrentWindow', (event, status) => {
   // console.trace();
   let window = BrowserWindow.getFocusedWindow();
   window.close();
+});
+
+let protocolUrl = null
+let envReady = false
+ipcMain.on('envReady', (event, data) => {
+  data = JSON.parse(data)
+  const isReady = data.isReady
+  if(!envReady){
+    envReady = true
+    if(protocolUrl != null){
+      let event = {
+        loadUrlFromProtocol: {
+          url: protocolUrl
+        }
+      }
+      event = JSON.stringify(event);
+      mainWindow.webContents.executeJavaScript(
+          `dispatchWindowEvent(` + event + `);`
+      )
+
+      protocolUrl = null
+    }
+  }
+  envReady = isReady
 });
 
 app.on('window-all-closed', () => {
@@ -178,9 +219,10 @@ const shouldQuit = app.makeSingleInstance((commandLine, workingDirectory) => {
 
   if (process.platform == 'win32') {
     // Keep only command line / deep linked arguments
-    const url = commandLine.slice(1)[0].toString()
+    const url = commandLine.slice(1)[0]
 
-    const fullUrl = getUrlFromProtocolAndDispatchEvent(url)
+
+    const fullUrl = extractUrlFromProtocolAndDispatchEvent(url)
     //mainWindow.loadURL(fullUrl)
   }
   if (mainWindow) {
@@ -198,7 +240,7 @@ app.on('will-finish-launching', () => {
   // Pour OSX
   app.on('open-url', (e, url) => {
     e.preventDefault();
-    getUrlFromProtocolAndDispatchEvent(url);
+    extractUrlFromProtocolAndDispatchEvent(url);
   })
 
 });
@@ -238,7 +280,6 @@ app.on('login', (event, webContents, request, authInfo, callback) => {
       psw = ''
     }
 
-
     global.userProxy = username
     global.pswProxy = psw
 
@@ -256,7 +297,7 @@ app.setAsDefaultProtocolClient(PROTOCOL_PREFIX)
 // app.on('open-url', function (ev, url) {
 //   ev.preventDefault()
 //
-//   getUrlFromProtocolAndDispatchEvent(url)
+//   extractUrlFromProtocolAndDispatchEvent(url)
 //
 // });
 
@@ -381,14 +422,8 @@ app.on('ready', function () {
   setApplicationMenu(templateMenu);
   // Protocol handler for win32
   if (process.platform == 'win32') {
-    // Keep only command line / deep linked arguments
-    // Keep only command line / deep linked arguments
     const url = process.argv.slice(1)[0]
-    setTimeout(() => {
-      getUrlFromProtocolAndDispatchEvent(url)
-    }, 5000);
-    //const fullUrl = getUrlFromProtocolAndDispatchEvent(url)
-    //mainWindow.loadURL(fullUrl)
+    extractUrlFromProtocolAndDispatchEvent(url)
   }
   global.electronApp = app;
 });
@@ -598,23 +633,36 @@ function createFile(filename) {
 
 }
 
-function getUrlFromProtocolAndDispatchEvent(url) {
-  if (url == null || mainWindow == null)
+function extractUrlFromProtocolAndDispatchEvent(url) {
+  if (url == null)
     return
 
   url = url.toString()
-  if (url.toString().indexOf("sp://") != -1)
+
+  if(url.indexOf("places") == -1)
+    return ;
+
+  if (url.indexOf("sp://") != -1)
     url = url.substring(4, url.toString().length)
 
-  let event = {
-    loadUrlFromProtocol: {
-      url: url
+
+  protocolUrl = url
+
+  if (envReady) {
+    if (mainWindow != null) {
+      let event = {
+        loadUrlFromProtocol: {
+          url: protocolUrl
+        }
+      }
+      event = JSON.stringify(event);
+      mainWindow.webContents.executeJavaScript(
+          `dispatchWindowEvent(` + event + `);`
+      );
     }
+
   }
-  event = JSON.stringify(event);
-  mainWindow.webContents.executeJavaScript(
-      `dispatchWindowEvent(` + event + `);`
-  );
+
   return url
 }
 
@@ -639,7 +687,8 @@ function registerShortcut() {
   })
 
   // globalShortcut.register('CmdOrCtrl+L+A', () => {
-  //   getUrlFromProtocolAndDispatchEvent("sp://places/595bc8e83be7cb46158e9892/folders/595bc8e83be7cb46158e9893/topics/")
+  //   console.log("btn pressed");
+  //   extractUrlFromProtocolAndDispatchEvent("sp://places/5a4f3cdbc91b4415f82fcb18/folders/5a4f3cdbc91b4415f82fcb1f/topics/5a4f3cdbc91b4415f82fcb2a/versions/")
   // })
 
 
@@ -659,7 +708,7 @@ autoUpdater.on('download-progress', (progress) => {
 autoUpdater.on('update-downloaded', () => {
   dialog.showMessageBox({
     title: 'Install Updates',
-    message: 'Updates downloaded, application will be quit for update...'
+    message: 'Updates downloaded, application will quit for update...'
   }, () => {
     autoUpdater.quitAndInstall()
   })

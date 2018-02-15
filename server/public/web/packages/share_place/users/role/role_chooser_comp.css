@@ -12,9 +12,15 @@
   background: url("/images/tiret-gris.png") repeat-x center center;
 }
 
-.roleChooser role-item.delete { display: none}
-.roleChooser role-item.owner { text-align: left }
-.roleChooser role-item.viewer{ text-align:  right}
+.roleChooser role-item.delete {
+  display: none
+}
 
+.roleChooser role-item.owner {
+  text-align: left
+}
 
+.roleChooser role-item.viewer {
+  text-align: right
+}
 

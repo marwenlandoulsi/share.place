@@ -174,7 +174,7 @@ router.get('/google', connectWithRs);
 router.post('/login', (req, res, next) => authenticate(req, res, next, 'local-login'));
 
 
-router.post('/signup', upload.single('filename'), (req, res, next) => authenticate(req, res, next, 'local-signup'));
+router.post('/signup', (req, res, next) => authenticate(req, res, next, 'local-signup'));
 
 
 var authenticate = (req, res, next, strategy) => {
@@ -245,7 +245,7 @@ router.post('/profile/edit', isLoggedIn, (req, res, next) => {
 
 router.get('/gridfs/file/:fileId', (req, res) => {
   let url = req.url;
-  let pathToUserPicture = path.join(constants.dataDir, url, 'logo-profile.png');
+  let pathToUserPicture = path.join(constants.dataDir, url, 'img_profile.png');
   let pathToUserPictureDir = path.join(constants.dataDir, url);
   if (global.onLine) {
     downloadFile(url, pathToUserPictureDir, pathToUserPicture, (err, pathPicture) => {
@@ -264,7 +264,7 @@ router.get('/gridfs/file/:fileId', (req, res) => {
 router.get('/gridfs/file/', (req, res) => {
 
   let url = req.url;
-  let pathToUserPicture = path.join(constants.dataDir, url, 'logo-profile.png');
+  let pathToUserPicture = path.join(constants.dataDir, url, 'img_profile.png');
   let pathToUserPictureDir = path.join(constants.dataDir, url);
   if (global.onLine) {
     downloadFile(url, pathToUserPictureDir, pathToUserPicture, (err, pathPicture) => {
@@ -299,7 +299,7 @@ router.get('/user/photo/:size', function (req, res) {
 
   var url = req.url;
 
-  var pathToUserPicture = path.join(constants.dataDir, url, 'logo-profile.png');
+  var pathToUserPicture = path.join(constants.dataDir, url, 'img_profile.png');
   var pathToUserPictureDir = path.join(constants.dataDir, url);
 
   if (global.onLine) {
@@ -385,7 +385,7 @@ router.get('/user/photo/:size', function (req, res) {
 // sends the image we saved by userId.
 router.get('/user/photo/:size/:userId/picture.x', function (req, res) {
   var url = req.url;
-  var pathToUserPicture = path.join(constants.dataDir, url, 'logo-profile.png');
+  var pathToUserPicture = path.join(constants.dataDir, url, 'img_profile.png');
   var pathToUserPictureDir = path.join(constants.dataDir, url);
 
   if (global.onLine) {
@@ -498,7 +498,7 @@ router.post('/forgot_pass', (req, res, next) => {
 router.get('/gridfs/file/:fileId/picture.x', (req, res) => {
 
   let url = req.url
-  var pathToUserPicture = path.join(constants.dataDir, url, 'logo-profile.png');
+  var pathToUserPicture = path.join(constants.dataDir, url, 'img_profile.png');
   var pathToUserPictureDir = path.join(constants.dataDir, url);
   var options = {
     method: conf.optionsGetFromAuthReq.method,

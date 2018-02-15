@@ -30,6 +30,34 @@ class RemoteRequestService {
 
   }
 
+  async putJson(url, dataToPut) {
+
+    let headers = {
+      'Content-Type': 'application/json',
+      'Cookie': global.cookieReceived
+    }
+// Configure the request
+
+    let options = {
+      url: constants.optionsPut.url + url,
+      method: constants.optionsPut.method,
+      headers: headers,
+      json: dataToPut
+    }
+
+
+
+    return new Promise((resolve, reject) => {
+      globalService.requestRemoteServer(options, (err, dataReceived) => {
+        if (err)
+          return reject(err)
+
+        return resolve(dataReceived)
+      })
+    })
+
+  }
+
 }
 
 module.exports.RemoteRequestService = RemoteRequestService;

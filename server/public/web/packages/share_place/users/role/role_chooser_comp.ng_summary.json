@@ -27,10 +27,6 @@
         "5": false
       },
       {
-        "1": "package:share_place/common/ui/button_comp.dart",
-        "5": false
-      },
-      {
         "1": "package:share_place/users/role/role_item.dart",
         "5": false
       },
@@ -163,7 +159,7 @@
       ],
       "template": {
         "encapsulation": 0,
-        "template": "<div class=\"roleChooser\">\r\n  <role-item #owner (select)=\"role(owner.role)\"   [role]=\"'owner'\"   [title]=\"'Owner'\" class=\"owner\"></role-item>\r\n  <role-item #writer (select)=\"role(writer.role)\" [role]=\"'writer'\"  [title]=\"'Writer'\" class=\"writer\"></role-item>\r\n  <role-item #viewer (select)=\"role(viewer.role)\" [role]=\"'viewer'\"  [title]=\"'Reader'\" class=\"viewer\"></role-item>\r\n  <role-item #delete (select)=\"role('delete')\" [role]=\"'delete'\" [title]=\"'Delete'\" class=\"delete\"></role-item>\r\n</div>",
+        "template": "<div class=\"roleChooser\">\r\n  <role-item #owner (select)=\"role(owner.role)\" [role]=\"'owner'\" [title]=\"'Owner'\" class=\"owner\"></role-item>\r\n  <role-item #writer (select)=\"role(writer.role)\" [role]=\"'writer'\" [title]=\"'Writer'\" class=\"writer\"></role-item>\r\n  <role-item #viewer (select)=\"role(viewer.role)\" [role]=\"'viewer'\" [title]=\"'Reader'\" class=\"viewer\"></role-item>\r\n  <role-item #delete (select)=\"role('delete')\" [role]=\"'delete'\" [title]=\"'Delete'\" class=\"delete\"></role-item>\r\n</div>",
         "templateUrl": "asset:share_place/lib/users/role/role_chooser_comp.html",
         "styles": [],
         "styleUrls": [

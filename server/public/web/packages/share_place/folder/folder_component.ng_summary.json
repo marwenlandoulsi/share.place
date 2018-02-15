@@ -35,14 +35,6 @@
         "5": false
       },
       {
-        "1": "package:share_place/common/ui/button_comp.dart",
-        "5": false
-      },
-      {
-        "1": "package:share_place/common/ui/text_comp.dart",
-        "5": false
-      },
-      {
         "1": "package:angular_components/angular_components.dart",
         "5": false
       },
@@ -99,12 +91,6 @@
           "OnInit"
         ],
         "7": [
-          {
-            "2": "ButtonComp"
-          },
-          {
-            "2": "TextComp"
-          },
           {
             "2": "MaterialYesNoButtonsComponent"
           },
@@ -190,7 +176,7 @@
       ],
       "template": {
         "encapsulation": 0,
-        "template": "<div *ngIf=\"selectedPlace != null\" class=\"folders\">\r\n  <div class=\"folders\">\r\n    <div class=\"scrollbar-macosx\">\r\n      <div class=\"scrollContent\">\r\n        <!--<div class=\"spinnerInner\" *ngIf=\"folders == null\">-->\r\n        <!--<material-spinner class=\"spinner\"></material-spinner>-->\r\n        <!--</div>-->\r\n\r\n        <div class=\"timeline-item\" *ngIf=\"folders == null\">\r\n          <div class=\"folderItem selected\">\r\n            <div  class=\"nodeArrow fa fa-angle-up\"></div>\r\n            <div class=\"folder-name\" title=\"Home\"> Home</div>\r\n          </div>\r\n\r\n          <div class=\"animated-background\">\r\n            <div class=\"background-masker line1\"></div>\r\n            <div class=\"background-masker line2\"></div>\r\n          </div>\r\n        </div>\r\n        <tree-node-comp *ngIf=\"folders != null\" [nodes]=\"folders\"></tree-node-comp>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n",
+        "template": "<div *ngIf=\"selectedPlace != null\" class=\"folders\">\r\n  <div class=\"folders\">\r\n    <!--<div class=\"scrollbar-macosx\">-->\r\n    <!--<div class=\"scrollContent\">-->\r\n    <div class=\"timeline-item\" *ngIf=\"folders == null\">\r\n      <div class=\"folderItem selected\">\r\n        <div class=\"nodeArrow fa fa-angle-up\"></div>\r\n        <div class=\"folder-name\" title=\"Home\"> Home</div>\r\n      </div>\r\n      <div class=\"animated-background\">\r\n        <div class=\"background-masker line1\"></div>\r\n        <div class=\"background-masker line2\"></div>\r\n      </div>\r\n    </div>\r\n    <tree-node-comp *ngIf=\"folders != null\" [nodes]=\"folders\"></tree-node-comp>\r\n    <!--</div>-->\r\n    <!--</div>-->\r\n  </div>\r\n</div>\r\n",
         "templateUrl": "asset:share_place/lib/folder/folder_component.html",
         "styles": [],
         "styleUrls": [

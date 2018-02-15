@@ -1,3 +1,4 @@
+<div class="resizeTopElectron" *ngIf="!isWebApp"></div>
 <div [ngClass]="{'appElectron': !isWebApp , 'isMacAndFirefox' : isMacAndFirefox, 'mac': isMac}">
   <div>
     <downloadApp-comp [name]="'downloadApp'"></downloadApp-comp>
@@ -40,8 +41,10 @@
     <div class="leftHeader">
       <div class="titleHeader">Share.Place <label class="desktopVersion">V{{appVersion}}</label></div>
       <div class="labelHeader" id="urlCopy" *ngIf="connectedUser != null">
-        <div class="copyIcon" onclick="copyToClipboard('#urlCopy')" title="Copy this Url"></div>
-        {{displayLink}}
+        <input #inputCopyUrl draggable="false" class="inputCopyUrl" [(ngModel)]="displayLink"
+               (keyup.enter)="goToDisplayLink(inputCopyUrl)" (click)="inputCopyClicked(inputCopyUrl)"
+               (keyup.esc)="inputCopyEscaped(inputCopyUrl)" value="{{displayLink}}" spellcheck="false">
+        <div class="copyIcon" (click)="copyUrlToClipboard()" title="Copy this Url"></div>
       </div>
     </div>
     <div class="alertInner">
@@ -52,7 +55,6 @@
         </div>
       </div>
 
-
       <div *ngIf="messages != null && messages.length > 0">
         <div *ngFor="let messageItem of messages">
           <notification [msg]="messageItem" class="notif message" [duration]="-1"></notification>
@@ -60,6 +62,7 @@
       </div>
     </div>
     <div class="rightMenu">
+      <a class="openDesktopApp" *ngIf="isWebApp" href="{{desktopUrl}}"></a>
       <div class="imgProfil" *ngIf="connectedUser != null" (click)="profile()">
         <img popupSource #profileMenu="popupSource" alignPositionX="end"
              alignPositionY="after"
@@ -80,7 +83,8 @@
   <router-outlet></router-outlet>
   <div #leftPanel id="leftP" class="leftP" style="width:17%">
     <div class="logo_header">
-      <img src="/images/logo_sharePlace.png" class="logo">
+      <div class="logo" title="Welcome to Share Place"></div>
+      <!--<img src="/images/logo_sharePlace.png" class="logo">-->
     </div>
     <div class="showPanel" [class.closePanel]="showingLeftP" (click)="switchPlacesPanel(leftPanel)"><i
         class="zmdi zmdi-chevron-right"></i></div>

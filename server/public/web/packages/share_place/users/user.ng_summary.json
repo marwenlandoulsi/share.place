@@ -8,10 +8,6 @@
         "5": false
       },
       {
-        "1": "dart:convert",
-        "5": false
-      },
-      {
         "1": "package:logging/logging.dart",
         "5": false
       }
@@ -22,6 +18,13 @@
     "FacebookAccount": {
       "class": "Identifier",
       "name": "FacebookAccount",
+      "moduleUrl": "asset:share_place/lib/users/user.dart",
+      "prefix": null,
+      "value": null
+    },
+    "FolderAccess": {
+      "class": "Identifier",
+      "name": "FolderAccess",
       "moduleUrl": "asset:share_place/lib/users/user.dart",
       "prefix": null,
       "value": null
@@ -64,6 +67,27 @@
     "User": {
       "class": "Identifier",
       "name": "User",
+      "moduleUrl": "asset:share_place/lib/users/user.dart",
+      "prefix": null,
+      "value": null
+    },
+    "UserFolderAccess": {
+      "class": "Identifier",
+      "name": "UserFolderAccess",
+      "moduleUrl": "asset:share_place/lib/users/user.dart",
+      "prefix": null,
+      "value": null
+    },
+    "folderAccessFromSting": {
+      "class": "Identifier",
+      "name": "folderAccessFromSting",
+      "moduleUrl": "asset:share_place/lib/users/user.dart",
+      "prefix": null,
+      "value": null
+    },
+    "folderAccessStr": {
+      "class": "Identifier",
+      "name": "folderAccessStr",
       "moduleUrl": "asset:share_place/lib/users/user.dart",
       "prefix": null,
       "value": null

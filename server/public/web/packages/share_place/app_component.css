@@ -11,8 +11,28 @@ h2 {
 }
 
 .logo_header {
-  text-align: center;
   padding: 0.8em 0;
+  width: 100%;
+}
+
+.logo {
+  background: url("../images/logo_sharePlace.png") no-repeat;
+  height: 52px;
+  width: 43px;
+  margin: 0 auto;
+  /* TRANSITION */
+  -webkit-transition: background .5s;
+  -moz-transition: background .5s;
+  -o-transition: background .5s;
+  transition: background .5s;
+}
+
+.logo:hover {
+  background: url("../images/logo_hover.png") no-repeat;
+  -webkit-transition: background .5s;
+  -moz-transition: background .5s;
+  -o-transition: background .5s;
+  transition: background .5s;
 }
 
 nav a {
@@ -50,11 +70,6 @@ nav a.router-link-active {
   margin: 1em 0;
 }
 
-.logo {
-  height: auto;
-  margin: 0 auto;
-}
-
 .title {
   position: absolute;
   left: 120px;
@@ -68,20 +83,40 @@ nav a.router-link-active {
   border-bottom: 2px solid cornflowerblue;
 }
 
+.resizeTopElectron {
+  position: relative;
+  background-color: #1F181F;
+  -webkit-app-region: no-drag !important;
+  width: 100%;
+  height: 3px
+}
+
 .header-top {
   position: relative;
   z-index: 1001;
-  height: 1.5em;
   background-color: #1F181F;
-  padding: 0.3em 0.5em 0.4em 0.5em;
   -webkit-app-region: drag;
-  width: calc(100% - 1em);
+  /*height: 1.5em;*/
+  /*padding: 0.3em 0.5em 0.4em 0.5em;*/
+  /*width: calc(100% - 1em);*/
+  height: 31px;
+  padding: 5px 8px 0 8px;
+  width: calc(100% - 16px);
 }
 
 .leftHeader {
-  width: calc(100% - 2.7em);
+  width: calc(100% - 4.7em);
   float: left;
   vertical-align: middle;
+}
+
+.inputCopyUrl {
+  width: calc(100% - 2em);
+  background-color: transparent;
+  border: 0;
+  color: #6f6666;
+  -webkit-app-region: no-drag !important;
+  font-size: 14px;
 }
 
 .labelHeader {
@@ -117,10 +152,14 @@ nav a.router-link-active {
   -webkit-app-region: no-drag;
   position: relative;
   z-index: 99999;
+  /*line-height: 1.6;*/
+}
+
+.copyIcon, .openDesktopApp {
+  font-family: 'Material-Design-Iconic-Font';
 }
 
 .copyIcon:after {
-  font-family: 'Material-Design-Iconic-Font';
   color: #C5C1D2;
   content: '\f237';
   margin-left: 0.4em;
@@ -129,7 +168,27 @@ nav a.router-link-active {
   cursor: pointer;
 }
 
+.openDesktopApp {
+  position: relative;
+  margin: 0 10px 0 0;
+  text-decoration: none;
+  display: inline-block !important;
+  vertical-align: middle;
+}
+
 .copyIcon:hover:after {
+  color: #fff;
+}
+
+.openDesktopApp:after {
+  content: '\f1a3';
+  color: #C5C1D2;
+  font-size: 1.3em;
+  font-weight: normal;
+  cursor: pointer;
+}
+
+.openDesktopApp:hover:after {
   color: #fff;
 }
 
@@ -250,11 +309,20 @@ material-button.menuItem.profile, material-button.menuItem.logout {
 
 .rightPanelInsideHeader {
   text-align: right;
-  /*padding: 0.4em 0.5em 0;*/
-  width: calc(100% - 1em);
   background: #3697FF;
-  padding: 0 0.5em;
-  height: 2.52em;
+  width: calc(100% - 16px);
+  padding: 0 8px;
+  height: 40px;
+}
+
+.rightPanelInside:after {
+  width: 20px;
+  position: fixed;
+  right: -15px;
+  top: 35px;
+  height: 41px;
+  background-color: #3697FF;
+  content: '';
 }
 
 .appElectron .leftHeader {
@@ -315,6 +383,11 @@ material-button.menuItem.profile, material-button.menuItem.logout {
 
   .breadCrumbContent {
     line-height: 34px;
+  }
+
+  .rightPanelInside:after {
+    right: -18px;
+    height: 36px;
   }
 }
 

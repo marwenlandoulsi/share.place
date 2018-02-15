@@ -1,5 +1,3 @@
-
-
 const path = require('path');
 const errors = require(path.join(__dirname, '..', 'common', 'businessError'));
 
@@ -45,14 +43,40 @@ class AliasesService {
     }
 
     if (data == null) {
-      throw new errors.BusinessError(errors.codes.ALIAS_NOT_FOUND, "sorry we can't found alias")
+      throw new errors.BusinessError(errors.codes.ALIAS_NOT_FOUND, "sorry we can't find alias")
     }
     aliasToReturn = DbService.findElementAndGetKey(data, {elementId: elementId, contextId: contextId}, "alias")
 
     if (aliasToReturn == null) {
-      throw new errors.BusinessError(errors.codes.ALIAS_NOT_FOUND, "sorry we can't found alias")
+      throw new errors.BusinessError(errors.codes.ALIAS_NOT_FOUND, "sorry we can't find alias")
     }
     return aliasToReturn
+  }
+
+  getIdFromElementId(elementId) {
+    return elementId.substring(2, elementId.length)
+  }
+
+  getTypeFromElementId(elementId) {
+    const suffix = elementId.substring(0, 2);
+
+    switch (suffix) {
+      case "p-":
+        return "place"
+      case "f-":
+        return "folder"
+      case "t-":
+        return "topic"
+      case "u-":
+        return "user"
+    }
+
+  }
+
+  async createMissingAlias(id, type){
+    const url = "/place/aliasmissing/"+type+"/"+id
+    const returnedData = await RemoteRequestService.putJson(url)
+    return returnedData
   }
 }
 

@@ -35,6 +35,10 @@
         "5": false
       },
       {
+        "1": "package:share_place/users/user_util.dart",
+        "5": false
+      },
+      {
         "1": "app_config.dart",
         "4": "conf",
         "5": false
@@ -82,7 +86,11 @@
         "5": false
       },
       {
-        "1": "package:share_place/users/place_user_list_provider.dart",
+        "1": "package:share_place/env/folder_manager.dart",
+        "5": false
+      },
+      {
+        "1": "package:share_place/env/notif_manager.dart",
         "5": false
       }
     ],

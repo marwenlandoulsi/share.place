@@ -42,6 +42,20 @@
       "prefix": null,
       "value": null
     },
+    "isFirefox": {
+      "class": "Identifier",
+      "name": "isFirefox",
+      "moduleUrl": "asset:share_place/lib/app_config.dart",
+      "prefix": null,
+      "value": null
+    },
+    "isLinux": {
+      "class": "Identifier",
+      "name": "isLinux",
+      "moduleUrl": "asset:share_place/lib/app_config.dart",
+      "prefix": null,
+      "value": null
+    },
     "isMac": {
       "class": "Identifier",
       "name": "isMac",
@@ -52,6 +66,13 @@
     "isMacAndFirefox": {
       "class": "Identifier",
       "name": "isMacAndFirefox",
+      "moduleUrl": "asset:share_place/lib/app_config.dart",
+      "prefix": null,
+      "value": null
+    },
+    "isUnix": {
+      "class": "Identifier",
+      "name": "isUnix",
       "moduleUrl": "asset:share_place/lib/app_config.dart",
       "prefix": null,
       "value": null

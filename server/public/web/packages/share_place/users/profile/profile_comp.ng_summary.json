@@ -36,14 +36,6 @@
         "5": false
       },
       {
-        "1": "package:share_place/common/ui/button_comp.dart",
-        "5": false
-      },
-      {
-        "1": "package:share_place/common/ui/text_comp.dart",
-        "5": false
-      },
-      {
         "1": "package:share_place/environment.dart",
         "5": false
       },
@@ -61,6 +53,11 @@
       },
       {
         "1": "package:logging/logging.dart",
+        "5": false
+      },
+      {
+        "1": "package:share_place/common/central.dart",
+        "4": "central",
         "5": false
       }
     ],
@@ -89,12 +86,6 @@
           "OnInit"
         ],
         "7": [
-          {
-            "2": "ButtonComp"
-          },
-          {
-            "2": "TextComp"
-          },
           {
             "2": "materialDirectives"
           }
@@ -211,7 +202,7 @@
       ],
       "template": {
         "encapsulation": 0,
-        "template": "<div class=\"login\" id=\"login\" (keyup.esc)=\"cancel()\">\r\n  <div class=\"header\">\r\n    <div class=\"close\" (click)=\"close()\"></div>\r\n    <table width=\"100%\">\r\n      <tr>\r\n        <td width=\"50%\">\r\n          <div class=\"title\">Profile</div>\r\n        </td>\r\n        <td width=\"50%\" style=\"text-align: right\">\r\n          <material-button (click)=\"logout()\" class=\"btn_login logout\">Logout</material-button>\r\n        </td>\r\n      </tr>\r\n    </table>\r\n    <form id=\"profileImageForm\" #upload class=\"dragdrop_profil\" [class.uploading]=\"uploading\"\r\n          (dragenter)=\"upload.style.setProperty('border', '2px solid #9FC8FA')\"\r\n          (drop)=\"upload.style.setProperty('border', '2px dotted #273B54');\">\r\n      <label id=\"labelProfileComp\" for=\"fileInput\">\r\n        <div #photoDiv class=\"uploadImgprofil\" id=\"photoDiv\">\r\n          <img id=\"cropping\" src=\"{{photoUrl}}\" onerror=\"this.src='/images/img_profile.png'\"/>\r\n        </div>\r\n        <span class=\"changeImg\" type=\"file\"></span>\r\n      </label>\r\n      <input #fileInput type=\"file\" id=\"fileInput\" (change)=\"imgChange($event)\" class=\"uploadFile\" name=\"avatar\"\r\n             style=\"opacity: 0\"/>\r\n    </form>\r\n  </div>\r\n  <div class=\"panels\">\r\n    <div class=\"messages\">\r\n      <div *ngFor=\"let message of messages\">{{message}}</div>\r\n    </div>\r\n    <div>\r\n      <form action=\"#\" method=\"post\">\r\n        <div class=\"email\">\r\n          <div class=\"label\">Signup Email</div>\r\n          <material-input #email required type=\"email\" label=\"example@domain.com\"\r\n                          [disabled]=\"!emailChanging || isSocialAccount\"\r\n                          (change)=\"checkEmailChanged()\" [(ngModel)]=\"connectedUser.mainMail\"\r\n                          class=\"mail iconM\">\r\n          </material-input>\r\n          <div (click)=\"startEmailChange();email.focus();\" class=\"changeMail\"\r\n               [class.hidden]=\"isSocialAccount\" [class.clicked]=\"emailChanging\"></div>\r\n        </div>\r\n\r\n\r\n        <div>\r\n          <fieldset>\r\n            <div class=\"changePass\" (click)=\"changePass()\" [class.clicked]=\"passwordChanging\"></div>\r\n            <div class=\"pass\" [class.passEqual]=\"!isCorrectPassword && (emailChanging || passwordChanging)\">\r\n              <div class=\"label\">Current Password</div>\r\n              <material-input [(ngModel)]=\"connectedUser.pass\" (keyup)=\"verifPassword()\" type=\"password\"\r\n                              class=\"password\" [disabled]=\"!emailChanging && !passwordChanging\"></material-input>\r\n            </div>\r\n            <div class=\"pass\">\r\n              <div class=\"label\">New Password</div>\r\n              <material-input [(ngModel)]=\"newPass\" type=\"password\" class=\"password\"\r\n                              [disabled]=\"!passwordChanging\"></material-input>\r\n            </div>\r\n            <div class=\"pass\" [class.passEqual]=\"passwordsError()\">\r\n              <div class=\"label\">New Password again</div>\r\n              <material-input [(ngModel)]=\"passVerif\" type=\"password\" class=\"password\"\r\n                              (keyup)=\"startCheckingPasswords()\"\r\n                              [disabled]=\"!passwordChanging\"></material-input>\r\n            </div>\r\n          </fieldset>\r\n        </div>\r\n        <div class=\"userName bottom_input\">\r\n          <div class=\"label\">User name</div>\r\n          <material-input required [(ngModel)]=\"connectedUser.name\" class=\"name\"></material-input>\r\n        </div>\r\n      </form>\r\n\r\n      <div class=\"skype bottom_input\">\r\n        <div class=\"label\">Skype</div>\r\n        <material-input [(ngModel)]=\"connectedUser.skype\" class=\"value\"></material-input>\r\n      </div>\r\n    </div>\r\n    <div class=\"modal-footer\">\r\n      <button class=\"btn_login save blue\" id=\"save\" [disabled]=\"disableSaveButton\" (click)=\"save()\">Save</button>\r\n    </div>\r\n    <div class=\"clearfix\"></div>\r\n  </div>\r\n</div>",
+        "template": "<div class=\"login\" id=\"login\" (keyup.esc)=\"cancel()\" (keyup.enter)=\"save()\">\r\n  <div class=\"header\">\r\n    <div class=\"close\" (click)=\"close()\"></div>\r\n    <table width=\"100%\">\r\n      <tr>\r\n        <td width=\"50%\">\r\n          <div class=\"title\">Profile</div>\r\n        </td>\r\n        <td width=\"50%\" style=\"text-align: right\">\r\n          <material-button *ngIf=\"!isWebApp\" (click)=\"sendLogs()\" class=\"btn_login logout sendLog\">Send Logs\r\n          </material-button>\r\n          <material-button (click)=\"logout()\" class=\"btn_login logout\">Logout</material-button>\r\n        </td>\r\n      </tr>\r\n    </table>\r\n    <form id=\"profileImageForm\" #upload class=\"dragdrop_profil\" [class.uploading]=\"uploading\"\r\n          (dragenter)=\"upload.style.setProperty('border', '2px solid #9FC8FA')\"\r\n          (drop)=\"upload.style.setProperty('border', '2px dotted #273B54');\">\r\n      <label id=\"labelProfileComp\" for=\"fileInput\">\r\n        <div #photoDiv class=\"uploadImgprofil\" id=\"photoDiv\">\r\n          <img id=\"cropping\" src=\"{{photoUrl}}\" onerror=\"this.src='/images/img_profile.png'\"/>\r\n        </div>\r\n        <span class=\"changeImg\" type=\"file\"></span>\r\n      </label>\r\n      <input #fileInput type=\"file\" id=\"fileInput\" (change)=\"imgChange($event)\" class=\"uploadFile\" name=\"avatar\"\r\n             style=\"opacity: 0\"/>\r\n    </form>\r\n  </div>\r\n  <div class=\"panels\">\r\n    <div class=\"messages\">\r\n      <div *ngFor=\"let message of messages\">{{message}}</div>\r\n    </div>\r\n    <div>\r\n      <form action=\"#\" method=\"post\">\r\n        <div class=\"email\">\r\n          <div class=\"label\">Signup Email</div>\r\n          <material-input #email required type=\"email\" label=\"example@domain.com\"\r\n                          [disabled]=\"!emailChanging || isSocialAccount\"\r\n                          (change)=\"checkEmailChanged()\" [(ngModel)]=\"connectedUser.mainMail\"\r\n                          class=\"mail iconM\" tabindex=\"1\">\r\n          </material-input>\r\n          <div (click)=\"startEmailChange();email.focus();\" class=\"changeMail\"\r\n               [class.hidden]=\"isSocialAccount\" [class.clicked]=\"emailChanging\"></div>\r\n        </div>\r\n        <div>\r\n          <fieldset>\r\n            <div class=\"changePass\" (click)=\"changePass()\" [class.clicked]=\"passwordChanging\"></div>\r\n            <div class=\"pass\" [class.passEqual]=\"!isCorrectPassword && (emailChanging || passwordChanging)\">\r\n              <div class=\"label\">Current Password</div>\r\n              <material-input [(ngModel)]=\"connectedUser.pass\" (keyup)=\"verifPassword()\" type=\"password\"\r\n                              class=\"password\" [disabled]=\"!emailChanging && !passwordChanging\"\r\n                              tabindex=\"2\"></material-input>\r\n            </div>\r\n            <div class=\"pass\">\r\n              <div class=\"label\">New Password</div>\r\n              <material-input [(ngModel)]=\"newPass\" type=\"password\" class=\"password\"\r\n                              [disabled]=\"!passwordChanging\" tabindex=\"3\"></material-input>\r\n            </div>\r\n            <div class=\"pass\" [class.passEqual]=\"passwordsError()\">\r\n              <div class=\"label\">New Password again</div>\r\n              <material-input [(ngModel)]=\"passVerif\" type=\"password\" class=\"password\"\r\n                              (keyup)=\"startCheckingPasswords()\"\r\n                              [disabled]=\"!passwordChanging\" tabindex=\"4\"></material-input>\r\n            </div>\r\n          </fieldset>\r\n        </div>\r\n        <div class=\"userName bottom_input\">\r\n          <div class=\"label\">User name</div>\r\n          <material-input required [(ngModel)]=\"connectedUser.name\" class=\"name\" tabindex=\"5\"></material-input>\r\n        </div>\r\n      </form>\r\n\r\n      <div class=\"skype bottom_input\">\r\n        <div class=\"label\">Skype</div>\r\n        <material-input [(ngModel)]=\"connectedUser.skype\" class=\"value\" tabindex=\"6\"></material-input>\r\n      </div>\r\n    </div>\r\n    <div class=\"modal-footer\">\r\n      <button class=\"btn_login save blue\" id=\"save\" [disabled]=\"disableSaveButton\" (click)=\"save()\"\r\n              (keyup.enter)=\"save()\">Save\r\n      </button>\r\n    </div>\r\n    <div class=\"clearfix\"></div>\r\n  </div>\r\n</div>",
         "templateUrl": "asset:share_place/lib/users/profile/profile_comp.html",
         "styles": [],
         "styleUrls": [

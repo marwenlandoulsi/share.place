@@ -23,14 +23,6 @@
         "5": false
       },
       {
-        "1": "package:share_place/common/ui/button_comp.dart",
-        "5": false
-      },
-      {
-        "1": "package:share_place/common/ui/text_comp.dart",
-        "5": false
-      },
-      {
         "1": "package:share_place/common/util.dart",
         "5": false
       },
@@ -78,6 +70,10 @@
       {
         "1": "package:logging/logging.dart",
         "5": false
+      },
+      {
+        "1": "package:share_place/users/user.dart",
+        "5": false
       }
     ],
     "5": [
@@ -112,12 +108,6 @@
           },
           {
             "2": "MaterialExpansionPanelSet"
-          },
-          {
-            "2": "ButtonComp"
-          },
-          {
-            "2": "TextComp"
           }
         ]
       }
@@ -212,7 +202,7 @@
       ],
       "template": {
         "encapsulation": 0,
-        "template": "<div class=\"header headerplaces\">\r\n  <div class=\"add\">\r\n    <div (click)=\"add();newPlace.focus('places')\" class=\"addBtn\"><i class=\"fa fa-plus\" aria-hidden=\"true\"></i></div>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"placesInner\">\r\n  <div class=\"scrollbar-macosx\" id=\"placesScroller\">\r\n    <ul class=\"places\">\r\n      <div class=\"spinnerInner\" *ngIf=\"places == null\">\r\n        <material-spinner class=\"spinner\"></material-spinner>\r\n      </div>\r\n      <li [style.display]=\"adding ? 'block' : 'none'\" class=\"addplace\">\r\n        <txt #newPlace [confirm]=\"save\"\r\n       txt   [sources]=\"['/images/ok_white.png', '/images/ok_white.png', '/images/ok_white.png']\"></txt>\r\n      </li>\r\n      <material-expansionpanel-set>\r\n        <material-expansionpanel flat *ngFor=\"let place of places\" name=\"{{place.name}}\" title=\"{{place.name}}\"\r\n                                 [ngClass]=\"{visited: selectedPlace?.id == place.id }\"\r\n                                 class=\"placePanel\"\r\n                                 showSaveCancel=\"false\" (open)=\"selectedPlace = place\"\r\n                                 [expanded]=\"selectedPlace?.id == place.id\"\r\n                                 [secondaryText]=\"notificationCountText(place)\" id=\"{{constructPlaceDivId(place)}}\">\r\n\r\n          <!--<div class=\"spinnerInner\">-->\r\n          <!--<material-spinner  class=\"spinner\"></material-spinner> -->\r\n          <!--</div>-->\r\n\r\n          <div class=\"timeline-item\" *ngIf=\"place?.id != selectedPlace?.id\">\r\n            <div class=\"folderItem selected\">\r\n              <div  class=\"nodeArrow fa fa-angle-up\"></div>\r\n              <div class=\"folder-name\" title=\"Home\"> Home</div>\r\n            </div>\r\n            <div class=\"animated-background\">\r\n              <div class=\"background-masker line1\"></div>\r\n              <div class=\"background-masker line2\"></div>\r\n            </div>\r\n          </div>\r\n\r\n          <div *ngIf=\"place?.id == selectedPlace?.id\">\r\n          <folders></folders>\r\n          <!--<users-comp></users-comp>-->\r\n          </div>\r\n        </material-expansionpanel>\r\n      </material-expansionpanel-set>\r\n    </ul>\r\n  </div>\r\n</div>",
+        "template": "<div class=\"header headerplaces\">\r\n  <div class=\"add\">\r\n    <div (click)=\"add(newPlace);\" class=\"addBtn\"><i class=\"fa fa-plus\" aria-hidden=\"true\"></i></div>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"placesInner\">\r\n  <div class=\"scrollbar-macosx\" id=\"placesScroller\">\r\n    <ul class=\"places\">\r\n      <div class=\"spinnerInner\" *ngIf=\"places == null\">\r\n        <material-spinner class=\"spinner\"></material-spinner>\r\n      </div>\r\n      <li class=\"addplace addNewPlace\" [class.display]=\"adding\">\r\n        <input #newPlace type=\"text\" (keyup.enter)=\"save(newPlace.value)\"/>\r\n        <div class=\"btnOk btnFolder\" (click)=\"save(newPlace.value)\"></div>\r\n      </li>\r\n      <material-expansionpanel-set>\r\n        <material-expansionpanel flat *ngFor=\"let place of places\" name=\"{{place.name}}\" title=\"{{place.name}}\"\r\n                                 [ngClass]=\"{visited: selectedPlace?.id == place.id }\"\r\n                                 class=\"placePanel\"\r\n                                 showSaveCancel=\"false\" (open)=\"selectedPlace = place\"\r\n                                 [expanded]=\"selectedPlace?.id == place.id\"\r\n                                 [secondaryText]=\"notificationCountText(place)\" id=\"{{constructPlaceDivId(place)}}\">\r\n          <!--<div class=\"spinnerInner\">-->\r\n          <!--<material-spinner  class=\"spinner\"></material-spinner> -->\r\n          <!--</div>-->\r\n          <div class=\"timeline-item\" *ngIf=\"place?.id != selectedPlace?.id\">\r\n            <div class=\"folderItem selected\">\r\n              <div class=\"nodeArrow fa fa-angle-up\"></div>\r\n              <div class=\"folder-name\" title=\"Home\"> Home</div>\r\n            </div>\r\n            <div class=\"animated-background\">\r\n              <div class=\"background-masker line1\"></div>\r\n              <div class=\"background-masker line2\"></div>\r\n            </div>\r\n          </div>\r\n\r\n          <div *ngIf=\"place?.id == selectedPlace?.id\">\r\n            <folders></folders>\r\n            <!--<users-comp></users-comp>-->\r\n          </div>\r\n        </material-expansionpanel>\r\n      </material-expansionpanel-set>\r\n    </ul>\r\n  </div>\r\n</div>",
         "templateUrl": "asset:share_place/lib/places_component.html",
         "styles": [],
         "styleUrls": [
