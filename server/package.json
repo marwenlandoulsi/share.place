@@ -9,7 +9,7 @@
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.17.1",
     "bootbox": "^4.4.0",
-    "bootstrap": "^3.3.7",
+    "bootstrap": "^3.4.1",
     "checksum": "^0.1.1",
     "composable-middleware": "^0.3.0",
     "connect-flash": "^0.1.1",
