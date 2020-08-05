@@ -20,7 +20,7 @@
     "electron-proxy-agent": "^1.0.2",
     "express": "^4.15.2",
     "express-domain-middleware": "^0.1.0",
-    "express-fileupload": "0.0.5",
+    "express-fileupload": "1.1.9",
     "express-http-proxy": "^0.11.0",
     "express-session": "^1.15.1",
     "file-type": "^5.2.0",
