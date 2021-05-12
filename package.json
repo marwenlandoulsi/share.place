@@ -26,7 +26,7 @@
     "fs-extra": "^2.0.0",
     "http": "0.0.0",
     "nedb-session-store": "^1.1.1",
-    "nodemailer": "^4.1.0",
+    "nodemailer": "^6.4.16",
     "path": "^0.12.7",
     "form-data": "^2.2.0"
   },
