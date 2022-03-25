@@ -89,7 +89,7 @@
   "author": "Shareplace SAS",
   "copyright": "©2017 Shareplace SAS.",
   "devDependencies": {
-    "electron": "^1.7.11",
+    "electron": "^13.6.6",
     "electron-builder": "^19.27.7"
   }
 }
